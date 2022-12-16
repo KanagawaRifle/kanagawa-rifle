@@ -1,0 +1,12 @@
+{
+  "name": "kanagawa-rifle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "特定非営利活動法人 神奈川県ライフル射撃協会",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages/website"
+  ]
+}
