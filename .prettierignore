@@ -1,0 +1,15 @@
+package.json
+package-lock.json
+
+node_modules/
+build/
+cjs/
+es/
+umd/
+flow-typed/
+.next/
+_next/
+dist/
+out/
+__tmp__/
+test/**/out/**
