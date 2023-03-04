@@ -11,6 +11,8 @@ import Stack from '@kanagawa-rifle/website/components/Stack';
 import Link from '@kanagawa-rifle/website/components/Link';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
+import Alert from "@kanagawa-rifle/website/components/Alert";
+import AlertTitle from "@kanagawa-rifle/website/components/AlertTitle";
 
 export default function Page() {
   return (
@@ -19,6 +21,55 @@ export default function Page() {
 
       <MainBody>
         <h2 className="text-center text-xl">大会関係</h2>
+
+        <Alert severity="warning">
+          <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
+          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20 で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
+        </Alert>
+
+        <Card>
+          <CardHeader title={'令和5年度国体一次予選 兼 東日本予選会'} />
+          <List>
+            <ListItem>
+              <ListItemText>期日: 2023年4月23日 (日)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>申込期限: 2023年3月7日 (火) ～2023年4月7日 (金)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>お申込み: <Link href="https://forms.gle/aPDB26AKoUYnf8GcA">https://forms.gle/aPDB26AKoUYnf8GcA</Link></ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>会場: 神奈川県立伊勢原射撃場</ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader title={'令和5年度国体最終予選 兼 全関東予選会'} />
+          <List>
+            <ListItem>
+              <ListItemText>期日: 2023年5月21日 (日)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>申込期限: 2023年4月5日 (水) ～2023年5月5日 (金)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>お申込み: <Link href="https://forms.gle/WxkFnRye5T2G1Djr7">https://forms.gle/WxkFnRye5T2G1Djr7</Link></ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>会場: 神奈川県立伊勢原射撃場</ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <h2 className="text-center text-lg">2022年度</h2>
 
         <Card>
           <CardHeader
