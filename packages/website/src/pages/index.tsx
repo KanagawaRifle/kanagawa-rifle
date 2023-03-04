@@ -20,12 +20,17 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年2月23日</div>
+        <div className="text-center text-xl">最終更新日: 2023年2月28日</div>
 
         <Alert severity="info">
           <AlertTitle>令和5年度事業計画案と会員更新手続きのご案内</AlertTitle>
           <Link href="/projects">事業計画ページ</Link>
           に令和5年度の事業計画案と会員更新手続きのご案内を掲載いたしました。
+        </Alert>
+
+        <Alert severity="warning">
+          <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
+          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20 で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
         </Alert>
 
         <Card>
