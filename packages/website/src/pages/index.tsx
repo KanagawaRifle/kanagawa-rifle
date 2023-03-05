@@ -2,13 +2,13 @@ import Alert from '@kanagawa-rifle/website/components/Alert';
 import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
 import Card from '@kanagawa-rifle/website/components/Card';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import Link from '@kanagawa-rifle/website/components/Link';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import Stack from '@kanagawa-rifle/website/components/Stack';
 import CardMedia from '@kanagawa-rifle/website/components/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
+import Link from '@kanagawa-rifle/website/components/Link';
+import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
+import CardActionArea from '@mui/material/CardActionArea';
 
 export default function Home() {
   return (
@@ -30,7 +30,8 @@ export default function Home() {
 
         <Alert severity="warning">
           <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
-          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20 で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
+          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20
+          で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
         </Alert>
 
         <Card>

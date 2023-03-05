@@ -1,6 +1,7 @@
 import * as React from 'react';
-import clsx from 'clsx';
+
 import MuiCard from '@mui/material/Card';
+import clsx from 'clsx';
 
 export type CardProps = {} & React.ComponentProps<'div'>;
 

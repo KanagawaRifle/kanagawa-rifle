@@ -1,6 +1,8 @@
 import * as React from 'react';
-import clsx from 'clsx';
+
 import Link from '@kanagawa-rifle/website/components/Link';
+import clsx from 'clsx';
+
 import styles from './Header.module.scss';
 
 export type HeaderProps = {} & React.ComponentProps<'div'>;

@@ -1,9 +1,11 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import Link from '@kanagawa-rifle/website/components/Link';
-import styles from './Footer.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from '@kanagawa-rifle/website/components/Link';
+import clsx from 'clsx';
+
+import styles from './Footer.module.scss';
 
 export type FooterProps = {};
 

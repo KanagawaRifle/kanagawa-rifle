@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import MuiAlertTitle, { AlertTitleProps as MuiAlertTitleProps } from '@mui/material/AlertTitle';
 
 export type AlertTitleProps = MuiAlertTitleProps;

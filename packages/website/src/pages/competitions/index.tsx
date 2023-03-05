@@ -1,18 +1,18 @@
-import Card from '@kanagawa-rifle/website/components/Card';
+import Alert from '@kanagawa-rifle/website/components/Alert';
+import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
 import Button from '@kanagawa-rifle/website/components/Button';
+import Card from '@kanagawa-rifle/website/components/Card';
 import CardActions from '@kanagawa-rifle/website/components/CardActions';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
+import Divider from '@kanagawa-rifle/website/components/Divider';
+import Link from '@kanagawa-rifle/website/components/Link';
 import List from '@kanagawa-rifle/website/components/List';
 import ListItem from '@kanagawa-rifle/website/components/ListItem';
-import Divider from '@kanagawa-rifle/website/components/Divider';
 import ListItemText from '@kanagawa-rifle/website/components/ListItemText';
 import Stack from '@kanagawa-rifle/website/components/Stack';
-import Link from '@kanagawa-rifle/website/components/Link';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import Alert from "@kanagawa-rifle/website/components/Alert";
-import AlertTitle from "@kanagawa-rifle/website/components/AlertTitle";
 
 export default function Page() {
   return (
@@ -24,7 +24,8 @@ export default function Page() {
 
         <Alert severity="warning">
           <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
-          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20 で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
+          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20
+          で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
         </Alert>
 
         <Card>
@@ -39,7 +40,9 @@ export default function Page() {
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
-              <ListItemText>お申込み: <Link href="https://forms.gle/aPDB26AKoUYnf8GcA">https://forms.gle/aPDB26AKoUYnf8GcA</Link></ListItemText>
+              <ListItemText>
+                お申込み: <Link href="https://forms.gle/aPDB26AKoUYnf8GcA">https://forms.gle/aPDB26AKoUYnf8GcA</Link>
+              </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
@@ -60,7 +63,9 @@ export default function Page() {
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
-              <ListItemText>お申込み: <Link href="https://forms.gle/WxkFnRye5T2G1Djr7">https://forms.gle/WxkFnRye5T2G1Djr7</Link></ListItemText>
+              <ListItemText>
+                お申込み: <Link href="https://forms.gle/WxkFnRye5T2G1Djr7">https://forms.gle/WxkFnRye5T2G1Djr7</Link>
+              </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>

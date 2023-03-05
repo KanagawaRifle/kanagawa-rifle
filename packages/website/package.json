@@ -7,7 +7,10 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "test": "jest",
+    "lint": "next lint",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
@@ -37,5 +40,8 @@
     "sass": "^1.56.2",
     "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^9.0.0"
   }
 }

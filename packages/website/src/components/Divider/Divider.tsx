@@ -1,8 +1,8 @@
 import * as React from 'react';
-import clsx from 'clsx';
 
 import MuiDivider, { DividerProps as MuiDividerProps, DividerTypeMap } from '@mui/material/Divider';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+import clsx from 'clsx';
 
 export type DividerProps<D extends React.ElementType = 'hr', P = {}> = MuiDividerProps<D, P>;
 
