@@ -1,11 +1,13 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
-import type { AppPropsType, AppType } from 'next/dist/shared/lib/utils';
-import type { EmotionCache } from '@emotion/react';
-import theme from '@kanagawa-rifle/website/theme';
-import createEmotionCache from '@kanagawa-rifle/website/createEmotionCache';
 import React from 'react';
+
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
+import createEmotionServer from '@emotion/server/create-instance';
+import createEmotionCache from '@kanagawa-rifle/website/createEmotionCache';
+import theme from '@kanagawa-rifle/website/theme';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+
+import type { EmotionCache } from '@emotion/react';
+import type { AppPropsType, AppType } from 'next/dist/shared/lib/utils';
 
 type MyDocumentProps = {
   emotionStyleTags: EmotionJSX.Element[];

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import MuiCardMedia, { CardMediaProps as MuiCardMediaProps, CardMediaTypeMap } from '@mui/material/CardMedia';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 

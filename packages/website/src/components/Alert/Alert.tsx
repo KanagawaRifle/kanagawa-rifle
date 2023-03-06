@@ -1,6 +1,8 @@
 import * as React from 'react';
-import clsx from 'clsx';
+
 import MuiAlert, { AlertProps as MuiAlertProps } from '@mui/material/Alert';
+import clsx from 'clsx';
+
 import styles from './Alert.module.scss';
 
 export type AlertProps = MuiAlertProps;

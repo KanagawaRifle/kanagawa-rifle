@@ -1,4 +1,5 @@
 import createCache from '@emotion/cache';
+
 import type { EmotionCache } from '@emotion/cache';
 
 // On the client side, Create a meta tag at the top of the <head> and set it as insertionPoint.

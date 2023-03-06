@@ -1,6 +1,6 @@
 import * as React from 'react';
+
 import MuiListItemText, { ListItemTextProps as MuiListItemTextProps } from '@mui/material/ListItemText';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 export type ListItemTextProps<
   P extends React.ElementType = 'span',
