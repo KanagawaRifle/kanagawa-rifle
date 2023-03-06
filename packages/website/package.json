@@ -10,7 +10,9 @@
     "test": "jest",
     "lint": "next lint",
     "cypress": "cypress open",
-    "cypress:headless": "cypress run"
+    "cypress:headless": "cypress run",
+    "storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
+    "build-storybook": "NODE_OPTIONS='--openssl-legacy-provider' build-storybook"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
