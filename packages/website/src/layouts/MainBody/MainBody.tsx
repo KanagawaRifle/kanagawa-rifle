@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Header from '@kanagawa-rifle/website/layouts/Header';
-import Footer from '@kanagawa-rifle/website/layouts/Footer';
+
 import Container from '@kanagawa-rifle/website/components/Container';
 import Stack from '@kanagawa-rifle/website/components/Stack';
+import Footer from '@kanagawa-rifle/website/layouts/Footer';
+import Header from '@kanagawa-rifle/website/layouts/Header';
 
 export type MainBodyProps = {
   children: React.ReactNode;

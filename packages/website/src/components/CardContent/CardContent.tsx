@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import MuiCardContent from '@mui/material/CardContent';
 
 export type CardContentProps = {} & React.ComponentProps<'div'>;

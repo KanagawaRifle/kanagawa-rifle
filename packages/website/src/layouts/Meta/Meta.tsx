@@ -1,9 +1,6 @@
 import * as React from 'react';
+
 import Head from 'next/head';
-import Header from '@kanagawa-rifle/website/layouts/Header';
-import Footer from '@kanagawa-rifle/website/layouts/Footer';
-import Container from '@kanagawa-rifle/website/components/Container';
-import Stack from '@kanagawa-rifle/website/components/Stack';
 
 export type MetaProps = {
   title: string;

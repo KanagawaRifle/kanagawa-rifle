@@ -1,14 +1,11 @@
 import Card from '@kanagawa-rifle/website/components/Card';
-import Button from '@kanagawa-rifle/website/components/Button';
-import CardActions from '@kanagawa-rifle/website/components/CardActions';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
+import Divider from '@kanagawa-rifle/website/components/Divider';
+import Link from '@kanagawa-rifle/website/components/Link';
 import List from '@kanagawa-rifle/website/components/List';
 import ListItem from '@kanagawa-rifle/website/components/ListItem';
-import Divider from '@kanagawa-rifle/website/components/Divider';
 import ListItemText from '@kanagawa-rifle/website/components/ListItemText';
-import Stack from '@kanagawa-rifle/website/components/Stack';
-import Link from '@kanagawa-rifle/website/components/Link';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 

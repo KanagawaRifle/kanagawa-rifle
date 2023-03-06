@@ -1,12 +1,13 @@
+import * as React from 'react';
+
+import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@kanagawa-rifle/website/components/Button';
 import Link from '@kanagawa-rifle/website/components/Link';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
-import * as React from 'react';
+import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
