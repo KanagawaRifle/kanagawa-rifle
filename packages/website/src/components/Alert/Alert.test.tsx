@@ -1,5 +1,6 @@
-import Alert from '@kanagawa-rifle/website/components/Alert';
 import { render } from '@testing-library/react';
+
+import Alert from '@kanagawa-rifle/website/components/Alert';
 
 describe('Sample', () => {
   it('do sample test', () => {

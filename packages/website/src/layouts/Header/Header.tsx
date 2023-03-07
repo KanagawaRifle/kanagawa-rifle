@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import Link from '@kanagawa-rifle/website/components/Link';
 import clsx from 'clsx';
+
+import Link from '@kanagawa-rifle/website/components/Link';
 
 import styles from './Header.module.scss';
 

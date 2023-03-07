@@ -1,10 +1,11 @@
 import '../styles/globals.scss';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from '@kanagawa-rifle/website/createEmotionCache';
-import theme from '@kanagawa-rifle/website/theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import Script from 'next/script';
+
+import createEmotionCache from '@kanagawa-rifle/website/createEmotionCache';
+import theme from '@kanagawa-rifle/website/theme';
 
 import type { AppProps } from 'next/app';
 
