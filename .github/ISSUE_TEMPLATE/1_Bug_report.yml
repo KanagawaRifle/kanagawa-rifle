@@ -1,0 +1,32 @@
+name: 🐛 バグ報告
+description: バグ報告を作成します。
+labels: ['Cat: Bug 🐛', 'Status: Needs Triage 💡']
+
+body:
+  - type: input
+    attributes:
+      label: 対象パッケージ
+      placeholder: 'Package: xxx'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 説明
+      description: 問題の箇所を明確に説明してください。現在の挙動と本来期待される挙動などを併せて記載してください。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 再現手順
+      description: 第三者が容易に問題を再現できるよう十分な手順を記載してください。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 解決方法
+      description: '任意: もしバグの解決方法や原因が特定できている場合は記載してください。'
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 追加の資料
+      description: '任意: バグに関するログや画面のコピーなどがあれば記載してください。'
