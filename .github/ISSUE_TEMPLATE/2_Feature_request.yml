@@ -1,0 +1,15 @@
+name: 🚀 要望
+description: 新機能や改善点に関するアイディアを公開します。
+labels: ['Cat: Feature 🚀', 'Status: Needs Triage 💡']
+
+body:
+  - type: textarea
+    attributes:
+      label: 説明
+      description: 新機能または要望に関する簡潔な説明を記載してください。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 例
+      description: 変更前後の比較等も含めた新機能または改善点に関する簡単な例を記載してください。
