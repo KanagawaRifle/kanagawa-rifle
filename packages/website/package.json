@@ -12,7 +12,8 @@
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
-    "build-storybook": "NODE_OPTIONS='--openssl-legacy-provider' build-storybook"
+    "build-storybook": "NODE_OPTIONS='--openssl-legacy-provider' build-storybook",
+    "storycap": "storycap --serverCmd \"npm run storybook\" http://localhost:6006 --serverTimeout 600000"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
