@@ -1,3 +1,5 @@
+import CardActionArea from '@mui/material/CardActionArea';
+
 import Alert from '@kanagawa-rifle/website/components/Alert';
 import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
 import Card from '@kanagawa-rifle/website/components/Card';
@@ -8,7 +10,6 @@ import Link from '@kanagawa-rifle/website/components/Link';
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import CardActionArea from '@mui/material/CardActionArea';
 
 export default function Home() {
   return (
@@ -20,7 +21,13 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年2月28日</div>
+        <div className="text-center text-xl">最終更新日: 2023年3月8日</div>
+
+        <Alert severity="info">
+          <AlertTitle>令和5年度国体一次予選申込みフォーム公開のお知らせ</AlertTitle>
+          <Link href="/competitions">大会関係ページ</Link>
+          に令和5年度国体一次予選の申込みフォームへのご案内を掲載いたしました。
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和5年度事業計画案と会員更新手続きのご案内</AlertTitle>

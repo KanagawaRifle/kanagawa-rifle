@@ -2,12 +2,13 @@ import * as React from 'react';
 
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from '@mui/material/Typography';
+
 import Button from '@kanagawa-rifle/website/components/Button';
 import Link from '@kanagawa-rifle/website/components/Link';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
