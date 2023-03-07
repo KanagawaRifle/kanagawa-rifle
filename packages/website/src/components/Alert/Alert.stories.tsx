@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Alert from '@kanagawa-rifle/website/components/Alert';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import Alert from '@kanagawa-rifle/website/components/Alert';
 
 export default {
   title: 'Example/Alert',

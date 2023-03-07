@@ -41,7 +41,22 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                お申込み: <Link href="https://forms.gle/aPDB26AKoUYnf8GcA">https://forms.gle/aPDB26AKoUYnf8GcA</Link>
+                お申込み:{' '}
+                <Link target="_blank" href="https://forms.gle/aPDB26AKoUYnf8GcA">
+                  https://forms.gle/aPDB26AKoUYnf8GcA
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                名簿:{' '}
+                <Link
+                  target="_blank"
+                  href="https://docs.google.com/spreadsheets/d/1_rSc4JzKFR937xE84EImACRkx4mTEXYJRFnWsUSLUx8/edit?usp=share_link"
+                >
+                  受付名簿
+                </Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
@@ -64,7 +79,10 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                お申込み: <Link href="https://forms.gle/WxkFnRye5T2G1Djr7">https://forms.gle/WxkFnRye5T2G1Djr7</Link>
+                お申込み:{' '}
+                <Link target="_blank" href="https://forms.gle/WxkFnRye5T2G1Djr7">
+                  https://forms.gle/WxkFnRye5T2G1Djr7
+                </Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
