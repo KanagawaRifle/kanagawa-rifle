@@ -1,12 +1,12 @@
 import Card from '@kanagawa-rifle/website/components/Card';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
-import Meta from '@kanagawa-rifle/website/layouts/Meta';
+import Divider from "@kanagawa-rifle/website/components/Divider";
+import Link from "@kanagawa-rifle/website/components/Link";
 import List from "@kanagawa-rifle/website/components/List";
 import ListItem from "@kanagawa-rifle/website/components/ListItem";
 import ListItemText from "@kanagawa-rifle/website/components/ListItemText";
-import Divider from "@kanagawa-rifle/website/components/Divider";
-import Link from "@kanagawa-rifle/website/components/Link";
+import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
+import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
 export default function Page() {
   return (
