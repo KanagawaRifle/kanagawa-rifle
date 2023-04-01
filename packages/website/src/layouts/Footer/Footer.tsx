@@ -51,6 +51,11 @@ const Footer: React.FC<FooterProps> = (props) => {
               </Link>
             </li>
             <li className="md:w-1/5 w-1/3 text-center">
+              <Link className="p-2 block hover:underline md:border-l border-white" href="/forms">
+                様式
+              </Link>
+            </li>
+            <li className="md:w-1/5 w-1/3 text-center">
               <Link className="p-2 block hover:underline md:border-l border-white" href="/links">
                 リンク
               </Link>
