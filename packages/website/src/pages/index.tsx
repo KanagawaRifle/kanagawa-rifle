@@ -26,7 +26,7 @@ export default function Home() {
         <Alert severity="info">
           <AlertTitle>令和5年度国体最終予選申込みフォーム公開のお知らせ</AlertTitle>
           <Link href="/competitions">大会関係ページ</Link>
-          に令和5年度国体一次予選の申込みフォームへのご案内を掲載いたしました。
+          に令和5年度国体最終予選の申込みフォームへのご案内を掲載いたしました。
         </Alert>
 
         <Alert severity="info">
