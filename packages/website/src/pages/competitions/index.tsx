@@ -87,6 +87,18 @@ export default function Page() {
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
+              <ListItemText>
+                名簿:{' '}
+                <Link
+                  target="_blank"
+                  href="https://docs.google.com/spreadsheets/d/1OkVY2toStzF1tfUCxwDytRQ5kkPlGhravMH4a9vW9Ok/edit?usp=sharing"
+                >
+                  受付名簿
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
               <ListItemText>会場: 神奈川県立伊勢原射撃場</ListItemText>
             </ListItem>
           </List>
