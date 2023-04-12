@@ -21,10 +21,10 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年3月8日</div>
+        <div className="text-center text-xl">最終更新日: 2023年4月12日</div>
 
         <Alert severity="info">
-          <AlertTitle>令和5年度国体一次予選申込みフォーム公開のお知らせ</AlertTitle>
+          <AlertTitle>令和5年度国体最終予選申込みフォーム公開のお知らせ</AlertTitle>
           <Link href="/competitions">大会関係ページ</Link>
           に令和5年度国体一次予選の申込みフォームへのご案内を掲載いたしました。
         </Alert>
