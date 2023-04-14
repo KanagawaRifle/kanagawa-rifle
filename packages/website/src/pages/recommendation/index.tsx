@@ -28,20 +28,20 @@ export default function Page() {
               <p>
                 推薦申請書の県ラ受付は毎月下記の締め切り日とし、それ以降に届いたものは翌月の推薦委員会へ先送りとします。
               </p>
-              <ul className="list-disc list-outside ml-6 pt-2">
-                <li>４月１４日（木）</li>
-                <li>５月１２日（木）</li>
-                <li>６月１６日（木）</li>
-                <li>７月１４日（木）</li>
-                <li>８月１１日（木）</li>
-                <li>９月１５日（木）</li>
-                <li>１０月１３日（木）</li>
-                <li>１１月１０日（木）</li>
-                <li>１１月２４日（木）</li>
-                <li>令和５年１月１２日（木）</li>
-                <li>令和５年２月１６日（木）</li>
+              <ul className="list-disc list-outside pl-6 pt-2">
+                <li>4月13日（木）</li>
+                <li>5月11日（木）</li>
+                <li>6月15日（木）</li>
+                <li>7月13日（木）</li>
+                <li>8月10日（木）</li>
+                <li>9月14日（木）</li>
+                <li>10月12日(木)</li>
+                <li>11月16日（木）</li>
+                <li>12月7日（木）</li>
+                <li>令和6年1月11日（木）</li>
+                <li>令和6年2月15日（木）</li>
                 <li>
-                  <strong>３月は推薦委員会はありません</strong>
+                  <strong>3月の推薦委員会はありません</strong>
                 </li>
               </ul>
               <p>
@@ -66,7 +66,7 @@ export default function Page() {
           <CardHeader title={'ウェブ申請の流れ'} />
           <CardContent>
             <Stack spacing={2}>
-              <ol className="list-decimal list-outside ml-6">
+              <ol className="list-decimal list-outside pl-6">
                 <li>
                   <Link href="https://members.riflesports.jp/_login.cgi?top+1+++" target="_blank">
                     日ラのシステム
@@ -83,7 +83,7 @@ export default function Page() {
                 <li>推薦書発行（今まで通り）</li>
                 <li>各県の推薦担当が個別に郵送（今まで通り）</li>
               </ol>
-              <ul className="list-disc list-outside ml-6">
+              <ul className="list-disc list-outside pl-6">
                 <li>※ ２回目以降は２）から行う</li>
                 <li>※ 条件を満たしていない推薦は申請できない形になる予定</li>
                 <li>※ 推薦申請料の支払いは今まで通り</li>
@@ -117,26 +117,24 @@ export default function Page() {
           <CardHeader title={'AP を所持中の皆様へ'} />
           <CardContent>
             <Stack spacing={2}>
-              <div className="MuiCardContent-root mui-style-1qw96cp">
-                <ul className="list-disc list-outside ml-6">
-                  <li>
-                    <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
-                      推薦ブレッテン no.55
-                    </Link>
-                  </li>
-                  <li>
-                    <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_51.pdf">
-                      推薦ブレッテン no.51
-                    </Link>
-                  </li>
-                  <li>
-                    <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_49.pdf">
-                      推薦ブレッテン no.49
-                    </Link>
-                  </li>
-                </ul>
-                <p>※ご不明な点は日ラへ直接お問い合わせください</p>
-              </div>
+              <ul className="list-disc list-outside ml-6">
+                <li>
+                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
+                    推薦ブレッテン no.55
+                  </Link>
+                </li>
+                <li>
+                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_51.pdf">
+                    推薦ブレッテン no.51
+                  </Link>
+                </li>
+                <li>
+                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_49.pdf">
+                    推薦ブレッテン no.49
+                  </Link>
+                </li>
+              </ul>
+              <p>※ご不明な点は日ラへ直接お問い合わせください</p>
             </Stack>
           </CardContent>
         </Card>
