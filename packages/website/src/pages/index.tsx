@@ -21,7 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年4月12日</div>
+        <div className="text-center text-xl">最終更新日: 2023年4月15日</div>
 
         <Alert severity="info">
           <AlertTitle>令和5年度国体最終予選申込みフォーム公開のお知らせ</AlertTitle>
@@ -44,6 +44,12 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2023年4月15日</span>
+                <span className="block flex-1">
+                  <Link href="/competitions">国体一次予選射座割表</Link>を掲載
+                </span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2023年2月23日</span>
                 <span className="block flex-1">
