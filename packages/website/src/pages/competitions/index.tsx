@@ -41,10 +41,8 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                お申込み:{' '}
-                <Link target="_blank" href="https://forms.gle/aPDB26AKoUYnf8GcA">
-                  https://forms.gle/aPDB26AKoUYnf8GcA
-                </Link>
+                競技結果:{' '}
+                <Link href="/static/competitions/2023/kokutai-trials-1st/results.pdf">競技結果 [PDF]</Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
@@ -61,10 +59,19 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
+                お申込み:{' '}
+                <Link target="_blank" href="https://forms.gle/aPDB26AKoUYnf8GcA">
+                  https://forms.gle/aPDB26AKoUYnf8GcA
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 名簿:{' '}
                 <Link
                   target="_blank"
-                  href="https://docs.google.com/spreadsheets/d/1_rSc4JzKFR937xE84EImACRkx4mTEXYJRFnWsUSLUx8/edit?usp=share_link"
+                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0VOxHr3zonESdPv4sN8CIqqYpF1JW-BQ69pcd6Ia6efLHhTH64FCRJQHo8emOHsX9KD6Vy3qylO2e/pubhtml"
                 >
                   受付名簿
                 </Link>
@@ -102,7 +109,7 @@ export default function Page() {
                 名簿:{' '}
                 <Link
                   target="_blank"
-                  href="https://docs.google.com/spreadsheets/d/1OkVY2toStzF1tfUCxwDytRQ5kkPlGhravMH4a9vW9Ok/edit?usp=sharing"
+                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTUb4mM1sCxMGJl5eYv10Vgnv9qKuH_DoL_vxvYB6ycYsbeiJdWZVEKvbxGF1Aufaccu9Nn4w4NECBW/pubhtml"
                 >
                   受付名簿
                 </Link>
