@@ -21,7 +21,16 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年4月15日</div>
+        <div className="text-center text-xl">最終更新日: 2023年4月22日</div>
+
+        <Alert severity="info">
+          <AlertTitle>インテグリティ講習会開始時間のお知らせ</AlertTitle>
+          4月23日 (日) 国体一次予選終了後の講習会開始時間は下記のとおりです。
+          <ul>
+            <li>インテグリティ講習会: 15:00ごろ～</li>
+            <li>ライフル射撃に関する講習会: 15:00ごろ～</li>
+          </ul>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和5年度国体最終予選申込みフォーム公開のお知らせ</AlertTitle>
