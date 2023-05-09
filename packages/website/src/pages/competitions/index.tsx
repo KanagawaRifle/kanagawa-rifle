@@ -29,6 +29,55 @@ export default function Page() {
         </Alert>
 
         <Card>
+          <CardHeader title={'令和5年度国体最終予選 兼 全関東予選会'} />
+          <List>
+            <ListItem>
+              <ListItemText>期日: 2023年5月21日 (日)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>申込期限: 2023年4月5日 (水) ～2023年5月5日 (金)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                射座割:{' '}
+                <Link
+                  href="/static/competitions/2023/kokutai-trials-2nd/start-lists.pdf"
+                >
+                  射座割表 [PDF]
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                名簿:{' '}
+                <Link
+                  target="_blank"
+                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTUb4mM1sCxMGJl5eYv10Vgnv9qKuH_DoL_vxvYB6ycYsbeiJdWZVEKvbxGF1Aufaccu9Nn4w4NECBW/pubhtml"
+                >
+                  受付名簿
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                お申込み:{' '}
+                <Link target="_blank" href="https://forms.gle/WxkFnRye5T2G1Djr7">
+                  https://forms.gle/WxkFnRye5T2G1Djr7
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>会場: 神奈川県立伊勢原射撃場</ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'令和5年度国体一次予選 兼 東日本予選会'} />
           <List>
             <ListItem>
@@ -72,44 +121,6 @@ export default function Page() {
                 <Link
                   target="_blank"
                   href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0VOxHr3zonESdPv4sN8CIqqYpF1JW-BQ69pcd6Ia6efLHhTH64FCRJQHo8emOHsX9KD6Vy3qylO2e/pubhtml"
-                >
-                  受付名簿
-                </Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>会場: 神奈川県立伊勢原射撃場</ListItemText>
-            </ListItem>
-          </List>
-        </Card>
-
-        <Card>
-          <CardHeader title={'令和5年度国体最終予選 兼 全関東予選会'} />
-          <List>
-            <ListItem>
-              <ListItemText>期日: 2023年5月21日 (日)</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>申込期限: 2023年4月5日 (水) ～2023年5月5日 (金)</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                お申込み:{' '}
-                <Link target="_blank" href="https://forms.gle/WxkFnRye5T2G1Djr7">
-                  https://forms.gle/WxkFnRye5T2G1Djr7
-                </Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                名簿:{' '}
-                <Link
-                  target="_blank"
-                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTUb4mM1sCxMGJl5eYv10Vgnv9qKuH_DoL_vxvYB6ycYsbeiJdWZVEKvbxGF1Aufaccu9Nn4w4NECBW/pubhtml"
                 >
                   受付名簿
                 </Link>

@@ -21,12 +21,12 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年4月28日</div>
+        <div className="text-center text-xl">最終更新日: 2023年5月9日</div>
 
         <Alert severity="info">
-          <AlertTitle>令和5年度国体最終予選申込みフォーム公開のお知らせ</AlertTitle>
+          <AlertTitle>令和5年度国体最終予選射座割公開のお知らせ</AlertTitle>
           <Link href="/competitions">大会関係ページ</Link>
-          に令和5年度国体最終予選の申込みフォームへのご案内を掲載いたしました。
+          に令和5年度国体最終予選の射座割を掲載いたしました。
         </Alert>
 
         <Alert severity="info">
@@ -44,6 +44,12 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2023年5月29日</span>
+                <span className="block flex-1">
+                  <Link href="/competitions">国体最終予選射座割表</Link>を掲載
+                </span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2023年4月28日</span>
                 <span className="block flex-1">
