@@ -21,13 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年5月9日</div>
-
-        <Alert severity="info">
-          <AlertTitle>令和5年度国体最終予選射座割公開のお知らせ</AlertTitle>
-          <Link href="/competitions">大会関係ページ</Link>
-          に令和5年度国体最終予選の射座割を掲載いたしました。
-        </Alert>
+        <div className="text-center text-xl">最終更新日: 2023年5月21日</div>
 
         <Alert severity="info">
           <AlertTitle>令和5年度事業計画案と会員更新手続きのご案内</AlertTitle>
@@ -35,15 +29,15 @@ export default function Home() {
           に令和5年度の事業計画案と会員更新手続きのご案内を掲載いたしました。
         </Alert>
 
-        <Alert severity="warning">
-          <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
-          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20
-          で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
-        </Alert>
-
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2023年5月21日</span>
+                <span className="block flex-1">
+                  <Link href="/competitions">国体最終予選競技結果</Link>を掲載
+                </span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2023年5月29日</span>
                 <span className="block flex-1">

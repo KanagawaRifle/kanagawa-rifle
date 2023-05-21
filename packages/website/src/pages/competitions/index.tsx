@@ -41,6 +41,13 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
+                競技結果:{' '}
+                <Link href="/static/competitions/2023/kokutai-trials-2nd/results.pdf">競技結果 [PDF]</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 射座割:{' '}
                 <Link
                   href="/static/competitions/2023/kokutai-trials-2nd/start-lists.pdf"
