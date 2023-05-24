@@ -26,7 +26,7 @@ export default function Page() {
           <List dense={true}>
             <ListItem>
               <ListItemText>
-                <Link href="/static/projects/2023/schedule.pdf">事業計画案</Link>
+                <Link href="/static/projects/2023/schedule.pdf">事業計画</Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
