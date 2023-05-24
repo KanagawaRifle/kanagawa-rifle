@@ -21,7 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年5月21日</div>
+        <div className="text-center text-xl">最終更新日: 2023年5月24日</div>
 
         <Alert severity="info">
           <AlertTitle>令和5年度事業計画案と会員更新手続きのご案内</AlertTitle>
@@ -32,6 +32,12 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2023年5月24日</span>
+                <span className="block flex-1">
+                  <Link href="/projects">令和5年度事業計画の最新版</Link>を掲載
+                </span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2023年5月21日</span>
                 <span className="block flex-1">
