@@ -21,16 +21,20 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年5月24日</div>
+        <div className="text-center text-xl">最終更新日: 2023年6月15日</div>
 
         <Alert severity="info">
-          <AlertTitle>令和5年度事業計画案と会員更新手続きのご案内</AlertTitle>
-          <Link href="/projects">事業計画ページ</Link>
-          に令和5年度の事業計画案と会員更新手続きのご案内を掲載いたしました。
+          <AlertTitle>大会参加料改定のお知らせ</AlertTitle>
+          当協会が開催する大会について, 7月1日より, 大会参加料を下記の通り改定いたします。
+          <div className="pl-4">ビーム種目少年男子・少年女子：旧2,000円 ➔ 新1,000円</div>
         </Alert>
 
         <Card>
           <CardContent>
+            <li className="flex">
+              <span className="w-32 block">2023年6月15日</span>
+              <span className="block flex-1">大会参加料改定のお知らせを掲載</span>
+            </li>
             <ul className="h-48 overflow-y-scroll">
               <li className="flex">
                 <span className="w-32 block">2023年5月24日</span>
