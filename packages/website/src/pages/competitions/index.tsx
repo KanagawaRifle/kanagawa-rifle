@@ -22,10 +22,10 @@ export default function Page() {
       <MainBody>
         <h2 className="text-center text-xl">大会関係</h2>
 
-        <Alert severity="warning">
-          <AlertTitle>国体一次・最終予選の50m三姿勢種目について</AlertTitle>
-          国体一次予選及び国体最終予選の三姿勢種目については男女ともに 50m3×20
-          で実施いたします。参加料を振り込まれる際はお間違いのないようお願いいたします。
+        <Alert severity="info">
+          <AlertTitle>大会参加料改定のお知らせ</AlertTitle>
+          当協会が開催する大会について, 7月1日より, 大会参加料を下記の通り改定いたします。
+          <div className="pl-4">ビーム種目少年男子・少年女子：旧2,000円 ➔ 新1,000円</div>
         </Alert>
 
         <Card>
@@ -187,7 +187,7 @@ export default function Page() {
                 <li>ARS・P60MJ／WJ ： 2,500円</li>
                 <li>AP60MJ／WJ ： 4,000円</li>
                 <li>BR・BP ： 2,500円</li>
-                <li>BR・BPMJ／WJ ： 2,000円</li>
+                <li>BR・BPMJ／WJ ： 1,000円</li>
                 <li>HR40M／W ： 4,000円</li>
               </ul>
               <p>
