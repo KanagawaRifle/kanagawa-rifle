@@ -29,6 +29,23 @@ export default function Page() {
         </Alert>
 
         <Card>
+          <CardHeader title={'第60回全関東ライフル射撃競技選手権大会'} />
+          <List>
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">大会要項</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                  射座割表
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'令和5年度国体最終予選 兼 全関東予選会'} />
           <List>
             <ListItem>
