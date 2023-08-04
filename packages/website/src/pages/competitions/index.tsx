@@ -33,13 +33,13 @@ export default function Page() {
           <List>
             <ListItem>
               <ListItemText>
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">大会要項</Link>
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details-start-lists.xlsx">射座割表</Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                  射座割表
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">大会要項</Link>
               </ListItemText>
             </ListItem>
           </List>
