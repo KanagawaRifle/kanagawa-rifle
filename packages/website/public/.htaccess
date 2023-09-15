@@ -97,6 +97,15 @@ RewriteRule ^(.*)index\.html$ https://%{HTTP_HOST}/$1 [R,L]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
 
+# Redirects
+RewriteRule ^static/competitions/2023/kokutai-trials-1st/results\.pdf$ /static/competitions/2023/2023-04-23-kokutai-trials-1st-results.pdf [R=301,L]
+RewriteRule ^static/competitions/2023/kokutai-trials-1st/start-lists\.pdf$ /static/competitions/2023/2023-04-23-kokutai-trials-1st-start-lists.pdf [R=301,L]
+RewriteRule ^static/competitions/2023/kokutai-trials-2nd/results\.pdf$ /static/competitions/2023/2023-05-21-kokutai-trials-2nd-results.pdf [R=301,L]
+RewriteRule ^static/competitions/2023/kokutai-trials-2nd/start-lists\.pdf$ /static/competitions/2023/2023-05-21-kokutai-trials-2nd-start-lists.pdf [R=301,L]
+RewriteRule ^static/competitions/2022/kanagawa-open-championship/details\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf [R=301,L]
+RewriteRule ^static/competitions/2022/kanagawa-open-championship/start-lists\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-start-lists.pdf [R=301,L]
+RewriteRule ^static/competitions/2022/kanagawa-open-championship/results\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-results.pdf [R=301,L]
+
 # Legacy page redirects
 RewriteRule ^aisatu.html$ /message [R=301,L]
 RewriteRule ^suisen_main.html$ /recommendation [R=301,L]
