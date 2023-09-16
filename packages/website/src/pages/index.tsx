@@ -43,7 +43,7 @@ export default function Home() {
             <li className="flex">
               <span className="w-32 block">2023年8月4日</span>
               <span className="block flex-1">
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details-start-lists.xlsx">
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">
                   全関東ライフル射撃競技選手権大会の射座割
                 </Link>
                 を掲載
