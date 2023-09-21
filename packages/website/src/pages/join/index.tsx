@@ -22,7 +22,11 @@ export default function Page() {
             <Stack spacing={2}>
               <ul className="list-disc list-outside ml-6">
                 <li>
-                  <Link href="https://forms.gle/eNg1x3A9XDYPddHu6" target="_blank">お申込フォーム</Link>からお申込いただけます。お申込みフォームをご利用できない方は<Link href="/static/forms/membership.xlsx">入会申込書</Link>
+                  <Link href="https://forms.gle/eNg1x3A9XDYPddHu6" target="_blank">
+                    お申込フォーム
+                  </Link>
+                  からお申込いただけます。お申込みフォームをご利用できない方は
+                  <Link href="/static/forms/membership.xlsx">入会申込書</Link>
                   に必要事項をご記入の上、
                   <Link href="/about/">当協会事務局</Link>
                   まで封書、ファックスまたは電子メールに添付でお送り下さい。
