@@ -105,6 +105,7 @@ RewriteRule ^static/competitions/2023/kokutai-trials-2nd/start-lists\.pdf$ /stat
 RewriteRule ^static/competitions/2022/kanagawa-open-championship/details\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf [R=301,L]
 RewriteRule ^static/competitions/2022/kanagawa-open-championship/start-lists\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-start-lists.pdf [R=301,L]
 RewriteRule ^static/competitions/2022/kanagawa-open-championship/results\.pdf$ /static/competitions/2022/2022-11-06-kanagawa-open-championship-results.pdf [R=301,L]
+RewriteRule ^competitions/2023/kanagawa-open-championship/$ /competitions/ [R=302,L]
 
 # Legacy page redirects
 RewriteRule ^aisatu.html$ /message [R=301,L]
