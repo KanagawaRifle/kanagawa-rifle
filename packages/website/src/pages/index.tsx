@@ -21,11 +21,11 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年8月4日</div>
+        <div className="text-center text-xl">最終更新日: 2023年9月18日</div>
 
         <Alert severity="info">
-          <AlertTitle>第60回全関東ライフル射撃競技選手権大会</AlertTitle>
-          <Link href="/competitions">大会関係</Link>ページに<Link href="/static/competitions/2023/2023-08-18-zen-kanto-details-start-lists.xlsx">射座割</Link>を掲載いたしました。
+          <AlertTitle>令和5年度神奈川オープン兼県選手権大会のご案内</AlertTitle>
+          <Link href="/competitions">大会関係</Link>ページに大会要項を掲載いたしました。
         </Alert>
 
         <Alert severity="info">
@@ -37,12 +37,26 @@ export default function Home() {
         <Card>
           <CardContent>
             <li className="flex">
+              <span className="w-32 block">2023年9月18日</span>
+              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の要項を掲載</span>
+            </li>
+            <li className="flex">
               <span className="w-32 block">2023年8月4日</span>
-              <span className="block flex-1"><Link href="/static/competitions/2023/2023-08-18-zen-kanto-details-start-lists.xlsx">全関東ライフル射撃競技選手権大会の射座割</Link>を掲載</span>
+              <span className="block flex-1">
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">
+                  全関東ライフル射撃競技選手権大会の射座割
+                </Link>
+                を掲載
+              </span>
             </li>
             <li className="flex">
               <span className="w-32 block">2023年7月7日</span>
-              <span className="block flex-1"><Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">全関東ライフル射撃競技選手権大会の要項</Link>を掲載</span>
+              <span className="block flex-1">
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">
+                  全関東ライフル射撃競技選手権大会の要項
+                </Link>
+                を掲載
+              </span>
             </li>
             <li className="flex">
               <span className="w-32 block">2023年6月15日</span>
