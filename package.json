@@ -9,7 +9,7 @@
     "format": "npm run lint:fix && prettier --write './**/*.{js,jsx,ts,tsx,json}'",
     "stylelint": "stylelint '**/*.+(css|scss)'",
     "stylelint:fix": "npm run stylelint -- --fix",
-    "prepare": "husky install",
+    "prepare-hysky": "husky install",
     "precommit": "lint-staged",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
