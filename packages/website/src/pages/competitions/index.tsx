@@ -36,7 +36,7 @@ export default function Page() {
                   神奈川県立伊勢原射撃場
                 </Link>
               </p>
-              <p>申込期限: 10月18日 (水) 23時59分まで</p>
+              <p>申込期限: 10月22日 (日) 23時59分まで<br /><small>※延長しました。</small></p>
             </Stack>
           </CardContent>
           <List>
@@ -52,15 +52,18 @@ export default function Page() {
               <ListItemText>
                 <Link href="https://forms.gle/UGncTaqC4LaFRpxo9" target="_blank">
                   お申込みフォーム
-                </Link>{' '}
-                (
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 <Link
                   href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS55jUXMDOY2pnK497KxtqQljW4MyyEsLBpXIHAYySq7_9rlbv5_nsgBmAiZvOXO3Yw9leZTLcCXbGO/pubhtml"
                   target="_blank"
                 >
                   受付名簿
                 </Link>
-                )
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
