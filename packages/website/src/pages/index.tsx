@@ -21,11 +21,16 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年9月18日</div>
+        <div className="text-center text-xl">最終更新日: 2023年10月27日</div>
 
         <Alert severity="info">
           <AlertTitle>令和5年度神奈川オープン兼県選手権大会のご案内</AlertTitle>
-          <Link href="/competitions">大会関係</Link>ページに大会要項を掲載いたしました。
+          <Link href="/competitions">大会関係</Link>ページに射座割表を公開いたしました。
+        </Alert>
+
+        <Alert severity="info">
+          <AlertTitle><Link href="/static/news/2023-10-20-01-attachment.pdf">訃報</Link></AlertTitle>
+          伊勢原射撃場の茂木秀夫前射場長におかれましては、10月16日夜半にご逝去されました。ここに謹んでお悔やみ申し上げます。
         </Alert>
 
         <Alert severity="info">
@@ -36,6 +41,10 @@ export default function Home() {
 
         <Card>
           <CardContent>
+            <li className="flex">
+              <span className="w-32 block">2023年10月27日</span>
+              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の射座割表を掲載</span>
+            </li>
             <li className="flex">
               <span className="w-32 block">2023年9月18日</span>
               <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の要項を掲載</span>
