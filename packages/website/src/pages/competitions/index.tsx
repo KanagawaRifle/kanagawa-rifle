@@ -68,7 +68,9 @@ export default function Page() {
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
-              <ListItemText>射座割表 [PDF]</ListItemText>
+              <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf">
+                射座割表 [PDF]
+              </Link>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
