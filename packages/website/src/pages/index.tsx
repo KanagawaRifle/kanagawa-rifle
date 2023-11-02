@@ -21,7 +21,12 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年10月27日</div>
+        <div className="text-center text-xl">最終更新日: 2023年11月2日</div>
+
+        <Alert severity="info">
+          <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
+          <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和5年度神奈川オープン兼県選手権大会のご案内</AlertTitle>
