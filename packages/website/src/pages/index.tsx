@@ -21,7 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年11月2日</div>
+        <div className="text-center text-xl">最終更新日: 2023年11月5日</div>
 
         <Alert severity="info">
           <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
@@ -30,7 +30,7 @@ export default function Home() {
 
         <Alert severity="info">
           <AlertTitle>令和5年度神奈川オープン兼県選手権大会のご案内</AlertTitle>
-          <Link href="/competitions">大会関係</Link>ページに射座割表を公開いたしました。
+          <Link href="/competitions">大会関係</Link>ページに競技結果を公開いたしました。
         </Alert>
 
         <Alert severity="info">
@@ -46,6 +46,10 @@ export default function Home() {
 
         <Card>
           <CardContent>
+            <li className="flex">
+              <span className="w-32 block">2023年11月5日</span>
+              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の競技結果を掲載</span>
+            </li>
             <li className="flex">
               <span className="w-32 block">2023年10月27日</span>
               <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の射座割表を掲載</span>

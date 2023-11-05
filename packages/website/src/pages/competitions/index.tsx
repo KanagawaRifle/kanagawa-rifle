@@ -74,7 +74,9 @@ export default function Page() {
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
-              <ListItemText>競技結果 [PDF]</ListItemText>
+              <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-results.pdf">
+                競技結果 [PDF]
+              </Link>
             </ListItem>
           </List>
         </Card>
