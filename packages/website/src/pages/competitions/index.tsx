@@ -27,6 +27,19 @@ export default function Page() {
         </Alert>
 
         <Card>
+          <CardHeader title={'2023年度栃木県ライフル射撃競技大会 (100m SB 大会)'} />
+          <List>
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">
+                  実施要項 [PDF]
+                </Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'令和5年度神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>
             <Stack spacing={2}>
@@ -36,47 +49,31 @@ export default function Page() {
                   神奈川県立伊勢原射撃場
                 </Link>
               </p>
-              <p>申込期限: 10月22日 (日) 23時59分まで<br /><small>※延長しました。</small></p>
             </Stack>
           </CardContent>
           <List>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-details.pdf">
-                  大会要項 [PDF]
+                  実施要項 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link href="https://forms.gle/UGncTaqC4LaFRpxo9" target="_blank">
-                  お申込みフォーム
+                <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf">
+                  射座割表 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link
-                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS55jUXMDOY2pnK497KxtqQljW4MyyEsLBpXIHAYySq7_9rlbv5_nsgBmAiZvOXO3Yw9leZTLcCXbGO/pubhtml"
-                  target="_blank"
-                >
-                  受付名簿
+                <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-results.pdf">
+                  競技結果 [PDF]
                 </Link>
               </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf">
-                射座割表 [PDF]
-              </Link>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-results.pdf">
-                競技結果 [PDF]
-              </Link>
             </ListItem>
           </List>
         </Card>
@@ -86,13 +83,13 @@ export default function Page() {
           <List>
             <ListItem>
               <ListItemText>
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">射座割表</Link>
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">射座割表 [PDF]</Link>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">大会要項</Link>
+                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">実施要項 [PDF]</Link>
               </ListItemText>
             </ListItem>
           </List>
@@ -147,7 +144,7 @@ export default function Page() {
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf">
-                  大会実施要項 [PDF]
+                  実施要項 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
