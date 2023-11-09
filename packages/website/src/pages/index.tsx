@@ -1,3 +1,6 @@
+import { faFilePdf, faFileWord } from '@fortawesome/free-regular-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -29,8 +32,19 @@ export default function Home() {
         </Alert>
 
         <Alert severity="info">
-          <AlertTitle>令和5年度神奈川オープン兼県選手権大会のご案内</AlertTitle>
-          <Link href="/competitions">大会関係</Link>ページに競技結果を公開いたしました。
+          <AlertTitle>将来のアスリートを目指す「タレント候補生」募集のお知らせ</AlertTitle>
+          <Stack spacing={2} direction="row">
+            <Button
+              variant="outlined"
+              startIcon={<FontAwesomeIcon icon={faFilePdf} />}
+              href="/static/news/2023-11-05-01-ftem-ad.pdf"
+            >ご案内</Button>
+            <Button
+              variant="outlined"
+              startIcon={<FontAwesomeIcon icon={faFileWord} />}
+              href="/static/news/2023-11-05-02-ftem-app.docx"
+            >申込書</Button>
+          </Stack>
         </Alert>
 
         <Alert severity="info">
@@ -38,17 +52,15 @@ export default function Home() {
           伊勢原射撃場の茂木秀夫前射場長におかれましては、10月16日夜半にご逝去されました。ここに謹んでお悔やみ申し上げます。
         </Alert>
 
-        <Alert severity="info">
-          <AlertTitle>大会参加料改定のお知らせ</AlertTitle>
-          当協会が開催する大会について, 7月1日より, 大会参加料を下記の通り改定いたします。
-          <div className="pl-4">ビーム種目少年男子・少年女子：旧2,000円 ➔ 新1,000円</div>
-        </Alert>
-
         <Card>
           <CardContent>
             <li className="flex">
+              <span className="w-32 block">2023年11月9日</span>
+              <span className="block flex-1"></span>
+            </li>
+            <li className="flex">
               <span className="w-32 block">2023年11月5日</span>
-              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の競技結果を掲載</span>
+              <span className="block flex-1"><Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">2023年度栃木県ライフル射撃競技大会 (100m SB 大会)</Link> の要項を掲載</span>
             </li>
             <li className="flex">
               <span className="w-32 block">2023年10月27日</span>
