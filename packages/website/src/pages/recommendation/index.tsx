@@ -119,6 +119,11 @@ export default function Page() {
             <Stack spacing={2}>
               <ul className="list-disc list-outside ml-6">
                 <li>
+                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">
+                    推薦ブレッテン no.56
+                  </Link>
+                </li>
+                <li>
                   <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
                     推薦ブレッテン no.55
                   </Link>

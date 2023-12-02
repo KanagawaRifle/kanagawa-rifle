@@ -24,7 +24,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年11月5日</div>
+        <div className="text-center text-xl">最終更新日: 2023年12月2日</div>
 
         <Alert severity="info">
           <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
@@ -55,8 +55,8 @@ export default function Home() {
         <Card>
           <CardContent>
             <li className="flex">
-              <span className="w-32 block">2023年11月9日</span>
-              <span className="block flex-1"></span>
+              <span className="w-32 block">2023年12月2日</span>
+              <span className="block flex-1"><Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
             </li>
             <li className="flex">
               <span className="w-32 block">2023年11月5日</span>
