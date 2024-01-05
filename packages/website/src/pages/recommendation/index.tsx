@@ -2,7 +2,11 @@ import Alert from '@kanagawa-rifle/website/components/Alert';
 import Card from '@kanagawa-rifle/website/components/Card';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
+import Divider from "@kanagawa-rifle/website/components/Divider";
 import Link from '@kanagawa-rifle/website/components/Link';
+import List from "@kanagawa-rifle/website/components/List";
+import ListItem from "@kanagawa-rifle/website/components/ListItem";
+import ListItemText from "@kanagawa-rifle/website/components/ListItemText";
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
@@ -22,43 +26,68 @@ export default function Page() {
         </Alert>
 
         <Card>
+          <CardHeader title={'手数料'} />
+          <CardContent>
+            推薦に係る手数料は<Link href="/about">当協会の指定口座</Link>までお振込みください。
+          </CardContent>
+          <List dense={true}>
+            <ListItem><ListItemText>ライフル銃 (小口径) 推薦: 6,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>ライフル銃 (大口径) 推薦: 10,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>けん銃推薦: 10,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>空気けん銃推薦: 6,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>低年者ライフル銃 (小口径) 推薦: 6,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>技能講習免除: 6,000円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>再発行: 2,000円</ListItemText></ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'推薦スケジュール'} />
           <CardContent>
-            <Stack spacing={2}>
-              <p>
-                推薦申請書の県ラ受付は毎月下記の締め切り日とし、それ以降に届いたものは翌月の推薦委員会へ先送りとします。
-              </p>
-              <ul className="list-disc list-outside pl-6 pt-2">
-                <li>4月13日（木）</li>
-                <li>5月11日（木）</li>
-                <li>6月15日（木）</li>
-                <li>7月13日（木）</li>
-                <li>8月10日（木）</li>
-                <li>9月14日（木）</li>
-                <li>10月12日(木)</li>
-                <li>11月16日（木）</li>
-                <li>12月7日（木）</li>
-                <li>令和6年1月11日（木）</li>
-                <li>令和6年2月15日（木）</li>
-                <li>
-                  <strong>3月の推薦委員会はありません</strong>
-                </li>
-              </ul>
-              <p>
-                推薦書は申請者に届くまでに県ラ締切後１ヶ月弱かかるため、特にピストル所持者は所持銃の許可有効期間をよく確認の上、余裕を持って計画的に申請してください。
-                <br />
-                ※令和４年度は推薦委員会が無い月ありますので申請される方はご注意下さい。
-              </p>
-            </Stack>
+            県ラの推薦申込締切日は下記の通りです。締切日以降に届いたものは翌月の推薦委員会への申請となります。
+          </CardContent>
+          <List dense={true}>
+            <ListItem><ListItemText>4月13日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>5月11日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>6月15日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>7月13日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>8月10日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>9月14日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>10月12日 (木)</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>11月16日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>12月7日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>令和6年1月11日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>令和6年2月15日（木）</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText><strong>3月の推薦委員会はありません</strong></ListItemText></ListItem>
+          </List>
+          <CardContent>
+            推薦書は申請者に届くまでに県ラ締切後1ヶ月弱かかります。特にピストル所持者は所持銃の許可有効期間をよく確認の上、余裕を持って計画的にご申請ください。
+            <br />
+            ※令和４年度は推薦委員会がない月ありますのでご申請される方はご注意ください。
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader title={'技能講習免除について'} />
           <CardContent>
-            <Stack spacing={2}>
-              <p>技能講習免除に関しても県ラ締切後１ヶ月弱かかりますので、余裕を持って申請するようにしてください。</p>
-            </Stack>
+            技能講習免除に関しても県ラ締切後１ヶ月弱かかりますので、余裕を持って申請するようにしてください。
           </CardContent>
         </Card>
 
@@ -115,33 +144,40 @@ export default function Page() {
 
         <Card>
           <CardHeader title={'AP を所持中の皆様へ'} />
-          <CardContent>
-            <Stack spacing={2}>
-              <ul className="list-disc list-outside ml-6">
-                <li>
-                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">
-                    推薦ブレッテン no.56
-                  </Link>
-                </li>
-                <li>
-                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
-                    推薦ブレッテン no.55
-                  </Link>
-                </li>
-                <li>
-                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_51.pdf">
-                    推薦ブレッテン no.51
-                  </Link>
-                </li>
-                <li>
-                  <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_49.pdf">
-                    推薦ブレッテン no.49
-                  </Link>
-                </li>
-              </ul>
-              <p>※ご不明な点は日ラへ直接お問い合わせください</p>
-            </Stack>
-          </CardContent>
+          <CardContent>※ご不明な点は日ラへ直接お問い合わせください。</CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">
+                  推薦ブレッテン no.56
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
+                  推薦ブレッテン no.55
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_51.pdf">
+                  推薦ブレッテン no.51
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_49.pdf">
+                  推薦ブレッテン no.49
+                </Link>
+              </ListItemText>
+            </ListItem>
+          </List>
         </Card>
       </MainBody>
     </>
