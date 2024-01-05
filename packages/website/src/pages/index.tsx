@@ -1,6 +1,3 @@
-import { faFilePdf, faFileWord } from '@fortawesome/free-regular-svg-icons';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Button from "@mui/material/Button";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -24,32 +21,11 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2023年12月2日</div>
+        <div className="text-center text-xl">最終更新日: 2024年1月5日</div>
 
         <Alert severity="info">
           <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
           <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>将来のアスリートを目指す「タレント候補生」募集のお知らせ</AlertTitle>
-          <Stack spacing={2} direction="row">
-            <Button
-              variant="outlined"
-              startIcon={<FontAwesomeIcon icon={faFilePdf} />}
-              href="/static/news/2023-11-05-01-ftem-ad.pdf"
-            >ご案内</Button>
-            <Button
-              variant="outlined"
-              startIcon={<FontAwesomeIcon icon={faFileWord} />}
-              href="/static/news/2023-11-05-02-ftem-app.docx"
-            >申込書</Button>
-          </Stack>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle><Link href="/static/news/2023-10-20-01-attachment.pdf">訃報</Link></AlertTitle>
-          伊勢原射撃場の茂木秀夫前射場長におかれましては、10月16日夜半にご逝去されました。ここに謹んでお悔やみ申し上げます。
         </Alert>
 
         <Card>
