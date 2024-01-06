@@ -21,11 +21,27 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年1月5日</div>
+        <div className="text-center text-xl">最終更新日: 2024年1月6日</div>
 
         <Alert severity="info">
           <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
           <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
+        </Alert>
+
+        <Alert severity="info">
+          <AlertTitle><Link href="/static/news/2024-01-06-01-attachment.pdf" target="_blank">訃報</Link></AlertTitle>
+          <p>山梨県ライフル射撃協会副会長土屋清博様におかれましては, 1月4日 (木) にご逝去されました。ここに謹んで哀悼の意を表すとともに, ご通知申し上
+          げます。なお, 葬儀は下記により執り行われますことを併せてお知らせいたします。</p>
+          <ul>
+            <li>1月8日 (月) 通夜: 18:00～</li>
+            <li>1月9日 (火) 告別式: 12:30～
+              <ul>
+                <li>会場: アピオセレモニーホール「天昇殿」</li>
+                <li>山梨県甲府市南口町1-29</li>
+                <li>0120-961-773</li>
+              </ul>
+            </li>
+          </ul>
         </Alert>
 
         <Card>
