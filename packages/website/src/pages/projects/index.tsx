@@ -18,11 +18,21 @@ export default function Page() {
         <h2 className="text-center text-xl">事業計画</h2>
 
         <Card>
-          <CardHeader title={'令和5年度'} />
+          <CardHeader title={'令和6年度'} />
           <CardContent>
-            国体予選お申込みフォームは, 一次予選については3月7日 (火) ごろ, 最終予選については4月5日 (水)
-            ごろ公開の予定です。
+            令和6年度事業計画については, 日本ライフル射撃協会の事業計画の決定後に作成し公開いたしますのでもうしばらくお待ちください。
           </CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader title={'令和5年度'} />
           <List dense={true}>
             <ListItem>
               <ListItemText>
