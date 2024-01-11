@@ -21,7 +21,13 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年1月6日</div>
+        <div className="text-center text-xl">最終更新日: 2024年1月11日</div>
+
+        <Alert severity="info">
+          <AlertTitle>令和6年度会員資格更新のご案内</AlertTitle>
+          令和6年度の会員資格更新について下記の通りご案内いたします。<br />
+          <Link href="/static/projects/2024/membership.pdf">[PDF] 会員資格更新のご案内</Link>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
@@ -46,45 +52,53 @@ export default function Home() {
 
         <Card>
           <CardContent>
-            <li className="flex">
-              <span className="w-32 block">2023年12月2日</span>
-              <span className="block flex-1"><Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年11月5日</span>
-              <span className="block flex-1"><Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">2023年度栃木県ライフル射撃競技大会 (100m SB 大会)</Link> の要項を掲載</span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年10月27日</span>
-              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の射座割表を掲載</span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年9月18日</span>
-              <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の要項を掲載</span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年8月4日</span>
-              <span className="block flex-1">
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">
-                  全関東ライフル射撃競技選手権大会の射座割
-                </Link>
-                を掲載
-              </span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年7月7日</span>
-              <span className="block flex-1">
-                <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">
-                  全関東ライフル射撃競技選手権大会の要項
-                </Link>
-                を掲載
-              </span>
-            </li>
-            <li className="flex">
-              <span className="w-32 block">2023年6月15日</span>
-              <span className="block flex-1">大会参加料改定のお知らせを掲載</span>
-            </li>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年1月11日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link> を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2024年1月6日</span>
+                <span className="block flex-1"><Link href="/static/news/2024-01-06-01-attachment.pdf" target="_blank">訃報</Link></span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年12月2日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年11月5日</span>
+                <span className="block flex-1"><Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">2023年度栃木県ライフル射撃競技大会 (100m SB 大会)</Link> の要項を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年10月27日</span>
+                <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の射座割表を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年9月18日</span>
+                <span className="block flex-1">令和5年度神奈川オープン兼県選手権大会の要項を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年8月4日</span>
+                <span className="block flex-1">
+                  <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">
+                    全関東ライフル射撃競技選手権大会の射座割
+                  </Link>
+                  を掲載
+                </span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年7月7日</span>
+                <span className="block flex-1">
+                  <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">
+                    全関東ライフル射撃競技選手権大会の要項
+                  </Link>
+                  を掲載
+                </span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2023年6月15日</span>
+                <span className="block flex-1">大会参加料改定のお知らせを掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2023年5月24日</span>
                 <span className="block flex-1">
