@@ -27,6 +27,35 @@ export default function Page() {
         </Alert>
 
         <Card>
+          <CardHeader title={'参加料 (神奈川県ライフル射撃協会主催大会)'} />
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>50m SB3×20: 7,000円</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>50m SB60PR: 7,000円</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>10m AR60S: 3,000円 (高校生以下: 2,500円)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>10m AP60: 4,500円 (高校生以下: 4,000円)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>10m BR60S/BP60: 2,500円 (高校生以下: 1,000円)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>10m HR40 M/W: 4,000円</ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'2023年度栃木県ライフル射撃競技大会 (100m SB 大会)'} />
           <List>
             <ListItem>
@@ -118,6 +147,12 @@ export default function Page() {
         <Card>
           <CardHeader title={'令和5年度国体一次予選兼東日本予選会'} />
           <CardContent>2023年4月23日@神奈川県立伊勢原射撃場</CardContent>
+          <CardContent>
+            ※ 国体 (予選を含む) 参加者は参加料に国体予選登録料 (国体保健料) 1,500円を加算してお振り込みください
+            (一次予選申し込み時のみ)。
+            <br />
+            ※ハンドライフルは普及大会となります。
+          </CardContent>
           <List>
             <ListItem>
               <ListItemText>
@@ -168,138 +203,11 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'参加料 (神奈川県ライフル射撃協会主催大会)'} />
-          <CardContent>
-            ※ 国体 (予選を含む) 参加者は参加料に国体予選登録料 (国体保健料) 1,500円を加算してお振り込みください
-            (一次予選申し込み時のみ)。
-            <br />
-            ※ハンドライフルは普及大会となります。
-          </CardContent>
-          <List dense={true}>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>50m 3×20 M/W: 7,000円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>50m 60PR M/W: 7,000円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m AR60 M/W: 3,000円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m AP60 M/W: 4,500円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m AR60 MJ/WJ: 2,500円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m AP60 MJ/WJ: 4,000円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m BR/BP M/W: 2,500円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m BR/BP MJ/WJ: 1,000円</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>10m HR40 M/W: 4,000円</ListItemText>
-            </ListItem>
-          </List>
-        </Card>
-
-        <Card>
           <CardHeader title={'令和4年度 国体最終予選'} />
-          <List dense={true}>
-            <Divider component="li" className="border-gray-400" />
+          <List>
             <ListItem>
               <ListItemText>
-                <Link href="/20220522_BP60M.pdf">２０２２年度　国体最終予選　ＢＰ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_BP60W.pdf">２０２２年度　国体最終予選　ＢＰ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_AP60M.pdf">２０２２年度　国体最終予選　ＡＰ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_AP60W.pdf">２０２２年度　国体最終予選　ＡＰ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_BRS60MJ.pdf">２０２２年度　国体最終予選　ＢＲＳ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_BRS60WJ.pdf">２０２２年度　国体最終予選　ＢＲＳ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_ARS60MJ.pdf">２０２２年度　国体最終予選　ＡＲＳ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_ARS60M.pdf">２０２２年度　国体最終予選　ＡＲＳ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_ARS60WJ.pdf">２０２２年度　国体最終予選　ＡＲＳ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_ARS60W.pdf">２０２２年度　国体最終予選　ＡＲＳ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_P60M.pdf">２０２２年度　国体最終予選　５０ｍＰ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_P60W.pdf">２０２２年度　国体最終予選　５０ｍＰ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_3x40M.pdf">２０２２年度　国体最終予選　５０ｍ３ｘ４０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220522_3x40W.pdf">２０２２年度　国体最終予選　５０ｍ３ｘ４０Ｗ</Link>
+                <Link href="/static/competitions/2022/2022-05-22-kokutai-trials-2nd-results.pdf">競技結果 [PDF]</Link>
               </ListItemText>
             </ListItem>
           </List>
@@ -307,89 +215,10 @@ export default function Page() {
 
         <Card>
           <CardHeader title={'令和4年度 国体最一次予選'} />
-          <List dense={true}>
-            <Divider component="li" className="border-gray-400" />
+          <List>
             <ListItem>
               <ListItemText>
-                <Link href="/20220424BP60M.pdf">２０２２年度　国体１次予選　ＢＰ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424BP60W.pdf">２０２２年度　国体１次予選　ＢＰ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424AP60M.pdf">２０２２年度　国体１次予選　ＡＰ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424AP60W.pdf">２０２２年度　国体１次予選　ＡＰ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424BRS60MJ.pdf">２０２２年度　国体１次予選　ＢＲＳ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424BRS60WJ.pdf">２０２２年度　国体１次予選　ＢＲＳ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424ARS60MJ.pdf">２０２２年度　国体１次予選　ＡＲＳ６０ＭＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424ARS60M.pdf">２０２２年度　国体１次予選　ＡＲＳ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424ARS60WJ.pdf">２０２２年度　国体１次予選　ＡＲＳ６０ＷＪ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424ARS60W.pdf">２０２２年度　国体１次予選　ＡＲＳ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424_50mP60M.pdf">２０２２年度　国体１次予選　５０ｍＰ６０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424_50mP60W.pdf">２０２２年度　国体１次予選　５０ｍＰ６０Ｗ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424_50m3x40M.pdf">２０２２年度　国体１次予選　５０ｍ３ｘ４０Ｍ</Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/20220424_50m3x40W.pdf">２０２２年度　国体１次予選　５０ｍ３ｘ４０Ｗ</Link>
+                <Link href="/static/competitions/2022/2022-04-24-kokutai-trials-1st-results.pdf">競技結果 [PDF]</Link>
               </ListItemText>
             </ListItem>
           </List>
