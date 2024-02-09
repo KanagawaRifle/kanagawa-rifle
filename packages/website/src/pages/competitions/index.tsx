@@ -56,6 +56,28 @@ export default function Page() {
         </Card>
 
         <Card>
+          <CardHeader title={'令和5年度神奈川県ジュニアライフル射撃競技選手権大会'} />
+          <CardContent>2024年2月24日 (土) ― 2月25日 (日)</CardContent>
+          <List>
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">
+                  射座割表 [PDF]
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-details.pdf">
+                  実施要項 [PDF]
+                </Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'2023年度栃木県ライフル射撃競技大会 (100m SB 大会)'} />
           <List>
             <ListItem>
