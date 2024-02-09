@@ -21,7 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年1月11日</div>
+        <div className="text-center text-xl">最終更新日: 2024年2月9日</div>
 
         <Alert severity="info">
           <AlertTitle>令和6年度会員資格更新のご案内</AlertTitle>
@@ -30,29 +30,23 @@ export default function Home() {
         </Alert>
 
         <Alert severity="info">
-          <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
-          <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
+          <AlertTitle>令和5年度神奈川県ジュニア選手権のご案内</AlertTitle>
+          射座割を掲載いたしました。<br />
+          <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">[PDF] 射座割</Link>
         </Alert>
 
         <Alert severity="info">
-          <AlertTitle><Link href="/static/news/2024-01-06-01-attachment.pdf" target="_blank">訃報</Link></AlertTitle>
-          <p>山梨県ライフル射撃協会副会長土屋清博様におかれましては, 1月4日 (木) にご逝去されました。ここに謹んで哀悼の意を表すとともに, ご通知申し上
-          げます。なお, 葬儀は下記により執り行われますことを併せてお知らせいたします。</p>
-          <ul>
-            <li>1月8日 (月) 通夜: 18:00～</li>
-            <li>1月9日 (火) 告別式: 12:30～
-              <ul>
-                <li>会場: アピオセレモニーホール「天昇殿」</li>
-                <li>山梨県甲府市南口町1-29</li>
-                <li>0120-961-773</li>
-              </ul>
-            </li>
-          </ul>
+          <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
+          <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
         </Alert>
 
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年2月9日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年1月11日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link> を掲載</span>
