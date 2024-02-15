@@ -5,7 +5,7 @@ import MuiCardHeader, { CardHeaderProps as MuiCardHeaderProps } from '@mui/mater
 export type CardHeaderProps = MuiCardHeaderProps;
 
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(function Card(props, ref) {
-  return <MuiCardHeader {...props} ref={ref} />;
+  return <MuiCardHeader {...props} ref={ref} subheaderTypographyProps={{ color: '#fff' }} />;
 });
 
 export default CardHeader;
