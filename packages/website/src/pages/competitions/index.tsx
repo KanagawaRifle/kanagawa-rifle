@@ -56,7 +56,75 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和5年度神奈川県ジュニアライフル射撃競技選手権大会'} />
+          <CardHeader subheader={'令和6年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
+          <CardContent>2024年10月27日@
+            <Link href="http://www.isehara-shooting.jp/index.html" target="_blank">
+              神奈川県立伊勢原射撃場
+            </Link>
+          </CardContent>
+          <List>
+            <ListItem>
+              <ListItemText>申込期限: 10月9日 (水)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://forms.gle/4dFcKUeg7biuJU4X9" target="_blank">お申込みフォーム</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader subheader={'令和6年度'} title={'国スポ最終予選兼全関東予選会'} />
+          <CardContent>2024年5月26日@
+            <Link href="http://www.isehara-shooting.jp/index.html" target="_blank">
+              神奈川県立伊勢原射撃場
+            </Link>
+          </CardContent>
+          <List>
+            <ListItem>
+              <ListItemText>申込期限: 5月8日 (水)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://forms.gle/wyz4gNqjgZ4TCEnA8" target="_blank">お申込みフォーム</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader subheader={'令和6年度'} title={'国スポ一次予選兼東日本予選会'} />
+          <CardContent>2024年4月21日@
+            <Link href="http://www.isehara-shooting.jp/index.html" target="_blank">
+              神奈川県立伊勢原射撃場
+            </Link>
+          </CardContent>
+          <CardContent>
+            ※ 国スポ (予選を含む) 参加者は参加料に国スポ予選登録料 (国スポ保健料) 1,500円を加算してお振り込みください
+            (一次予選申し込み時のみ)。
+            <br />
+            ※ハンドライフルは普及大会となります。
+          </CardContent>
+          <List>
+            <ListItem>
+              <ListItemText>申込期限: 4月3日 (水)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://forms.gle/eG5aBZjHiGWYzLcaA" target="_blank">お申込みフォーム</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <h2 className="text-center text-lg">2023年度 (令和5年度)</h2>
+
+        <Card>
+          <CardHeader subheader={'令和5年度'} title={'神奈川県ジュニアライフル射撃競技選手権大会'} subheaderTypographyProps={{ color: '#fff' }} />
           <CardContent>2024年2月24日 (土) ― 2月25日 (日)</CardContent>
           <List>
             <ListItem>
@@ -78,7 +146,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'2023年度栃木県ライフル射撃競技大会 (100m SB 大会)'} />
+          <CardHeader subheader={'令和5年度'} title={'栃木県ライフル射撃競技大会 (100m SB 大会)'} />
           <List>
             <ListItem>
               <ListItemText>
@@ -91,7 +159,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和5年度神奈川オープン兼県ライフル射撃競技選手権大会'} />
+          <CardHeader subheader={'令和5年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>
             <Stack spacing={2}>
               <p>
@@ -107,14 +175,6 @@ export default function Page() {
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-details.pdf">
                   実施要項 [PDF]
-                </Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf">
-                  射座割表 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
@@ -147,7 +207,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和5年度国体最終予選兼全関東予選会'} />
+          <CardHeader subheader={'令和5年度'} title={'国体最終予選兼全関東予選会'} />
           <CardContent>2023年5月21日@神奈川県立伊勢原射撃場</CardContent>
           <List>
             <ListItem>
@@ -167,7 +227,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和5年度国体一次予選兼東日本予選会'} />
+          <CardHeader subheader={'令和5年度'} title={'国体一次予選兼東日本予選会'} />
           <CardContent>2023年4月23日@神奈川県立伊勢原射撃場</CardContent>
           <CardContent>
             ※ 国体 (予選を含む) 参加者は参加料に国体予選登録料 (国体保健料) 1,500円を加算してお振り込みください
@@ -192,24 +252,16 @@ export default function Page() {
           </List>
         </Card>
 
-        <h2 className="text-center text-lg">2022年度</h2>
+        <h2 className="text-center text-lg">2022年度 (令和4年度)</h2>
 
         <Card>
-          <CardHeader title={'令和4年度神奈川オープン兼県ライフル射撃競技選手権大会'} />
+          <CardHeader subheader={'令和4年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>2022年11月6日@神奈川県立伊勢原射撃場</CardContent>
           <List>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf">
                   実施要項 [PDF]
-                </Link>
-              </ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
-              <ListItemText>
-                <Link href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-start-lists.pdf">
-                  射座割表 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
@@ -225,7 +277,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和4年度 国体最終予選'} />
+          <CardHeader subheader={'令和4年度'} title={'国体最終予選兼全関東予選会'} />
           <List>
             <ListItem>
               <ListItemText>
@@ -236,7 +288,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和4年度 国体最一次予選'} />
+          <CardHeader subheader={'令和4年度'} title={'国体一次予選兼東日本予選会'} />
           <List>
             <ListItem>
               <ListItemText>
