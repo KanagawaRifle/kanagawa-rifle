@@ -21,7 +21,14 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年2月9日</div>
+        <div className="text-center text-xl">最終更新日: 2024年2月15日</div>
+
+        <Alert severity="info">
+          <AlertTitle>令和6年度事業計画案について</AlertTitle>
+          令和6年度の当協会事業計画案について下記の通りご案内いたします。<br />
+          ・<Link href="/static/projects/2024/schedule.pdf?v=1707978030">[PDF] 令和6年度事業計画案</Link><br />
+          ・<Link href="/static/projects/2024/competitions.pdf?v=1707978030">[PDF] 令和6年度主催大会および推薦申請のご案内</Link>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和6年度会員資格更新のご案内</AlertTitle>
@@ -35,14 +42,13 @@ export default function Home() {
           <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">[PDF] 射座割</Link>
         </Alert>
 
-        <Alert severity="info">
-          <AlertTitle>冬季 AR・AP ランクリスト競技会 (横須賀市) のご案内</AlertTitle>
-          <Link href="https://yokosukarifle.web.fc2.com/" target="_blank">横須賀市ライフル射撃協会のホームページ</Link>よりお申し込みください。
-        </Alert>
-
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年2月15日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/">事業計画</Link> ページを更新</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月9日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
