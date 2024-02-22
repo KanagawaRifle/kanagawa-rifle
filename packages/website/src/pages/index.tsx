@@ -43,6 +43,12 @@ export default function Home() {
         </Alert>
 
         <Card>
+          <CardActionArea component={Link} href="/static/news/2024-02-02-01-kokuspo-trial-poster.pdf" target="_blank">
+            <CardMedia component="img" height="164" image="/static/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
+          </CardActionArea>
+        </Card>
+
+        <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
               <li className="flex">
