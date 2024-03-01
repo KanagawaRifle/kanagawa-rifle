@@ -129,8 +129,8 @@ export default function Page() {
           <List>
             <ListItem>
               <ListItemText>
-                <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">
-                  射座割表 [PDF]
+                <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">
+                  競技結果 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
