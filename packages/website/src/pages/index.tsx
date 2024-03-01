@@ -39,7 +39,7 @@ export default function Home() {
         <Alert severity="info">
           <AlertTitle>令和5年度神奈川県ジュニア選手権のご案内</AlertTitle>
           競技結果を掲載いたしました。<br />
-          <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">[PDF] 競技結果</Link>
+          <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">[PDF] 競技結果</Link>
         </Alert>
 
         <Card>
