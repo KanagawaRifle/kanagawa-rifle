@@ -76,6 +76,24 @@ export default function Page() {
         </Card>
 
         <Card>
+          <CardHeader subheader={'令和6年度'} title={'第54回東日本ライフル射撃競技選手権大会'} />
+          <CardContent>2024年6月21日@
+            <Link href="http://www.isehara-shooting.jp/index.html" target="_blank">
+              神奈川県立伊勢原射撃場
+            </Link>
+          </CardContent>
+          <List>
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">
+                  実施要項 [PDF]
+                </Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader subheader={'令和6年度'} title={'国スポ最終予選兼全関東予選会'} />
           <CardContent>2024年5月26日@
             <Link href="http://www.isehara-shooting.jp/index.html" target="_blank">

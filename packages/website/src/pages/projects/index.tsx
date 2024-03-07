@@ -25,6 +25,18 @@ export default function Page() {
           <List dense={true}>
             <ListItem>
               <ListItemText>
+                <Link href="/static/projects/2024/schedule.pdf?v=1707978030">令和6年度事業計画案</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="/static/projects/2024/competitions.pdf?v=1707978030">令和6年度主催大会および推薦申請のご案内</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 <Link href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link>
               </ListItemText>
             </ListItem>
