@@ -21,7 +21,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年2月29日</div>
+        <div className="text-center text-xl">最終更新日: 2024年3月8日</div>
 
         <Alert severity="info">
           <AlertTitle>令和6年度事業計画案について</AlertTitle>
@@ -51,6 +51,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年3月8日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">第54回東日本選手権の要項</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月29日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">令和5年度神奈川県ジュニア選手権の競技結果</Link> を掲載</span>
