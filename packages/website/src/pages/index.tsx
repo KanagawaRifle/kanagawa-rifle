@@ -1,3 +1,6 @@
+import {faWpforms} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -21,7 +24,31 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年3月8日</div>
+        <div className="text-center text-xl">最終更新日: 2024年3月21日</div>
+
+        <Alert severity="info">
+          <AlertTitle>令和6年度 各種大会 (神ラ主催以外) 申込</AlertTitle>
+          <Stack spacing={2}>
+            <div>
+              各種大会 (神ラ主催以外) および東日本選手権については下記よりお申し込みください。<br />
+              ※国体予選および県選手権については<Link href="/competitions">個別のお申込みフォーム</Link>がございますのでそちらよりお申し込みください。
+            </div>
+            <div>
+              <Button
+                variant="outlined"
+                startIcon={<FontAwesomeIcon icon={faWpforms} />}
+                href="https://forms.gle/6XGY1qhEvr3gkasJ9"
+                target="_blank"
+                sx={{
+
+                }}
+              >
+                日ラ等大会申込
+              </Button>
+            </div>
+
+          </Stack>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和6年度事業計画案について</AlertTitle>
