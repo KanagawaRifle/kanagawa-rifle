@@ -1,3 +1,7 @@
+import {faWpforms} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
+
 import Alert from '@kanagawa-rifle/website/components/Alert';
 import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
 import Card from '@kanagawa-rifle/website/components/Card';
@@ -11,9 +15,6 @@ import ListItemText from '@kanagawa-rifle/website/components/ListItemText';
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import Button from "@mui/material/Button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 
 export default function Page() {
   return (
