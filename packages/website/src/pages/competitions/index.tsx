@@ -1,3 +1,7 @@
+import {faWpforms} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
+
 import Alert from '@kanagawa-rifle/website/components/Alert';
 import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
 import Card from '@kanagawa-rifle/website/components/Card';
@@ -25,6 +29,33 @@ export default function Page() {
           当協会が開催する大会について, 7月1日より, 大会参加料を下記の通り改定いたします。
           <div className="pl-4">ビーム種目少年男子・少年女子：旧2,000円 ➔ 新1,000円</div>
         </Alert>
+
+        <Card>
+          <CardHeader subheader={'令和6年度'} title={'各種大会 (神ラ主催以外) 申込'} subheaderTypographyProps={{ color: '#fff' }} />
+          <CardContent>
+            <Stack spacing={2}>
+              <p>
+                各種大会 (神ラ主催以外) および東日本選手権については下記よりお申し込みください。<br />
+                ※国体予選および県選手権については下記に個別のお申込みフォームがございますのでそちらよりお申し込みください。
+              </p>
+              <div>
+                <Button
+                  variant="outlined"
+                  startIcon={<FontAwesomeIcon icon={faWpforms} />}
+                  href="https://forms.gle/6XGY1qhEvr3gkasJ9"
+                  target="_blank"
+                  sx={{
+                    color: "#0ff",
+                    borderColor: "#0ff",
+                    '&:hover': { borderColor: "#066" },
+                  }}
+                >
+                  日ラ等大会申込
+                </Button>
+              </div>
+            </Stack>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader title={'参加料 (神奈川県ライフル射撃協会主催大会)'} />
