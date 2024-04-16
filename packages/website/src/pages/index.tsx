@@ -24,7 +24,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年3月21日</div>
+        <div className="text-center text-xl">最終更新日: 2024年4月16日</div>
 
         <Alert severity="info">
           <AlertTitle>令和6年度 各種大会 (神ラ主催以外) 申込</AlertTitle>
@@ -51,6 +51,12 @@ export default function Home() {
         </Alert>
 
         <Alert severity="info">
+          <AlertTitle>令和6年度国スポ一次予選兼東日本予選のご案内</AlertTitle>
+          射座割を掲載いたしました。<br />
+          <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">[PDF] 射座割表</Link>
+        </Alert>
+
+        <Alert severity="info">
           <AlertTitle>令和6年度事業計画案について</AlertTitle>
           令和6年度の当協会事業計画案について下記の通りご案内いたします。<br />
           ・<Link href="/static/projects/2024/schedule.pdf?v=1707978030">[PDF] 令和6年度事業計画案</Link><br />
@@ -63,12 +69,6 @@ export default function Home() {
           <Link href="/static/projects/2024/membership.pdf">[PDF] 会員資格更新のご案内</Link>
         </Alert>
 
-        <Alert severity="info">
-          <AlertTitle>令和5年度神奈川県ジュニア選手権のご案内</AlertTitle>
-          競技結果を掲載いたしました。<br />
-          <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">[PDF] 競技結果</Link>
-        </Alert>
-
         <Card>
           <CardActionArea component={Link} href="/static/news/2024-02-02-01-kokuspo-trial-poster.pdf" target="_blank">
             <CardMedia component="img" height="164" image="/static/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
@@ -78,6 +78,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年4月16日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">国スポ一次予選の射座割表</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年3月8日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">第54回東日本選手権の要項</Link> を掲載</span>
