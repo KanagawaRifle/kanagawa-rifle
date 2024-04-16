@@ -159,12 +159,10 @@ export default function Page() {
           </CardContent>
           <List>
             <ListItem>
-              <ListItemText>申込期限: 4月3日 (水)</ListItemText>
-            </ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem>
               <ListItemText>
-                <Link href="https://forms.gle/eG5aBZjHiGWYzLcaA" target="_blank">お申込みフォーム</Link>
+                <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">
+                  射座割表 [PDF]
+                </Link>
               </ListItemText>
             </ListItem>
           </List>
