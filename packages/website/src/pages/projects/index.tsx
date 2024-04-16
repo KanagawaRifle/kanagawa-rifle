@@ -1,5 +1,4 @@
 import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
 import Divider from '@kanagawa-rifle/website/components/Divider';
 import Link from '@kanagawa-rifle/website/components/Link';
@@ -19,9 +18,6 @@ export default function Page() {
 
         <Card>
           <CardHeader title={'令和6年度'} />
-          <CardContent>
-            令和6年度事業計画については, 日本ライフル射撃協会の事業計画の決定後に作成し公開いたしますのでもうしばらくお待ちください。
-          </CardContent>
           <List dense={true}>
             <ListItem>
               <ListItemText>
