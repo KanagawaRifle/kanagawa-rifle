@@ -24,7 +24,7 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年4月16日</div>
+        <div className="text-center text-xl">最終更新日: 2024年4月21日</div>
 
         <Alert severity="info">
           <AlertTitle>令和6年度 各種大会 (神ラ主催以外) 申込</AlertTitle>
@@ -52,8 +52,8 @@ export default function Home() {
 
         <Alert severity="info">
           <AlertTitle>令和6年度国スポ一次予選兼東日本予選のご案内</AlertTitle>
-          射座割を掲載いたしました。<br />
-          <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">[PDF] 射座割表</Link>
+          競技結果を掲載いたしました。<br />
+          <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">[PDF] 競技結果</Link>
         </Alert>
 
         <Alert severity="info">
@@ -78,6 +78,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年4月21日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">国スポ一次予選の競技結果</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月16日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">国スポ一次予選の射座割表</Link> を掲載</span>

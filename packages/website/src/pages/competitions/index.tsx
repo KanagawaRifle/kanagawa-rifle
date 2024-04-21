@@ -160,8 +160,8 @@ export default function Page() {
           <List>
             <ListItem>
               <ListItemText>
-                <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">
-                  射座割表 [PDF]
+                <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">
+                  競技結果 [PDF]
                 </Link>
               </ListItemText>
             </ListItem>
