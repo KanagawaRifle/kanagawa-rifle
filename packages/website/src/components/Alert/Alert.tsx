@@ -10,7 +10,7 @@ export type AlertProps = MuiAlertProps;
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Card(props, ref) {
   const { className, ...others } = { ...props };
 
-  return <MuiAlert className={clsx(className, styles.module)} {...others} ref={ref} />;
+  return <MuiAlert variant="outlined" className={clsx(className, styles.module)} {...others} ref={ref} />;
 });
 
 export default Alert;

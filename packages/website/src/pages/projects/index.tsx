@@ -17,7 +17,7 @@ export default function Page() {
         <h2 className="text-center text-xl">事業計画</h2>
 
         <Card>
-          <CardHeader title={'令和6年度'} />
+          <CardHeader title={'令和6年度'} subheader={'2024'} />
           <List dense={true}>
             <ListItem>
               <ListItemText>
@@ -40,7 +40,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和5年度'} />
+          <CardHeader title={'令和5年度'} subheader={'2023'} />
           <List dense={true}>
             <ListItem>
               <ListItemText>
@@ -63,7 +63,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'令和4年度'} />
+          <CardHeader title={'令和4年度'} subheader={'2022'} />
           <List dense={true}>
             <ListItem>
               <ListItemText>
