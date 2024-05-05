@@ -31,7 +31,7 @@ export default function Page() {
         </Alert>
 
         <Card>
-          <CardHeader subheader={'令和6年度'} title={'各種大会 (神ラ主催以外) 申込'} subheaderTypographyProps={{ color: '#fff' }} />
+          <CardHeader subheader={'令和6年度'} title={'各種大会 (当協会主管以外) 申込'} />
           <CardContent>
             <Stack spacing={2}>
               <p>
@@ -44,11 +44,6 @@ export default function Page() {
                   startIcon={<FontAwesomeIcon icon={faWpforms} />}
                   href="https://forms.gle/6XGY1qhEvr3gkasJ9"
                   target="_blank"
-                  sx={{
-                    color: "#0ff",
-                    borderColor: "#0ff",
-                    '&:hover': { borderColor: "#066" },
-                  }}
                 >
                   日ラ等大会申込
                 </Button>
@@ -58,7 +53,7 @@ export default function Page() {
         </Card>
 
         <Card>
-          <CardHeader title={'参加料 (神奈川県ライフル射撃協会主催大会)'} />
+          <CardHeader title={'参加料 (当協会主管Ｇ４)'} />
           <List dense={true}>
             <ListItem>
               <ListItemText>50m SB3×20: 7,000円</ListItemText>
@@ -93,9 +88,13 @@ export default function Page() {
               神奈川県立伊勢原射撃場
             </Link>
           </CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>申込期限: 10月9日 (水)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>実施要項 [PDF]</ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
@@ -113,7 +112,7 @@ export default function Page() {
               神奈川県立伊勢原射撃場
             </Link>
           </CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">
@@ -131,7 +130,7 @@ export default function Page() {
               神奈川県立伊勢原射撃場
             </Link>
           </CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>申込期限: 5月8日 (水)</ListItemText>
             </ListItem>
@@ -157,7 +156,11 @@ export default function Page() {
             <br />
             ※ハンドライフルは普及大会となります。
           </CardContent>
-          <List>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>申込期限: 4月3日 (水)</ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">
@@ -173,7 +176,7 @@ export default function Page() {
         <Card>
           <CardHeader subheader={'令和5年度'} title={'神奈川県ジュニアライフル射撃競技選手権大会'} subheaderTypographyProps={{ color: '#fff' }} />
           <CardContent>2024年2月24日 (土) ― 2月25日 (日)</CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">
@@ -194,7 +197,7 @@ export default function Page() {
 
         <Card>
           <CardHeader subheader={'令和5年度'} title={'栃木県ライフル射撃競技大会 (100m SB 大会)'} />
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">
@@ -217,7 +220,7 @@ export default function Page() {
               </p>
             </Stack>
           </CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-11-05-kanagawa-open-championship-details.pdf">
@@ -238,7 +241,7 @@ export default function Page() {
 
         <Card>
           <CardHeader title={'第60回全関東ライフル射撃競技選手権大会'} />
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">射座割表 [PDF]</Link>
@@ -256,7 +259,7 @@ export default function Page() {
         <Card>
           <CardHeader subheader={'令和5年度'} title={'国体最終予選兼全関東予選会'} />
           <CardContent>2023年5月21日@神奈川県立伊勢原射撃場</CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-05-21-kokutai-trials-2nd-start-lists.pdf">
@@ -282,7 +285,7 @@ export default function Page() {
             <br />
             ※ハンドライフルは普及大会となります。
           </CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2023/2023-04-23-kokutai-trials-1st-start-lists.pdf">
@@ -304,7 +307,7 @@ export default function Page() {
         <Card>
           <CardHeader subheader={'令和4年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>2022年11月6日@神奈川県立伊勢原射撃場</CardContent>
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf">
@@ -325,7 +328,7 @@ export default function Page() {
 
         <Card>
           <CardHeader subheader={'令和4年度'} title={'国体最終予選兼全関東予選会'} />
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2022/2022-05-22-kokutai-trials-2nd-results.pdf">競技結果 [PDF]</Link>
@@ -336,7 +339,7 @@ export default function Page() {
 
         <Card>
           <CardHeader subheader={'令和4年度'} title={'国体一次予選兼東日本予選会'} />
-          <List>
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/competitions/2022/2022-04-24-kokutai-trials-1st-results.pdf">競技結果 [PDF]</Link>

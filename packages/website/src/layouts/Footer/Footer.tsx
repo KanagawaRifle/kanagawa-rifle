@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 
@@ -12,65 +13,10 @@ export type FooterProps = {};
 
 const Footer: React.FC<FooterProps> = (props) => {
   return (
-    <footer>
-      <div className="p-2 text-center max-w-xl mx-auto text-sm">
-        <nav id="AppNav">
-          <ul className="flex flex-wrap border border-white">
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-b border-white" href="/message">
-                ご挨拶
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-b border-l border-white" href="/about">
-                協会について
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-b border-l border-white" href="/projects">
-                事業計画
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link
-                className="p-2 block hover:underline border-b md:border-l border-white relative"
-                href="/competitions"
-              >
-                <span className="absolute top-0 left-0 bg-red-700 inline-block text-xs text-white">new</span>
-                <span>大会関係</span>
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-b border-l border-white" href="/recommendation">
-                推薦関係
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-l md:border-b-0 border-b border-white" href="/join">
-                入会案内
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline md:border-l border-white" href="/forms">
-                様式
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline md:border-l border-white" href="/links">
-                リンク
-              </Link>
-            </li>
-            <li className="md:w-1/5 w-1/3 text-center">
-              <Link className="p-2 block hover:underline border-l border-white" href="mailto:kraofficial@yahoo.co.jp">
-                メール
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div className={clsx('p-2 mt-2', styles.sns)}>
-        <ul className="flex justify-center -2 text-center max-w-screen-xl mx-auto">
-          <li className="p-2 mx-2">
+    <footer className={styles.module}>
+      <nav className={clsx('px-4 py-6 mt-2 max-w-screen-xl mx-auto', styles.nav)}>
+        <ul className="flex">
+          <li className="p-2">
             <Link className="block" target="_blank" href="https://www.facebook.com/KanagawaRifle">
               <FontAwesomeIcon size="xl" fixedWidth={true} icon={faFacebook} />
             </Link>
@@ -80,13 +26,37 @@ const Footer: React.FC<FooterProps> = (props) => {
               <FontAwesomeIcon size="xl" fixedWidth={true} icon={faTwitter} />
             </Link>
           </li>
-          <li className="p-2 mx-2">
+          <li className="p-2">
             <Link className="block" target="_blank" href="https://www.instagram.com/KanagawaRifle">
               <FontAwesomeIcon size="xl" fixedWidth={true} icon={faInstagram} />
             </Link>
           </li>
         </ul>
-      </div>
+      </nav>
+      <nav className={clsx('px-4 py-6 mt-2 max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4', styles.nav)}>
+        <ul>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/about'}>協会について</Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/join'}>入会案内</Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/projects'}>事業計画</Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/competitions'}>大会</Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/recommendation'}>推薦</Link></li>
+        </ul>
+        <ul>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/forms'}>様式</Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} href={'/links'}>リンク</Link></li>
+        </ul>
+        <ul>
+          <li className={'my-2'}><Link className={'no-underline'} target="_blank" href={'https://www.riflesports.jp/'}>日本ライフル射撃協会<FontAwesomeIcon size="sm" fixedWidth={true} icon={faArrowUpRightFromSquare} /></Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} target="_blank" href={'https://yokosukarifle.web.fc2.com/'}>横須賀市ライフル射撃協会<FontAwesomeIcon size="sm" fixedWidth={true} icon={faArrowUpRightFromSquare} /></Link></li>
+          <li className={'my-2'}><Link className={'no-underline'} target="_blank" href={'https://members.riflesports.jp/_login.cgi?top1'}>ニチラネット<FontAwesomeIcon size="sm" fixedWidth={true} icon={faArrowUpRightFromSquare} /></Link></li>
+
+
+        </ul>
+      </nav>
+      <nav className={clsx('px-4 py-6 mt-2 max-w-screen-xl mx-auto', styles.nav)}>
+        <div><Link href={'/'} className={'font-bold text-xs no-underline'}>特定非営利活動法人　神奈川県ライフル射撃協会</Link></div>
+        <div><Link href={'/'} className={'text-xl no-underline'} sx={{fontFamily: 'Roboto', fontWeight: 900}}>ＫＲＡ</Link></div>
+      </nav>
     </footer>
   );
 };

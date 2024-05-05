@@ -1,5 +1,8 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
+import {faBook} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useTheme} from "@mui/material";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CardActionArea from '@mui/material/CardActionArea';
 
@@ -15,6 +18,8 @@ import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
 export default function Home() {
+  const theme = useTheme();
+
   return (
     <>
       <Meta
@@ -24,24 +29,31 @@ export default function Home() {
       />
 
       <MainBody>
-        <div className="text-center text-xl">最終更新日: 2024年4月21日</div>
+
+        <Box className={'text-center'}>
+          <Box className={'text-xs text-slate-700'}>特定非営利活動法人</Box>
+          <Box component={'h1'} className={'font-bold text-2xl'} sx={{}}>
+            <Box component={'span'} sx={{color: theme.palette.primary.main}}>神奈川県</Box>
+            <Box component={'span'} sx={{color: theme.palette.secondary.main}}>ライフル射撃</Box>
+            <Box component={'span'} sx={{color: "#4285f4"}}>協会</Box>
+          </Box>
+        </Box>
+
+        <div className="text-center text-sm">2024年4月21日更新</div>
 
         <Alert severity="info">
-          <AlertTitle>令和6年度 各種大会 (神ラ主催以外) 申込</AlertTitle>
+          <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
           <Stack spacing={2}>
             <div>
-              各種大会 (神ラ主催以外) および東日本選手権については下記よりお申し込みください。<br />
-              ※国体予選および県選手権については<Link href="/competitions">個別のお申込みフォーム</Link>がございますのでそちらよりお申し込みください。
+              各種大会 (当協会主管以外) および東日本選手権については下記よりお申し込みください。<br />
+              ※国体スポ予選および県選手権については<Link href="/competitions">個別のお申込みフォーム</Link>がございますのでそちらよりお申し込みください。
             </div>
             <div>
               <Button
                 variant="outlined"
-                startIcon={<FontAwesomeIcon icon={faWpforms} />}
+                startIcon={<FontAwesomeIcon fixedWidth={true} size="sm" icon={faWpforms} />}
                 href="https://forms.gle/6XGY1qhEvr3gkasJ9"
                 target="_blank"
-                sx={{
-
-                }}
               >
                 日ラ等大会申込
               </Button>
@@ -51,9 +63,27 @@ export default function Home() {
         </Alert>
 
         <Alert severity="info">
-          <AlertTitle>令和6年度国スポ一次予選兼東日本予選のご案内</AlertTitle>
-          競技結果を掲載いたしました。<br />
-          <Link href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">[PDF] 競技結果</Link>
+          <AlertTitle>第54回東日本選手権のご案内</AlertTitle>
+          <Button
+            variant="outlined"
+            startIcon={<FontAwesomeIcon fixedWidth={true} icon={faBook} />}
+            href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.0.3"
+            target="_blank"
+          >
+            要項
+          </Button>
+        </Alert>
+
+        <Alert severity="info">
+          <AlertTitle>国スポ最終予選兼全関東予選のご案内</AlertTitle>
+          <Button
+            variant="outlined"
+            startIcon={<FontAwesomeIcon fixedWidth={true} icon={faWpforms} />}
+            href="https://forms.gle/wyz4gNqjgZ4TCEnA8"
+            target="_blank"
+          >
+            申込
+          </Button>
         </Alert>
 
         <Alert severity="info">

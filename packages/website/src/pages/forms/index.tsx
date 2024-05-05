@@ -17,8 +17,8 @@ export default function Page() {
         <h2 className="text-center text-xl">様式</h2>
 
         <Card>
-          <CardHeader title={'様式ダウンロード'} />
-          <List>
+          <CardHeader title={'ダウンロード'} />
+          <List dense={true}>
             <ListItem>
               <ListItemText>
                 <Link href="/static/forms/competition.xlsx">日ラ・神ラ大会申込書</Link>

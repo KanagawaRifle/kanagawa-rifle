@@ -1,5 +1,7 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
+import {faBox} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 import Card from '@kanagawa-rifle/website/components/Card';
@@ -27,36 +29,33 @@ export default function Page() {
               <div>
                 <Button
                   variant="outlined"
-                  startIcon={<FontAwesomeIcon icon={faWpforms} />}
+                  startIcon={<FontAwesomeIcon fixedWidth={true} icon={faWpforms} />}
                   href="https://forms.gle/eNg1x3A9XDYPddHu6"
                   target="_blank"
-                  sx={{
-                    color: "#0ff",
-                    borderColor: "#0ff",
-                    '&:hover': { borderColor: "#066" },
-                }}
                 >
                   ご入会申込
                 </Button>
               </div>
-              <ul className="list-disc list-outside ml-6">
-                <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
-                <li>
-                  入会金・年会費等は
-                  <Link href="/about/">ゆうちょ銀行または湘南信用金庫の当協会指定口座</Link>
-                  までお振込みください。
-                </li>
-                <li>
-                  日本ライフル射撃協会の会員証お届けまでにお時間をいただくことがございます。予めご留意いただけますようお願い申し上げます。
-                </li>
-                <li>
-                  お申込みフォームをご利用できない方は
-                  <Link href="/static/forms/membership.xlsx">入会申込書</Link>
-                  に必要事項をご記入の上、
-                  <Link href="/about/">当協会事務局</Link>
-                  まで封書、ファックスまたは電子メールの添付にてお送り下さい。
-                </li>
-              </ul>
+              <div>
+                <ul className="list-disc list-outside ml-4">
+                  <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
+                  <li>
+                    入会金・年会費等は
+                    <Link href="/about">ゆうちょ銀行または湘南信用金庫の当協会指定口座</Link>
+                    までお振込みください。
+                  </li>
+                  <li>
+                    日本ライフル射撃協会の会員証お届けまでにお時間をいただくことがございます。予めご留意いただけますようお願い申し上げます。
+                  </li>
+                  <li>
+                    お申込みフォームをご利用できない方は
+                    <Link href="/static/forms/membership.xlsx">入会申込書</Link>
+                    に必要事項をご記入の上、
+                    <Link href="/about">当協会事務局</Link>
+                    まで封書、ファックスまたは電子メールの添付にてお送り下さい。
+                  </li>
+                </ul>
+              </div>
             </Stack>
           </CardContent>
         </Card>
@@ -64,43 +63,196 @@ export default function Page() {
         <Card>
           <CardHeader title={'一般の方'} />
           <CardContent>
-            <Stack spacing={2}>
-              <p>入会金と年会費、<strong>計27,000円</strong>をお振込みください。</p>
-              <dl>
-                <dt>内訳：神奈川県ライフル射撃協会</dt>
-                <dd className="pl-2">入会金 5,000円</dd>
-                <dd className="pl-2">年会費 7,000円</dd>
-              </dl>
-              <dl>
-                <dt>内訳：日本ライフル射撃協会</dt>
-                <dd className="pl-2">入会金 5,000円</dd>
-                <dd className="pl-2">年会費 10,000円</dd>
-              </dl>
-              <p>
-                ※既に日本ライフル射撃協会に所属し他県から本県に移籍される場合、日本ライフル射撃協会入会金ではなく移籍料500円となります。
-              </p>
-            </Stack>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box sx={{borderBottom: '1px solid #dadce0'}}></Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                  <Box className={'font-bold'}>新規</Box>
+                  <Box className={'text-xs mt-2'}>これから新しく入会される方。</Box>
+                </Box>
+                <Box className={'p-2 rounded-t-md'} sx={{backgroundColor: '#f8f9fa', borderWidth: '1px 1px  1px 1px', borderColor: '#dadce0'}}>
+                  <Box className={'font-bold'}>更新</Box>
+                  <Box className={'text-xs mt-2'}>神ラに既にご入会されている方。</Box>
+                </Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                  <Box className={'font-bold'}>移籍</Box>
+                  <Box className={'text-xs mt-2'}>神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。</Box>
+                </Box>
+              </Box>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box className={'p-2 align-middle'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span></Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>27,000円</Box>
+                <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>17,000円</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>22,500円</Box>
+              </Box>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-green-600'}>神ラ</span>のみ</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>12,000円</Box>
+                <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>7,000円</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>―</Box>
+              </Box>
+            </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader title={'学生（大学・専門学校）の方'} />
+          <CardContent>
+              <Box className={'mb-2'}>ご入会時に学生証等所属を証明できる書類をお送りください。</Box>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box sx={{borderBottom: '1px solid #dadce0'}}></Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                  <Box className={'font-bold'}>新規</Box>
+                  <Box className={'text-xs mt-2'}>これから新しく入会される方。</Box>
+                </Box>
+                <Box className={'p-2 rounded-t-md'} sx={{backgroundColor: '#f8f9fa', borderWidth: '1px 1px  1px 1px', borderColor: '#dadce0'}}>
+                  <Box className={'font-bold'}>更新</Box>
+                  <Box className={'text-xs mt-2'}>神ラに既にご入会されている方。</Box>
+                </Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                  <Box className={'font-bold'}>移籍</Box>
+                  <Box className={'text-xs mt-2'}>神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。</Box>
+                </Box>
+              </Box>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box className={'p-2 align-middle'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span></Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>7,000円</Box>
+                <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>5,000円</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>6,500円</Box>
+              </Box>
+              <Box className={('grid grid-cols-4 gap-0 text-center')}>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-green-600'}>神ラ</span>のみ</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>3,000円</Box>
+                <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>2,000円</Box>
+                <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>―</Box>
+              </Box>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader title={'高校生の方'} />
+          <CardHeader title={'生徒（高校生以下）の方'} />
           <CardContent>
-            <Stack spacing={2}>
-              <p>入会金と年会費、<strong>計4,500円</strong>をお振込みください。</p>
-              <dl>
-                <dt>内訳：神奈川県ライフル射撃協会</dt>
-                <dd className="pl-2">入会金 1,000円</dd>
-                <dd className="pl-2">年会費 2,000円</dd>
-              </dl>
-              <dl>
-                <dt>内訳：日本ライフル射撃協会</dt>
-                <dd className="pl-2">入会金 500円</dd>
-                <dd className="pl-2">年会費 1,000円</dd>
-              </dl>
-            </Stack>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box sx={{borderBottom: '1px solid #dadce0'}}></Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                <Box className={'font-bold'}>新規</Box>
+                <Box className={'text-xs mt-2'}>これから新しく入会される方。</Box>
+              </Box>
+              <Box className={'p-2 rounded-t-md'} sx={{backgroundColor: '#f8f9fa', borderWidth: '1px 1px  1px 1px', borderColor: '#dadce0'}}>
+                <Box className={'font-bold'}>更新</Box>
+                <Box className={'text-xs mt-2'}>神ラに既にご入会されている方。</Box>
+              </Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                <Box className={'font-bold'}>移籍</Box>
+                <Box className={'text-xs mt-2'}>神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。</Box>
+              </Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2 align-middle'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span></Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>4,500円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>3,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>4,500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-green-600'}>神ラ</span>のみ</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>3,000円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>2,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>―</Box>
+            </Box>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader title={'ご進学・ご就職される皆様へ'} />
+          <CardContent>
+
+            <Box className={'rounded-md text-sm font-bold p-2'} sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>新大学生（4月1日～）</Box>
+            <Box className={('grid grid-cols-2 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>神ラ生徒会員→学生会員<br /><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span>更新</Box>
+              <Box className={'p-2 text-center'}>5,500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>神ラ→学連へ所属移籍<br /><span className={'font-bold text-green-600'}>神ラ</span>のみ更新</Box>
+              <Box className={'p-2 text-center'}>2,000円</Box>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')}>
+              <Box className={'p-2'}>他所属加盟団体→神ラへ新規移籍<br /><span className={'font-bold text-red-600'}>日ラ</span>更新＋<span className={'font-bold text-green-600'}>神ラ</span>新規</Box>
+              <Box className={'p-2 text-center'}>6,500円</Box>
+            </Box>
+            <Box className={'rounded-md text-sm font-bold p-2'} sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>新社会人（4月1日～）</Box>
+            <Box className={('grid grid-cols-2 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>神ラ学生・生徒会員→一般会員<br /><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span>更新</Box>
+              <Box className={'p-2 text-center'}>17,500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>学連→神ラへ所属移籍<br /><span className={'font-bold text-red-600'}>日ラ</span>＋<span className={'font-bold text-green-600'}>神ラ</span>更新</Box>
+              <Box className={'p-2 text-center'}>17,500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>他所属加盟団体→神ラへ新規移籍<br /><span className={'font-bold text-red-600'}>日ラ</span>更新＋<span className={'font-bold text-green-600'}>神ラ</span>新規</Box>
+              <Box className={'p-2 text-center'}>22,500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')}>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')}>
+            </Box>
+            <Box className={('grid grid-cols-2 gap-0')}>
+            </Box>
+
+
+
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader title={'入会金・年会費一覧'} />
+          <CardContent>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box sx={{borderBottom: '1px solid #dadce0'}}></Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-purple-400'} fixedWidth={true} size={'xs'} icon={faBox} />一般</Box>
+                <Box className={'text-xs mt-2'}>4月1日時点で24歳以上の学生を含む。</Box>
+              </Box>
+              <Box className={'p-2 rounded-t-md'} sx={{backgroundColor: '#f8f9fa', borderWidth: '1px 1px  1px 1px', borderColor: '#dadce0'}}>
+                <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-teal-400'} fixedWidth={true} size={'xs'} icon={faBox} />学生</Box>
+                <Box className={'text-xs mt-2'}>大学生・専門学校生。</Box>
+              </Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
+                <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-rose-400'} fixedWidth={true} size={'xs'} icon={faBox} />生徒</Box>
+                <Box className={'text-xs mt-2'}>高校生以下。</Box>
+              </Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2 align-middle'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-red-600'}>日</span>　　本<br /><span className={'font-bold text-red-600'}>ラ</span>入会金</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>5,000円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>1,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>500円</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-green-600'}>神</span>奈川県<br /><span className={'font-bold text-green-600'}>ラ</span>入会金</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>5,000円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>1,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>1,000円</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-red-600'}>日</span>　　本<br /><span className={'font-bold text-red-600'}>ラ</span>年会費</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>10,000円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>3,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>1,000円</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}><span className={'font-bold text-green-600'}>神</span>奈川県<br /><span className={'font-bold text-green-600'}>ラ</span>年会費</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>7,000円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>2,000円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>2,000円</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0 text-center')}>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>移籍料</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>500円</Box>
+              <Box className={'p-2'} sx={{backgroundColor: '#f8f9fa', borderWidth: '0 1px  1px 1px', borderColor: '#dadce0'}}>500円</Box>
+              <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>500円</Box>
+            </Box>
+          </CardContent>
+        </Card>
+
       </MainBody>
     </>
   );

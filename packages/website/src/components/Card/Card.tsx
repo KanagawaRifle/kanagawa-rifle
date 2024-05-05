@@ -11,7 +11,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(props, re
   return (
     <MuiCard
       variant="outlined"
-      className={clsx(className, 'bg-transparent text-white border-gray-400')}
+      className={clsx(className, 'bg-transparent border-gray-400')}
       {...others}
       ref={ref}
     />
