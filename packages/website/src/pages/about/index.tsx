@@ -28,7 +28,7 @@ export default function Page() {
               <dd className="block flex-1">046-833-6990 (くりはま花の国射撃場内)</dd>
             </dl>
             <dl className="flex">
-              <dt className="w-32 block">所在地</dt>
+              <dt className="w-32 block">所在地（窓口）</dt>
               <dd className="block flex-1">
                 〒239-0832
                 <br />
@@ -69,6 +69,17 @@ export default function Page() {
             </dl>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader title={'ご挨拶'} />
+          <CardContent>準備中……</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader title={'協会沿革'} />
+          <CardContent>準備中……</CardContent>
+        </Card>
+
       </MainBody>
     </>
   );

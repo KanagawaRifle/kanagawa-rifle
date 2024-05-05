@@ -21,7 +21,7 @@ export default function Page() {
 
         <Alert severity="info">
           <strong>2022年4月より推薦申請の方法が変更されております。</strong>
-          今までは各個人で作成した書類を県の推薦担当に郵送していただいておりましたが、今後はウェブ (日ラネット)
+          従来は各個人で作成した書類を当協会推薦担当に郵送していただいておりましたが、今後はウェブ (日ラネット)
           上にて行うようになります。
         </Alert>
 
@@ -50,37 +50,11 @@ export default function Page() {
         <Card>
           <CardHeader title={'推薦スケジュール'} />
           <CardContent>
-            県ラの推薦申込締切日は下記の通りです。締切日以降に届いたものは翌月の推薦委員会への申請となります。
-          </CardContent>
-          <List dense={true}>
-            <ListItem><ListItemText>4月13日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>5月11日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>6月15日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>7月13日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>8月10日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>9月14日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>10月12日 (木)</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>11月16日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>12月7日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>令和6年1月11日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>令和6年2月15日（木）</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText><strong>3月の推薦委員会はありません</strong></ListItemText></ListItem>
-          </List>
-          <CardContent>
+            推薦申込締切日については<Link href="/static/projects/2024/competitions.pdf?v=1707978030" target="_blank">推薦スケジュール</Link>をご覧ください。締切日以降に届いたものは翌月の推薦委員会への申請となります。
+            <br />
             推薦書は申請者に届くまでに県ラ締切後1ヶ月弱かかります。特にピストル所持者は所持銃の許可有効期間をよく確認の上、余裕を持って計画的にご申請ください。
             <br />
-            ※令和４年度は推薦委員会がない月ありますのでご申請される方はご注意ください。
+            ※推薦委員会がない月がございますのでご申請される方はご注意ください。
           </CardContent>
         </Card>
 
