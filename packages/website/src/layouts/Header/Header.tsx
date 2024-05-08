@@ -167,8 +167,9 @@ const Header: React.FC<HeaderProps> = (props) => {
                 <IconButton
                   edge="start"
                   color="inherit"
+                  onClick={toggleDrawer(false)}
                 >
-                  <CloseIcon onClick={toggleDrawer(false)} />
+                  <CloseIcon />
                 </IconButton>
               </Box>
               <Logo />
