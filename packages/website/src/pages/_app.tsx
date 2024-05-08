@@ -1,5 +1,6 @@
 import '../styles/globals.scss';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { config } from "@fortawesome/fontawesome-svg-core";
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import Script from 'next/script';
@@ -9,6 +10,8 @@ import theme from '@kanagawa-rifle/website/theme';
 
 import type { AppProps } from 'next/app';
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 const clientSideEmotionCache = createEmotionCache();
 
 type MyAppProps = AppProps & {
@@ -16,6 +19,7 @@ type MyAppProps = AppProps & {
 };
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID as string;
+config.autoAddCss = false;
 
 const MyApp = ({ Component, emotionCache = clientSideEmotionCache, pageProps }: MyAppProps) => {
   return (
