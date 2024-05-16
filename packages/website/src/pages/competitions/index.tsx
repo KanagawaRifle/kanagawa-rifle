@@ -226,8 +226,7 @@ export default function Page() {
           <CardHeader subheader="令和6年度" title="国スポ最終予選兼全関東予選会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button disabled>申込</Button>
-              <Button disabled>射座割</Button>
+              <Button href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">射座割</Button>
               <Button disabled>成績</Button>
             </ButtonGroup>
           </CardContent>

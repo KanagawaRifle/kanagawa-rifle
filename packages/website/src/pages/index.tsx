@@ -78,11 +78,10 @@ export default function Home() {
           <AlertTitle>国スポ最終予選兼全関東予選のご案内</AlertTitle>
           <Button
             variant="outlined"
-            startIcon={<FontAwesomeIcon fixedWidth={true} icon={faWpforms} />}
-            href="https://forms.gle/wyz4gNqjgZ4TCEnA8"
+            href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf"
             target="_blank"
           >
-            申込
+            射座割
           </Button>
         </Alert>
 
@@ -108,6 +107,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年5月16日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">国スポ最終予選の射座割</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月21日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">国スポ一次予選の競技結果</Link> を掲載</span>
