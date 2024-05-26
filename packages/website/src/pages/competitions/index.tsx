@@ -227,7 +227,7 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">射座割</Button>
-              <Button disabled>成績</Button>
+              <Button href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>

@@ -39,7 +39,7 @@ export default function Home() {
           </Box>
         </Box>
 
-        <div className="text-center text-sm">2024年4月21日更新</div>
+        <div className="text-center text-sm">2024年5月26日更新</div>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
@@ -78,24 +78,11 @@ export default function Home() {
           <AlertTitle>国スポ最終予選兼全関東予選のご案内</AlertTitle>
           <Button
             variant="outlined"
-            href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf"
+            href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf"
             target="_blank"
           >
-            射座割
+            成績
           </Button>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>令和6年度事業計画案について</AlertTitle>
-          令和6年度の当協会事業計画案について下記の通りご案内いたします。<br />
-          ・<Link href="/static/projects/2024/schedule.pdf?v=1707978030">[PDF] 令和6年度事業計画案</Link><br />
-          ・<Link href="/static/projects/2024/competitions.pdf?v=1707978030">[PDF] 令和6年度主催大会および推薦申請のご案内</Link>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>令和6年度会員資格更新のご案内</AlertTitle>
-          令和6年度の会員資格更新について下記の通りご案内いたします。<br />
-          <Link href="/static/projects/2024/membership.pdf">[PDF] 会員資格更新のご案内</Link>
         </Alert>
 
         <Card>
@@ -107,6 +94,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年5月26日</span>
+                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">国スポ最終予選の成績</Link> を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年5月16日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">国スポ最終予選の射座割</Link> を掲載</span>
