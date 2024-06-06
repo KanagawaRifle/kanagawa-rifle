@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -64,14 +65,23 @@ export default function Home() {
 
         <Alert severity="info">
           <AlertTitle>第54回東日本選手権のご案内</AlertTitle>
-          <Button
-            variant="outlined"
-            startIcon={<FontAwesomeIcon fixedWidth={true} icon={faBook} />}
-            href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.0.3"
-            target="_blank"
-          >
-            要項
-          </Button>
+
+          <ButtonGroup variant="outlined">
+            <Button
+              startIcon={<FontAwesomeIcon fixedWidth={true} icon={faBook} />}
+              href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.0.3"
+              target="_blank"
+            >
+              要項
+            </Button>
+            <Button
+              startIcon={<FontAwesomeIcon fixedWidth={true} icon={faBook} />}
+              href="/static/competitions/2024/2024-06-21-eastern-japan-championship-entry-lists.pdf"
+              target="_blank"
+            >
+              参加者名簿
+            </Button>
+          </ButtonGroup>
         </Alert>
 
         <Alert severity="info">
