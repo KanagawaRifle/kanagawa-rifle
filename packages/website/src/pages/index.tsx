@@ -1,5 +1,4 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
-import {faBook} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
