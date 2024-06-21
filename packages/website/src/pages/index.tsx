@@ -1,9 +1,9 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
-import {faBook} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -39,7 +39,7 @@ export default function Home() {
           </Box>
         </Box>
 
-        <div className="text-center text-sm">2024年5月26日更新</div>
+        <div className="text-center text-sm">2024年6月14日更新</div>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
@@ -64,14 +64,29 @@ export default function Home() {
 
         <Alert severity="info">
           <AlertTitle>第54回東日本選手権のご案内</AlertTitle>
-          <Button
-            variant="outlined"
-            startIcon={<FontAwesomeIcon fixedWidth={true} icon={faBook} />}
-            href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.0.3"
-            target="_blank"
-          >
-            要項
-          </Button>
+          <Stack spacing={2}>
+            <Box>射座割を公開いたしました。</Box>
+            <ButtonGroup variant="outlined">
+              <Button
+                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.1.1"
+                target="_blank"
+              >
+                要項
+              </Button>
+              <Button
+                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-entry-lists.pdf"
+                target="_blank"
+              >
+                参加者名簿
+              </Button>
+              <Button
+                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-start-lists.pdf"
+                target="_blank"
+              >
+                射座割
+              </Button>
+            </ButtonGroup>
+          </Stack>
         </Alert>
 
         <Alert severity="info">
