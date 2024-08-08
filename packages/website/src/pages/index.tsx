@@ -39,7 +39,7 @@ export default function Home() {
           </Box>
         </Box>
 
-        <div className="text-center text-sm">2024年6月14日更新</div>
+        <div className="text-center text-sm">2024年6月21日更新</div>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
@@ -74,16 +74,16 @@ export default function Home() {
                 要項
               </Button>
               <Button
-                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-entry-lists.pdf"
-                target="_blank"
-              >
-                参加者名簿
-              </Button>
-              <Button
                 href="/static/competitions/2024/2024-06-21-eastern-japan-championship-start-lists.pdf"
                 target="_blank"
               >
                 射座割
+              </Button>
+              <Button
+                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-results.pdf"
+                target="_blank"
+              >
+                成績
               </Button>
             </ButtonGroup>
           </Stack>

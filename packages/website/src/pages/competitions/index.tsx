@@ -187,9 +187,8 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="/static/competitions/2024/2024-06-21-eastern-japan-championship-entry-lists.pdf" target="_blank">参加者名簿</Button>
               <Button href="/static/competitions/2024/2024-06-21-eastern-japan-championship-start-lists.pdf" target="_blank">射座割</Button>
-              <Button disabled>成績</Button>
+              <Button href="/static/competitions/2024/2024-06-21-eastern-japan-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
