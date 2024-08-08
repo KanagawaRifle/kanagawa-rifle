@@ -39,7 +39,7 @@ export default function Home() {
           </Box>
         </Box>
 
-        <div className="text-center text-sm">2024年6月21日更新</div>
+        <div className="text-center text-sm">2024年8月8日更新</div>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
@@ -63,41 +63,28 @@ export default function Home() {
         </Alert>
 
         <Alert severity="info">
-          <AlertTitle>第54回東日本選手権のご案内</AlertTitle>
+          <AlertTitle>第61回全関東選手権のご案内</AlertTitle>
           <Stack spacing={2}>
-            <Box>射座割を公開いたしました。</Box>
             <ButtonGroup variant="outlined">
               <Button
-                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf?v=1.1.1"
+                href="/static/competitions/2024/2024-08-16-zenkanto-championship-details.pdf?v=1.0.0"
                 target="_blank"
               >
                 要項
               </Button>
               <Button
-                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-start-lists.pdf"
+                href="/static/competitions/2024/2024-08-16-zenkanto-championship-start-lists.pdf?v=1.0.0"
                 target="_blank"
               >
                 射座割
               </Button>
               <Button
-                href="/static/competitions/2024/2024-06-21-eastern-japan-championship-results.pdf"
-                target="_blank"
+                disabled
               >
                 成績
               </Button>
             </ButtonGroup>
           </Stack>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>国スポ最終予選兼全関東予選のご案内</AlertTitle>
-          <Button
-            variant="outlined"
-            href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf"
-            target="_blank"
-          >
-            成績
-          </Button>
         </Alert>
 
         <Card>
@@ -109,6 +96,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年8月8日</span>
+                <span className="block flex-1">第61回全関東選手権の射座割を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年5月26日</span>
                 <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">国スポ最終予選の成績</Link> を掲載</span>

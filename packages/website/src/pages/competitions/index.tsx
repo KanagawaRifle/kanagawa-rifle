@@ -183,6 +183,33 @@ export default function Page() {
         </Card>
 
         <Card>
+          <CardHeader subheader="令和6年度" title="第61回全関東ライフル射撃競技選手権大会" />
+          <CardContent>
+            <ButtonGroup variant="outlined">
+              <Button href="/static/competitions/2024/2024-08-16-zenkanto-championship-details.pdf" target="_blank">要項</Button>
+              <Button href="/static/competitions/2024/2024-08-16-zenkanto-championship-start-lists.pdf" target="_blank">射座割</Button>
+              <Button disabled>成績</Button>
+            </ButtonGroup>
+          </CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：8月16日（金）― 18日（日）
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <LocationOnIcon color="primary" sx={{mr: 1}} />会場：
+                <Link href="https://www.nagatoro-shooting.jp/" target="_blank">
+                  埼玉県長瀞射撃場
+                </Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader subheader="令和6年度" title="第54回東日本ライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
