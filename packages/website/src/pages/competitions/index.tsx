@@ -188,7 +188,7 @@ export default function Page() {
             <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-08-16-zenkanto-championship-details.pdf" target="_blank">要項</Button>
               <Button href="/static/competitions/2024/2024-08-16-zenkanto-championship-start-lists.pdf" target="_blank">射座割</Button>
-              <Button disabled>成績</Button>
+              <Button href="/static/competitions/2024/2024-08-16-zenkanto-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
