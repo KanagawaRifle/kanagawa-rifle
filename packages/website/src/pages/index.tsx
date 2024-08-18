@@ -79,7 +79,8 @@ export default function Home() {
                 射座割
               </Button>
               <Button
-                disabled
+                href="/static/competitions/2024/2024-08-16-zenkanto-championship-results.pdf?v=1.0.0"
+                target="_blank"
               >
                 成績
               </Button>
@@ -96,6 +97,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年8月18日</span>
+                <span className="block flex-1">第61回全関東選手権の成績を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年8月8日</span>
                 <span className="block flex-1">第61回全関東選手権の射座割を掲載</span>
