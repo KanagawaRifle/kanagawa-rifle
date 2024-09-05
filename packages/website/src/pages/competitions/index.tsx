@@ -149,6 +149,52 @@ export default function Page() {
         <h2 className="text-center text-2xl">2024年度 (令和6年度)</h2>
 
         <Card>
+          <CardHeader subheader="令和6年度" title="全関東マスターズライフル射撃競技大会" />
+          <CardContent>
+            <ButtonGroup variant="outlined">
+              <Button href="/static/competitions/2024/2024-11-03-zenkanto-masters-details.pdf" target="_blank">要項</Button>
+            </ButtonGroup>
+          </CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：11月3日（日）
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <LocationOnIcon color="primary" sx={{mr: 1}} />会場：
+                 群馬県ライフル射撃場
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader subheader="令和6年度" title="全関東ＡＰ・ＨＲ射撃競技大会" />
+          <CardContent>
+            <ButtonGroup variant="outlined">
+              <Button href="/static/competitions/2024/2024-11-03-zenkanto-ap-hr-details.pdf" target="_blank">要項</Button>
+            </ButtonGroup>
+          </CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：11月3日（日）
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <LocationOnIcon color="primary" sx={{mr: 1}} />会場：
+                群馬県ライフル射撃場
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader subheader={'令和6年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>
             <ButtonGroup variant="outlined">
