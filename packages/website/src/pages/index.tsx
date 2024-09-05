@@ -39,8 +39,6 @@ export default function Home() {
           </Box>
         </Box>
 
-        <div className="text-center text-sm">2024年8月8日更新</div>
-
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
           <Stack spacing={2}>
@@ -62,32 +60,6 @@ export default function Home() {
           </Stack>
         </Alert>
 
-        <Alert severity="info">
-          <AlertTitle>第61回全関東選手権のご案内</AlertTitle>
-          <Stack spacing={2}>
-            <ButtonGroup variant="outlined">
-              <Button
-                href="/static/competitions/2024/2024-08-16-zenkanto-championship-details.pdf?v=1.0.0"
-                target="_blank"
-              >
-                要項
-              </Button>
-              <Button
-                href="/static/competitions/2024/2024-08-16-zenkanto-championship-start-lists.pdf?v=1.0.0"
-                target="_blank"
-              >
-                射座割
-              </Button>
-              <Button
-                href="/static/competitions/2024/2024-08-16-zenkanto-championship-results.pdf?v=1.0.0"
-                target="_blank"
-              >
-                成績
-              </Button>
-            </ButtonGroup>
-          </Stack>
-        </Alert>
-
         <Card>
           <CardActionArea component={Link} href="/static/news/2024-02-02-01-kokuspo-trial-poster.pdf" target="_blank">
             <CardMedia component="img" height="164" image="/static/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
@@ -97,6 +69,14 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年9月5日</span>
+                <span className="block flex-1">全関東マスターズライフル射撃競技大会の要項を掲載</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 block">2024年9月5日</span>
+                <span className="block flex-1">全関東ＡＰ・ＨＲ射撃競技大会の要項を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年8月18日</span>
                 <span className="block flex-1">第61回全関東選手権の成績を掲載</span>
