@@ -1,8 +1,10 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -15,15 +17,6 @@ import Link from '@kanagawa-rifle/website/components/Link';
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import ButtonGroup from "@mui/material/ButtonGroup";
-import * as React from "react";
-import List from "@kanagawa-rifle/website/components/List";
-import ListItem from "@kanagawa-rifle/website/components/ListItem";
-import ListItemText from "@kanagawa-rifle/website/components/ListItemText";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import Divider from "@kanagawa-rifle/website/components/Divider";
-import AlarmIcon from "@mui/icons-material/Alarm";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 export default function Home() {
   const theme = useTheme();
