@@ -198,7 +198,7 @@ export default function Page() {
           <CardHeader subheader={'令和6年度'} title={'神奈川オープン兼県ライフル射撃競技選手権大会'} />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button disabled>要項</Button>
+              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
               <Button href="https://forms.gle/4dFcKUeg7biuJU4X9" target="_blank">申込</Button>
               <Button disabled>射座割</Button>
               <Button disabled>成績</Button>
@@ -213,7 +213,7 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <AlarmIcon color="primary" sx={{mr: 1}} />申込締切：10月9日（水）
+                <AlarmIcon color="primary" sx={{mr: 1}} />申込締切：10月16日（水）
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
