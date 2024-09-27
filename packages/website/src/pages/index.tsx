@@ -1,8 +1,10 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -37,6 +39,19 @@ export default function Home() {
             <Box component={'span'} sx={{color: "#4285f4"}}>協会</Box>
           </Box>
         </Box>
+
+        <Alert severity="info">
+          <AlertTitle>神奈川オープン兼県選手権大会のご案内</AlertTitle>
+          <Stack spacing={2} className="w-full">
+            <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：10月27日（日）</div>
+            <ButtonGroup variant="outlined">
+              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
+              <Button href="https://forms.gle/4dFcKUeg7biuJU4X9" target="_blank">申込</Button>
+              <Button disabled>射座割</Button>
+              <Button disabled>成績</Button>
+            </ButtonGroup>
+          </Stack>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
