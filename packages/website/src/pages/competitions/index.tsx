@@ -199,8 +199,8 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://forms.gle/4dFcKUeg7biuJU4X9" target="_blank">申込</Button>
               <Button href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkrUTJgWHOXTE9yqtPQF5bt8yl84BN_h5ExyBlFETaVFiERKmRp2sTuzN8AhQcP9cdPGnueQxlLLYF/pubhtml" target="_blank">参加者名簿</Button>
+              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-start-lists.pdf" target="_blank">射座割</Button>
               <Button disabled>成績</Button>
             </ButtonGroup>
           </CardContent>
