@@ -124,6 +124,14 @@ export default function Page() {
           <List dense={true}>
             <ListItem>
               <ListItemText>
+                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_57.pdf">
+                  推薦ブレッテン no.57
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">
                   推薦ブレッテン no.56
                 </Link>
