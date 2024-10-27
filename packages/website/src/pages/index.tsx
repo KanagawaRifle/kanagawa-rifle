@@ -46,9 +46,8 @@ export default function Home() {
             <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：10月27日（日）</div>
             <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkrUTJgWHOXTE9yqtPQF5bt8yl84BN_h5ExyBlFETaVFiERKmRp2sTuzN8AhQcP9cdPGnueQxlLLYF/pubhtml" target="_blank">参加者名簿</Button>
               <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-start-lists.pdf" target="_blank">射座割</Button>
-              <Button disabled>成績</Button>
+              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </Stack>
         </Alert>
@@ -83,6 +82,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2024年10月27日</span>
+                <span className="block flex-1">神奈川オープン兼県選手権大会の成績を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年10月25日</span>
                 <span className="block flex-1">神奈川オープン兼県選手権大会の射座割を掲載</span>
