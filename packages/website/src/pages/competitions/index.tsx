@@ -152,6 +152,28 @@ export default function Page() {
           <CardHeader subheader="令和6年度" title="全関東マスターズライフル射撃競技大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
+            </ButtonGroup>
+          </CardContent>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：2月22日（土）— 23日（日）
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <LocationOnIcon color="primary" sx={{mr: 1}} />会場：神奈川県立伊勢原射撃場
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader subheader="令和6年度" title="全関東マスターズライフル射撃競技大会" />
+          <CardContent>
+            <ButtonGroup variant="outlined">
               <Button href="/static/competitions/2024/2024-11-03-zenkanto-masters-details.pdf" target="_blank">要項</Button>
             </ButtonGroup>
           </CardContent>
