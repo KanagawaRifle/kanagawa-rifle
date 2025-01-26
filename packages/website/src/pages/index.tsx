@@ -41,13 +41,11 @@ export default function Home() {
         </Box>
 
         <Alert severity="info">
-          <AlertTitle>神奈川オープン兼県選手権大会のご案内</AlertTitle>
+          <AlertTitle>県ジュニアライフル射撃競技選手権大会</AlertTitle>
           <Stack spacing={2} className="w-full">
-            <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：10月27日（日）</div>
+            <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：2月22日（土）— 23日（日）</div>
             <ButtonGroup variant="outlined">
-              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-start-lists.pdf" target="_blank">射座割</Button>
-              <Button href="/static/competitions/2024/2024-10-27-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
             </ButtonGroup>
           </Stack>
         </Alert>
@@ -108,27 +106,33 @@ export default function Home() {
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年5月26日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">国スポ最終予選の成績</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">国スポ最終予選の成績</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年5月16日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">国スポ最終予選の射座割</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">国スポ最終予選の射座割</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月21日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">国スポ一次予選の競技結果</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">国スポ一次予選の競技結果</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月16日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">国スポ一次予選の射座割表</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">国スポ一次予選の射座割表</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年3月8日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">第54回東日本選手権の要項</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">第54回東日本選手権の要項</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月29日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">令和5年度神奈川県ジュニア選手権の競技結果</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">令和5年度神奈川県ジュニア選手権の競技結果</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月15日</span>
@@ -136,19 +140,23 @@ export default function Home() {
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月9日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年1月11日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年1月6日</span>
-                <span className="block flex-1"><Link href="/static/news/2024-01-06-01-attachment.pdf" target="_blank">訃報</Link></span>
+                <span className="block flex-1"><Link href="/static/news/2024-01-06-01-attachment.pdf"
+                                                     target="_blank">訃報</Link></span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2023年12月2日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
+                <span className="block flex-1"><Link target="_blank"
+                                                     href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2023年11月5日</span>
@@ -328,7 +336,7 @@ export default function Home() {
                 <span className="w-32 block">2021年10月16日</span>
                 <span className="block flex-1">
                   全関東マスターズ大会・全関東ＡＰ／ＨＲ大会の要項
-                  <br />
+                  <br/>
                   神奈川県選手権大会の要項
                 </span>
               </li>
@@ -404,7 +412,7 @@ export default function Home() {
                 <span className="w-32 block">2020年10月13日</span>
                 <span className="block flex-1">
                   ２０２０年度神奈川オープン兼神奈川県ライフル射撃競技選手権大会要項修正
-                  <br />
+                  <br/>
                   全関東マスターズ大会・全関東ＡＰ／ＨＲ大会の要項
                 </span>
               </li>
@@ -496,7 +504,7 @@ export default function Home() {
                 <span className="w-32 block">2019年10月22日</span>
                 <span className="block flex-1">
                   「トップページ」に神奈川県選手権大会の要項
-                  <br />
+                  <br/>
                   「トップページ」に全関東マスターズ大会・全関東ＡＰ／ＨＲ大会の要項
                 </span>
               </li>
@@ -540,9 +548,9 @@ export default function Home() {
                 <span className="w-32 block">2019年4月16日</span>
                 <span className="block flex-1">
                   「大会関係」に神奈川県国体１次予選50m射座割
-                  <br />
+                  <br/>
                   「大会関係」に国体予選１次10m結果
-                  <br />
+                  <br/>
                   「事業計画」に平成３１年度年間予定案更新
                 </span>
               </li>
@@ -554,7 +562,7 @@ export default function Home() {
                 <span className="w-32 block">2019年4月7日</span>
                 <span className="block flex-1">
                   「大会関係」に神奈川県国体１次予選10m射座割
-                  <br />
+                  <br/>
                   「事業計画」に平成３１年度年間予定案更新
                 </span>
               </li>
@@ -570,7 +578,7 @@ export default function Home() {
                 <span className="w-32 block">2018年11月15日</span>
                 <span className="block flex-1">
                   「大会関係」に神奈川県選手権大会結果
-                  <br />
+                  <br/>
                   トップページに全関東マスターズ及び全関東ＡＰ・ＨＲ大会の要項
                 </span>
               </li>
@@ -582,7 +590,7 @@ export default function Home() {
                 <span className="w-32 block">2018年10月14日</span>
                 <span className="block flex-1">
                   ＨＰ移転のお知らせ
-                  <br />
+                  <br/>
                 </span>
                 <span className="block flex-1">県選手権大会要項</span>
               </li>
@@ -720,7 +728,7 @@ export default function Home() {
                 <span className="w-32 block">2016年8月15日</span>
                 <span className="block flex-1">
                   トップページに関東選手権大会の射座割
-                  <br />
+                  <br/>
                   「大会関係」に三県対抗戦結果
                 </span>
               </li>
@@ -808,7 +816,7 @@ export default function Home() {
                 <span className="w-32 block">2015年6月9日</span>
                 <span className="block flex-1">
                   「大会関係」に東日本大会射座割修正
-                  <br />
+                  <br/>
                   トップに全関東の要項
                 </span>
               </li>
@@ -912,7 +920,7 @@ export default function Home() {
                 <span className="w-32 block">2014年2月28日</span>
                 <span className="block flex-1">
                   「事業計画」に２６年度の事業計画(案)を発表
-                  <br />
+                  <br/>
                   「お知らせ」更新
                 </span>
               </li>
@@ -1136,7 +1144,7 @@ export default function Home() {
                 <span className="w-32 block">2011年 6月7日</span>
                 <span className="block flex-1">
                   「大会関係」に国体最終予選AR/BRA/BP結果発表
-                  <br />
+                  <br/>
                   トップペ－ジに第４１回東日本ライフル射撃選手権大会について記載
                 </span>
               </li>
@@ -1152,7 +1160,7 @@ export default function Home() {
                 <span className="w-32 block">2011年 5月22日</span>
                 <span className="block flex-1">
                   「大会関係」に国体最終予選AP結果発表
-                  <br />
+                  <br/>
                   国体一次予選AR/BP結果発表
                 </span>
               </li>
@@ -1184,7 +1192,7 @@ export default function Home() {
                 <span className="w-32 block">2011年 4月 1日</span>
                 <span className="block flex-1">
                   「推薦関係」の各種推薦手続きについてを２３年度版に更新
-                  <br />
+                  <br/>
                   「事業計画」に２３年度事業計画を記載
                 </span>
               </li>
@@ -1210,7 +1218,7 @@ export default function Home() {
                 <span className="w-32 block">2010年 10月23日</span>
                 <span className="block flex-1">
                   「トップページ」に朝霞射撃場休場延長についてを記載
-                  <br />
+                  <br/>
                 </span>
                 <span className="block flex-1">「大会関係」に県選手権大会の結果を発表</span>
               </li>
@@ -1314,7 +1322,7 @@ export default function Home() {
                 <span className="w-32 block">2009年 4月25日</span>
                 <span className="block flex-1">
                   「大会関係」に国体一次予選（ＡＰ・ＢＲ）結果発表
-                  <br />
+                  <br/>
                   「お知らせ」にライフル銃に関する講習会記載
                 </span>
               </li>
@@ -1330,9 +1338,9 @@ export default function Home() {
                 <span className="w-32 block">2009年 4月22日</span>
                 <span className="block flex-1">
                   「大会関係」国体一次予選（ＳＢ）結果発表
-                  <br />
+                  <br/>
                   「大会関係」に関東大口径大会要綱を記載
-                  <br />
+                  <br/>
                   「メインページ」に春期ピストル大会参加者の皆様へを記載
                 </span>
               </li>
@@ -1392,7 +1400,7 @@ export default function Home() {
                 <span className="w-32 block">2008年 7月24日</span>
                 <span className="block flex-1">
                   「大会関係」の大会申し込み先（事務局）を変更
-                  <br />
+                  <br/>
                   「入会案内」の事務局を変更
                 </span>
               </li>
@@ -1430,7 +1438,7 @@ export default function Home() {
                 <span className="w-32 block">2008年 5月10日</span>
                 <span className="block flex-1">
                   「大会関係」の国体最終予選ＳＢＰ６０で１２位から１８位までが表示されていなかったのを修正
-                  <br />
+                  <br/>
                   申し訳ありませんでした
                 </span>
               </li>
@@ -1446,7 +1454,7 @@ export default function Home() {
                 <span className="w-32 block">2008年 4月27日</span>
                 <span className="block flex-1">
                   「お知らせ」に火薬類取締法の運用変更について追加を記載
-                  <br />
+                  <br/>
                   「大会関係」に国体１次予選ＡＲの結果を発表
                 </span>
               </li>
@@ -1487,7 +1495,7 @@ export default function Home() {
         </Card>
 
         <Card>
-          <CardHeader title={'お知らせ'} />
+          <CardHeader title={'お知らせ'}/>
           <CardContent>
             <Stack spacing={2}>
               <p>
