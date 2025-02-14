@@ -149,10 +149,11 @@ export default function Page() {
         <h2 className="text-center text-2xl">2024年度 (令和6年度)</h2>
 
         <Card>
-          <CardHeader subheader="令和6年度" title="全関東マスターズライフル射撃競技大会" />
+          <CardHeader subheader="令和6年度" title="県ジュニアライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-start-lists.pdf" target="_blank">射座割</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
