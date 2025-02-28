@@ -41,6 +41,16 @@ export default function Home() {
         </Box>
 
         <Alert severity="info">
+          <AlertTitle>令和7年度会員資格更新のご案内</AlertTitle>
+          <Stack spacing={2} className="w-full">
+            <ButtonGroup variant="outlined">
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">ご案内</Button>
+            </ButtonGroup>
+          </Stack>
+        </Alert>
+
+
+        <Alert severity="info">
           <AlertTitle>県ジュニアライフル射撃競技選手権大会</AlertTitle>
           <Stack spacing={2} className="w-full">
             <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：2月22日（土）— 23日（日）</div>
