@@ -17,6 +17,17 @@ export default function Page() {
         <h2 className="text-center text-xl">事業計画</h2>
 
         <Card>
+          <CardHeader title={'令和7年度'} subheader={'2025'} />
+          <List dense={true}>
+            <ListItem>
+              <ListItemText>
+                <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf">会員資格更新のご案内</Link>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
           <CardHeader title={'令和6年度'} subheader={'2024'} />
           <List dense={true}>
             <ListItem>
