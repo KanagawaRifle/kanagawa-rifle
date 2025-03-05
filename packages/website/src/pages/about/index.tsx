@@ -44,18 +44,6 @@ export default function Page() {
           <CardHeader title={'銀行口座'} />
           <CardContent>
             <dl className="flex">
-              <dt className="w-32 block">湘南信用金庫</dt>
-              <dd className="block flex-1">
-                <span className="font-bold mr-2">支店</span> 本店営業部
-                <br />
-                <span className="font-bold mr-2">種別</span> 普通預金
-                <br />
-                <span className="font-bold mr-2">番号</span> 0360205
-                <br />
-                <span className="font-bold mr-2">名義</span> 特定非営利活動法人 神奈川県ライフル射撃協会
-              </dd>
-            </dl>
-            <dl className="flex">
               <dt className="w-32 block">ゆうちょ銀行</dt>
               <dd className="block flex-1">
                 <span className="font-bold mr-2">記号</span> 10280
