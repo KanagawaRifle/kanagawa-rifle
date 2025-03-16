@@ -40,15 +40,14 @@ export default function Home() {
 
         <Alert severity="info">
           <AlertTitle>令和7年度のお知らせ</AlertTitle>
-          <Stack direction="row" spacing={2} className="w-full">
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/schedule.pdf" target="_blank">事業計画（案）</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">大会・推薦</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/notification.pdf" target="_blank">重要なお知らせ</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">会費</Button>
+          <Stack direction="column" spacing={1} className="w-full">
+            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/notification.pdf" target="_blank">重要なお知らせ</Link>
+            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/entry-fee.pdf" target="_blank">参加料</Link>
+            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/schedule.pdf" target="_blank">事業計画（案）</Link>
+            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">大会・推薦</Link>
+            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">会費</Link>
           </Stack>
         </Alert>
-
-
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>

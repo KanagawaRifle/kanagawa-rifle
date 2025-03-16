@@ -50,7 +50,7 @@ export default function Page() {
         <Card>
           <CardHeader title={'推薦スケジュール'} />
           <CardContent>
-            推薦申込締切日については<Link href="/static/projects/2024/competitions.pdf?v=1707978030" target="_blank">推薦スケジュール</Link>をご覧ください。締切日以降に届いたものは翌月の推薦委員会への申請となります。
+            推薦申込締切日については<Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">推薦スケジュール</Link>をご覧ください。締切日以降に届いたものは翌月の推薦委員会への申請となります。
             <br />
             推薦書は申請者に届くまでに県ラ締切後1ヶ月弱かかります。特にピストル所持者は所持銃の許可有効期間をよく確認の上、余裕を持って計画的にご申請ください。
             <br />
@@ -61,8 +61,7 @@ export default function Page() {
         <Card>
           <CardHeader title={'技能講習免除について'} />
           <CardContent>
-            技能講習免除については、当協会主催・主管の大会に1年間に1回以上出場し、かつ3年間に3回以上出場していることが条件となっております。
-            <br />
+            技能講習免除については、当協会主催・主管の大会に1年間で2回以上、または3年間で6回以上出場していることが条件となっております。<br />
             県ラの申請締切後、お届けまでに１ヶ月弱かかりますので、余裕を持って申請するようお願いいたします。
           </CardContent>
         </Card>
