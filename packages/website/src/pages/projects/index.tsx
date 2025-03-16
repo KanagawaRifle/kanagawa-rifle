@@ -21,6 +21,18 @@ export default function Page() {
           <List dense={true}>
             <ListItem>
               <ListItemText>
+                <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/schedule.pdf">事業計画（案）</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf">主催大会および推薦申請のご案内</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
                 <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf">会員資格更新のご案内</Link>
               </ListItemText>
             </ListItem>
