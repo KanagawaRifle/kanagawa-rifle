@@ -1,10 +1,8 @@
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -41,25 +39,16 @@ export default function Home() {
         </Box>
 
         <Alert severity="info">
-          <AlertTitle>令和7年度会員資格更新のご案内</AlertTitle>
-          <Stack spacing={2} className="w-full">
-            <ButtonGroup variant="outlined">
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">ご案内</Button>
-            </ButtonGroup>
+          <AlertTitle>令和7年度のお知らせ</AlertTitle>
+          <Stack direction="row" spacing={2} className="w-full">
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/schedule.pdf" target="_blank">事業計画（案）</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">大会・推薦</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/notification.pdf" target="_blank">重要なお知らせ</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">会費</Button>
           </Stack>
         </Alert>
 
 
-        <Alert severity="info">
-          <AlertTitle>県ジュニアライフル射撃競技選手権大会</AlertTitle>
-          <Stack spacing={2} className="w-full">
-            <div><CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：2月22日（土）— 23日（日）</div>
-            <ButtonGroup variant="outlined">
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-start-lists.pdf" target="_blank">射座割</Button>
-            </ButtonGroup>
-          </Stack>
-        </Alert>
 
         <Alert severity="info">
           <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
