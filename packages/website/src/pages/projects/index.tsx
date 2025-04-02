@@ -36,6 +36,18 @@ export default function Page() {
                 <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf">会員資格更新のご案内</Link>
               </ListItemText>
             </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/entry-fee.pdf">令和7年度からの変更点について</Link>
+              </ListItemText>
+            </ListItem>
+            <Divider component="li" className="border-gray-400" />
+            <ListItem>
+              <ListItemText>
+                <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/entry-fee.pdf">参加料の改定について</Link>
+              </ListItemText>
+            </ListItem>
           </List>
         </Card>
 
