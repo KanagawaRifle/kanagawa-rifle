@@ -39,6 +39,8 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem><ListItemText>空気けん銃推薦: 6,000円</ListItemText></ListItem>
             <Divider component="li" className="border-gray-400" />
+            <ListItem><ListItemText>低年者空気銃推薦: 0円</ListItemText></ListItem>
+            <Divider component="li" className="border-gray-400" />
             <ListItem><ListItemText>低年者ライフル銃 (小口径) 推薦: 6,000円</ListItemText></ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem><ListItemText>技能講習免除: 6,000円</ListItemText></ListItem>
