@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         className={clsx(styles.module, className)}
         sx={{backgroundColor: '#fff'}}
       >
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" className={"max-w-screen-xl w-full mx-auto"}>
           <Box  sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               onClick={toggleDrawer(true)}
