@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Alert from '@kanagawa-rifle/website/components/Alert';
@@ -37,6 +38,14 @@ export default function Home() {
             <Box component={'span'} sx={{color: "#4285f4"}}>協会</Box>
           </Box>
         </Box>
+
+        <Alert severity="info">
+          <AlertTitle>国スポ一次予選のご案内</AlertTitle>
+          <ButtonGroup variant="outlined">
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
+          </ButtonGroup>
+        </Alert>
 
         <Alert severity="info">
           <AlertTitle>令和7年度のお知らせ</AlertTitle>
