@@ -283,9 +283,8 @@ export default function Page() {
           <CardHeader subheader="G4 大会" title="国スポ一次予選会 兼 東日本選手権予選会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://forms.gle/wjy9npz8badzqoPE6" target="_blank">申込</Button>
-              <Button disabled href="" target="_blank">射座割</Button>
-              <Button disabled href="" target="_blank">成績</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
