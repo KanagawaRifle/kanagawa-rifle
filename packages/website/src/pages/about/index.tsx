@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+
 import Card from '@kanagawa-rifle/website/components/Card';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
@@ -43,18 +45,40 @@ export default function Page() {
         <Card>
           <CardHeader title={'銀行口座'} />
           <CardContent>
-            <dl className="flex">
-              <dt className="w-32 block">ゆうちょ銀行</dt>
-              <dd className="block flex-1">
-                <span className="font-bold mr-2">記号</span> 10280
-                <br />
-                <span className="font-bold mr-2">種別</span> 総合口座
-                <br />
-                <span className="font-bold mr-2">番号</span> 79647111
-                <br />
-                <span className="font-bold mr-2">名義</span> 特定非営利活動法人神奈川県ライフル射撃協会
-              </dd>
-            </dl>
+            <Box className={'rounded-md text-sm font-bold p-2'} sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>ゆうちょ銀行からのお振込</Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>記号</Box>
+              <Box className={'p-2 col-span-3'}>10280</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>種別</Box>
+              <Box className={'p-2 col-span-3'}>総合口座</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>番号</Box>
+              <Box className={'p-2 col-span-3'}>79647111</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>名義</Box>
+              <Box className={'p-2 col-span-3'}>特定非営利活動法人神奈川県ライフル射撃協会</Box>
+            </Box>
+            <Box className={'rounded-md text-sm font-bold p-2'} sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>ゆうちょ銀行以外からのお振込</Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>支店</Box>
+              <Box className={'p-2 col-span-3'}>〇二八 店（ゼロニハチ 店）</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>種別</Box>
+              <Box className={'p-2 col-span-3'}>普通</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>番号</Box>
+              <Box className={'p-2 col-span-3'}>7964711</Box>
+            </Box>
+            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
+              <Box className={'p-2'}>名義</Box>
+              <Box className={'p-2 col-span-3'}>特定非営利活動法人神奈川県ライフル射撃協会</Box>
+            </Box>
           </CardContent>
         </Card>
 

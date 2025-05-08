@@ -251,8 +251,8 @@ export default function Page() {
             <ButtonGroup variant="outlined">
               <Button href="https://forms.gle/7LsDy9e64x5XbV8C9" target="_blank">申込</Button>
               <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button disabled href="" target="_blank">射座割</Button>
-              <Button disabled href="" target="_blank">成績</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
+              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
