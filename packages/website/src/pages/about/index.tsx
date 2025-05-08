@@ -1,9 +1,10 @@
+import Box from "@mui/material/Box";
+
 import Card from '@kanagawa-rifle/website/components/Card';
 import CardContent from '@kanagawa-rifle/website/components/CardContent';
 import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import Box from "@mui/material/Box";
 
 export default function Page() {
   return (
