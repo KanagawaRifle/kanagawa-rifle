@@ -40,9 +40,18 @@ export default function Home() {
         </Box>
 
         <Alert severity="info">
+          <AlertTitle>第1回春季神奈川オープンのご案内</AlertTitle>
+          <ButtonGroup variant="outlined">
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
+          </ButtonGroup>
+        </Alert>
+
+        <Alert severity="info">
           <AlertTitle>国スポ一次予選のご案内</AlertTitle>
           <ButtonGroup variant="outlined">
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座</Button>
             <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
           </ButtonGroup>
         </Alert>
