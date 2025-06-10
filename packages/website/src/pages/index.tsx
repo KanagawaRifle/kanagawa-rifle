@@ -16,6 +16,7 @@ import Link from '@kanagawa-rifle/website/components/Link';
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
+import * as React from "react";
 
 export default function Home() {
   const theme = useTheme();
@@ -40,31 +41,12 @@ export default function Home() {
         </Box>
 
         <Alert severity="info">
-          <AlertTitle>第1回春季神奈川オープンのご案内</AlertTitle>
+          <AlertTitle>第55回東日本選手権のご案内</AlertTitle>
           <ButtonGroup variant="outlined">
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
+            <Button disabled href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
           </ButtonGroup>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>国スポ一次予選のご案内</AlertTitle>
-          <ButtonGroup variant="outlined">
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
-          </ButtonGroup>
-        </Alert>
-
-        <Alert severity="info">
-          <AlertTitle>令和7年度のお知らせ</AlertTitle>
-          <Stack direction="column" spacing={1} className="w-full">
-            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/notification.pdf" target="_blank">重要なお知らせ</Link>
-            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/entry-fee.pdf" target="_blank">参加料</Link>
-            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/schedule.pdf" target="_blank">事業計画（案）</Link>
-            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">大会・推薦</Link>
-            <Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/membership.pdf" target="_blank">会費</Link>
-          </Stack>
         </Alert>
 
         <Alert severity="info">
