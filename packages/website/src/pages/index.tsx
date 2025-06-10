@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
@@ -16,7 +18,6 @@ import Link from '@kanagawa-rifle/website/components/Link';
 import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-import * as React from "react";
 
 export default function Home() {
   const theme = useTheme();
