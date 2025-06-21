@@ -46,7 +46,7 @@ export default function Home() {
           <ButtonGroup variant="outlined">
             <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
             <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
-            <Button disabled href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
+            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
           </ButtonGroup>
         </Alert>
 
