@@ -30,7 +30,7 @@ export default function Page() {
                 <Button
                   variant="outlined"
                   startIcon={<FontAwesomeIcon fixedWidth={true} icon={faWpforms} />}
-                  href="https://forms.gle/eNg1x3A9XDYPddHu6"
+                  href="https://jrsf.sportscom.jp/#/"
                   target="_blank"
                 >
                   ご入会申込
@@ -40,15 +40,7 @@ export default function Page() {
                 <ul className="list-disc list-outside ml-4">
                   <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
                   <li>
-                    入会金・年会費等は
-                    <Link href="/about">ゆうちょ銀行または湘南信用金庫の当協会指定口座</Link>
-                    までお振込みください。
-                  </li>
-                  <li>
-                    日本ライフル射撃協会の会員証お届けまでにお時間をいただくことがございます。予めご留意いただけますようお願い申し上げます。
-                  </li>
-                  <li>
-                    お申込みフォームをご利用できない方は
+                    お申込みシステムをご利用できない方は
                     <Link href="/static/forms/membership.xlsx">入会申込書</Link>
                     に必要事項をご記入の上、
                     <Link href="/about">当協会事務局</Link>
