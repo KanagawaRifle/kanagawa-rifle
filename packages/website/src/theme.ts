@@ -20,6 +20,24 @@ const theme = createTheme({
     fontFamily:
       '-apple-system, BlinkMacSystemFont, Roboto, Noto Sans JP, Segoe UI, Hiragino Sans, Noto Sans CJK JP, Yu Gothic, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Sans Emoji',
   },
+  components: {
+    MuiAlert: {
+      defaultProps: {
+        variant: "outlined",
+      },
+    },
+    MuiCard: {
+      defaultProps: {
+        variant: "outlined",
+        className: "bg-transparent border-gray-400",
+      },
+    },
+    MuiChip: {
+      defaultProps: {
+        variant: "outlined",
+      },
+    },
+  },
 });
 
 export default theme;

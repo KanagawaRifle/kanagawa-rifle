@@ -51,25 +51,21 @@ export default function Page() {
               <Box className={'p-2 col-span-3'}>10280</Box>
             </Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-              <Box className={'p-2'}>種別</Box>
-              <Box className={'p-2 col-span-3'}>総合口座</Box>
-            </Box>
-            <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
               <Box className={'p-2'}>番号</Box>
               <Box className={'p-2 col-span-3'}>79647111</Box>
             </Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
               <Box className={'p-2'}>名義</Box>
-              <Box className={'p-2 col-span-3'}>特定非営利活動法人神奈川県ライフル射撃協会</Box>
+              <Box className={'p-2 col-span-3'}>特定非営利活動法人 神奈川県ライフル射撃協会</Box>
             </Box>
             <Box className={'rounded-md text-sm font-bold p-2'} sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>ゆうちょ銀行以外からのお振込</Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-              <Box className={'p-2'}>支店</Box>
-              <Box className={'p-2 col-span-3'}>〇二八 店（ゼロニハチ 店）</Box>
+              <Box className={'p-2'}>口座</Box>
+              <Box className={'p-2 col-span-3'}>ゆうちょ銀行 普通口座</Box>
             </Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-              <Box className={'p-2'}>種別</Box>
-              <Box className={'p-2 col-span-3'}>普通</Box>
+              <Box className={'p-2'}>支店</Box>
+              <Box className={'p-2 col-span-3'}>〇二八 店（ゼロニハチ 店）</Box>
             </Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
               <Box className={'p-2'}>番号</Box>
@@ -77,7 +73,7 @@ export default function Page() {
             </Box>
             <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
               <Box className={'p-2'}>名義</Box>
-              <Box className={'p-2 col-span-3'}>特定非営利活動法人神奈川県ライフル射撃協会</Box>
+              <Box className={'p-2 col-span-3'}>トクヒ）カナガワケンライフルシヤゲキキョウカイ</Box>
             </Box>
           </CardContent>
         </Card>

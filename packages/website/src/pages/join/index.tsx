@@ -1,16 +1,23 @@
-import {faWpforms} from "@fortawesome/free-brands-svg-icons";
-import {faBox} from "@fortawesome/free-solid-svg-icons";
+import * as React from "react";
+
+import {faBox, faPenToSquare, faStamp, faYenSign, faCheck} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Card from '@mui/material/Card';
+import CardActionArea from "@mui/material/CardActionArea";
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Stack from '@mui/material/Stack';
+import Step from '@mui/material/Step';
+import StepContent from '@mui/material/StepContent';
+import StepLabel from '@mui/material/StepLabel';
+import Stepper from '@mui/material/Stepper';
+import Image from 'next/image'
 
-import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
 import Link from '@kanagawa-rifle/website/components/Link';
-import Stack from '@kanagawa-rifle/website/components/Stack';
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
+
 
 export default function Page() {
   return (
@@ -26,16 +33,54 @@ export default function Page() {
           <CardHeader title={'入会のお申込'} />
           <CardContent>
             <Stack spacing={2}>
-              <div>
-                <Button
-                  variant="outlined"
-                  startIcon={<FontAwesomeIcon fixedWidth={true} icon={faWpforms} />}
-                  href="https://jrsf.sportscom.jp/#/"
-                  target="_blank"
-                >
-                  ご入会申込
-                </Button>
-              </div>
+              <Box>下記の専用サイト、<Link href="https://jrsf.sportscom.jp/#/" target="_blank">日本ライフル射撃協会 ShootersHub</Link> よりお申し込みください。</Box>
+              <Card>
+                <CardActionArea component={Link} href="https://jrsf.sportscom.jp/#/" target="_blank">
+                  <Box style={{ position: 'relative', width: '100%', height: '82px' }}>
+                    <Image
+                      src="https://static.kanagawa-rifle.org/website/join/shooters-hub-logo.png"
+                      alt="入会申し込みサイト（ShootersHub）"
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </Box>
+                </CardActionArea>
+              </Card>
+              <Stepper orientation="vertical">
+                <Step expanded active>
+                  <StepLabel><FontAwesomeIcon className="mr-1" fixedWidth icon={faPenToSquare} />お申込み</StepLabel>
+                  <StepContent className="text-sm">日本ライフル射撃協会の専用サイト、ShootersHub より必要事項をご入力の上、お申し込みください。</StepContent>
+                </Step>
+                <Step expanded active>
+                  <StepLabel>
+                    <FontAwesomeIcon className="mr-1" fixedWidth icon={faStamp} />
+                    承認（神奈川県ライフル射撃協会）
+                  </StepLabel>
+                  <StepContent className="text-sm">神奈川県ライフル射撃協会の会員登録担当者が承認いたします。承認完了までしばらくお待ちください。</StepContent>
+                </Step>
+                <Step expanded active>
+                  <StepLabel>
+                    <FontAwesomeIcon className="mr-1" fixedWidth icon={faStamp} />
+                    承認（日本ライフル射撃協会）
+                  </StepLabel>
+                  <StepContent className="text-sm">日本ライフル射撃協会の会員登録担当者が承認いたします。承認完了までしばらくお待ちください。</StepContent>
+                </Step>
+                <Step expanded active>
+                  <StepLabel>
+                    <FontAwesomeIcon className="mr-1" fixedWidth icon={faYenSign} />
+                    ご入金
+                  </StepLabel>
+                  <StepContent className="text-sm">ShootersHub より、ご入会金および年会費をお支払いください。</StepContent>
+                </Step>
+                <Step expanded active>
+                  <StepLabel>
+                    <FontAwesomeIcon className="mr-1" fixedWidth icon={faCheck} />
+                    手続完了
+                  </StepLabel>
+                  <StepContent className="text-sm">当協会の会員証ならびにご案内をお届けいたします。なお、発送までにお時間をいただく場合がございますので、あらかじめご了承ください。</StepContent>
+                </Step>
+              </Stepper>
               <div>
                 <ul className="list-disc list-outside ml-4">
                   <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
