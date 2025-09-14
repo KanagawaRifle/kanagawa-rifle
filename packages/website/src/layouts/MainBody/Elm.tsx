@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import Container from '@kanagawa-rifle/website/components/Container';
-import Stack from '@kanagawa-rifle/website/components/Stack';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+
 import Footer from '@kanagawa-rifle/website/layouts/Footer';
 import Header from '@kanagawa-rifle/website/layouts/Header';
 
@@ -10,7 +11,7 @@ export type MainBodyProps = {
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
-const MainBody: React.FC<MainBodyProps> = (props) => {
+const Elm: React.FC<MainBodyProps> = (props) => {
   const { children, maxWidth = 'sm' } = { ...props };
 
   return (
@@ -24,4 +25,4 @@ const MainBody: React.FC<MainBodyProps> = (props) => {
   );
 };
 
-export default MainBody;
+export default Elm;

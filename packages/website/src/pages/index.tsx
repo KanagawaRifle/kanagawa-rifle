@@ -3,19 +3,20 @@ import * as React from "react";
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTheme} from "@mui/material";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 
-import Alert from '@kanagawa-rifle/website/components/Alert';
-import AlertTitle from '@kanagawa-rifle/website/components/AlertTitle';
-import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import CardMedia from '@kanagawa-rifle/website/components/CardMedia';
-import Link from '@kanagawa-rifle/website/components/Link';
-import Stack from '@kanagawa-rifle/website/components/Stack';
+import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
@@ -51,9 +52,9 @@ export default function Home() {
           <AlertTitle>第6回秋季神奈川オープンのご案内</AlertTitle>
           <ButtonGroup variant="outlined">
             <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">申込</Button>
-            <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-            <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
-            <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results" target="_blank">成績</Button>
+            <Button href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf')} target="_blank">要項</Button>
+            <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf')} target="_blank">射座</Button>
+            <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results')} target="_blank">成績</Button>
           </ButtonGroup>
         </Alert>
 
@@ -78,8 +79,8 @@ export default function Home() {
         </Alert>
 
         <Card>
-          <CardActionArea component={Link} href="/static/news/2024-02-02-01-kokuspo-trial-poster.pdf" target="_blank">
-            <CardMedia component="img" height="164" image="/static/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
+          <CardActionArea component={Link} href={useStaticFileUrl('/news/2024-02-02-01-kokuspo-trial-poster.pdf')} target="_blank">
+            <CardMedia component="img" height="164" image="https://static.kanagawa-rifle.org/website/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
           </CardActionArea>
         </Card>
 
@@ -117,60 +118,60 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2024年5月26日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf">国スポ最終予選の成績</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2024/2024-05-26-kokuspo-trials-2nd-results.pdf')}>国スポ最終予選の成績</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年5月16日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf">国スポ最終予選の射座割</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2024/2024-05-26-kokuspo-trials-2nd-start-lists.pdf')}>国スポ最終予選の射座割</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月21日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf">国スポ一次予選の競技結果</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2024/2024-04-21-kokuspo-trials-1st-results.pdf')}>国スポ一次予選の競技結果</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年4月16日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf">国スポ一次予選の射座割表</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2024/2024-04-21-kokuspo-trials-1st-start-lists.pdf')}>国スポ一次予選の射座割表</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年3月8日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf">第54回東日本選手権の要項</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2024/2024-06-21-eastern-japan-championship-details.pdf')}>第54回東日本選手権の要項</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月29日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf">令和5年度神奈川県ジュニア選手権の競技結果</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf')}>令和5年度神奈川県ジュニア選手権の競技結果</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月15日</span>
-                <span className="block flex-1"><Link target="_blank" href="/static/competitions/">事業計画</Link> ページを更新</span>
+                <span className="block flex-1"><Link target="_blank" href={useStaticFileUrl('/competitions/')}>事業計画</Link> ページを更新</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年2月9日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf">令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf')}>令和5年度神奈川県ジュニア選手権の射座割</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年1月11日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/projects/2024/membership.pdf">会員資格更新のご案内</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/projects/2024/membership.pdf')}>会員資格更新のご案内</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2024年1月6日</span>
-                <span className="block flex-1"><Link href="/static/news/2024-01-06-01-attachment.pdf"
+                <span className="block flex-1"><Link href={useStaticFileUrl('/news/2024-01-06-01-attachment.pdf')}
                                                      target="_blank">訃報</Link></span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2023年12月2日</span>
                 <span className="block flex-1"><Link target="_blank"
-                                                     href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">推薦ブレッテン no.56</Link> を掲載</span>
+                                                     href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_56.pdf')}>推薦ブレッテン no.56</Link> を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2023年11月5日</span>
-                <span className="block flex-1"><Link href="/static/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf">2023年度栃木県ライフル射撃競技大会 (100m SB 大会)</Link> の要項を掲載</span>
+                <span className="block flex-1"><Link href={useStaticFileUrl('/competitions/2023/2023-12-10-tochigi-22lr-100m.pdf')}>2023年度栃木県ライフル射撃競技大会 (100m SB 大会)</Link> の要項を掲載</span>
               </li>
               <li className="flex">
                 <span className="w-32 block">2023年10月27日</span>
@@ -183,7 +184,7 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2023年8月4日</span>
                 <span className="block flex-1">
-                  <Link href="/static/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf">
+                  <Link href={useStaticFileUrl('/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf')}>
                     全関東ライフル射撃競技選手権大会の射座割
                   </Link>
                   を掲載
@@ -192,7 +193,7 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2023年7月7日</span>
                 <span className="block flex-1">
-                  <Link href="/static/competitions/2023/2023-08-18-zen-kanto-details.pdf">
+                  <Link href={useStaticFileUrl('/competitions/2023/2023-08-18-zen-kanto-details.pdf')}>
                     全関東ライフル射撃競技選手権大会の要項
                   </Link>
                   を掲載
@@ -247,7 +248,7 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2022年12月6日</span>
                 <span className="block flex-1">
-                  <Link href="/static/competitions/2022/start_lists_2022_12_10_kanto_masters.pdf">
+                  <Link href={useStaticFileUrl('/competitions/2022/start_lists_2022_12_10_kanto_masters.pdf')}>
                     全関東ＡＰＨＲ＆全関東マスターズ大会の射座割
                   </Link>
                   を掲載
@@ -256,7 +257,7 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2022年11月18日</span>
                 <span className="block flex-1">
-                  <Link href="/static/competitions/2022/details_2022_12_11_tochigi_100m_sb.pdf">
+                  <Link href={useStaticFileUrl('/competitions/2022/details_2022_12_11_tochigi_100m_sb.pdf')}>
                     2022年度 栃木県ライフル射撃競技大会 (100 m SB) の要項
                   </Link>
                   を掲載
@@ -272,7 +273,7 @@ export default function Home() {
               <li className="flex">
                 <span className="w-32 block">2022年11月 7日</span>
                 <span className="block flex-1">
-                  <Link href="/static/competitions/2022/details_2022_12_10_kanto_masters.pdf">
+                  <Link href={useStaticFileUrl('/competitions/2022/details_2022_12_10_kanto_masters.pdf')}>
                     全関東ＡＰＨＲ＆全関東マスターズ大会の要項
                   </Link>
                   を掲載
