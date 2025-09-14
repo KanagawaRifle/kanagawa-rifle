@@ -9,6 +9,11 @@
 npm run dev -w @kanagawa-rifle/website
 ```
 
+Format
+```bash
+cd packages/website && npx next lint --fix
+```
+
 SSG
 ```bash
 npm run export -w @kanagawa-rifle/website

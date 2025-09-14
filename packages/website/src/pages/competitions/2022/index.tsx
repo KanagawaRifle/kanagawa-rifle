@@ -2,13 +2,14 @@ import * as React from 'react';
 
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Link from "@mui/material/Link";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 
-import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import Link from "@kanagawa-rifle/website/components/Link";
+import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
@@ -53,11 +54,11 @@ export default function Page() {
           <CardHeader subheader="G4大会" title="神奈川オープン兼県ライフル射撃競技選手権大会"/>
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-11-06-kanagawa-open-championship-details.pdf')}
                       target="_blank">要項</Button>
-              <Button href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-start-lists.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-11-06-kanagawa-open-championship-start-lists.pdf')}
                       target="_blank">射座割</Button>
-              <Button href="/static/competitions/2022/2022-11-06-kanagawa-open-championship-results.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-11-06-kanagawa-open-championship-results.pdf')}
                       target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
@@ -67,9 +68,9 @@ export default function Page() {
           <CardHeader subheader="G4大会" title="国体最終予選兼全関東予選会"/>
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="/static/competitions/2022/2022-05-22-kokutai-trials-2nd-start-lists.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-05-22-kokutai-trials-2nd-start-lists.pdf')}
                       target="_blank">射座割</Button>
-              <Button href="/static/competitions/2022/2022-05-22-kokutai-trials-2nd-results.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-05-22-kokutai-trials-2nd-results.pdf')}
                       target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
@@ -79,9 +80,9 @@ export default function Page() {
           <CardHeader subheader="G4大会" title="国体一次予選兼東日本予選会"/>
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="/static/competitions/2022/2022-04-24-kokutai-trials-1st-start-lists.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-04-24-kokutai-trials-1st-start-lists.pdf')}
                       target="_blank">射座割</Button>
-              <Button href="/static/competitions/2022/2022-04-24-kokutai-trials-1st-results.pdf"
+              <Button href={useStaticFileUrl('/competitions/2022/2022-04-24-kokutai-trials-1st-results.pdf')}
                       target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
