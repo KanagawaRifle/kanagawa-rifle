@@ -1,13 +1,36 @@
-import Alert from '@kanagawa-rifle/website/components/Alert';
-import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import Divider from "@kanagawa-rifle/website/components/Divider";
-import Link from '@kanagawa-rifle/website/components/Link';
-import List from "@kanagawa-rifle/website/components/List";
-import ListItem from "@kanagawa-rifle/website/components/ListItem";
-import ListItemText from "@kanagawa-rifle/website/components/ListItemText";
-import Stack from '@kanagawa-rifle/website/components/Stack';
+
+import * as React from "react";
+
+import ArticleIcon from '@mui/icons-material/Article';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import EventIcon from '@mui/icons-material/Event';
+import RecyclingIcon from '@mui/icons-material/Recycling';
+import TimelapseIcon from '@mui/icons-material/Timelapse';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import CardContent from '@mui/material//CardContent';
+import CardHeader from '@mui/material//CardHeader';
+import Divider from "@mui/material//Divider";
+import Link from '@mui/material//Link';
+import Alert from '@mui/material/Alert';
+import AlertTitle from "@mui/material/AlertTitle";
+import Box from "@mui/material/Box";
+import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Stack from "@mui/material/Stack";
+import Step from "@mui/material/Step";
+import StepContent from "@mui/material/StepContent";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import Typography from "@mui/material/Typography";
+
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
@@ -19,108 +42,280 @@ export default function Page() {
       <MainBody>
         <h2 className="text-center text-xl">推薦関係</h2>
 
-        <Alert severity="info">
-          <strong>2022年4月より推薦申請の方法が変更されております。</strong>
-          従来は各個人で作成した書類を当協会推薦担当に郵送していただいておりましたが、今後はウェブ (日ラネット)
-          上にて行うようになります。
+        <Alert severity="warning">
+          <AlertTitle>【重要】推薦申請システムの移行について</AlertTitle>
+          <p><strong>2025年11月</strong>より、ニチラネットから新システムへ移行します。これに伴い、推薦申請は新システム上で行っていただくこととなります。</p>
+          <p>詳細につきましては、日本ライフル射撃協会の発表をお待ちください。</p>
+        </Alert>
+
+        <Alert severity="warning">
+          <AlertTitle>低年者空気けん銃推薦申請料について</AlertTitle>
+          <p><strong>2025年10月</strong>度推薦より、低年者（14-17歳）の空気けん銃推薦申請につきまして、申請手数料が有料に変更となります。</p>
+          <p>（新）手数料 4,000円</p>
         </Alert>
 
         <Card>
-          <CardHeader title={'手数料'} />
+          <CardHeader title="手数料" subheader="推薦に係る手数料" />
           <CardContent>
-            推薦に係る手数料は<Link href="/about">当協会の指定口座</Link>までお振込みください。
+            手数料は<Link href="/about">当協会の指定口座</Link>までお振込みください。
           </CardContent>
-          <List dense={true}>
-            <ListItem><ListItemText>ライフル銃 (小口径) 推薦: 6,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>ライフル銃 (大口径) 推薦: 10,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>けん銃推薦: 10,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>空気けん銃推薦: 6,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>低年者空気銃推薦: 0円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>低年者ライフル銃 (小口径) 推薦: 6,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>技能講習免除: 6,000円</ListItemText></ListItem>
-            <Divider component="li" className="border-gray-400" />
-            <ListItem><ListItemText>再発行: 2,000円</ListItemText></ListItem>
+          <List>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="ライフル" size="small"  color="primary" />
+                  <Box>ライフル銃 (小口径) </Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">6,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="ライフル" size="small"  color="primary" />
+                  <Box>ライフル銃 (大口径)</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">10,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="けん銃" size="small"  color="secondary" />
+                  <Box>けん銃</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">10,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="けん銃" size="small"  color="secondary" />
+                  <Box>空気けん銃</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">6,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="低年者" size="small" color="info" />
+                  <Box>低年者空気銃</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold text-green-600">無料</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="低年者" size="small" color="info" />
+                  <Box>低年者空気けん銃<Box><small>※2025年10月度推薦より</small></Box></Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">4,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="低年者" size="small" color="info" />
+                  <Box>低年者ライフル銃 (小口径) </Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">6,000円</Box>
+            </ListItem>
+            <ListItem divider>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="その他" size="small" />
+                  <Box>技能講習免除</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">6,000円</Box>
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={
+                <Stack spacing={1} direction="row">
+                  <Chip label="その他" size="small" />
+                  <Box>再発行</Box>
+                </Stack>
+              } />
+              <Box className="text-xl font-bold">2,000円</Box>
+            </ListItem>
           </List>
         </Card>
 
         <Card>
-          <CardHeader title={'推薦スケジュール'} />
+          <CardHeader title={'申請の流れ'} />
           <CardContent>
-            推薦申込締切日については<Link href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/projects/2025/competitions.pdf" target="_blank">推薦スケジュール</Link>をご覧ください。締切日以降に届いたものは翌月の推薦委員会への申請となります。
-            <br />
-            推薦書は申請者に届くまでに県ラ締切後1ヶ月弱かかります。特にピストル所持者は所持銃の許可有効期間をよく確認の上、余裕を持って計画的にご申請ください。
-            <br />
-            ※推薦委員会がない月がございますのでご申請される方はご注意ください。
+            <Stepper orientation="vertical">
+              <Step expanded active>
+                <StepLabel>推薦の申請（ニチラネット）</StepLabel>
+                <StepContent className="text-sm">所持希望者は、「ニチラネット」を通じて推薦の申請を行います。</StepContent>
+              </Step>
+              <Step expanded active>
+                <StepLabel>承認（加盟団体推薦委員会）</StepLabel>
+                <StepContent className="text-sm">申請内容は、所属する加盟団体の推薦委員会において審査されます。</StepContent>
+              </Step>
+              <Step expanded active>
+                <StepLabel>承認（本部推薦委員会）</StepLabel>
+                <StepContent className="text-sm">加盟団体の承認後、日本ライフル射撃協会推薦委員会により審査が行われます。</StepContent>
+              </Step>
+              <Step expanded active>
+                <StepLabel>推薦状の発行</StepLabel>
+                <StepContent className="text-sm">日本スポーツ協会より推薦状が発行されます。</StepContent>
+              </Step>
+              <Step expanded active>
+                <StepLabel>銃所持報告書の提出</StepLabel>
+                <StepContent className="text-sm">銃を所持した後、日本ライフル射撃協会に「銃所持報告書」を提出します。</StepContent>
+              </Step>
+            </Stepper>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader title={'技能講習免除について'} />
-          <CardContent>
-            技能講習免除については、当協会主催・主管の大会に1年間で2回以上、または3年間で6回以上出場していることが条件となっております。<br />
-            県ラの申請締切後、お届けまでに１ヶ月弱かかりますので、余裕を持って申請するようお願いいたします。
-          </CardContent>
+          <CardHeader title="技能講習免除について" subheader="免除の申請資格" />
+          <List>
+            <ListItem alignItems="flex-start">
+              <ListItemIcon><CheckCircleOutlineIcon color="success" /></ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography color="success.main">
+                    <strong>1年間で</strong>
+                  </Typography>
+                }
+                secondary={
+                  <>
+                    当協会主催・主管の大会に、
+                    <Typography component="span" color="success.main">
+                      <strong>2回以上</strong>
+                    </Typography>
+                    出場していること
+                  </>
+                }
+              />
+            </ListItem>
+            <ListItem className="flex items-center justify-center py-2">
+              <Box className="flex-1 border-t border-gray-200"></Box>
+              <span className="px-4 text-sm font-medium text-gray-500 bg-white">または</span>
+              <Box className="flex-1 border-t border-gray-200"></Box>
+            </ListItem>
+            <ListItem alignItems="flex-start">
+              <ListItemIcon><CheckCircleOutlineIcon color="info" /></ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography color="info.main">
+                    <strong>3年間で</strong>
+                  </Typography>
+                }
+                secondary={
+                  <>
+                    当協会主催・主管の大会に、
+                    <Typography component="span" color="info.main">
+                      <strong>6回以上</strong>
+                    </Typography>
+                    出場していること
+                  </>
+                }
+              />
+            </ListItem>
+          </List>
         </Card>
 
         <Card>
-          <CardHeader title={'ウェブ申請の流れ'} />
-          <CardContent>
-            <Stack spacing={2}>
-              <ol className="list-decimal list-outside pl-6">
-                <li>
-                  <Link href="https://members.riflesports.jp/_login.cgi?top+1+++" target="_blank">
-                    日ラのシステム
-                  </Link>
-                  にユーザー登録を行う。（各個人にて行う：日ラＩＤ・連絡用メールアドレスが必要）
-                  <br />
-                  ※重要・必須：現在日ラの持っている個人情報が表示されるので最新情報へ更新する
-                  <br />
-                  （住所の都道府県や職業など推薦書に書かれる項目もある為）
-                </li>
-                <li>日ラＷｅｂ上から該当推薦のページで必要事項を入力・申請</li>
-                <li>各県の推薦担当による承認（神奈川は推薦締切日に処理）</li>
-                <li>日ラの推薦委員会による承認</li>
-                <li>推薦書発行（今まで通り）</li>
-                <li>各県の推薦担当が個別に郵送（今まで通り）</li>
-              </ol>
-              <ul className="list-disc list-outside pl-6">
-                <li>※ ２回目以降は２）から行う</li>
-                <li>※ 条件を満たしていない推薦は申請できない形になる予定</li>
-                <li>※ 推薦申請料の支払いは今まで通り</li>
-              </ul>
-            </Stack>
-          </CardContent>
+          <CardHeader
+            title={
+              <Box style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CalendarMonthIcon />スケジュール
+              </Box>
+            }
+          />
+          <List>
+            <ListItem alignItems="flex-start" divider>
+              <ListItemIcon><EventIcon /></ListItemIcon>
+              <ListItemText
+                primary="申請締切日"
+                secondary={<>
+                  <Link href="https://static.kanagawa-rifle.org/website/projects/2025/competitions.pdf" target="_blank">推薦スケジュール</Link>をご覧ください。
+                </>}
+              />
+            </ListItem>
+            <ListItem alignItems="flex-start" divider>
+              <ListItemIcon><TimelapseIcon /></ListItemIcon>
+              <ListItemText
+                primary="所要日数"
+                secondary={<>
+                  当協会の締切後、お届けまでに標準で<strong>1ヶ月弱</strong>かかりますので、余裕を持って申請するようお願いいたします。<br />
+                  ※特にピストルに関する申請をされる方は、所持銃の許可有効期間をよく確認の上、余裕を持って計画的にご申請ください。
+                </>}
+              />
+            </ListItem>
+            <ListItem alignItems="flex-start" divider>
+              <ListItemIcon><ContentPasteIcon /></ListItemIcon>
+              <ListItemText
+                primary="申請が翌月審査となる場合"
+                secondary="当協会の締切日以降に届いた申請につきましては、翌月の推薦委員会の審査となります。"
+              />
+            </ListItem>
+            <ListItem alignItems="flex-start">
+              <ListItemIcon><WarningAmberIcon /></ListItemIcon>
+              <ListItemText
+                primary="推薦委員会"
+                secondary="推薦委員会がない月がございますので、ご申請される方はご注意ください。"
+              />
+            </ListItem>
+          </List>
         </Card>
 
         <Card>
-          <CardContent>
-            <Stack spacing={2}>
-              <dl>
-                <dt className="font-bold">（質問）</dt>
-                <dd>
-                  個人でＷｅｂ上から行えない場合（アクセスする端末を持っていない・そもそもＷｅｂ自体が分からない）
-                </dd>
-                <dt className="font-bold pt-2">（日ラの回答）</dt>
-                <dd>
-                  家族や個人情報を見られても良い友人知人に依頼してほしい。
-                  <br />
-                  最悪各県の推薦担当者に依頼する。（個人情報は申請書に記載されている内容なので担当者はもともと確認している為）
-                  <br />
-                  それ用の申請用紙フォーマット作成予定
-                </dd>
-              </dl>
-            </Stack>
-          </CardContent>
+          <CardHeader
+            title={
+              <Box style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CreditCardIcon />手数料について
+              </Box>
+            }
+          />
+          <List>
+            <ListItem>
+              <ListItemIcon><CancelIcon /></ListItemIcon>
+              <ListItemText
+                primary="非承認の場合"
+                secondary="日ラで承認されなかった場合でも推薦手数料は返却されません。※推薦委員会以前に自己取り下げの場合は支払い不要です。"
+              />
+            </ListItem>
+          </List>
         </Card>
 
         <Card>
-          <CardHeader title={'AP を所持中の皆様へ'} />
+          <CardHeader
+            title={
+              <Box style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ArticleIcon />推薦書について
+              </Box>
+            }
+          />
+          <List>
+            <ListItem divider>
+              <ListItemIcon><CalendarMonthIcon /></ListItemIcon>
+              <ListItemText
+                primary="有効期限"
+                secondary="推薦書の有効期限は1年間（発行日より公安委員会に提出するまで）です。"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon><RecyclingIcon /></ListItemIcon>
+              <ListItemText
+                primary="未使用推薦書の返却"
+                secondary={<>
+                  期限切れ、または使わなかった推薦書は返却の義務があります。当協会事務局までご返却ください。<br />
+                  ※空気けん銃につきましては、500人枠がありますので、特に速やかにご返却をお願いいたします。
+                </>}
+              />
+            </ListItem>
+          </List>
+        </Card>
+
+        <Card>
+          <CardHeader title={'ピストルを所持中の皆様へ'} />
           <CardContent>※ご不明な点は日ラへ直接お問い合わせください。</CardContent>
           <List dense={true}>
             <ListItem>

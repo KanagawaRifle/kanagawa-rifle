@@ -1,5 +1,19 @@
 # 開発手順
 
+## 開発環境
+
+### kanagawa-rifle/website
+
+開発サーバー
+```bash
+npm run dev -w @kanagawa-rifle/website
+```
+
+SSG
+```bash
+npm run export -w @kanagawa-rifle/website
+```
+
 ## パッケージ管理
 
 ### npm
