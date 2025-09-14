@@ -41,12 +41,19 @@ export default function Home() {
           </Box>
         </Box>
 
+        <Alert severity="error">
+          <AlertTitle>秋季神奈川オープン（県選手権）期日変更のご案内</AlertTitle>
+          年度初めにご案内した期日から変更となりました。
+          <p className="text-xl"><strong>12月14日（日</strong>）← <del>11月2日（日）</del></p>
+        </Alert>
+
         <Alert severity="info">
-          <AlertTitle>第55回東日本選手権のご案内</AlertTitle>
+          <AlertTitle>第6回秋季神奈川オープンのご案内</AlertTitle>
           <ButtonGroup variant="outlined">
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
-            <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
+            <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">申込</Button>
+            <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
+            <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
+            <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results" target="_blank">成績</Button>
           </ButtonGroup>
         </Alert>
 
@@ -67,7 +74,6 @@ export default function Home() {
                 日ラ等大会申込
               </Button>
             </div>
-
           </Stack>
         </Alert>
 
@@ -80,6 +86,10 @@ export default function Home() {
         <Card>
           <CardContent>
             <ul className="h-48 overflow-y-scroll">
+              <li className="flex">
+                <span className="w-32 block">2025年8月31日</span>
+                <span className="block flex-1">秋季神奈川オープン大会の要項を掲載</span>
+              </li>
               <li className="flex">
                 <span className="w-32 block">2024年10月27日</span>
                 <span className="block flex-1">神奈川オープン兼県選手権大会の成績を掲載</span>
@@ -1531,11 +1541,6 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardActionArea component={Link} href="https://www.tnp-tokio.co.jp/hunter/" target="_blank">
-            <CardMedia component="img" height="164" image="/static/index/hunter_banner.png" alt="ハンター保険" />
-          </CardActionArea>
-        </Card>
       </MainBody>
     </>
   );

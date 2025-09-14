@@ -152,21 +152,21 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">申込</Button>
-              <Button disabled href="" target="_blank">要項</Button>
-              <Button disabled href="" target="_blank">射座割</Button>
-              <Button disabled href="" target="_blank">成績</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
+              <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
+              <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
             <ListItem>
               <ListItemText>
-                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：11月2日（日）
+                <CalendarMonthIcon color="primary" sx={{mr: 1}} />期日：12月14日（日）← <del>11月2日（日）</del>
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <AlarmIcon color="primary" sx={{mr: 1}} />申込締切：10月15日（水）
+                <AlarmIcon color="primary" sx={{mr: 1}} />申込締切：11月26日（水）
               </ListItemText>
             </ListItem>
             <Divider component="li" className="border-gray-400" />
@@ -185,7 +185,7 @@ export default function Page() {
           <CardHeader subheader="G3 大会" title="第62回全関東ライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://sites.google.com/u/0/d/1chBf6UpHnIgwcepBYljhkzHgpby3P9KN/preview" target="_blank">大会ページ</Button>
+              <Button href="https://sites.google.com/meiwakenoh.ed.jp/kanto-block-rifletournament/" target="_blank">大会ページ</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -210,9 +210,9 @@ export default function Page() {
           <CardHeader subheader="G2 大会" title="第55回東日本ライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -250,9 +250,9 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="https://forms.gle/7LsDy9e64x5XbV8C9" target="_blank">申込</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -283,8 +283,8 @@ export default function Page() {
           <CardHeader subheader="G4 大会" title="国スポ一次予選会 兼 東日本選手権予選会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>

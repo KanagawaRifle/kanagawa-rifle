@@ -53,9 +53,9 @@ export default function Page() {
           <CardHeader subheader="令和6年度" title="県ジュニアライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-start-lists.pdf" target="_blank">射座割</Button>
-              <Button href="https://601207993370-kanagawa-rifle-all-prod-public.s3.ap-northeast-1.amazonaws.com/website/competitions/2024/2025-02-22-kanagawa-junior-championship-results.pdf" target="_blank">成績</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2024/2025-02-22-kanagawa-junior-championship-details.pdf" target="_blank">要項</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2024/2025-02-22-kanagawa-junior-championship-start-lists.pdf" target="_blank">射座割</Button>
+              <Button href="https://static.kanagawa-rifle.org/website/competitions/2024/2025-02-22-kanagawa-junior-championship-results.pdf" target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
         </Card>
