@@ -31,6 +31,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 
+import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
@@ -235,7 +236,7 @@ export default function Page() {
               <ListItemText
                 primary="申請締切日"
                 secondary={<>
-                  <Link href="https://static.kanagawa-rifle.org/website/projects/2025/competitions.pdf" target="_blank">推薦スケジュール</Link>をご覧ください。
+                  <Link href={useStaticFileUrl('/projects/2025/competitions.pdf')} target="_blank">推薦スケジュール</Link>をご覧ください。
                 </>}
               />
             </ListItem>
@@ -320,7 +321,7 @@ export default function Page() {
           <List dense={true}>
             <ListItem>
               <ListItemText>
-                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_57.pdf">
+                <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_57.pdf')}>
                   推薦ブレッテン no.57
                 </Link>
               </ListItemText>
@@ -328,7 +329,7 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_56.pdf">
+                <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_56.pdf')}>
                   推薦ブレッテン no.56
                 </Link>
               </ListItemText>
@@ -336,7 +337,7 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_55.pdf">
+                <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_55.pdf')}>
                   推薦ブレッテン no.55
                 </Link>
               </ListItemText>
@@ -344,7 +345,7 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_51.pdf">
+                <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_51.pdf')}>
                   推薦ブレッテン no.51
                 </Link>
               </ListItemText>
@@ -352,7 +353,7 @@ export default function Page() {
             <Divider component="li" className="border-gray-400" />
             <ListItem>
               <ListItemText>
-                <Link target="_blank" href="/static/recommendation/Recommendation_Bulletin_no_49.pdf">
+                <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_49.pdf')}>
                   推薦ブレッテン no.49
                 </Link>
               </ListItemText>

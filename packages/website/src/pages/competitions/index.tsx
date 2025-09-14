@@ -12,24 +12,25 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from "@mui/material/Typography";
 
-import Card from '@kanagawa-rifle/website/components/Card';
-import CardContent from '@kanagawa-rifle/website/components/CardContent';
-import CardHeader from '@kanagawa-rifle/website/components/CardHeader';
-import Divider from '@kanagawa-rifle/website/components/Divider';
-import Link from '@kanagawa-rifle/website/components/Link';
-import List from '@kanagawa-rifle/website/components/List';
-import ListItem from '@kanagawa-rifle/website/components/ListItem';
-import ListItemText from '@kanagawa-rifle/website/components/ListItemText';
+import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
 
@@ -152,9 +153,9 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">申込</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
-              <Button disabled href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results" target="_blank">成績</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf')} target="_blank">要項</Button>
+              <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf')} target="_blank">射座</Button>
+              <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results')} target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -210,9 +211,9 @@ export default function Page() {
           <CardHeader subheader="G2 大会" title="第55回東日本ライフル射撃競技選手権大会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-details.pdf" target="_blank">要項</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf" target="_blank">射座</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-06-19-eastern-japan-results.pdf" target="_blank">成績</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-06-19-eastern-japan-details.pdf')} target="_blank">要項</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-06-19-eastern-japan-start-lists.pdf')} target="_blank">射座</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-06-19-eastern-japan-results.pdf')} target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -250,9 +251,9 @@ export default function Page() {
           <CardContent>
             <ButtonGroup variant="outlined">
               <Button href="https://forms.gle/7LsDy9e64x5XbV8C9" target="_blank">申込</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf" target="_blank">要項</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf" target="_blank">射座</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf" target="_blank">成績</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-05-25-spring-kanagawa-open-championship-details.pdf')} target="_blank">要項</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-05-25-spring-kanagawa-open-championship-start-lists.pdf')} target="_blank">射座</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-05-25-spring-kanagawa-open-championship-results.pdf')} target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>
@@ -283,8 +284,8 @@ export default function Page() {
           <CardHeader subheader="G4 大会" title="国スポ一次予選会 兼 東日本選手権予選会" />
           <CardContent>
             <ButtonGroup variant="outlined">
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf" target="_blank">射座割</Button>
-              <Button href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf" target="_blank">成績</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-04-27-kokuspo-trials-1st-start-lists.pdf')} target="_blank">射座割</Button>
+              <Button href={useStaticFileUrl('/competitions/2025/2025-04-27-kokuspo-trials-1st-results.pdf')} target="_blank">成績</Button>
             </ButtonGroup>
           </CardContent>
           <List dense={true}>

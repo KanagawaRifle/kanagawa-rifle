@@ -860,5 +860,6 @@ RewriteRule ^zenkantou\.htm$ /migration/zenkantou.htm [R=302,L]
 RewriteRule ^yoko\.htm$ /migration/yoko.htm [R=302,L]
 RewriteRule ^yotei\.html$ /migration/yotei.html [R=302,L]
 RewriteRule ^zenkantou\.htm$ /migration/zenkantou.htm [R=302,L]
+RewriteRule ^static/(.*)$ https://static.kanagawa-rifle.org/website/$1 [R=302,L]
 
 # END SYSTEM HTTPS SETTING

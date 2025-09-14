@@ -3,15 +3,15 @@ import * as React from 'react';
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from '@mui/material/Link';
 import clsx from 'clsx';
 
-import Link from '@kanagawa-rifle/website/components/Link';
 
-import styles from './Footer.module.scss';
+import styles from '@kanagawa-rifle/website/layouts/Footer/Elm.module.scss';
 
 export type FooterProps = {};
 
-const Footer: React.FC<FooterProps> = (props) => {
+const Elm: React.FC<FooterProps> = (props) => {
   return (
     <footer className={styles.module}>
       <nav className={clsx('px-4 py-6 mt-2 max-w-screen-xl mx-auto', styles.nav)}>
@@ -61,4 +61,4 @@ const Footer: React.FC<FooterProps> = (props) => {
   );
 };
 
-export default Footer;
+export default Elm;

@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
 import StepContent from '@mui/material/StepContent';
@@ -14,10 +15,9 @@ import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Image from 'next/image'
 
-import Link from '@kanagawa-rifle/website/components/Link';
+import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
 import MainBody from '@kanagawa-rifle/website/layouts/MainBody';
 import Meta from '@kanagawa-rifle/website/layouts/Meta';
-
 
 export default function Page() {
   return (
@@ -27,7 +27,7 @@ export default function Page() {
       <MainBody>
         <h2 className="text-center text-xl">入会案内</h2>
 
-        <p>神奈川県ライフル射撃協会、または日本ライフル射撃協会へのご入会をご希望される方は下記をご参考にお申し込みください。</p>
+        <Box>神奈川県ライフル射撃協会、または日本ライフル射撃協会へのご入会をご希望される方は下記をご参考にお申し込みください。</Box>
 
         <Card>
           <CardHeader title={'入会のお申込'} />
@@ -86,7 +86,7 @@ export default function Page() {
                   <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
                   <li>
                     お申込みシステムをご利用できない方は
-                    <Link href="/static/forms/membership.xlsx">入会申込書</Link>
+                    <Link href={useStaticFileUrl('/forms/membership.xlsx')}>入会申込書</Link>
                     に必要事項をご記入の上、
                     <Link href="/about">当協会事務局</Link>
                     まで封書、ファックスまたは電子メールの添付にてお送り下さい。
