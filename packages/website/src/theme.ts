@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material/styles';
+'use client'
+import { createTheme } from '@mui/material/styles'
 
 // Create a theme instance.
 const theme = createTheme({
@@ -29,7 +30,13 @@ const theme = createTheme({
     MuiCard: {
       defaultProps: {
         variant: "outlined",
-        className: "bg-transparent border-gray-400",
+      },
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+          borderColor: '#9ca3af',
+          borderStyle: 'solid',
+        },
       },
     },
     MuiChip: {
@@ -38,6 +45,6 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 
-export default theme;
+export default theme
