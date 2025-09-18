@@ -1,0 +1,15 @@
+{
+  "name": "kanagawa-rifle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "神奈川県ライフル射撃協会",
+  "workspaces": [
+    "packages/website"
+  ],
+  "volta": {
+    "node": "22.15.0"
+  },
+  "dependencies": {
+    "@kanagawa-rifle/website": "^1.0.0"
+  }
+}

@@ -1,12 +1,12 @@
 import type { MetadataRoute } from 'next'
 
-import { siteConfig } from '@kanagawa-rifle/website/site'
+import { app } from '@/config'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: siteConfig.name,
-    short_name: siteConfig.name,
-    description: siteConfig.description,
+    name: app.name,
+    short_name: app.shortName,
+    description: app.description,
     start_url: '/',
     display: 'browser',
     background_color: '#fff',

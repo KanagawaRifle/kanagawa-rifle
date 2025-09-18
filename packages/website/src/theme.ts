@@ -27,6 +27,12 @@ const theme = createTheme({
         variant: "outlined",
       },
     },
+
+    MuiButton: {
+      defaultProps: {
+        variant: "outlined",
+      },
+    },
     MuiCard: {
       defaultProps: {
         variant: "outlined",

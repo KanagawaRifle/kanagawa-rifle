@@ -2,6 +2,10 @@
 
 import {faWpforms} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TagIcon from '@mui/icons-material/Tag';
 import {Avatar, CardActions, ListItemAvatar, useTheme} from "@mui/material";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -12,26 +16,23 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import Chip from "@mui/material/Chip";
 import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import * as React from "react";
-
-import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
-import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Chip from "@mui/material/Chip";
-import TagIcon from '@mui/icons-material/Tag';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ListItemText from "@mui/material/ListItemText";
+import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import * as React from "react";
+
+import {PageLayout} from "@/components"
+import {paths} from "@/config";
 
 export default function Page() {
   const theme = useTheme();
 
   return (
-    <>
+    <PageLayout>
       <Box className={'text-center'}>
         <Box className={'text-xs text-slate-700'}>特定非営利活動法人</Box>
         <Box component={'h1'} className={'font-medium text-2xl'} sx={{}}>
@@ -51,9 +52,9 @@ export default function Page() {
         <AlertTitle>第6回秋季神奈川オープンのご案内</AlertTitle>
         <ButtonGroup variant="outlined">
           <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">申込</Button>
-          <Button href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf')} target="_blank">要項</Button>
-          <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf')} target="_blank">射座</Button>
-          <Button disabled href={useStaticFileUrl('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results')} target="_blank">成績</Button>
+          <Button href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf')} target="_blank">要項</Button>
+          <Button disabled href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf')} target="_blank">射座</Button>
+          <Button disabled href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results')} target="_blank">成績</Button>
         </ButtonGroup>
       </Alert>
 
@@ -78,7 +79,7 @@ export default function Page() {
       </Alert>
 
       <Card>
-        <CardActionArea component={Link} href={useStaticFileUrl('/news/2024-02-02-01-kokuspo-trial-poster.pdf')} target="_blank">
+        <CardActionArea component={Link} href={paths.cdn.getHref('/news/2024-02-02-01-kokuspo-trial-poster.pdf')} target="_blank">
           <CardMedia component="img" height="164" image="https://static.kanagawa-rifle.org/website/news/2024-02-22-02-card.png" alt="国スポ予選ポスター" />
         </CardActionArea>
       </Card>
@@ -140,6 +141,6 @@ export default function Page() {
           </ListItem>
         </List>
       </Card>
-    </>
+    </PageLayout>
   )
 }

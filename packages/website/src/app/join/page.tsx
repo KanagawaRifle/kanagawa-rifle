@@ -16,19 +16,26 @@ import type {Metadata} from "next";
 import Image from 'next/image'
 import * as React from "react";
 
-import PageHeader from "@kanagawa-rifle/website/components/PageHeader"
-import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
-import {createMetadata} from "@kanagawa-rifle/website/site";
+import {PageLayout} from "@/components"
+import {env, paths} from "@/config";
 
+const currentPath = paths.main.join;
+export const metadata: Metadata = {
+  title: currentPath.name,
+  description: currentPath.description,
+  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+}
 
-import {info} from "./info";
-
-export const metadata: Metadata = createMetadata(info)
 export default function Page() {
   return (
-    <>
-      <PageHeader title={info.title} description={info.description} />
-
+    <PageLayout
+      title={currentPath.name}
+      breadcrumbs={[
+        {name: paths.home.name, path: paths.home.getHref()},
+        {name: currentPath.name, path: currentPath.getHref()},
+      ]}
+    >
       <Card>
         <CardHeader title={'入会のお申込'} />
         <CardContent>
@@ -86,7 +93,7 @@ export default function Page() {
                 <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
                 <li>
                   お申込みシステムをご利用できない方は
-                  <Link href={useStaticFileUrl('/forms/membership.xlsx')}>入会申込書</Link>
+                  <Link href={paths.cdn.getHref('/forms/membership.xlsx')}>入会申込書</Link>
                   に必要事項をご記入の上、
                   <Link href="/about">当協会事務局</Link>
                   まで封書、ファックスまたは電子メールの添付にてお送り下さい。
@@ -289,6 +296,6 @@ export default function Page() {
           </Box>
         </CardContent>
       </Card>
-    </>
+    </PageLayout>
   );
 }

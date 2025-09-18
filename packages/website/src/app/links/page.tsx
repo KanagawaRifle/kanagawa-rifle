@@ -1,4 +1,3 @@
-import React from 'react';
 
 import LinkIcon from '@mui/icons-material/Link';
 import Box from "@mui/material/Box";
@@ -9,11 +8,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import type {Metadata} from "next";
+import React from 'react';
 
-import PageHeader from "@kanagawa-rifle/website/components/PageHeader"
-import {createMetadata} from "@kanagawa-rifle/website/site";
-
-import {info} from "./info";
+import {PageLayout} from "@/components"
+import {env, paths} from "@/config";
 
 type LinkItem = {
   href: string;
@@ -106,14 +104,25 @@ function LinksCard({ title = "リンク", links }: LinksCardProps) {
   );
 }
 
-export const metadata: Metadata = createMetadata(info);
+const currentPath = paths.sub.links;
+export const metadata: Metadata = {
+  title: currentPath.name,
+  description: currentPath.description,
+  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+}
 
-export default function LinksPage() {
+export default function Page() {
   return (
-    <>
-      <PageHeader title={info.title} description={info.description} />
+    <PageLayout
+      title={currentPath.name}
+      breadcrumbs={[
+        {name: paths.home.name, path: paths.home.getHref()},
+        {name: currentPath.name, path: currentPath.getHref()},
+      ]}
+    >
       <LinksCard links={linkItems} />
-    </>
+    </PageLayout>
   );
 }
 

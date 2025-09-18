@@ -58,3 +58,6 @@ next-env.d.ts
 __screenshots__/
 directory_contains_actual_images/
 .reg/
+
+.env
+package-lock.json

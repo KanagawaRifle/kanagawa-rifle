@@ -1,7 +1,4 @@
-import React from 'react';
 
-import { faFileExcel, faFileWord } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DownloadIcon from '@mui/icons-material/Download';
 import Box from "@mui/material/Box";
 import Card from '@mui/material/Card';
@@ -12,24 +9,18 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from '@mui/material/ListItemText';
-import type { Metadata } from "next";
+import type {Metadata} from "next";
+import React from 'react';
+import {FaFileExcel, FaFilePdf, FaFileWord} from "react-icons/fa";
 
-import PageHeader from "@kanagawa-rifle/website/components/PageHeader"
-import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
-import { createMetadata } from "@kanagawa-rifle/website/site";
-
-import { info } from "./info";
+import {PageLayout} from "@/components";
+import {env, paths} from "@/config";
 
 // ファイル形式の定義
 const FILE_TYPES = {
-  EXCEL: {
-    icon: faFileExcel,
-    color: 'success.main' as const,
-  },
-  WORD: {
-    icon: faFileWord,
-    color: 'info.main' as const,
-  }
+  EXCEL: { icon: <FaFileExcel />, color: 'success.main' as const },
+  WORD: { icon: <FaFileWord />, color: 'info.main' as const },
+  PDF: { icon: <FaFilePdf />, color: 'error.main' as const },
 } as const;
 
 // ダウンロード項目の型定義
@@ -74,44 +65,50 @@ interface DownloadItemProps {
   isLast: boolean;
 }
 
-function DownloadItemComponent({ item, isLast }: DownloadItemProps) {
+function DownloadItemComponent({item, isLast}: DownloadItemProps) {
   const fileType = FILE_TYPES[item.type];
 
   return (
     <>
       <ListItem>
-        <ListItemIcon sx={{ color: fileType.color }}>
-          <FontAwesomeIcon icon={fileType.icon} />
+        <ListItemIcon sx={{color: fileType.color}}>
+          {fileType.icon}
         </ListItemIcon>
         <ListItemText>
-          <Link href={useStaticFileUrl(item.filename)} target="_blank">
+          <Link href={paths.cdn.getHref(item.filename)} target="_blank">
             {item.label}
           </Link>
         </ListItemText>
       </ListItem>
-      {!isLast && <Divider component="li" className="border-gray-400" />}
+      {!isLast && <Divider component="li" className="border-gray-400"/>}
     </>
   );
 }
 
-// カードヘッダータイトルコンポーネント
-function DownloadCardTitle() {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-      <DownloadIcon />
-      ダウンロード
-    </Box>
-  );
+const currentPath = paths.sub.forms;
+export const metadata: Metadata = {
+  title: currentPath.name,
+  description: currentPath.description,
+  openGraph: {images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL)},
+  twitter: {images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL)},
 }
-
-export const metadata: Metadata = createMetadata(info);
 
 export default function Page() {
   return (
-    <>
-      <PageHeader title={info.title} description={info.description} />
+    <PageLayout
+      title={currentPath.name}
+      breadcrumbs={[
+        {name: paths.home.name, path: paths.home.getHref()},
+        {name: currentPath.name, path: currentPath.getHref()},
+      ]}
+    >
       <Card>
-        <CardHeader title={<DownloadCardTitle />} />
+        <CardHeader title={
+          <Box className="flex items-center gap-2">
+            <DownloadIcon/>
+            ダウンロード
+          </Box>
+        }/>
         <List dense>
           {DOWNLOAD_ITEMS.map((item, index) => (
             <DownloadItemComponent
@@ -122,6 +119,6 @@ export default function Page() {
           ))}
         </List>
       </Card>
-    </>
+    </PageLayout>
   );
 }

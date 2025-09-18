@@ -1,0 +1,150 @@
+# 共通設定
+x-common-network: &common-network
+  networks:
+    - backend
+    - frontend
+
+x-common-env: &common-env
+  env_file: .env
+
+x-common-restart: &common-restart
+  restart: unless-stopped
+
+# ネットワーク設定
+networks:
+  frontend:
+    name: ${COMPOSE_PROJECT_NAME}_frontend
+    driver: bridge
+  backend:
+    name: ${COMPOSE_PROJECT_NAME}_backend
+    driver: bridge
+
+# ボリューム設定
+volumes:
+  redis-data:
+    name: ${COMPOSE_PROJECT_NAME}_redis-data
+    driver: local
+  minio-data:
+    name: ${COMPOSE_PROJECT_NAME}_minio-data
+    driver: local
+
+services:
+  # ==============================================
+  # アプリケーション website
+  # ==============================================
+  node:
+    container_name: ${COMPOSE_PROJECT_NAME}_node
+    <<: [*common-env, *common-network, *common-restart]
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - /workspace/node_modules
+      - /workspace/packages/website/.next
+    ports:
+      - "${IP_PREFIX}.10:80:3001"
+    environment:
+      - NODE_ENV=development
+    command: >
+      /bin/sh -c "
+      echo 'Installing dependencies...';
+      npm install;
+      echo 'Starting development server...';
+      npm run dev --workspace=@kanagawa-rifle/website -- --port 3001
+      "
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==============================================
+  # メールテストツール
+  # ==============================================
+  mailpit:
+    container_name: ${COMPOSE_PROJECT_NAME}_mailpit
+    <<: [*common-env, *common-network, *common-restart]
+    build:
+      context: ./mailpit
+      dockerfile: Dockerfile
+    ports:
+      - "${IP_PREFIX}.110:80:8025"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8025"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==============================================
+  # オブジェクトストレージ
+  # ==============================================
+  minio:
+    container_name: ${COMPOSE_PROJECT_NAME}_minio
+    <<: [*common-env, *common-network, *common-restart]
+    build:
+      context: ./minio
+      dockerfile: Dockerfile
+    ports:
+      - "${IP_PREFIX}.130:80:9000"
+      - "${IP_PREFIX}.135:80:9090"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_BROWSER_REDIRECT_URL=http://${IP_PREFIX}.135
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # MinIOクライアント（バケット初期化用）
+  minio-client:
+    container_name: ${COMPOSE_PROJECT_NAME}_minio-client
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    networks:
+      - backend
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_HOST=${COMPOSE_PROJECT_NAME}_minio
+    entrypoint: >
+      /bin/sh -c "
+      echo 'MinIOの初期化を開始します...';
+      /usr/bin/mc alias set minio http://$$MINIO_HOST:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD;
+      /usr/bin/mc mb --ignore-existing minio/public;
+      /usr/bin/mc policy set public minio/public;
+      /usr/bin/mc mb --ignore-existing minio/private;
+      /usr/bin/mc policy set none minio/private;
+      echo 'MinIOの初期化が完了しました';
+      tail -f /dev/null
+      "
+
+  # ==============================================
+  # キャッシュ・セッションストア
+  # ==============================================
+  redis:
+    container_name: ${COMPOSE_PROJECT_NAME}_redis
+    <<: [*common-env, *common-restart]
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    ports:
+      - "${IP_PREFIX}.140:6379:6379"
+    networks:
+      - backend
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s

@@ -31,17 +31,26 @@ import Typography from "@mui/material/Typography";
 import type {Metadata} from "next";
 import * as React from "react";
 
-import PageHeader from "@kanagawa-rifle/website/components/PageHeader"
-import useStaticFileUrl from "@kanagawa-rifle/website/hooks/useStaticFileUrl";
-import {createMetadata} from "@kanagawa-rifle/website/site";
+import {PageLayout} from "@/components";
+import {env, paths} from "@/config";
 
-import {info} from "./info";
+const currentPath = paths.main.recommendation;
+export const metadata: Metadata = {
+  title: currentPath.name,
+  description: currentPath.description,
+  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+}
 
-export const metadata: Metadata = createMetadata(info)
 export default function Page() {
   return (
-    <>
-      <PageHeader title={info.title} description={info.description} />
+    <PageLayout
+      title={currentPath.name}
+      breadcrumbs={[
+        {name: paths.home.name, path: paths.home.getHref()},
+        {name: currentPath.name, path: currentPath.getHref()},
+      ]}
+    >
 
       <Alert severity="warning">
         <AlertTitle>【重要】推薦申請システムの移行について</AlertTitle>
@@ -236,7 +245,7 @@ export default function Page() {
             <ListItemText
               primary="申請締切日"
               secondary={<>
-                <Link href={useStaticFileUrl('/projects/2025/competitions.pdf')} target="_blank">推薦スケジュール</Link>をご覧ください。
+                <Link href={paths.cdn.getHref('/projects/2025/competitions.pdf')} target="_blank">推薦スケジュール</Link>をご覧ください。
               </>}
             />
           </ListItem>
@@ -321,7 +330,7 @@ export default function Page() {
           <ListItem divider>
             <ListItemIcon sx={{ color: 'error.main' }}><FontAwesomeIcon icon={faFilePdf} /></ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_57.pdf')}>
+              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}>
                 推薦ブレッテン no.57
               </Link>
             </ListItemText>
@@ -329,7 +338,7 @@ export default function Page() {
           <ListItem divider>
             <ListItemIcon sx={{ color: 'error.main' }}><FontAwesomeIcon icon={faFilePdf} /></ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_56.pdf')}>
+              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}>
                 推薦ブレッテン no.56
               </Link>
             </ListItemText>
@@ -337,7 +346,7 @@ export default function Page() {
           <ListItem divider>
             <ListItemIcon sx={{ color: 'error.main' }}><FontAwesomeIcon icon={faFilePdf} /></ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_55.pdf')}>
+              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}>
                 推薦ブレッテン no.55
               </Link>
             </ListItemText>
@@ -345,7 +354,7 @@ export default function Page() {
           <ListItem divider>
             <ListItemIcon sx={{ color: 'error.main' }}><FontAwesomeIcon icon={faFilePdf} /></ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_51.pdf')}>
+              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}>
                 推薦ブレッテン no.51
               </Link>
             </ListItemText>
@@ -353,7 +362,7 @@ export default function Page() {
           <ListItem>
             <ListItemIcon sx={{ color: 'error.main' }}><FontAwesomeIcon icon={faFilePdf} /></ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={useStaticFileUrl('/recommendation/Recommendation_Bulletin_no_49.pdf')}>
+              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}>
                 推薦ブレッテン no.49
               </Link>
             </ListItemText>
@@ -361,7 +370,7 @@ export default function Page() {
         </List>
       </Card>
 
-    </>
+    </PageLayout>
   );
 }
 
