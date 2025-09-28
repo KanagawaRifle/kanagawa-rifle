@@ -1,6 +1,5 @@
 'use client';
 
-import HelpIcon from "@mui/icons-material/Help";
 import {
   Button,
   Card,
@@ -14,7 +13,7 @@ import {
   IconButton,
 } from "@mui/material";
 import React from "react";
-import {LuNotebookPen} from "react-icons/lu";
+import {LuNotebookPen, LuMessageCircleQuestion} from "react-icons/lu";
 
 export function EntryInfoCard()
 {
@@ -29,7 +28,7 @@ export function EntryInfoCard()
         title={'各種大会 (当協会主管以外) 申込'}
         action={
           <IconButton aria-label="申込フォームの説明" onClick={handleOpenButtonClick}>
-            <HelpIcon />
+            <LuMessageCircleQuestion />
           </IconButton>
         }
       />

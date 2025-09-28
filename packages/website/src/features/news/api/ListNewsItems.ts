@@ -5,7 +5,7 @@ import { QueryConfig } from '@/lib/ReactQuery';
 import {ApiResponse, NewsItem, Paginated} from '@/types';
 
 export const DEFAULT_SIZE = 12;
-export const sizes = [DEFAULT_SIZE, 64, 128] as const
+export const sizes = [6, DEFAULT_SIZE, 64, 128] as const
 export async function listNewsItems(
   {page, size}: {page: number, size: number}
 ): Promise<Paginated<NewsItem>> {
@@ -13,6 +13,7 @@ export async function listNewsItems(
   const result = (await response.json()) as ApiResponse<Paginated<NewsItem>>;
 
   if (!response.ok || result.data === null) {
+    console.error(`HTTP エラー! ステータス: ${response.status}` + {result})
     throw new Error(`HTTP エラー! ステータス: ${response.status}`);
   }
 

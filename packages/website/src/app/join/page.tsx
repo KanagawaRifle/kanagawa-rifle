@@ -1,20 +1,22 @@
+// packages/website/src/app/join/page.tsx
 
-import {faBox, faPenToSquare, faStamp, faYenSign, faCheck} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Step from '@mui/material/Step';
-import StepContent from '@mui/material/StepContent';
-import StepLabel from '@mui/material/StepLabel';
-import Stepper from '@mui/material/Stepper';
-import type {Metadata} from "next";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  Link,
+  Stack,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+} from "@mui/material";
+import type { Metadata } from "next";
 import Image from 'next/image'
-import * as React from "react";
+import  React from "react";
+import {LuBox, LuCheck, LuCreditCard, LuSquarePen, LuStamp} from "react-icons/lu";
 
 import {PageLayout} from "@/components"
 import {env, paths} from "@/config";
@@ -37,7 +39,7 @@ export default function Page() {
       ]}
     >
       <Card>
-        <CardHeader title={'入会のお申込'} />
+        <CardHeader title="入会のお申込" />
         <CardContent>
           <Stack spacing={2}>
             <Box>下記の専用サイト、<Link href="https://jrsf.sportscom.jp/#/" target="_blank">日本ライフル射撃協会 ShootersHub</Link> よりお申し込みください。</Box>
@@ -56,35 +58,24 @@ export default function Page() {
             </Card>
             <Stepper orientation="vertical">
               <Step expanded active>
-                <StepLabel><FontAwesomeIcon className="mr-1" icon={faPenToSquare} />お申込み</StepLabel>
+                <StepLabel><Box className="flex items-center gap-2"><LuSquarePen />お申込み</Box></StepLabel>
                 <StepContent className="text-sm">日本ライフル射撃協会の専用サイト、ShootersHub より必要事項をご入力の上、お申し込みください。</StepContent>
               </Step>
               <Step expanded active>
-                <StepLabel>
-                  <FontAwesomeIcon className="mr-1" icon={faStamp} />
-                  承認（神奈川県ライフル射撃協会）
-                </StepLabel>
+                <StepLabel><Box className="flex items-center gap-2"><LuStamp />承認（神奈川県ライフル射撃協会）</Box></StepLabel>
                 <StepContent className="text-sm">神奈川県ライフル射撃協会の会員登録担当者が承認いたします。承認完了までしばらくお待ちください。</StepContent>
               </Step>
               <Step expanded active>
-                <StepLabel>
-                  <FontAwesomeIcon className="mr-1" icon={faStamp} />
-                  承認（日本ライフル射撃協会）
-                </StepLabel>
+                <StepLabel><Box className="flex items-center gap-2"><LuStamp />承認（日本ライフル射撃協会）</Box></StepLabel>
                 <StepContent className="text-sm">日本ライフル射撃協会の会員登録担当者が承認いたします。承認完了までしばらくお待ちください。</StepContent>
               </Step>
               <Step expanded active>
-                <StepLabel>
-                  <FontAwesomeIcon className="mr-1" icon={faYenSign} />
-                  ご入金
-                </StepLabel>
+                <StepLabel><Box className="flex items-center gap-2"><LuCreditCard />ご入金</Box></StepLabel>
                 <StepContent className="text-sm">ShootersHub より、ご入会金および年会費をお支払いください。</StepContent>
               </Step>
               <Step expanded active>
-                <StepLabel>
-                  <FontAwesomeIcon className="mr-1" icon={faCheck} />
-                  手続完了
-                </StepLabel>
+
+                <StepLabel><Box className="flex items-center gap-2"><LuCheck />お手続完了</Box></StepLabel>
                 <StepContent className="text-sm">当協会の会員証ならびにご案内をお届けいたします。なお、発送までにお時間をいただく場合がございますので、あらかじめご了承ください。</StepContent>
               </Step>
             </Stepper>
@@ -252,15 +243,15 @@ export default function Page() {
           <Box className={('grid grid-cols-4 gap-0 text-center')}>
             <Box sx={{borderBottom: '1px solid #dadce0'}}></Box>
             <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
-              <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-purple-400'} size={'xs'} icon={faBox} />一般</Box>
+              <Box className="font-bold flex items-center justify-center gap-2"><LuBox className="text-purple-400" />一般</Box>
               <Box className={'text-xs mt-2'}>4月1日時点で24歳以上の学生を含む。</Box>
             </Box>
             <Box className={'p-2 rounded-t-md'} sx={{backgroundColor: '#f8f9fa', borderWidth: '1px 1px  1px 1px', borderColor: '#dadce0'}}>
-              <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-teal-400'} size={'xs'} icon={faBox} />学生</Box>
+              <Box className="font-bold flex items-center justify-center gap-2"><LuBox className="text-teal-400" />学生</Box>
               <Box className={'text-xs mt-2'}>大学生・専門学校生。</Box>
             </Box>
             <Box className={'p-2'} sx={{borderBottom: '1px solid #dadce0'}}>
-              <Box className={'font-bold'}><FontAwesomeIcon className={'mr-1 text-rose-400'} size={'xs'} icon={faBox} />生徒</Box>
+              <Box className="font-bold flex items-center justify-center gap-2"><LuBox className="text-rose-400" />生徒</Box>
               <Box className={'text-xs mt-2'}>高校生以下。</Box>
             </Box>
           </Box>

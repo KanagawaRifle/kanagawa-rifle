@@ -1,17 +1,20 @@
+// packages/website/src/app/forms/page.tsx
 
-import DownloadIcon from '@mui/icons-material/Download';
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
-import Link from '@mui/material/Link';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from '@mui/material/ListItemText';
-import type {Metadata} from "next";
+import {
+  Box,
+  Card,
+  CardHeader,
+  Divider,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import type { Metadata } from "next";
 import React from 'react';
 import {FaFileExcel, FaFilePdf, FaFileWord} from "react-icons/fa";
+import {LuDownload} from "react-icons/lu";
 
 import {PageLayout} from "@/components";
 import {env, paths} from "@/config";
@@ -105,7 +108,7 @@ export default function Page() {
       <Card>
         <CardHeader title={
           <Box className="flex items-center gap-2">
-            <DownloadIcon/>
+            <LuDownload />
             ダウンロード
           </Box>
         }/>

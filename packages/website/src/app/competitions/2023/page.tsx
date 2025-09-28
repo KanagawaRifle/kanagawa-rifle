@@ -1,13 +1,15 @@
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Link from '@mui/material/Link';
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import type {Metadata} from "next";
-import * as React from 'react';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardContent,
+  CardHeader,
+  Link,
+  Tab,
+  Tabs,
+} from "@mui/material";
+import type { Metadata } from "next";
+import React from "react";
 
 import {PageLayout} from "@/components";
 import {env, paths} from "@/config";

@@ -1,4 +1,5 @@
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+// packages/website/src/features/news/components/ListItem.tsx
+
 import {
   Avatar,
   ListItem,
@@ -80,7 +81,7 @@ export function ListNewsItem({slug, title, published, tags, excerpt, isLast, onM
                   {format(new Date(published), 'yyyy年M月d日', {locale: ja})}
                 </time>
               }
-              icon={<CalendarTodayIcon/>}
+              icon={<LuCalendar />}
               variant="outlined"
             />
             {tags && tags.length > 0 &&

@@ -1,12 +1,14 @@
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import type {Metadata} from "next";
-import {LuHouse, LuLandmark} from "react-icons/lu";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+} from "@mui/material";
+import type { Metadata } from "next";
+import { LuHouse, LuLandmark } from "react-icons/lu";
 
-import {PageLayout} from "@/components"
-import {env, paths} from "@/config";
+import { PageLayout } from "@/components";
+import { env, paths } from "@/config";
 
 const currentPath = paths.main.about;
 export const metadata: Metadata = {

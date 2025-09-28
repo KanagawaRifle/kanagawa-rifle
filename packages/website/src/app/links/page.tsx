@@ -1,14 +1,17 @@
+// packages/website/src/app/links/page.tsx
 
-import LinkIcon from '@mui/icons-material/Link';
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import Link from '@mui/material/Link';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import {
+  Box,
+  Card,
+  CardHeader,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import type {Metadata} from "next";
 import React from 'react';
+import { LuLink} from "react-icons/lu";
 
 import {PageLayout} from "@/components"
 import {env, paths} from "@/config";
@@ -85,8 +88,8 @@ function LinksCard({ title = "リンク", links }: LinksCardProps) {
     <Card>
       <CardHeader
         title={
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <LinkIcon sx={{ transform: 'rotate(135deg)' }} />
+          <Box className="flex items-center gap-2">
+            <LuLink />
             {title}
           </Box>
         }

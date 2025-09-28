@@ -4,11 +4,12 @@ import {
   Alert,
   AlertTitle,
   FormControl,
-  InputLabel,
   List,
-  MenuItem, Pagination,
+  MenuItem,
+  Pagination,
   Select,
-  Stack
+  Skeleton as MuiSkeleton,
+  Stack,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -21,18 +22,24 @@ import {LuRotateCw} from "react-icons/lu";
 import {getNewsItemQueryOptions} from '@/features/news/api/GetNewsItem'
 import {useListNewsItems, DEFAULT_SIZE, sizes} from '@/features/news/api/ListNewsItems'
 
-
 import {Skeleton, ListNewsItem} from "./ListItem"
-
 
 export type ListNewsItemsProps = {
   onPrefetch?: (slug: string) => void;
+  page?: number;
+  size?: number;
+  withControls?: boolean;
 };
 
-export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
+export function ListNewsItems({
+  onPrefetch,
+  page: paramPage,
+  size: paramSize,
+  withControls = true
+}: ListNewsItemsProps) {
   const searchParams = useSearchParams();
-  const page = searchParams?.get('page') ? Number(searchParams.get('page')) : 1;
-  const size = searchParams?.get('size') ? Number(searchParams.get('size')) : DEFAULT_SIZE;
+  const page = paramPage ?? (searchParams?.get('page') ? Number(searchParams.get('page')) : 1);
+  const size = paramSize ?? (searchParams?.get('size') ? Number(searchParams.get('size')) : DEFAULT_SIZE);
 
   const query = useListNewsItems({page, size});
   const queryClient = useQueryClient();
@@ -56,9 +63,8 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
   if (query.isLoading || query.isFetching) {
     return (
       <Stack spacing={2}>
-        <Box className="flex items-center justify-between">
+        {withControls && <Box className="flex items-center justify-between">
           <FormControl>
-            <InputLabel>表示件数</InputLabel>
             <Select
               size="small"
               disabled
@@ -68,14 +74,49 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
             </Select>
           </FormControl>
           <Button variant="text" loading loadingPosition="start">更新</Button>
-        </Box>
-        <Card>
+        </Box>}
+
+        {withControls && <Stack className="flex justify-center items-center flex-col" spacing={2}>
+          <Box color="text.secondary"><MuiSkeleton width="10rem" /></Box>
+          <Pagination
+            page={1}
+            count={1}
+            disabled
+            color="primary"
+            showFirstButton
+            showLastButton
+            variant="outlined"
+          />
+        </Stack>}
+
+        {withControls ? (
+          <Card>
+            <List>
+              {[...Array(DEFAULT_SIZE).keys()].map((item, index) => (
+                <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index}/>
+              ))}
+            </List>
+          </Card>
+        ) : (
           <List>
             {[...Array(DEFAULT_SIZE).keys()].map((item, index) => (
               <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index}/>
             ))}
           </List>
-        </Card>
+        )}
+
+        {withControls && <Stack className="flex justify-center items-center flex-col" spacing={2}>
+          <Box color="text.secondary"><MuiSkeleton width="10rem" /></Box>
+          <Pagination
+            page={1}
+            count={1}
+            disabled
+            color="primary"
+            showFirstButton
+            showLastButton
+            variant="outlined"
+          />
+        </Stack>}
       </Stack>
     );
   }
@@ -99,10 +140,9 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
 
   return (
     <Stack spacing={2}>
-      <Box className="flex items-center justify-between">
-        {/* ページサイズ選択 */}
+
+      {withControls && <Box className="flex items-center justify-between">
         <FormControl>
-          <InputLabel>表示件数</InputLabel>
           <Select
             size="small"
             value={size}
@@ -113,11 +153,45 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
             <MenuItem value={128}>128件</MenuItem>
           </Select>
         </FormControl>
-        {/* ページ更新 */}
         <Button variant="text" startIcon={<LuRotateCw />} onClick={() => query.refetch()}>更新</Button>
-      </Box>
+      </Box>}
 
-      <Card>
+      {withControls && <Stack className="flex justify-center items-center flex-col" spacing={2}>
+        <Box color="text.secondary">
+          {pagination.total}件中 {(pagination.current - 1) * pagination.size + 1}〜
+          {Math.min(pagination.current * pagination.size, pagination.total)}件を表示
+        </Box>
+        <Pagination
+          count={pagination.totalPages}
+          page={pagination.current}
+          onChange={(event, page) => goToPage(page)}
+          // onMouseEnter={pagination.current < pagination.totalPages ? handleNextPageHover : undefined}
+          color="primary"
+          showFirstButton
+          showLastButton
+          siblingCount={1}
+          boundaryCount={1}
+          variant="outlined"
+        />
+      </Stack>}
+
+      {withControls ? (
+        <Card>
+          <List>
+            {items.map((item, index) => (
+              <ListNewsItem
+                key={index}
+                {...item}
+                isLast={items.length - 1 === index}
+                onMouseEnter={async () => {
+                  await queryClient.prefetchQuery(getNewsItemQueryOptions(item.slug));
+                  onPrefetch?.(item.slug)
+                }}
+              />
+            ))}
+          </List>
+        </Card>
+      ) : (
         <List>
           {items.map((item, index) => (
             <ListNewsItem
@@ -131,15 +205,13 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
             />
           ))}
         </List>
-      </Card>
+      )}
 
-      <Stack className="flex justify-center items-center flex-col" spacing={2}>
-        {/* 件数表示 */}
+      {withControls && <Stack className="flex justify-center items-center flex-col" spacing={2}>
         <Box color="text.secondary">
           {pagination.total}件中 {(pagination.current - 1) * pagination.size + 1}〜
           {Math.min(pagination.current * pagination.size, pagination.total)}件を表示
         </Box>
-        {/* Paginator */}
         <Pagination
           count={pagination.totalPages}
           page={pagination.current}
@@ -151,9 +223,8 @@ export function ListNewsItems({onPrefetch}: ListNewsItemsProps) {
           siblingCount={1}
           boundaryCount={1}
           variant="outlined"
-
         />
-      </Stack>
+      </Stack>}
     </Stack>
   )
 }

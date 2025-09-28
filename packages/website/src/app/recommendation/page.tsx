@@ -1,35 +1,39 @@
-import {faFilePdf} from "@fortawesome/free-regular-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import ArticleIcon from '@mui/icons-material/Article';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CancelIcon from '@mui/icons-material/Cancel';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import EventIcon from '@mui/icons-material/Event';
-import RecyclingIcon from '@mui/icons-material/Recycling';
-import TimelapseIcon from '@mui/icons-material/Timelapse';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import Alert from '@mui/material/Alert';
-import AlertTitle from "@mui/material/AlertTitle";
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Chip from '@mui/material/Chip';
-import Link from '@mui/material/Link';
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Stack from "@mui/material/Stack";
-import Step from "@mui/material/Step";
-import StepContent from "@mui/material/StepContent";
-import StepLabel from "@mui/material/StepLabel";
-import Stepper from "@mui/material/Stepper";
-import Typography from "@mui/material/Typography";
-import type {Metadata} from "next";
-import * as React from "react";
+import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Article as ArticleIcon,
+  CalendarMonth as CalendarMonthIcon,
+  Cancel as CancelIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  ContentPaste as ContentPasteIcon,
+  CreditCard as CreditCardIcon,
+  Event as EventIcon,
+  Recycling as RecyclingIcon,
+  Timelapse as TimelapseIcon,
+  WarningAmber as WarningAmberIcon,
+} from "@mui/icons-material";
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Chip,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
+import type { Metadata } from "next";
+import React from "react";
 
 import {PageLayout} from "@/components";
 import {env, paths} from "@/config";
