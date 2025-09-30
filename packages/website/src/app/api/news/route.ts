@@ -1,6 +1,6 @@
 // packages/website/src/app/api/news/route.ts
 
-import { readdir, readFile, stat } from 'fs/promises';
+import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 
 import matter from 'gray-matter';
@@ -50,17 +50,8 @@ async function getAllNewsFiles(): Promise<string[]> {
     const files = await readdir(CONTENTS_DIR);
     const markdownFiles = files.filter(file => file.endsWith('.md'));
 
-    // ファイルの更新日時でソート（新しい順）
-    const filesWithStats = await Promise.all(
-      markdownFiles.map(async (file) => {
-        const filePath = join(CONTENTS_DIR, file);
-        const stats = await stat(filePath);
-        return { file, mtime: stats.mtime };
-      })
-    );
-
-    filesWithStats.sort((a, b) => b.mtime.getTime() - a.mtime.getTime());
-    return filesWithStats.map(({ file }) => file);
+    markdownFiles.sort((a, b) => b.localeCompare(a));
+    return markdownFiles;
   } catch (error) {
     console.error('Error reading news directory:', error);
     return [];
