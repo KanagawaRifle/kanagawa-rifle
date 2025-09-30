@@ -2,24 +2,30 @@ import {z} from 'zod';
 
 const createEnv = () => {
   const EnvSchema = z.object({
-    APP_URL: z.url().default('http://kanagawa-rifle.org.local'),
-    CDN_URL: z.url().default('https://static.kanagawa-rifle.org'),
-    API_URL: z.url().default(
-      typeof window !== 'undefined' ? 'http://kanagawa-rifle.org.local' : 'http://localhost:3001'
-    ),
+    APP_URL: z.string().url().default('http://kanagawa-rifle.org.local'),
+    CDN_URL: z.string().url().default('https://static.kanagawa-rifle.org'),
+    API_URL: z.string()
+      .default('')
+      .transform(val => {
+        if (val) return val;
+        return typeof window !== 'undefined'
+          ? 'http://kanagawa-rifle.org.local'
+          : 'http://localhost:3001';
+      })
+      .pipe(z.string().url()),
 
-      AXIOM_DATASET: z.string().optional(),
-      AXIOM_TOKEN: z.string().optional(),
+    AXIOM_DATASET: z.string().optional(),
+    AXIOM_TOKEN: z.string().optional(),
 
-      GOOGLE_ANALYTICS_ID: z.string().optional(),
+    GOOGLE_ANALYTICS_ID: z.string().optional(),
 
     SENTRY_ORG: z.string().optional(),
     SENTRY_PROJECT: z.string().optional(),
     SENTRY_AUTH_TOKEN: z.string().optional(),
-    SENTRY_DSN: z.string().optional(),
+    SENTRY_DSN: z.string().url().optional(),
 
-      CLARITY_ID: z.string().optional(),
-    });
+    CLARITY_ID: z.string().optional(),
+  });
 
   const vars = {
     APP_URL: process.env.NEXT_PUBLIC_URL,
@@ -39,20 +45,24 @@ const createEnv = () => {
     CLARITY_ID: process.env.NEXT_PUBLIC_CLARITY_ID,
   };
 
-  const env = EnvSchema.safeParse(vars);
+  const result = EnvSchema.safeParse(vars);
 
-  if (!env.success) {
+  if (!result.success) {
+    const errors = result.error.errors.map(err => {
+      const path = err.path.join('.');
+      return `  - ${path}: ${err.message}`;
+    }).join('\n');
+
+    console.error('Environment validation failed!');
+    console.error('Provided values:', JSON.stringify(vars, null, 2));
+    console.error('Validation errors:\n', errors);
+
     throw new Error(
-      `Invalid env provided.
-  The following variables are missing or invalid:
-  ${Object.entries(z.treeifyError(env.error))
-        .map(([k, v]) => `- ${k}: ${v}`)
-        .join('\n')}
-  `,
+      `Invalid environment variables:\n${errors}`
     );
   }
 
-  return env.data ?? {};
+  return result.data;
 };
 
 export const env = createEnv();
