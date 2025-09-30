@@ -2,9 +2,12 @@ import '@/styles/globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import { ThemeProvider } from '@mui/material/styles'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
+import { GoogleTagManager } from '@next/third-parties/google'
 import type { Metadata } from 'next'
 import { Noto_Sans_JP, Roboto } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Script from "next/script";
+import {AxiomWebVitals} from "next-axiom";
 import React from 'react'
 
 import Presenter from '@/components/Presenter'
@@ -48,15 +51,30 @@ export default function Layout(
 ) {
   return (
     <html lang="ja">
-    <body className={`${notoSansJP.className} ${roboto.className} antialiased`}>
-    <QueryProvider>
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <Presenter>{children}</Presenter>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
-    </QueryProvider>
-    </body>
+      {process.env.NODE_ENV === 'production' && env.CLARITY_ID && (
+        <Script strategy="afterInteractive" id="clarity-tag">
+          {`
+            (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${env.CLARITY_ID}");
+          `}
+        </Script>
+      )}
+      {process.env.NODE_ENV === 'production' && <AxiomWebVitals />}
+      <body className={`${notoSansJP.className} ${roboto.className} antialiased`}>
+        <QueryProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <Presenter>{children}</Presenter>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </QueryProvider>
+      </body>
+      {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
+        <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
+      )}
     </html>
   )
 }
