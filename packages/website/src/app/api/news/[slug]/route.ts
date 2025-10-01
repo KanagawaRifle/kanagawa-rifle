@@ -1,83 +1,68 @@
 // packages/website/src/app/api/news/[slug]/route.ts
 
-import { readFile, stat } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 import matter from 'gray-matter';
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
-import {createInvalidNewsSlugError, createInternalServerError} from '@/errors'
-import {NewsItem, ApiResponse} from '@/types'
+import { createInvalidNewsSlugError, createInternalServerError, createNewsNotFoundError } from '@/errors';
+import { NewsItem, ApiResponse } from '@/types';
 
-type FrontMatter = Omit<NewsItem, 'slug' | 'content'>
+const FrontMatterSchema = z.object({
+  title: z.string(),
+  published: z.coerce.date(),
+  updated: z.coerce.date().optional(),
+  tags: z.array(z.string()).default([]),
+  excerpt: z.string().optional(),
+  eyecatch: z.string().optional(),
+});
+
 const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
+
 async function parseMarkdownFile(filePath: string, slug: string): Promise<NewsItem> {
-  try{
   const fileContent = await readFile(filePath, 'utf-8');
-  const { data, content } = matter(fileContent) as unknown as {
-    data: FrontMatter;
-    content: string;
-  };
-  const parseDate = (dateValue: unknown): Date | undefined => {
-    if (!dateValue) return undefined;
-    const date = new Date(dateValue as string);
-    return isNaN(date.getTime()) ? undefined : date;
-  };
+  const { data, content } = matter(fileContent);
+
+  const validatedData = FrontMatterSchema.parse(data);
 
   return {
     slug,
-    title: data.title ?? slug,
+    ...validatedData,
     content: content.trim(),
-    tags: Array.isArray(data.tags) ? data.tags : [],
-    excerpt: data.excerpt ?? undefined,
-    eyecatch: data.eyecatch ?? undefined,
-    published: parseDate(data.published) ?? new Date(),
-    updated: parseDate(data.updated),
   };
-} catch (error) {
-  console.error(`Error parsing markdown file ${filePath}:`, error);
-  throw error;
-}
 }
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ): Promise<NextResponse<ApiResponse<NewsItem>>> {
-  try {
-    const { slug } = await params;
+  const { slug } = await params;
 
+  try {
     if (!slug) {
       const error = createInvalidNewsSlugError();
-      return NextResponse.json<ApiResponse<NewsItem>>(
-        { data: null, error },
-        { status: error.status }
-      );
+      return NextResponse.json({ data: null, error }, { status: error.status });
     }
 
     const filePath = join(CONTENTS_DIR, `${slug}.md`);
+    const item = await parseMarkdownFile(filePath, slug);
 
-    // ファイルの存在確認
-    try {
-      await stat(filePath);
-    } catch (ex) {
-      console.error('API Error:', ex);
-      const error = createInternalServerError(ex as Error);
-      return NextResponse.json(
-        { data: null, error },
-        { status: error.status }
-      );
+    return NextResponse.json({ data: item });
+  } catch (ex) {
+    if (isNodeError(ex) && ex.code === 'ENOENT') {
+      const error = createNewsNotFoundError(slug);
+      return NextResponse.json({ data: null, error }, { status: error.status });
     }
 
-    const newsItem = await parseMarkdownFile(filePath, slug);
-
-    return NextResponse.json({data: newsItem});
-  } catch (ex) {
-    console.error('API Error:', ex);
+    console.error('API Internal Error:', ex);
     const error = createInternalServerError(ex as Error);
-    return NextResponse.json(
-      { data: null, error },
-      { status: error.status }
-    );
+    return NextResponse.json({ data: null, error }, { status: error.status });
   }
+}
+
+// 型ガード
+function isNodeError(error: unknown): error is NodeJS.ErrnoException {
+  return error instanceof Error && 'code' in error;
 }

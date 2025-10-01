@@ -11,18 +11,20 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
-} from "@mui/material";
-import React from "react";
-import {LuNotebookPen, LuMessageCircleQuestion} from "react-icons/lu";
+} from '@mui/material';
+import React from 'react';
+import { LuNotebookPen, LuMessageCircleQuestion } from 'react-icons/lu';
 
-export function EntryInfoCard()
-{
+export function EntryInfoCard() {
   const [isDialogOpen, setDialogBeOpen] = React.useState(false);
-  const handleOpenButtonClick = () => { setDialogBeOpen(true) };
-  const handleCloseButtonClick = () => { setDialogBeOpen(false) };
-  
-  return (
+  const handleOpenButtonClick = () => {
+    setDialogBeOpen(true);
+  };
+  const handleCloseButtonClick = () => {
+    setDialogBeOpen(false);
+  };
 
+  return (
     <Card>
       <CardHeader
         title={'各種大会 (当協会主管以外) 申込'}
@@ -48,13 +50,12 @@ export function EntryInfoCard()
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"このお申込みフォームについて"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{'このお申込みフォームについて'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             当協会主管以外の各種大会 (日ラ等) および東日本選手権については本申込フォームよりお申し込みください。
-            <br />なお、国スポ予選および県選手権については下記に個別のお申込みフォームがございますのでそちらよりお申し込みください。
+            <br />
+            なお、国スポ予選および県選手権については下記に個別のお申込みフォームがございますのでそちらよりお申し込みください。
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -64,5 +65,5 @@ export function EntryInfoCard()
         </DialogActions>
       </Dialog>
     </Card>
-  )
+  );
 }

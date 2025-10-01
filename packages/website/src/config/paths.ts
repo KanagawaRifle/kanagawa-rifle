@@ -40,7 +40,8 @@ export const paths: Paths = {
   home: {
     name: 'ホーム',
     getHref: () => '/',
-    description: 'ライフル競技に興味のある方へ向けて、大会の開催・運営や普及活動を行い、スポーツ振興と子どもの健全育成を目指しています。',
+    description:
+      'ライフル競技に興味のある方へ向けて、大会の開催・運営や普及活動を行い、スポーツ振興と子どもの健全育成を目指しています。',
   },
 
   main: {
@@ -51,7 +52,8 @@ export const paths: Paths = {
     join: {
       name: '入会案内',
       getHref: () => '/join',
-      description: '神奈川県ライフル射撃協会、または日本ライフル射撃協会へのご入会をご希望される方は、本ページをご参考にお申し込みください。',
+      description:
+        '神奈川県ライフル射撃協会、または日本ライフル射撃協会へのご入会をご希望される方は、本ページをご参考にお申し込みください。',
     },
     competitions: {
       name: '大会',
@@ -115,7 +117,8 @@ export const paths: Paths = {
   cdn: {
     name: 'CDN',
     getHref: (path?: string): string => {
-      const baseUrl: string = process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL ?? 'https://static.kanagawa-rifle.org/website';
+      const baseUrl: string =
+        process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL ?? 'https://static.kanagawa-rifle.org/website';
 
       if (!path) return baseUrl;
 
@@ -127,6 +130,6 @@ export const paths: Paths = {
       const cleanBaseUrl: string = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 
       return `${cleanBaseUrl}${normalizedPath}`;
-    }
+    },
   },
 };

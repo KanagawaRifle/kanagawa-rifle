@@ -4,12 +4,11 @@
   "private": true,
   "description": "神奈川県ライフル射撃協会",
   "workspaces": [
-    "packages/website"
+    "packages/website",
+    "packages/eslint-config",
+    "packages/prettier-config"
   ],
   "volta": {
     "node": "22.15.0"
-  },
-  "dependencies": {
-    "@kanagawa-rifle/website": "^1.0.0"
   }
 }

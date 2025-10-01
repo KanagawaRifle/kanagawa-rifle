@@ -6,13 +6,10 @@ import { join } from 'path';
 import matter from 'gray-matter';
 import { NextRequest, NextResponse } from 'next/server';
 
-import {
-  createInternalServerError,
-  createValidationError
-} from '@/errors'
-import {NewsItem, ApiResponse, Paginated} from '@/types'
+import { createInternalServerError, createValidationError } from '@/errors';
+import { NewsItem, ApiResponse, Paginated } from '@/types';
 
-type FrontMatter = Omit<NewsItem, 'slug' | 'content'>
+type FrontMatter = Omit<NewsItem, 'slug' | 'content'>;
 const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
 
 // マークダウンファイルを読み込んで解析
@@ -48,7 +45,7 @@ async function parseMarkdownFile(filePath: string, slug: string, withContent = f
 async function getAllNewsFiles(): Promise<string[]> {
   try {
     const files = await readdir(CONTENTS_DIR);
-    const markdownFiles = files.filter(file => file.endsWith('.md'));
+    const markdownFiles = files.filter((file) => file.endsWith('.md'));
 
     markdownFiles.sort((a, b) => b.localeCompare(a));
     return markdownFiles;
@@ -72,7 +69,7 @@ async function getPaginatedNews(page: number, size: number): Promise<Paginated<N
       const slug = file.replace('.md', '');
       const filePath = join(CONTENTS_DIR, file);
       return await parseMarkdownFile(filePath, slug, false);
-    })
+    }),
   );
 
   return {
@@ -88,8 +85,7 @@ async function getPaginatedNews(page: number, size: number): Promise<Paginated<N
   };
 }
 
-export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItem>>>>
-{
+export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItem>>>> {
   try {
     const { searchParams } = new URL(request.url);
     const page = searchParams.get('page');
@@ -101,30 +97,21 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
 
     // バリデーション
     if (pageNum < 1) {
-      const error = createValidationError('Page number must be greater than 0')
-      return NextResponse.json(
-        { data: null, error },
-        { status: error.status }
-      );
+      const error = createValidationError('Page number must be greater than 0');
+      return NextResponse.json({ data: null, error }, { status: error.status });
     }
 
     if (sizeNum < 1 || sizeNum > 128) {
-      const error = createValidationError('Size must be between 1 and 128')
-      return NextResponse.json(
-        { data: null, error },
-        { status: error.status }
-      );
+      const error = createValidationError('Size must be between 1 and 128');
+      return NextResponse.json({ data: null, error }, { status: error.status });
     }
 
     const result = await getPaginatedNews(pageNum, sizeNum);
 
-    return NextResponse.json({data: result});
+    return NextResponse.json({ data: result });
   } catch (ex) {
     console.error('API Error:', ex);
     const error = createInternalServerError(ex as Error);
-    return NextResponse.json(
-      { data: null, error },
-      { status: error.status }
-    );
+    return NextResponse.json({ data: null, error }, { status: error.status });
   }
 }

@@ -9,43 +9,16 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
-} from "@mui/material";
+  Typography,
+} from '@mui/material';
 import dayjs from 'dayjs';
 import React, { ReactNode } from 'react';
-import { LuAlarmClock, LuCalendar, LuDumbbell, LuMapPin } from "react-icons/lu";
+import { LuAlarmClock, LuCalendar, LuDumbbell, LuMapPin } from 'react-icons/lu';
+
 import 'dayjs/locale/ja';
+import { Event, DateValue } from '../_types';
 
 dayjs.locale('ja');
-
-type Action = {
-  name: string;
-  href?: string | URL;
-  disabled?: boolean;
-  target?: '_blank' | '_self' | '_parent' | '_top';
-};
-
-type Venue = {
-  name: string;
-  href: string | URL;
-};
-
-type EventDate = {
-  from: Date;
-  to: Date;
-};
-
-type DateValue = EventDate | ReactNode | Date | string;
-
-export type EventCardProps = {
-  name: string;
-  grade: 'G4' | 'G3' | 'G3+' | 'G2' | 'G1';
-  actions: Action[];
-  date: DateValue;
-  pet?: DateValue;
-  deadline?: Date | string;
-  venue: Venue;
-};
 
 interface ItemProps {
   icon: ReactNode;
@@ -58,7 +31,7 @@ function Item({ icon, title, text, divider = false }: ItemProps) {
   return (
     <ListItem divider={divider}>
       <ListItemText>
-        <Box className="flex gap-2 items-center">
+        <Box className="flex items-center gap-2">
           <Typography color="primary" component="span">
             {icon}
           </Typography>
@@ -100,21 +73,10 @@ function convertHrefToString(href: string | URL | undefined): string {
   return String(href);
 }
 
-export function EventCard({
-  name,
-  grade,
-  actions,
-  date,
-  pet,
-  deadline,
-  venue,
-}: EventCardProps) {
+export function EventCard({ name, grade, actions, date, pet, deadline, venue }: Event) {
   return (
     <Card>
-      <CardHeader
-        subheader={`${grade}大会`}
-        title={name}
-      />
+      <CardHeader subheader={`${grade}大会`} title={name} />
       <CardContent>
         <ButtonGroup variant="outlined">
           {actions.map((action, index) => (
@@ -132,37 +94,16 @@ export function EventCard({
         </ButtonGroup>
       </CardContent>
       <List dense>
-        <Item
-          icon={<LuCalendar size="1.3rem" />}
-          title="期日"
-          text={dateToElement(date)}
-          divider
-        />
-        {pet && (
-          <Item
-            icon={<LuDumbbell size="1.3rem" />}
-            title="公式練習"
-            text={dateToElement(pet)}
-            divider
-          />
-        )}
+        <Item icon={<LuCalendar size="1.3rem" />} title="期日" text={dateToElement(date)} divider />
+        {pet && <Item icon={<LuDumbbell size="1.3rem" />} title="公式練習" text={dateToElement(pet)} divider />}
         {deadline && (
-          <Item
-            icon={<LuAlarmClock size="1.3rem" />}
-            title="申込締切"
-            text={dateToElement(deadline)}
-            divider
-          />
+          <Item icon={<LuAlarmClock size="1.3rem" />} title="申込締切" text={dateToElement(deadline)} divider />
         )}
         <Item
           icon={<LuMapPin size="1.3rem" />}
           title="会場"
           text={
-            <Link
-              href={convertHrefToString(venue.href)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href={convertHrefToString(venue.href)} target="_blank" rel="noopener noreferrer">
               {venue.name}
             </Link>
           }

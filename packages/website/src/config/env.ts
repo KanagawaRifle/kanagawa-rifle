@@ -1,16 +1,15 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 const createEnv = () => {
   const EnvSchema = z.object({
     APP_URL: z.string().url().default('http://kanagawa-rifle.org.local'),
     CDN_URL: z.string().url().default('https://static.kanagawa-rifle.org'),
-    API_URL: z.string()
+    API_URL: z
+      .string()
       .default('')
-      .transform(val => {
+      .transform((val) => {
         if (val) return val;
-        return typeof window !== 'undefined'
-          ? 'http://kanagawa-rifle.org.local'
-          : 'http://localhost:3001';
+        return typeof window !== 'undefined' ? 'http://kanagawa-rifle.org.local' : 'http://localhost:3001';
       })
       .pipe(z.string().url()),
 
@@ -48,18 +47,18 @@ const createEnv = () => {
   const result = EnvSchema.safeParse(vars);
 
   if (!result.success) {
-    const errors = result.error.errors.map(err => {
-      const path = err.path.join('.');
-      return `  - ${path}: ${err.message}`;
-    }).join('\n');
+    const errors = result.error.issues
+      .map((err) => {
+        const path = err.path.join('.');
+        return `  - ${path}: ${err.message}`;
+      })
+      .join('\n');
 
     console.error('Environment validation failed!');
     console.error('Provided values:', JSON.stringify(vars, null, 2));
     console.error('Validation errors:\n', errors);
 
-    throw new Error(
-      `Invalid environment variables:\n${errors}`
-    );
+    throw new Error(`Invalid environment variables:\n${errors}`);
   }
 
   return result.data;

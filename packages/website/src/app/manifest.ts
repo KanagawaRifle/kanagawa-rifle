@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
-import { app } from '@/config'
+import { app } from '@/config';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -25,5 +25,5 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: 'maskable',
       },
     ],
-  }
+  };
 }

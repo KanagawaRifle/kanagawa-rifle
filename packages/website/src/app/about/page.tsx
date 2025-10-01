@@ -1,14 +1,12 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-} from "@mui/material";
-import type { Metadata } from "next";
-import { LuHouse, LuLandmark } from "react-icons/lu";
+// packages/website/src/app/about/page.tsx
 
-import { PageLayout } from "@/components";
-import { env, paths } from "@/config";
+import { Card, CardContent, CardHeader } from '@mui/material';
+import type { Metadata } from 'next';
+import React from 'react';
+import { LuHouse, LuLandmark } from 'react-icons/lu';
+
+import { PageLayout } from '@/components';
+import { env, paths } from '@/config';
 
 const currentPath = paths.main.about;
 export const metadata: Metadata = {
@@ -16,102 +14,102 @@ export const metadata: Metadata = {
   description: currentPath.description,
   openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
   twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-}
+};
 
 export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
       breadcrumbs={[
-        {name: paths.home.name, path: paths.home.getHref()},
-        {name: currentPath.name, path: currentPath.getHref()},
+        { name: paths.home.name, path: paths.home.getHref() },
+        { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
       <Card>
         <CardHeader
           title={
-            <Box className="flex items-center gap-2">
-              <LuHouse />事務局
-            </Box>
+            <div className="flex items-center gap-2">
+              <LuHouse />
+              事務局
+            </div>
           }
         />
         <CardContent>
-          <dl className="flex">
-            <dt className="w-32 block">メールアドレス</dt>
-            <dd className="block flex-1">kraofficial@yahoo.co.jp</dd>
-          </dl>
-          <dl className="flex">
-            <dt className="w-32 block">電話番号 (携帯)</dt>
-            <dd className="block flex-1">080-1190-3911</dd>
-          </dl>
-          <dl className="flex">
-            <dt className="w-32 block">FAX</dt>
-            <dd className="block flex-1">046-833-6990 (くりはま花の国射撃場内)</dd>
-          </dl>
-          <dl className="flex">
-            <dt className="w-32 block">所在地（窓口）</dt>
-            <dd className="block flex-1">
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">メールアドレス</div>
+            <div className="col-span-3 p-2">kraofficial@yahoo.co.jp</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">電話番号</div>
+            <div className="col-span-3 p-2">080-1190-3911</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">FAX</div>
+            <div className="col-span-3 p-2">046-833-6990 (くりはま花の国射撃場内)</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0">
+            <div className="p-2">所在地（窓口）</div>
+            <div className="col-span-3 p-2">
               〒239-0832
-              <br/>
+              <br />
               神奈川県横須賀市神明町1番地
-              <br/>
+              <br />
               くりはま花の国エアライフル射撃場内
-            </dd>
-          </dl>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader
           title={
-            <Box className="flex items-center gap-2">
-              <LuLandmark/>銀行口座
-            </Box>
+            <div className="flex items-center gap-2">
+              <LuLandmark />
+              銀行口座{' '}
+            </div>
           }
         />
         <CardContent>
-          <Box className={'rounded-md text-sm font-bold p-2'}
-               sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>ゆうちょ銀行からのお振込</Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>記号</Box>
-            <Box className={'p-2 col-span-3'}>10280</Box>
-          </Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>番号</Box>
-            <Box className={'p-2 col-span-3'}>79647111</Box>
-          </Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>名義</Box>
-            <Box className={'p-2 col-span-3'}>特定非営利活動法人 神奈川県ライフル射撃協会</Box>
-          </Box>
-          <Box className={'rounded-md text-sm font-bold p-2'}
-               sx={{border: '1px solid #dadce0', backgroundColor: '#f8f9fa'}}>ゆうちょ銀行以外からのお振込</Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>口座</Box>
-            <Box className={'p-2 col-span-3'}>ゆうちょ銀行 普通口座</Box>
-          </Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>支店</Box>
-            <Box className={'p-2 col-span-3'}>〇二八 店（ゼロニハチ 店）</Box>
-          </Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>番号</Box>
-            <Box className={'p-2 col-span-3'}>7964711</Box>
-          </Box>
-          <Box className={('grid grid-cols-4 gap-0')} sx={{borderBottom: '1px solid #dadce0'}}>
-            <Box className={'p-2'}>名義</Box>
-            <Box className={'p-2 col-span-3'}>トクヒ）カナガワケンライフルシヤゲキキョウカイ</Box>
-          </Box>
+          <div className="rounded-md border border-slate-300 bg-slate-50 p-2">ゆうちょ銀行からのお振込</div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">記号</div>
+            <div className="col-span-3 p-2">10280</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">番号</div>
+            <div className="col-span-3 p-2">79647111</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0">
+            <div className="p-2">名義</div>
+            <div className="col-span-3 p-2">特定非営利活動法人 神奈川県ライフル射撃協会</div>
+          </div>
+          <div className="rounded-md border border-slate-300 bg-slate-50 p-2">ゆうちょ銀行以外からのお振込</div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">口座</div>
+            <div className="col-span-3 p-2">ゆうちょ銀行 普通口座</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">支店</div>
+            <div className="col-span-3 p-2">〇二八 店（ゼロニハチ 店）</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+            <div className="p-2">番号</div>
+            <div className="col-span-3 p-2">7964711</div>
+          </div>
+          <div className="grid grid-cols-4 gap-0">
+            <div className="p-2">名義</div>
+            <div className="col-span-3 p-2">トクヒ）カナガワケンライフルシヤゲキキョウカイ</div>
+          </div>
         </CardContent>
       </Card>
 
       <Card>
-        <CardHeader title={'ご挨拶'}/>
+        <CardHeader title="ご挨拶" />
         <CardContent>準備中……</CardContent>
       </Card>
 
       <Card>
-        <CardHeader title={'協会沿革'}/>
+        <CardHeader title="協会沿革" />
         <CardContent>準備中……</CardContent>
       </Card>
     </PageLayout>

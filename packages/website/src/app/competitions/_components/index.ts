@@ -1,2 +1,4 @@
-export * from "./EntryInfoCard"
-export * from "./EventCard"
+export * from './EntryInfoCard';
+export * from './EntryFeeCard';
+export * from './EventCard';
+export * from './Tabs';

@@ -1,35 +1,38 @@
-import '@/styles/globals.css'
-import { config } from '@fortawesome/fontawesome-svg-core'
-import { ThemeProvider } from '@mui/material/styles'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
-import { GoogleTagManager } from '@next/third-parties/google'
-import type { Metadata } from 'next'
-import { Noto_Sans_JP, Roboto } from 'next/font/google'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import Script from "next/script";
-import {AxiomWebVitals} from "next-axiom";
-import React from 'react'
+// packages/website/src/app/layout.tsx
 
-import Presenter from '@/components/Presenter'
-import {env, app} from "@/config";
-import QueryProvider from '@/providers/QueryProvider'
-import theme from '@/theme'
+import '@/styles/globals.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import CssBaseline from '@mui/material/CssBaseline'; // 追加
+import { ThemeProvider } from '@mui/material/styles';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { GoogleTagManager } from '@next/third-parties/google';
+import type { Metadata } from 'next';
+import { Noto_Sans_JP, Roboto } from 'next/font/google';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import Script from 'next/script';
+import { AxiomWebVitals } from 'next-axiom';
+import React from 'react';
 
-config.autoAddCss = false
+import { Frame } from '@/components';
+import { env, app } from '@/config';
+import QueryProvider from '@/providers/QueryProvider';
+import theme from '@/theme';
+
+config.autoAddCss = false;
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   variable: '--font-noto-sans-jp',
-  weight: ['300'],
+  weight: ['400'],
   display: 'swap',
-})
+});
 
 const roboto = Roboto({
   subsets: ['latin'],
   variable: '--font-roboto',
-  weight: ['300'],
+  weight: ['400'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: {
@@ -44,11 +47,9 @@ export const metadata: Metadata = {
   },
   openGraph: { images: new URL(`/api/og?title=${app.name}`, env.APP_URL) },
   twitter: { images: new URL(`/api/og?title=${app.name}`, env.APP_URL) },
-}
+};
 
-export default function Layout(
-  {children}: Readonly<{children: React.ReactNode}>
-) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ja">
       {process.env.NODE_ENV === 'production' && env.CLARITY_ID && (
@@ -67,7 +68,8 @@ export default function Layout(
         <QueryProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
-              <Presenter>{children}</Presenter>
+              <CssBaseline />
+              <Frame>{children}</Frame>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </QueryProvider>
@@ -76,5 +78,5 @@ export default function Layout(
         <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
       )}
     </html>
-  )
+  );
 }

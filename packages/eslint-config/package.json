@@ -1,0 +1,13 @@
+{
+  "name": "@kanagawa-rifle/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unused-imports": "^4.2.0"
+  }
+}

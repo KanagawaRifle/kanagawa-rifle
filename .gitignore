@@ -1,63 +1,95 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# --------------------------------
+# Node / Next.js
+# --------------------------------
 node_modules/
 .pnp/
 .pnp.js
-
-# testing
-coverage/
-
-# cypress
-cypress/screenshots/
-cypress/videos/
-
-# next.js
 .next/
 out/
+build/
+dist/
+coverage/
+.eslintcache
+.cache/
+.swc/
+.temp/
+local/
 
 # next-sitemap
 public/robots.txt
 public/sitemap.xml
 public/sitemap-*.xml
 
-# cache
-.swc/
+# Vercel
+.vercel/
 
-# production
-build/
+# --------------------------------
+# PHP / Composer
+# --------------------------------
+vendor/
+composer.lock
+phpunit.xml
+.phpunit.result.cache
+*.cache
+*.log
+*.sql
+*.sqlite
+/storage/
+bootstrap/cache/
 
-# misc
-.DS_Store
-*.pem
-Thumbs.db
+# --------------------------------
+# Rust / Cargo
+# --------------------------------
+/target/
+Cargo.lock
+**/*.rs.bk
 
-# debug
+# --------------------------------
+# Testing / Cypress / VRT
+# --------------------------------
+cypress/screenshots/
+cypress/videos/
+__screenshots__/
+directory_contains_actual_images/
+.reg/
+
+# --------------------------------
+# Typescript
+# --------------------------------
+*.tsbuildinfo
+next-env.d.ts
+
+# --------------------------------
+# Env files
+# --------------------------------
+.env
+.env*.local
+
+# --------------------------------
+# Debug logs
+# --------------------------------
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# dotenv local files
-.env*.local
+# --------------------------------
+# IDE / Editor
+# --------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# local folder
-local/
+# --------------------------------
+# OS files
+# --------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# vercel
-.vercel/
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# JetBrains
-.idea
-
-# VRT
-__screenshots__/
-directory_contains_actual_images/
-.reg/
-
-.env
-package-lock.json
+# --------------------------------
+# Security
+# --------------------------------
+*.pem

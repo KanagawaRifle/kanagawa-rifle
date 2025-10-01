@@ -1,0 +1,11 @@
+// packages/prettier-config/index.js
+
+export default {
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  tabWidth: 2,
+  printWidth: 120,
+  endOfLine: 'lf',
+  plugins: ['prettier-plugin-tailwindcss'],
+};

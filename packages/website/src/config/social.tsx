@@ -1,5 +1,5 @@
-import * as React from "react";
-import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
+import * as React from 'react';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 type SocialKey = 'facebook' | 'twitter' | 'instagram';
 

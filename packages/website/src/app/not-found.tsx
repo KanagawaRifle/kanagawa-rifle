@@ -1,21 +1,13 @@
-import {
-  Box,
-  Card,
-  CardHeader,
-  CardContent
-} from "@mui/material";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import type { Metadata } from 'next'
-import React from 'react'
-import {LuFrown, LuHouse} from "react-icons/lu";
+import { Box, Card, CardHeader, CardContent } from '@mui/material';
+import Button from '@mui/material/Button';
+import type { Metadata } from 'next';
+import React from 'react';
+import { LuFrown, LuHouse } from 'react-icons/lu';
 
-import {PageLayout} from "@/components";
+import { PageLayout } from '@/components';
 
-
-
-const title = "Not Found";
-const description = "指定されたページが見つかりませんでした。";
+const title = '404 Not Found';
+const description = '指定されたページが見つかりませんでした。';
 
 export const metadata: Metadata = {
   title,
@@ -26,20 +18,18 @@ export default function Page() {
   return (
     <PageLayout>
       <Card>
-        <CardHeader title={
-          <Box className="font-bold text-2xl text-center">{title}</Box>
-        } />
-        <CardContent className="flex flex-col gap-4 justify-center items-center">
-          <Typography color="text.secondary" className="flex gap-4 items-center justify-center">
+        <CardHeader title={<div className="text-center text-2xl font-bold">{title}</div>} />
+        <CardContent className="flex flex-col items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 text-gray-400">
             <LuFrown className="text-7xl" />
-            <Box className="text-7xl font-black" component="span">404</Box>
-          </Typography>
-          <Box>
-            <Box className="text-center">{description}</Box>
-          </Box>
-          <Box>
-            <Button href="/" startIcon={<LuHouse />}>ホームへ</Button>
-          </Box>
+            <Box className="text-7xl font-black" component="span">
+              404
+            </Box>
+          </div>
+          <div className="text-center">{description}</div>
+          <Button href="/" startIcon={<LuHouse />}>
+            ホームへ
+          </Button>
         </CardContent>
       </Card>
     </PageLayout>
