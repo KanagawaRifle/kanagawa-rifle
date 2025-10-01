@@ -1,9 +1,7 @@
 'use client';
 
-import {ListNewsItems} from '@/features/news/components/ListNewsItems'
+import { NewsItemList } from '@/features/news/components/NewsItemList';
 
 export function NewsItems() {
-  return (
-      <ListNewsItems/>
-  );
+  return <NewsItemList />;
 }

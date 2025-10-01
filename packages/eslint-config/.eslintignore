@@ -1,0 +1,129 @@
+# Dependencies
+**/node_modules/
+**/vendor/
+**/bower_components/
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/out/
+**/.output/
+**/.nuxt/
+**/target/
+
+# Laravel specific
+**/public/css/
+**/public/js/
+**/public/mix-manifest.json
+**/public/hot
+**/storage/
+**/bootstrap/cache/
+**/public/storage
+**/public/build/
+
+# Rust (not applicable for ESLint but kept for consistency)
+**/target/
+
+# Terraform (not applicable for ESLint but kept for consistency)
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+
+# Ansible (not applicable for ESLint but kept for consistency)
+**/*.retry
+
+# Package manager files
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/composer.lock
+
+# Cache and temporary files
+**/.cache/
+**/.temp/
+**/.tmp/
+**/*.log
+**/.DS_Store
+**/.turbo/
+**/.eslintcache
+
+# Test coverage
+**/coverage/
+**/.nyc_output/
+
+# Generated files
+**/public/build/
+**/public/assets/
+**/static/
+
+# IDE and editor files
+**/.idea/
+**/.vscode/
+**/*.swp
+**/*.swo
+*~
+
+# Environment files
+**/.env
+**/.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Minified and bundled files
+**/*.min.js
+**/*.bundle.js
+**/*.chunk.js
+
+# Next.js
+**/.next/
+**/next-env.d.ts
+
+# TypeScript
+**/*.tsbuildinfo
+**/tsconfig.tsbuildinfo
+
+# Auto-generated files
+**/generated/
+**/__generated__/
+**/graphql-types.ts
+**/schema.generated.ts
+
+# Service Workers
+**/sw.js
+**/workbox-*.js
+**/service-worker.js
+
+# Storybook
+**/storybook-static/
+**/.storybook/public/
+
+# Webpack
+**/.webpack/
+**/webpack.config.js
+
+# Vite
+**/vite.config.*.timestamp-*
+
+# Documentation
+**/docs/build/
+**/.docusaurus/
+
+# Monorepo specific
+.pnpm-store/
+**/.turbo/
+
+# Legacy code (if applicable)
+**/legacy/
+**/deprecated/
+
+# Third-party scripts
+**/public/vendor/
+**/assets/vendor/
+
+# Compiled output
+**/*.d.ts
+!**/*.config.d.ts
+!**/src/**/*.d.ts

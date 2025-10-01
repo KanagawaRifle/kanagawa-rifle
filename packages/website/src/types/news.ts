@@ -9,4 +9,4 @@ export type NewsItem = {
   eyecatch?: string;
   published: Date;
   updated?: Date;
-}
+};

@@ -1,25 +1,21 @@
 // packages/website/src/features/news/components/ShareLinks.tsx
-'use client'
+'use client';
 
-import Alert from "@mui/material/Alert";
-import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Snackbar from "@mui/material/Snackbar";
-import React, { useState } from "react";
-import { FaFacebook,FaTwitter,FaLine } from "react-icons/fa";
-import {
-  LuClipboard,  LuMail,
-  LuShare2,
-} from "react-icons/lu";
-
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Snackbar from '@mui/material/Snackbar';
+import React, { useState } from 'react';
+import { FaFacebook, FaTwitter, FaLine } from 'react-icons/fa';
+import { LuClipboard, LuMail, LuShare2 } from 'react-icons/lu';
 
 type Props = {
   url: string;
   title: string;
   loading?: boolean;
-}
+};
 
 export default function ShareLinks({ url, title, loading = false }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -75,7 +71,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
   };
 
   const handleCopyToClipboard = async () => {
-    let copySuccess = false;
+    let copySuccess;
 
     if (navigator?.clipboard?.writeText) {
       try {
@@ -123,7 +119,8 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
       label: 'LINE でシェア',
       icon: <FaLine />,
       color: '#00B900',
-      onClick: () => handleExternalShare(`https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${encodedTitle}`),
+      onClick: () =>
+        handleExternalShare(`https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${encodedTitle}`),
     },
     {
       name: 'メール',
@@ -138,7 +135,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
       color: null,
       icon: <LuClipboard />,
       onClick: handleCopyToClipboard,
-    }
+    },
   ];
 
   return (
@@ -161,7 +158,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
         open={open}
         onClose={handleClose}
         slotProps={{
-          list: {'aria-labelledby': 'share-button'},
+          list: { 'aria-labelledby': 'share-button' },
         }}
         anchorOrigin={{
           vertical: 'bottom',
@@ -185,7 +182,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
                 color: link.color ?? 'text.secondary',
                 width: 20,
                 height: 20,
-              }
+              },
             }}
           >
             {link.icon}
@@ -200,11 +197,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert
-          variant="filled"
-          onClose={handleCloseSnackbar}
-          severity={snackbarSeverity}
-        >
+        <Alert variant="filled" onClose={handleCloseSnackbar} severity={snackbarSeverity}>
           {snackbarMessage}
         </Alert>
       </Snackbar>

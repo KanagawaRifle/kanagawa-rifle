@@ -6,9 +6,7 @@ type Credential = {
   password: string;
 };
 
-type AuthResult =
-  | { user: Credential; error: null }
-  | { user: null; error: string };
+type AuthResult = { user: Credential; error: null } | { user: null; error: string };
 
 // 認証情報を環境変数から取得
 const BASIC_AUTH_CREDENTIALS: Credential = {
@@ -16,23 +14,16 @@ const BASIC_AUTH_CREDENTIALS: Credential = {
   password: process.env.BASIC_AUTH_PASSWORD || 'pass',
 };
 
-function authenticate(
-  header: string | null,
-  validCredential: Credential
-): AuthResult {
+function authenticate(header: string | null, validCredential: Credential): AuthResult {
   const credential = parseBasicAuthHeader(header);
 
   if (!credential) {
     return { user: null, error: 'Invalid authorization header' };
   }
 
-  const isValid =
-    credential.id === validCredential.id &&
-    credential.password === validCredential.password;
+  const isValid = credential.id === validCredential.id && credential.password === validCredential.password;
 
-  return isValid
-    ? { user: credential, error: null }
-    : { user: null, error: 'Invalid credentials' };
+  return isValid ? { user: credential, error: null } : { user: null, error: 'Invalid credentials' };
 }
 
 /**
@@ -62,17 +53,14 @@ function parseBasicAuthHeader(header: string | null): Credential | null {
 }
 
 export function middleware(req: NextRequest) {
-  if (process.env.VERCEL_ENV !== 'preview') {
+  if (process.env.VERCEL_GIT_COMMIT_REF !== 'staging') {
     return NextResponse.next();
   }
 
-  const authResult = authenticate(
-    req.headers.get('Authorization'),
-    BASIC_AUTH_CREDENTIALS
-  );
+  const authResult = authenticate(req.headers.get('Authorization'), BASIC_AUTH_CREDENTIALS);
 
   if (authResult.error) {
-    return new NextResponse('401 Unauthorized TT', {
+    return new NextResponse('401 Unauthorized  (T_T) ', {
       status: 401,
       headers: {
         'WWW-Authenticate': 'Basic realm="Secure Area"',

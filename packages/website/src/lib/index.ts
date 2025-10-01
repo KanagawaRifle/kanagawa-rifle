@@ -1,2 +1,3 @@
-export * from './ReactQuery'
-export * from "./OpenGraphImage"
+// packages/website/src/lib/index.ts
+
+export * from './ReactQuery';
