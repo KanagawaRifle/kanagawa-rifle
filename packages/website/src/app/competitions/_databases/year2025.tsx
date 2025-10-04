@@ -33,6 +33,39 @@ export const year2025: Event[] = [
     deadline: new Date('2025/11/26'),
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
   },
+
+  {
+    name: '第25回冬季ＡＲ･ＡＰランクリスト競技会',
+    grade: 'G3',
+    actions: [
+      { name: '申込', href: 'https://forms.gle/E1pTSoqR4feEPApH8' },
+      {
+        name: '要項',
+        href: paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf'),
+      },
+      {
+        name: '射座',
+        href: paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf'),
+        disabled: true,
+      },
+      {
+        name: '成績',
+        href: paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf'),
+        disabled: true,
+      },
+    ],
+    date: (
+      <>
+        <div>
+          <div>12月大会 12月6日（土）― 7日（日）</div>
+          <div>1月大会 1月10日（土）― 11日（日）</div>
+          <div>2月大会 2月15日（土）― 15日（日）</div>
+        </div>
+      </>
+    ),
+    venue: { name: 'くりはま花の国射撃場', href: 'https://yokosukarifle.web.fc2.com/shooting-range/' },
+  },
+
   {
     name: '第62回全関東ライフル射撃競技選手権大会',
     grade: 'G3',

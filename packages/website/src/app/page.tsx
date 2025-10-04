@@ -92,6 +92,35 @@ export default function Page() {
         </div>
       </Alert>
 
+      <Alert severity="error">
+        <AlertTitle>第25回冬季ＡＲ･ＡＰランクリスト競技会</AlertTitle>
+        <ButtonGroup variant="outlined">
+          <Button href="https://forms.gle/E1pTSoqR4feEPApH8" target="_blank">
+            申込
+          </Button>
+          <Button
+            href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf')}
+            target="_blank"
+          >
+            要項
+          </Button>
+          <Button
+            disabled
+            href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf')}
+            target="_blank"
+          >
+            射座
+          </Button>
+          <Button
+            disabled
+            href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf')}
+            target="_blank"
+          >
+            成績
+          </Button>
+        </ButtonGroup>
+      </Alert>
+
       <Alert severity="info">
         <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
         <div className="flex flex-col gap-2">
