@@ -84,6 +84,7 @@ composer.lock
 .turbo/
 .eslintcache
 .stylelintcache
+.lighthouse*
 
 # Test coverage
 /coverage

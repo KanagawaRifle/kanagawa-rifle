@@ -1,5 +1,5 @@
 {
-  "name": "@kanagawa-rifle/stylint-config",
+  "name": "@kanagawa-rifle/prettier-config",
   "version": "1.0.0",
   "private": true,
   "type": "module",

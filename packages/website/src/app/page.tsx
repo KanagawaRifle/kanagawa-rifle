@@ -153,13 +153,14 @@ export default function Page() {
           <Image
             src={paths.cdn.getHref('/news/2024-02-22-02-card.png')}
             alt="国スポ予選ポスター"
-            width={800}
-            height={164}
+            width={734}
+            height={150}
             priority
             style={{
               width: '100%',
               height: 'auto',
             }}
+            sizes="(max-width: 768px) 100vw, 734px"
           />
         </CardActionArea>
       </Card>

@@ -12,7 +12,9 @@
     "lint:text": "textlint '**/*.{md,txt}'",
     "fix": "run-s --continue-on-error fix:*",
     "fix:eslint": "eslint . --fix --max-warnings 0",
-    "fix:prettier": "npm run lint:prettier -- --write"
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lhci": "npm run build && lhci autorun --config=.lighthouserc.cjs",
+    "spell": "cspell lint --no-progress '**/*.{ts,tsx,js,jsx,json,md,html,css,scss,txt}'"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -30,6 +32,7 @@
     "@fullcalendar/react": "^6.1.19",
     "@kanagawa-rifle/eslint-config": "*",
     "@kanagawa-rifle/prettier-config": "*",
+    "@kanagawa-rifle/lighthouse-config": "*",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
     "@mui/material-nextjs": "^7.3.2",

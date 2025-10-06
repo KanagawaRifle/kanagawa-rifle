@@ -48,6 +48,8 @@ export const paths: Paths = {
     about: {
       name: '協会について',
       getHref: () => '/about',
+      description:
+        '神奈川県ライフル射撃協会の概要をご紹介します。事務局所在地や連絡先、口座情報、沿革、会長挨拶などを掲載しています。',
     },
     join: {
       name: '入会案内',
@@ -58,31 +60,43 @@ export const paths: Paths = {
     competitions: {
       name: '大会',
       getHref: () => '/competitions',
+      description:
+        '各種大会の情報を掲載しています。参加料や大会要項、射座割、成績など、出場に必要な情報をご確認いただけます。',
       children: {
         year2024: {
           name: '大会（2024年度）',
           getHref: () => '/competitions/2024',
+          description:
+            '2024年度に開催された大会の情報を掲載しています。参加案内や成績など、当時の大会記録をまとめています。',
         },
         year2023: {
           name: '大会（2023年度）',
           getHref: () => '/competitions/2023',
+          description:
+            '2023年度に開催された大会の情報を掲載しています。参加案内や成績など、当時の大会記録をまとめています。',
         },
         year2022: {
           name: '大会（2022年度）',
           getHref: () => '/competitions/2022',
+          description:
+            '2022年度に開催された大会の情報を掲載しています。参加案内や成績など、当時の大会記録をまとめています。',
         },
       },
     },
     recommendation: {
       name: '推薦',
       getHref: () => '/recommendation',
+      description: '推薦申請の手続き方法や手数料、注意事項などをまとめています。申請に必要な情報を掲載しています。',
     },
     projects: {
       name: '事業',
       getHref: () => '/projects',
+      description: '各年度の事業計画や関連する案内を掲載しています。活動方針や取り組み内容をご覧いただけます。',
     },
     news: {
       name: 'お知らせ',
+      description:
+        '協会からのお知らせや最新情報を掲載しています。大会案内、行事予定、重要なお知らせなどをご確認いただけます。',
       getHref: () => '/news',
     },
   },
@@ -90,12 +104,14 @@ export const paths: Paths = {
   sub: {
     forms: {
       name: '様式',
+      description: '各種書類や様式を掲載しています。必要な資料をこのページからダウンロードできます。',
       getHref: () => '/forms',
     },
     links: {
-      name: 'リンク',
+      name: '関連リンク',
       getHref: () => '/links',
-      description: '関係機関等へのリンクを掲載しています。',
+      description:
+        '関連する団体や協会などへのリンクを掲載しています。射撃・銃に関わる各種組織の情報をご覧いただけます。',
     },
   },
 

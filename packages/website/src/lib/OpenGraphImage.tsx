@@ -84,7 +84,7 @@ export function createOpengraphImage(title: string): {
           fonts: [
             {
               name: 'Noto Sans JP',
-              data: await loadGoogleFont('Noto+Sans+JP:wght@400;500;900', allText),
+              data: await loadGoogleFont('Noto+Sans+JP:weight@400;500;900', allText),
               style: 'normal',
             },
           ],
