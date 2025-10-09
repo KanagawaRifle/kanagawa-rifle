@@ -96,6 +96,11 @@ htmlcov/
 .coverage.*
 junit.xml
 
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
 # IDE and editor files
 .idea/
 .vscode/
