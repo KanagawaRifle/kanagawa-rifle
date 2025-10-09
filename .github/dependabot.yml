@@ -1,0 +1,73 @@
+# .github/dependabot.yml
+version: 2
+updates:
+  # npm dependencies (root)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "your-github-username"
+    labels:
+      - "Cat: Dependencies 🤖"
+    commit-message:
+      prefix: "[*] chore"
+    groups:
+      # Major updates grouped separately
+      major-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
+      # Minor and patch updates grouped together
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # npm dependencies (website)
+  - package-ecosystem: "npm"
+    directory: "/packages/website"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    labels:
+      - "Cat: Dependencies"
+      - "Package: Website 📦"
+    commit-message:
+      prefix: "[*] chore"
+      prefix-development: "[website] chore"
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "Cat: Dependencies 🤖"
+    commit-message:
+      prefix: "[*] chore"
+    groups:
+      github-actions-updates:
+        patterns:
+          - "*"
