@@ -1,3 +1,4 @@
+// packages/website/src/instrumentation-client.ts
 // This file configures the initialization of Sentry on the client.
 // The added config here will be used whenever a users loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
@@ -9,8 +10,13 @@ import { env } from '@/config';
 Sentry.init({
   dsn: env.SENTRY_DSN,
 
-  // Add optional integrations for additional features
-  integrations: [Sentry.replayIntegration()],
+  // console.errorを自動的にキャプチャ + 既存のReplay統合
+  integrations: [
+    Sentry.captureConsoleIntegration({
+      levels: ['error'],
+    }),
+    Sentry.replayIntegration(),
+  ],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,
