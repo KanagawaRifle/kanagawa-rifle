@@ -1,0 +1,19 @@
+/* packages/website/src/styles/globals.css */
+
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    font-family:
+      -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans', 'Noto Sans CJK JP',
+      'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+}

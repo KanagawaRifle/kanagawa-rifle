@@ -1,60 +1,224 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 node_modules/
-.pnp/
-.pnp.js
+vendor/
+bower_components/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patchescd we
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# testing
-coverage/
-
-# cypress
-cypress/screenshots/
-cypress/videos/
-
-# next.js
+# Build outputs
+dist/
+build/
 .next/
 out/
+.output/
+.nuxt/
+target/
 
-# next-sitemap
-public/robots.txt
-public/sitemap.xml
-public/sitemap-*.xml
+# Laravel specific
+public/css/
+public/js/
+public/mix-manifest.json
+public/hot
+storage/*.key
+storage/framework/cache/data/
+storage/framework/sessions/
+storage/framework/testing/
+storage/framework/views/
+storage/logs/
+bootstrap/cache/*
+!bootstrap/cache/.gitkeep
+!storage/framework/cache/.gitkeep
+!storage/framework/sessions/.gitkeep
+!storage/framework/testing/.gitkeep
+!storage/framework/views/.gitkeep
+!storage/logs/.gitkeep
+public/storage
+.phpunit.result.cache
+.php-cs-fixer.cache
 
-# cache
-.swc/
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+debug/
 
-# production
-build/
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
 
-# misc
+# Ansible
+*.retry
+.ansible/
+ansible.log
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+composer.lock
+.pnpm-store/
+
+# Cache and temporary files
+.cache/
+.temp/
+.tmp/
+*.log
+.turbo/
+.eslintcache
+.stylelintcache
+.lighthouse*
+
+# Test coverage
+/coverage
+.nyc_output/
+*.lcov
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+junit.xml
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Environment files
+.env*
+!.env.example
+!.env.sample
+!.env.template
+
+# OS files
 .DS_Store
-*.pem
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
-# debug
+# Misc
+*.pem
+
+# Debug logs
 npm-debug.log*
-pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
 
-# dotenv local files
-.env*.local
+# Vercel
+.vercel
 
-# local folder
-local/
+# Sentry
+.env.sentry-build-plugin
 
-# vercel
-.vercel/
-
-# typescript
+# TypeScript
 *.tsbuildinfo
+tsconfig.tsbuildinfo
 next-env.d.ts
 
-# JetBrains
-.idea
+# Auto-generated files
+generated/
+__generated__/
 
-# VRT
-__screenshots__/
-directory_contains_actual_images/
-.reg/
+# Service Workers
+sw.js
+workbox-*.js
+
+# Storybook
+storybook-static/
+
+# Webpack
+.webpack/
+
+# Vite
+vite.config.*.timestamp-*
+
+# Documentation
+docs/build/
+.docusaurus/
+
+# Monorepo specific
+.turbo/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Docker
+docker-compose.override.yml
+.docker/
+*.dockerignore
+docker-compose.local.yml
+docker-compose.*.local.yml
+
+# CI/CD secrets
+secrets/
+*.key
+*.cert
+*.crt
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Ruby
+*.gem
+.bundle/
+
+# Temporary files
+tmp/
+temp/
