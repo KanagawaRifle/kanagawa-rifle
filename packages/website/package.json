@@ -17,9 +17,13 @@
     "spell": "cspell lint --no-progress '**/*.{ts,tsx,js,jsx,json,md,html,css,scss,txt}'",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "test:coverage:ui": "vitest --ui --coverage"
+    "test:coverage:ui": "vitest --ui --coverage",
+    "test:e2e": "playwright test",
+    "test:ui": "vitest --ui",
+    "test:e2e:ui": "playwright test --ui",
+    "test:vrt": "playwright test e2e/visual.spec.ts",
+    "test:vrt:update": "playwright test e2e/visual.spec.ts --update-snapshots"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -36,8 +40,8 @@
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/react": "^6.1.19",
     "@kanagawa-rifle/eslint-config": "*",
-    "@kanagawa-rifle/prettier-config": "*",
     "@kanagawa-rifle/lighthouse-config": "*",
+    "@kanagawa-rifle/prettier-config": "*",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
     "@mui/material-nextjs": "^7.3.2",
@@ -75,6 +79,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
