@@ -11,6 +11,7 @@ const config = {
         'eslint-config',
         'prettier-config',
         'root',
+        '*',
       ],
     ],
     'scope-empty': [2, 'never'], // スコープを必須に
