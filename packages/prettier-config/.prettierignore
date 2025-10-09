@@ -1,0 +1,120 @@
+# Dependencies
+**/node_modules/
+**/vendor/
+**/bower_components/
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/out/
+**/.output/
+**/.nuxt/
+**/target/
+
+# Laravel specific
+**/public/css/
+**/public/js/
+**/public/mix-manifest.json
+**/public/hot
+**/storage/framework/
+**/storage/logs/
+**/bootstrap/cache/
+**/public/storage
+
+# Rust build artifacts
+**/target/
+**/*.rs.bk
+**/Cargo.lock
+
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform.lock.hcl
+**/*.tfvars
+
+# Ansible
+**/*.retry
+**/ansible.cfg
+
+# Package manager files
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/composer.lock
+
+# Cache and temporary files
+**/.cache/
+**/.temp/
+**/.tmp/
+**/*.log
+**/.DS_Store
+**/.turbo/
+
+# Test coverage
+**/coverage/
+**/.nyc_output/
+
+# Generated files
+**/public/build/
+**/public/assets/
+**/static/
+**/.docusaurus/
+
+# IDE and editor files
+**/.idea/
+**/.vscode/
+**/*.swp
+**/*.swo
+*~
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+*.bak
+
+# Minified files
+**/*.min.js
+**/*.min.css
+**/*.bundle.js
+
+# Auto-generated API documentation
+**/swagger-ui/
+**/api-docs/
+
+# Database files
+**/*.sql
+**/*.sqlite
+**/*.db
+
+# Compiled templates (Laravel Blade)
+**/storage/framework/views/
+
+# Next.js
+**/.next/
+**/next-env.d.ts
+
+# TypeScript
+**/*.tsbuildinfo
+
+# Changelog
+CHANGELOG.md
+
+# Monorepo specific
+pnpm-lock.yaml
+.pnpm-store/
+
+# CI/CD
+**/.github/
+**/.gitlab-ci.yml
+**/.circleci/
+
+# Documentation builds
+**/docs/build/
+**/docs/.vitepress/dist/

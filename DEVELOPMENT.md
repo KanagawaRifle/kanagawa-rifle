@@ -6,17 +6,17 @@
 
 開発サーバー
 ```bash
-npm run dev -w @kanagawa-rifle/website
+npm run -w @kanagawa-rifle/website dev
 ```
 
 Format
 ```bash
-cd packages/website && npx next lint --fix
+npm run -w @kanagawa-rifle/website fix
 ```
 
-SSG
+ビルド
 ```bash
-npm run export -w @kanagawa-rifle/website
+npm run -w @kanagawa-rifle/website build
 ```
 
 ## パッケージ管理
