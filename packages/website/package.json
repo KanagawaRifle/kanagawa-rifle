@@ -38,7 +38,7 @@
     "@mui/material-nextjs": "^7.3.2",
     "@next/bundle-analyzer": "^15.5.4",
     "@next/third-parties": "^15.5.2",
-    "@sentry/nextjs": "^10.16.0",
+    "@sentry/nextjs": "^10.18.0",
     "@tanstack/react-query": "^5.89.0",
     "@tanstack/react-query-devtools": "^5.89.0",
     "clsx": "^2.1.1",
