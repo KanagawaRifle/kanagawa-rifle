@@ -1,3 +1,4 @@
+// packages/website/src/components/Footer.tsx
 import { ListItem } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
