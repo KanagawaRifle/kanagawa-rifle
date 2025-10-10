@@ -1,4 +1,5 @@
-import { dirname } from 'path';
+import { readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
@@ -11,17 +12,18 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+// read /.gitignore
+const gitignoreContent = readFileSync(resolve(__dirname, '../../.gitignore'), 'utf-8');
+
+// .gitignore to array
+const gitignorePatterns = gitignoreContent
+  .split('\n')
+  .filter((line) => line.trim() && !line.startsWith('#'))
+  .map((line) => line.trim());
+
 const eslintConfig = [
   {
-    ignores: [
-      'node_modules/**',
-      '.next/**',
-      'out/**',
-      'build/**',
-      'next-env.d.ts',
-      '.lighthouseci/*',
-      '.lighthouse.reports/*',
-    ],
+    ignores: [...gitignorePatterns],
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   ...base,

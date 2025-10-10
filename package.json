@@ -34,6 +34,8 @@
   },
   "scripts": {
     "prepare": "node -e \"if (process.env.CI || process.env.VERCEL) process.exit(0)\" || husky",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "security": "snyk test --all-projects --severity-threshold=high",
+    "security:fix": "snyk fix --all-projects"
   }
 }
