@@ -67,6 +67,16 @@ export const year2025: Event[] = [
   },
 
   {
+    name: '新人大会兼関東選抜大会県予選',
+    grade: 'G4',
+    actions: [
+      { name: '成績', href: paths.cdn.getHref('/competitions/2025/2025-10-18-rookie-competition-results.pdf') },
+    ],
+    date: { from: new Date('2025/10/18'), to: new Date('2025/10/19') },
+    venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
+  },
+
+  {
     name: '第62回全関東ライフル射撃競技選手権大会',
     grade: 'G3',
     actions: [{ name: '大会ページ', href: 'https://sites.google.com/meiwakenoh.ed.jp/kanto-block-rifletournament/' }],
