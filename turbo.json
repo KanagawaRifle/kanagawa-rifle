@@ -14,7 +14,10 @@
         "NEXT_PUBLIC_*",
         "NODE_ENV",
         "NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY",
-        "NEXT_PUBLIC_GOOGLE_CALENDAR_ID"
+        "NEXT_PUBLIC_GOOGLE_CALENDAR_ID",
+        "SENTRY_AUTH_TOKEN",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
