@@ -100,7 +100,7 @@
     "dotenv": "^17.2.2",
     "eslint-config-next": "15.5.6",
     "jest-axe": "^10.0.0",
-    "jsdom": "^27.0.0",
+    "jsdom": "^27.0.1",
     "npm-run-all": "^4.1.5",
     "sass": "^1.92.0",
     "snyk": "^1.1300.1",
