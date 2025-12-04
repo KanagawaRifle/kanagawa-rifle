@@ -105,7 +105,6 @@ export default function Page() {
             要項
           </Button>
           <Button
-            disabled
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf')}
             target="_blank"
           >
