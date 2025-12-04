@@ -17,11 +17,10 @@ export const year2025: Event[] = [
       {
         name: '射座',
         href: paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf'),
-        disabled: true,
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results'),
+        href: paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results.pdf'),
         disabled: true,
       },
     ],
@@ -46,7 +45,6 @@ export const year2025: Event[] = [
       {
         name: '射座',
         href: paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf'),
-        disabled: true,
       },
       {
         name: '成績',
