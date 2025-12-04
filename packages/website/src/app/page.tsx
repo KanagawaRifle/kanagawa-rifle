@@ -73,7 +73,6 @@ export default function Page() {
               要項
             </Button>
             <Button
-              disabled
               href={paths.cdn.getHref(
                 '/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf',
               )}
