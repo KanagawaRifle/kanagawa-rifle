@@ -81,8 +81,7 @@ export default function Page() {
               射座
             </Button>
             <Button
-              disabled
-              href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results')}
+              href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results.pdf')}
               target="_blank"
             >
               成績
@@ -110,7 +109,6 @@ export default function Page() {
             射座
           </Button>
           <Button
-            disabled
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf')}
             target="_blank"
           >
