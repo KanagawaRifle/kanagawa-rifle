@@ -5,9 +5,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
+      interval: "daily"
+      time: "02:00"
       timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
     reviewers:
@@ -35,9 +34,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/website"
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
+      interval: "daily"
+      time: "03:00"
       timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
     labels:
