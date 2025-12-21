@@ -41,14 +41,26 @@ async function parseMarkdownFile(filePath: string, slug: string, withContent = f
   }
 }
 
-// 全てのマークダウンファイルを取得
+// 全てのマークダウンファイルを取得（年ごとのディレクトリ構造に対応）
 async function getAllNewsFiles(): Promise<string[]> {
   try {
-    const files = await readdir(CONTENTS_DIR);
-    const markdownFiles = files.filter((file) => file.endsWith('.md'));
+    // 年ごとのディレクトリを取得
+    const yearDirs = await readdir(CONTENTS_DIR);
+    const allFiles: string[] = [];
 
-    markdownFiles.sort((a, b) => b.localeCompare(a));
-    return markdownFiles;
+    for (const year of yearDirs) {
+      const yearPath = join(CONTENTS_DIR, year);
+      try {
+        const files = await readdir(yearPath);
+        const markdownFiles = files.filter((file) => file.endsWith('.md'));
+        allFiles.push(...markdownFiles);
+      } catch {
+        // ディレクトリでない場合はスキップ
+      }
+    }
+
+    allFiles.sort((a, b) => b.localeCompare(a));
+    return allFiles;
   } catch (error) {
     console.error('Error reading news directory:', error);
     return [];
@@ -67,7 +79,9 @@ async function getPaginatedNews(page: number, size: number): Promise<Paginated<N
   const newsItems = await Promise.all(
     paginatedFiles.map(async (file) => {
       const slug = file.replace('.md', '');
-      const filePath = join(CONTENTS_DIR, file);
+      // slugから年を抽出（例: 2025-12-09-01 → 2025）
+      const year = slug.substring(0, 4);
+      const filePath = join(CONTENTS_DIR, year, file);
       return await parseMarkdownFile(filePath, slug, false);
     }),
   );
