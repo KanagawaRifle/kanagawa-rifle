@@ -72,12 +72,12 @@ export const env = createEnv();
 
 /**
  * 実行環境に応じたAPI URLを取得
- * - サーバーサイド: API_INTERNAL_URL（設定時）または API_URL
+ * - サーバーサイド: API_INTERNAL_URL（未設定時はAPI_URLにフォールバック）
  * - クライアントサイド: API_URL
  */
 export const getApiUrl = (): string => {
-  if (typeof window === 'undefined' && env.API_INTERNAL_URL) {
-    return env.API_INTERNAL_URL;
+  if (typeof window === 'undefined') {
+    return env.API_INTERNAL_URL ?? env.API_URL;
   }
   return env.API_URL;
 };
