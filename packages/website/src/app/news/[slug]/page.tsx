@@ -17,10 +17,14 @@ type Props = {
 const preloadData = async (slug: string) => {
   const queryClient = new QueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery(getNewsItemQueryOptions(slug)),
-    queryClient.prefetchQuery(getListNewsItemsQueryOptions({ size: 64 })),
-  ]);
+  try {
+    await Promise.all([
+      queryClient.prefetchQuery(getNewsItemQueryOptions(slug)),
+      queryClient.prefetchQuery(getListNewsItemsQueryOptions({ size: 64 })),
+    ]);
+  } catch {
+    // ビルド時はAPIが利用できないためスキップ
+  }
 
   const dehydratedState = dehydrate(queryClient);
 
@@ -42,7 +46,7 @@ export async function generateStaticParams() {
     return res.data.map((item) => ({ slug: item.slug }));
   } catch (error) {
     console.error('Failed to generate static params:', error);
-
+    // ビルド時にAPIが利用できない場合は空配列を返す
     return [];
   }
 }

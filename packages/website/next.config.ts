@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
 
   // セキュリティヘッダー
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+
     // CSP ディレクティブ（外部サービス対応）
     const cspDirectives = [
       "default-src 'self'",
@@ -31,13 +33,15 @@ const nextConfig: NextConfig = {
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
       "font-src 'self' https://fonts.gstatic.com",
-      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org",
+      // 開発環境では localhost と WebSocket を許可
+      `connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${isDev ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}`,
       "frame-src 'self' https://www.google.com https://docs.google.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://docs.google.com",
       "frame-ancestors 'none'",
-      "upgrade-insecure-requests",
+      // 開発環境では upgrade-insecure-requests を無効化
+      ...(isDev ? [] : ['upgrade-insecure-requests']),
     ];
 
     return [
