@@ -53,48 +53,17 @@ export default function Page() {
         </h1>
       </div>
 
-      <Alert severity="error">
-        <AlertTitle>秋季神奈川オープン（県選手権）期日変更のご案内</AlertTitle>
-        <div className="flex flex-col gap-4">
-          <div>
-            年度初めにご案内した期日から変更となりました。
-            <div className="text-xl">
-              <strong>12月14日（日</strong>）← <del>11月2日（日）</del>
-            </div>
-          </div>
-          <ButtonGroup variant="outlined">
-            <Button href="https://forms.gle/G8t7vH7DsRERi5Vx6" target="_blank">
-              申込
-            </Button>
-            <Button
-              href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-details.pdf')}
-              target="_blank"
-            >
-              要項
-            </Button>
-            <Button
-              href={paths.cdn.getHref(
-                '/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-start-lists.pdf',
-              )}
-              target="_blank"
-            >
-              射座
-            </Button>
-            <Button
-              href={paths.cdn.getHref('/competitions/2025/2025-12-14-autumn-kanagawa-open-championship-results.pdf')}
-              target="_blank"
-            >
-              成績
-            </Button>
-          </ButtonGroup>
-        </div>
-      </Alert>
-
-      <Alert severity="error">
+      <Alert severity="info">
         <AlertTitle>第25回冬季ＡＲ･ＡＰランクリスト競技会</AlertTitle>
         <ButtonGroup variant="outlined">
           <Button href="https://forms.gle/E1pTSoqR4feEPApH8" target="_blank">
             申込
+          </Button>
+          <Button
+            href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSJljyFwEUQXU5msbN8e2pI0_b-hutOqsOP1PdfneI6KcK2InJq_1kHG630IrJCXxwrnIXmLNYhh83v/pubhtml"
+            target="_blank"
+          >
+            名簿
           </Button>
           <Button
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf')}
