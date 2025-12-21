@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
     const cspDirectives = [
       "default-src 'self'",
       // Vercel環境ではプレビュー機能用に vercel.live を許可
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://*.sentry.io${isVercel ? ' https://vercel.live' : ''}`,
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.clarity.ms https://*.sentry.io${isVercel ? ' https://vercel.live' : ''}`,
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
       "font-src 'self' https://fonts.gstatic.com",
