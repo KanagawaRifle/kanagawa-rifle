@@ -24,6 +24,22 @@ const nextConfig: NextConfig = {
 
   // セキュリティヘッダー
   async headers() {
+    // CSP ディレクティブ（外部サービス対応）
+    const cspDirectives = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://*.sentry.io",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
+      "font-src 'self' https://fonts.gstatic.com",
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org",
+      "frame-src 'self' https://www.google.com https://docs.google.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self' https://docs.google.com",
+      "frame-ancestors 'none'",
+      "upgrade-insecure-requests",
+    ];
+
     return [
       {
         source: '/(.*)',
@@ -35,6 +51,7 @@ const nextConfig: NextConfig = {
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Content-Security-Policy', value: cspDirectives.join('; ') },
         ],
       },
     ];
