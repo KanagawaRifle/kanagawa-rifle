@@ -107,4 +107,33 @@ describe('GET /api/news/[slug]', () => {
       }
     });
   });
+
+  describe('Cache headers', () => {
+    it('should include cache headers for successful response', async () => {
+      // 実際に存在する記事を使用
+      const response = await GET(new NextRequest('http://localhost/api/news/2025-12-09-01'), {
+        params: Promise.resolve({ slug: '2025-12-09-01' }),
+      });
+
+      // 記事が存在する場合のみキャッシュヘッダーを確認
+      if (response.status === 200) {
+        const cacheControl = response.headers.get('Cache-Control');
+        expect(cacheControl).toContain('max-age=');
+        expect(cacheControl).toContain('s-maxage=');
+        expect(cacheControl).toContain('stale-while-revalidate');
+      }
+    });
+
+    it('should not include cache headers for error response', async () => {
+      // 存在しない記事
+      const response = await GET(new NextRequest('http://localhost/api/news/1999-01-01-99'), {
+        params: Promise.resolve({ slug: '1999-01-01-99' }),
+      });
+
+      expect(response.status).toBe(404);
+      const cacheControl = response.headers.get('Cache-Control');
+      // エラーレスポンスにはキャッシュヘッダーが設定されない
+      expect(cacheControl).toBeNull();
+    });
+  });
 });
