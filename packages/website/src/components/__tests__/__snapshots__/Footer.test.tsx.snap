@@ -1,0 +1,220 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > Snapshot > matches snapshot 1`] = `
+<div>
+  <footer>
+    <div
+      class="bg-slate-50 MuiBox-root css-0"
+    >
+      <nav>
+        <div
+          class="mx-auto mt-2 max-w-screen-xl border-b border-slate-200 px-4 py-6 MuiBox-root css-0"
+        >
+          <div
+            class="MuiButtonGroup-root MuiButtonGroup-outlined MuiButtonGroup-horizontal MuiButtonGroup-colorPrimary css-zv9ro0-MuiButtonGroup-root"
+            role="group"
+          >
+            <a
+              aria-label="Twitter"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-53g0n7-MuiButtonBase-root-MuiIconButton-root"
+              data-mui-internal-clone-element="true"
+              href="https://twitter.com/example"
+              tabindex="0"
+              target="_blank"
+            >
+              <span
+                data-testid="twitter-icon"
+              >
+                Twitter Icon
+              </span>
+            </a>
+            <a
+              aria-label="Facebook"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-53g0n7-MuiButtonBase-root-MuiIconButton-root"
+              data-mui-internal-clone-element="true"
+              href="https://facebook.com/example"
+              tabindex="0"
+              target="_blank"
+            >
+              <span
+                data-testid="facebook-icon"
+              >
+                Facebook Icon
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <nav>
+        <div
+          class="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-slate-200 px-4 py-6 md:grid-cols-3 MuiBox-root css-0"
+        >
+          <ul
+            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            >
+              <a
+                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                href="/"
+                tabindex="0"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  >
+                    ホーム
+                  </span>
+                </div>
+              </a>
+            </li>
+            <li
+              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            >
+              <a
+                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                href="/about"
+                tabindex="0"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  >
+                    協会について
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <ul
+            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            >
+              <a
+                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                href="/news"
+                tabindex="0"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  >
+                    お知らせ
+                  </span>
+                </div>
+              </a>
+            </li>
+            <li
+              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            >
+              <a
+                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                href="/contact"
+                tabindex="0"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  >
+                    お問い合わせ
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <ul
+            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            >
+              <a
+                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                href="https://riflesports.jp"
+                tabindex="0"
+                target="_blank"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  >
+                    <div
+                      class="flex items-center gap-1 MuiBox-root css-0"
+                    >
+                      日本ライフル射撃協会
+                      <svg
+                        fill="none"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15 3h6v6"
+                        />
+                        <path
+                          d="M10 14 21 3"
+                        />
+                        <path
+                          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                        />
+                      </svg>
+                    </div>
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav>
+        <div
+          class="mx-auto mt-2 max-w-screen-xl px-4 py-6 text-slate-500 MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <a
+              class="text-xs font-bold no-underline"
+              href="/"
+            >
+              神奈川県ライフル射撃協会
+            </a>
+          </div>
+          <div
+            class="MuiBox-root css-0"
+          >
+            <a
+              class="text-xl font-black no-underline"
+              href="/"
+            >
+              <span
+                class="MuiBox-root css-hk7m0v"
+              >
+                ＫＡＮＡＧＡＷＡ ＲＩＦＬＥ
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </footer>
+</div>
+`;
