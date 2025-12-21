@@ -23,8 +23,8 @@ export type Event = {
   name: string;
   grade: 'G4' | 'G3' | 'G3+' | 'G2' | 'G1';
   actions: Action[];
-  date: DateValue;
+  date?: DateValue;
   pet?: DateValue;
   deadline?: Date | string;
-  venue: Venue;
+  venue?: Venue;
 };
