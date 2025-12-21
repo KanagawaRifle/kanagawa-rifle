@@ -27,6 +27,9 @@ volumes:
   minio-data:
     name: ${COMPOSE_PROJECT_NAME}_minio-data
     driver: local
+  https-portal-data:
+    name: ${COMPOSE_PROJECT_NAME}_https-portal-data
+    driver: local
 
 services:
   # ==============================================
@@ -43,8 +46,6 @@ services:
       - ..:/workspace
       - /workspace/node_modules
       - /workspace/packages/website/.next
-    ports:
-      - "${IP_PREFIX}.10:80:3001"
     environment:
       - NODE_ENV=development
     command: >
@@ -61,6 +62,26 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+  # ==============================================
+  # HTTPS リバースプロキシ
+  # ==============================================
+  https-portal:
+    container_name: ${COMPOSE_PROJECT_NAME}_https-portal
+    image: steveltn/https-portal:1
+    <<: [*common-network, *common-restart]
+    ports:
+      - "${IP_PREFIX}.10:80:80"
+      - "${IP_PREFIX}.10:443:443"
+    environment:
+      DOMAINS: "kanagawa-rifle.org.test -> http://node:3001"
+      STAGE: local
+      WEBSOCKET: "true"
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+    depends_on:
+      node:
+        condition: service_healthy
 
   # ==============================================
   # メールテストツール
