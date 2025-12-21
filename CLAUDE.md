@@ -56,41 +56,53 @@ kanagawa-rifle/
 └── package.json                # ルート package.json
 ```
 
+## Docker 開発環境
+
+**重要**: npm コマンドは `./docker/docker-compose.yml` で定義された Docker コンテナ内で実行してください。
+
+```bash
+# コンテナ起動
+cd docker && docker compose up -d
+
+# コンテナ内でコマンドを実行
+docker exec kanagawa-rifle_node <コマンド>
+```
+
 ## 開発コマンド
 
 ### website パッケージ
 
 ```bash
 # 開発サーバー起動 (Turbopack)
-npm run -w @kanagawa-rifle/website dev
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website dev
 
 # ビルド
-npm run -w @kanagawa-rifle/website build
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website build
 
 # Lint (ESLint, Prettier, textlint)
-npm run -w @kanagawa-rifle/website lint
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website lint
 
 # 自動修正
-npm run -w @kanagawa-rifle/website fix
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website fix
 
 # ユニットテスト
-npm run -w @kanagawa-rifle/website test
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test
 
 # E2E テスト
-npm run -w @kanagawa-rifle/website test:e2e
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test:e2e
 
 # アクセシビリティテスト
-npm run -w @kanagawa-rifle/website test:a11y
+docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test:a11y
 ```
 
 ### パッケージ管理
 
 ```bash
 # ワークスペースへのパッケージ追加
-npm i -w <ワークスペース名> <パッケージ名>
+docker exec kanagawa-rifle_node npm i -w <ワークスペース名> <パッケージ名>
 
 # 全ワークスペースへのインストール
-npm i -ws <パッケージ名>
+docker exec kanagawa-rifle_node npm i -ws <パッケージ名>
 ```
 
 ## コーディング規約

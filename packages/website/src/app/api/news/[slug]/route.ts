@@ -46,7 +46,9 @@ export async function GET(
       return NextResponse.json({ data: null, error }, { status: error.status });
     }
 
-    const filePath = join(CONTENTS_DIR, `${slug}.md`);
+    // slugから年を抽出（例: 2025-12-09-01 → 2025）
+    const year = slug.substring(0, 4);
+    const filePath = join(CONTENTS_DIR, year, `${slug}.md`);
     const item = await parseMarkdownFile(filePath, slug);
 
     return NextResponse.json({ data: item });
