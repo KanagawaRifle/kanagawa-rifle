@@ -4,6 +4,7 @@ const createEnv = () => {
   const EnvSchema = z.object({
     APP_URL: z.string().url().default('http://kanagawa-rifle.org.local'),
     CDN_URL: z.string().url().default('https://static.kanagawa-rifle.org'),
+    // クライアントサイド用API URL
     API_URL: z
       .string()
       .default('')
@@ -12,6 +13,8 @@ const createEnv = () => {
         return typeof window !== 'undefined' ? 'http://kanagawa-rifle.org.local' : 'http://localhost:3001';
       })
       .pipe(z.string().url()),
+    // サーバーサイド用内部API URL（Docker環境ではサービス名を使用）
+    API_INTERNAL_URL: z.string().url().optional(),
 
     AXIOM_DATASET: z.string().optional(),
     AXIOM_TOKEN: z.string().optional(),
@@ -30,6 +33,7 @@ const createEnv = () => {
     APP_URL: process.env.NEXT_PUBLIC_URL,
     CDN_URL: process.env.NEXT_PUBLIC_CDN_URL,
     API_URL: process.env.NEXT_PUBLIC_API_URL,
+    API_INTERNAL_URL: process.env.API_INTERNAL_URL,
 
     AXIOM_DATASET: process.env.NEXT_PUBLIC_AXIOM_DATASET,
     AXIOM_TOKEN: process.env.NEXT_PUBLIC_AXIOM_TOKEN,
@@ -65,3 +69,15 @@ const createEnv = () => {
 };
 
 export const env = createEnv();
+
+/**
+ * 実行環境に応じたAPI URLを取得
+ * - サーバーサイド: API_INTERNAL_URL（設定時）または API_URL
+ * - クライアントサイド: API_URL
+ */
+export const getApiUrl = (): string => {
+  if (typeof window === 'undefined' && env.API_INTERNAL_URL) {
+    return env.API_INTERNAL_URL;
+  }
+  return env.API_URL;
+};
