@@ -8,6 +8,9 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Sentry用にソースマップを生成（Sentryアップロード後に削除される）
+  productionBrowserSourceMaps: true,
+
   images: {
     remotePatterns: [
       {
@@ -94,5 +97,11 @@ export default withSentryConfig(withAxiom(bundleAnalyzer(nextConfig)), {
     excludeReplayIframe: true,
     excludeReplayShadowDom: true,
     excludeReplayWorker: true,
+  },
+
+  // ソースマップ設定
+  sourcemaps: {
+    // ソースマップを削除してクライアントに公開しない
+    deleteSourcemapsAfterUpload: true,
   },
 });
