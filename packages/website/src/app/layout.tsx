@@ -46,6 +46,9 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
       )}
       {process.env.NODE_ENV === 'production' && <AxiomWebVitals />}
       <body className={`antialiased`}>
+        {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
+          <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
+        )}
         <QueryProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
@@ -55,9 +58,6 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
           </AppRouterCacheProvider>
         </QueryProvider>
       </body>
-      {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
-        <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
-      )}
     </html>
   );
 }
