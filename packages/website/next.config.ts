@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
       "font-src 'self' https://fonts.gstatic.com",
       // kanagawa-rifle.org のサブドメイン（staging含む）を許可、開発環境では localhost も許可
       `connect-src 'self' https://*.kanagawa-rifle.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${isDev ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}${isVercel ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
-      "frame-src 'self' https://www.google.com https://docs.google.com",
+      `frame-src 'self' https://www.google.com https://docs.google.com${isVercel ? ' https://vercel.live' : ''}`,
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://docs.google.com",
