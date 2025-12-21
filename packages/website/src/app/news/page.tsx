@@ -10,13 +10,21 @@ import React, { Suspense } from 'react';
 
 import { PageLayout } from '@/components';
 import { env, paths } from '@/config';
-import { DEFAULT_SIZE, sizes } from '@/features/news/api/NewsItemList';
+import { DEFAULT_SIZE, sizes, getListNewsItemsQueryOptions } from '@/features/news/api/NewsItemList';
 import { Skeleton } from '@/features/news/components/ListItem';
 
 import { NewsItems } from './_components/NewsItems';
 
-const preloadData = async () => {
+/**
+ * サーバーサイドでニュースデータをプリフェッチ
+ * これにより、クライアントサイドでのデータ取得を待つ必要がなくなり、FCP が改善される
+ */
+const preloadData = async (page = 1, size = DEFAULT_SIZE) => {
   const queryClient = new QueryClient();
+
+  // サーバーサイドでデータをプリフェッチ
+  await queryClient.prefetchQuery(getListNewsItemsQueryOptions({ page, size }));
+
   const dehydratedState = dehydrate(queryClient);
 
   return {

@@ -19,6 +19,16 @@ const FrontMatterSchema = z.object({
   eyecatch: z.string().optional(),
 });
 
+// slug のフォーマット: YYYY-MM-DD-NN（例: 2024-01-15-01）
+const SLUG_PATTERN = /^\d{4}-\d{2}-\d{2}-\d{2}$/;
+
+/**
+ * slug の形式を検証（パストラバーサル攻撃防止）
+ */
+function isValidSlug(slug: string): boolean {
+  return SLUG_PATTERN.test(slug);
+}
+
 const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
 
 async function parseMarkdownFile(filePath: string, slug: string): Promise<NewsItem> {
@@ -41,7 +51,8 @@ export async function GET(
   const { slug } = await params;
 
   try {
-    if (!slug) {
+    // slug のフォーマット検証（パストラバーサル攻撃防止）
+    if (!slug || !isValidSlug(slug)) {
       const error = createInvalidNewsSlugError();
       return NextResponse.json({ data: null, error }, { status: error.status });
     }
