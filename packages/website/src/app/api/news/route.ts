@@ -85,6 +85,10 @@ async function getPaginatedNews(page: number, size: number): Promise<Paginated<N
   };
 }
 
+// キャッシュ設定: 5分間キャッシュ、1時間 stale-while-revalidate
+const CACHE_MAX_AGE = 300; // 5分
+const CACHE_SWR = 3600; // 1時間
+
 export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItem>>>> {
   try {
     const { searchParams } = new URL(request.url);
@@ -108,7 +112,15 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
 
     const result = await getPaginatedNews(pageNum, sizeNum);
 
-    return NextResponse.json({ data: result });
+    // キャッシュヘッダー付きでレスポンス
+    return NextResponse.json(
+      { data: result },
+      {
+        headers: {
+          'Cache-Control': `public, max-age=${CACHE_MAX_AGE}, s-maxage=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_SWR}`,
+        },
+      },
+    );
   } catch (ex) {
     console.error('API Error:', ex);
     const error = createInternalServerError(ex as Error);
