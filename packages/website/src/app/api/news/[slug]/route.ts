@@ -31,6 +31,10 @@ function isValidSlug(slug: string): boolean {
 
 const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
 
+// キャッシュ設定: 10分間キャッシュ、1時間 stale-while-revalidate
+const CACHE_MAX_AGE = 600; // 10分
+const CACHE_SWR = 3600; // 1時間
+
 async function parseMarkdownFile(filePath: string, slug: string): Promise<NewsItem> {
   const fileContent = await readFile(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
@@ -62,10 +66,26 @@ export async function GET(
     const filePath = join(CONTENTS_DIR, year, `${slug}.md`);
     const item = await parseMarkdownFile(filePath, slug);
 
-    return NextResponse.json({ data: item });
+    // キャッシュヘッダー付きでレスポンス
+    return NextResponse.json(
+      { data: item },
+      {
+        headers: {
+          'Cache-Control': `public, max-age=${CACHE_MAX_AGE}, s-maxage=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_SWR}`,
+        },
+      },
+    );
   } catch (ex) {
+    // ファイルが見つからない場合
     if (isNodeError(ex) && ex.code === 'ENOENT') {
       const error = createNewsNotFoundError(slug);
+      return NextResponse.json({ data: null, error }, { status: error.status });
+    }
+
+    // Zod バリデーションエラー（フロントマターの形式が不正）
+    if (ex instanceof z.ZodError) {
+      console.warn('Front matter validation error:', slug, ex.issues);
+      const error = createInternalServerError(new Error('Invalid article format'));
       return NextResponse.json({ data: null, error }, { status: error.status });
     }
 

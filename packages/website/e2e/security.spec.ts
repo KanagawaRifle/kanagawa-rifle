@@ -6,6 +6,10 @@ test.describe('Security Headers', () => {
     const response = await request.get('/');
     const headers = response.headers();
 
+    // HSTS (Strict-Transport-Security)
+    expect(headers['strict-transport-security']).toContain('max-age=');
+    expect(headers['strict-transport-security']).toContain('includeSubDomains');
+
     // X-Content-Type-Options
     expect(headers['x-content-type-options']).toBe('nosniff');
 
