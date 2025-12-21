@@ -8,11 +8,14 @@ type Credential = {
 
 type AuthResult = { user: Credential; error: null } | { user: null; error: string };
 
-// 認証情報を環境変数から取得
-const BASIC_AUTH_CREDENTIALS: Credential = {
-  id: process.env.BASIC_AUTH_ID || 'admin',
-  password: process.env.BASIC_AUTH_PASSWORD || 'pass',
-};
+// 認証情報を環境変数から取得（デフォルト値なし）
+const BASIC_AUTH_CREDENTIALS: Credential | null =
+  process.env.BASIC_AUTH_ID && process.env.BASIC_AUTH_PASSWORD
+    ? {
+        id: process.env.BASIC_AUTH_ID,
+        password: process.env.BASIC_AUTH_PASSWORD,
+      }
+    : null;
 
 function authenticate(header: string | null, validCredential: Credential): AuthResult {
   const credential = parseBasicAuthHeader(header);
@@ -55,6 +58,12 @@ function parseBasicAuthHeader(header: string | null): Credential | null {
 export function middleware(req: NextRequest) {
   if (process.env.VERCEL_GIT_COMMIT_REF !== 'staging') {
     return NextResponse.next();
+  }
+
+  // 認証情報が設定されていない場合はエラー
+  if (!BASIC_AUTH_CREDENTIALS) {
+    console.error('Basic auth credentials not configured for staging environment');
+    return new NextResponse('500 Internal Server Error - Auth not configured', { status: 500 });
   }
 
   const authResult = authenticate(req.headers.get('Authorization'), BASIC_AUTH_CREDENTIALS);
