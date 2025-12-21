@@ -17,6 +17,30 @@ const BASIC_AUTH_CREDENTIALS: Credential | null =
       }
     : null;
 
+/**
+ * タイミング攻撃に対して安全な文字列比較
+ * Edge Runtime で利用可能な実装（crypto.subtle.timingSafeEqual は Node.js 専用）
+ */
+function constantTimeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    // 長さが異なる場合でも一定時間かけて比較を行う（タイミング攻撃防止）
+    const maxLen = Math.max(a.length, b.length);
+    const paddedA = a.padEnd(maxLen, '\0');
+    const paddedB = b.padEnd(maxLen, '\0');
+    let _dummy = 0;
+    for (let i = 0; i < maxLen; i++) {
+      _dummy |= paddedA.charCodeAt(i) ^ paddedB.charCodeAt(i);
+    }
+    return false; // 長さが異なるので常に false
+  }
+
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
 function authenticate(header: string | null, validCredential: Credential): AuthResult {
   const credential = parseBasicAuthHeader(header);
 
@@ -24,7 +48,10 @@ function authenticate(header: string | null, validCredential: Credential): AuthR
     return { user: null, error: 'Invalid authorization header' };
   }
 
-  const isValid = credential.id === validCredential.id && credential.password === validCredential.password;
+  // タイミング攻撃対策: 両方の比較を常に実行
+  const idMatch = constantTimeCompare(credential.id, validCredential.id);
+  const passwordMatch = constantTimeCompare(credential.password, validCredential.password);
+  const isValid = idMatch && passwordMatch;
 
   return isValid ? { user: credential, error: null } : { user: null, error: 'Invalid credentials' };
 }
