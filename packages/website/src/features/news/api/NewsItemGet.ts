@@ -2,14 +2,17 @@
 
 import { useQuery, queryOptions } from '@tanstack/react-query';
 
-import { env } from '@/config/env';
+import { getApiUrl } from '@/config/env';
 import { QueryConfig } from '@/lib/ReactQuery';
 import { ApiResponse, NewsItem } from '@/types';
 
 class LocalError extends Error {}
+
+// APIから取得
 export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem | null> {
   try {
-    const response = await fetch(`${env.API_URL}/api/news/${slug}`);
+    const apiUrl = getApiUrl();
+    const response = await fetch(`${apiUrl}/api/news/${slug}`);
     const result = (await response.json()) as ApiResponse<NewsItem>;
 
     if (!response.ok) {
