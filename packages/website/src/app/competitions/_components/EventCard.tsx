@@ -93,22 +93,26 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
           ))}
         </ButtonGroup>
       </CardContent>
-      <List dense>
-        <Item icon={<LuCalendar size="1.3rem" />} title="期日" text={dateToElement(date)} divider />
-        {pet && <Item icon={<LuDumbbell size="1.3rem" />} title="公式練習" text={dateToElement(pet)} divider />}
-        {deadline && (
-          <Item icon={<LuAlarmClock size="1.3rem" />} title="申込締切" text={dateToElement(deadline)} divider />
-        )}
-        <Item
-          icon={<LuMapPin size="1.3rem" />}
-          title="会場"
-          text={
-            <Link href={convertHrefToString(venue.href)} target="_blank" rel="noopener noreferrer">
-              {venue.name}
-            </Link>
-          }
-        />
-      </List>
+      {(date || pet || deadline || venue) && (
+        <List dense>
+          {date && <Item icon={<LuCalendar size="1.3rem" />} title="期日" text={dateToElement(date)} divider />}
+          {pet && <Item icon={<LuDumbbell size="1.3rem" />} title="公式練習" text={dateToElement(pet)} divider />}
+          {deadline && (
+            <Item icon={<LuAlarmClock size="1.3rem" />} title="申込締切" text={dateToElement(deadline)} divider />
+          )}
+          {venue && (
+            <Item
+              icon={<LuMapPin size="1.3rem" />}
+              title="会場"
+              text={
+                <Link href={convertHrefToString(venue.href)} target="_blank" rel="noopener noreferrer">
+                  {venue.name}
+                </Link>
+              }
+            />
+          )}
+        </List>
+      )}
     </Card>
   );
 }
