@@ -5,15 +5,8 @@ import importPlugin from 'eslint-plugin-import';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 const config = [
-  {
-    rules: {
-      'eol-last': ['error', 'always'],
-      'no-multiple-empty-lines': ['error', { max: 1 }],
-      indent: ['error', 2, { SwitchCase: 1 }],
-      semi: ['error', 'never'],
-      quotes: ['error', 'single'],
-    },
-  },
+  // Note: フォーマット関連のルール (semi, quotes, indent 等) は Prettier に委譲
+  // eslint-config-prettier が最後に適用され、競合するルールを無効化
   {
     plugins: {
       import: importPlugin,
