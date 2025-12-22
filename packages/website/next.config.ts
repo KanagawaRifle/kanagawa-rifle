@@ -36,10 +36,12 @@ const nextConfig: NextConfig = {
     const cspDirectives = [
       "default-src 'self'",
       // Vercel環境ではプレビュー機能用に vercel.live を許可
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.clarity.ms https://*.sentry.io${isVercel ? ' https://vercel.live' : ''}`,
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      // Note: 'unsafe-eval' は MUI SSR では不要（@mui/material-nextjs 使用時）
+      `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.clarity.ms https://*.sentry.io${isVercel ? ' https://vercel.live' : ''}`,
+      // Note: next/font 使用によりフォントはセルフホスティング
+      "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
-      "font-src 'self' https://fonts.gstatic.com",
+      "font-src 'self'",
       // kanagawa-rifle.org のサブドメイン（staging含む）を許可、開発環境では localhost も許可
       `connect-src 'self' https://*.kanagawa-rifle.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${isDev ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}${isVercel ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
       `frame-src 'self' https://www.google.com https://docs.google.com${isVercel ? ' https://vercel.live' : ''}`,
