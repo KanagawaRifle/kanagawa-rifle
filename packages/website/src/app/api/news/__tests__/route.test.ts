@@ -74,6 +74,14 @@ describe('GET /api/news', () => {
       expect(response.headers.get('Cache-Control')).toContain('stale-while-revalidate');
     });
 
+    it('should include no-cache headers for error response', async () => {
+      const request = new NextRequest('http://localhost/api/news?page=0');
+      const response = await GET(request);
+
+      expect(response.status).toBe(400);
+      expect(response.headers.get('Cache-Control')).toBe('private, no-store, no-cache, must-revalidate');
+    });
+
     it('should use default pagination values when not specified', async () => {
       const request = new NextRequest('http://localhost/api/news');
       const response = await GET(request);
