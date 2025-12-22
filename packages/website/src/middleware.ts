@@ -96,7 +96,7 @@ export function middleware(req: NextRequest) {
   const authResult = authenticate(req.headers.get('Authorization'), BASIC_AUTH_CREDENTIALS);
 
   if (authResult.error) {
-    return new NextResponse('401 Unauthorized  (T_T) ', {
+    return new NextResponse('401 Unauthorized', {
       status: 401,
       headers: {
         'WWW-Authenticate': 'Basic realm="Secure Area"',

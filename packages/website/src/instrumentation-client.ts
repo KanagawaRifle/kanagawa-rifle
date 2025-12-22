@@ -7,6 +7,9 @@ import * as Sentry from '@sentry/nextjs';
 
 import { env } from '@/config';
 
+// 本番環境では 10% サンプリング、開発環境では 100%
+const tracesSampleRate = process.env.NODE_ENV === 'production' ? 0.1 : 1.0;
+
 Sentry.init({
   dsn: env.SENTRY_DSN,
 
@@ -18,8 +21,8 @@ Sentry.init({
     Sentry.replayIntegration(),
   ],
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 1,
+  // 本番環境ではサンプリングレートを下げてコスト最適化
+  tracesSampleRate,
 
   // Define how likely Replay events are sampled.
   // This sets the sample rate to be 10%. You may want this to be 100% while
