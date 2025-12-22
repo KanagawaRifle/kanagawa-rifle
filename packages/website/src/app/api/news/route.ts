@@ -12,6 +12,11 @@ import { NewsItem, ApiResponse, Paginated } from '@/types';
 type FrontMatter = Omit<NewsItem, 'slug' | 'content'>;
 const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
 
+// ファイル一覧のメモリキャッシュ（Serverless のホットスタート時に有効）
+let cachedFiles: string[] | null = null;
+let cacheTimestamp: number = 0;
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5分
+
 // マークダウンファイルを読み込んで解析
 async function parseMarkdownFile(filePath: string, slug: string, withContent = false): Promise<NewsItem> {
   try {
@@ -42,7 +47,15 @@ async function parseMarkdownFile(filePath: string, slug: string, withContent = f
 }
 
 // 全てのマークダウンファイルを取得（年ごとのディレクトリ構造に対応）
+// キャッシュを使用してディレクトリ走査を最適化
 async function getAllNewsFiles(): Promise<string[]> {
+  const now = Date.now();
+
+  // キャッシュが有効な場合はキャッシュから返す
+  if (cachedFiles !== null && now - cacheTimestamp < CACHE_TTL_MS) {
+    return cachedFiles;
+  }
+
   try {
     // 年ごとのディレクトリを取得
     const yearDirs = await readdir(CONTENTS_DIR);
@@ -60,6 +73,11 @@ async function getAllNewsFiles(): Promise<string[]> {
     }
 
     allFiles.sort((a, b) => b.localeCompare(a));
+
+    // キャッシュを更新
+    cachedFiles = allFiles;
+    cacheTimestamp = now;
+
     return allFiles;
   } catch (error) {
     console.error('Error reading news directory:', error);
@@ -102,6 +120,9 @@ async function getPaginatedNews(page: number, size: number): Promise<Paginated<N
 // キャッシュ設定: 5分間キャッシュ、1時間 stale-while-revalidate
 const CACHE_MAX_AGE = 300; // 5分
 const CACHE_SWR = 3600; // 1時間
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'private, no-store, no-cache, must-revalidate',
+};
 
 export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItem>>>> {
   try {
@@ -116,12 +137,12 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     // バリデーション
     if (pageNum < 1) {
       const error = createValidationError('Page number must be greater than 0');
-      return NextResponse.json({ data: null, error }, { status: error.status });
+      return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
     }
 
     if (sizeNum < 1 || sizeNum > 128) {
       const error = createValidationError('Size must be between 1 and 128');
-      return NextResponse.json({ data: null, error }, { status: error.status });
+      return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
     }
 
     const result = await getPaginatedNews(pageNum, sizeNum);
@@ -138,6 +159,6 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
   } catch (ex) {
     console.error('API Error:', ex);
     const error = createInternalServerError(ex as Error);
-    return NextResponse.json({ data: null, error }, { status: error.status });
+    return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
   }
 }

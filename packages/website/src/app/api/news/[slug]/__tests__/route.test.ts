@@ -124,7 +124,7 @@ describe('GET /api/news/[slug]', () => {
       }
     });
 
-    it('should not include cache headers for error response', async () => {
+    it('should include no-cache headers for error response', async () => {
       // 存在しない記事
       const response = await GET(new NextRequest('http://localhost/api/news/1999-01-01-99'), {
         params: Promise.resolve({ slug: '1999-01-01-99' }),
@@ -132,8 +132,8 @@ describe('GET /api/news/[slug]', () => {
 
       expect(response.status).toBe(404);
       const cacheControl = response.headers.get('Cache-Control');
-      // エラーレスポンスにはキャッシュヘッダーが設定されない
-      expect(cacheControl).toBeNull();
+      // エラーレスポンスにはキャッシュ禁止ヘッダーが設定される
+      expect(cacheControl).toBe('private, no-store, no-cache, must-revalidate');
     });
   });
 });

@@ -34,6 +34,9 @@ const CONTENTS_DIR = join(process.cwd(), 'src', 'contents', 'news');
 // キャッシュ設定: 10分間キャッシュ、1時間 stale-while-revalidate
 const CACHE_MAX_AGE = 600; // 10分
 const CACHE_SWR = 3600; // 1時間
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'private, no-store, no-cache, must-revalidate',
+};
 
 async function parseMarkdownFile(filePath: string, slug: string): Promise<NewsItem> {
   const fileContent = await readFile(filePath, 'utf-8');
@@ -58,7 +61,7 @@ export async function GET(
     // slug のフォーマット検証（パストラバーサル攻撃防止）
     if (!slug || !isValidSlug(slug)) {
       const error = createInvalidNewsSlugError();
-      return NextResponse.json({ data: null, error }, { status: error.status });
+      return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
     }
 
     // slugから年を抽出（例: 2025-12-09-01 → 2025）
@@ -79,19 +82,19 @@ export async function GET(
     // ファイルが見つからない場合
     if (isNodeError(ex) && ex.code === 'ENOENT') {
       const error = createNewsNotFoundError(slug);
-      return NextResponse.json({ data: null, error }, { status: error.status });
+      return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
     }
 
     // Zod バリデーションエラー（フロントマターの形式が不正）
     if (ex instanceof z.ZodError) {
       console.warn('Front matter validation error:', slug, ex.issues);
       const error = createInternalServerError(new Error('Invalid article format'));
-      return NextResponse.json({ data: null, error }, { status: error.status });
+      return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
     }
 
     console.error('API Internal Error:', ex);
     const error = createInternalServerError(ex as Error);
-    return NextResponse.json({ data: null, error }, { status: error.status });
+    return NextResponse.json({ data: null, error }, { status: error.status, headers: NO_CACHE_HEADERS });
   }
 }
 
