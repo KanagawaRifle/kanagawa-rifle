@@ -1,1 +1,14 @@
+# デフォルトオーナー
 * @sasakiuri
+
+# パッケージ別オーナー
+/packages/website/ @sasakiuri
+/packages/eslint-config/ @sasakiuri
+/packages/prettier-config/ @sasakiuri
+/packages/stylelint-config/ @sasakiuri
+/packages/typescript-config/ @sasakiuri
+/packages/lighthouse-config/ @sasakiuri
+
+# インフラ・CI/CD
+/.github/ @sasakiuri
+/docker/ @sasakiuri
