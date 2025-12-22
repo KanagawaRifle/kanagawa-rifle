@@ -5,5 +5,10 @@
   "exports": {
     "./base.json": "./base.json",
     "./nextjs.json": "./nextjs.json"
+  },
+  "scripts": {
+    "lint": "prettier --check .",
+    "lint:prettier": "prettier --check .",
+    "fix": "prettier --write ."
   }
 }
