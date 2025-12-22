@@ -93,6 +93,16 @@
     "analyze": {
       "dependsOn": ["build"],
       "cache": false
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "inputs": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "vitest.config.*"
+      ]
     }
   },
   "globalEnv": [
