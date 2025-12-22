@@ -45,7 +45,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
         </Script>
       )}
       {process.env.NODE_ENV === 'production' && <AxiomWebVitals />}
-      <body className={`antialiased`}>
+      <body className="antialiased">
         {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
           <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
         )}
