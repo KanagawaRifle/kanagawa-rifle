@@ -8,7 +8,8 @@
     "packages/website",
     "packages/eslint-config",
     "packages/lighthouse-config",
-    "packages/prettier-config"
+    "packages/prettier-config",
+    "packages/stylelint-config"
   ],
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
