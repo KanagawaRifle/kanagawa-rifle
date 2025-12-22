@@ -70,13 +70,13 @@ const config = {
     ],
   },
 
-  // 無視するファイル
   ignoreFiles: [
     '**/node_modules/**',
     '**/dist/**',
     '**/build/**',
     '**/.next/**',
     '**/coverage/**',
+    '**/out/**',
   ],
 };
 
