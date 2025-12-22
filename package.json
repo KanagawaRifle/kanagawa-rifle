@@ -9,7 +9,8 @@
     "packages/eslint-config",
     "packages/lighthouse-config",
     "packages/prettier-config",
-    "packages/stylelint-config"
+    "packages/stylelint-config",
+    "packages/typescript-config"
   ],
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
@@ -36,6 +37,12 @@
   "scripts": {
     "prepare": "node -e \"if (process.env.CI || process.env.VERCEL) process.exit(0)\" || husky",
     "lint-staged": "lint-staged",
+    "lint": "turbo run lint",
+    "lint:eslint": "turbo run lint:eslint",
+    "lint:prettier": "turbo run lint:prettier",
+    "fix": "turbo run fix",
+    "test": "turbo run test",
+    "build": "turbo run build",
     "security": "snyk test --all-projects --severity-threshold=high",
     "security:fix": "snyk fix --all-projects"
   }
