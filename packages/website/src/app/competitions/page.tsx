@@ -31,9 +31,9 @@ export default function Page() {
       <EntryInfoCard />
       <EntryFeeCard />
 
-      {year2025.map((event, index) => (
+      {year2025.map((event) => (
         <EventCard
-          key={index}
+          key={event.name}
           name={event.name}
           actions={event.actions}
           grade={event.grade}

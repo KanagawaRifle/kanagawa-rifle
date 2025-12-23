@@ -6,6 +6,7 @@ import { join } from 'path';
 import matter from 'gray-matter';
 import { z } from 'zod';
 
+import { logger } from '@/lib/logger';
 import { NewsItem } from '@/types';
 
 /**
@@ -110,7 +111,7 @@ export async function getAllNewsFiles(): Promise<string[]> {
 
     return allFiles;
   } catch (error) {
-    console.error('Error reading news directory:', error);
+    logger.error('Error reading news directory', { error: error instanceof Error ? error.message : String(error) });
     return [];
   }
 }

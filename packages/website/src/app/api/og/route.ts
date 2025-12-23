@@ -3,6 +3,7 @@ import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
 import { app } from '@/config';
+import { logger } from '@/lib/logger';
 import { createOpengraphImage } from '@/lib/server';
 
 // export const runtime = 'edge'
@@ -23,7 +24,7 @@ function parseUrlParams(searchParams: URLSearchParams): OgpParams {
   const result = zodSchema.safeParse(params);
 
   if (!result.success) {
-    console.warn('OGP Parameter validation failed:', {
+    logger.warn('OGP Parameter validation failed', {
       errors: result.error.issues,
       receivedParams: params,
     });
@@ -67,7 +68,7 @@ async function generateFallbackImage(): Promise<ImageResponse> {
     const { image } = createOpengraphImage(app.name);
     return await image();
   } catch (error) {
-    console.error('Fallback image generation failed:', error);
+    logger.error('Fallback image generation failed', { error: error instanceof Error ? error.message : String(error) });
     // 最終的なフォールバックとして空の画像レスポンスを返す
     throw new Error('Failed to generate fallback OGP image');
   }
@@ -77,7 +78,6 @@ export async function GET(req: NextRequest): Promise<ImageResponse> {
   try {
     const { searchParams } = new URL(req.url);
     const params = parseUrlParams(searchParams);
-    console.log({ title: params.title, src: 'route' });
 
     // OGP画像を生成
     const { image } = createOpengraphImage(params.title);
@@ -90,11 +90,9 @@ export async function GET(req: NextRequest): Promise<ImageResponse> {
 
     return response;
   } catch (error) {
-    console.error('OGP Image generation failed:', {
+    logger.error('OGP Image generation failed', {
       error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
       url: req.url,
-      timestamp: new Date().toISOString(),
     });
 
     // フォールバック画像を返す
@@ -109,7 +107,9 @@ export async function GET(req: NextRequest): Promise<ImageResponse> {
 
       return fallbackResponse;
     } catch (fallbackError) {
-      console.error('Fallback image generation also failed:', fallbackError);
+      logger.error('Fallback image generation also failed', {
+        error: fallbackError instanceof Error ? fallbackError.message : String(fallbackError),
+      });
 
       // 最終的なエラーハンドリング
       // この場合は500エラーをスローして、Next.jsのデフォルトエラーハンドリングに委ねる

@@ -9,7 +9,8 @@ configure({
     // エラーメッセージからHTML部分を削除
     if (message) {
       // "Here are the accessible roles:" 以降をすべて削除
-      const simplifiedMessage = message.split('Here are the accessible roles:')[0].trim();
+      const parts = message.split('Here are the accessible roles:');
+      const simplifiedMessage = (parts[0] ?? message).trim();
       const error = new Error(simplifiedMessage);
       error.name = 'TestingLibraryElementError';
       return error;

@@ -112,7 +112,11 @@ const YearCard: React.FC<{ yearData: YearData }> = React.memo(({ yearData }) => 
     <CardHeader title={yearData.era} subheader={yearData.western} />
     <List dense>
       {yearData.documents.map((val, index) => (
-        <DocumentListItem key={index} item={val} divider={index < yearData.documents.length - 1} />
+        <DocumentListItem
+          key={`${val.filename}-${val.title}`}
+          item={val}
+          divider={index < yearData.documents.length - 1}
+        />
       ))}
     </List>
   </Card>

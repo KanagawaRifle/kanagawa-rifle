@@ -21,7 +21,7 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
             {breadcrumbs.map((breadcrumb, index) => {
               return index < breadcrumbs.length - 1 ? (
                 <Link
-                  key={index}
+                  key={breadcrumb.path}
                   className="flex items-center gap-2 text-xs hover:underline"
                   color="inherit"
                   href={breadcrumb.path}
@@ -30,7 +30,7 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
                   {breadcrumb.name}
                 </Link>
               ) : (
-                <Typography key={index} color="text.primary">
+                <Typography key={breadcrumb.path} color="text.primary">
                   <span className="text-xs">{breadcrumb.name}</span>
                 </Typography>
               );

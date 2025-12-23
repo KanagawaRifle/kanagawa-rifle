@@ -92,7 +92,7 @@ export default function Page() {
         />
         <List>
           {LINK_ITEMS.map((link, index) => (
-            <LinkListItem key={index} item={link} divider={index < LINK_ITEMS.length - 1} />
+            <LinkListItem key={link.href} item={link} divider={index < LINK_ITEMS.length - 1} />
           ))}
         </List>
       </Card>
