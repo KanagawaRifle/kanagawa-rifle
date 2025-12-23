@@ -1,5 +1,3 @@
-// commitlint.config.mjs
-
 const config = {
   extends: ['@commitlint/config-conventional'],
   rules: {
@@ -14,7 +12,7 @@ const config = {
         '*',
       ],
     ],
-    'scope-empty': [2, 'never'], // スコープを必須に
+    'scope-empty': [2, 'never'],
     'scope-case': [2, 'always', 'kebab-case'],
     'type-enum': [
       2,
