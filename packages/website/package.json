@@ -40,7 +40,7 @@
     "@kanagawa-rifle/eslint-config": "*",
     "@kanagawa-rifle/lighthouse-config": "*",
     "@kanagawa-rifle/prettier-config": "*",
-    "@mui/icons-material": "^7.3.2",
+    "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@mui/material-nextjs": "^7.3.6",
     "@next/bundle-analyzer": "^15.5.4",
