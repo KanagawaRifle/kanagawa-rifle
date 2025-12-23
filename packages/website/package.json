@@ -42,7 +42,7 @@
     "@kanagawa-rifle/prettier-config": "*",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.6",
-    "@mui/material-nextjs": "^7.3.2",
+    "@mui/material-nextjs": "^7.3.6",
     "@next/bundle-analyzer": "^15.5.4",
     "@next/third-parties": "^15.5.2",
     "@sentry/nextjs": "^10.27.0",
