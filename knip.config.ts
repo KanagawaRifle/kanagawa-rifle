@@ -1,6 +1,7 @@
 import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
+  eslint: false,
   workspaces: {
     '.': {
       entry: ['*.config.{js,mjs,cjs,ts}'],
