@@ -7,10 +7,10 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { AxiomWebVitals } from 'next-axiom';
 import React from 'react';
 
 import { Frame } from '@/components';
+import { AxiomWebVitalsWrapper } from '@/components/AxiomWebVitalsWrapper';
 import { env, app } from '@/config';
 import QueryProvider from '@/providers/QueryProvider';
 import theme from '@/theme';
@@ -44,7 +44,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
           `}
         </Script>
       )}
-      {process.env.NODE_ENV === 'production' && <AxiomWebVitals />}
+      {process.env.NODE_ENV === 'production' && <AxiomWebVitalsWrapper />}
       <body className="antialiased">
         {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
           <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />

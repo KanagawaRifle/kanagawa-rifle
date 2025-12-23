@@ -26,6 +26,46 @@ import { useListNewsItems, DEFAULT_SIZE, sizes } from '@/features/news/api/NewsI
 
 import { Skeleton, ListNewsItem } from './ListItem';
 
+type PaginationControlProps = {
+  total: number;
+  current: number;
+  size: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+};
+
+function PaginationControl({ total, current, size, totalPages, onPageChange }: PaginationControlProps) {
+  return (
+    <Stack className="flex flex-col items-center justify-center" spacing={2}>
+      <Box color="text.secondary">
+        {total}件中 {(current - 1) * size + 1}〜{Math.min(current * size, total)}件を表示
+      </Box>
+      <Pagination
+        count={totalPages}
+        page={current}
+        onChange={(_, page) => onPageChange(page)}
+        color="primary"
+        showFirstButton
+        showLastButton
+        siblingCount={1}
+        boundaryCount={1}
+        variant="outlined"
+      />
+    </Stack>
+  );
+}
+
+function PaginationSkeleton() {
+  return (
+    <Stack className="flex flex-col items-center justify-center" spacing={2}>
+      <Box color="text.secondary">
+        <MuiSkeleton width="10rem" />
+      </Box>
+      <Pagination page={1} count={1} disabled color="primary" showFirstButton showLastButton variant="outlined" />
+    </Stack>
+  );
+}
+
 export type ListNewsItemsProps = {
   onPrefetch?: (slug: string) => void;
   page?: number;
@@ -49,14 +89,14 @@ export function NewsItemList({
   const router = useRouter();
 
   const goToPage = (newPage: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString() ?? '');
     params.set('size', size.toString());
     params.set('page', newPage.toString());
     router.push(`?${params.toString()}`);
   };
 
   const changeSize = (newSize: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString() ?? '');
     params.set('size', newSize.toString());
     params.delete('page');
     router.push(`?${params.toString()}`);
@@ -82,39 +122,25 @@ export function NewsItemList({
           </div>
         )}
 
-        {withControls && (
-          <Stack className="flex flex-col items-center justify-center" spacing={2}>
-            <Box color="text.secondary">
-              <MuiSkeleton width="10rem" />
-            </Box>
-            <Pagination page={1} count={1} disabled color="primary" showFirstButton showLastButton variant="outlined" />
-          </Stack>
-        )}
+        {withControls && <PaginationSkeleton />}
 
         {withControls ? (
           <Card>
             <List>
-              {[...Array(DEFAULT_SIZE).keys()].map((item, index) => (
+              {[...Array(DEFAULT_SIZE).keys()].map((_, index) => (
                 <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index} />
               ))}
             </List>
           </Card>
         ) : (
           <List>
-            {[...Array(DEFAULT_SIZE).keys()].map((item, index) => (
+            {[...Array(DEFAULT_SIZE).keys()].map((_, index) => (
               <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index} />
             ))}
           </List>
         )}
 
-        {withControls && (
-          <Stack className="flex flex-col items-center justify-center" spacing={2}>
-            <Box color="text.secondary">
-              <MuiSkeleton width="10rem" />
-            </Box>
-            <Pagination page={1} count={1} disabled color="primary" showFirstButton showLastButton variant="outlined" />
-          </Stack>
-        )}
+        {withControls && <PaginationSkeleton />}
       </Stack>
     );
   }
@@ -156,24 +182,13 @@ export function NewsItemList({
       )}
 
       {withControls && (
-        <Stack className="flex flex-col items-center justify-center" spacing={2}>
-          <Box color="text.secondary">
-            {pagination.total}件中 {(pagination.current - 1) * pagination.size + 1}〜
-            {Math.min(pagination.current * pagination.size, pagination.total)}件を表示
-          </Box>
-          <Pagination
-            count={pagination.totalPages}
-            page={pagination.current}
-            onChange={(event, page) => goToPage(page)}
-            // onMouseEnter={pagination.current < pagination.totalPages ? handleNextPageHover : undefined}
-            color="primary"
-            showFirstButton
-            showLastButton
-            siblingCount={1}
-            boundaryCount={1}
-            variant="outlined"
-          />
-        </Stack>
+        <PaginationControl
+          total={pagination.total}
+          current={pagination.current}
+          size={pagination.size}
+          totalPages={pagination.totalPages}
+          onPageChange={goToPage}
+        />
       )}
 
       {withControls ? (
@@ -181,7 +196,7 @@ export function NewsItemList({
           <List>
             {items.map((item, index) => (
               <ListNewsItem
-                key={index}
+                key={item.slug}
                 {...item}
                 isLast={items.length - 1 === index}
                 onMouseEnter={async () => {
@@ -196,7 +211,7 @@ export function NewsItemList({
         <List>
           {items.map((item, index) => (
             <ListNewsItem
-              key={index}
+              key={item.slug}
               {...item}
               isLast={items.length - 1 === index}
               onMouseEnter={async () => {
@@ -209,24 +224,13 @@ export function NewsItemList({
       )}
 
       {withControls && (
-        <Stack className="flex flex-col items-center justify-center" spacing={2}>
-          <Box color="text.secondary">
-            {pagination.total}件中 {(pagination.current - 1) * pagination.size + 1}〜
-            {Math.min(pagination.current * pagination.size, pagination.total)}件を表示
-          </Box>
-          <Pagination
-            count={pagination.totalPages}
-            page={pagination.current}
-            onChange={(event, page) => goToPage(page)}
-            // onMouseEnter={pagination.current < pagination.totalPages ? handleNextPageHover : undefined}
-            color="primary"
-            showFirstButton
-            showLastButton
-            siblingCount={1}
-            boundaryCount={1}
-            variant="outlined"
-          />
-        </Stack>
+        <PaginationControl
+          total={pagination.total}
+          current={pagination.current}
+          size={pagination.size}
+          totalPages={pagination.totalPages}
+          onPageChange={goToPage}
+        />
       )}
     </Stack>
   );

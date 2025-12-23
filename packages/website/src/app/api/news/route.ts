@@ -5,13 +5,8 @@ import { join } from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { createInternalServerError, createValidationError } from '@/errors';
-import {
-  getAllNewsFiles,
-  getYearFromSlug,
-  NEWS_CONTENTS_DIR,
-  parseMarkdownFile,
-  CACHE_HEADERS,
-} from '@/lib/news';
+import { logger } from '@/lib/logger';
+import { getAllNewsFiles, getYearFromSlug, NEWS_CONTENTS_DIR, parseMarkdownFile, CACHE_HEADERS } from '@/lib/news';
 import { NewsItem, ApiResponse, Paginated } from '@/types';
 
 /**
@@ -72,7 +67,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
 
     return NextResponse.json({ data: result }, { headers: CACHE_HEADERS.LIST });
   } catch (ex) {
-    console.error('API Error:', ex);
+    logger.error('API Error', { error: ex instanceof Error ? ex.message : String(ex) });
     const error = createInternalServerError(ex as Error);
     return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
   }

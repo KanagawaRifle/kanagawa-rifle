@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { createInvalidNewsSlugError, createInternalServerError, createNewsNotFoundError } from '@/errors';
+import { logger } from '@/lib/logger';
 import {
   isValidSlug,
   getYearFromSlug,
@@ -43,12 +44,12 @@ export async function GET(
 
     // Zod バリデーションエラー（フロントマターの形式が不正）
     if (ex instanceof z.ZodError) {
-      console.warn('Front matter validation error:', slug, ex.issues);
+      logger.warn('Front matter validation error', { slug, issues: ex.issues });
       const error = createInternalServerError(new Error('Invalid article format'));
       return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
     }
 
-    console.error('API Internal Error:', ex);
+    logger.error('API Internal Error', { error: ex instanceof Error ? ex.message : String(ex) });
     const error = createInternalServerError(ex as Error);
     return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
   }

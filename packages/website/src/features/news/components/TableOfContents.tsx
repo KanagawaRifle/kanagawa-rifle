@@ -6,8 +6,12 @@ export function generateTableOfContents(content: string): Array<{ id: string; ti
   let match;
 
   while ((match = headingRegex.exec(content)) !== null) {
-    const level = match[1].length;
-    const title = match[2].trim();
+    const hashes = match[1];
+    const rawTitle = match[2];
+    if (!hashes || !rawTitle) continue;
+
+    const level = hashes.length;
+    const title = rawTitle.trim();
     const id = title
       .toLowerCase()
       .replace(/[^\p{L}\p{N}\s-]/gu, '')

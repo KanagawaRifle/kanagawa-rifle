@@ -11,14 +11,12 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import dayjs from 'dayjs';
+import { format } from 'date-fns';
+import { ja } from 'date-fns/locale';
 import React, { ReactNode } from 'react';
 import { LuAlarmClock, LuCalendar, LuDumbbell, LuMapPin } from 'react-icons/lu';
 
-import 'dayjs/locale/ja';
 import { Event, DateValue } from '../_types';
-
-dayjs.locale('ja');
 
 interface ItemProps {
   icon: ReactNode;
@@ -42,7 +40,7 @@ function Item({ icon, title, text, divider = false }: ItemProps) {
   );
 }
 
-const formatDate = (date: Date): string => dayjs(date).format('M月D日（ddd）');
+const formatDate = (date: Date): string => format(date, 'M月d日（E）', { locale: ja });
 
 function dateToElement(date: DateValue): ReactNode {
   if (typeof date === 'string') {
@@ -79,9 +77,9 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
       <CardHeader subheader={`${grade}大会`} title={name} />
       <CardContent>
         <ButtonGroup variant="outlined">
-          {actions.map((action, index) => (
+          {actions.map((action) => (
             <Button
-              key={index}
+              key={action.name}
               href={convertHrefToString(action.href)}
               disabled={action.disabled ?? false}
               aria-label={action.name}
