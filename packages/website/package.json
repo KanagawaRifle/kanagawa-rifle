@@ -36,7 +36,7 @@
     "@fullcalendar/daygrid": "^6.1.19",
     "@fullcalendar/google-calendar": "^6.1.19",
     "@fullcalendar/interaction": "^6.1.19",
-    "@fullcalendar/react": "^6.1.19",
+    "@fullcalendar/react": "^6.1.20",
     "@kanagawa-rifle/eslint-config": "*",
     "@kanagawa-rifle/lighthouse-config": "*",
     "@kanagawa-rifle/prettier-config": "*",
