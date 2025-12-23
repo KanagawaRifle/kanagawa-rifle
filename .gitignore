@@ -75,6 +75,8 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+.pluralith
+Pluralith/
 
 # ============================================
 # Ansible
@@ -83,6 +85,7 @@ terraform.rc
 .ansible/
 ansible.log
 ansible.cfg
+.vault_pass
 
 # ============================================
 # Package manager files
@@ -248,6 +251,7 @@ docs/build/
 swagger-ui/
 api-docs/
 CHANGELOG.md
+LOCAL.md
 
 # ============================================
 # Monorepo specific
@@ -284,7 +288,6 @@ docker-compose.*.local.yml
 # ============================================
 # CI/CD
 # ============================================
-.github/
 .gitlab-ci.yml
 .circleci/
 secrets/

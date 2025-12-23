@@ -1,5 +1,3 @@
-// packages/stylelint-config/index.js
-
 /** @type {import('stylelint').Config} */
 const config = {
   extends: [

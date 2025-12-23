@@ -1,11 +1,20 @@
-// packages/prettier-config/index.js
-
 export default {
   semi: true,
   singleQuote: true,
   trailingComma: 'all',
-  tabWidth: 2,
+  singleAttributePerLine: false,
+  htmlWhitespaceSensitivity: 'css',
   printWidth: 120,
+  tabWidth: 2,
   endOfLine: 'lf',
-  plugins: ['prettier-plugin-tailwindcss'],
+  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['clsx', 'cn'],
+  overrides: [
+    {
+      files: '**/*.yml',
+      options: {
+        tabWidth: 2,
+      },
+    },
+  ],
 };
