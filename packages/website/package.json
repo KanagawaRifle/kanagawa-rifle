@@ -54,7 +54,7 @@
     "highlight.js": "^11.11.1",
     "next": "15.5.9",
     "next-axiom": "^1.9.3",
-    "react": "^19.1.1",
+    "react": "^19.2.3",
     "react-dom": "^19.1.1",
     "react-error-boundary": "^6.0.0",
     "react-icons": "^5.5.0",
