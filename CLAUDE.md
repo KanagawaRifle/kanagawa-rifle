@@ -76,8 +76,8 @@ docker exec kanagawa-rifle_node <コマンド>
 # 開発サーバー起動 (Turbopack)
 docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website dev
 
-# ビルド
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website build
+# ビルド（NODE_ENV=production が必須）
+docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @kanagawa-rifle/website build"
 
 # Lint (ESLint, Prettier, textlint)
 docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website lint
@@ -156,3 +156,81 @@ textlint により日本語の品質管理を行っています。コンテン�
 - コミットメッセージは commitlint (Conventional Commits) に従う
 - PR 作成前に `npm run -w @kanagawa-rifle/website lint` と `npm run -w @kanagawa-rifle/website test` を実行
 - 画像は `static.kanagawa-rifle.org` の外部ドメインから配信
+
+## 開発における注意点
+
+### ビルド時の NODE_ENV
+
+Docker コンテナは `NODE_ENV=development` で起動しているため、ビルド時は明示的に `NODE_ENV=production` を指定する必要がある。指定しないと React hooks のエラーが発生する。
+
+```bash
+# 正しいビルドコマンド
+docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @kanagawa-rifle/website build"
+```
+
+### App Router のみ使用
+
+このプロジェクトは App Router のみを使用している。Pages Router (`src/pages/`) は不要。Sentry との互換性のために Pages Router スタブファイルを作成する必要はない。
+
+### API エラーハンドリング
+
+fetch API を使用する際は、`response.json()` を呼ぶ前に `response.ok` をチェックする。サーバーがエラーを返した場合、レスポンスボディが JSON でない可能性があるため。
+
+```typescript
+const response = await fetch(url);
+
+if (!response.ok) {
+  throw new Error(`HTTP エラー: ${response.status}`);
+}
+
+const result = await response.json();
+```
+
+### クライアントコンポーネントの SSG 対応
+
+`next-axiom` の `AxiomWebVitals` など、クライアント専用のコンポーネントは SSG 時にエラーを起こす可能性がある。`useEffect` + `useState` でマウント後にのみレンダリングするラッパーを使用する。
+
+```typescript
+// src/components/AxiomWebVitalsWrapper.tsx
+'use client';
+
+import { AxiomWebVitals } from 'next-axiom';
+import { useEffect, useState } from 'react';
+
+export function AxiomWebVitalsWrapper() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
+
+  return <AxiomWebVitals />;
+}
+```
+
+### ロギング
+
+`console.log` の代わりに `@/lib/logger` を使用する。Axiom に送信され、エラーレベルは Sentry にも連携される。
+
+```typescript
+import { logger } from '@/lib/logger';
+
+logger.info('情報メッセージ', { context: 'value' });
+logger.warn('警告メッセージ', { context: 'value' });
+logger.error('エラーメッセージ', { error: err.message });
+```
+
+### React key のベストプラクティス
+
+配列をマップする際、`key={index}` ではなく一意な識別子を使用する。
+
+```typescript
+// NG
+{items.map((item, index) => <Item key={index} {...item} />)}
+
+// OK
+{items.map((item) => <Item key={item.id} {...item} />)}
+{items.map((item) => <Item key={item.slug} {...item} />)}
+```
