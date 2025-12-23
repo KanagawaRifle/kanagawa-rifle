@@ -27,9 +27,9 @@ export default function Page() {
     >
       <Tabs year={2024} />
 
-      {year2024.map((event, index) => (
+      {year2024.map((event) => (
         <EventCard
-          key={index}
+          key={event.name}
           name={event.name}
           actions={event.actions}
           grade={event.grade}

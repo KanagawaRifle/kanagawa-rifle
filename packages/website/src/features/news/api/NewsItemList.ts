@@ -11,11 +11,15 @@ export const sizes = [6, DEFAULT_SIZE, 64, 128] as const;
 export async function listNewsItems({ page, size }: { page: number; size: number }): Promise<Paginated<NewsItem>> {
   const apiUrl = getApiUrl();
   const response = await fetch(`${apiUrl}/api/news?page=${page}&size=${size}`);
+
+  if (!response.ok) {
+    throw new Error(`HTTP エラー! ステータス: ${response.status}`);
+  }
+
   const result = (await response.json()) as ApiResponse<Paginated<NewsItem>>;
 
-  if (!response.ok || result.data === null) {
-    console.error(`HTTP エラー! ステータス: ${response.status}`, { result });
-    throw new Error(`HTTP エラー! ステータス: ${response.status}`);
+  if (result.data === null) {
+    throw new Error('APIからデータを取得できませんでした');
   }
 
   return result.data;

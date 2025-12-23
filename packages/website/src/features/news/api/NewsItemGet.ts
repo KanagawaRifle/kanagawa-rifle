@@ -13,7 +13,6 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
   try {
     const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/api/news/${slug}`);
-    const result = (await response.json()) as ApiResponse<NewsItem>;
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -24,17 +23,17 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
         console.error(`[features/news/api/NewsItemGet/getNewsItem] サーバーエラーが発生しました:`, {
           slug,
           status: response.status,
-          error: result?.error?.message,
         });
         throw new LocalError('サーバーエラーが発生しました');
       }
       console.error(`[features/news/api/NewsItemGet/getNewsItem] 記事の取得に失敗しました:`, {
         slug,
         status: response.status,
-        error: result?.error?.message,
       });
       throw new LocalError(`記事の取得に失敗しました (ステータス: ${response.status})`);
     }
+
+    const result = (await response.json()) as ApiResponse<NewsItem>;
 
     // レスポンスデータの検証
     if (!result.data) {

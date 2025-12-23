@@ -94,7 +94,7 @@ export default function Page() {
         />
         <List dense>
           {DOWNLOAD_ITEMS.map((item, index) => (
-            <DownloadItemComponent key={index} item={item} divider={index < DOWNLOAD_ITEMS.length - 1} />
+            <DownloadItemComponent key={item.filename} item={item} divider={index < DOWNLOAD_ITEMS.length - 1} />
           ))}
         </List>
       </Card>

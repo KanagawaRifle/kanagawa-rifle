@@ -50,8 +50,6 @@
     "@tanstack/react-query-devtools": "^5.89.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "datejs": "^1.0.0-rc3",
-    "dayjs": "^1.11.18",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "next": "15.5.9",
