@@ -37,19 +37,22 @@ updates:
       timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
     labels:
-      - "Cat: Dependencies"
+      - "Cat: Dependencies 🤖"
       - "Package: Website 📦"
     commit-message:
       prefix: "[*] chore"
       prefix-development: "[website] chore"
     groups:
-      development-dependencies:
-        dependency-type: "development"
+      # Major updates grouped separately
+      major-updates:
+        patterns:
+          - "*"
         update-types:
-          - "minor"
-          - "patch"
-      production-dependencies:
-        dependency-type: "production"
+          - "major"
+      # Minor and patch updates grouped together
+      minor-and-patch:
+        patterns:
+          - "*"
         update-types:
           - "minor"
           - "patch"
