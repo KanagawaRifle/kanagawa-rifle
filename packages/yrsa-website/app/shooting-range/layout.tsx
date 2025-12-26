@@ -10,7 +10,7 @@ export default function ShootingRangeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50 mt-4">
+    <div className="flex min-h-screen flex-col bg-gray-50">
       {/* スキップリンク */}
       <a
         href="#main-content"

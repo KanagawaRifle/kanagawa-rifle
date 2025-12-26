@@ -1,123 +1,284 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, Calendar, ChevronRight, Info } from "lucide-react";
+import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "くりはま花の国エアライフル射撃場 | 神奈川県横須賀市の射撃場",
-  description: "くりはま花の国エアライフル射撃場は、神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場です。",
-};
-
-export default function ShootingRangePage() {
+export default function HomePage() {
   return (
-    <div className="space-y-12">
-      {/* ヒーロー画像 */}
-      <div className="overflow-hidden rounded-xl border-4 border-white shadow-lg">
-        <picture>
-          <source srcSet="/images/shooting-range/hero.webp, /images/shooting-range/hero-2x.webp 2x" type="image/webp" />
-          <Image src="/images/shooting-range/hero.jpg" alt="くりはま花の国エアライフル射撃場の外観" width={800} height={450} className="w-full object-cover" priority />
-        </picture>
+    <div
+      className="min-h-screen"
+      style={{
+        background: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.15'%3E%3Cpath d='M0 0h20v20H0zM20 20h20v20H20z'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to bottom, #ffccff, #ccffff)`,
+      }}
+    >
+      {/* キラキラ装飾（上部） */}
+      <div className="flex justify-center gap-2 py-2">
+        <span className="animate-pulse text-2xl">✧</span>
+        <span className="animate-bounce text-2xl">☆</span>
+        <span className="animate-pulse text-2xl">✧</span>
+        <span className="animate-bounce text-2xl">☆</span>
+        <span className="animate-pulse text-2xl">✧</span>
       </div>
 
-      {/* 重要なお知らせ */}
-      <section className="rounded-lg border-l-8 border-amber-500 bg-amber-50 p-5 shadow-sm">
-        <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-6 w-6 text-amber-600" />
-          <div>
-            <h3 className="font-bold text-amber-900">来場前のお願い</h3>
-            <p className="mt-1 text-sm leading-relaxed text-amber-800">
-              大会等で利用できない日がございます。ご来場前に必ずスケジュールをご確認ください。
-            </p>
+      {/* メインコンテナ */}
+      <div className="mx-auto max-w-4xl p-4">
+        {/* ウェルカムヘッダー */}
+        <div className="mb-6 border-4 border-double border-purple-600 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 p-4 text-center shadow-lg">
+          <h1
+            className="mb-2 text-3xl font-bold text-purple-800 md:text-4xl"
+            style={{ fontFamily: "Comic Sans MS, cursive" }}
+          >
+            ようこそ♪♪♪
+          </h1>
+          <p
+            className="text-xl text-pink-600"
+            style={{ fontFamily: "Comic Sans MS, cursive" }}
+          >
+            ★☆★ 横須賀市ライフル射撃協会へ ★☆★
+          </p>
+          <div className="mt-2 flex justify-center gap-1">
+            <span className="inline-block animate-spin">🎯</span>
+            <span className="inline-block animate-bounce">🔫</span>
+            <span className="inline-block animate-spin">🎯</span>
           </div>
         </div>
-      </section>
 
-      {/* 基本情報カード */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="flex items-center gap-5 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-50">
-            <Clock className="h-8 w-8 text-emerald-700" />
-          </div>
-          <div>
-            <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">開場時間</p>
-            <p className="text-2xl font-black text-gray-900">8:30 - 21:00</p>
-            <p className="text-sm text-gray-600">最終受付 20:00</p>
+        {/* Hero Banner */}
+        <div className="mb-6 border-4 border-blue-400 bg-white p-2">
+          <Image
+            src="/images/hero-1280.gif"
+            width={1280}
+            height={233}
+            className="mx-auto h-auto w-full"
+            alt="横須賀市ライフル射撃協会のホームページへようこそ！"
+            priority
+          />
+        </div>
+
+        {/* マーキー */}
+        <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
+          <div className={`whitespace-nowrap ${styles.marquee}`}>
+            <span className="mx-4 text-red-600" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+              📢 お知らせ：ランクリスト競技会開催中！！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
+            </span>
           </div>
         </div>
-        <div className="flex items-center gap-5 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-50">
-            <Calendar className="h-8 w-8 text-emerald-700" />
+
+        {/* メニューリンク */}
+        <div className="mb-6 flex flex-wrap justify-center gap-2 border-2 border-dashed border-orange-400 bg-orange-50 p-4">
+          <Link href="/shooting-range" className="rounded bg-gradient-to-b from-orange-300 to-orange-500 px-4 py-2 font-bold text-white shadow hover:from-orange-400 hover:to-orange-600">
+            🏠 射撃場
+          </Link>
+          <Link href="/about" className="rounded bg-gradient-to-b from-green-300 to-green-500 px-4 py-2 font-bold text-white shadow hover:from-green-400 hover:to-green-600">
+            📖 協会について
+          </Link>
+          <Link href="/competitions" className="rounded bg-gradient-to-b from-blue-300 to-blue-500 px-4 py-2 font-bold text-white shadow hover:from-blue-400 hover:to-blue-600">
+            🏆 競技会
+          </Link>
+          <Link href="/links" className="rounded bg-gradient-to-b from-purple-300 to-purple-500 px-4 py-2 font-bold text-white shadow hover:from-purple-400 hover:to-purple-600">
+            🔗 リンク
+          </Link>
+        </div>
+
+        {/* 2カラムレイアウト */}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* 左カラム */}
+          <div className="space-y-4">
+            {/* ランクリスト競技会 */}
+            <div className="border-4 border-blue-400 bg-blue-50">
+              <div className="bg-gradient-to-r from-blue-400 to-blue-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  📢 ランクリスト競技会のご案内 📢
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 p-3">
+                <a
+                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
+                >
+                  要項
+                </a>
+                <a
+                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
+                >
+                  射座
+                </a>
+                <a
+                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
+                >
+                  成績
+                </a>
+              </div>
+            </div>
+
+            {/* 講習会のお知らせ */}
+            <div className="border-4 border-green-400 bg-green-50">
+              <div className="bg-gradient-to-r from-green-400 to-green-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  📖 講習会のお知らせ 📖
+                </span>
+              </div>
+              <div className="p-3 text-sm">
+                <p>
+                  <strong className="underline">月例会参加者限定</strong>で、下記の講習会を毎月開催しております（受講料3,000円）。
+                </p>
+                <p className="mt-1">
+                  受講を希望される方は、月例会のお申込みと併せて開催日の<strong>1週間前まで</strong>にお申込ください。
+                </p>
+                <ul className="mt-2 list-inside list-disc">
+                  <li>📚 インテグリティ講習会</li>
+                  <li>📚 ライフル射撃に関する講習会</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 射撃教室 */}
+            <div className="border-4 border-pink-400 bg-pink-50">
+              <div className="bg-gradient-to-r from-pink-400 to-pink-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  🎯 【募集中！！】射撃教室【ライフル】 🎯
+                </span>
+              </div>
+              <div className="p-3 text-sm">
+                <p className="font-bold">
+                  💕 初心者から丁寧に教えます ✨
+                </p>
+                <p className="mt-2 font-bold">
+                  毎週火曜日・木曜日1時間程度 (17:00～20:00の間)
+                </p>
+                <dl className="mt-2">
+                  <dt className="font-bold">対象：</dt>
+                  <dd className="ml-4">小学4年生～中学3年生</dd>
+                </dl>
+                <dl className="mt-2">
+                  <dt className="font-bold">お問い合わせ：</dt>
+                  <dd className="ml-4">
+                    Ｅメール：
+                    <a href="mailto:yokosukarifle@yahoo.co.jp" className="text-blue-600 underline hover:text-red-600">
+                      yokosukarifle@yahoo.co.jp
+                    </a>
+                  </dd>
+                  <dd className="ml-4">電話：046-833-6990</dd>
+                </dl>
+                <dl className="mt-2">
+                  <dt className="font-bold">その他：</dt>
+                  <dd className="ml-4">横須賀市在住・在学の小学5年生～中学1年生の方は補助が出ますので別途お問い合わせください。</dd>
+                </dl>
+              </div>
+            </div>
+
+            {/* 三県大口径古敷谷大会 */}
+            <div className="border-4 border-orange-400 bg-orange-50">
+              <div className="bg-gradient-to-r from-orange-400 to-orange-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  🔫 [会員の皆様へ] 三県大口径古敷谷大会のご案内 🔫
+                </span>
+              </div>
+              <div className="p-3 text-sm">
+                <ul className="space-y-1">
+                  <li><span className="font-bold">日時：</span>令和7年12月7日 (日) 8時集合</li>
+                  <li><span className="font-bold">会場：</span>千葉県射撃場（市原市古敷谷2620・043-698-0314）</li>
+                  <li><span className="font-bold">種目：</span>40発伏射・40発ベンチレスト・クラウンマッチ</li>
+                  <li><span className="font-bold">参加費：</span>6,000円</li>
+                  <li><span className="font-bold">その他：</span>弁当・参加賞付き</li>
+                  <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@yahoo.co.jp)</li>
+                  <li><span className="font-bold">申込締切：</span>11月26日 (水)</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 工事中バナー */}
+            <div className="flex items-center justify-center gap-2 border-2 border-yellow-600 bg-yellow-200 p-2">
+              <span className="text-2xl">🚧</span>
+              <span className="animate-pulse font-bold text-yellow-800" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                ＊サイトリニューアル中＊
+              </span>
+              <span className="text-2xl">🚧</span>
+            </div>
           </div>
-          <div>
-            <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">休場日</p>
-            <p className="text-2xl font-black text-gray-900">毎週月曜日</p>
-            <p className="text-sm text-gray-600">祝日の場合は翌日</p>
+
+          {/* 右カラム */}
+          <div className="space-y-4">
+            {/* 射撃場リンク */}
+            <Link href="/shooting-range" className="block border-4 border-cyan-400 bg-cyan-50 transition-transform hover:scale-105">
+              <div className="bg-gradient-to-r from-cyan-400 to-cyan-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  🎯 射撃場のご案内 🎯
+                </span>
+              </div>
+              <div className="p-2">
+                <Image
+                  src="/images/011.jpg"
+                  alt="くりはま花の国エアライフル射撃場"
+                  width={300}
+                  height={200}
+                  className="mx-auto border-2 border-white shadow"
+                />
+                <p className="mt-2 text-center text-sm">
+                  ▶ クリックして詳細を見る ◀
+                </p>
+              </div>
+            </Link>
+
+            {/* カレンダー */}
+            <div className="border-4 border-lime-400 bg-lime-50">
+              <div className="bg-gradient-to-r from-lime-400 to-lime-600 px-3 py-1">
+                <span className="font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
+                  📅 予定表 📅
+                </span>
+              </div>
+              <div className="p-1">
+                <div className="relative h-0 w-full overflow-hidden bg-white" style={{ paddingTop: "75%" }}>
+                  <iframe
+                    className="absolute left-0 top-0 h-full w-full"
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* 施設詳細テーブル */}
-      <section>
-        <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold text-gray-900">
-          <span className="h-8 w-1.5 rounded-full bg-emerald-700"></span>
-          施設概要
-        </h2>
-        <div className="overflow-hidden rounded-xl border border-gray-300 shadow-sm">
-          <table className="w-full text-left border-collapse">
-            <tbody className="divide-y divide-gray-200">
-            {[
-              { label: "射座数", value: "8射座" },
-              { label: "射撃距離", value: "10m" },
-              { label: "標的", value: "電子標的（Meyton）/ ビーム標的（興東電子）" },
-              { label: "使用可能な銃", value: "空気銃" },
-              { label: "形式", value: "覆道式" },
-              { label: "駐車場", value: "普通車用7台・障害者用1台（無料）" },
-            ].map((item, idx) => (
-              <tr key={idx} className="group">
-                <th className="w-1/3 bg-gray-50 px-6 py-4 text-sm font-bold text-gray-700 group-hover:bg-gray-100 transition-colors">
-                  {item.label}
-                </th>
-                <td className="px-6 py-4 text-base text-gray-800 bg-white group-hover:bg-gray-50 transition-colors">
-                  {item.value}
-                </td>
-              </tr>
-            ))}
-            </tbody>
-          </table>
+        {/* フッター */}
+        <div className="mt-8 border-t-4 border-double border-purple-400 pt-4 text-center">
+          <div className="mb-2 flex justify-center gap-2">
+            <span className="animate-pulse">💫</span>
+            <span className="animate-bounce">⭐</span>
+            <span className="animate-pulse">💫</span>
+          </div>
+          <p style={{ fontFamily: "Comic Sans MS, cursive" }} className="text-purple-700">
+            ～ご意見・ご感想お待ちしています～
+          </p>
+          <p className="mt-1 text-sm">
+            📧{" "}
+            <a href="mailto:yokosukarifle@yahoo.co.jp" className="text-blue-600 underline hover:text-red-600">
+              yokosukarifle@yahoo.co.jp
+            </a>
+          </p>
+          <p className="mt-2 text-xs text-gray-600">
+            Since 1957 / Last Update: 2025.12.26
+          </p>
+          <div className="mt-2 inline-block border border-gray-400 bg-white px-3 py-1 text-xs">
+            <span>あなたは</span>
+            <span className="mx-1 font-mono font-bold text-red-600">000,000</span>
+            <span>人目の訪問者です！</span>
+          </div>
+          <div className="mt-4 flex justify-center gap-1">
+            <span className="text-lg">🌸</span>
+            <span className="text-lg">🌺</span>
+            <span className="text-lg">🌷</span>
+            <span className="text-lg">🌻</span>
+            <span className="text-lg">🌼</span>
+          </div>
         </div>
-      </section>
-
-      {/* 公認情報 */}
-      <section className="rounded-xl bg-gray-100 p-6">
-        <h2 className="mb-4 text-lg font-bold text-gray-800">公認・指定</h2>
-        <ul className="space-y-3">
-          <li className="flex items-center gap-3 text-sm text-gray-700 bg-white p-3 rounded-lg shadow-sm">
-            <div className="h-2 w-2 rounded-full bg-emerald-600" />
-            神奈川県公安委員会指令第10号（平成11年5月2日）
-          </li>
-          <li className="flex items-center gap-3 text-sm text-gray-700 bg-white p-3 rounded-lg shadow-sm">
-            <div className="h-2 w-2 rounded-full bg-emerald-600" />
-            日本ライフル射撃協会公認射撃場 第305号（平成12年2月19日）
-          </li>
-        </ul>
-      </section>
-
-      {/* リンクエリア */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Link href="/shooting-range/guide" className="group flex items-center justify-between rounded-xl border-2 border-emerald-600 bg-white p-5 transition-all hover:bg-emerald-600">
-          <div>
-            <p className="text-lg font-bold text-emerald-700 group-hover:text-white">利用案内を見る</p>
-            <p className="text-xs text-gray-500 group-hover:text-emerald-100">料金・営業時間・利用手順</p>
-          </div>
-          <ChevronRight className="h-6 w-6 text-emerald-600 group-hover:text-white" />
-        </Link>
-        <Link href="/shooting-range/access" className="group flex items-center justify-between rounded-xl border-2 border-emerald-600 bg-white p-5 transition-all hover:bg-emerald-600">
-          <div>
-            <p className="text-lg font-bold text-emerald-700 group-hover:text-white">アクセスを見る</p>
-            <p className="text-xs text-gray-500 group-hover:text-emerald-100">交通案内・駐車場詳細</p>
-          </div>
-          <ChevronRight className="h-6 w-6 text-emerald-600 group-hover:text-white" />
-        </Link>
       </div>
     </div>
   );

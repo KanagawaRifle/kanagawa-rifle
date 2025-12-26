@@ -1,0 +1,14 @@
+/* 2000年代個人サイト風アニメーション */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  animation: marquee 15s linear infinite;
+}

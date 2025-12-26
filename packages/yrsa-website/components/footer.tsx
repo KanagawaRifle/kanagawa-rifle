@@ -2,118 +2,150 @@ import { ChevronUp } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer id="AppFooter" role="contentinfo" aria-label="サイトフッター">
-      <div className="border-8 border-dashed border-purple-600 bg-gradient-to-r from-yellow-300 via-pink-400 to-cyan-300 p-2 text-left text-black">
-        <div className="container mx-auto flex max-w-7xl flex-col sm:flex-row">
+    <footer
+      id="AppFooter"
+      role="contentinfo"
+      aria-label="サイトフッター"
+      style={{
+        background: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right, #ccffff, #ffffcc, #ffccff)`,
+      }}
+    >
+      {/* キラキラ装飾 */}
+      <div className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2">
+        <span className="animate-pulse">💫</span>
+        <span className="animate-bounce">⭐</span>
+        <span className="animate-pulse">💫</span>
+        <span className="animate-bounce">⭐</span>
+        <span className="animate-pulse">💫</span>
+      </div>
+
+      {/* 連絡先セクション */}
+      <div className="mx-auto max-w-4xl px-4 py-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          {/* 事務局 */}
           <section
-            className="m-2 flex-1 rotate-1 border-4 border-orange-500 bg-lime-200 p-2 shadow-2xl"
+            className="border-4 border-pink-400 bg-pink-50"
             aria-labelledby="office-info"
           >
-            <dl>
-              <dt
+            <div className="bg-gradient-to-r from-pink-400 to-pink-600 px-3 py-1">
+              <h2
                 id="office-info"
-                className="animate-pulse text-lg font-bold text-red-600 underline"
+                className="font-bold text-white"
+                style={{ fontFamily: "Comic Sans MS, cursive" }}
               >
-                ★★★横須賀市ライフル射撃協会事務局★★★
-              </dt>
-              <dd className="pl-2 pt-2 text-blue-800">
-                <span className="sr-only">郵便番号</span>〒238-0042
-              </dd>
-              <dd className="pl-2 pt-2 text-green-700">
-                <span className="sr-only">住所</span>
-                神奈川県横須賀市汐入町2-2 サンロク商事内
-              </dd>
-              <dd className="pl-2 pt-2 font-bold text-purple-600">
-                <span className="sr-only">電話番号</span>TEL:{" "}
-                <a
-                  href="tel:046-823-0617"
-                  className="text-purple-600 hover:underline"
-                >
-                  046-823-0617
-                </a>
-              </dd>
-              <dd className="pl-2 pt-2 italic text-pink-600">
-                <span className="sr-only">ファックス番号</span>FAX: 046-823-1148
-              </dd>
+                ✉ 事務局 ✉
+              </h2>
+            </div>
+            <dl className="p-3 text-sm">
+              <div className="mb-1">
+                <dt className="sr-only">郵便番号</dt>
+                <dd>〒238-0042</dd>
+              </div>
+              <div className="mb-1">
+                <dt className="sr-only">住所</dt>
+                <dd>神奈川県横須賀市汐入町2-2 サンロク商事内</dd>
+              </div>
+              <div className="mb-1">
+                <dt className="sr-only">電話番号</dt>
+                <dd>
+                  TEL:{" "}
+                  <a
+                    href="tel:046-823-0617"
+                    className="text-blue-600 underline hover:text-red-600"
+                  >
+                    046-823-0617
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="sr-only">ファックス番号</dt>
+                <dd>FAX: 046-823-1148</dd>
+              </div>
             </dl>
           </section>
 
+          {/* 射撃場 */}
           <section
-            className="m-2 flex-1 -rotate-1 border-4 border-red-500 bg-yellow-100 p-2 shadow-2xl"
+            className="border-4 border-cyan-400 bg-cyan-50"
             aria-labelledby="range-info"
           >
-            <dl>
-              <dt
+            <div className="bg-gradient-to-r from-cyan-400 to-cyan-600 px-3 py-1">
+              <h2
                 id="range-info"
-                className="animate-pulse text-lg font-bold text-green-600 underline"
+                className="font-bold text-white"
+                style={{ fontFamily: "Comic Sans MS, cursive" }}
               >
-                ✿✿✿くりはま花の国 AR 射撃場✿✿✿
-              </dt>
-              <dd className="pl-2 pt-2 text-indigo-700">
-                <span className="sr-only">郵便番号</span>〒239-0832
-              </dd>
-              <dd className="pl-2 pt-2 text-red-600">
-                <span className="sr-only">住所</span>
-                神奈川県横須賀市神明町1番地
-              </dd>
-              <dd className="pl-2 pt-2 font-bold text-orange-600">
-                <span className="sr-only">電話番号</span>TEL:{" "}
-                <a
-                  href="tel:046-833-6990"
-                  className="text-orange-600 hover:underline"
-                >
-                  046-833-6990
-                </a>
-              </dd>
-              <dd className="pl-2 pt-2 text-teal-600">
-                <span className="sr-only">ファックス番号</span>FAX: 046-833-6990
-              </dd>
-              <dd className="pl-2 pt-2 text-purple-700 underline">
-                <a
-                  href="mailto:yokosukarifle@yahoo.co.jp"
-                  className="text-purple-700 hover:no-underline"
-                >
-                  <span className="sr-only">メールアドレス: </span>
-                  yokosukarifle@yahoo.co.jp
-                </a>
-              </dd>
+                🎯 射撃場 🎯
+              </h2>
+            </div>
+            <dl className="p-3 text-sm">
+              <div className="mb-1">
+                <dt className="sr-only">郵便番号</dt>
+                <dd>〒239-0832</dd>
+              </div>
+              <div className="mb-1">
+                <dt className="sr-only">住所</dt>
+                <dd>神奈川県横須賀市神明町1番地</dd>
+              </div>
+              <div className="mb-1">
+                <dt className="sr-only">電話番号</dt>
+                <dd>
+                  TEL/FAX:{" "}
+                  <a
+                    href="tel:046-833-6990"
+                    className="text-blue-600 underline hover:text-red-600"
+                  >
+                    046-833-6990
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="sr-only">メールアドレス</dt>
+                <dd>
+                  📧{" "}
+                  <a
+                    href="mailto:yokosukarifle@yahoo.co.jp"
+                    className="text-blue-600 underline hover:text-red-600"
+                  >
+                    yokosukarifle@yahoo.co.jp
+                  </a>
+                </dd>
+              </div>
             </dl>
           </section>
         </div>
       </div>
 
-      <div
-        className="border-t-8 border-double border-yellow-400 bg-gradient-to-r from-red-500 via-purple-600 to-blue-500 p-2 text-center text-yellow-300"
-        role="contentinfo"
-      >
-        <small className="animate-pulse text-xl font-bold">
-          <span aria-hidden="true">🎉🎉🎉</span>
-          <span className="sr-only">コピーライト</span>©2025{" "}
-          <a
-            href="https://yokosukarifle.web.fc2.com/"
-            className="text-yellow-300 underline drop-shadow-lg hover:no-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="横須賀市ライフル射撃協会の公式サイト（新しいタブで開きます）"
-          >
-            横須賀市ライフル射撃協会
-          </a>
-          <span aria-hidden="true">🎉🎉🎉</span>
-        </small>
+      {/* コピーライト */}
+      <div className="border-y-4 border-double border-purple-400 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 py-3 text-center">
+        <p
+          className="text-purple-700"
+          style={{ fontFamily: "Comic Sans MS, cursive" }}
+        >
+          ～ご意見・ご感想お待ちしています～
+        </p>
+        <p className="mt-2 text-sm text-gray-600">
+          Since 1957 / ©2025 横須賀市ライフル射撃協会
+        </p>
+        <div className="mt-2 flex justify-center gap-1">
+          <span className="text-lg">🌸</span>
+          <span className="text-lg">🌺</span>
+          <span className="text-lg">🌷</span>
+          <span className="text-lg">🌻</span>
+          <span className="text-lg">🌼</span>
+        </div>
       </div>
 
+      {/* トップへ戻るボタン */}
       <a
         href="#"
-        className="block border-4 border-yellow-300 bg-gradient-to-b from-orange-500 to-red-600 p-2 text-center text-white transition-colors hover:from-orange-600 hover:to-red-700 focus:outline-none focus:ring-4 focus:ring-yellow-400"
+        className="block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white transition-all hover:from-orange-400 hover:to-orange-600"
         aria-label="ページの先頭へ戻る"
+        style={{ fontFamily: "Comic Sans MS, cursive" }}
       >
-        <ChevronUp
-          className="inline-block animate-bounce text-2xl"
-          aria-hidden="true"
-        />
-        <span className="ml-2 inline-block" aria-hidden="true">
-          ↑↑↑ トップへGO！ ↑↑↑
-        </span>
+        <ChevronUp className="inline-block animate-bounce" aria-hidden="true" />
+        <span className="ml-1">↑↑↑ トップへGO！ ↑↑↑</span>
+        <ChevronUp className="inline-block animate-bounce" aria-hidden="true" />
       </a>
     </footer>
   );
