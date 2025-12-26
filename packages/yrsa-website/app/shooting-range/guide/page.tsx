@@ -7,9 +7,85 @@ export const metadata: Metadata = {
     "くりはま花の国エアライフル射撃場の営業時間、料金、利用方法をご案内します。",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "利用案内 | くりはま花の国エアライフル射撃場",
+  description: "くりはま花の国エアライフル射撃場の営業時間、料金、利用方法をご案内します。",
+  url: "https://yokosuka-rifle.jp/shooting-range/guide",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "ホーム",
+        item: "https://yokosuka-rifle.jp/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "射撃場",
+        item: "https://yokosuka-rifle.jp/shooting-range",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "利用案内",
+        item: "https://yokosuka-rifle.jp/shooting-range/guide",
+      },
+    ],
+  },
+  mainEntity: {
+    "@type": "Service",
+    name: "エアライフル射撃場利用",
+    provider: {
+      "@type": "SportsActivityLocation",
+      name: "くりはま花の国エアライフル射撃場",
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "大人（1時間・市内）",
+        price: "260",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "大人（1時間・市外）",
+        price: "520",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "小中高生（1時間・市内）",
+        price: "160",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "小中高生（1時間・市外）",
+        price: "360",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "ビームライフルレンタル",
+        price: "760",
+        priceCurrency: "JPY",
+      },
+    ],
+  },
+};
+
 export default function ShootingRangeGuidePage() {
   return (
-    <div className="space-y-8">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="space-y-8">
       {/* 営業時間 */}
       <section>
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
@@ -209,6 +285,7 @@ export default function ShootingRangeGuidePage() {
           </ul>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

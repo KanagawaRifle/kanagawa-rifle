@@ -9,11 +9,67 @@ export const metadata: Metadata = {
     "くりはま花の国エアライフル射撃場は、神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場です。",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  name: "くりはま花の国エアライフル射撃場",
+  description:
+    "神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場。日本ライフル射撃協会公認射撃場。",
+  url: "https://yokosuka-rifle.jp/shooting-range",
+  telephone: "046-833-6990",
+  email: "yokosukarifle@yahoo.co.jp",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "神明町1番地",
+    addressLocality: "横須賀市",
+    addressRegion: "神奈川県",
+    postalCode: "239-0832",
+    addressCountry: "JP",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 35.221668,
+    longitude: 139.70727,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "08:30",
+      closes: "21:00",
+    },
+  ],
+  amenityFeature: [
+    {
+      "@type": "LocationFeatureSpecification",
+      name: "駐車場",
+      value: "普通車用7台・障害者用1台（無料）",
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      name: "射座数",
+      value: "8射座",
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      name: "射撃距離",
+      value: "10m",
+    },
+  ],
+  isAccessibleForFree: false,
+  publicAccess: true,
+};
+
 export default function ShootingRangePage() {
   return (
-    <div className="space-y-8">
-      {/* ヒーロー画像 */}
-      <div className="overflow-hidden rounded-lg border border-gray-200">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="space-y-8">
+        {/* ヒーロー画像 */}
+        <div className="overflow-hidden rounded-lg border border-gray-200">
         <picture>
           <source
             srcSet="/images/shooting-range/hero.webp, /images/shooting-range/hero-2x.webp 2x"
@@ -178,6 +234,7 @@ export default function ShootingRangePage() {
           </Link>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

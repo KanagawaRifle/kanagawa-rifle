@@ -7,9 +7,70 @@ export const metadata: Metadata = {
     "くりはま花の国エアライフル射撃場へのアクセス方法をご案内します。",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "アクセス | くりはま花の国エアライフル射撃場",
+  description: "くりはま花の国エアライフル射撃場へのアクセス方法をご案内します。",
+  url: "https://yokosuka-rifle.jp/shooting-range/access",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "ホーム",
+        item: "https://yokosuka-rifle.jp/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "射撃場",
+        item: "https://yokosuka-rifle.jp/shooting-range",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "アクセス",
+        item: "https://yokosuka-rifle.jp/shooting-range/access",
+      },
+    ],
+  },
+  mainEntity: {
+    "@type": "Place",
+    name: "くりはま花の国エアライフル射撃場",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "神明町1番地",
+      addressLocality: "横須賀市",
+      addressRegion: "神奈川県",
+      postalCode: "239-0832",
+      addressCountry: "JP",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 35.221668,
+      longitude: 139.70727,
+    },
+    hasMap: "https://www.google.com/maps?q=35.221668,139.70727",
+    publicAccess: true,
+    parkingFacility: {
+      "@type": "ParkingFacility",
+      name: "第2駐車場",
+      isAccessibleForFree: true,
+      totalSpaces: 8,
+    },
+  },
+};
+
 export default function ShootingRangeAccessPage() {
   return (
-    <div className="space-y-8">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="space-y-8">
       {/* 地図 */}
       <section>
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
@@ -119,7 +180,8 @@ export default function ShootingRangeAccessPage() {
           <li>公共交通機関をご利用の場合、時刻表を事前にご確認ください。</li>
         </ul>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
 
