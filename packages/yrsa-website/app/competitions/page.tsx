@@ -124,6 +124,7 @@ export default function CompetitionsPage() {
               iconSrc="/images/button222.gif"
               title="ライフル射撃教室"
               description="ビームライフル射撃は、年齢制限や男女問わず、どなたでも体験できますが、「キッズ大会は」中学２年年生まで出場資格が取れます。練習はいつでも出来ますので、どうぞ射撃場へいらしてみてください。"
+              guidelinesHref="/competitions/rifle-shooting-class"
               resultsHref="/competitions/rifle-shooting-class/results"
             />
 
