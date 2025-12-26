@@ -73,8 +73,21 @@ export default function RankListPage() {
             <p className="text-lg font-bold text-[#000080]">
               参加ご希望の方はくりはま花の国射撃場まで！！
             </p>
+            <div className="mt-3 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#e0ffe0] p-3">
+              <p className="mb-2 font-bold text-[#008000]">
+                📝 申込フォームからのお申し込みが便利です
+              </p>
+              <Win95Button
+                href="https://forms.gle/PMy9ES3DSEY1Yuso6"
+                variant="primary"
+                external
+              >
+                📝 申込フォーム
+              </Win95Button>
+            </div>
             <div className="mt-3 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-3">
-              <p className="font-bold text-[#008000]">
+              <p className="text-xs text-[#808080]">電話・FAX・メールでもお申し込みいただけます</p>
+              <p className="mt-2 font-bold text-[#008000]">
                 TEL／FAX：046-833-6990
               </p>
               <p className="mt-1 font-bold text-[#008000]">
