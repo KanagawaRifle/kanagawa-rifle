@@ -11,7 +11,7 @@ import {
 } from "./competitions";
 
 // Event display order for rifle shooting class
-export const RIFLE_CLASS_EVENT_ORDER = ["BR40BR"];
+export const RIFLE_CLASS_EVENT_ORDER = ["BR40BR", "BRF40"];
 
 // Get CSV file path
 function getCSVPath(): string {
