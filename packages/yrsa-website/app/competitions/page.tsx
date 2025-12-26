@@ -83,7 +83,7 @@ function CompetitionCard({
 export default function CompetitionsPage() {
   return (
     <div className="min-h-screen bg-[#008080] p-4">
-      <Win95Window title="競技会・大会 - 横須賀市ライフル射撃協会" icon="🏆" className="mx-auto max-w-6xl">
+      <Win95Window title="競技会・大会 - 横須賀市ライフル射撃協会" icon="🏆" className="mx-auto max-w-4xl">
         <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
           {/* Header section */}
           <div className="mb-4 flex flex-col items-center gap-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4 md:flex-row">
