@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Win95Window } from "@/components/win95-window";
+import { Win95Window, Win95Button } from "../../../_components";
 import {
   getResults,
   getFiscalYears,
@@ -31,23 +30,6 @@ export async function generateStaticParams() {
   return fiscalYears.map((fy) => ({
     year: fy.year.toString(),
   }));
-}
-
-function Win95Button({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  const baseClasses =
-    "inline-block px-4 py-1 text-sm font-bold border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080] bg-[#c0c0c0] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf] active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white hover:bg-[#d4d4d4]";
-
-  return (
-    <Link href={href} className={baseClasses}>
-      {children}
-    </Link>
-  );
 }
 
 // Results table component

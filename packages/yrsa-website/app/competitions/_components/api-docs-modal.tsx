@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "./ui/dialog";
 
 interface ApiDocsModalProps {
   trigger: React.ReactNode;

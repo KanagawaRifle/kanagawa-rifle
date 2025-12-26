@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { Win95Window } from "@/components/win95-window";
+import { Win95Window, Win95Button } from "./_components";
 
 export const metadata: Metadata = {
   title: "競技会・大会 | 横須賀市ライフル射撃協会",
@@ -14,29 +13,6 @@ interface CompetitionCardProps {
   description: string;
   guidelinesHref?: string;
   resultsHref?: string;
-}
-
-function Win95Button({
-  href,
-  children,
-  variant = "default",
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "default" | "primary";
-}) {
-  const baseClasses =
-    "inline-block px-4 py-1 text-sm font-bold border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf] active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white";
-  const variantClasses =
-    variant === "primary"
-      ? "bg-[#000080] text-white hover:bg-[#0000aa]"
-      : "bg-[#c0c0c0] text-black hover:bg-[#d4d4d4]";
-
-  return (
-    <Link href={href} className={`${baseClasses} ${variantClasses}`}>
-      {children}
-    </Link>
-  );
 }
 
 function CompetitionCard({
