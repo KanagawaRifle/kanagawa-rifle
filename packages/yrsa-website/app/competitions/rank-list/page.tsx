@@ -113,16 +113,6 @@ export default function RankListPage() {
             </p>
           </div>
 
-          {/* Decorative image */}
-          <div className="mb-4 flex justify-center">
-            <Image
-              src="/images/a_ilst022.gif"
-              alt=""
-              width={90}
-              height={90}
-            />
-          </div>
-
           {/* Fiscal year list */}
           <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white">
             <table className="w-full text-sm">
