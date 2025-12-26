@@ -1,0 +1,126 @@
+/*
+ * CERN-style Retro Theme (1990)
+ * "2025年の技術で実装された、1990年のWebサイト"
+ */
+
+.cern-page {
+  background: #c0c0c0;
+  color: #000000;
+  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+    "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", P052, serif;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 100vh;
+}
+
+.cern-page a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+.cern-page a:visited {
+  color: #551a8b;
+}
+
+.cern-page a:hover,
+.cern-page a:active {
+  color: #ee0000;
+}
+
+.cern-page h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.cern-page h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+.cern-page h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+.cern-page h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1.33em 0;
+}
+
+.cern-page p {
+  margin: 1em 0;
+}
+
+.cern-page hr {
+  border: none;
+  border-top: 1px solid #000000;
+  margin: 1em 0;
+}
+
+.cern-page ul,
+.cern-page ol {
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.cern-page ul {
+  list-style: disc;
+}
+
+.cern-page ol {
+  list-style: decimal;
+}
+
+.cern-page li {
+  margin: 0.5em 0;
+}
+
+.cern-page dl {
+  margin: 1em 0;
+}
+
+.cern-page dt {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.cern-page dd {
+  margin-left: 2em;
+  margin-top: 0.5em;
+}
+
+.cern-page table {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.cern-page th,
+.cern-page td {
+  border: 1px solid #000000;
+  padding: 4px 8px;
+}
+
+.cern-page th {
+  background: #808080;
+  color: #ffffff;
+}
+
+.cern-page address {
+  font-style: italic;
+  margin: 1em 0;
+}
+
+.cern-page nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cern-page nav li {
+  display: inline;
+  margin: 0;
+}
