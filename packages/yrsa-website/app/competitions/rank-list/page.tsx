@@ -78,7 +78,7 @@ export default function RankListPage() {
                 📝 申込フォームからのお申し込みが便利です
               </p>
               <Win95Button
-                href="https://forms.gle/PMy9ES3DSEY1Yuso6"
+                href="https://forms.gle/E1pTSoqR4feEPApH8"
                 variant="primary"
                 external
               >
