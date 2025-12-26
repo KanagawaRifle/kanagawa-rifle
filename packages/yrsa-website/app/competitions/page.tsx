@@ -105,6 +105,8 @@ export default function CompetitionsPage() {
               iconSrc="/images/button321.gif"
               title="大口径射撃大会"
               description="横須賀ライフル射撃協会では、主に年4～5回の割合で埼玉県長瀞総合射撃場の300ｍを借りて大会を行っております。全日本や国際大会のように堅苦しい競技大会ではなくみんなで集まって楽しく鉄砲をぶっ放すという大会です。"
+              guidelinesHref="/competitions/big-bore"
+              resultsHref="/competitions/big-bore/results"
             />
 
             <CompetitionCard
