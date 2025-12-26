@@ -135,14 +135,16 @@ export default function CompetitionsPage() {
             <CompetitionCard
               iconSrc="/images/button7.gif"
               title="横須賀市民体育大会"
-              description="毎年２月上旬頃に、射撃大会を行っています。"
+              description="毎年２月上旬頃に、横須賀市民大会 兼 防衛大学対抗戦として射撃大会を行っています。"
+              resultsHref="/competitions/citizens/results"
             />
 
             <CompetitionCard
               iconSrc="/images/button316.gif"
               title="GPファイナル"
-              description="GPファイナルの詳細情報です。"
+              description="年間の月例会成績上位者によるファイナル形式の大会です。"
               guidelinesHref="/competitions/gp-final"
+              resultsHref="/competitions/gp-final/results"
             />
           </div>
 
