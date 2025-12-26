@@ -111,7 +111,7 @@ export default function CompetitionsPage() {
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
             <CompetitionCard
               iconSrc="/images/button9.gif"
-              title="月例射撃大会"
+              title="月例会（G4）"
               description="久里浜花の国射撃場にて月１回行われている射撃大会です。参加をご希望の方は、要項をご確認のうえエントリーしてください。"
               guidelinesHref="/competitions/monthly"
               resultsHref="/competitions/monthly/results"
@@ -119,7 +119,7 @@ export default function CompetitionsPage() {
 
             <CompetitionCard
               iconSrc="/images/button221.gif"
-              title="冬季ARランキング大会"
+              title="冬季ランクリスト（G3）"
               description="毎年、１２月・１月・２月、計６回全国の射撃場において、ＡＲピストル・ＡＲライフルのランキング大会を行っています。ランキング大会は「公認競技会の格付規定」に基づいて日本ライフル射撃協会の会員内で競い合います。"
               guidelinesHref="/competitions/rank-list"
               resultsHref="https://static.kanagawa-rifle.org/website/competitions/2024/2024-12-07-winter-ar-ap-rank-list-results.pdf"
@@ -139,7 +139,7 @@ export default function CompetitionsPage() {
 
             <CompetitionCard
               iconSrc="/images/button55.gif"
-              title="ヤングスターファイナル"
+              title="ヤングスターファイナル（G3）"
               description="毎年2月に開催される小中学生大会です。"
               guidelinesHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-details.pdf"
             />
