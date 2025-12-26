@@ -2,15 +2,22 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { promises as fs } from "fs";
-import path from "path";
 import { Win95Window } from "@/components/win95-window";
+import {
+  getResults,
+  getFiscalYears,
+  groupResultsByDateAndEvent,
+  formatDateJapanese,
+  type ResultRecord,
+} from "@/lib/competitions";
 
 interface PageProps {
   params: Promise<{ year: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { year } = await params;
   return {
     title: `${year}年度 月例会（G4）結果 | 横須賀市ライフル射撃協会`,
@@ -20,28 +27,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // Generate static params for all fiscal years
 export async function generateStaticParams() {
-  const csvPath = path.join(
-    process.cwd(),
-    "data/competitions/monthly/results.csv"
-  );
-  const csvText = await fs.readFile(csvPath, "utf-8");
-  const lines = csvText.split(/\r?\n/);
-
-  const fiscalYears = new Set<number>();
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const dateStr = line.split(",")[0];
-    if (!dateStr) continue;
-
-    const fiscalYear = getFiscalYear(dateStr);
-    fiscalYears.add(fiscalYear);
-  }
-
-  return Array.from(fiscalYears).map((year) => ({
-    year: year.toString(),
+  const fiscalYears = await getFiscalYears();
+  return fiscalYears.map((fy) => ({
+    year: fy.year.toString(),
   }));
 }
 
@@ -60,158 +48,6 @@ function Win95Button({
       {children}
     </Link>
   );
-}
-
-// Record type for competition results
-interface ResultRecord {
-  date: string;
-  event: string;
-  rank: number;
-  name: string;
-  series: number[];
-  total: number;
-  remarks: string;
-}
-
-// Event display order
-const EVENT_ORDER = ["AR60S", "AP60", "HR40", "BR60S", "BR40FR", "BP60"];
-
-// Get fiscal year from date (April = start of fiscal year)
-function getFiscalYear(dateStr: string): number {
-  const date = new Date(dateStr);
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  return month >= 4 ? year : year - 1;
-}
-
-// Parse CSV line handling quoted values
-function parseCSVLine(line: string): string[] {
-  const values: string[] = [];
-  let current = "";
-  let inQuotes = false;
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    if (char === '"') {
-      inQuotes = !inQuotes;
-    } else if (char === "," && !inQuotes) {
-      values.push(current.trim());
-      current = "";
-    } else {
-      current += char;
-    }
-  }
-  values.push(current.trim());
-  return values;
-}
-
-// Parse CSV text to records
-function parseCSV(csvText: string): ResultRecord[] {
-  const lines = csvText.split(/\r?\n/);
-  const records: ResultRecord[] = [];
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const values = parseCSVLine(line);
-    if (values.length < 6) continue;
-
-    const seriesStr = values[4];
-    const series = seriesStr.split("|").map((s) => parseFloat(s.trim()));
-
-    records.push({
-      date: values[0],
-      event: values[1],
-      rank: parseInt(values[2]),
-      name: values[3],
-      series,
-      total: parseFloat(values[5]),
-      remarks: values[6] || "",
-    });
-  }
-
-  return records;
-}
-
-// Sort events by defined order
-function sortEvents(events: string[]): string[] {
-  return events.sort((a, b) => {
-    const indexA = EVENT_ORDER.indexOf(a);
-    const indexB = EVENT_ORDER.indexOf(b);
-
-    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-    if (indexA !== -1) return -1;
-    if (indexB !== -1) return 1;
-    return a.localeCompare(b);
-  });
-}
-
-// Format date to Japanese display format
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
-  return `${date.getMonth() + 1}月${date.getDate()}日 (${weekdays[date.getDay()]})`;
-}
-
-// Load results data for a specific fiscal year
-async function getResultsForYear(
-  fiscalYear: number
-): Promise<Map<string, Map<string, ResultRecord[]>> | null> {
-  const csvPath = path.join(
-    process.cwd(),
-    "data/competitions/monthly/results.csv"
-  );
-  const csvText = await fs.readFile(csvPath, "utf-8");
-  const allRecords = parseCSV(csvText);
-
-  // Filter by fiscal year
-  const records = allRecords.filter(
-    (record) => getFiscalYear(record.date) === fiscalYear
-  );
-
-  if (records.length === 0) {
-    return null;
-  }
-
-  // Group by date
-  const dateGroups = new Map<string, ResultRecord[]>();
-  records.forEach((record) => {
-    const existing = dateGroups.get(record.date) || [];
-    existing.push(record);
-    dateGroups.set(record.date, existing);
-  });
-
-  // Sort dates descending and group by event within each date
-  const sortedDates = Array.from(dateGroups.keys()).sort(
-    (a, b) => new Date(b).getTime() - new Date(a).getTime()
-  );
-
-  const result = new Map<string, Map<string, ResultRecord[]>>();
-
-  sortedDates.forEach((dateStr) => {
-    const eventGroups = new Map<string, ResultRecord[]>();
-    const dayRecords = dateGroups.get(dateStr) || [];
-
-    dayRecords.forEach((record) => {
-      const existing = eventGroups.get(record.event) || [];
-      existing.push(record);
-      eventGroups.set(record.event, existing);
-    });
-
-    // Sort events within each date
-    const sortedEventGroups = new Map<string, ResultRecord[]>();
-    const sortedEventNames = sortEvents(Array.from(eventGroups.keys()));
-    sortedEventNames.forEach((eventName) => {
-      const eventRecords = eventGroups.get(eventName) || [];
-      eventRecords.sort((a, b) => a.rank - b.rank);
-      sortedEventGroups.set(eventName, eventRecords);
-    });
-
-    result.set(dateStr, sortedEventGroups);
-  });
-
-  return result;
 }
 
 // Results table component
@@ -312,13 +148,14 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
     notFound();
   }
 
-  const results = await getResultsForYear(fiscalYear);
+  const results = await getResults({ year: fiscalYear });
 
-  if (!results) {
+  if (results.length === 0) {
     notFound();
   }
 
-  const dateEntries = Array.from(results.entries());
+  const groupedResults = groupResultsByDateAndEvent(results);
+  const dateEntries = Array.from(groupedResults.entries());
 
   return (
     <div className="min-h-screen bg-[#008080] p-4">
@@ -359,7 +196,7 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
               {/* Date header */}
               <div className="flex items-center gap-2 bg-gradient-to-r from-[#000080] to-[#1084d0] px-3 py-2">
                 <span className="text-sm font-bold text-white">
-                  📅 {formatDate(dateStr)}
+                  📅 {formatDateJapanese(dateStr)}
                 </span>
               </div>
 
