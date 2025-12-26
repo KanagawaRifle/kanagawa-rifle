@@ -111,8 +111,10 @@ export default function CompetitionsPage() {
 
             <CompetitionCard
               iconSrc="/images/button17.gif"
-              title="フィールド射撃大会"
+              title="狩猟銃射撃大会"
               description="空気銃狩猟の安全思想の啓発と銃の安全な取り扱いの習熟と、射撃技術の向上を目的としています。"
+              guidelinesHref="/competitions/hunting"
+              resultsHref="/competitions/hunting/results"
             />
 
             <CompetitionCard
