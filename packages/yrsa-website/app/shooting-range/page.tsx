@@ -31,9 +31,9 @@ export default function ShootingRangePage() {
       </div>
 
       {/* お知らせ */}
-      <section className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+      <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
         <div className="flex items-center gap-2">
-          <span className="rounded bg-amber-600 px-2 py-0.5 text-xs font-bold text-white">
+          <span className="flex-shrink-0 whitespace-nowrap rounded bg-emerald-600 px-2 py-0.5 text-xs font-bold text-white">
             お知らせ
           </span>
           <p className="text-sm text-gray-700">
@@ -43,51 +43,55 @@ export default function ShootingRangePage() {
       </section>
 
       {/* クイック情報 */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4 ">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
-            <Clock className="h-6 w-6 text-emerald-600" />
+      <section aria-labelledby="quick-info-heading">
+        <h2 id="quick-info-heading" className="sr-only">基本情報</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+              <Clock aria-hidden="true" className="h-6 w-6 text-emerald-600" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">開場時間</p>
+              <p className="text-lg font-bold text-gray-800">8:30 - 21:00</p>
+              <p className="text-xs text-gray-600">最終受付 20:00</p>
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-gray-500">開場時間</p>
-            <p className="text-lg font-bold text-gray-800">8:30 - 21:00</p>
-            <p className="text-xs text-gray-500">最終受付 20:00</p>
+          <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+              <Calendar aria-hidden="true" className="h-6 w-6 text-emerald-600" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">休場日</p>
+              <p className="text-lg font-bold text-gray-800">毎週月曜日</p>
+              <p className="text-xs text-gray-600">祝日の場合は翌日</p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-4 ">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
-            <Calendar className="h-6 w-6 text-emerald-600" />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">休場日</p>
-            <p className="text-lg font-bold text-gray-800">毎週月曜日</p>
-            <p className="text-xs text-gray-500">祝日の場合は翌日</p>
-          </div>
-        </div>
-      </div>
+      </section>
 
       {/* 施設概要 */}
       <section>
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
           施設概要
         </h2>
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white ">
-          <table className="w-full">
+        <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+          <table className="w-full min-w-[320px]">
+            <caption className="sr-only">射撃場の施設情報</caption>
             <tbody className="divide-y divide-gray-200">
               <tr>
-                <th className="w-1/3 bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="w-1/3 bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   射座数
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">8射座</td>
               </tr>
               <tr>
-                <th className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   射撃距離
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">10m</td>
               </tr>
               <tr>
-                <th className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   標的
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">
@@ -97,19 +101,19 @@ export default function ShootingRangePage() {
                 </td>
               </tr>
               <tr>
-                <th className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   使用可能な銃
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">空気銃</td>
               </tr>
               <tr>
-                <th className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   形式
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">覆道式</td>
               </tr>
               <tr>
-                <th className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th scope="row" className="bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-700">
                   駐車場
                 </th>
                 <td className="px-4 py-3 text-sm text-gray-800">
@@ -126,19 +130,21 @@ export default function ShootingRangePage() {
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
           公認・指定
         </h2>
-        <div className="space-y-2 rounded-lg border border-gray-200 bg-white p-4 ">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
-            <p className="text-sm text-gray-700">
-              神奈川県公安委員会指令第10号（平成11年5月2日）
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
-            <p className="text-sm text-gray-700">
-              日本ライフル射撃協会公認射撃場 第305号（平成12年2月19日）
-            </p>
-          </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <ul className="space-y-2">
+            <li className="flex items-center gap-2">
+              <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
+              <span className="text-sm text-gray-700">
+                神奈川県公安委員会指令第10号（平成11年5月2日）
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
+              <span className="text-sm text-gray-700">
+                日本ライフル射撃協会公認射撃場 第305号（平成12年2月19日）
+              </span>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -150,25 +156,25 @@ export default function ShootingRangePage() {
         <div className="grid gap-3 md:grid-cols-2">
           <Link
             href="/shooting-range/guide"
-            className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4  transition-colors hover:bg-gray-50"
+            className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 transition-all hover:border-emerald-300 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
           >
             <div>
               <p className="font-medium text-gray-800">利用案内</p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-600">
                 料金・営業時間・ご利用方法
               </p>
             </div>
-            <ChevronRight className="h-5 w-5 text-gray-400" />
+            <ChevronRight aria-hidden="true" className="h-5 w-5 text-gray-400" />
           </Link>
           <Link
             href="/shooting-range/access"
-            className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4  transition-colors hover:bg-gray-50"
+            className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 transition-all hover:border-emerald-300 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
           >
             <div>
               <p className="font-medium text-gray-800">アクセス</p>
-              <p className="text-sm text-gray-500">交通案内・駐車場</p>
+              <p className="text-sm text-gray-600">交通案内・駐車場</p>
             </div>
-            <ChevronRight className="h-5 w-5 text-gray-400" />
+            <ChevronRight aria-hidden="true" className="h-5 w-5 text-gray-400" />
           </Link>
         </div>
       </section>
