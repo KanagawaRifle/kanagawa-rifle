@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CernBackground } from "./_components";
+import rifleShootingImage from "@/app/_assets/rifle-shooting.jpg";
 
 export const metadata: Metadata = {
   title: "協会案内 | 横須賀市ライフル射撃協会",
@@ -68,12 +69,9 @@ export default function AboutPage() {
 
       <div style={{ margin: "2em 0" }}>
         <Image
-          src="/images/rifle-shooting.jpg"
+          src={rifleShootingImage}
           alt="横須賀市ライフル射撃協会"
-          width={320}
-          height={240}
           sizes="320px"
-          loading="lazy"
         />
       </div>
 

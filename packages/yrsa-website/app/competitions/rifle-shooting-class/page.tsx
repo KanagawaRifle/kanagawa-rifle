@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Win95Window, Win95Button } from "../_components";
+import iconShootingClassImage from "../_assets/icon-shooting-class.gif";
 
 export const metadata: Metadata = {
   title: "ライフル射撃教室 | 横須賀市ライフル射撃協会",
@@ -24,10 +25,8 @@ export default function RifleShootingClassPage() {
           {/* Header */}
           <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/icon-shooting-class.gif"
+              src={iconShootingClassImage}
               alt="ライフル射撃教室"
-              width={155}
-              height={46}
             />
           </div>
 

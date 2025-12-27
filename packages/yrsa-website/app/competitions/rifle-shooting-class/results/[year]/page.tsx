@@ -9,6 +9,7 @@ import {
   formatDateJapanese,
   type ResultRecord,
 } from "@/lib/rifle-shooting-class";
+import iconShootingClassImage from "../../../_assets/icon-shooting-class.gif";
 
 interface PageProps {
   params: Promise<{ year: string }>;
@@ -151,10 +152,8 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
           {/* Header */}
           <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/icon-shooting-class.gif"
+              src={iconShootingClassImage}
               alt="ライフル射撃教室"
-              width={155}
-              height={46}
             />
             <div className="mt-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#000080] px-4 py-1">
               <span className="text-sm font-bold text-white">

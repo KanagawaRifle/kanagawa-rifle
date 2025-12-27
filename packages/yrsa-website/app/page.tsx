@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { GoogleCalendar } from "./_components";
+import heroImage from "./_assets/hero.gif";
+import rifleShootingImage from "./_assets/rifle-shooting.jpg";
 
 export default function HomePage() {
   return (
@@ -46,9 +48,7 @@ export default function HomePage() {
         {/* Hero Banner */}
         <div className="mb-6 border-4 border-blue-400 bg-white p-2">
           <Image
-            src="/images/hero.gif"
-            width={1280}
-            height={233}
+            src={heroImage}
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 896px"
             className="mx-auto h-auto w-full"
             alt="横須賀市ライフル射撃協会のホームページへようこそ！"
@@ -220,12 +220,9 @@ export default function HomePage() {
               </div>
               <div className="p-2">
                 <Image
-                  src="/images/rifle-shooting.jpg"
+                  src={rifleShootingImage}
                   alt="くりはま花の国エアライフル射撃場"
-                  width={300}
-                  height={200}
                   sizes="(max-width: 768px) 280px, 300px"
-                  loading="lazy"
                   className="mx-auto border-2 border-white shadow"
                 />
                 <p className="mt-2 text-center text-sm">

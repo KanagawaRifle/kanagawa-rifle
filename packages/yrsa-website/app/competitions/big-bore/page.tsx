@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Win95Window, Win95Button } from "../_components";
+import iconBigBoreImage from "../_assets/icon-big-bore.gif";
 
 export const metadata: Metadata = {
   title: "大口径大会 | 横須賀市ライフル射撃協会",
@@ -25,10 +26,8 @@ export default function BigBorePage() {
           {/* Header */}
           <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/icon-big-bore.gif"
+              src={iconBigBoreImage}
               alt="大口径大会"
-              width={161}
-              height={48}
             />
           </div>
 

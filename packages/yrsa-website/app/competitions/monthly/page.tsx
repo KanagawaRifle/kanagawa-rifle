@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Win95Window, Win95Button } from "../_components";
+import iconMonthlyImage from "../_assets/icon-monthly.gif";
 
 export const metadata: Metadata = {
   title: "月例会（G4） | 横須賀市ライフル射撃協会",
@@ -20,10 +21,8 @@ export default function MonthlyCompetitionPage() {
           {/* Header */}
           <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/icon-monthly.gif"
+              src={iconMonthlyImage}
               alt="月例会"
-              width={155}
-              height={46}
             />
           </div>
 
