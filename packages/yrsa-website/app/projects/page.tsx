@@ -79,6 +79,7 @@ export default function ProjectsPage() {
                   className="inline-block rounded border border-green-500 bg-green-900/30 px-4 py-2 text-green-400 transition-colors hover:bg-green-800/50 hover:text-green-300"
                 >
                   📄 project_2025.pdf をダウンロード
+                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
                 </a>
               </div>
             </div>
@@ -111,6 +112,7 @@ export default function ProjectsPage() {
                   className="absolute left-0 top-0 h-full w-full"
                   src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23161b22&ctz=Asia%2FTokyo&showTitle=0&showNav=1&showPrint=0&showTabs=1&showCalendars=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
                   loading="lazy"
+                  title="横須賀市ライフル射撃協会の年間スケジュール"
                 ></iframe>
               </div>
             </div>

@@ -42,7 +42,7 @@ export function Header() {
       }}
     >
       {/* キラキラ装飾 */}
-      <div className="flex justify-center gap-2 py-1">
+      <div className="flex justify-center gap-2 py-1" aria-hidden="true">
         <span className="animate-pulse text-lg">✧</span>
         <span className="animate-bounce text-lg">☆</span>
         <span className="animate-pulse text-lg">✧</span>
@@ -77,19 +77,23 @@ export function Header() {
       </div>
 
       {/* ナビゲーション */}
-      <nav className="border-b-4 border-double border-cyan-400 bg-gradient-to-r from-cyan-100 via-yellow-50 to-pink-100 py-3">
-        <div className="mx-auto flex flex-wrap justify-center gap-2 px-2">
+      <nav
+        className="border-b-4 border-double border-cyan-400 bg-gradient-to-r from-cyan-100 via-yellow-50 to-pink-100 py-3"
+        aria-label="メインナビゲーション"
+      >
+        <ul className="mx-auto flex flex-wrap justify-center gap-2 px-2">
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`rounded bg-gradient-to-b ${item.gradient} ${item.hoverGradient} px-3 py-1.5 text-sm font-bold text-white shadow transition-all hover:scale-105 md:px-4 md:py-2 md:text-base`}
-              style={{ fontFamily: "Comic Sans MS, cursive" }}
-            >
-              {item.label}
-            </Link>
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`inline-block rounded bg-gradient-to-b ${item.gradient} ${item.hoverGradient} px-3 py-1.5 text-sm font-bold text-white shadow transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 md:px-4 md:py-2 md:text-base`}
+                style={{ fontFamily: "Comic Sans MS, cursive" }}
+              >
+                {item.label}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </nav>
 
       {/* マーキー風お知らせバー */}
@@ -98,7 +102,7 @@ export function Header() {
           className="whitespace-nowrap text-center text-sm text-red-600"
           style={{ fontFamily: "Comic Sans MS, cursive" }}
         >
-          📢 最新情報をチェックしてね！ 📢 射撃教室 生徒募集中☆ 📢
+          📢 最新情報をチェックしてね！ 📢 月例会 参加者募集中☆ 📢
         </p>
       </div>
     </header>

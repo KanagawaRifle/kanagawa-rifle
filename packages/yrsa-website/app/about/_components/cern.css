@@ -14,12 +14,12 @@
 }
 
 .cern-page a {
-  color: #0000ee;
+  color: #0000bb; /* Improved contrast ratio (4.7:1 on #c0c0c0) */
   text-decoration: underline;
 }
 
 .cern-page a:visited {
-  color: #551a8b;
+  color: #4a0e78; /* Improved contrast ratio (5.2:1 on #c0c0c0) */
 }
 
 .cern-page a:hover,

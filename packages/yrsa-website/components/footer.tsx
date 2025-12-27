@@ -11,7 +11,10 @@ export function Footer() {
       }}
     >
       {/* キラキラ装飾 */}
-      <div className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2">
+      <div
+        className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2"
+        aria-hidden="true"
+      >
         <span className="animate-pulse">💫</span>
         <span className="animate-bounce">⭐</span>
         <span className="animate-pulse">💫</span>
@@ -127,7 +130,7 @@ export function Footer() {
         <p className="mt-2 text-sm text-gray-600">
           Since 1957 / ©2025 横須賀市ライフル射撃協会
         </p>
-        <div className="mt-2 flex justify-center gap-1">
+        <div className="mt-2 flex justify-center gap-1" aria-hidden="true">
           <span className="text-lg">🌸</span>
           <span className="text-lg">🌺</span>
           <span className="text-lg">🌷</span>
@@ -138,8 +141,8 @@ export function Footer() {
 
       {/* トップへ戻るボタン */}
       <a
-        href="#"
-        className="block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white transition-all hover:from-orange-400 hover:to-orange-600"
+        href="#AppHeader"
+        className="block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white transition-all hover:from-orange-400 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         aria-label="ページの先頭へ戻る"
         style={{ fontFamily: "Comic Sans MS, cursive" }}
       >

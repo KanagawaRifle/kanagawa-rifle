@@ -65,7 +65,7 @@ const links = [
     href: "https://jpssf.com/",
     image: "/images/links/jpssf.com.png",
     title: "日本障害者スポーツ射撃連盟",
-    description: "",
+    description: "パラ射撃",
   },
   {
     href: "https://www.tokyo-rifle.org/",

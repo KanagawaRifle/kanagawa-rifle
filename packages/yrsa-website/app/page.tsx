@@ -11,7 +11,7 @@ export default function HomePage() {
       }}
     >
       {/* キラキラ装飾（上部） */}
-      <div className="flex justify-center gap-2 py-2">
+      <div className="flex justify-center gap-2 py-2" aria-hidden="true">
         <span className="animate-pulse text-2xl">✧</span>
         <span className="animate-bounce text-2xl">☆</span>
         <span className="animate-pulse text-2xl">✧</span>
@@ -35,7 +35,7 @@ export default function HomePage() {
           >
             ★☆★ 横須賀市ライフル射撃協会へ ★☆★
           </p>
-          <div className="mt-2 flex justify-center gap-1">
+          <div className="mt-2 flex justify-center gap-1" aria-hidden="true">
             <span className="inline-block animate-spin">🎯</span>
             <span className="inline-block animate-bounce">🔫</span>
             <span className="inline-block animate-spin">🎯</span>
@@ -98,6 +98,7 @@ export default function HomePage() {
                   className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
                 >
                   要項
+                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
                 </a>
                 <a
                   href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf"
@@ -106,6 +107,7 @@ export default function HomePage() {
                   className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
                 >
                   射座
+                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
                 </a>
                 <a
                   href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf"
@@ -114,6 +116,7 @@ export default function HomePage() {
                   className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
                 >
                   成績
+                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
                 </a>
               </div>
             </div>
@@ -240,6 +243,7 @@ export default function HomePage() {
                     className="absolute left-0 top-0 h-full w-full"
                     src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
                     loading="lazy"
+                    title="横須賀市ライフル射撃協会の年間スケジュール"
                   ></iframe>
                 </div>
               </div>

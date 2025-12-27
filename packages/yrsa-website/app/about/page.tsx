@@ -90,6 +90,7 @@ export default function AboutPage() {
           rel="noopener noreferrer"
         >
           日本ライフル射撃協会
+          <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
         </a>
         」および「日本クレー射撃協会」が設立されていたが、本市においては市内の諸猟友会を中心に構成され、
         会長には大久保吉雄氏が就任し、理事・役員には射撃競技経験者および猟友会関係者の中から選出された。
@@ -110,6 +111,7 @@ export default function AboutPage() {
           rel="noopener noreferrer"
         >
           神奈川県ライフル射撃協会
+          <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
         </a>
         に倣い、「横須賀市ライフル射撃協会」として独立・発足した。
       </p>
@@ -187,7 +189,7 @@ export default function AboutPage() {
             src="/images/DSCF002211.jpg"
             width={150}
             height={112}
-            alt=""
+            alt="神奈川県射撃協会会長のプロフィール写真"
             style={{ marginTop: "1em" }}
           />
         </dt>
@@ -203,7 +205,7 @@ export default function AboutPage() {
             src="/images/DSCF00241.jpg"
             width={150}
             height={112}
-            alt=""
+            alt="女性指導員のプロフィール写真"
             style={{ marginTop: "1em" }}
           />
         </dt>
@@ -218,7 +220,7 @@ export default function AboutPage() {
             src="/images/DSCF00201.jpg"
             width={150}
             height={112}
-            alt=""
+            alt="スタッフのプロフィール写真"
             style={{ marginTop: "1em" }}
           />
         </dt>
@@ -233,7 +235,7 @@ export default function AboutPage() {
             src="/images/DSCF00181.jpg"
             width={150}
             height={112}
-            alt=""
+            alt="ベテランスタッフのプロフィール写真"
             style={{ marginTop: "1em" }}
           />
         </dt>
@@ -257,6 +259,7 @@ export default function AboutPage() {
             rel="noopener noreferrer"
           >
             日本ライフル射撃協会
+            <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>
         </li>
         <li>
@@ -266,6 +269,7 @@ export default function AboutPage() {
             rel="noopener noreferrer"
           >
             神奈川県ライフル射撃協会
+            <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>
         </li>
         <li>
@@ -275,6 +279,7 @@ export default function AboutPage() {
             rel="noopener noreferrer"
           >
             横須賀市スポーツ協会
+            <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>
         </li>
       </ul>

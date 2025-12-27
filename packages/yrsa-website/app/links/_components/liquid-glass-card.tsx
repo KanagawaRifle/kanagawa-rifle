@@ -41,7 +41,7 @@ export function LiquidGlassCard({
         <div className="relative overflow-hidden">
           <Image
             src={image}
-            alt=""
+            alt={`${title}のサムネイル画像`}
             width={400}
             height={300}
             className="block aspect-video w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.02]"
@@ -54,6 +54,7 @@ export function LiquidGlassCard({
         <div className="relative p-4">
           <h2 className="text-[15px] font-semibold tracking-tight text-slate-800 transition-colors duration-300 group-hover:text-blue-600">
             {title}
+            <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </h2>
           {description && (
             <p className="mt-1 text-[13px] leading-relaxed text-slate-500 transition-colors duration-300 group-hover:text-slate-600">

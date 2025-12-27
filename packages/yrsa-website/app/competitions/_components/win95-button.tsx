@@ -11,7 +11,7 @@ interface Win95ButtonProps {
 }
 
 const baseClasses =
-  "inline-flex items-center gap-1 px-4 py-1 text-sm font-bold border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf] active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white";
+  "inline-flex items-center gap-1 px-4 py-1 text-sm font-bold border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf] active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#000080]";
 
 const variantClasses = {
   default: "bg-[#c0c0c0] text-black hover:bg-[#d4d4d4]",
@@ -39,6 +39,7 @@ export function Win95Button({
           className={classes}
         >
           {children}
+          <span className="sr-only">（新しいタブで開きます）</span>
         </a>
       );
     }
