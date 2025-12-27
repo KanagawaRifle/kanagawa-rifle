@@ -1,0 +1,168 @@
+/* ターミナルエフェクト */
+
+/* CRTスキャンライン効果 */
+.terminal {
+  position: relative;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* ターミナル背景のグラデーション（ビネット効果） */
+.terminal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 9;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* プロンプトのスタイル */
+.prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.promptUser {
+  color: #58a6ff;
+}
+
+.promptAt {
+  color: #8b949e;
+}
+
+.promptHost {
+  color: #f0883e;
+}
+
+.promptPath {
+  color: #a371f7;
+}
+
+.promptGit {
+  color: #3fb950;
+}
+
+.promptSymbol {
+  color: #3fb950;
+}
+
+/* カーソル点滅 */
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.2em;
+  background-color: #3fb950;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* コマンド出力のボックス */
+.outputBox {
+  position: relative;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: rgba(13, 17, 23, 0.8);
+  overflow: hidden;
+}
+
+.outputBox::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #30363d, transparent);
+}
+
+/* ASCII アートのスタイル */
+.asciiArt {
+  color: #3fb950;
+  line-height: 1.1;
+}
+
+/* neofetch風の情報ボックス */
+.systemInfo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+}
+
+.systemInfoLabel {
+  color: #58a6ff;
+}
+
+.systemInfoValue {
+  color: #c9d1d9;
+}
+
+/* リンクホバーエフェクト */
+.terminalLink {
+  color: #58a6ff;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.terminalLink:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+/* ディレクトリ表示 */
+.dirIcon {
+  color: #f0883e;
+}
+
+/* ファイル表示 */
+.fileIcon {
+  color: #8b949e;
+}
+
+/* 実行可能ファイル */
+.execIcon {
+  color: #3fb950;
+}
+
+/* セクション区切り */
+.sectionDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #30363d 20%, #30363d 80%, transparent);
+  margin: 1rem 0;
+}
+
+/* タイピングアニメーション */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 0.5s steps(20, end);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}

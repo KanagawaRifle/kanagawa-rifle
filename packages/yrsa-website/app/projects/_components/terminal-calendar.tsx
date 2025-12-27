@@ -99,93 +99,100 @@ export function TerminalCalendar() {
       {/* ターミナル風モーダル */}
       {isModalOpen && selectedEvent && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-2 backdrop-blur-sm sm:p-4"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg border border-gray-600"
-            style={{ backgroundColor: "#161b22" }}
+            className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg border border-[#30363d] shadow-[0_0_30px_rgba(56,139,253,0.15)]"
+            style={{ backgroundColor: "#0d1117" }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* ターミナルタイトルバー */}
-            <div className="sticky top-0 flex items-center justify-between rounded-t-lg bg-gradient-to-b from-gray-700 to-gray-800 px-3 py-2 sm:px-4">
-              <div className="flex gap-1.5 sm:gap-2">
+            <div className="sticky top-0 z-10 flex items-center gap-2 rounded-t-lg bg-[#1c2128] px-3 py-2 sm:px-4">
+              <div className="flex gap-2">
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="h-2.5 w-2.5 rounded-full bg-red-500 hover:bg-red-400 sm:h-3 sm:w-3"
+                  className="h-3 w-3 rounded-full bg-[#ff5f56] shadow-[0_0_8px_#ff5f56] transition-transform hover:scale-110"
                   aria-label="閉じる"
                 />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3"></span>
-                <span className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3"></span>
+                <span className="h-3 w-3 rounded-full bg-[#ffbd2e] shadow-[0_0_8px_#ffbd2e]"></span>
+                <span className="h-3 w-3 rounded-full bg-[#27c93f] shadow-[0_0_8px_#27c93f]"></span>
               </div>
-              <span className="text-xs text-gray-300">event_details.sh</span>
-              <div className="w-10 sm:w-12"></div>
+              <div className="flex-1 text-center">
+                <span className="text-xs text-gray-400">event --show</span>
+              </div>
+              <div className="w-14"></div>
             </div>
 
             {/* ターミナル本体 */}
-            <div className="p-3 font-mono text-xs sm:p-4 sm:text-sm">
-              <p className="truncate text-green-400">
-                <span className="text-blue-400">yrsa</span>
-                <span className="text-gray-500">:</span>
-                <span className="text-purple-400">~</span>
-                <span className="text-gray-500">$</span>
-                <span className="ml-2 text-white">./show_event.sh</span>
-              </p>
+            <div className="p-3 text-xs sm:p-4 sm:text-sm" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace" }}>
+              {/* プロンプト */}
+              <div className="flex items-center gap-1 text-xs sm:text-sm">
+                <span className="text-[#58a6ff]">yrsa</span>
+                <span className="text-gray-600">@</span>
+                <span className="text-[#f0883e]">rifle</span>
+                <span className="text-gray-600">:</span>
+                <span className="text-[#a371f7]">~</span>
+                <span className="text-[#3fb950]">$</span>
+                <span className="ml-2 text-white">event --show</span>
+              </div>
 
-              <div className="mt-3 space-y-2 border-l-2 border-cyan-600 pl-3 sm:mt-4 sm:pl-4">
-                <div className="rounded border border-cyan-600 bg-cyan-900/20 p-2 sm:p-3">
-                  <p className="font-bold text-yellow-300 break-words">
-                    {selectedEvent.title}
-                  </p>
+              {/* 出力ボックス */}
+              <div className="mt-3 rounded border border-[#30363d] bg-[#161b22]/50 p-3 sm:mt-4 sm:p-4">
+                {/* タイトル */}
+                <h3 className="break-words font-bold text-[#f0883e]">
+                  {selectedEvent.title}
+                </h3>
+
+                <div className="mt-3 space-y-2">
+                  {/* 日時 */}
+                  <div className="flex gap-2">
+                    <span className="text-[#3fb950]">date:</span>
+                    <span className="text-[#c9d1d9]">
+                      {formatDateRange(selectedEvent.start, selectedEvent.end, selectedEvent.allDay)}
+                    </span>
+                  </div>
+
+                  {/* 場所 */}
+                  {selectedEvent.location && (
+                    <div className="flex gap-2">
+                      <span className="text-[#3fb950]">location:</span>
+                      <span className="break-words text-[#c9d1d9]">{selectedEvent.location}</span>
+                    </div>
+                  )}
+
+                  {/* 詳細 */}
+                  {selectedEvent.description && (
+                    <div className="mt-3">
+                      <span className="text-[#3fb950]">description:</span>
+                      <div
+                        className="mt-2 overflow-x-auto rounded border border-[#30363d] bg-[#0d1117] p-2 text-[#c9d1d9] sm:p-3 [&_a]:text-[#58a6ff] [&_a]:underline [&_a]:break-all [&_a:hover]:text-[#79c0ff] [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
+                        dangerouslySetInnerHTML={{ __html: selectedEvent.description }}
+                      />
+                    </div>
+                  )}
                 </div>
 
-                <p className="mt-3 text-gray-300 break-words">
-                  <span className="text-green-400">📅 日時:</span>{" "}
-                  {formatDateRange(
-                    selectedEvent.start,
-                    selectedEvent.end,
-                    selectedEvent.allDay
-                  )}
-                </p>
-
-                {selectedEvent.location && (
-                  <p className="text-gray-300 break-words">
-                    <span className="text-green-400">📍 場所:</span>{" "}
-                    {selectedEvent.location}
-                  </p>
-                )}
-
-                {selectedEvent.description && (
-                  <div className="mt-3">
-                    <p className="text-green-400">📝 詳細:</p>
-                    <div
-                      className="mt-1 overflow-x-auto rounded border border-gray-600 bg-black/30 p-2 text-gray-300 sm:p-3 [&_a]:text-cyan-400 [&_a]:underline [&_a]:break-all [&_a:hover]:text-cyan-300 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
-                      dangerouslySetInnerHTML={{ __html: selectedEvent.description }}
-                    />
-                  </div>
-                )}
-
-                {selectedEvent.url && (
-                  <p className="mt-3">
+                {/* アクション */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {selectedEvent.url && (
                     <a
                       href={selectedEvent.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block rounded border border-green-500 bg-green-900/30 px-3 py-1 text-xs text-green-400 transition-colors hover:bg-green-800/50 hover:text-green-300 sm:text-sm"
+                      className="inline-flex items-center gap-2 rounded border border-[#238636] bg-[#238636]/20 px-3 py-1.5 text-xs text-[#3fb950] transition-all hover:bg-[#238636]/40 hover:shadow-[0_0_10px_#238636]"
                     >
-                      🔗 Google カレンダー
+                      <span>↗</span>
+                      <span>Open in Calendar</span>
                     </a>
-                  </p>
-                )}
-              </div>
-
-              <div className="mt-4 flex justify-end sm:mt-6">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="rounded border border-gray-500 bg-gray-700/50 px-3 py-1 text-xs text-gray-300 transition-colors hover:bg-gray-600/50 hover:text-white sm:px-4 sm:text-sm"
-                >
-                  [ 閉じる ]
-                </button>
+                  )}
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="rounded border border-[#30363d] bg-[#21262d] px-3 py-1.5 text-xs text-[#c9d1d9] transition-all hover:border-[#8b949e] hover:bg-[#30363d]"
+                  >
+                    Close [Esc]
+                  </button>
+                </div>
               </div>
             </div>
           </div>

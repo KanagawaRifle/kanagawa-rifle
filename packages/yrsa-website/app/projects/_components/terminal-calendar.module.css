@@ -1,54 +1,60 @@
 /* ターミナル風カレンダースタイル */
 .wrapper {
-  font-family: "Courier New", "Monaco", "Consolas", monospace;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
 }
 
 .wrapper :global(.fc) {
   background: transparent;
   border: 1px solid #30363d;
   border-radius: 6px;
+  overflow: hidden;
 }
 
 .wrapper :global(.fc-toolbar) {
-  background: linear-gradient(to bottom, #21262d 0%, #161b22 100%);
+  background: #161b22;
   padding: 8px 12px;
+  margin: 0 !important;
   border-bottom: 1px solid #30363d;
-  border-radius: 6px 6px 0 0;
 }
 
 .wrapper :global(.fc-toolbar-title) {
-  font-size: 0.9rem;
-  font-weight: normal;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: #58a6ff;
 }
 
 .wrapper :global(.fc-button) {
-  background: #21262d;
-  border: 1px solid #30363d;
-  color: #c9d1d9;
-  font-family: "Courier New", monospace;
-  font-size: 0.8rem;
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+  color: #c9d1d9 !important;
+  font-family: inherit;
+  font-size: 0.75rem;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 6px !important;
   transition: all 0.2s;
+  box-shadow: none !important;
 }
 
 .wrapper :global(.fc-button:hover) {
-  background: #30363d;
-  border-color: #8b949e;
-  color: #f0f6fc;
+  background: #30363d !important;
+  border-color: #8b949e !important;
+  color: #f0f6fc !important;
 }
 
 .wrapper :global(.fc-button:active),
 .wrapper :global(.fc-button-active) {
-  background: #238636;
-  border-color: #2ea043;
-  color: #ffffff;
+  background: #238636 !important;
+  border-color: #2ea043 !important;
+  color: #ffffff !important;
 }
 
 .wrapper :global(.fc-button:disabled) {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+}
+
+.wrapper :global(.fc-button:focus) {
+  box-shadow: 0 0 0 2px #58a6ff !important;
 }
 
 /* リストビュー */
@@ -65,24 +71,25 @@
 }
 
 .wrapper :global(.fc-list-day-cushion) {
-  background: linear-gradient(to right, #238636 0%, #161b22 100%);
-  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(35, 134, 54, 0.3) 0%, transparent 100%);
+  padding: 6px 12px;
+  border: none !important;
 }
 
 .wrapper :global(.fc-list-day-text),
 .wrapper :global(.fc-list-day-side-text) {
   color: #3fb950;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .wrapper :global(.fc-list-event) {
-  background: #161b22;
+  background: #0d1117;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .wrapper :global(.fc-list-event:hover) {
-  background: #21262d;
+  background: #161b22;
 }
 
 .wrapper :global(.fc-list-event:hover td) {
@@ -92,12 +99,13 @@
 .wrapper :global(.fc-list-event-time) {
   color: #8b949e;
   padding: 8px 12px;
-  border: none;
+  border: none !important;
+  white-space: nowrap;
 }
 
 .wrapper :global(.fc-list-event-graphic) {
   padding: 8px 4px;
-  border: none;
+  border: none !important;
 }
 
 .wrapper :global(.fc-list-event-dot) {
@@ -107,24 +115,30 @@
 .wrapper :global(.fc-list-event-title) {
   color: #c9d1d9;
   padding: 8px 12px;
-  border: none;
+  border: none !important;
 }
 
 .wrapper :global(.fc-list-event-title a) {
   color: #58a6ff;
   text-decoration: none;
+  transition: all 0.2s;
 }
 
 .wrapper :global(.fc-list-event-title a:hover) {
   color: #79c0ff;
-  text-decoration: underline;
 }
 
 .wrapper :global(.fc-list-empty) {
-  background: #161b22;
+  background: #0d1117;
   color: #8b949e;
-  padding: 24px;
+  padding: 32px;
   text-align: center;
+  font-style: italic;
+}
+
+.wrapper :global(.fc-list-empty::before) {
+  content: "$ ";
+  color: #3fb950;
 }
 
 /* スクロールバー */
@@ -135,6 +149,7 @@
 
 .wrapper :global(.fc-scroller::-webkit-scrollbar) {
   width: 8px;
+  height: 8px;
 }
 
 .wrapper :global(.fc-scroller::-webkit-scrollbar-track) {
@@ -148,4 +163,10 @@
 
 .wrapper :global(.fc-scroller::-webkit-scrollbar-thumb:hover) {
   background: #484f58;
+}
+
+/* テーブル境界線 */
+.wrapper :global(.fc-theme-standard td),
+.wrapper :global(.fc-theme-standard th) {
+  border-color: #21262d;
 }
