@@ -62,14 +62,19 @@ export default async function RifleShootingClassResultsPage() {
               </thead>
               <tbody>
                 {fiscalYears.map((fy, index) => {
-                  const japaneseYear = fy.year - 2018;
+                  // 令和: 2019年〜 (2019 = 令和元年)
+                  // 平成: 〜2018年 (2018 = 平成30年)
+                  const isReiwa = fy.year >= 2019;
+                  const eraYear = isReiwa ? fy.year - 2018 : fy.year - 1988;
+                  const eraName = isReiwa ? "令和" : "平成";
+                  const displayYear = isReiwa && eraYear === 1 ? "元" : eraYear;
                   return (
                     <tr
                       key={fy.year}
                       className={index % 2 === 0 ? "bg-white" : "bg-[#f0f0f0]"}
                     >
                       <td className="border border-[#808080] p-2 font-bold">
-                        📅 令和{japaneseYear}年度
+                        📅 {eraName}{displayYear}年度
                       </td>
                       <td className="border border-[#808080] p-2 text-center">
                         {fy.count}回

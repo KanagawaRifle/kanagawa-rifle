@@ -14,14 +14,27 @@ interface PageProps {
   params: Promise<{ year: string }>;
 }
 
+// 西暦から和暦に変換
+function toJapaneseEra(year: number): string {
+  // 令和: 2019年〜 (2019 = 令和元年)
+  // 平成: 〜2018年 (2018 = 平成30年)
+  if (year >= 2019) {
+    const eraYear = year - 2018;
+    return `令和${eraYear === 1 ? "元" : eraYear}`;
+  } else {
+    const eraYear = year - 1988;
+    return `平成${eraYear}`;
+  }
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { year } = await params;
-  const japaneseYear = parseInt(year) - 2018;
+  const japaneseEra = toJapaneseEra(parseInt(year));
   return {
-    title: `令和${japaneseYear}年度 ライフル射撃教室 大会結果 | 横須賀市ライフル射撃協会`,
-    description: `令和${japaneseYear}年度のライフル射撃教室大会結果一覧。`,
+    title: `${japaneseEra}年度 ライフル射撃教室 大会結果 | 横須賀市ライフル射撃協会`,
+    description: `${japaneseEra}年度のライフル射撃教室大会結果一覧。`,
   };
 }
 
@@ -118,12 +131,12 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
   const dateEntries = Array.from(groupedResults.entries());
 
   // Convert fiscal year to Japanese era
-  const japaneseYear = fiscalYear - 2018; // 2019 = 令和1年
+  const japaneseEra = toJapaneseEra(fiscalYear);
 
   return (
     <div className="min-h-screen bg-[#008080] p-4">
       <Win95Window
-        title={`令和${japaneseYear}年度 ライフル射撃教室 大会結果 - 横須賀市ライフル射撃協会`}
+        title={`${japaneseEra}年度 ライフル射撃教室 大会結果 - 横須賀市ライフル射撃協会`}
         icon="📊"
         className="mx-auto max-w-4xl"
       >
@@ -145,7 +158,7 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
             />
             <div className="mt-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#000080] px-4 py-1">
               <span className="text-sm font-bold text-white">
-                📊 令和{japaneseYear}年度 大会結果
+                📊 {japaneseEra}年度 大会結果
               </span>
             </div>
           </div>
@@ -196,7 +209,7 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
           {/* Status bar */}
           <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
             <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
-              令和{japaneseYear}年度: {dateEntries.length}回開催
+              {japaneseEra}年度: {dateEntries.length}回開催
             </div>
             <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
           </div>
