@@ -1,0 +1,151 @@
+/* ターミナル風カレンダースタイル */
+.wrapper {
+  font-family: "Courier New", "Monaco", "Consolas", monospace;
+}
+
+.wrapper :global(.fc) {
+  background: transparent;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.wrapper :global(.fc-toolbar) {
+  background: linear-gradient(to bottom, #21262d 0%, #161b22 100%);
+  padding: 8px 12px;
+  border-bottom: 1px solid #30363d;
+  border-radius: 6px 6px 0 0;
+}
+
+.wrapper :global(.fc-toolbar-title) {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #58a6ff;
+}
+
+.wrapper :global(.fc-button) {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.wrapper :global(.fc-button:hover) {
+  background: #30363d;
+  border-color: #8b949e;
+  color: #f0f6fc;
+}
+
+.wrapper :global(.fc-button:active),
+.wrapper :global(.fc-button-active) {
+  background: #238636;
+  border-color: #2ea043;
+  color: #ffffff;
+}
+
+.wrapper :global(.fc-button:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* リストビュー */
+.wrapper :global(.fc-list) {
+  border: none;
+}
+
+.wrapper :global(.fc-list-table) {
+  border: none;
+}
+
+.wrapper :global(.fc-list-day) {
+  background: #0d1117;
+}
+
+.wrapper :global(.fc-list-day-cushion) {
+  background: linear-gradient(to right, #238636 0%, #161b22 100%);
+  padding: 8px 12px;
+}
+
+.wrapper :global(.fc-list-day-text),
+.wrapper :global(.fc-list-day-side-text) {
+  color: #3fb950;
+  font-weight: bold;
+}
+
+.wrapper :global(.fc-list-event) {
+  background: #161b22;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.wrapper :global(.fc-list-event:hover) {
+  background: #21262d;
+}
+
+.wrapper :global(.fc-list-event:hover td) {
+  background: transparent;
+}
+
+.wrapper :global(.fc-list-event-time) {
+  color: #8b949e;
+  padding: 8px 12px;
+  border: none;
+}
+
+.wrapper :global(.fc-list-event-graphic) {
+  padding: 8px 4px;
+  border: none;
+}
+
+.wrapper :global(.fc-list-event-dot) {
+  border-color: #58a6ff;
+}
+
+.wrapper :global(.fc-list-event-title) {
+  color: #c9d1d9;
+  padding: 8px 12px;
+  border: none;
+}
+
+.wrapper :global(.fc-list-event-title a) {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.wrapper :global(.fc-list-event-title a:hover) {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+.wrapper :global(.fc-list-empty) {
+  background: #161b22;
+  color: #8b949e;
+  padding: 24px;
+  text-align: center;
+}
+
+/* スクロールバー */
+.wrapper :global(.fc-scroller) {
+  scrollbar-width: thin;
+  scrollbar-color: #30363d #0d1117;
+}
+
+.wrapper :global(.fc-scroller::-webkit-scrollbar) {
+  width: 8px;
+}
+
+.wrapper :global(.fc-scroller::-webkit-scrollbar-track) {
+  background: #0d1117;
+}
+
+.wrapper :global(.fc-scroller::-webkit-scrollbar-thumb) {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+.wrapper :global(.fc-scroller::-webkit-scrollbar-thumb:hover) {
+  background: #484f58;
+}

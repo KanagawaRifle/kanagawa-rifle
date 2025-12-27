@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { GoogleCalendar } from "./_components";
 
 export default function HomePage() {
   return (
@@ -240,15 +241,8 @@ export default function HomePage() {
                   📅 予定表 📅
                 </span>
               </div>
-              <div className="p-1">
-                <div className="relative h-0 w-full overflow-hidden bg-white" style={{ paddingTop: "75%" }}>
-                  <iframe
-                    className="absolute left-0 top-0 h-full w-full"
-                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
-                    loading="lazy"
-                    title="横須賀市ライフル射撃協会の年間スケジュール"
-                  ></iframe>
-                </div>
+              <div className="bg-white p-2">
+                <GoogleCalendar />
               </div>
             </div>
           </div>

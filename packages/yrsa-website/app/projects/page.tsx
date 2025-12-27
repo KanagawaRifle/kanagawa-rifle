@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TerminalCalendar } from "./_components";
 
 export const metadata: Metadata = {
   title: "事業計画 | 横須賀市ライフル射撃協会",
@@ -18,26 +19,32 @@ export default function ProjectsPage() {
       {/* ターミナルウィンドウ */}
       <div className="mx-auto max-w-5xl">
         {/* ターミナルタイトルバー */}
-        <div className="flex items-center justify-between rounded-t-lg bg-gradient-to-b from-gray-700 to-gray-800 px-4 py-2">
-          <div className="flex gap-2">
-            <span className="h-3 w-3 rounded-full bg-red-500"></span>
-            <span className="h-3 w-3 rounded-full bg-yellow-500"></span>
-            <span className="h-3 w-3 rounded-full bg-green-500"></span>
+        <div className="flex items-center justify-between rounded-t-lg bg-gradient-to-b from-gray-700 to-gray-800 px-3 py-2 sm:px-4">
+          <div className="flex gap-1.5 sm:gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-500 sm:h-3 sm:w-3"></span>
+            <span className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3"></span>
+            <span className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3"></span>
           </div>
-          <span className="text-sm text-gray-300">
-            yrsa@yokosuka-rifle:~/projects
+          <span className="text-xs text-gray-300 sm:text-sm">
+            <span className="hidden sm:inline">yrsa@yokosuka-rifle:</span>~/projects
           </span>
-          <div className="w-16"></div>
+          <div className="w-12 sm:w-16"></div>
         </div>
 
         {/* ターミナル本体 */}
         <div
-          className="rounded-b-lg border border-gray-700 p-6"
+          className="rounded-b-lg border border-gray-700 p-3 sm:p-6"
           style={{ backgroundColor: "#161b22" }}
         >
           {/* ウェルカムメッセージ */}
           <div className="mb-6 text-green-400">
-            <pre className="text-xs leading-tight sm:text-sm">
+            {/* モバイル用シンプル版 */}
+            <div className="block sm:hidden">
+              <p className="text-lg font-bold">YRSA Terminal</p>
+              <p className="text-xs text-gray-500">Yokosuka Rifle Shooting Association</p>
+            </div>
+            {/* デスクトップ用ASCII */}
+            <pre className="hidden overflow-x-auto text-xs leading-tight sm:block sm:text-sm">
 {`
  __   __                             _            ____  _  __ _
  \\ \\ / /__  | | ___   ___  ___ _   _| | ____ _   |  _ \\(_)/ _| | ___
@@ -47,38 +54,34 @@ export default function ProjectsPage() {
 
 `}
             </pre>
-            <p className="mt-2">
+            <p className="mt-2 text-xs sm:text-sm">
               <span className="text-gray-500">Last login:</span> {new Date().toLocaleString("ja-JP")} on ttys000
             </p>
           </div>
 
           {/* コマンドライン: 事業計画 */}
-          <div className="mb-6">
-            <p className="text-green-400">
-              <span className="text-blue-400">yrsa@yokosuka-rifle</span>
+          <div className="mb-6 overflow-hidden">
+            <p className="truncate text-green-400 text-xs sm:text-sm">
+              <span className="text-blue-400">yrsa</span>
               <span className="text-gray-500">:</span>
               <span className="text-purple-400">~/projects</span>
               <span className="text-gray-500">$</span>
               <span className="ml-2 text-white">cat project_2025.txt</span>
             </p>
             <div className="mt-3 border-l-2 border-green-600 pl-4">
-              <p className="text-yellow-300">
-                ════════════════════════════════════════════
-              </p>
-              <p className="text-yellow-300">
-                　　令和7年度 (2025) 事業計画書
-              </p>
-              <p className="text-yellow-300">
-                ════════════════════════════════════════════
-              </p>
+              <div className="rounded border border-yellow-600 bg-yellow-900/20 p-3">
+                <p className="text-center text-sm font-bold text-yellow-300 sm:text-base">
+                  令和7年度 (2025) 事業計画書
+                </p>
+              </div>
               <div className="mt-4">
                 <a
                   href="/static/projects/project_2025.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded border border-green-500 bg-green-900/30 px-4 py-2 text-green-400 transition-colors hover:bg-green-800/50 hover:text-green-300"
+                  className="inline-block rounded border border-green-500 bg-green-900/30 px-3 py-2 text-sm text-green-400 transition-colors hover:bg-green-800/50 hover:text-green-300"
                 >
-                  📄 project_2025.pdf をダウンロード
+                  📄 ダウンロード
                   <span className="sr-only">（PDF、新しいタブで開きます）</span>
                 </a>
               </div>
@@ -86,49 +89,50 @@ export default function ProjectsPage() {
           </div>
 
           {/* コマンドライン: 予定表 */}
-          <div className="mb-6">
-            <p className="text-green-400">
-              <span className="text-blue-400">yrsa@yokosuka-rifle</span>
+          <div className="mb-6 overflow-hidden">
+            <p className="truncate text-green-400 text-xs sm:text-sm">
+              <span className="text-blue-400">yrsa</span>
               <span className="text-gray-500">:</span>
               <span className="text-purple-400">~/projects</span>
               <span className="text-gray-500">$</span>
               <span className="ml-2 text-white">./show_calendar.sh</span>
             </p>
             <div className="mt-3 border-l-2 border-cyan-600 pl-4">
-              <p className="text-cyan-300">
-                ┌─────────────────────────────────────────┐
-              </p>
-              <p className="text-cyan-300">
-                │  📅 年間予定表 (Google Calendar)        │
-              </p>
-              <p className="text-cyan-300">
-                └─────────────────────────────────────────┘
-              </p>
-              <div
-                className="relative mt-4 h-0 w-full overflow-hidden rounded border border-gray-600"
-                style={{ paddingTop: "75%" }}
-              >
-                <iframe
-                  className="absolute left-0 top-0 h-full w-full"
-                  src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23161b22&ctz=Asia%2FTokyo&showTitle=0&showNav=1&showPrint=0&showTabs=1&showCalendars=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
-                  loading="lazy"
-                  title="横須賀市ライフル射撃協会の年間スケジュール"
-                ></iframe>
+              <div className="rounded border border-cyan-600 bg-cyan-900/20 p-3">
+                <p className="text-center text-sm font-bold text-cyan-300 sm:text-base">
+                  📅 年間予定表 (Google Calendar)
+                </p>
+              </div>
+              <div className="mt-4">
+                <TerminalCalendar />
               </div>
             </div>
           </div>
 
           {/* コマンドライン: リンク */}
-          <div className="mb-6">
-            <p className="text-green-400">
-              <span className="text-blue-400">yrsa@yokosuka-rifle</span>
+          <div className="mb-6 overflow-hidden">
+            <p className="truncate text-green-400 text-xs sm:text-sm">
+              <span className="text-blue-400">yrsa</span>
               <span className="text-gray-500">:</span>
               <span className="text-purple-400">~/projects</span>
               <span className="text-gray-500">$</span>
-              <span className="ml-2 text-white">ls -la ./links/</span>
+              <span className="ml-2 text-white">ls ./links/</span>
             </p>
             <div className="mt-3 border-l-2 border-purple-600 pl-4">
-              <table className="text-sm">
+              {/* モバイル: シンプルリスト */}
+              <div className="block space-y-2 sm:hidden">
+                <Link href="/" className="block text-cyan-400 hover:underline">
+                  📁 home/
+                </Link>
+                <Link href="/shooting-range" className="block text-cyan-400 hover:underline">
+                  📁 shooting-range/
+                </Link>
+                <Link href="/competitions" className="block text-cyan-400 hover:underline">
+                  📁 competitions/
+                </Link>
+              </div>
+              {/* デスクトップ: テーブル */}
+              <table className="hidden text-sm sm:table">
                 <tbody className="text-gray-300">
                   <tr>
                     <td className="pr-4 text-blue-400">drwxr-xr-x</td>
@@ -169,12 +173,12 @@ export default function ProjectsPage() {
           </div>
 
           {/* 入力待ちカーソル */}
-          <div className="text-green-400">
-            <span className="text-blue-400">yrsa@yokosuka-rifle</span>
+          <div className="text-green-400 text-xs sm:text-sm">
+            <span className="text-blue-400">yrsa</span>
             <span className="text-gray-500">:</span>
-            <span className="text-purple-400">~/projects</span>
+            <span className="text-purple-400">~</span>
             <span className="text-gray-500">$</span>
-            <span className="ml-2 inline-block h-5 w-2 animate-pulse bg-green-400"></span>
+            <span className="ml-2 inline-block h-4 w-2 animate-pulse bg-green-400 sm:h-5"></span>
           </div>
         </div>
 

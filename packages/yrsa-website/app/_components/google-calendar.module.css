@@ -1,0 +1,94 @@
+/* 2000年代風カレンダースタイル */
+.wrapper {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.wrapper :global(.fc) {
+  background: #fff;
+  border: 2px solid #808080;
+}
+
+.wrapper :global(.fc-toolbar) {
+  background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+  padding: 8px;
+  border-bottom: 2px solid #808080;
+}
+
+.wrapper :global(.fc-toolbar-title) {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000080;
+}
+
+.wrapper :global(.fc-button) {
+  background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 100%);
+  border: 2px outset #ffffff;
+  color: #000;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  text-shadow: none;
+}
+
+.wrapper :global(.fc-button:hover) {
+  background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
+}
+
+.wrapper :global(.fc-button:active),
+.wrapper :global(.fc-button-active) {
+  border-style: inset;
+  background: linear-gradient(180deg, #a0a0a0 0%, #c0c0c0 100%);
+}
+
+.wrapper :global(.fc-daygrid-day) {
+  border: 1px solid #c0c0c0;
+}
+
+.wrapper :global(.fc-daygrid-day-number) {
+  color: #000080;
+  font-weight: bold;
+}
+
+.wrapper :global(.fc-day-sun .fc-daygrid-day-number) {
+  color: #ff0000;
+}
+
+.wrapper :global(.fc-day-sat .fc-daygrid-day-number) {
+  color: #0000ff;
+}
+
+.wrapper :global(.fc-daygrid-day.fc-day-today) {
+  background: #ffffcc !important;
+}
+
+.wrapper :global(.fc-event) {
+  background: linear-gradient(180deg, #6699ff 0%, #3366cc 100%);
+  border: 1px solid #003399;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  padding: 1px 3px;
+}
+
+.wrapper :global(.fc-event:hover) {
+  background: linear-gradient(180deg, #88aaff 0%, #5588dd 100%);
+}
+
+.wrapper :global(.fc-event-title) {
+  font-weight: normal;
+}
+
+.wrapper :global(.fc-col-header-cell) {
+  background: linear-gradient(180deg, #6699cc 0%, #336699 100%);
+  color: #fff;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.wrapper :global(.fc-scrollgrid) {
+  border: none;
+}
+
+.wrapper :global(.fc-theme-standard td),
+.wrapper :global(.fc-theme-standard th) {
+  border-color: #c0c0c0;
+}
