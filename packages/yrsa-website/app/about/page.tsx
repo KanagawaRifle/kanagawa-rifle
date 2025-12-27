@@ -49,6 +49,10 @@ export default function AboutPage() {
             </li>
             {" | "}
             <li>
+              <Link href="/projects">年間予定</Link>
+            </li>
+            {" | "}
+            <li>
               <Link href="/links">リンク</Link>
             </li>
           </ul>
