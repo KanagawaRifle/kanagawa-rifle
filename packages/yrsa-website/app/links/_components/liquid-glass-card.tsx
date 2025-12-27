@@ -44,6 +44,8 @@ export function LiquidGlassCard({
             alt={`${title}のサムネイル画像`}
             width={400}
             height={300}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+            loading="lazy"
             className="block aspect-video w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.02]"
           />
           {/* Frosted overlay - bottom fade */}

@@ -68,6 +68,8 @@ export default function AboutPage() {
           alt="横須賀市ライフル射撃協会"
           width={320}
           height={240}
+          sizes="320px"
+          loading="lazy"
         />
       </div>
 
@@ -189,6 +191,8 @@ export default function AboutPage() {
             src="/images/DSCF002211.jpg"
             width={150}
             height={112}
+            sizes="150px"
+            loading="lazy"
             alt="神奈川県射撃協会会長のプロフィール写真"
             style={{ marginTop: "1em" }}
           />
@@ -205,6 +209,8 @@ export default function AboutPage() {
             src="/images/DSCF00241.jpg"
             width={150}
             height={112}
+            sizes="150px"
+            loading="lazy"
             alt="女性指導員のプロフィール写真"
             style={{ marginTop: "1em" }}
           />
@@ -220,6 +226,8 @@ export default function AboutPage() {
             src="/images/DSCF00201.jpg"
             width={150}
             height={112}
+            sizes="150px"
+            loading="lazy"
             alt="スタッフのプロフィール写真"
             style={{ marginTop: "1em" }}
           />
@@ -235,6 +243,8 @@ export default function AboutPage() {
             src="/images/DSCF00181.jpg"
             width={150}
             height={112}
+            sizes="150px"
+            loading="lazy"
             alt="ベテランスタッフのプロフィール写真"
             style={{ marginTop: "1em" }}
           />

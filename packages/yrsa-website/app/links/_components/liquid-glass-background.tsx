@@ -15,7 +15,11 @@ export function LiquidGlassBackground({
       }}
     >
       {/* iOS 9 sand dunes style wallpaper - cyan/turquoise with orange accent */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* contain: layoutで再描画を最小化 (strictは負のマージン要素をクリップするため使用不可) */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        style={{ contain: "layout" }}
+      >
         {/* Light cyan wash - top area */}
         <div
           className="absolute -left-20 -top-20 h-[600px] w-[800px] opacity-80"

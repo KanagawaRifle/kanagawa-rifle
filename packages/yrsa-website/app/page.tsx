@@ -48,6 +48,7 @@ export default function HomePage() {
             src="/images/hero-1280.gif"
             width={1280}
             height={233}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 896px"
             className="mx-auto h-auto w-full"
             alt="横須賀市ライフル射撃協会のホームページへようこそ！"
             priority
@@ -222,6 +223,8 @@ export default function HomePage() {
                   alt="くりはま花の国エアライフル射撃場"
                   width={300}
                   height={200}
+                  sizes="(max-width: 768px) 280px, 300px"
+                  loading="lazy"
                   className="mx-auto border-2 border-white shadow"
                 />
                 <p className="mt-2 text-center text-sm">
