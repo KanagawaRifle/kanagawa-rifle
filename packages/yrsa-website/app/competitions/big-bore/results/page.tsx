@@ -55,7 +55,7 @@ export default function BigBoreResultsPage() {
           {/* Header */}
           <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/button321.gif"
+              src="/images/icon-big-bore.gif"
               alt="大口径大会"
               width={161}
               height={48}

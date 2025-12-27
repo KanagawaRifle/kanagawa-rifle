@@ -64,7 +64,7 @@ export default function CompetitionsPage() {
           {/* Header section */}
           <div className="mb-4 flex flex-col items-center gap-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4 md:flex-row">
             <Image
-              src="/images/2.jpg"
+              src="/images/og-cover.jpg"
               width={150}
               height={150}
               alt="横須賀市ライフル射撃協会"
@@ -73,7 +73,7 @@ export default function CompetitionsPage() {
             <div className="text-center md:text-left">
               <Image
                 alt="競技・狩猟・大口径"
-                src="/images/anim33.gif"
+                src="/images/header-decoration.gif"
                 width={344}
                 height={59}
               />
@@ -86,7 +86,7 @@ export default function CompetitionsPage() {
           {/* Competition cards grid */}
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
             <CompetitionCard
-              iconSrc="/images/button9.gif"
+              iconSrc="/images/icon-monthly.gif"
               title="月例会（G4）"
               description="久里浜花の国射撃場にて月１回行われている射撃大会です。参加をご希望の方は、要項をご確認のうえエントリーしてください。"
               guidelinesHref="/competitions/monthly"
@@ -94,7 +94,7 @@ export default function CompetitionsPage() {
             />
 
             <CompetitionCard
-              iconSrc="/images/button221.gif"
+              iconSrc="/images/icon-rank-list.gif"
               title="冬季ランクリスト（G3）"
               description="毎年、１２月・１月・２月、計６回全国の射撃場において、ＡＲピストル・ＡＲライフルのランキング大会を行っています。ランキング大会は「公認競技会の格付規定」に基づいて日本ライフル射撃協会の会員内で競い合います。"
               guidelinesHref="/competitions/rank-list"
@@ -102,7 +102,7 @@ export default function CompetitionsPage() {
             />
 
             <CompetitionCard
-              iconSrc="/images/button321.gif"
+              iconSrc="/images/icon-big-bore.gif"
               title="大口径射撃大会"
               description="横須賀ライフル射撃協会では、主に年4～5回の割合で埼玉県長瀞総合射撃場の300ｍを借りて大会を行っております。全日本や国際大会のように堅苦しい競技大会ではなくみんなで集まって楽しく鉄砲をぶっ放すという大会です。"
               guidelinesHref="/competitions/big-bore"
@@ -110,7 +110,7 @@ export default function CompetitionsPage() {
             />
 
             <CompetitionCard
-              iconSrc="/images/button17.gif"
+              iconSrc="/images/icon-hunting.gif"
               title="狩猟銃射撃大会"
               description="空気銃狩猟の安全思想の啓発と銃の安全な取り扱いの習熟と、射撃技術の向上を目的としています。"
               guidelinesHref="/competitions/hunting"
@@ -118,14 +118,14 @@ export default function CompetitionsPage() {
             />
 
             <CompetitionCard
-              iconSrc="/images/button55.gif"
+              iconSrc="/images/icon-young-star.gif"
               title="ヤングスターファイナル（G3）"
               description="毎年2月に開催される小中学生大会です。"
               guidelinesHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-details.pdf"
             />
 
             <CompetitionCard
-              iconSrc="/images/button222.gif"
+              iconSrc="/images/icon-shooting-class.gif"
               title="ライフル射撃教室"
               description="ビームライフル射撃は、年齢制限や男女問わず、どなたでも体験できますが、「キッズ大会は」中学２年年生まで出場資格が取れます。練習はいつでも出来ますので、どうぞ射撃場へいらしてみてください。"
               guidelinesHref="/competitions/rifle-shooting-class"
@@ -133,14 +133,14 @@ export default function CompetitionsPage() {
             />
 
             <CompetitionCard
-              iconSrc="/images/button7.gif"
+              iconSrc="/images/icon-citizens.gif"
               title="横須賀市民体育大会"
               description="毎年２月上旬頃に、横須賀市民大会 兼 防衛大学対抗戦として射撃大会を行っています。"
               resultsHref="/competitions/citizens/results"
             />
 
             <CompetitionCard
-              iconSrc="/images/button316.gif"
+              iconSrc="/images/icon-gp-final.gif"
               title="GPファイナル"
               description="年間の月例会成績上位者によるファイナル形式の大会です。"
               guidelinesHref="/competitions/gp-final"

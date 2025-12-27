@@ -37,7 +37,7 @@ export default async function MonthlyResultsPage() {
           {/* Header */}
           <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/button9.gif"
+              src="/images/icon-monthly.gif"
               alt="月例会"
               width={155}
               height={46}

@@ -68,7 +68,7 @@ export default function AboutPage() {
 
       <div style={{ margin: "2em 0" }}>
         <Image
-          src="/images/011.jpg"
+          src="/images/rifle-shooting.jpg"
           alt="横須賀市ライフル射撃協会"
           width={320}
           height={240}

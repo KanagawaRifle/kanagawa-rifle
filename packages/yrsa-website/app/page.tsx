@@ -46,7 +46,7 @@ export default function HomePage() {
         {/* Hero Banner */}
         <div className="mb-6 border-4 border-blue-400 bg-white p-2">
           <Image
-            src="/images/hero-1280.gif"
+            src="/images/hero.gif"
             width={1280}
             height={233}
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 896px"
@@ -220,7 +220,7 @@ export default function HomePage() {
               </div>
               <div className="p-2">
                 <Image
-                  src="/images/011.jpg"
+                  src="/images/rifle-shooting.jpg"
                   alt="くりはま花の国エアライフル射撃場"
                   width={300}
                   height={200}

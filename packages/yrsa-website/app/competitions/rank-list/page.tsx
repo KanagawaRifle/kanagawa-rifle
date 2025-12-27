@@ -61,7 +61,7 @@ export default function RankListPage() {
           {/* Header */}
           <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
             <Image
-              src="/images/button221.gif"
+              src="/images/icon-rank-list.gif"
               alt="冬季ランクリスト"
               width={155}
               height={46}
