@@ -44,7 +44,7 @@ export default function QueryProvider({ children }: { children: React.ReactNode 
 
   // 本番環境では ErrorBoundary を使用
   return (
-    <ErrorBoundary fallback={<ErrorFallback />}>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </ErrorBoundary>
   );
