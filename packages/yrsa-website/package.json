@@ -2,6 +2,7 @@
   "name": "@acme/yrsa.website",
   "version": "0.1.0",
   "private": true,
+  "prettier": "@acme/prettier-config",
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "npx tsx scripts/generate-feed.ts",
@@ -10,8 +11,9 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "test": "vitest",
+    "test:run": "vitest run",
     "test:watch": "vitest --watch",
-    "test:coverage": "vitest --coverage",
+    "test:coverage": "vitest run --coverage",
     "generate:feed": "npx tsx scripts/generate-feed.ts"
   },
   "dependencies": {
