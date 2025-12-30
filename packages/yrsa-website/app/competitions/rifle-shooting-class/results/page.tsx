@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../_components";
 import { getRifleClassFiscalYears } from "@/lib/rifle-shooting-class";
 import iconShootingClassImage from "../../_assets/icon-shooting-class.gif";
@@ -7,6 +8,19 @@ import iconShootingClassImage from "../../_assets/icon-shooting-class.gif";
 export const metadata: Metadata = {
   title: "ライフル射撃教室 大会結果 | 横須賀市ライフル射撃協会",
   description: "ライフル射撃教室の大会結果一覧。年度別に結果を閲覧できます。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "ライフル射撃教室 結果",
+          subtitle: "年度別大会結果一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function RifleShootingClassResultsPage() {

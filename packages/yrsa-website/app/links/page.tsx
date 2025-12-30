@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getOpengraphImageUrl } from "@/lib/server";
 import {
   LiquidGlassBackground,
   LiquidGlassPanel,
@@ -10,6 +11,19 @@ export const metadata: Metadata = {
   title: "リンクのページ | 横須賀市ライフル射撃協会",
   description:
     "リンクのページ。神奈川県、横須賀市ライフル射撃協会の公式サイト。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "リンク集",
+          subtitle: "関連団体・施設へのリンク",
+          theme: "glass",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const links = [

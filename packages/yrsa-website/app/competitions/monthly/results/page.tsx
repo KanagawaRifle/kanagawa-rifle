@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button, ApiDocsModal } from "../../_components";
 import { getFiscalYears } from "@/lib/competitions";
 import iconMonthlyImage from "../../_assets/icon-monthly.gif";
@@ -7,6 +8,19 @@ import iconMonthlyImage from "../../_assets/icon-monthly.gif";
 export const metadata: Metadata = {
   title: "月例会（G4）結果 | 横須賀市ライフル射撃協会",
   description: "月例会（G4）の大会結果一覧。年度別に結果を閲覧できます。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "月例会（G4）結果",
+          subtitle: "年度別大会結果一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function MonthlyResultsPage() {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../../_components";
 import {
   getRifleClassResults,
@@ -36,6 +37,19 @@ export async function generateMetadata({
   return {
     title: `${japaneseEra}年度 ライフル射撃教室 大会結果 | 横須賀市ライフル射撃協会`,
     description: `${japaneseEra}年度のライフル射撃教室大会結果一覧。`,
+    openGraph: {
+      images: [
+        {
+          url: getOpengraphImageUrl({
+            title: `${japaneseEra}年度 射撃教室結果`,
+            subtitle: "大会結果一覧",
+            theme: "win95",
+          }),
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
   };
 }
 

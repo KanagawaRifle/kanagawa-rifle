@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 
 export const metadata: Metadata = {
   title: "GPファイナル | 横須賀市ライフル射撃協会",
   description:
     "グランプリファイナルの情報ページ。年間の月例会成績上位者によるファイナル形式の大会です。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "GPファイナル",
+          subtitle: "月例会成績上位者によるファイナル",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function GPFinalPage() {

@@ -1,9 +1,27 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { GoogleCalendar } from "./_components";
 import heroImage from "./_assets/hero.gif";
 import rifleShootingImage from "./_assets/rifle-shooting.jpg";
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "横須賀市ライフル射撃協会",
+          subtitle: "神奈川県の射撃団体",
+          theme: "default",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 export default function HomePage() {
   return (

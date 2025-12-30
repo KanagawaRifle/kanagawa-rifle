@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { CernBackground } from "./_components";
 import rifleShootingImage from "@/app/_assets/rifle-shooting.jpg";
 
@@ -8,6 +9,19 @@ export const metadata: Metadata = {
   title: "協会案内 | 横須賀市ライフル射撃協会",
   description:
     "横須賀市ライフル射撃協会の歴史と組織についてご紹介します。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "協会案内",
+          subtitle: "横須賀市ライフル射撃協会の歴史と組織",
+          theme: "cern",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const boardMembers = [

@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../_components";
 import iconBigBoreImage from "../../_assets/icon-big-bore.gif";
 
 export const metadata: Metadata = {
   title: "長瀞大会結果 | 横須賀市ライフル射撃協会",
   description: "大口径大会（長瀞大会）の結果一覧。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "長瀞大会結果",
+          subtitle: "大口径大会結果一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 // P60 results (300m Prone 60 shots, 6 series)

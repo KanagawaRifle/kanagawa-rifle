@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { TerminalCalendar } from "./_components";
 import styles from "./terminal.module.css";
 
 export const metadata: Metadata = {
   title: "事業計画 | 横須賀市ライフル射撃協会",
   description: "横須賀市ライフル射撃協会の年間事業計画と予定表。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "事業計画",
+          subtitle: "年間事業計画と予定表",
+          theme: "terminal",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 function Prompt({ path = "~" }: { path?: string }) {

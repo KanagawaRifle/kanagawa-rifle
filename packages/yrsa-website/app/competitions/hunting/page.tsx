@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 
 export const metadata: Metadata = {
   title: "狩猟銃射撃大会 | 横須賀市ライフル射撃協会",
   description:
     "狩猟銃射撃大会の情報ページ。空気銃狩猟の安全思想の啓発と銃の安全な取り扱いの習熟と、射撃技術の向上を目的としています。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "狩猟銃射撃大会",
+          subtitle: "大会要項・競技規則",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function HuntingPage() {

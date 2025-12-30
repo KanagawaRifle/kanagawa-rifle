@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../../_components";
 import {
   getResults,
@@ -22,6 +23,19 @@ export async function generateMetadata({
   return {
     title: `${year}年度 月例会（G4）結果 | 横須賀市ライフル射撃協会`,
     description: `${year}年度の月例会（G4）大会結果一覧。`,
+    openGraph: {
+      images: [
+        {
+          url: getOpengraphImageUrl({
+            title: `${year}年度 月例会結果`,
+            subtitle: "大会結果一覧",
+            theme: "win95",
+          }),
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
   };
 }
 

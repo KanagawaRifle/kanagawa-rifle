@@ -2,11 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, ChevronRight } from "lucide-react";
+import { getOpengraphImageUrl } from "@/lib/server";
 
 export const metadata: Metadata = {
   title: "くりはま花の国エアライフル射撃場 | 神奈川県横須賀市の射撃場",
   description:
     "くりはま花の国エアライフル射撃場は、神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場です。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "射撃場案内",
+          subtitle: "くりはま花の国エアライフル射撃場",
+          theme: "modern",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const jsonLd = {

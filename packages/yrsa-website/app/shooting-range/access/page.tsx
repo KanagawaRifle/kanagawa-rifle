@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import { MapPin } from "lucide-react";
+import { getOpengraphImageUrl } from "@/lib/server";
 
 export const metadata: Metadata = {
   title: "アクセス | くりはま花の国エアライフル射撃場",
   description:
     "くりはま花の国エアライフル射撃場へのアクセス方法をご案内します。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "アクセス",
+          subtitle: "交通案内・駐車場",
+          theme: "modern",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const jsonLd = {

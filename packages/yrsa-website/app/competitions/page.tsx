@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "./_components";
 import headerDecorationImage from "./_assets/header-decoration.gif";
 import iconMonthlyImage from "./_assets/icon-monthly.gif";
@@ -15,6 +16,19 @@ import iconGpFinalImage from "./_assets/icon-gp-final.gif";
 export const metadata: Metadata = {
   title: "競技会・大会 | 横須賀市ライフル射撃協会",
   description: "競技会・大会。神奈川県、横須賀市ライフル射撃協会の公式サイト。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "競技会・大会",
+          subtitle: "主催・共催競技会一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 interface CompetitionCardProps {

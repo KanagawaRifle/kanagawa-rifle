@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 import iconMonthlyImage from "../_assets/icon-monthly.gif";
 
 export const metadata: Metadata = {
   title: "月例会（G4） | 横須賀市ライフル射撃協会",
   description: "月例会（G4）の大会要項。くりはま花の国エアライフル射撃場にて毎月開催。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "月例会（G4）",
+          subtitle: "大会要項",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function MonthlyCompetitionPage() {

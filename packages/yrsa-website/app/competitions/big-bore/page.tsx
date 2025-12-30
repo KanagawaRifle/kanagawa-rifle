@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 import iconBigBoreImage from "../_assets/icon-big-bore.gif";
 
@@ -7,6 +8,19 @@ export const metadata: Metadata = {
   title: "大口径大会 | 横須賀市ライフル射撃協会",
   description:
     "大口径大会の情報ページ。300mライフル競技について、射撃姿勢やルールを紹介しています。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "大口径大会",
+          subtitle: "300mライフル競技",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function BigBorePage() {

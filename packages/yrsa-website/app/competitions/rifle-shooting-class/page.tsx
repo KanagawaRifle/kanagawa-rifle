@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 import iconShootingClassImage from "../_assets/icon-shooting-class.gif";
 
 export const metadata: Metadata = {
   title: "ライフル射撃教室 | 横須賀市ライフル射撃協会",
   description: "ライフル射撃教室・キッズ大会のご案内。中学2年生まで参加可能。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "ライフル射撃教室",
+          subtitle: "キッズ大会のご案内",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RifleShootingClassPage() {

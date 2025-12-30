@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../_components";
 
 export const metadata: Metadata = {
   title: "市民大会結果 | 横須賀市ライフル射撃協会",
   description: "横須賀市民大会 兼 防衛大学対抗戦の結果一覧。2014年〜2017年の全結果を掲載。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "市民大会結果",
+          subtitle: "横須賀市民大会結果一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 interface Result {

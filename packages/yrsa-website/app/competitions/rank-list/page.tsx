@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../_components";
 import iconRankListImage from "../_assets/icon-rank-list.gif";
 
 export const metadata: Metadata = {
   title: "冬季ランクリスト（G3） | 横須賀市ライフル射撃協会",
   description: "冬季ランクリスト競技会（G3）の大会要項。毎年12月・1月・2月に開催。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "冬季ランクリスト（G3）",
+          subtitle: "大会要項",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 interface FiscalYearData {

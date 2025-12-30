@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
+import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "../../_components";
 
 export const metadata: Metadata = {
   title: "GPファイナル結果 | 横須賀市ライフル射撃協会",
   description:
     "グランプリファイナル（市民大会 兼 防衛大学対抗戦）の結果一覧。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "GPファイナル結果",
+          subtitle: "大会結果一覧",
+          theme: "win95",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 // 2017年2月12日 ARS60の部

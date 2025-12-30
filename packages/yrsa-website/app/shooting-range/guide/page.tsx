@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
+import { getOpengraphImageUrl } from "@/lib/server";
 
 export const metadata: Metadata = {
   title: "利用案内 | くりはま花の国エアライフル射撃場",
   description:
     "くりはま花の国エアライフル射撃場の営業時間、料金、利用方法をご案内します。",
+  openGraph: {
+    images: [
+      {
+        url: getOpengraphImageUrl({
+          title: "利用案内",
+          subtitle: "営業時間・料金・利用方法",
+          theme: "modern",
+        }),
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const jsonLd = {
