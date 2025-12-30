@@ -171,34 +171,6 @@ function ResultTable({ results, scoringType }: { results: Result[]; scoringType:
   );
 }
 
-function ScoringExplanation({ scoringType }: { scoringType: "ring" | "point" }) {
-  if (scoringType === "ring") {
-    return (
-      <div className="mb-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#e0ffe0] p-2">
-        <p className="mb-1 text-xs font-bold">採点方法（環点制）：</p>
-        <ul className="list-inside list-disc text-xs">
-          <li>依託：110点満点（11発×10点）</li>
-          <li>肘射：100点満点（10発×10点）</li>
-          <li>立射：90点満点（9発×10点）</li>
-          <li>合計300点満点</li>
-        </ul>
-      </div>
-    );
-  }
-
-  return (
-    <div className="mb-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-2">
-      <p className="mb-1 text-xs font-bold">採点方法（点数制）：</p>
-      <ul className="list-inside list-disc text-xs">
-        <li>依託：10点圏3点、9点圏2点、8点圏1点（30点満点）</li>
-        <li>肘射：9点圏3点、7点圏2点、5点圏1点（30点満点）</li>
-        <li>立射：8〜10点圏3点、6〜7点圏2点、4〜5点圏1点（30点満点）</li>
-        <li>合計90点満点</li>
-      </ul>
-    </div>
-  );
-}
-
 export default function HuntingResultsPage() {
   const data = loadData();
 
@@ -253,7 +225,6 @@ export default function HuntingResultsPage() {
                       {round.scoringType === "ring" ? "環点制" : "点数制"}
                     </span>
                   </div>
-                  <ScoringExplanation scoringType={round.scoringType} />
                   <ResultTable results={round.results} scoringType={round.scoringType} />
                 </div>
               ))}

@@ -7,13 +7,13 @@ import iconBigBoreImage from "../_assets/icon-big-bore.gif";
 export const metadata: Metadata = {
   title: "大口径大会 | 横須賀市ライフル射撃協会",
   description:
-    "大口径大会の情報ページ。300mライフル競技について、射撃姿勢やルールを紹介しています。",
+    "大口径大会の情報ページ。センターファイアライフル競技について、射撃姿勢やルールを紹介しています。",
   openGraph: {
     images: [
       {
         url: getOpengraphImageUrl({
           title: "大口径大会",
-          subtitle: "300mライフル競技",
+          subtitle: "CFライフル競技",
           theme: "win95",
         }),
         width: 1200,
@@ -67,7 +67,7 @@ export default function BigBorePage() {
             <div className="mb-2 border-b border-[#808080] pb-1">
               <span className="text-sm font-bold">開催場所</span>
             </div>
-            <p className="text-sm">長瀞総合射撃場 300m</p>
+            <p className="text-sm">長瀞総合射撃場/千葉県射撃場</p>
           </div>
 
           {/* Results link */}
@@ -81,7 +81,7 @@ export default function BigBorePage() {
           {/* Status bar */}
           <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
             <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
-              300m 大口径ライフル競技
+              大口径ライフル競技
             </div>
             <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
           </div>

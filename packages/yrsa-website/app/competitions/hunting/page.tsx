@@ -50,50 +50,50 @@ export default function HuntingPage() {
                 <tbody>
                   <tr className="border-b border-[#c0c0c0]">
                     <td className="bg-[#f0f0f0] p-2 font-bold">
-                      【射撃競技会の目的】
+                      目的
                     </td>
                     <td className="p-2">
                       空気銃狩猟の安全思想の啓発と銃の安全な取り扱いの習熟と、射撃技術の向上を目的とする。
                     </td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
-                    <td className="bg-[#f0f0f0] p-2 font-bold">【資格】</td>
+                    <td className="bg-[#f0f0f0] p-2 font-bold">資格</td>
                     <td className="p-2">
                       横須賀市ライフル射撃協会会員であること。
                     </td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
                     <td className="bg-[#f0f0f0] p-2 font-bold">
-                      【空気銃の種類】
+                      空気銃の種類
                     </td>
                     <td className="p-2">
                       口径6.5mm以下の空気(ガス)銃で、銃刀法に適合するものであればその形式は問わないが、競技用銃の使用はできない。但し、フィールド競技用銃は認める。
                     </td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
-                    <td className="bg-[#f0f0f0] p-2 font-bold">【服装】</td>
+                    <td className="bg-[#f0f0f0] p-2 font-bold">服装</td>
                     <td className="p-2">
                       射撃にふさわしい服装なら良い。但し、狩猟を前提とするので射撃コート及び射撃グローブは使用できない。手の保護・銃の保護のための手袋は使用できる。
                     </td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
-                    <td className="bg-[#f0f0f0] p-2 font-bold">【照準装置】</td>
+                    <td className="bg-[#f0f0f0] p-2 font-bold">照準装置</td>
                     <td className="p-2">
                       特に規定しない。ライフルスコープの使用も可。
                     </td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
                     <td className="bg-[#f0f0f0] p-2 font-bold">
-                      【引き金の重さ】
+                      引き金の重さ
                     </td>
                     <td className="p-2">特に規定しない。</td>
                   </tr>
                   <tr className="border-b border-[#c0c0c0]">
-                    <td className="bg-[#f0f0f0] p-2 font-bold">【銃床】</td>
+                    <td className="bg-[#f0f0f0] p-2 font-bold">銃床</td>
                     <td className="p-2">特に規定しない。</td>
                   </tr>
                   <tr>
-                    <td className="bg-[#f0f0f0] p-2 font-bold">【スリング】</td>
+                    <td className="bg-[#f0f0f0] p-2 font-bold">スリング</td>
                     <td className="p-2">
                       銃を背負うことを主な目的にした「猟用スリング」の使用は認める。「競技用スリング」は認めない。
                     </td>
