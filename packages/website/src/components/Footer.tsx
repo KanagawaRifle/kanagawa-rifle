@@ -30,40 +30,55 @@ export function Footer() {
             </ButtonGroup>
           </Box>
         </nav>
-        <nav>
+        <nav aria-label="フッターナビゲーション">
           <Box className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-slate-200 px-4 py-6 md:grid-cols-3">
-            <List dense disablePadding>
-              {Object.entries(paths.main).map(([key, obj]) => (
-                <ListItem key={key}>
-                  <ListItemButton href={obj.getHref()} component={Link}>
-                    <ListItemText>{obj.name}</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <List dense disablePadding>
-              {Object.entries(paths.sub).map(([key, obj]) => (
-                <ListItem key={key}>
-                  <ListItemButton href={obj.getHref()} component={Link}>
-                    <ListItemText>{obj.name}</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <List dense disablePadding>
-              {Object.entries(paths.external).map(([key, obj]) => (
-                <ListItem key={key}>
-                  <ListItemButton href={obj.getHref()} component={Link} target="_blank">
-                    <ListItemText>
-                      <Box className="flex items-center gap-1">
-                        {obj.name}
-                        <LuExternalLink />
-                      </Box>
-                    </ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
+            <Box component="section">
+              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
+                メインナビゲーション
+              </Box>
+              <List dense disablePadding>
+                {Object.entries(paths.main).map(([key, obj]) => (
+                  <ListItem key={key}>
+                    <ListItemButton href={obj.getHref()} component={Link}>
+                      <ListItemText>{obj.name}</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+            <Box component="section">
+              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
+                各種情報
+              </Box>
+              <List dense disablePadding>
+                {Object.entries(paths.sub).map(([key, obj]) => (
+                  <ListItem key={key}>
+                    <ListItemButton href={obj.getHref()} component={Link}>
+                      <ListItemText>{obj.name}</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+            <Box component="section">
+              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
+                関連リンク
+              </Box>
+              <List dense disablePadding>
+                {Object.entries(paths.external).map(([key, obj]) => (
+                  <ListItem key={key}>
+                    <ListItemButton href={obj.getHref()} component={Link} target="_blank" rel="noopener noreferrer">
+                      <ListItemText>
+                        <Box className="flex items-center gap-1">
+                          {obj.name}
+                          <LuExternalLink aria-hidden="true" />
+                        </Box>
+                      </ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
           </Box>
         </nav>
         <nav>

@@ -34,15 +34,20 @@ const Logo: React.FC = React.memo(() => {
   const theme = useTheme();
 
   return (
-    <Link href="/" className="text-center text-xl font-black no-underline" style={{ fontFamily: 'Roboto' }}>
+    <Link
+      href="/"
+      className="text-center text-xl font-black tracking-wider no-underline"
+      style={{ fontFamily: 'Roboto' }}
+      aria-label="神奈川県ライフル射撃協会 トップページへ"
+    >
       <Box component="span" sx={{ color: theme.palette.primary.main }}>
-        Ｋ
+        K
       </Box>
       <Box component="span" sx={{ color: theme.palette.secondary.main }}>
-        Ｒ
+        R
       </Box>
       <Box component="span" sx={{ color: '#4285f4' }}>
-        Ａ
+        A
       </Box>
     </Link>
   );
@@ -57,11 +62,20 @@ type DrawerContentProps = {
 
 const DrawerContent: React.FC<DrawerContentProps> = React.memo(({ onClose }) => (
   <Box sx={{ width: DRAWER_WIDTH }} role="presentation" onClick={onClose}>
-    <List>
+    <List component="nav" aria-label="メインナビゲーション">
       {Object.entries(paths.main).map(([key, obj]) => (
         <ListItem key={key} disablePadding>
           <ListItemButton href={obj.getHref()} component={Link}>
             <ListItemText primary={obj.name} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+    <List component="nav" aria-label="サブナビゲーション" sx={{ borderTop: '1px solid #e5e7eb' }}>
+      {Object.entries(paths.sub).map(([key, obj]) => (
+        <ListItem key={key} disablePadding>
+          <ListItemButton href={obj.getHref()} component={Link}>
+            <ListItemText primary={obj.name} sx={{ color: 'text.secondary' }} />
           </ListItemButton>
         </ListItem>
       ))}
@@ -114,8 +128,8 @@ const MoreMenu: React.FC = React.memo(() => {
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="その他">
-        <IconButton onClick={handleOpen} edge="end" color="inherit">
+      <Tooltip title="各種書式・リンク集">
+        <IconButton onClick={handleOpen} edge="end" color="inherit" aria-label="その他のメニューを開く">
           <MoreIcon />
         </IconButton>
       </Tooltip>
