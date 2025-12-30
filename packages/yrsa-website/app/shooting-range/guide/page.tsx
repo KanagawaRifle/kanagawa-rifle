@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
 import { getOpengraphImageUrl } from "@/lib/server";
+import { FAQSchema, Breadcrumb } from "@/components";
 
 export const metadata: Metadata = {
-  title: "利用案内 | くりはま花の国エアライフル射撃場",
+  title: "利用案内 | 神奈川県横須賀市の射撃場【くりはま花の国】",
   description:
-    "くりはま花の国エアライフル射撃場の営業時間、料金、利用方法をご案内します。",
+    "神奈川県横須賀市の射撃場「くりはま花の国エアライフル射撃場」の営業時間・料金・利用方法。ビームライフル体験可能、初心者歓迎。",
   openGraph: {
     images: [
       {
@@ -92,6 +93,38 @@ const jsonLd = {
   },
 };
 
+// よくある質問
+const faqItems = [
+  {
+    question: "営業時間は何時から何時までですか？",
+    answer: "8:30から21:00まで営業しています。最終受付は20:00です。ビームライフルの受付は9:00から15:00までです。",
+  },
+  {
+    question: "休場日はいつですか？",
+    answer: "毎週月曜日が休場日です。祝日の場合は翌日が休場日となります。また、年末年始（12月29日〜1月3日）も休場です。",
+  },
+  {
+    question: "利用料金はいくらですか？",
+    answer: "大人は1時間260円（市内）または520円（市外）です。小中高生は1時間160円（市内）または360円（市外）です。ビームライフルレンタルは760円です。",
+  },
+  {
+    question: "銃を持っていなくても利用できますか？",
+    answer: "はい、ビームライフル（光線銃）をレンタルできます。小学5年生以上の方がご利用いただけます。銃刀法の許可は不要です。",
+  },
+  {
+    question: "予約は必要ですか？",
+    answer: "通常のご利用には予約は不要です。ただし、大会等で利用できない日がありますので、事前にスケジュールをご確認ください。",
+  },
+  {
+    question: "初心者でも射撃体験はできますか？",
+    answer: "はい、初心者の方でもビームライフルで射撃体験ができます。係員が丁寧に指導いたしますので、初めての方も安心してご利用いただけます。",
+  },
+  {
+    question: "神奈川県内で射撃場を探しています。どこにありますか？",
+    answer: "くりはま花の国エアライフル射撃場は神奈川県横須賀市神明町1番地にあります。京急久里浜駅からバスで約5分です。無料駐車場も完備しています。",
+  },
+];
+
 export default function ShootingRangeGuidePage() {
   return (
     <>
@@ -99,8 +132,15 @@ export default function ShootingRangeGuidePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FAQSchema items={faqItems} />
       <div className="space-y-8">
-      {/* 営業時間 */}
+        {/* パンくずリスト */}
+        <Breadcrumb
+          items={[{ name: "射撃場", href: "/shooting-range" }]}
+          current="利用案内"
+        />
+
+        {/* 営業時間 */}
       <section>
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
           営業時間
@@ -297,6 +337,28 @@ export default function ShootingRangeGuidePage() {
               </span>
             </li>
           </ul>
+        </div>
+      </section>
+
+      {/* ビームライフル体験 */}
+      <section>
+        <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
+          ビームライフル体験（射撃体験）
+        </h2>
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <p className="mb-3 text-sm leading-relaxed text-gray-700">
+            銃の所持許可がなくても、小学5年生以上の方ならどなたでもビームライフル（光線銃）を使った射撃体験ができます。
+            ビームライフルは実弾を使用せず、赤外線を使用するため安全です。オリンピック競技と同じ感覚でライフル射撃を体験できます。
+          </p>
+          <div className="rounded border border-emerald-200 bg-emerald-50 p-3">
+            <p className="text-sm font-medium text-emerald-800">ビームライフル体験のポイント</p>
+            <ul className="mt-2 space-y-1 text-sm text-emerald-700">
+              <li>・ 銃の所持許可不要 - どなたでも体験可能</li>
+              <li>・ 小学5年生以上から参加OK</li>
+              <li>・ レンタル料金：760円（時間無制限）</li>
+              <li>・ 受付時間：9:00〜15:00</li>
+            </ul>
+          </div>
         </div>
       </section>
       </div>

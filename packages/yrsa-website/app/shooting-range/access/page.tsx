@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { MapPin } from "lucide-react";
 import { getOpengraphImageUrl } from "@/lib/server";
+import { Breadcrumb } from "@/components";
 
 export const metadata: Metadata = {
-  title: "アクセス | くりはま花の国エアライフル射撃場",
+  title: "アクセス | 神奈川県横須賀市の射撃場【くりはま花の国】",
   description:
-    "くりはま花の国エアライフル射撃場へのアクセス方法をご案内します。",
+    "神奈川県横須賀市の射撃場「くりはま花の国エアライフル射撃場」へのアクセス方法。京急久里浜駅からバス約5分、駐車場完備。",
   openGraph: {
     images: [
       {
@@ -85,6 +86,12 @@ export default function ShootingRangeAccessPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="space-y-8">
+        {/* パンくずリスト */}
+        <Breadcrumb
+          items={[{ name: "射撃場", href: "/shooting-range" }]}
+          current="アクセス"
+        />
+
       {/* 地図 */}
       <section>
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">

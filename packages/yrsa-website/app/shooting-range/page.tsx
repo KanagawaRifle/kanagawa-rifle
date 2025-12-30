@@ -3,11 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, ChevronRight } from "lucide-react";
 import { getOpengraphImageUrl } from "@/lib/server";
+import { Breadcrumb } from "@/components";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "くりはま花の国エアライフル射撃場 | 神奈川県横須賀市の射撃場",
+  title: "射撃場【神奈川県横須賀市】くりはま花の国エアライフル射撃場",
   description:
-    "くりはま花の国エアライフル射撃場は、神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場です。",
+    "神奈川県横須賀市の射撃場。くりはま花の国エアライフル射撃場は初心者から上級者まで利用可能。ビームライフル体験あり。日本ライフル射撃協会公認。営業時間8:30-21:00。",
+  keywords: [
+    "射撃場",
+    "神奈川県 射撃場",
+    "横須賀市 射撃場",
+    "エアライフル射撃場",
+    "くりはま花の国",
+    "ライフル射撃",
+    "ビームライフル体験",
+    "射撃体験",
+  ],
   openGraph: {
     images: [
       {
@@ -26,12 +38,14 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SportsActivityLocation",
+  "@id": `${siteConfig.baseUrl}/shooting-range#place`,
   name: "くりはま花の国エアライフル射撃場",
+  alternateName: "久里浜エアライフル射撃場",
   description:
-    "神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場。日本ライフル射撃協会公認射撃場。",
-  url: "https://yokosuka-rifle.jp/shooting-range",
+    "神奈川県横須賀市に所在する横須賀市営のエアライフル射撃場。日本ライフル射撃協会公認射撃場。エアライフル・エアピストル・ビームライフル・ビームピストルの練習・競技会が可能。",
+  url: `${siteConfig.baseUrl}/shooting-range`,
   telephone: "046-833-6990",
-  email: "yokosukarifle@yahoo.co.jp",
+  email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: "神明町1番地",
@@ -45,6 +59,7 @@ const jsonLd = {
     latitude: 35.221668,
     longitude: 139.70727,
   },
+  hasMap: "https://www.google.com/maps?q=35.221668,139.70727",
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -53,6 +68,9 @@ const jsonLd = {
       closes: "21:00",
     },
   ],
+  priceRange: "¥500-¥3500",
+  currenciesAccepted: "JPY",
+  paymentAccepted: "Cash",
   amenityFeature: [
     {
       "@type": "LocationFeatureSpecification",
@@ -69,9 +87,16 @@ const jsonLd = {
       name: "射撃距離",
       value: "10m",
     },
+    {
+      "@type": "LocationFeatureSpecification",
+      name: "標的",
+      value: "電子標的（Meyton）、ビーム標的（興東電子）",
+    },
   ],
   isAccessibleForFree: false,
   publicAccess: true,
+  smokingAllowed: false,
+  image: `${siteConfig.baseUrl}/images/shooting-range/hero.jpg`,
 };
 
 export default function ShootingRangePage() {
@@ -82,6 +107,9 @@ export default function ShootingRangePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="space-y-8">
+        {/* パンくずリスト */}
+        <Breadcrumb items={[]} current="射撃場" />
+
         {/* ヒーロー画像 */}
         <div className="overflow-hidden rounded-lg border border-gray-200">
         <picture>
@@ -91,7 +119,7 @@ export default function ShootingRangePage() {
           />
           <Image
             src="/images/shooting-range/hero.jpg"
-            alt="くりはま花の国エアライフル射撃場の外観"
+            alt="神奈川県横須賀市の射撃場 - くりはま花の国エアライフル射撃場の外観"
             width={800}
             height={450}
             className="w-full object-cover"
@@ -99,6 +127,15 @@ export default function ShootingRangePage() {
           />
         </picture>
       </div>
+
+      {/* 射撃場の紹介 */}
+      <section className="rounded-lg border border-gray-200 bg-white p-4">
+        <p className="text-sm leading-relaxed text-gray-700">
+          くりはま花の国エアライフル射撃場は、神奈川県横須賀市にある公営のライフル射撃場です。
+          日本ライフル射撃協会公認の射撃場として、エアライフル・エアピストルの本格的な射撃練習から、
+          初心者向けのビームライフル体験まで幅広くご利用いただけます。
+        </p>
+      </section>
 
       {/* お知らせ */}
       <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
@@ -245,6 +282,45 @@ export default function ShootingRangePage() {
               <p className="text-sm text-gray-600">交通案内・駐車場</p>
             </div>
             <ChevronRight aria-hidden="true" className="h-5 w-5 text-gray-400" />
+          </Link>
+        </div>
+      </section>
+
+      {/* 競技会・射撃教室 */}
+      <section>
+        <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
+          射撃場で開催される競技会・教室
+        </h2>
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <p className="mb-3 text-sm text-gray-700">
+            当射撃場では、ライフル射撃の競技会や教室を定期的に開催しています。
+          </p>
+          <ul className="mb-4 space-y-2">
+            <li className="flex items-center gap-2">
+              <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
+              <Link href="/competitions/monthly" className="text-sm text-emerald-700 hover:text-emerald-900 hover:underline">
+                月例会（G4）- 毎月開催の射撃大会
+              </Link>
+            </li>
+            <li className="flex items-center gap-2">
+              <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
+              <Link href="/competitions/rifle-shooting-class" className="text-sm text-emerald-700 hover:text-emerald-900 hover:underline">
+                ライフル射撃教室 - 初心者向け射撃教室
+              </Link>
+            </li>
+            <li className="flex items-center gap-2">
+              <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600"></span>
+              <Link href="/competitions/rank-list" className="text-sm text-emerald-700 hover:text-emerald-900 hover:underline">
+                冬季ランクリスト（G3）- 全国ランキング大会
+              </Link>
+            </li>
+          </ul>
+          <Link
+            href="/competitions"
+            className="inline-flex items-center gap-1 text-sm font-medium text-emerald-600 hover:text-emerald-800 hover:underline"
+          >
+            すべての競技会を見る
+            <ChevronRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
       </section>

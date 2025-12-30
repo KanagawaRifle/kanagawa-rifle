@@ -1,30 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Header, Footer, GoogleAnalytics } from "@/components";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: "横須賀市ライフル射撃協会 | 神奈川県の射撃団体",
+    default: "ライフル射撃・射撃場なら横須賀市ライフル射撃協会【神奈川県】",
     template: "%s | 横須賀市ライフル射撃協会",
   },
   description:
-    "横須賀市ライフル射撃協会は、神奈川県横須賀市を拠点とするライフル射撃の団体です。くりはま花の国エアライフル射撃場を運営しています。",
+    "神奈川県横須賀市のライフル射撃団体。くりはま花の国エアライフル射撃場で射撃体験・競技会を開催。初心者向け射撃教室あり。",
   keywords: [
     "ライフル射撃",
-    "横須賀市",
-    "神奈川県",
+    "射撃",
     "射撃場",
+    "神奈川県",
+    "横須賀市",
     "エアライフル",
-    "射撃協会",
-    "くりはま花の国",
+    "ビームライフル",
+    "射撃体験",
     "射撃教室",
+    "くりはま花の国",
+    "射撃協会",
     "月例会",
+    "競技会",
   ],
   authors: [{ name: "横須賀市ライフル射撃協会" }],
-  manifest: "/manifest.json",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -45,9 +47,9 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: siteConfig.baseUrl,
     siteName: "横須賀市ライフル射撃協会",
-    title: "横須賀市ライフル射撃協会 | 神奈川県の射撃団体",
+    title: "ライフル射撃・射撃場なら横須賀市ライフル射撃協会【神奈川県】",
     description:
-      "横須賀市ライフル射撃協会は、神奈川県横須賀市を拠点とするライフル射撃の団体です。くりはま花の国エアライフル射撃場を運営しています。",
+      "神奈川県横須賀市のライフル射撃団体。くりはま花の国エアライフル射撃場で射撃体験・競技会を開催中。",
     images: [
       {
         url: "/images/og-cover.jpg",
@@ -59,13 +61,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "横須賀市ライフル射撃協会 | 神奈川県の射撃団体",
+    title: "ライフル射撃・射撃場なら横須賀市ライフル射撃協会【神奈川県】",
     description:
-      "横須賀市ライフル射撃協会は、神奈川県横須賀市を拠点とするライフル射撃の団体です。",
+      "神奈川県のライフル射撃・射撃場なら横須賀市ライフル射撃協会へ。射撃体験・競技会開催中。",
     images: ["/images/og-cover.jpg"],
   },
   alternates: {
     canonical: siteConfig.baseUrl,
+    types: {
+      "application/rss+xml": `${siteConfig.baseUrl}/feed.xml`,
+    },
   },
 };
 
@@ -86,29 +91,53 @@ const organizationSchema = {
     streetAddress: "神明町1番地",
     addressLocality: "横須賀市",
     addressRegion: "神奈川県",
-    postalCode: siteConfig.postalCode,
+    postalCode: "239-0832",
     addressCountry: "JP",
   },
-  areaServed: {
-    "@type": "City",
-    name: "横須賀市",
-    containedInPlace: {
+  areaServed: [
+    {
+      "@type": "City",
+      name: "横須賀市",
+      containedInPlace: {
+        "@type": "State",
+        name: "神奈川県",
+      },
+    },
+    {
       "@type": "State",
       name: "神奈川県",
-    },
-  },
-  memberOf: [
-    {
-      "@type": "SportsOrganization",
-      name: "神奈川県ライフル射撃協会",
-      url: "https://kraofficial.web.fc2.com/",
-    },
-    {
-      "@type": "SportsOrganization",
-      name: "日本ライフル射撃協会",
-      url: "https://www.riflesports.jp/",
+      containedInPlace: {
+        "@type": "Country",
+        name: "日本",
+      },
     },
   ],
+  location: {
+    "@type": "SportsActivityLocation",
+    name: "くりはま花の国エアライフル射撃場",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "神明町1番地",
+      addressLocality: "横須賀市",
+      addressRegion: "神奈川県",
+      postalCode: "239-0832",
+      addressCountry: "JP",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 35.221668,
+      longitude: 139.70727,
+    },
+    telephone: "046-833-6990",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "08:30",
+        closes: "21:00",
+      },
+    ],
+  },
 };
 
 const websiteSchema = {
@@ -133,6 +162,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

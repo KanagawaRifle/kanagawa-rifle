@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
+import Link from "next/link";
 import { getOpengraphImageUrl } from "@/lib/server";
 import { Win95Window, Win95Button } from "./_components";
 import headerDecorationImage from "./_assets/header-decoration.gif";
@@ -15,8 +16,23 @@ import iconGpFinalImage from "./_assets/icon-gp-final.gif";
 
 export const metadata: Metadata = {
   title: "競技会・大会 | 横須賀市ライフル射撃協会",
-  description: "競技会・大会。神奈川県、横須賀市ライフル射撃協会の公式サイト。",
+  description:
+    "横須賀市ライフル射撃協会が主催・共催する競技会一覧。月例会（G4）、冬季ランクリスト、大口径射撃大会、狩猟銃射撃大会、ライフル射撃教室など。",
+  keywords: [
+    "ライフル射撃大会",
+    "月例会",
+    "競技会",
+    "エアライフル",
+    "エアピストル",
+    "横須賀",
+    "神奈川県",
+    "射撃教室",
+    "ビームライフル",
+    "ランクリスト",
+  ],
   openGraph: {
+    title: "競技会・大会",
+    description: "月例会、ランクリスト、大口径、狩猟銃、射撃教室など競技会情報。",
     images: [
       {
         url: getOpengraphImageUrl({
@@ -103,6 +119,24 @@ export default function CompetitionsPage() {
                 ★ 横須賀市ライフル射撃協会が主催・共催する競技会一覧 ★
               </p>
             </div>
+          </div>
+
+          {/* 射撃場へのリンク */}
+          <div className="mb-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffc0] p-3">
+            <p className="text-sm">
+              📍 競技会は主に{" "}
+              <Link href="/shooting-range" className="text-[#000080] underline hover:text-[#0000ff]">
+                くりはま花の国エアライフル射撃場
+              </Link>
+              {" "}で開催されます。
+              <Link href="/shooting-range/guide" className="ml-2 text-[#000080] underline hover:text-[#0000ff]">
+                利用案内
+              </Link>
+              {" | "}
+              <Link href="/shooting-range/access" className="text-[#000080] underline hover:text-[#0000ff]">
+                アクセス
+              </Link>
+            </p>
           </div>
 
           {/* Competition cards grid */}

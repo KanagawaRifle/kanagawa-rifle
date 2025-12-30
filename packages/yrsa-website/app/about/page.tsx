@@ -6,9 +6,17 @@ import { CernBackground } from "./_components";
 import rifleShootingImage from "@/app/_assets/rifle-shooting.jpg";
 
 export const metadata: Metadata = {
-  title: "協会案内 | 横須賀市ライフル射撃協会",
+  title: "協会案内 | 横須賀市ライフル射撃協会【神奈川県】",
   description:
-    "横須賀市ライフル射撃協会の歴史と組織についてご紹介します。",
+    "神奈川県横須賀市のライフル射撃団体。1957年創立。くりはま花の国エアライフル射撃場を拠点に活動。競技射撃の普及と技術向上を目指す。",
+  keywords: [
+    "ライフル射撃",
+    "射撃協会",
+    "横須賀市",
+    "神奈川県",
+    "射撃団体",
+    "くりはま花の国",
+  ],
   openGraph: {
     images: [
       {
@@ -84,7 +92,7 @@ export default function AboutPage() {
       <div style={{ margin: "2em 0" }}>
         <Image
           src={rifleShootingImage}
-          alt="横須賀市ライフル射撃協会"
+          alt="横須賀市ライフル射撃協会 - 神奈川県のライフル射撃団体"
           sizes="320px"
         />
       </div>

@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "npx tsx scripts/generate-feed.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "generate:feed": "npx tsx scripts/generate-feed.ts"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
@@ -42,6 +44,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5",
     "vitest": "^2.1.8"
   }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 
 export function Footer() {
@@ -117,12 +118,81 @@ export function Footer() {
         </div>
       </div>
 
+      {/* サイトナビゲーション */}
+      <nav className="mx-auto max-w-4xl px-4 py-4" aria-label="フッターナビゲーション">
+        <div className="grid gap-4 text-center text-sm md:grid-cols-3">
+          <div>
+            <h3 className="mb-2 font-bold text-purple-700">射撃場のご案内</h3>
+            <ul className="space-y-1">
+              <li>
+                <Link href="/shooting-range" className="text-blue-600 underline hover:text-red-600">
+                  神奈川県横須賀市の射撃場
+                </Link>
+              </li>
+              <li>
+                <Link href="/shooting-range/guide" className="text-blue-600 underline hover:text-red-600">
+                  射撃場の利用案内・料金
+                </Link>
+              </li>
+              <li>
+                <Link href="/shooting-range/access" className="text-blue-600 underline hover:text-red-600">
+                  射撃場へのアクセス
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-2 font-bold text-purple-700">ライフル射撃競技会</h3>
+            <ul className="space-y-1">
+              <li>
+                <Link href="/competitions" className="text-blue-600 underline hover:text-red-600">
+                  競技会一覧
+                </Link>
+              </li>
+              <li>
+                <Link href="/competitions/monthly" className="text-blue-600 underline hover:text-red-600">
+                  月例射撃大会
+                </Link>
+              </li>
+              <li>
+                <Link href="/competitions/rifle-shooting-class" className="text-blue-600 underline hover:text-red-600">
+                  ライフル射撃教室
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-2 font-bold text-purple-700">協会について</h3>
+            <ul className="space-y-1">
+              <li>
+                <Link href="/about" className="text-blue-600 underline hover:text-red-600">
+                  横須賀市ライフル射撃協会
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="text-blue-600 underline hover:text-red-600">
+                  年間活動計画
+                </Link>
+              </li>
+              <li>
+                <Link href="/links" className="text-blue-600 underline hover:text-red-600">
+                  関連団体リンク
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
       {/* コピーライト */}
       <div className="border-y-4 border-double border-purple-400 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 py-3 text-center">
         <p className="font-retro text-purple-700">
           ～ご意見・ご感想お待ちしています～
         </p>
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="mt-2 text-xs text-gray-600">
+          神奈川県横須賀市のライフル射撃・射撃場なら横須賀市ライフル射撃協会
+        </p>
+        <p className="mt-1 text-sm text-gray-600">
           Since 1957 / ©2025 横須賀市ライフル射撃協会
         </p>
         <div className="mt-2 flex justify-center gap-1" aria-hidden="true">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getOpengraphImageUrl } from "@/lib/server";
+import { Breadcrumb, EventSchema } from "@/components";
 import { Win95Window, Win95Button } from "../_components";
 import iconMonthlyImage from "../_assets/icon-monthly.gif";
 
@@ -24,43 +25,74 @@ export const metadata: Metadata = {
 
 export default function MonthlyCompetitionPage() {
   return (
-    <div className="min-h-screen bg-[#008080] p-4">
-      <Win95Window title="月例会（G4） - 横須賀市ライフル射撃協会" icon="🎯" className="mx-auto max-w-4xl">
-        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
-          {/* Back button */}
-          <div className="mb-2">
-            <Win95Button href="/competitions">← 戻る</Win95Button>
-          </div>
+    <>
+      {/* 構造化データ */}
+      <EventSchema
+        name="月例会（G4）/ 山梨県・千葉県・神奈川県・横須賀市対抗戦"
+        description="くりはま花の国エアライフル射撃場にて毎月開催される射撃大会。AR、AP、BR、BP、HR種目で競います。"
+        eventSchedule={{
+          repeatFrequency: "Monthly",
+          byDay: "Saturday",
+          startTime: "09:00",
+          endTime: "19:00",
+        }}
+        location={{
+          name: "くりはま花の国エアライフル射撃場",
+          address: "神奈川県横須賀市",
+        }}
+        url="https://yokosuka.kanagawa-rifle.org/competitions/monthly"
+        offers={[
+          { price: 3500, name: "一般（AR/AP/HR種目）" },
+          { price: 3000, name: "協会会員（AR/AP/HR種目）" },
+          { price: 2000, name: "高校生以下（BR/BP種目）" },
+        ]}
+      />
 
-          {/* Header */}
-          <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-            <Image
-              src={iconMonthlyImage}
-              alt="月例会"
-            />
-          </div>
+      <div className="min-h-screen bg-[#008080] p-4">
+        <Win95Window title="月例会（G4） - 横須賀市ライフル射撃協会" icon="🎯" className="mx-auto max-w-4xl">
+          <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+            {/* パンくずリスト */}
+            <div className="mb-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-2">
+              <Breadcrumb
+                items={[{ name: "競技会", href: "/competitions" }]}
+                current="月例会（G4）"
+              />
+            </div>
 
-          {/* Application buttons */}
-          <div className="mb-4 flex flex-wrap justify-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-3">
-            <Win95Button
-              href="https://forms.gle/PMy9ES3DSEY1Yuso6"
-              variant="primary"
-              external
-            >
-              📝 申込フォーム
-            </Win95Button>
-            <Win95Button
-              href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS5ieJThK2GHfOjQS6aTpQzBDDbZ1u6FEGSakUCDr2pd1AUvfOTh_sLfKdaypOb_QcVpwdkQG97GHgo/pubhtml"
-              external
-            >
-              📋 参加者名簿
-            </Win95Button>
-          </div>
+            {/* Back button */}
+            <div className="mb-2">
+              <Win95Button href="/competitions">← 戻る</Win95Button>
+            </div>
 
-          {/* Main table */}
-          <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white">
-            <table className="w-full text-sm">
-              <tbody>
+            {/* Header */}
+            <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
+              <Image
+                src={iconMonthlyImage}
+                alt="月例会"
+              />
+            </div>
+
+            {/* Application buttons */}
+            <div className="mb-4 flex flex-wrap justify-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-3">
+              <Win95Button
+                href="https://forms.gle/PMy9ES3DSEY1Yuso6"
+                variant="primary"
+                external
+              >
+                📝 申込フォーム
+              </Win95Button>
+              <Win95Button
+                href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS5ieJThK2GHfOjQS6aTpQzBDDbZ1u6FEGSakUCDr2pd1AUvfOTh_sLfKdaypOb_QcVpwdkQG97GHgo/pubhtml"
+                external
+              >
+                📋 参加者名簿
+              </Win95Button>
+            </div>
+
+            {/* Main table */}
+            <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white">
+              <table className="w-full text-sm">
+                <tbody>
                 <tr>
                   <th className="w-1/4 border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
                     お申込
@@ -261,8 +293,9 @@ export default function MonthlyCompetitionPage() {
             </div>
             <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
           </div>
-        </div>
-      </Win95Window>
-    </div>
+          </div>
+        </Win95Window>
+      </div>
+    </>
   );
 }

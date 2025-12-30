@@ -22,12 +22,12 @@ export default function ShootingRangeLayout({
       {/* ヘッダーバナー */}
       <header className="bg-gradient-to-r from-emerald-700 to-emerald-600">
         <div className="container mx-auto max-w-4xl px-4 py-6">
-          <p className="text-sm text-emerald-100">横須賀市</p>
+          <p className="text-sm text-emerald-100">神奈川県横須賀市の射撃場</p>
           <h1 className="mt-1 text-lg font-bold text-white sm:text-2xl md:text-3xl">
             くりはま花の国エアライフル射撃場
           </h1>
           <p className="mt-2 text-sm text-emerald-100">
-            神奈川県公安委員会・日本ライフル射撃協会公認射撃場
+            日本ライフル射撃協会公認｜ライフル射撃・ビームライフル体験
           </p>
         </div>
       </header>

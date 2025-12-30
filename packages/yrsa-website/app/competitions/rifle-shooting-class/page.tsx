@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getOpengraphImageUrl } from "@/lib/server";
+import { Breadcrumb, EventSchema } from "@/components";
 import { Win95Window, Win95Button } from "../_components";
 import iconShootingClassImage from "../_assets/icon-shooting-class.gif";
 
@@ -24,17 +25,41 @@ export const metadata: Metadata = {
 
 export default function RifleShootingClassPage() {
   return (
-    <div className="min-h-screen bg-[#008080] p-4">
-      <Win95Window
-        title="ライフル射撃教室 - 横須賀市ライフル射撃協会"
-        icon="🎯"
-        className="mx-auto max-w-4xl"
-      >
-        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
-          {/* Back button */}
-          <div className="mb-2">
-            <Win95Button href="/competitions">← 戻る</Win95Button>
-          </div>
+    <>
+      {/* 構造化データ */}
+      <EventSchema
+        name="ライフル射撃教室・キッズ大会"
+        description="ビームライフル射撃は年齢制限や男女問わず体験可能。キッズ大会は中学2年生まで出場資格あり。"
+        eventSchedule={{
+          repeatFrequency: "Monthly",
+          byDay: "Saturday",
+        }}
+        location={{
+          name: "くりはま花の国エアライフル射撃場",
+          address: "神奈川県横須賀市",
+        }}
+        url="https://yokosuka.kanagawa-rifle.org/competitions/rifle-shooting-class"
+      />
+
+      <div className="min-h-screen bg-[#008080] p-4">
+        <Win95Window
+          title="ライフル射撃教室 - 横須賀市ライフル射撃協会"
+          icon="🎯"
+          className="mx-auto max-w-4xl"
+        >
+          <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+            {/* パンくずリスト */}
+            <div className="mb-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-2">
+              <Breadcrumb
+                items={[{ name: "競技会", href: "/competitions" }]}
+                current="ライフル射撃教室"
+              />
+            </div>
+
+            {/* Back button */}
+            <div className="mb-2">
+              <Win95Button href="/competitions">← 戻る</Win95Button>
+            </div>
 
           {/* Header */}
           <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
@@ -157,8 +182,9 @@ export default function RifleShootingClassPage() {
             </div>
             <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
           </div>
-        </div>
-      </Win95Window>
-    </div>
+          </div>
+        </Win95Window>
+      </div>
+    </>
   );
 }
