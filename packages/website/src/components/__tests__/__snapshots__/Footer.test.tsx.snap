@@ -45,143 +45,174 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
           </div>
         </div>
       </nav>
-      <nav>
+      <nav
+        aria-label="フッターナビゲーション"
+      >
         <div
           class="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-slate-200 px-4 py-6 md:grid-cols-3 MuiBox-root css-0"
         >
-          <ul
-            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+          <section
+            class="MuiBox-root css-0"
           >
-            <li
-              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+            <h3
+              class="mb-2 text-xs font-bold text-slate-600 MuiBox-root css-0"
             >
-              <a
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
-                href="/"
-                tabindex="0"
-              >
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
-                >
-                  <span
-                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
-                  >
-                    ホーム
-                  </span>
-                </div>
-              </a>
-            </li>
-            <li
-              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+              メインナビゲーション
+            </h3>
+            <ul
+              class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
             >
-              <a
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
-                href="/about"
-                tabindex="0"
+              <li
+                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
               >
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                <a
+                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                  href="/"
+                  tabindex="0"
                 >
-                  <span
-                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
                   >
-                    協会について
-                  </span>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <ul
-            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
-          >
-            <li
-              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
-            >
-              <a
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
-                href="/news"
-                tabindex="0"
-              >
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
-                >
-                  <span
-                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
-                  >
-                    お知らせ
-                  </span>
-                </div>
-              </a>
-            </li>
-            <li
-              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
-            >
-              <a
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
-                href="/contact"
-                tabindex="0"
-              >
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
-                >
-                  <span
-                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
-                  >
-                    お問い合わせ
-                  </span>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <ul
-            class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
-          >
-            <li
-              class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
-            >
-              <a
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
-                href="https://riflesports.jp"
-                tabindex="0"
-                target="_blank"
-              >
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
-                >
-                  <span
-                    class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
-                  >
-                    <div
-                      class="flex items-center gap-1 MuiBox-root css-0"
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
                     >
-                      日本ライフル射撃協会
-                      <svg
-                        fill="none"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                      ホーム
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li
+                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+              >
+                <a
+                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                  href="/about"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                    >
+                      協会について
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <section
+            class="MuiBox-root css-0"
+          >
+            <h3
+              class="mb-2 text-xs font-bold text-slate-600 MuiBox-root css-0"
+            >
+              各種情報
+            </h3>
+            <ul
+              class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+            >
+              <li
+                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+              >
+                <a
+                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                  href="/news"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                    >
+                      お知らせ
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li
+                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+              >
+                <a
+                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                  href="/contact"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                    >
+                      お問い合わせ
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <section
+            class="MuiBox-root css-0"
+          >
+            <h3
+              class="mb-2 text-xs font-bold text-slate-600 MuiBox-root css-0"
+            >
+              関連リンク
+            </h3>
+            <ul
+              class="MuiList-root MuiList-dense css-54zhjy-MuiList-root"
+            >
+              <li
+                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding css-qyw6ft-MuiListItem-root"
+              >
+                <a
+                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-dense MuiListItemButton-gutters css-2knotq-MuiButtonBase-root-MuiListItemButton-root"
+                  href="https://riflesports.jp"
+                  rel="noopener noreferrer"
+                  tabindex="0"
+                  target="_blank"
+                >
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense css-cfq8qh-MuiListItemText-root"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary css-7ctihp-MuiTypography-root"
+                    >
+                      <div
+                        class="flex items-center gap-1 MuiBox-root css-0"
                       >
-                        <path
-                          d="M15 3h6v6"
-                        />
-                        <path
-                          d="M10 14 21 3"
-                        />
-                        <path
-                          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                        />
-                      </svg>
-                    </div>
-                  </span>
-                </div>
-              </a>
-            </li>
-          </ul>
+                        日本ライフル射撃協会
+                        <svg
+                          aria-hidden="true"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </div>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
         </div>
       </nav>
       <nav>
