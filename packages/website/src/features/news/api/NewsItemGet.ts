@@ -12,7 +12,10 @@ class LocalError extends Error {}
 export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem | null> {
   try {
     const apiUrl = getApiUrl();
-    const response = await fetch(`${apiUrl}/api/news/${slug}`);
+    const response = await fetch(`${apiUrl}/api/news/${slug}`, {
+      // サーバーサイドでは Next.js Data Cache を使用（10分間キャッシュ）
+      next: { revalidate: 600 },
+    });
 
     if (!response.ok) {
       if (response.status === 404) {

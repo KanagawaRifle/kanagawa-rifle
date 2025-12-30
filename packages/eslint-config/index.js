@@ -8,6 +8,12 @@ const config = [
   // Note: フォーマット関連のルール (semi, quotes, indent 等) は Prettier に委譲
   // eslint-config-prettier が最後に適用され、競合するルールを無効化
   {
+    rules: {
+      'eol-last': ['error', 'always'],
+      'no-multiple-empty-lines': ['error', { max: 1 }],
+    },
+  },
+  {
     plugins: {
       import: importPlugin,
     },
