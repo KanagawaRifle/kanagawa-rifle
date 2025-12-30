@@ -43,9 +43,17 @@ export async function GET(request: NextRequest) {
 
   const { title, subtitle, theme } = result.data;
 
-  return createOpengraphImage({
+  const response = createOpengraphImage({
     title,
     subtitle,
     theme: theme as OgpTheme,
   });
+
+  // Cache OGP images for 1 week (they rarely change)
+  response.headers.set(
+    "Cache-Control",
+    "public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400"
+  );
+
+  return response;
 }

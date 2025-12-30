@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import styles from "./google-calendar.module.css";
 import { env } from "@/lib/env";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface EventDetail {
   title: string;
@@ -150,7 +151,10 @@ export function GoogleCalendar() {
               {selectedEvent?.description && (
                 <div
                   className="mt-3 border-2 border-[#808080] bg-white p-3 shadow-[inset_1px_1px_#0a0a0a,inset_-1px_-1px_#ffffff] [&_a]:text-[#0000ff] [&_a]:underline [&_a:hover]:text-[#ff0000] [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
-                  dangerouslySetInnerHTML={{ __html: selectedEvent.description }}
+                  // Sanitize HTML to prevent XSS attacks from calendar event descriptions
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(selectedEvent.description),
+                  }}
                 />
               )}
 

@@ -1,22 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   getRifleClassResults,
-  getRifleClassFiscalYears,
   getFiscalYear,
   RIFLE_CLASS_EVENT_ORDER,
 } from "@/lib/rifle-shooting-class";
+import {
+  rifleClassResultsQuerySchema,
+  parseSearchParams,
+} from "@/lib/api/schemas";
 
+/**
+ * GET /api/competitions/rifle-shooting-class/results
+ *
+ * Fetch rifle shooting class results with optional filtering.
+ *
+ * Query Parameters:
+ * - year: Fiscal year (e.g., 2024)
+ * - date: Specific date in YYYY-MM-DD format
+ * - event: Event name
+ * - name: Participant name (partial match)
+ *
+ * @example
+ * GET /api/competitions/rifle-shooting-class/results?year=2024
+ * GET /api/competitions/rifle-shooting-class/results?name=山田
+ */
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
 
-    // Parse query parameters
-    const yearParam = searchParams.get("year");
-    const date = searchParams.get("date");
-    const event = searchParams.get("event");
-    const name = searchParams.get("name");
+    // Validate query parameters with Zod
+    const parseResult = parseSearchParams(
+      searchParams,
+      rifleClassResultsQuerySchema
+    );
 
-    // Build filter
+    if (!parseResult.success) {
+      return NextResponse.json(
+        {
+          error: "Validation error",
+          message: parseResult.error,
+        },
+        { status: 400 }
+      );
+    }
+
+    const { year, date, event, name } = parseResult.data;
+
+    // Build filter object
     const filter: {
       year?: number;
       date?: string;
@@ -24,32 +54,15 @@ export async function GET(request: NextRequest) {
       name?: string;
     } = {};
 
-    if (yearParam) {
-      const year = parseInt(yearParam);
-      if (isNaN(year)) {
-        return NextResponse.json(
-          { error: "Invalid year parameter" },
-          { status: 400 }
-        );
-      }
+    if (year !== undefined) {
       filter.year = year;
     }
-
     if (date) {
-      // Validate date format (YYYY-MM-DD)
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-        return NextResponse.json(
-          { error: "Invalid date format. Use YYYY-MM-DD" },
-          { status: 400 }
-        );
-      }
       filter.date = date;
     }
-
     if (event) {
       filter.event = event;
     }
-
     if (name) {
       filter.name = name;
     }
@@ -62,9 +75,11 @@ export async function GET(request: NextRequest) {
     // Get unique dates and events for metadata
     const dates = [...new Set(results.map((r) => r.date))];
     const events = [...new Set(results.map((r) => r.event))];
-    const fiscalYears = [...new Set(results.map((r) => getFiscalYear(r.date)))];
+    const fiscalYears = [
+      ...new Set(results.map((r) => getFiscalYear(r.date))),
+    ];
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       data: results,
       meta: {
         total: results.length,
@@ -78,13 +93,30 @@ export async function GET(request: NextRequest) {
           return a.localeCompare(b);
         }),
         fiscalYears: fiscalYears.sort((a, b) => b - a),
-        filters: filter,
+        filters: {
+          year: filter.year ?? null,
+          date: filter.date ?? null,
+          event: filter.event ?? null,
+          name: filter.name ?? null,
+        },
       },
     });
+
+    // Add cache headers for better performance
+    // Cache for 1 hour, stale-while-revalidate for 1 day
+    response.headers.set(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400"
+    );
+
+    return response;
   } catch (error) {
     console.error("Error fetching rifle shooting class results:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      {
+        error: "Internal server error",
+        message: "結果の取得中にエラーが発生しました",
+      },
       { status: 500 }
     );
   }
