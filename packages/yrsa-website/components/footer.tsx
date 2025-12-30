@@ -10,16 +10,16 @@ export function Footer() {
         background: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right, #ccffff, #ffffcc, #ffccff)`,
       }}
     >
-      {/* キラキラ装飾 */}
+      {/* キラキラ装飾 - motion-safe で条件付きアニメーション */}
       <div
         className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2"
         aria-hidden="true"
       >
-        <span className="animate-pulse">💫</span>
-        <span className="animate-bounce">⭐</span>
-        <span className="animate-pulse">💫</span>
-        <span className="animate-bounce">⭐</span>
-        <span className="animate-pulse">💫</span>
+        <span className="motion-safe:animate-pulse">💫</span>
+        <span className="motion-safe:animate-bounce">⭐</span>
+        <span className="motion-safe:animate-pulse">💫</span>
+        <span className="motion-safe:animate-bounce">⭐</span>
+        <span className="motion-safe:animate-pulse">💫</span>
       </div>
 
       {/* 連絡先セクション */}
@@ -33,8 +33,7 @@ export function Footer() {
             <div className="bg-gradient-to-r from-pink-400 to-pink-600 px-3 py-1">
               <h2
                 id="office-info"
-                className="font-bold text-white"
-                style={{ fontFamily: "Comic Sans MS, cursive" }}
+                className="font-retro font-bold text-white"
               >
                 ✉ 事務局 ✉
               </h2>
@@ -75,8 +74,7 @@ export function Footer() {
             <div className="bg-gradient-to-r from-cyan-400 to-cyan-600 px-3 py-1">
               <h2
                 id="range-info"
-                className="font-bold text-white"
-                style={{ fontFamily: "Comic Sans MS, cursive" }}
+                className="font-retro font-bold text-white"
               >
                 🎯 射撃場 🎯
               </h2>
@@ -121,10 +119,7 @@ export function Footer() {
 
       {/* コピーライト */}
       <div className="border-y-4 border-double border-purple-400 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 py-3 text-center">
-        <p
-          className="text-purple-700"
-          style={{ fontFamily: "Comic Sans MS, cursive" }}
-        >
+        <p className="font-retro text-purple-700">
           ～ご意見・ご感想お待ちしています～
         </p>
         <p className="mt-2 text-sm text-gray-600">
@@ -142,13 +137,12 @@ export function Footer() {
       {/* トップへ戻るボタン */}
       <a
         href="#AppHeader"
-        className="block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white transition-all hover:from-orange-400 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        className="font-retro block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white text-shadow-sm transition-all hover:from-orange-400 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         aria-label="ページの先頭へ戻る"
-        style={{ fontFamily: "Comic Sans MS, cursive" }}
       >
-        <ChevronUp className="inline-block animate-bounce" aria-hidden="true" />
+        <ChevronUp className="inline-block motion-safe:animate-bounce" aria-hidden="true" />
         <span className="ml-1">↑↑↑ トップへGO！ ↑↑↑</span>
-        <ChevronUp className="inline-block animate-bounce" aria-hidden="true" />
+        <ChevronUp className="inline-block motion-safe:animate-bounce" aria-hidden="true" />
       </a>
     </footer>
   );

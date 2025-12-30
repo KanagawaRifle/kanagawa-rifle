@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface Win95ButtonProps {
   href?: string;
@@ -8,16 +9,41 @@ interface Win95ButtonProps {
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   className?: string;
+  /** ボタンを無効化 */
+  disabled?: boolean;
 }
 
-const baseClasses =
-  "inline-flex items-center gap-1 px-4 py-1 text-sm font-bold border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf] active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#000080]";
+const baseClasses = cn(
+  // レイアウト
+  "inline-flex items-center justify-center gap-1 px-4 py-1",
+  // タイポグラフィ
+  "text-sm font-bold",
+  // Win95 3D ボーダー
+  "border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080]",
+  "[box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]",
+  // アクティブ状態（押下時）
+  "active:border-t-[#808080] active:border-l-[#808080] active:border-r-white active:border-b-white",
+  "active:[box-shadow:inset_1px_1px_0_0_#000000,inset_-1px_-1px_0_0_#dfdfdf]",
+  // フォーカス（キーボードナビゲーション時のみ）
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#000080]",
+  // トランジション
+  "transition-colors"
+);
 
 const variantClasses = {
   default: "bg-[#c0c0c0] text-black hover:bg-[#d4d4d4]",
   primary: "bg-[#000080] text-white hover:bg-[#0000aa]",
 };
 
+const disabledClasses = "opacity-50 cursor-not-allowed";
+
+/**
+ * Windows 95 風ボタンコンポーネント
+ *
+ * @example
+ * <Win95Button href="/page">リンク</Win95Button>
+ * <Win95Button variant="primary" onClick={handleClick}>送信</Win95Button>
+ */
 export function Win95Button({
   href,
   children,
@@ -25,11 +51,17 @@ export function Win95Button({
   external = false,
   type = "button",
   onClick,
-  className = "",
+  className,
+  disabled = false,
 }: Win95ButtonProps) {
-  const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;
+  const classes = cn(
+    baseClasses,
+    variantClasses[variant],
+    disabled && disabledClasses,
+    className
+  );
 
-  if (href) {
+  if (href && !disabled) {
     if (external) {
       return (
         <a
@@ -51,7 +83,13 @@ export function Win95Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+      aria-disabled={disabled}
+    >
       {children}
     </button>
   );

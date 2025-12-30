@@ -41,13 +41,13 @@ export function Header() {
         background: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right, #ffccff, #ffffcc, #ccffff)`,
       }}
     >
-      {/* キラキラ装飾 */}
+      {/* キラキラ装飾 - motion-safe で条件付きアニメーション */}
       <div className="flex justify-center gap-2 py-1" aria-hidden="true">
-        <span className="animate-pulse text-lg">✧</span>
-        <span className="animate-bounce text-lg">☆</span>
-        <span className="animate-pulse text-lg">✧</span>
-        <span className="animate-bounce text-lg">☆</span>
-        <span className="animate-pulse text-lg">✧</span>
+        <span className="text-lg motion-safe:animate-pulse">✧</span>
+        <span className="text-lg motion-safe:animate-bounce">☆</span>
+        <span className="text-lg motion-safe:animate-pulse">✧</span>
+        <span className="text-lg motion-safe:animate-bounce">☆</span>
+        <span className="text-lg motion-safe:animate-pulse">✧</span>
       </div>
 
       {/* ロゴ */}
@@ -56,19 +56,13 @@ export function Header() {
           <Link href="/" className="inline-block">
             <div className="border-4 border-purple-500 bg-gradient-to-r from-purple-200 via-pink-100 to-cyan-200 px-6 py-2 shadow-lg">
               <div className="flex items-center justify-center gap-2">
-                <span className="animate-spin text-2xl">🎯</span>
-                <span
-                  className="text-xl font-bold text-purple-800 md:text-2xl"
-                  style={{ fontFamily: "Comic Sans MS, cursive" }}
-                >
+                <span className="text-2xl motion-safe:animate-spin" aria-hidden="true">🎯</span>
+                <span className="font-retro text-xl font-bold text-purple-800 text-shadow-sm md:text-2xl">
                   ★横須賀市ライフル射撃協会★
                 </span>
-                <span className="animate-spin text-2xl">🎯</span>
+                <span className="text-2xl motion-safe:animate-spin" aria-hidden="true">🎯</span>
               </div>
-              <p
-                className="mt-1 text-sm text-pink-600"
-                style={{ fontFamily: "Comic Sans MS, cursive" }}
-              >
+              <p className="font-retro mt-1 text-sm text-pink-600">
                 ～Welcome to our COOL website!～
               </p>
             </div>
@@ -86,8 +80,7 @@ export function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`inline-block rounded bg-gradient-to-b ${item.gradient} ${item.hoverGradient} px-3 py-1.5 text-sm font-bold text-white shadow transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 md:px-4 md:py-2 md:text-base`}
-                style={{ fontFamily: "Comic Sans MS, cursive" }}
+                className={`font-retro inline-block rounded bg-gradient-to-b ${item.gradient} ${item.hoverGradient} px-3 py-1.5 text-sm font-bold text-white text-shadow-sm shadow transition-all motion-safe:hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 md:px-4 md:py-2 md:text-base`}
               >
                 {item.label}
               </Link>
@@ -97,11 +90,12 @@ export function Header() {
       </nav>
 
       {/* マーキー風お知らせバー */}
-      <div className="overflow-hidden border-b-2 border-red-300 bg-yellow-100 py-1">
-        <p
-          className="whitespace-nowrap text-center text-sm text-red-600"
-          style={{ fontFamily: "Comic Sans MS, cursive" }}
-        >
+      <div
+        className="overflow-hidden border-b-2 border-red-300 bg-yellow-100 py-1"
+        role="region"
+        aria-label="お知らせ"
+      >
+        <p className="font-retro whitespace-nowrap text-center text-sm text-red-600">
           📢 最新情報をチェックしてね！ 📢 月例会 参加者募集中☆ 📢
         </p>
       </div>

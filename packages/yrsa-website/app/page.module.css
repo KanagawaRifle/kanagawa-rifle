@@ -12,3 +12,11 @@
 .marquee {
   animation: marquee 15s linear infinite;
 }
+
+/* motion-reduce 対応 */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+    transform: none;
+  }
+}
