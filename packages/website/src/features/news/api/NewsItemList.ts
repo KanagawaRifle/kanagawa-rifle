@@ -10,7 +10,10 @@ export const sizes = [6, DEFAULT_SIZE, 64, 128] as const;
 // APIから取得
 export async function listNewsItems({ page, size }: { page: number; size: number }): Promise<Paginated<NewsItem>> {
   const apiUrl = getApiUrl();
-  const response = await fetch(`${apiUrl}/api/news?page=${page}&size=${size}`);
+  const response = await fetch(`${apiUrl}/api/news?page=${page}&size=${size}`, {
+    // サーバーサイドでは Next.js Data Cache を使用（5分間キャッシュ）
+    next: { revalidate: 300 },
+  });
 
   if (!response.ok) {
     throw new Error(`HTTP エラー! ステータス: ${response.status}`);

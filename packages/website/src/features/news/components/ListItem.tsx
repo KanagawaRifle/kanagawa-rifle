@@ -20,12 +20,20 @@ import { LuCalendar, LuImage, LuHash } from 'react-icons/lu';
 type Props = {
   slug: string;
   title: string;
-  published: Date;
+  published: Date | string;
   tags?: string[];
   excerpt?: string;
   isLast: boolean;
   onMouseEnter?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
+
+function formatPublishedDate(published: Date | string): { dateTime: string; display: string } {
+  const date = typeof published === 'string' ? new Date(published) : published;
+  return {
+    dateTime: date.toISOString(),
+    display: format(date, 'yyyy年M月d日', { locale: ja }),
+  };
+}
 
 export function Skeleton({ isLast }: { isLast: boolean }) {
   return (
@@ -61,6 +69,8 @@ export function Skeleton({ isLast }: { isLast: boolean }) {
 }
 
 export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, onMouseEnter }: Props) {
+  const { dateTime, display } = React.useMemo(() => formatPublishedDate(published), [published]);
+
   return (
     <ListItemButton
       alignItems="flex-start"
@@ -68,10 +78,11 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, on
       href={`/news/${slug}`}
       divider={!isLast}
       onMouseEnter={onMouseEnter}
+      aria-label={`${title} - ${display}公開`}
     >
       <ListItemAvatar>
-        <Avatar>
-          <LuImage />
+        <Avatar aria-hidden="true">
+          <LuImage aria-hidden="true" />
         </Avatar>
       </ListItemAvatar>
       <ListItemText>
@@ -87,8 +98,8 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, on
           <Stack direction="row" spacing={1} sx={{ pt: 1 }}>
             <Chip
               label={
-                <time dateTime={new Date(published).toISOString()}>
-                  {format(new Date(published), 'yyyy年M月d日', { locale: ja })}
+                <time dateTime={dateTime} suppressHydrationWarning>
+                  {display}
                 </time>
               }
               icon={<LuCalendar />}
