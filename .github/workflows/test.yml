@@ -103,7 +103,7 @@ jobs:
 
       - name: Comment test results on PR
         if: always()
-        uses: marocchino/sticky-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: test-results
           message: ${{ steps.format.outputs.comment }}
