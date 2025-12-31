@@ -277,10 +277,12 @@ export const components: Components = {
     if (typeof src !== 'string') return null;
 
     const aspectRatio = width && height ? Number(height) / Number(width) : 9 / 16;
+    // SEO: alt 属性が空の場合はデフォルト値を設定
+    const altText = alt || 'ライフル射撃協会のニュース記事に掲載された画像';
 
     return (
       <span className="relative mb-4 block w-full" style={{ paddingTop: `${aspectRatio * 100}%` }}>
-        <Image src={src} alt={alt} fill className="rounded-md object-contain" />
+        <Image src={src} alt={altText} fill className="rounded-md object-contain" />
         {alt && <span className="mt-1 block text-center text-sm text-gray-500 italic">{alt}</span>}
       </span>
     );

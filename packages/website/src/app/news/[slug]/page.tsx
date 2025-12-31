@@ -4,7 +4,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 import { Metadata } from 'next';
 import React from 'react';
 
-import { env } from '@/config';
+import { app, env } from '@/config';
 import { getNewsItem, getNewsItemQueryOptions } from '@/features/news/api/NewsItemGet';
 import { listNewsItems, getListNewsItemsQueryOptions } from '@/features/news/api/NewsItemList';
 
@@ -75,10 +75,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { slug } = await params;
   const { dehydratedState, queryClient } = await preloadData(slug);
-  const _ = queryClient.getQueryData(getNewsItemQueryOptions(slug).queryKey);
+  const newsItem = queryClient.getQueryData(getNewsItemQueryOptions(slug).queryKey);
+
+  // Article JSON-LD を生成
+  const articleJsonLd = newsItem
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: newsItem.title,
+        description: newsItem.excerpt ?? newsItem.title,
+        datePublished: newsItem.published,
+        dateModified: newsItem.updated ?? newsItem.published,
+        author: {
+          '@type': 'Organization',
+          name: app.name,
+          url: env.APP_URL,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: app.name,
+          url: env.APP_URL,
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': new URL(`/news/${slug}`, env.APP_URL).toString(),
+        },
+      }
+    : null;
 
   return (
     <HydrationBoundary state={dehydratedState}>
+      {articleJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      )}
       <NewsItem slug={slug} />
     </HydrationBoundary>
   );
