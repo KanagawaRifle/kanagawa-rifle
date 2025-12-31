@@ -11,26 +11,24 @@ import {
   Link,
   List,
 } from '@mui/material';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import React, { Suspense } from 'react';
 import { LuNotebookPen, LuChevronRight } from 'react-icons/lu';
 
 import { PageLayout } from '@/components';
-import { paths } from '@/config';
+import { env, paths } from '@/config';
 import { DEFAULT_SIZE } from '@/features/news/api/NewsItemList';
 import { Skeleton } from '@/features/news/components/ListItem';
 import { NewsItemList } from '@/features/news/components/NewsItemList';
 
-export const metadata = {
-  other: {
-    link: [
-      {
-        rel: 'preload',
-        as: 'image',
-        href: paths.cdn.getHref('/news/2024-02-22-02-card.png'),
-        fetchpriority: 'high',
-      },
-    ],
+export const metadata: Metadata = {
+  description: paths.home.description,
+  openGraph: {
+    images: new URL(`/api/og?title=${encodeURIComponent('神奈川県ライフル射撃協会')}`, env.APP_URL),
+  },
+  twitter: {
+    images: new URL(`/api/og?title=${encodeURIComponent('神奈川県ライフル射撃協会')}`, env.APP_URL),
   },
 };
 
@@ -52,30 +50,34 @@ export default function Page() {
       <Alert severity="info">
         <AlertTitle>第25回冬季ＡＲ･ＡＰランクリスト競技会</AlertTitle>
         <ButtonGroup variant="outlined">
-          <Button href="https://forms.gle/E1pTSoqR4feEPApH8" target="_blank">
+          <Button href="https://forms.gle/E1pTSoqR4feEPApH8" target="_blank" rel="noopener noreferrer">
             申込
           </Button>
           <Button
             href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSJljyFwEUQXU5msbN8e2pI0_b-hutOqsOP1PdfneI6KcK2InJq_1kHG630IrJCXxwrnIXmLNYhh83v/pubhtml"
             target="_blank"
+            rel="noopener noreferrer"
           >
             名簿
           </Button>
           <Button
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf')}
             target="_blank"
+            rel="noopener noreferrer"
           >
             要項
           </Button>
           <Button
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf')}
             target="_blank"
+            rel="noopener noreferrer"
           >
             射座
           </Button>
           <Button
             href={paths.cdn.getHref('/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf')}
             target="_blank"
+            rel="noopener noreferrer"
           >
             成績
           </Button>
@@ -98,6 +100,7 @@ export default function Page() {
               startIcon={<LuNotebookPen />}
               href="https://forms.gle/6XGY1qhEvr3gkasJ9"
               target="_blank"
+              rel="noopener noreferrer"
             >
               日ラ等大会申込
             </Button>
@@ -110,6 +113,7 @@ export default function Page() {
           component={Link}
           href={paths.cdn.getHref('/news/2024-02-02-01-kokuspo-trial-poster.pdf')}
           target="_blank"
+          rel="noopener noreferrer"
         >
           <Image
             src={paths.cdn.getHref('/news/2024-02-22-02-card.png')}

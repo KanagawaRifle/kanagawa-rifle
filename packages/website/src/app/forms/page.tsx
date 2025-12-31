@@ -58,7 +58,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
     <ListItem divider={divider}>
       <ListItemIcon sx={{ color: fileType.color }}>{fileType.icon}</ListItemIcon>
       <ListItemText>
-        <Link href={paths.cdn.getHref(item.filename)} target="_blank">
+        <Link href={paths.cdn.getHref(item.filename)} target="_blank" rel="noopener noreferrer">
           {item.label}
         </Link>
       </ListItemText>
