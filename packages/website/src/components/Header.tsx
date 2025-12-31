@@ -1,8 +1,5 @@
 'use client';
 
-import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import {
   useTheme,
   AppBar,
@@ -23,7 +20,8 @@ import {
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import { LuX, LuMenu, LuEllipsisVertical } from 'react-icons/lu';
 
 import { paths } from '@/config';
 
@@ -116,13 +114,13 @@ NavigationTabs.displayName = 'NavigationTabs';
 const MoreMenu: React.FC = React.memo(() => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleOpen = useCallback((event: React.MouseEvent<HTMLElement>) => {
+  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  }, []);
+  };
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setAnchorEl(null);
-  }, []);
+  };
 
   const isOpen = Boolean(anchorEl);
 
@@ -130,7 +128,7 @@ const MoreMenu: React.FC = React.memo(() => {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="各種書式・リンク集">
         <IconButton onClick={handleOpen} edge="end" color="inherit" aria-label="その他のメニューを開く">
-          <MoreIcon />
+          <LuEllipsisVertical />
         </IconButton>
       </Tooltip>
       <Menu
@@ -182,7 +180,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = React.memo(({ open, onClose, c
     >
       <Toolbar variant="dense">
         <IconButton edge="start" color="inherit" onClick={onClose}>
-          <CloseIcon />
+          <LuX />
         </IconButton>
         <Logo />
       </Toolbar>
@@ -197,20 +195,16 @@ MobileDrawer.displayName = 'MobileDrawer';
 export function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleDrawerToggle = useCallback(
-    (open: boolean) => () => {
-      setDrawerOpen(open);
-    },
-    [],
-  );
+  const handleDrawerOpen = () => setDrawerOpen(true);
+  const handleDrawerClose = () => setDrawerOpen(false);
 
   return (
     <AppBar color="inherit" position="sticky" elevation={0} sx={{ backgroundColor: '#fff' }}>
       <Toolbar variant="dense" className="mx-auto w-full max-w-screen-md">
         {/* モバイルメニューボタン */}
         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton onClick={handleDrawerToggle(true)} edge="start" color="inherit" aria-label="メニューを開く">
-            <MenuIcon />
+          <IconButton onClick={handleDrawerOpen} edge="start" color="inherit" aria-label="メニューを開く">
+            <LuMenu />
           </IconButton>
         </Box>
 
@@ -227,7 +221,7 @@ export function Header() {
       </Toolbar>
 
       {/* モバイルドロワー */}
-      <MobileDrawer open={drawerOpen} onClose={handleDrawerToggle(false)} />
+      <MobileDrawer open={drawerOpen} onClose={handleDrawerClose} />
     </AppBar>
   );
 }

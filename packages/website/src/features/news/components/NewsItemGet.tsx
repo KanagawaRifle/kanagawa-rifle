@@ -12,19 +12,32 @@ import {
   CardContent,
   CardHeader,
   Chip,
+  Skeleton as MuiSkeleton,
   Stack,
   Typography,
 } from '@mui/material';
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 import { LuNotebookText, LuArrowLeft, LuRotateCw, LuHash, LuCalendar } from 'react-icons/lu';
-import 'highlight.js/styles/github-dark.css';
 
 import { env } from '@/config';
 import { useNewsItem } from '@/features/news/api/NewsItemGet';
-import { ReactMarkdown } from '@/lib/client';
+
+// Markdown パーサーを遅延読み込み（バンドルサイズ削減: 50-100KB）
+const ReactMarkdown = dynamic(() => import('@/lib/client').then((mod) => mod.ReactMarkdown), {
+  loading: () => (
+    <div className="space-y-4">
+      <MuiSkeleton variant="text" width="100%" height={24} />
+      <MuiSkeleton variant="text" width="90%" height={24} />
+      <MuiSkeleton variant="text" width="95%" height={24} />
+      <MuiSkeleton variant="rectangular" width="100%" height={200} />
+    </div>
+  ),
+  ssr: false,
+});
 
 import ShareLinks from './ShareLinks';
 import Skeleton from './Skeleton';
