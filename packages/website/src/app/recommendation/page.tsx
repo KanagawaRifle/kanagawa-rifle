@@ -272,7 +272,7 @@ export default function Page() {
               primary="申請締切日"
               secondary={
                 <>
-                  <Link href={paths.cdn.getHref('/projects/2025/competitions.pdf')} target="_blank">
+                  <Link href={paths.cdn.getHref('/projects/2025/competitions.pdf')} target="_blank" rel="noopener noreferrer">
                     推薦スケジュール
                   </Link>
                   をご覧ください。
@@ -384,7 +384,7 @@ export default function Page() {
               <FaFilePdf />
             </ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}>
+              <Link target="_blank" rel="noopener noreferrer" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}>
                 推薦ブレッテン no.57
               </Link>
             </ListItemText>
@@ -394,7 +394,7 @@ export default function Page() {
               <FaFilePdf />
             </ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}>
+              <Link target="_blank" rel="noopener noreferrer" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}>
                 推薦ブレッテン no.56
               </Link>
             </ListItemText>
@@ -404,7 +404,7 @@ export default function Page() {
               <FaFilePdf />
             </ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}>
+              <Link target="_blank" rel="noopener noreferrer" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}>
                 推薦ブレッテン no.55
               </Link>
             </ListItemText>
@@ -414,7 +414,7 @@ export default function Page() {
               <FaFilePdf />
             </ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}>
+              <Link target="_blank" rel="noopener noreferrer" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}>
                 推薦ブレッテン no.51
               </Link>
             </ListItemText>
@@ -424,7 +424,7 @@ export default function Page() {
               <FaFilePdf />
             </ListItemIcon>
             <ListItemText>
-              <Link target="_blank" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}>
+              <Link target="_blank" rel="noopener noreferrer" href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}>
                 推薦ブレッテン no.49
               </Link>
             </ListItemText>
