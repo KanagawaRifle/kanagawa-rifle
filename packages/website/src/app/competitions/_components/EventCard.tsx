@@ -109,7 +109,7 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
                   href={convertHrefToString(venue.href)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary underline hover:bg-primary/10"
                 >
                   {venue.name}
                 </Link>
