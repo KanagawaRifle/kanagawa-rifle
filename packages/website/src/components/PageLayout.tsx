@@ -38,18 +38,18 @@ function BreadcrumbJsonLd({ breadcrumbs }: { breadcrumbs: Array<{ name: string; 
 
 export function PageLayout({ title, description, breadcrumbs, children, withStack = true }: Props) {
   return (
-    <div>
+    <main>
       {breadcrumbs && (
         <>
           <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
-          <div className="mx-auto w-full max-w-screen-md px-4 py-2">
+          <nav aria-label="パンくずリスト" className="mx-auto w-full max-w-screen-md px-4 py-2">
             <Breadcrumb>
               <BreadcrumbList>
                 {breadcrumbs.map((breadcrumb, index) => {
                   const isLast = index === breadcrumbs.length - 1;
                   return (
                     <BreadcrumbItem key={breadcrumb.path}>
-                      {index === 0 && <ChevronRight className="h-3 w-3" />}
+                      {index === 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
                       {isLast ? (
                         <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
                       ) : (
@@ -65,16 +65,16 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
                 })}
               </BreadcrumbList>
             </Breadcrumb>
-          </div>
+          </nav>
         </>
       )}
       <div className="container mx-auto flex w-full max-w-screen-md flex-col gap-4 px-1 py-8 md:px-4">
         {title && <h1 className="text-2xl leading-tight font-bold md:text-3xl dark:text-white">{title}</h1>}
         {description && (
-          <div className="mb-8 rounded-lg bg-muted p-6 leading-relaxed text-muted-foreground italic">{description}</div>
+          <p className="mb-8 rounded-lg bg-muted p-6 leading-relaxed text-muted-foreground italic">{description}</p>
         )}
         {withStack ? <div className="flex flex-col gap-6">{children}</div> : <div>{children}</div>}
       </div>
-    </div>
+    </main>
   );
 }

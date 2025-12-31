@@ -3,8 +3,9 @@
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
+import { SocialLinks } from '@/components/SocialLinks';
 import { buttonVariants } from '@/components/ui/button';
-import { social, paths, app } from '@/config';
+import { paths, app } from '@/config';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -14,19 +15,7 @@ export function Footer() {
       <nav aria-label="ソーシャルメディア">
         <div className="mx-auto mt-2 max-w-screen-xl border-b border-border px-4 py-6">
           <div className="flex gap-1">
-            {Object.entries(social).map(([key, obj]) => (
-              <a
-                key={key}
-                href={obj.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={obj.name}
-                title={obj.name}
-                className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}
-              >
-                {obj.icon}
-              </a>
-            ))}
+            <SocialLinks />
           </div>
         </div>
       </nav>
@@ -34,8 +23,10 @@ export function Footer() {
       {/* ナビゲーションリンク */}
       <nav aria-label="フッターナビゲーション">
         <div className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-border px-4 py-6 md:grid-cols-3">
-          <section>
-            <h3 className="mb-2 text-xs font-bold text-muted-foreground">メインナビゲーション</h3>
+          <section aria-labelledby="footer-main-nav">
+            <h3 id="footer-main-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+              メインナビゲーション
+            </h3>
             <ul className="-ml-4">
               {Object.entries(paths.main).map(([key, obj]) => (
                 <li key={key}>
@@ -49,8 +40,10 @@ export function Footer() {
               ))}
             </ul>
           </section>
-          <section>
-            <h3 className="mb-2 text-xs font-bold text-muted-foreground">各種情報</h3>
+          <section aria-labelledby="footer-sub-nav">
+            <h3 id="footer-sub-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+              各種情報
+            </h3>
             <ul className="-ml-4">
               {Object.entries(paths.sub).map(([key, obj]) => (
                 <li key={key}>
@@ -64,8 +57,10 @@ export function Footer() {
               ))}
             </ul>
           </section>
-          <section>
-            <h3 className="mb-2 text-xs font-bold text-muted-foreground">関連リンク</h3>
+          <section aria-labelledby="footer-external-nav">
+            <h3 id="footer-external-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+              関連リンク
+            </h3>
             <ul className="-ml-4">
               {Object.entries(paths.external).map(([key, obj]) => (
                 <li key={key}>
@@ -77,6 +72,7 @@ export function Footer() {
                   >
                     {obj.name}
                     <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    <span className="sr-only">（新しいタブで開く）</span>
                   </a>
                 </li>
               ))}

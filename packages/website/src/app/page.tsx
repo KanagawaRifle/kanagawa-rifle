@@ -36,7 +36,7 @@ export default function Page() {
           <span className="text-accent">協会</span>
         </h1>
         <p className="mt-2 text-muted-foreground">
-          スモールボア・エアライフル・ビームライフル競技の普及と振興を目指す神奈川県の射撃団体
+          ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体
         </p>
       </div>
 

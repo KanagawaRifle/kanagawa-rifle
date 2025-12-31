@@ -41,15 +41,21 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               日本ライフル射撃協会 ShootersHub
+              <span className="sr-only">（新しいタブで開く）</span>
             </a>{' '}
             よりお申し込みください。
           </div>
           <Card>
-            <CardActionArea href="https://jrsf.sportscom.jp/#/" target="_blank" rel="noopener noreferrer">
+            <CardActionArea
+              href="https://jrsf.sportscom.jp/#/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ShootersHub 入会申し込みサイトへ移動（新しいタブで開く）"
+            >
               <div className="relative h-[82px] w-full">
                 <Image
                   src="https://static.kanagawa-rifle.org/website/join/shooters-hub-logo.png"
-                  alt="入会申し込みサイト（ShootersHub）"
+                  alt=""
                   fill
                   style={{ objectFit: 'contain' }}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -61,7 +67,7 @@ export default function Page() {
             <Step expanded active>
               <StepLabel icon="1">
                 <span className="flex items-center gap-2">
-                  <PenSquare className="h-4 w-4" />
+                  <PenSquare className="h-4 w-4" aria-hidden="true" />
                   お申込み
                 </span>
               </StepLabel>
@@ -72,7 +78,7 @@ export default function Page() {
             <Step expanded active>
               <StepLabel icon="2">
                 <span className="flex items-center gap-2">
-                  <Stamp className="h-4 w-4" />
+                  <Stamp className="h-4 w-4" aria-hidden="true" />
                   承認（神奈川県ライフル射撃協会）
                 </span>
               </StepLabel>
@@ -83,7 +89,7 @@ export default function Page() {
             <Step expanded active>
               <StepLabel icon="3">
                 <span className="flex items-center gap-2">
-                  <Stamp className="h-4 w-4" />
+                  <Stamp className="h-4 w-4" aria-hidden="true" />
                   承認（日本ライフル射撃協会）
                 </span>
               </StepLabel>
@@ -94,7 +100,7 @@ export default function Page() {
             <Step expanded active>
               <StepLabel icon="4">
                 <span className="flex items-center gap-2">
-                  <CreditCard className="h-4 w-4" />
+                  <CreditCard className="h-4 w-4" aria-hidden="true" />
                   ご入金
                 </span>
               </StepLabel>
@@ -103,7 +109,7 @@ export default function Page() {
             <Step expanded active>
               <StepLabel icon="5">
                 <span className="flex items-center gap-2">
-                  <Check className="h-4 w-4" />
+                  <Check className="h-4 w-4" aria-hidden="true" />
                   お手続完了
                 </span>
               </StepLabel>

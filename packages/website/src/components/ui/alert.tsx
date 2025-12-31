@@ -39,7 +39,7 @@ const Alert = React.forwardRef<
   const Icon = variantIcons[variant ?? 'default'];
   return (
     <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}>
-      <Icon className="h-5 w-5" />
+      <Icon className="h-5 w-5" aria-hidden="true" />
       {children}
     </div>
   );

@@ -84,6 +84,7 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
+    role="group"
     className={cn(
       'inline-flex [&>*]:rounded-none [&>*:first-child]:rounded-l [&>*:last-child]:rounded-r [&>*:not(:first-child)]:-ml-px',
       className
