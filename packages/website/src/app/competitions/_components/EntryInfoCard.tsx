@@ -40,6 +40,7 @@ export function EntryInfoCard() {
           startIcon={<LuNotebookPen />}
           href="https://forms.gle/6XGY1qhEvr3gkasJ9"
           target="_blank"
+          rel="noopener noreferrer"
         >
           日ラ等大会申込
         </Button>

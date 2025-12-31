@@ -44,13 +44,13 @@ export default function Page() {
           <Stack spacing={2}>
             <Box>
               下記の専用サイト、
-              <Link href="https://jrsf.sportscom.jp/#/" target="_blank">
+              <Link href="https://jrsf.sportscom.jp/#/" target="_blank" rel="noopener noreferrer">
                 日本ライフル射撃協会 ShootersHub
               </Link>{' '}
               よりお申し込みください。
             </Box>
             <Card>
-              <CardActionArea component={Link} href="https://jrsf.sportscom.jp/#/" target="_blank">
+              <CardActionArea component={Link} href="https://jrsf.sportscom.jp/#/" target="_blank" rel="noopener noreferrer">
                 <Box style={{ position: 'relative', width: '100%', height: '82px' }}>
                   <Image
                     src="https://static.kanagawa-rifle.org/website/join/shooters-hub-logo.png"

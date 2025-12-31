@@ -22,7 +22,7 @@ export function Footer() {
             <ButtonGroup>
               {Object.entries(social).map(([key, obj]) => (
                 <Tooltip title={obj.name} key={key}>
-                  <IconButton aria-label={obj.name} target="_blank" href={obj.url}>
+                  <IconButton aria-label={obj.name} target="_blank" rel="noopener noreferrer" href={obj.url}>
                     {obj.icon}
                   </IconButton>
                 </Tooltip>
