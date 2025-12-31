@@ -8,7 +8,7 @@ import React, { Suspense } from 'react';
 
 import { PageLayout } from '@/components';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { Button, ButtonGroup } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { env, paths } from '@/config';
 import { DEFAULT_SIZE } from '@/features/news/api/NewsItemList';
@@ -35,7 +35,7 @@ export default function Page() {
           <span className="text-secondary">ライフル射撃</span>
           <span className="text-accent">協会</span>
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-muted-foreground">
           スモールボア・エアライフル・ビームライフル競技の普及と振興を目指す神奈川県の射撃団体
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function Page() {
       <Alert variant="info">
         <AlertTitle>第25回冬季ＡＲ･ＡＰランクリスト競技会</AlertTitle>
         <AlertDescription>
-          <div className="flex flex-wrap gap-2">
+          <ButtonGroup className="flex-wrap">
             <Button variant="outline" size="sm" asChild>
               <a href="https://forms.gle/E1pTSoqR4feEPApH8" target="_blank" rel="noopener noreferrer">
                 申込
@@ -85,7 +85,7 @@ export default function Page() {
                 成績
               </a>
             </Button>
-          </div>
+          </ButtonGroup>
         </AlertDescription>
       </Alert>
 

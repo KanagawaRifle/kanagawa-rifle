@@ -36,10 +36,13 @@ export function Footer() {
         <div className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-border px-4 py-6 md:grid-cols-3">
           <section>
             <h3 className="mb-2 text-xs font-bold text-muted-foreground">メインナビゲーション</h3>
-            <ul className="space-y-1">
+            <ul className="-ml-4">
               {Object.entries(paths.main).map(([key, obj]) => (
                 <li key={key}>
-                  <Link href={obj.getHref()} className="block py-1 text-sm hover:text-primary hover:underline">
+                  <Link
+                    href={obj.getHref()}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
+                  >
                     {obj.name}
                   </Link>
                 </li>
@@ -48,10 +51,13 @@ export function Footer() {
           </section>
           <section>
             <h3 className="mb-2 text-xs font-bold text-muted-foreground">各種情報</h3>
-            <ul className="space-y-1">
+            <ul className="-ml-4">
               {Object.entries(paths.sub).map(([key, obj]) => (
                 <li key={key}>
-                  <Link href={obj.getHref()} className="block py-1 text-sm hover:text-primary hover:underline">
+                  <Link
+                    href={obj.getHref()}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
+                  >
                     {obj.name}
                   </Link>
                 </li>
@@ -60,14 +66,14 @@ export function Footer() {
           </section>
           <section>
             <h3 className="mb-2 text-xs font-bold text-muted-foreground">関連リンク</h3>
-            <ul className="space-y-1">
+            <ul className="-ml-4">
               {Object.entries(paths.external).map(([key, obj]) => (
                 <li key={key}>
                   <a
                     href={obj.getHref()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 py-1 text-sm hover:text-primary hover:underline"
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
                   >
                     {obj.name}
                     <ExternalLink className="h-3 w-3" aria-hidden="true" />
