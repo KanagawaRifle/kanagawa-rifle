@@ -3,6 +3,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@plugin '@tailwindcss/typography';
+
 @custom-variant dark (&:is(.dark *));
 
 /* ===== Light Mode (default) ===== */
@@ -82,12 +84,12 @@
   --color-background: oklch(15% 0.01 253.53);
   --color-foreground: oklch(95% 0.01 253.53);
 
-  /* Primary: slightly brighter green for dark mode */
-  --color-primary: oklch(55% 0.13 148.04);
+  /* Primary: brighter green for dark mode */
+  --color-primary: oklch(62% 0.13 148.04);
   --color-primary-foreground: oklch(15% 0.01 148.04);
 
-  /* Secondary: slightly brighter orange for dark mode */
-  --color-secondary: oklch(72% 0.16 60.91);
+  /* Secondary: brighter orange for dark mode */
+  --color-secondary: oklch(78% 0.16 60.91);
   --color-secondary-foreground: oklch(15% 0.01 60.91);
 
   /* Accent: slightly brighter blue for dark mode */
@@ -122,8 +124,8 @@
   --color-success-foreground: oklch(15% 0.01 145.76);
 
   /* Warning */
-  --color-warning: oklch(80% 0.15 80.93);
-  --color-warning-foreground: oklch(20% 0.05 80.93);
+  --color-warning: oklch(75% 0.15 80.93);
+  --color-warning-foreground: oklch(85% 0.08 80.93);
 
   /* Info */
   --color-info: oklch(60% 0.14 239.54);
@@ -238,4 +240,24 @@
       font-size: 16px;
     }
   }
+}
+
+/* Prose dark mode styles */
+.dark .prose {
+  --tw-prose-body: var(--color-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted-foreground);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-muted-foreground);
+  --tw-prose-bullets: var(--color-muted-foreground);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-foreground);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-captions: var(--color-muted-foreground);
+  --tw-prose-code: var(--color-foreground);
+  --tw-prose-pre-code: var(--color-foreground);
+  --tw-prose-pre-bg: var(--color-muted);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
 }
