@@ -21,7 +21,7 @@
     "test:vrt": "playwright test e2e/visual.spec.ts",
     "test:vrt:update": "playwright test e2e/visual.spec.ts --update-snapshots",
     "test:a11y": "playwright test e2e/accessibility.spec.ts",
-    "lhci": "npm run build && lhci autorun --config=.lighthouserc.cjs"
+    "lhci": "rm -rf .next && npm run build && lhci autorun --config=.lighthouserc.cjs"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.20",
@@ -72,6 +72,7 @@
     "zod": "^4.2.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.14.0",
     "@axe-core/playwright": "^4.11.0",
     "@axe-core/react": "^4.11.0",
     "@playwright/test": "^1.57.0",

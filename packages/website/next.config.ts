@@ -32,6 +32,12 @@ const nextConfig: NextConfig = {
     // Vercel環境かどうか
     const isVercel = !!process.env.VERCEL;
 
+    // Lighthouse CI テスト環境かどうか（localhost テスト用）
+    const isLhci = !!process.env.LHCI;
+
+    // localhost を許可するかどうか（開発環境または Lighthouse CI テスト環境）
+    const allowLocalhost = isDev || isLhci;
+
     // CSP ディレクティブ（外部サービス対応）
     const cspDirectives = [
       "default-src 'self'",
@@ -42,15 +48,15 @@ const nextConfig: NextConfig = {
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
       "font-src 'self'",
-      // kanagawa-rifle.org のサブドメイン（staging含む）を許可、開発環境では localhost も許可
-      `connect-src 'self' https://*.kanagawa-rifle.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${isDev ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}${isVercel ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
+      // kanagawa-rifle.org のサブドメイン（staging含む）を許可、開発環境または LHCI 環境では localhost も許可
+      `connect-src 'self' https://*.kanagawa-rifle.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${allowLocalhost ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}${isVercel ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
       `frame-src 'self' https://www.google.com https://docs.google.com${isVercel ? ' https://vercel.live' : ''}`,
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://docs.google.com",
       "frame-ancestors 'none'",
-      // 開発環境では upgrade-insecure-requests を無効化
-      ...(isDev ? [] : ['upgrade-insecure-requests']),
+      // 開発環境および LHCI 環境では upgrade-insecure-requests を無効化
+      ...(allowLocalhost ? [] : ['upgrade-insecure-requests']),
     ];
 
     return [
