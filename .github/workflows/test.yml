@@ -1,0 +1,113 @@
+# .github/workflows/test.yml
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - 1.x
+      - 2.x
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run -w @kanagawa-rifle/website test -- --coverage --reporter=json --outputFile=test-results.json
+        continue-on-error: true
+        id: test
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: packages/website/coverage/
+
+      - name: Report coverage
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: packages/website
+          json-summary-path: coverage/coverage-summary.json
+          json-final-path: coverage/coverage-final.json
+
+      - name: Format test results
+        id: format
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let comment = '## Test Results\n\n';
+
+            // テスト結果ファイルを読み込む
+            const testResultsPath = 'packages/website/test-results.json';
+            if (fs.existsSync(testResultsPath)) {
+              const results = JSON.parse(fs.readFileSync(testResultsPath, 'utf8'));
+
+              const passed = results.numPassedTests || 0;
+              const failed = results.numFailedTests || 0;
+              const total = results.numTotalTests || 0;
+              const duration = ((results.testResults || []).reduce((acc, r) => acc + (r.endTime - r.startTime), 0) / 1000).toFixed(2);
+
+              const status = failed > 0 ? '❌' : '✅';
+              comment += `${status} **${passed}/${total}** tests passed`;
+              if (failed > 0) {
+                comment += ` (${failed} failed)`;
+              }
+              comment += ` in ${duration}s\n\n`;
+
+              // 失敗したテストの詳細
+              if (failed > 0) {
+                comment += '### Failed Tests\n\n';
+                for (const testFile of (results.testResults || [])) {
+                  for (const assertion of (testFile.assertionResults || [])) {
+                    if (assertion.status === 'failed') {
+                      const testPath = testFile.name.replace(process.cwd(), '');
+                      comment += `- **${assertion.ancestorTitles.join(' > ')} > ${assertion.title}**\n`;
+                      comment += `  - File: \`${testPath}\`\n`;
+                      if (assertion.failureMessages && assertion.failureMessages.length > 0) {
+                        const shortMessage = assertion.failureMessages[0].split('\n')[0].substring(0, 200);
+                        comment += `  - Error: \`${shortMessage}\`\n`;
+                      }
+                      comment += '\n';
+                    }
+                  }
+                }
+              }
+            } else {
+              comment += '⚠️ Test results file not found\n';
+            }
+
+            core.setOutput('comment', comment);
+
+      - name: Comment test results on PR
+        if: always()
+        uses: marocchino/sticky-comment@v2
+        with:
+          header: test-results
+          message: ${{ steps.format.outputs.comment }}
+
+      - name: Fail if tests failed
+        if: steps.test.outcome == 'failure'
+        run: exit 1
