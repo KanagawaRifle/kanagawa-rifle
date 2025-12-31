@@ -17,8 +17,8 @@
   --color-primary: oklch(47.63% 0.13 148.04);
   --color-primary-foreground: oklch(98% 0.01 148.04);
 
-  /* Secondary: #e37400 (orange) */
-  --color-secondary: oklch(66.62% 0.16 60.91);
+  /* Secondary: darker orange for WCAG 4.5:1 contrast */
+  --color-secondary: oklch(52% 0.16 60.91);
   --color-secondary-foreground: oklch(98% 0.01 60.91);
 
   /* Accent: #4285f4 (blue) */

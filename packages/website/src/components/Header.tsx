@@ -26,7 +26,7 @@ function Logo() {
       href="/"
       className="text-center text-xl font-black tracking-wider no-underline"
       style={{ fontFamily: 'Roboto' }}
-      aria-label="神奈川県ライフル射撃協会 トップページへ"
+      aria-label="KRA（神奈川県ライフル射撃協会）トップページへ"
     >
       <span className="text-primary">K</span>
       <span className="text-secondary">R</span>
