@@ -111,7 +111,7 @@ export default function Page() {
               <Badge variant="info">低年者</Badge>
               <span>低年者空気銃</span>
             </div>
-            <span className="text-xl font-bold text-green-700">無料</span>
+            <span className="text-xl font-bold text-green-700 dark:text-green-400">無料</span>
           </li>
           <li className="flex items-center justify-between border-b border-border p-4">
             <div className="flex items-center gap-2">
@@ -184,11 +184,11 @@ export default function Page() {
         </CardHeader>
         <ul>
           <li className="flex items-start gap-3 p-4">
-            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-700" aria-hidden="true" />
+            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-700 dark:text-green-400" aria-hidden="true" />
             <div>
-              <span className="font-bold text-green-700">1年間で</span>
+              <span className="font-bold text-green-700 dark:text-green-400">1年間で</span>
               当協会主催・主管の大会に、
-              <span className="font-bold text-green-700">2回以上</span>
+              <span className="font-bold text-green-700 dark:text-green-400">2回以上</span>
               出場していること
             </div>
           </li>
@@ -326,7 +326,7 @@ export default function Page() {
         </CardHeader>
         <ul>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
+            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}
               target="_blank"
@@ -338,7 +338,7 @@ export default function Page() {
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
+            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}
               target="_blank"
@@ -350,7 +350,7 @@ export default function Page() {
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
+            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}
               target="_blank"
@@ -362,7 +362,7 @@ export default function Page() {
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
+            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}
               target="_blank"
@@ -374,7 +374,7 @@ export default function Page() {
             </a>
           </li>
           <li className="flex items-center gap-3 p-4">
-            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
+            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}
               target="_blank"
