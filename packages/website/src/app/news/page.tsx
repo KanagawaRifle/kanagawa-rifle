@@ -12,8 +12,7 @@ import { PageLayout } from '@/components';
 import { env, paths } from '@/config';
 import { DEFAULT_SIZE, sizes, getListNewsItemsQueryOptions } from '@/features/news/api/NewsItemList';
 import { Skeleton } from '@/features/news/components/ListItem';
-
-import { NewsItems } from './_components/NewsItems';
+import { NewsItemList } from '@/features/news/components/NewsItemList';
 
 /**
  * サーバーサイドでニュースデータをプリフェッチ
@@ -94,7 +93,7 @@ export default async function Page() {
         }
       >
         <HydrationBoundary state={dehydratedState}>
-          <NewsItems />
+          <NewsItemList />
         </HydrationBoundary>
       </Suspense>
     </PageLayout>

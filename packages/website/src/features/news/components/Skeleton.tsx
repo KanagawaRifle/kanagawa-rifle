@@ -1,8 +1,12 @@
-import 'highlight.js/styles/github-dark.css';
-
-import { Box, Card, CardContent, Stack, ButtonGroup, Button, Chip, Skeleton as MuiSkeleton } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
+import MuiSkeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 import Link from 'next/link';
-import React from 'react';
 import { LuArrowLeft, LuCalendar, LuHash } from 'react-icons/lu';
 
 import ShareLinks from '@/features/news/components/ShareLinks';
