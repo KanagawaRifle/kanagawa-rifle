@@ -9,6 +9,8 @@ const config = {
         '--headless',
         '--disable-gpu',
         '--no-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-software-rasterizer',
         '--user-data-dir=./.lighthouse.temp'
       ]
     },
