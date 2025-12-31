@@ -55,7 +55,7 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline font-medium"
+          className="text-primary underline hover:bg-primary/10 font-medium"
         >
           {item.title}
           <span className="sr-only">（新しいタブで開く）</span>

@@ -59,7 +59,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
           href={paths.cdn.getHref(item.filename)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline"
+          className="text-primary underline hover:bg-primary/10"
         >
           {item.label}
           <span className="sr-only">（ダウンロード、新しいタブで開く）</span>
