@@ -9,13 +9,17 @@ interface StepperProps {
   orientation?: 'horizontal' | 'vertical';
   children: React.ReactNode;
   className?: string;
+  'aria-label'?: string;
 }
 
-function Stepper({ orientation = 'vertical', children, className }: StepperProps) {
+function Stepper({ orientation = 'vertical', children, className, 'aria-label': ariaLabel }: StepperProps) {
   return (
-    <div className={cn('flex', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}>
+    <ol
+      aria-label={ariaLabel ?? '手順'}
+      className={cn('flex list-none p-0 m-0', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}
+    >
       {children}
-    </div>
+    </ol>
   );
 }
 
@@ -25,10 +29,15 @@ interface StepProps {
   completed?: boolean;
   children: React.ReactNode;
   className?: string;
+  'aria-current'?: 'step' | undefined;
 }
 
-function Step({ children, className }: StepProps) {
-  return <div className={cn('relative', className)}>{children}</div>;
+function Step({ children, className, 'aria-current': ariaCurrent }: StepProps) {
+  return (
+    <li className={cn('relative', className)} aria-current={ariaCurrent}>
+      {children}
+    </li>
+  );
 }
 
 interface StepLabelProps {
@@ -43,6 +52,7 @@ function StepLabel({ icon, completed, active, children, className }: StepLabelPr
   return (
     <div className={cn('flex items-center gap-3', className)}>
       <div
+        aria-hidden="true"
         className={cn(
           'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-medium transition-colors',
           completed && 'border-primary bg-primary text-primary-foreground',
@@ -72,11 +82,7 @@ interface StepContentProps {
 }
 
 function StepContent({ children, className }: StepContentProps) {
-  return (
-    <div className={cn('ml-4 border-l-2 border-border pl-8 pb-6 pt-2', className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn('ml-4 border-l-2 border-border pl-8 pb-6 pt-2', className)}>{children}</div>;
 }
 
 export { Stepper, Step, StepLabel, StepContent };

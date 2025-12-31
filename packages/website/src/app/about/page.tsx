@@ -55,7 +55,7 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <House className="h-5 w-5" />
+            <House className="h-5 w-5" aria-hidden="true" />
             事務局
           </CardTitle>
         </CardHeader>
@@ -88,7 +88,7 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Landmark className="h-5 w-5" />
+            <Landmark className="h-5 w-5" aria-hidden="true" />
             銀行口座
           </CardTitle>
         </CardHeader>
