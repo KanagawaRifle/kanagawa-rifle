@@ -1,70 +1,59 @@
+// packages/website/src/app/competitions/_components/EntryInfoCard.tsx
+
 'use client';
 
+import { CircleHelp, NotebookPen } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
   Dialog,
-  DialogActions,
+  DialogClose,
   DialogContent,
-  DialogContentText,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
-  IconButton,
-} from '@mui/material';
-import React from 'react';
-import { LuNotebookPen, LuMessageCircleQuestion } from 'react-icons/lu';
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 export function EntryInfoCard() {
-  const [isDialogOpen, setDialogBeOpen] = React.useState(false);
-  const handleOpenButtonClick = () => {
-    setDialogBeOpen(true);
-  };
-  const handleCloseButtonClick = () => {
-    setDialogBeOpen(false);
-  };
-
   return (
     <Card>
-      <CardHeader
-        title={'各種大会 (当協会主管以外) 申込'}
-        action={
-          <IconButton aria-label="申込フォームの説明" onClick={handleOpenButtonClick}>
-            <LuMessageCircleQuestion />
-          </IconButton>
-        }
-      />
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle>各種大会 (当協会主管以外) 申込</CardTitle>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="icon" aria-label="申込フォームの説明">
+              <CircleHelp className="h-5 w-5" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>このお申込みフォームについて</DialogTitle>
+              <DialogDescription>
+                当協会主管以外の各種大会 (日ラ等) および東日本選手権については本申込フォームよりお申し込みください。
+                <br />
+                <br />
+                なお、国スポ予選および県選手権については下記に個別のお申込みフォームがございますのでそちらよりお申し込みください。
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">閉じる</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </CardHeader>
       <CardContent>
-        <Button
-          variant="outlined"
-          startIcon={<LuNotebookPen />}
-          href="https://forms.gle/6XGY1qhEvr3gkasJ9"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          日ラ等大会申込
+        <Button variant="outline" asChild>
+          <a href="https://forms.gle/6XGY1qhEvr3gkasJ9" target="_blank" rel="noopener noreferrer">
+            <NotebookPen className="mr-2 h-4 w-4" />
+            日ラ等大会申込
+          </a>
         </Button>
       </CardContent>
-      <Dialog
-        open={isDialogOpen}
-        onClose={handleCloseButtonClick}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{'このお申込みフォームについて'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            当協会主管以外の各種大会 (日ラ等) および東日本選手権については本申込フォームよりお申し込みください。
-            <br />
-            なお、国スポ予選および県選手権については下記に個別のお申込みフォームがございますのでそちらよりお申し込みください。
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseButtonClick} autoFocus>
-            閉じる
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Card>
   );
 }

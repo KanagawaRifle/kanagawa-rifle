@@ -1,66 +1,65 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Chip from '@mui/material/Chip';
-import MuiSkeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import Link from 'next/link';
-import { LuArrowLeft, LuCalendar, LuHash } from 'react-icons/lu';
+// packages/website/src/features/news/components/Skeleton.tsx
 
+import { ArrowLeft, Calendar, Hash, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton as UISkeleton } from '@/components/ui/skeleton';
 import ShareLinks from '@/features/news/components/ShareLinks';
 
 export default function MySkeleton() {
   return (
     <article className="w-full">
       <header className="mb-8">
-        <Box className="mb-2 flex justify-end">
-          <ButtonGroup>
-            <ShareLinks title={''} url={''} loading={true} />
-            <Button variant="text" loading loadingPosition="start">
-              更新
-            </Button>
-          </ButtonGroup>
-        </Box>
-        <Stack direction="row" spacing={1}>
-          <Chip label={<MuiSkeleton width="4rem" />} icon={<LuCalendar />} variant="outlined" />
+        <div className="mb-2 flex justify-end gap-2">
+          <ShareLinks title="" url="" loading={true} />
+          <Button variant="ghost" disabled>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            更新
+          </Button>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="outline">
+            <Calendar className="mr-1 h-3 w-3" />
+            <UISkeleton className="h-4 w-16" />
+          </Badge>
           {[...Array(2).keys()].map((_, index) => (
-            <Chip
-              key={index}
-              label={<MuiSkeleton width="2rem" />}
-              icon={<LuHash />}
-              variant="outlined"
-              color="primary"
-            />
+            <Badge key={index} variant="outline" className="border-primary text-primary">
+              <Hash className="mr-1 h-3 w-3" />
+              <UISkeleton className="h-4 w-8" />
+            </Badge>
           ))}
-        </Stack>
+        </div>
       </header>
 
       {/* 概要 */}
-      <div className="italicleading-relaxed mb-8 rounded-r-lg bg-gray-50 p-6 text-gray-700">
-        {[...Array(2).keys()].map((_, index) => (
-          <MuiSkeleton key={index} />
-        ))}
-        <MuiSkeleton width="60%" />
+      <div className="mb-8 space-y-2 rounded-lg bg-muted p-6 italic leading-relaxed">
+        <UISkeleton className="h-4 w-full" />
+        <UISkeleton className="h-4 w-full" />
+        <UISkeleton className="h-4 w-3/5" />
       </div>
 
       <Card>
-        <CardContent className="prose prose-lg dark:prose-invert max-w-none">
-          <h1 className="mt-8 mb-6 border-b-2 border-gray-200 pb-3 text-3xl font-bold text-gray-900 no-underline first:mt-0">
-            <MuiSkeleton />
-          </h1>
-          {[...Array(5).keys()].map((_, index) => (
-            <MuiSkeleton key={index} />
-          ))}
-          <MuiSkeleton width="60%" />
+        <CardContent className="prose prose-lg dark:prose-invert max-w-none p-6">
+          <UISkeleton className="mb-6 h-8 w-3/4" />
+          <div className="space-y-2">
+            {[...Array(5).keys()].map((_, index) => (
+              <UISkeleton key={index} className="h-4 w-full" />
+            ))}
+            <UISkeleton className="h-4 w-3/5" />
+          </div>
         </CardContent>
       </Card>
 
       <footer>
         <div className="mt-6">
-          <Button component={Link} href="/news" startIcon={<LuArrowLeft />}>
-            一覧に戻る
+          <Button variant="ghost" asChild>
+            <Link href="/news">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              一覧に戻る
+            </Link>
           </Button>
         </div>
       </footer>

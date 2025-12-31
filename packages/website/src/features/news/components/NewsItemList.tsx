@@ -2,25 +2,15 @@
 
 'use client';
 
-import {
-  Alert,
-  AlertTitle,
-  FormControl,
-  List,
-  MenuItem,
-  Pagination,
-  Select,
-  Skeleton as MuiSkeleton,
-  Stack,
-} from '@mui/material';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import { useQueryClient } from '@tanstack/react-query';
+import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight, RotateCw } from 'lucide-react';
 import { notFound, useSearchParams, useRouter } from 'next/navigation';
-import React from 'react';
-import { LuRotateCw } from 'react-icons/lu';
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton as UISkeleton } from '@/components/ui/skeleton';
 import { getNewsItemQueryOptions } from '@/features/news/api/NewsItemGet';
 import { useListNewsItems, DEFAULT_SIZE, sizes } from '@/features/news/api/NewsItemList';
 
@@ -36,33 +26,56 @@ type PaginationControlProps = {
 
 function PaginationControl({ total, current, size, totalPages, onPageChange }: PaginationControlProps) {
   return (
-    <Stack className="flex flex-col items-center justify-center" spacing={2}>
-      <Box color="text.secondary">
+    <div className="flex flex-col items-center justify-center gap-4">
+      <p className="text-sm text-muted-foreground">
         {total}件中 {(current - 1) * size + 1}〜{Math.min(current * size, total)}件を表示
-      </Box>
-      <Pagination
-        count={totalPages}
-        page={current}
-        onChange={(_, page) => onPageChange(page)}
-        color="primary"
-        showFirstButton
-        showLastButton
-        siblingCount={1}
-        boundaryCount={1}
-        variant="outlined"
-      />
-    </Stack>
+      </p>
+      <div className="flex items-center gap-1">
+        <Button variant="outline" size="icon" onClick={() => onPageChange(1)} disabled={current === 1}>
+          <ChevronFirst className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon" onClick={() => onPageChange(current - 1)} disabled={current === 1}>
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <span className="px-3 text-sm">
+          {current} / {totalPages}
+        </span>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => onPageChange(current + 1)}
+          disabled={current === totalPages}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon" onClick={() => onPageChange(totalPages)} disabled={current === totalPages}>
+          <ChevronLast className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
   );
 }
 
 function PaginationSkeleton() {
   return (
-    <Stack className="flex flex-col items-center justify-center" spacing={2}>
-      <Box color="text.secondary">
-        <MuiSkeleton width="10rem" />
-      </Box>
-      <Pagination page={1} count={1} disabled color="primary" showFirstButton showLastButton variant="outlined" />
-    </Stack>
+    <div className="flex flex-col items-center justify-center gap-4">
+      <UISkeleton className="h-5 w-40" />
+      <div className="flex items-center gap-1">
+        <Button variant="outline" size="icon" disabled>
+          <ChevronFirst className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon" disabled>
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <span className="px-3 text-sm">1 / 1</span>
+        <Button variant="outline" size="icon" disabled>
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon" disabled>
+          <ChevronLast className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
   );
 }
 
@@ -95,28 +108,32 @@ export function NewsItemList({
     router.push(`?${params.toString()}`);
   };
 
-  const changeSize = (newSize: number) => {
+  const changeSize = (newSize: string) => {
     const params = new URLSearchParams(searchParams?.toString() ?? '');
-    params.set('size', newSize.toString());
+    params.set('size', newSize);
     params.delete('page');
     router.push(`?${params.toString()}`);
   };
 
   if (query.isLoading || query.isFetching) {
     return (
-      <Stack spacing={2}>
+      <div className="space-y-4">
         {withControls && (
           <div className="flex items-center justify-between">
-            <FormControl>
-              <Select variant="outlined" size="small" disabled value={size}>
-                {sizes.map((val, i) => (
-                  <MenuItem key={i} value={val}>
+            <Select disabled value={size.toString()}>
+              <SelectTrigger className="w-24">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {sizes.map((val) => (
+                  <SelectItem key={val} value={val.toString()}>
                     {val}件
-                  </MenuItem>
+                  </SelectItem>
                 ))}
-              </Select>
-            </FormControl>
-            <Button variant="text" loading loadingPosition="start">
+              </SelectContent>
+            </Select>
+            <Button variant="ghost" disabled>
+              <RotateCw className="mr-2 h-4 w-4 animate-spin" />
               更新
             </Button>
           </div>
@@ -126,35 +143,36 @@ export function NewsItemList({
 
         {withControls ? (
           <Card>
-            <List>
+            <ul>
               {[...Array(DEFAULT_SIZE).keys()].map((_, index) => (
                 <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index} />
               ))}
-            </List>
+            </ul>
           </Card>
         ) : (
-          <List>
+          <ul>
             {[...Array(DEFAULT_SIZE).keys()].map((_, index) => (
               <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index} />
             ))}
-          </List>
+          </ul>
         )}
 
         {withControls && <PaginationSkeleton />}
-      </Stack>
+      </div>
     );
   }
 
   if (query.isError) {
     return (
-      <Alert severity="error">
+      <Alert variant="destructive">
         <AlertTitle>エラー</AlertTitle>
-        <Stack spacing={1}>
-          <div>{query.error.message}</div>
-          <Button onClick={() => query.refetch()} color="error" startIcon={<LuRotateCw />}>
+        <AlertDescription className="space-y-2">
+          <p>{query.error.message}</p>
+          <Button onClick={() => query.refetch()} variant="outline" size="sm">
+            <RotateCw className="mr-2 h-4 w-4" />
             再試行
           </Button>
-        </Stack>
+        </AlertDescription>
       </Alert>
     );
   }
@@ -165,17 +183,21 @@ export function NewsItemList({
   const pagination = query.data.pagination;
 
   return (
-    <Stack spacing={2}>
+    <div className="space-y-4">
       {withControls && (
         <div className="flex items-center justify-between">
-          <FormControl>
-            <Select variant="outlined" size="small" value={size} onChange={(e) => changeSize(Number(e.target.value))}>
-              <MenuItem value={12}>12件</MenuItem>
-              <MenuItem value={64}>64件</MenuItem>
-              <MenuItem value={128}>128件</MenuItem>
-            </Select>
-          </FormControl>
-          <Button variant="text" startIcon={<LuRotateCw />} onClick={() => query.refetch()}>
+          <Select value={size.toString()} onValueChange={changeSize}>
+            <SelectTrigger className="w-24">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="12">12件</SelectItem>
+              <SelectItem value="64">64件</SelectItem>
+              <SelectItem value="128">128件</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button variant="ghost" onClick={() => query.refetch()}>
+            <RotateCw className="mr-2 h-4 w-4" />
             更新
           </Button>
         </div>
@@ -205,10 +227,10 @@ export function NewsItemList({
         ));
         return withControls ? (
           <Card>
-            <List>{listContent}</List>
+            <ul>{listContent}</ul>
           </Card>
         ) : (
-          <List>{listContent}</List>
+          <ul>{listContent}</ul>
         );
       })()}
 
@@ -221,6 +243,6 @@ export function NewsItemList({
           onPageChange={goToPage}
         />
       )}
-    </Stack>
+    </div>
   );
 }

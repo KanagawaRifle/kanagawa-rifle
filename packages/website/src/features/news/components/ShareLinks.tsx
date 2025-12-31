@@ -1,17 +1,44 @@
 // packages/website/src/features/news/components/ShareLinks.tsx
+
 'use client';
 
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Snackbar from '@mui/material/Snackbar';
+import { Clipboard, Loader2, Mail, Share2 } from 'lucide-react';
 import React, { useState } from 'react';
-import { FaFacebook, FaLine, FaTwitter } from 'react-icons/fa';
-import { LuClipboard, LuMail, LuShare2 } from 'react-icons/lu';
+import { toast } from 'sonner';
 
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { logger } from '@/lib/logger';
+
+// SNS アイコン (インライン SVG)
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+function TwitterIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function LineIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+    </svg>
+  );
+}
 
 type Props = {
   url: string;
@@ -20,37 +47,10 @@ type Props = {
 };
 
 export default function ShareLinks({ url, title, loading = false }: Props) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
-
-  const open = Boolean(anchorEl);
+  const [open, setOpen] = useState(false);
 
   const encodedTitle = encodeURIComponent(title);
   const encodedUrl = encodeURIComponent(url);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (loading) return;
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const showSnackbar = (message: string, severity: 'success' | 'error' = 'success') => {
-    setSnackbarMessage(message);
-    setSnackbarSeverity(severity);
-    setSnackbarOpen(true);
-  };
-
-  const handleCloseSnackbar = (_?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackbarOpen(false);
-  };
 
   const fallbackCopyToClipboard = (text: string): boolean => {
     try {
@@ -88,121 +88,69 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
     }
 
     if (copySuccess) {
-      showSnackbar('リンクをクリップボードにコピーしました');
+      toast.success('リンクをクリップボードにコピーしました');
     } else {
-      showSnackbar('リンクのコピーに失敗しました', 'error');
+      toast.error('リンクのコピーに失敗しました');
     }
 
-    handleClose();
+    setOpen(false);
   };
 
   const handleExternalShare = (shareUrl: string) => {
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
-    handleClose();
+    setOpen(false);
   };
 
   const shareLinks = [
     {
       name: 'Facebook',
       label: 'Facebook でシェア',
-      icon: <FaFacebook />,
-      color: '#1877F2',
+      icon: <FacebookIcon className="h-5 w-5 text-[#1877F2]" />,
       onClick: () => handleExternalShare(`https://www.facebook.com/sharer/sharer.php?display=page&u=${encodedUrl}`),
     },
     {
-      name: 'Twitter',
-      label: 'Twitter でシェア',
-      icon: <FaTwitter />,
-      color: '#1DA1F2',
+      name: 'X (Twitter)',
+      label: 'X でシェア',
+      icon: <TwitterIcon className="h-5 w-5" />,
       onClick: () => handleExternalShare(`https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`),
     },
     {
       name: 'LINE',
       label: 'LINE でシェア',
-      icon: <FaLine />,
-      color: '#00B900',
+      icon: <LineIcon className="h-5 w-5 text-[#00B900]" />,
       onClick: () =>
         handleExternalShare(`https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${encodedTitle}`),
     },
     {
       name: 'メール',
       label: 'メールで送信',
-      icon: <LuMail />,
-      color: null,
+      icon: <Mail className="h-5 w-5" />,
       onClick: () => handleExternalShare(`mailto:?subject=${encodedTitle}&body=${encodedUrl}`),
     },
     {
       name: 'リンクをコピー',
       label: 'リンクをコピー',
-      color: null,
-      icon: <LuClipboard />,
+      icon: <Clipboard className="h-5 w-5" />,
       onClick: handleCopyToClipboard,
     },
   ];
 
   return (
-    <>
-      <Button
-        variant="text"
-        startIcon={loading ? <CircularProgress size={'1rem'} /> : <LuShare2 />}
-        onClick={handleClick}
-        disabled={loading}
-        aria-controls={open ? 'share-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-      >
-        共有
-      </Button>
-
-      <Menu
-        id="share-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        slotProps={{
-          list: { 'aria-labelledby': 'share-button' },
-        }}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
+    <DropdownMenu open={open} onOpenChange={setOpen}>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" disabled={loading} aria-label="共有メニューを開く">
+          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Share2 className="mr-2 h-4 w-4" />}
+          共有
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start">
         {shareLinks.map((link) => (
-          <MenuItem
-            onClick={link.onClick}
-            key={link.name}
-            aria-label={link.label}
-            sx={{
-              display: 'flex',
-              gap: 1,
-              minWidth: 160,
-              '& svg': {
-                color: link.color ?? 'text.secondary',
-                width: 20,
-                height: 20,
-              },
-            }}
-          >
+          <DropdownMenuItem key={link.name} onClick={link.onClick} aria-label={link.label} className="gap-2">
             {link.icon}
             {link.name}
-          </MenuItem>
+          </DropdownMenuItem>
         ))}
-      </Menu>
-
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert variant="filled" onClose={handleCloseSnackbar} severity={snackbarSeverity}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
-    </>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

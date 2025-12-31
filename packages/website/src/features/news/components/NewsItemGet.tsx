@@ -1,25 +1,16 @@
 // packages/website/src/features/news/components/NewsItemGet.tsx
+
 'use client';
 
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  ButtonGroup,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Chip,
-  Skeleton as MuiSkeleton,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { ArrowLeft, Calendar, Hash, NotebookText, RotateCw } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { LuNotebookText, LuArrowLeft, LuRotateCw, LuHash, LuCalendar } from 'react-icons/lu';
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton as UISkeleton } from '@/components/ui/skeleton';
 import { env } from '@/config';
 import { useNewsItem } from '@/features/news/api/NewsItemGet';
 
@@ -27,10 +18,10 @@ import { useNewsItem } from '@/features/news/api/NewsItemGet';
 const ReactMarkdown = dynamic(() => import('@/lib/client').then((mod) => mod.ReactMarkdown), {
   loading: () => (
     <div className="space-y-4">
-      <MuiSkeleton variant="text" width="100%" height={24} />
-      <MuiSkeleton variant="text" width="90%" height={24} />
-      <MuiSkeleton variant="text" width="95%" height={24} />
-      <MuiSkeleton variant="rectangular" width="100%" height={200} />
+      <UISkeleton className="h-6 w-full" />
+      <UISkeleton className="h-6 w-[90%]" />
+      <UISkeleton className="h-6 w-[95%]" />
+      <UISkeleton className="h-48 w-full" />
     </div>
   ),
   ssr: true,
@@ -62,42 +53,39 @@ export function NewsItemGet({ slug }: Props) {
     const errorMessage = error instanceof Error ? error.message : '記事の取得に失敗しました';
 
     return (
-      <Alert severity="error">
+      <Alert variant="destructive">
         <AlertTitle>エラー</AlertTitle>
-        <Stack spacing={2}>
-          <Typography>{errorMessage}</Typography>
-          <Button onClick={() => refetch()} color="error" startIcon={<LuRotateCw />} disabled={isFetching}>
+        <AlertDescription className="space-y-4">
+          <p>{errorMessage}</p>
+          <Button onClick={() => refetch()} variant="outline" size="sm" disabled={isFetching}>
+            <RotateCw className="mr-2 h-4 w-4" />
             再試行
           </Button>
-        </Stack>
+        </AlertDescription>
       </Alert>
     );
   }
 
   if (!news) {
     return (
-      <Card>
-        <CardHeader
-          title={
-            <Typography color="text.secondary" variant="h4">
-              記事が見つかりません
-            </Typography>
-          }
-          className="text-center"
-        />
-        <CardContent className="text-center">
-          <Typography color="text.secondary">指定された記事は存在しないか、削除された可能性があります。</Typography>
+      <Card className="text-center">
+        <CardHeader>
+          <CardTitle className="text-muted-foreground">記事が見つかりません</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">指定された記事は存在しないか、削除された可能性があります。</p>
         </CardContent>
-        <CardContent className="flex justify-center">
-          <Box color="text.secondary">
-            <LuNotebookText className="text-7xl" />
-          </Box>
+        <CardContent>
+          <NotebookText className="mx-auto h-16 w-16 text-muted-foreground" />
         </CardContent>
-        <CardActions className="flex justify-center">
-          <Button component={Link} href="/news" startIcon={<LuArrowLeft />}>
-            一覧に戻る
+        <CardFooter className="justify-center">
+          <Button variant="ghost" asChild>
+            <Link href="/news">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              一覧に戻る
+            </Link>
           </Button>
-        </CardActions>
+        </CardFooter>
       </Card>
     );
   }
@@ -107,41 +95,35 @@ export function NewsItemGet({ slug }: Props) {
       {/* ヘッダー */}
       <header className="mb-8">
         {/* アクションボタン */}
-        <Box className="mb-2 flex justify-end">
-          <ButtonGroup>
-            <ShareLinks title={news.title} url={articleUrl} />
-            <Button
-              variant="text"
-              startIcon={<LuRotateCw />}
-              onClick={() => refetch()}
-              disabled={isFetching}
-              aria-label="記事を更新"
-            >
-              更新
-            </Button>
-          </ButtonGroup>
-        </Box>
+        <div className="mb-2 flex justify-end gap-2">
+          <ShareLinks title={news.title} url={articleUrl} />
+          <Button variant="ghost" onClick={() => refetch()} disabled={isFetching} aria-label="記事を更新">
+            <RotateCw className="mr-2 h-4 w-4" />
+            更新
+          </Button>
+        </div>
 
         {/* メタ情報 */}
-        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+        <div className="flex flex-wrap gap-2">
           {/* 作成日 */}
-          <Chip
-            label={<time dateTime={news.published.toISOString()}>{formattedDate}</time>}
-            icon={<LuCalendar />}
-            variant="outlined"
-            color="default"
-          />
+          <Badge variant="outline">
+            <Calendar className="mr-1 h-3 w-3" />
+            <time dateTime={news.published.toISOString()}>{formattedDate}</time>
+          </Badge>
 
           {/* タグ */}
           {news.tags?.map((tag) => (
-            <Chip label={tag} key={tag} icon={<LuHash />} variant="outlined" color="primary" />
+            <Badge key={tag} variant="outline" className="border-primary text-primary">
+              <Hash className="mr-1 h-3 w-3" />
+              {tag}
+            </Badge>
           ))}
-        </Stack>
+        </div>
       </header>
 
       {/* 概要 */}
       {news.excerpt && (
-        <div className="mb-8 rounded-lg bg-gray-50 p-6 leading-relaxed text-gray-700 italic">{news.excerpt}</div>
+        <div className="mb-8 rounded-lg bg-muted p-6 italic leading-relaxed text-muted-foreground">{news.excerpt}</div>
       )}
 
       {/* 目次 */}
@@ -156,8 +138,11 @@ export function NewsItemGet({ slug }: Props) {
 
       {/* フッター */}
       <footer className="mt-6">
-        <Button component={Link} href="/news" startIcon={<LuArrowLeft />}>
-          一覧に戻る
+        <Button variant="ghost" asChild>
+          <Link href="/news">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            一覧に戻る
+          </Link>
         </Button>
       </footer>
     </article>
