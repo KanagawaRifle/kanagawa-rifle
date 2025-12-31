@@ -138,15 +138,15 @@ export default function Page() {
         <CardContent>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div></div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted p-2">
+            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">移籍</div>
               <div className="mt-2 text-xs">
                 神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。
@@ -154,21 +154,21 @@ export default function Page() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
               <span className="font-bold text-green-600">神ラ</span>
             </div>
-            <div className="p-2">27,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">17,000円</div>
-            <div className="p-2">22,500円</div>
+            <div className="px-4 py-2">27,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">17,000円</div>
+            <div className="px-4 py-2">22,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-green-600">神ラ</span>のみ
             </div>
-            <div className="p-2">12,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">7,000円</div>
-            <div className="p-2">―</div>
+            <div className="px-4 py-2">12,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">7,000円</div>
+            <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
       </Card>
@@ -181,15 +181,15 @@ export default function Page() {
           <div className="mb-2">ご入会時に学生証等所属を証明できる書類をお送りください。</div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div></div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted p-2">
+            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">移籍</div>
               <div className="mt-2 text-xs">
                 神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。
@@ -197,21 +197,21 @@ export default function Page() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
               <span className="font-bold text-green-600">神ラ</span>
             </div>
-            <div className="p-2">7,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">5,000円</div>
-            <div className="p-2">6,500円</div>
+            <div className="px-4 py-2">7,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">5,000円</div>
+            <div className="px-4 py-2">6,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-green-600">神ラ</span>のみ
             </div>
-            <div className="p-2">3,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">2,000円</div>
-            <div className="p-2">―</div>
+            <div className="px-4 py-2">3,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
       </Card>
@@ -223,15 +223,15 @@ export default function Page() {
         <CardContent>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div></div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted p-2">
+            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="font-bold">移籍</div>
               <div className="mt-2 text-xs">
                 神ラに入会されていない方で、学連や他都道府県団体から日ラ所属団体を神ラに変更される方。
@@ -239,21 +239,21 @@ export default function Page() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
               <span className="font-bold text-green-600">神ラ</span>
             </div>
-            <div className="p-2">4,500円</div>
-            <div className="border-r border-l border-border bg-muted p-2">3,000円</div>
-            <div className="p-2">4,500円</div>
+            <div className="px-4 py-2">4,500円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="px-4 py-2">4,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-green-600">神ラ</span>のみ
             </div>
-            <div className="p-2">3,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">2,000円</div>
-            <div className="p-2">―</div>
+            <div className="px-4 py-2">3,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
       </Card>
@@ -265,7 +265,7 @@ export default function Page() {
         <CardContent>
           <div className="rounded-md border border-border bg-muted p-2 text-sm font-bold">新大学生（4月1日～）</div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
-            <div className="p-2">
+            <div className="px-4 py-2">
               神ラ生徒会員→学生会員
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
@@ -274,7 +274,7 @@ export default function Page() {
             <div className="p-2 text-center">5,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
-            <div className="p-2">
+            <div className="px-4 py-2">
               神ラ→学連へ所属移籍
               <br />
               <span className="font-bold text-green-600">神ラ</span>のみ更新
@@ -282,7 +282,7 @@ export default function Page() {
             <div className="p-2 text-center">2,000円</div>
           </div>
           <div className="grid grid-cols-2 gap-0">
-            <div className="p-2">
+            <div className="px-4 py-2">
               他所属加盟団体→神ラへ新規移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>更新＋
@@ -292,7 +292,7 @@ export default function Page() {
           </div>
           <div className="rounded-md border border-border bg-muted p-2 text-sm font-bold">新社会人（4月1日～）</div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
-            <div className="p-2">
+            <div className="px-4 py-2">
               神ラ学生・生徒会員→一般会員
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
@@ -301,7 +301,7 @@ export default function Page() {
             <div className="p-2 text-center">17,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
-            <div className="p-2">
+            <div className="px-4 py-2">
               学連→神ラへ所属移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
@@ -310,7 +310,7 @@ export default function Page() {
             <div className="p-2 text-center">17,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0">
-            <div className="p-2">
+            <div className="px-4 py-2">
               他所属加盟団体→神ラへ新規移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>更新＋
@@ -328,21 +328,21 @@ export default function Page() {
         <CardContent>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div></div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
                 <Box className="h-4 w-4 text-purple-400" />
                 一般
               </div>
               <div className="mt-2 text-xs">4月1日時点で24歳以上の学生を含む。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted p-2">
+            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
                 <Box className="h-4 w-4 text-teal-400" />
                 学生
               </div>
               <div className="mt-2 text-xs">大学生・専門学校生。</div>
             </div>
-            <div className="p-2">
+            <div className="px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
                 <Box className="h-4 w-4 text-rose-400" />
                 生徒
@@ -356,45 +356,45 @@ export default function Page() {
               <br />
               <span className="font-bold text-red-600">ラ</span>入会金
             </div>
-            <div className="p-2">5,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">1,000円</div>
-            <div className="p-2">500円</div>
+            <div className="px-4 py-2">5,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">1,000円</div>
+            <div className="px-4 py-2">500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-green-600">神</span>奈川県
               <br />
               <span className="font-bold text-green-600">ラ</span>入会金
             </div>
-            <div className="p-2">5,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">1,000円</div>
-            <div className="p-2">1,000円</div>
+            <div className="px-4 py-2">5,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">1,000円</div>
+            <div className="px-4 py-2">1,000円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-red-600">日</span>　　本
               <br />
               <span className="font-bold text-red-600">ラ</span>年会費
             </div>
-            <div className="p-2">10,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">3,000円</div>
-            <div className="p-2">1,000円</div>
+            <div className="px-4 py-2">10,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="px-4 py-2">1,000円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">
+            <div className="px-4 py-2">
               <span className="font-bold text-green-600">神</span>奈川県
               <br />
               <span className="font-bold text-green-600">ラ</span>年会費
             </div>
-            <div className="p-2">7,000円</div>
-            <div className="border-r border-l border-border bg-muted p-2">2,000円</div>
-            <div className="p-2">2,000円</div>
+            <div className="px-4 py-2">7,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">2,000円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
-            <div className="p-2">移籍料</div>
-            <div className="p-2">500円</div>
-            <div className="border-r border-l border-border bg-muted p-2">500円</div>
-            <div className="p-2">500円</div>
+            <div className="px-4 py-2">移籍料</div>
+            <div className="px-4 py-2">500円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">500円</div>
+            <div className="px-4 py-2">500円</div>
           </div>
         </CardContent>
       </Card>

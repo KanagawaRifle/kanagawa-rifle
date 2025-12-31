@@ -4,7 +4,7 @@ import { AlarmClock, Calendar, Dumbbell, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button, ButtonGroup } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Event, DateValue } from '../_types';
@@ -65,11 +65,11 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
   return (
     <Card>
       <CardHeader>
-        <p className="text-sm text-muted-foreground">{grade}大会</p>
+        <p className="text-muted-foreground">{grade}大会</p>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap gap-2">
+        <ButtonGroup className="flex-wrap">
           {actions.map((action) => (
             <Button
               key={action.name}
@@ -91,7 +91,7 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
               )}
             </Button>
           ))}
-        </div>
+        </ButtonGroup>
       </CardContent>
       {(date || pet || deadline || venue) && (
         <ul className="border-t border-border">
