@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Markdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
@@ -31,7 +30,6 @@ export function ReactMarkdown({ content }: Props) {
         remarkMath, // plugin to support math ($C_L$).
       ]}
       rehypePlugins={[
-        rehypeHighlight, // plugin to apply syntax highlighting to code with lowlight.
         rehypeKatex, // plugin to render elements with a language-math class with KaTeX.
         rehypeSlug, // plugin to add ids to headings.
         rehypeRaw, // plugin to parse the tree (and raw nodes) again, keeping positional info okay.

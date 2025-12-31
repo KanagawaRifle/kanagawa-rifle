@@ -11,8 +11,6 @@ import {
   Chip,
   Typography,
 } from '@mui/material';
-import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
 import Link from 'next/link';
 import { LuCalendar, LuImage, LuHash } from 'react-icons/lu';
 
@@ -26,11 +24,13 @@ type Props = {
   onMouseEnter?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
+const dateFormatter = new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+
 function formatPublishedDate(published: Date | string): { dateTime: string; display: string } {
   const date = typeof published === 'string' ? new Date(published) : published;
   return {
     dateTime: date.toISOString(),
-    display: format(date, 'yyyy年M月d日', { locale: ja }),
+    display: dateFormatter.format(date),
   };
 }
 

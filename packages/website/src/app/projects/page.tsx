@@ -2,7 +2,6 @@
 
 import { Card, CardHeader, Link, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import type { Metadata } from 'next';
-import React from 'react';
 import { FaFileExcel, FaFileWord, FaFilePdf } from 'react-icons/fa';
 
 import { PageLayout } from '@/components';
@@ -88,10 +87,7 @@ const buildDocumentUrl = (filename: string, version?: string): string => {
   return filename.startsWith('/projects/') ? paths.cdn.getHref(fullPath) : fullPath;
 };
 
-const DocumentListItem: React.FC<{
-  item: DocumentItem;
-  divider: boolean;
-}> = React.memo(({ item, divider }) => {
+function DocumentListItem({ item, divider }: { item: DocumentItem; divider: boolean }) {
   const config = FILE_TYPES[item.type];
   const url = buildDocumentUrl(item.filename, item.version);
 
@@ -103,26 +99,24 @@ const DocumentListItem: React.FC<{
       </ListItemText>
     </ListItem>
   );
-});
+}
 
-DocumentListItem.displayName = 'DocumentListItem';
-
-const YearCard: React.FC<{ yearData: YearData }> = React.memo(({ yearData }) => (
-  <Card>
-    <CardHeader title={yearData.era} subheader={yearData.western} />
-    <List dense>
-      {yearData.documents.map((val, index) => (
-        <DocumentListItem
-          key={`${val.filename}-${val.title}`}
-          item={val}
-          divider={index < yearData.documents.length - 1}
-        />
-      ))}
-    </List>
-  </Card>
-));
-
-YearCard.displayName = 'YearCard';
+function YearCard({ yearData }: { yearData: YearData }) {
+  return (
+    <Card>
+      <CardHeader title={yearData.era} subheader={yearData.western} />
+      <List dense>
+        {yearData.documents.map((val, index) => (
+          <DocumentListItem
+            key={`${val.filename}-${val.title}`}
+            item={val}
+            divider={index < yearData.documents.length - 1}
+          />
+        ))}
+      </List>
+    </Card>
+  );
+}
 
 const currentPath = paths.main.projects;
 

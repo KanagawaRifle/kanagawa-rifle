@@ -11,8 +11,6 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
 import React, { ReactNode } from 'react';
 import { LuAlarmClock, LuCalendar, LuDumbbell, LuMapPin } from 'react-icons/lu';
 
@@ -40,7 +38,8 @@ function Item({ icon, title, text, divider = false }: ItemProps) {
   );
 }
 
-const formatDate = (date: Date): string => format(date, 'M月d日（E）', { locale: ja });
+const dateFormatter = new Intl.DateTimeFormat('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' });
+const formatDate = (date: Date): string => dateFormatter.format(date);
 
 function dateToElement(date: DateValue): ReactNode {
   if (typeof date === 'string') {

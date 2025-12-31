@@ -12,12 +12,12 @@ export type SocialItem = {
 export const social: Record<SocialKey, SocialItem> = {
   facebook: {
     name: 'Facebook',
-    url: 'https://twitter.com/KanagawaRifle',
+    url: 'https://www.facebook.com/KanagawaRifle',
     icon: <FaFacebook />,
   },
   twitter: {
     name: 'Twitter',
-    url: 'https://www.facebook.com/KanagawaRifle',
+    url: 'https://twitter.com/KanagawaRifle',
     icon: <FaTwitter />,
   },
   instagram: {

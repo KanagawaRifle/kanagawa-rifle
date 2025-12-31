@@ -2,11 +2,13 @@
 
 import { UseMutationOptions, DefaultOptions } from '@tanstack/react-query';
 
+import { QUERY_CACHE } from '@/config/cache';
+
 export const queryConfig = {
   queries: {
     refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000, // 5分
-    gcTime: 10 * 60 * 1000, // 10分
+    staleTime: QUERY_CACHE.STALE_TIME,
+    gcTime: QUERY_CACHE.GC_TIME,
     retry: false,
     retryDelay: (attemptIndex: number) => Math.min(1000 * 2 ** attemptIndex, 30000),
     refetchOnMount: true,
