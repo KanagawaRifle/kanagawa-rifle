@@ -72,7 +72,7 @@ export default function Page() {
         </CardHeader>
         <CardContent>
           手数料は
-          <Link href="/about" className="text-primary hover:underline">
+          <Link href="/about" className="text-primary underline hover:bg-primary/10">
             当協会の指定口座
           </Link>
           までお振込みください。
@@ -226,7 +226,7 @@ export default function Page() {
                   href={paths.cdn.getHref('/projects/2025/competitions.pdf')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary underline hover:bg-primary/10"
                 >
                   推薦スケジュール
                   <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -331,7 +331,7 @@ export default function Page() {
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               推薦ブレッテン no.57
               <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -343,7 +343,7 @@ export default function Page() {
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               推薦ブレッテン no.56
               <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -355,7 +355,7 @@ export default function Page() {
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               推薦ブレッテン no.55
               <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -367,7 +367,7 @@ export default function Page() {
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               推薦ブレッテン no.51
               <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -379,7 +379,7 @@ export default function Page() {
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               推薦ブレッテン no.49
               <span className="sr-only">（PDF、新しいタブで開く）</span>

@@ -38,7 +38,7 @@ export default function Page() {
               href="https://jrsf.sportscom.jp/#/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary underline hover:bg-primary/10"
             >
               日本ライフル射撃協会 ShootersHub
               <span className="sr-only">（新しいタブで開く）</span>
@@ -123,12 +123,12 @@ export default function Page() {
               <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
               <li>
                 お申込みシステムをご利用できない方は
-                <a href={paths.cdn.getHref('/forms/membership.xlsx')} className="text-primary hover:underline">
+                <a href={paths.cdn.getHref('/forms/membership.xlsx')} className="text-primary underline hover:bg-primary/10">
                   入会申込書
                   <span className="sr-only">（ダウンロード）</span>
                 </a>
                 に必要事項をご記入の上、
-                <Link href="/about" className="text-primary hover:underline">
+                <Link href="/about" className="text-primary underline hover:bg-primary/10">
                   当協会事務局
                 </Link>
                 まで封書、ファックスまたは電子メールの添付にてお送り下さい。
@@ -163,7 +163,7 @@ export default function Page() {
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>
+              <span className="font-bold text-green-700">神ラ</span>
             </div>
             <div className="px-4 py-2">27,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">17,000円</div>
@@ -171,7 +171,7 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
-              <span className="font-bold text-green-600">神ラ</span>のみ
+              <span className="font-bold text-green-700">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">12,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">7,000円</div>
@@ -206,7 +206,7 @@ export default function Page() {
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>
+              <span className="font-bold text-green-700">神ラ</span>
             </div>
             <div className="px-4 py-2">7,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">5,000円</div>
@@ -214,7 +214,7 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
-              <span className="font-bold text-green-600">神ラ</span>のみ
+              <span className="font-bold text-green-700">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">3,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
@@ -248,7 +248,7 @@ export default function Page() {
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>
+              <span className="font-bold text-green-700">神ラ</span>
             </div>
             <div className="px-4 py-2">4,500円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
@@ -256,7 +256,7 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
-              <span className="font-bold text-green-600">神ラ</span>のみ
+              <span className="font-bold text-green-700">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">3,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
@@ -276,7 +276,7 @@ export default function Page() {
               神ラ生徒会員→学生会員
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>更新
+              <span className="font-bold text-green-700">神ラ</span>更新
             </div>
             <div className="p-2 text-center">5,500円</div>
           </div>
@@ -284,7 +284,7 @@ export default function Page() {
             <div className="px-4 py-2">
               神ラ→学連へ所属移籍
               <br />
-              <span className="font-bold text-green-600">神ラ</span>のみ更新
+              <span className="font-bold text-green-700">神ラ</span>のみ更新
             </div>
             <div className="p-2 text-center">2,000円</div>
           </div>
@@ -293,7 +293,7 @@ export default function Page() {
               他所属加盟団体→神ラへ新規移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>更新＋
-              <span className="font-bold text-green-600">神ラ</span>新規
+              <span className="font-bold text-green-700">神ラ</span>新規
             </div>
             <div className="p-2 text-center">6,500円</div>
           </div>
@@ -303,7 +303,7 @@ export default function Page() {
               神ラ学生・生徒会員→一般会員
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>更新
+              <span className="font-bold text-green-700">神ラ</span>更新
             </div>
             <div className="p-2 text-center">17,500円</div>
           </div>
@@ -312,7 +312,7 @@ export default function Page() {
               学連→神ラへ所属移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>＋
-              <span className="font-bold text-green-600">神ラ</span>更新
+              <span className="font-bold text-green-700">神ラ</span>更新
             </div>
             <div className="p-2 text-center">17,500円</div>
           </div>
@@ -321,7 +321,7 @@ export default function Page() {
               他所属加盟団体→神ラへ新規移籍
               <br />
               <span className="font-bold text-red-600">日ラ</span>更新＋
-              <span className="font-bold text-green-600">神ラ</span>新規
+              <span className="font-bold text-green-700">神ラ</span>新規
             </div>
             <div className="p-2 text-center">22,500円</div>
           </div>
@@ -337,21 +337,21 @@ export default function Page() {
             <div></div>
             <div className="px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
-                <Box className="h-4 w-4 text-purple-400" />
+                <Box className="h-4 w-4 text-purple-600" />
                 一般
               </div>
               <div className="mt-2 text-xs">4月1日時点で24歳以上の学生を含む。</div>
             </div>
             <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
-                <Box className="h-4 w-4 text-teal-400" />
+                <Box className="h-4 w-4 text-teal-600" />
                 学生
               </div>
               <div className="mt-2 text-xs">大学生・専門学校生。</div>
             </div>
             <div className="px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
-                <Box className="h-4 w-4 text-rose-400" />
+                <Box className="h-4 w-4 text-rose-600" />
                 生徒
               </div>
               <div className="mt-2 text-xs">高校生以下。</div>
@@ -369,9 +369,9 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
-              <span className="font-bold text-green-600">神</span>奈川県
+              <span className="font-bold text-green-700">神</span>奈川県
               <br />
-              <span className="font-bold text-green-600">ラ</span>入会金
+              <span className="font-bold text-green-700">ラ</span>入会金
             </div>
             <div className="px-4 py-2">5,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">1,000円</div>
@@ -389,9 +389,9 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
-              <span className="font-bold text-green-600">神</span>奈川県
+              <span className="font-bold text-green-700">神</span>奈川県
               <br />
-              <span className="font-bold text-green-600">ラ</span>年会費
+              <span className="font-bold text-green-700">ラ</span>年会費
             </div>
             <div className="px-4 py-2">7,000円</div>
             <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>

@@ -96,7 +96,7 @@ function DocumentListItem({ item, divider }: { item: DocumentItem; divider: bool
     <li className={divider ? 'border-b border-border' : ''}>
       <div className="flex items-center gap-3 p-4">
         <Icon className={`h-5 w-5 ${config.colorClass}`} />
-        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:bg-primary/10">
           {item.title}
           <span className="sr-only">（新しいタブで開く）</span>
         </a>

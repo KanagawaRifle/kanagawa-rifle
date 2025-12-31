@@ -97,7 +97,7 @@ export default function Page() {
               <p>各種大会 (当協会主管以外) および東日本選手権については下記よりお申し込みください。</p>
               <p>
                 ※国体スポ予選および県選手権については
-                <Link href="/competitions" className="text-primary hover:underline">
+                <Link href="/competitions" className="text-primary underline hover:bg-primary/10">
                   個別のお申込みフォーム
                 </Link>
                 がございますのでそちらよりお申し込みください。
