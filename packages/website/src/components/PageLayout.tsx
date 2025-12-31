@@ -2,6 +2,7 @@
 
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import React from 'react';
 
 import {
   Breadcrumb,
@@ -48,19 +49,19 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
                 {breadcrumbs.map((breadcrumb, index) => {
                   const isLast = index === breadcrumbs.length - 1;
                   return (
-                    <BreadcrumbItem key={breadcrumb.path}>
-                      {index === 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
-                      {isLast ? (
-                        <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
-                      ) : (
-                        <>
+                    <React.Fragment key={breadcrumb.path}>
+                      <BreadcrumbItem>
+                        {index === 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
+                        {isLast ? (
+                          <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
+                        ) : (
                           <BreadcrumbLink asChild className="text-xs">
                             <Link href={breadcrumb.path}>{breadcrumb.name}</Link>
                           </BreadcrumbLink>
-                          <BreadcrumbSeparator />
-                        </>
-                      )}
-                    </BreadcrumbItem>
+                        )}
+                      </BreadcrumbItem>
+                      {!isLast && <BreadcrumbSeparator />}
+                    </React.Fragment>
                   );
                 })}
               </BreadcrumbList>
