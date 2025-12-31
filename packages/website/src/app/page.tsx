@@ -43,7 +43,7 @@ export default function Page() {
           <span className="text-[#0288d1]">協会</span>
         </h1>
         <p className="mt-2 text-sm text-slate-600">
-          エアライフル・ビームライフル競技の普及と振興を目指す神奈川県の射撃団体
+          スモールボア・エアライフル・ビームライフル競技の普及と振興を目指す神奈川県の射撃団体
         </p>
       </div>
 
