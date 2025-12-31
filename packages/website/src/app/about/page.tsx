@@ -6,7 +6,7 @@ import React from 'react';
 import { LuHouse, LuLandmark } from 'react-icons/lu';
 
 import { PageLayout } from '@/components';
-import { env, paths } from '@/config';
+import { app, env, paths } from '@/config';
 
 const currentPath = paths.main.about;
 export const metadata: Metadata = {
@@ -14,6 +14,34 @@ export const metadata: Metadata = {
   description: currentPath.description,
   openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
   twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
+};
+
+// LocalBusiness JSON-LD（事務局情報）
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsOrganization',
+  '@id': `${env.APP_URL}/#organization`,
+  name: app.name,
+  legalName: app.longName,
+  alternateName: app.shortName,
+  description: app.description,
+  url: env.APP_URL,
+  telephone: '080-1190-3911',
+  faxNumber: '046-833-6990',
+  email: 'kraofficial@yahoo.co.jp',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '神明町1番地 くりはま花の国エアライフル射撃場内',
+    addressLocality: '横須賀市',
+    addressRegion: '神奈川県',
+    postalCode: '239-0832',
+    addressCountry: 'JP',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: '神奈川県',
+  },
+  sport: 'ライフル射撃',
 };
 
 export default function Page() {
@@ -25,6 +53,7 @@ export default function Page() {
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
       <Card>
         <CardHeader
           title={

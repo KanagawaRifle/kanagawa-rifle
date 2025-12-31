@@ -9,7 +9,6 @@ import {
   CardActionArea,
   CardHeader,
   Link,
-  Typography,
   List,
 } from '@mui/material';
 import Image from 'next/image';
@@ -40,17 +39,14 @@ export default function Page() {
     <PageLayout>
       <div className="text-center">
         <div className="text-xs text-slate-700">特定非営利活動法人</div>
-        <h1>
-          <Typography component="span" color="primary">
-            <span className="text-2xl font-bold">神奈川県</span>
-          </Typography>
-          <Typography component="span" color="secondary">
-            <span className="text-2xl font-bold">ライフル射撃</span>
-          </Typography>
-          <Typography component="span" color="info">
-            <span className="text-2xl font-bold">協会</span>
-          </Typography>
+        <h1 className="text-2xl font-bold">
+          <span className="text-[#288140]">神奈川県</span>
+          <span className="text-[#e37400]">ライフル射撃</span>
+          <span className="text-[#0288d1]">協会</span>
         </h1>
+        <p className="mt-2 text-sm text-slate-600">
+          エアライフル・ビームライフル競技の普及と振興を目指す神奈川県の射撃団体
+        </p>
       </div>
 
       <Alert severity="info">
