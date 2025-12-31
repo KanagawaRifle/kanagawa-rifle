@@ -56,7 +56,6 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, on
         href={`/news/${slug}`}
         className="flex items-start gap-4 p-4 transition-colors hover:bg-muted"
         onMouseEnter={onMouseEnter}
-        aria-label={`${title} - ${display}公開`}
       >
         <Avatar aria-hidden="true">
           <AvatarFallback>

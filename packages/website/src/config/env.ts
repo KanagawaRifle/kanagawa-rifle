@@ -76,11 +76,12 @@ export const env = createEnv();
 /**
  * 実行環境に応じたAPI URLを取得
  * - サーバーサイド: API_INTERNAL_URL（未設定時はAPI_URLにフォールバック）
- * - クライアントサイド: API_URL
+ * - クライアントサイド: 相対URL（空文字列）を使用してCSP問題を回避
  */
 export const getApiUrl = (): string => {
   if (typeof window === 'undefined') {
     return env.API_INTERNAL_URL ?? env.API_URL;
   }
-  return env.API_URL;
+  // クライアントサイドでは相対URLを使用（/api/... の形式）
+  return '';
 };

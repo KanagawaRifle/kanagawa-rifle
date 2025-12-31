@@ -55,7 +55,7 @@ export default function Page() {
               <div className="relative h-[82px] w-full">
                 <Image
                   src="https://static.kanagawa-rifle.org/website/join/shooters-hub-logo.png"
-                  alt=""
+                  alt="ShootersHub - 日本ライフル射撃協会の会員管理システム"
                   fill
                   style={{ objectFit: 'contain' }}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -125,6 +125,7 @@ export default function Page() {
                 お申込みシステムをご利用できない方は
                 <a href={paths.cdn.getHref('/forms/membership.xlsx')} className="text-primary hover:underline">
                   入会申込書
+                  <span className="sr-only">（ダウンロード）</span>
                 </a>
                 に必要事項をご記入の上、
                 <Link href="/about" className="text-primary hover:underline">
