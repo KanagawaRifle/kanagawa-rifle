@@ -157,6 +157,7 @@
 - **カレンダー**: FullCalendar (Google Calendar 連携)
 - **エラートラッキング**: Sentry
 - **ロギング**: Axiom
+- **コンポーネント開発**: Storybook 10
 - **パッケージ管理**: npm workspaces + Turbo
 
 ## ディレクトリ構造
@@ -215,8 +216,28 @@ docker exec kanagawa-rifle_node npm run -w @acme/website test
 # E2E テスト
 docker exec kanagawa-rifle_node npm run -w @acme/website test:e2e
 
-# アクセシビリティテスト
+# アクセシビリティテスト (axe + Playwright)
 docker exec kanagawa-rifle_node npm run -w @acme/website test:a11y
+
+# Storybook 起動
+docker exec -d kanagawa-rifle_node npm run -w @acme/website storybook
+
+# Storybook a11y テスト（Storybook 起動中に実行）
+docker exec kanagawa-rifle_node npm run -w @acme/website test-storybook:a11y
+```
+
+### Storybook
+
+Storybook は https-portal 経由でアクセス可能：
+
+```
+https://storybook.kanagawa-rifle.org.test
+```
+
+hosts ファイルに以下を追加する必要がある：
+
+```
+127.100.1.10  storybook.kanagawa-rifle.org.test
 ```
 
 ### パッケージ管理
@@ -251,6 +272,9 @@ import { config } from "@/config";
 
 - ユニットテスト: `__tests__/` ディレクトリに `*.test.ts(x)` で配置
 - E2E テスト: `e2e/` ディレクトリに配置
+- アクセシビリティテスト:
+  - `test:a11y`: axe-core + Playwright によるページ単位のテスト
+  - `test-storybook:a11y`: Storybook コンポーネント単位のテスト
 - カバレッジ閾値: 80%
 
 ### 日本語テキスト
@@ -273,6 +297,7 @@ textlint により日本語の品質管理を行っています。コンテン�
 | `packages/website/vitest.config.ts` | Vitest 設定 |
 | `packages/website/playwright.config.ts` | Playwright 設定 |
 | `packages/website/.textlintrc.mjs` | textlint 設定 (日本語) |
+| `packages/website/.storybook/` | Storybook 設定 |
 | `turbo.json` | Turbo モノレポ設定 |
 
 ## 注意事項
@@ -358,6 +383,17 @@ logger.error('エラーメッセージ', { error: err.message });
 {items.map((item) => <Item key={item.id} {...item} />)}
 {items.map((item) => <Item key={item.slug} {...item} />)}
 ```
+
+### アクセシビリティ
+
+WCAG 2.1 AA 準拠を目指している。以下の点に注意：
+
+- **カラーコントラスト**: テキストは背景に対して 4.5:1 以上のコントラスト比を確保
+- **アイコンボタン**: テキストを持たないボタンには必ず `aria-label` を設定
+- **フォーム**: ラベルと入力フィールドを適切に関連付ける
+- **画像**: 装飾以外の画像には `alt` 属性を設定
+
+コンポーネント追加時は Storybook a11y テストで確認すること。
 
 ## 今後の課題
 
