@@ -96,6 +96,7 @@ export const Large: Story = {
 export const Icon: Story = {
   args: {
     size: 'icon',
+    'aria-label': 'メールを送信',
     children: <Mail className="h-4 w-4" />,
   },
 };
@@ -143,7 +144,7 @@ export const AllVariants: Story = {
         <Button size="sm">Small</Button>
         <Button size="default">Default</Button>
         <Button size="lg">Large</Button>
-        <Button size="icon">
+        <Button size="icon" aria-label="メールを送信">
           <Mail className="h-4 w-4" />
         </Button>
       </div>

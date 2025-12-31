@@ -51,12 +51,12 @@
   --color-destructive: oklch(57.71% 0.22 29.23);
   --color-destructive-foreground: oklch(98% 0.01 29.23);
 
-  /* Success */
-  --color-success: oklch(60.52% 0.16 145.76);
+  /* Success - darker for WCAG 4.5:1 contrast on white */
+  --color-success: oklch(50% 0.16 145.76);
   --color-success-foreground: oklch(98% 0.01 145.76);
 
-  /* Warning */
-  --color-warning: oklch(76.87% 0.15 80.93);
+  /* Warning - darker for WCAG 4.5:1 contrast on white */
+  --color-warning: oklch(55% 0.15 80.93);
   --color-warning-foreground: oklch(25% 0.05 80.93);
 
   /* Info - #0288d1 (icon), rgb(1, 67, 97) (text) */
