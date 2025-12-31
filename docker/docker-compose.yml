@@ -74,7 +74,9 @@ services:
       - "${IP_PREFIX}.10:80:80"
       - "${IP_PREFIX}.10:443:443"
     environment:
-      DOMAINS: "kanagawa-rifle.org.test -> http://node:3001"
+      DOMAINS: >-
+        kanagawa-rifle.org.test -> http://node:3001,
+        storybook.kanagawa-rifle.org.test -> http://node:6006
       STAGE: local
       WEBSOCKET: "true"
     volumes:
