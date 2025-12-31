@@ -191,37 +191,26 @@ export function NewsItemList({
         />
       )}
 
-      {withControls ? (
-        <Card>
-          <List>
-            {items.map((item, index) => (
-              <ListNewsItem
-                key={item.slug}
-                {...item}
-                isLast={items.length - 1 === index}
-                onMouseEnter={async () => {
-                  await queryClient.prefetchQuery(getNewsItemQueryOptions(item.slug));
-                  onPrefetch?.(item.slug);
-                }}
-              />
-            ))}
-          </List>
-        </Card>
-      ) : (
-        <List>
-          {items.map((item, index) => (
-            <ListNewsItem
-              key={item.slug}
-              {...item}
-              isLast={items.length - 1 === index}
-              onMouseEnter={async () => {
-                await queryClient.prefetchQuery(getNewsItemQueryOptions(item.slug));
-                onPrefetch?.(item.slug);
-              }}
-            />
-          ))}
-        </List>
-      )}
+      {(() => {
+        const listContent = items.map((item, index) => (
+          <ListNewsItem
+            key={item.slug}
+            {...item}
+            isLast={items.length - 1 === index}
+            onMouseEnter={async () => {
+              await queryClient.prefetchQuery(getNewsItemQueryOptions(item.slug));
+              onPrefetch?.(item.slug);
+            }}
+          />
+        ));
+        return withControls ? (
+          <Card>
+            <List>{listContent}</List>
+          </Card>
+        ) : (
+          <List>{listContent}</List>
+        );
+      })()}
 
       {withControls && (
         <PaginationControl

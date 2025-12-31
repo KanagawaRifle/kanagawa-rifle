@@ -8,8 +8,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Snackbar from '@mui/material/Snackbar';
 import React, { useState } from 'react';
-import { FaFacebook, FaTwitter, FaLine } from 'react-icons/fa';
+import { FaFacebook, FaLine, FaTwitter } from 'react-icons/fa';
 import { LuClipboard, LuMail, LuShare2 } from 'react-icons/lu';
+
+import { logger } from '@/lib/logger';
 
 type Props = {
   url: string;
@@ -65,7 +67,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
       document.body.removeChild(textArea);
       return successful;
     } catch (err) {
-      console.error('Fallback copy failed: ', err);
+      logger.error('Fallback copy failed', { error: err instanceof Error ? err.message : String(err) });
       return false;
     }
   };
@@ -78,7 +80,7 @@ export default function ShareLinks({ url, title, loading = false }: Props) {
         await navigator.clipboard.writeText(url);
         copySuccess = true;
       } catch (err) {
-        console.error('Clipboard API failed: ', err);
+        logger.error('Clipboard API failed', { error: err instanceof Error ? err.message : String(err) });
         copySuccess = fallbackCopyToClipboard(url);
       }
     } else {

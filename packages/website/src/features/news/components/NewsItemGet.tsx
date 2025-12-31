@@ -16,8 +16,6 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
@@ -36,7 +34,7 @@ const ReactMarkdown = dynamic(() => import('@/lib/client').then((mod) => mod.Rea
       <MuiSkeleton variant="rectangular" width="100%" height={200} />
     </div>
   ),
-  ssr: false,
+  ssr: true,
 });
 
 import ShareLinks from './ShareLinks';
@@ -56,10 +54,11 @@ export function NewsItemGet({ slug }: Props) {
 
   const articleUrl = React.useMemo(() => new URL(`/news/${slug}`, env.APP_URL).toString(), [slug]);
 
-  const formattedDate = React.useMemo(() => {
-    if (!news?.published) return '';
-    return format(new Date(news.published), 'yyyy年M月d日', { locale: ja });
-  }, [news?.published]);
+  const formattedDate = news?.published
+    ? new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }).format(
+        new Date(news.published)
+      )
+    : '';
 
   if (isLoading || isFetching) return <Skeleton />;
 
