@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -148,6 +149,9 @@ export function Header() {
 
         {/* デスクトップナビゲーション */}
         <NavigationTabs />
+
+        {/* テーマ切り替え */}
+        <ThemeToggle />
 
         {/* その他メニュー */}
         <MoreMenu />

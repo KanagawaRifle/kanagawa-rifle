@@ -11,6 +11,7 @@ import { Frame } from '@/components';
 import { AxiomWebVitalsWrapper } from '@/components/AxiomWebVitalsWrapper';
 import { env, app } from '@/config';
 import QueryProvider from '@/providers/QueryProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -74,7 +75,7 @@ const websiteJsonLd = {
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -101,10 +102,12 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
         {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
           <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
         )}
-        <QueryProvider>
-          <Frame>{children}</Frame>
-          <Toaster position="bottom-center" richColors />
-        </QueryProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <QueryProvider>
+            <Frame>{children}</Frame>
+            <Toaster position="bottom-center" richColors />
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
