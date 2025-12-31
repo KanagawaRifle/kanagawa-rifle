@@ -88,8 +88,8 @@ export function middleware(req: NextRequest) {
   }
 
   // 認証情報が設定されていない場合はエラー
+  // Note: Edge Runtime では logger が使用不可のため、エラーレスポンスで対応
   if (!BASIC_AUTH_CREDENTIALS) {
-    console.error('Basic auth credentials not configured for staging environment');
     return new NextResponse('500 Internal Server Error - Auth not configured', { status: 500 });
   }
 

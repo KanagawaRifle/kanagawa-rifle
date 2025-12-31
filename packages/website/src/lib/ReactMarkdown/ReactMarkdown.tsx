@@ -1,4 +1,4 @@
-// packages/website/src/lib/ReactMarkdown/ReacMarkdown.tsx
+// packages/website/src/lib/ReactMarkdown/ReactMarkdown.tsx
 
 import React from 'react';
 import Markdown from 'react-markdown';
