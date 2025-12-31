@@ -6,17 +6,17 @@
 
 開発サーバー
 ```bash
-npm run -w @kanagawa-rifle/website dev
+npm run -w @acme/website dev
 ```
 
 Format
 ```bash
-npm run -w @kanagawa-rifle/website fix
+npm run -w @acme/website fix
 ```
 
 ビルド
 ```bash
-npm run -w @kanagawa-rifle/website build
+npm run -w @acme/website build
 ```
 
 ## パッケージ管理

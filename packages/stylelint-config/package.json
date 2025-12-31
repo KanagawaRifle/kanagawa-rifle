@@ -1,5 +1,5 @@
 {
-  "name": "@kanagawa-rifle/stylelint-config",
+  "name": "@acme/stylelint-config",
   "version": "1.0.0",
   "private": true,
   "type": "module",

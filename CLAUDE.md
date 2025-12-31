@@ -198,25 +198,25 @@ docker exec kanagawa-rifle_node <コマンド>
 
 ```bash
 # 開発サーバー起動 (Turbopack)
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website dev
+docker exec kanagawa-rifle_node npm run -w @acme/website dev
 
 # ビルド（NODE_ENV=production が必須）
-docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @kanagawa-rifle/website build"
+docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @acme/website build"
 
 # Lint (ESLint, Prettier, textlint)
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website lint
+docker exec kanagawa-rifle_node npm run -w @acme/website lint
 
 # 自動修正
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website fix
+docker exec kanagawa-rifle_node npm run -w @acme/website fix
 
 # ユニットテスト
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test
+docker exec kanagawa-rifle_node npm run -w @acme/website test
 
 # E2E テスト
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test:e2e
+docker exec kanagawa-rifle_node npm run -w @acme/website test:e2e
 
 # アクセシビリティテスト
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website test:a11y
+docker exec kanagawa-rifle_node npm run -w @acme/website test:a11y
 ```
 
 ### パッケージ管理
@@ -255,7 +255,7 @@ import { config } from "@/config";
 
 ### 日本語テキスト
 
-textlint により日本語の品質管理を行っています。コンテンツ追加時は `npm run -w @kanagawa-rifle/website lint:text` で確認してください。
+textlint により日本語の品質管理を行っています。コンテンツ追加時は `npm run -w @acme/website lint:text` で確認してください。
 
 ## ブランチ戦略
 
@@ -278,7 +278,7 @@ textlint により日本語の品質管理を行っています。コンテン�
 ## 注意事項
 
 - コミットメッセージは commitlint (Conventional Commits) に従う
-- PR 作成前に `npm run -w @kanagawa-rifle/website lint` と `npm run -w @kanagawa-rifle/website test` を実行
+- PR 作成前に `npm run -w @acme/website lint` と `npm run -w @acme/website test` を実行
 - 画像は `static.kanagawa-rifle.org` の外部ドメインから配信
 
 ## 開発における注意点
@@ -289,7 +289,7 @@ Docker コンテナは `NODE_ENV=development` で起動しているため、ビ�
 
 ```bash
 # 正しいビルドコマンド
-docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @kanagawa-rifle/website build"
+docker exec kanagawa-rifle_node sh -c "NODE_ENV=production npm run -w @acme/website build"
 ```
 
 ### App Router のみ使用
