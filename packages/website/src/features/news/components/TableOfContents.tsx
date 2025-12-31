@@ -1,11 +1,14 @@
 import React from 'react';
 
+const HEADING_REGEX = /^(#{1,6})\s+(.+)$/gm;
+
 export function generateTableOfContents(content: string): Array<{ id: string; title: string; level: number }> {
-  const headingRegex = /^(#{1,6})\s+(.+)$/gm;
+  // Reset lastIndex for reuse of global regex
+  HEADING_REGEX.lastIndex = 0;
   const toc = [];
   let match;
 
-  while ((match = headingRegex.exec(content)) !== null) {
+  while ((match = HEADING_REGEX.exec(content)) !== null) {
     const hashes = match[1];
     const rawTitle = match[2];
     if (!hashes || !rawTitle) continue;
