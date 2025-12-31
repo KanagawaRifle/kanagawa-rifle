@@ -12,7 +12,7 @@ const YEARS = [2025, 2024, 2023, 2022] as const;
 
 export function Tabs({ year }: TabsProps) {
   return (
-    <div className="flex overflow-x-auto border-b border-border">
+    <div className="flex overflow-x-auto">
       {YEARS.map((item) => {
         const isActive = item === year;
         return (

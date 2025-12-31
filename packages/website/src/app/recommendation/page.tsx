@@ -221,7 +221,7 @@ export default function Page() {
             <CalendarClock className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">申請締切日</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 <a
                   href={paths.cdn.getHref('/projects/2025/competitions.pdf')}
                   target="_blank"
@@ -238,7 +238,7 @@ export default function Page() {
             <Clock className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">所要日数</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 当協会の締切後、お届けまでに標準で<strong>1ヶ月弱</strong>
                 かかりますので、余裕を持って申請するようお願いいたします。
                 <br />
@@ -250,7 +250,7 @@ export default function Page() {
             <Clipboard className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">申請が翌月審査となる場合</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 当協会の締切日以降に届いた申請につきましては、翌月の推薦委員会の審査となります。
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function Page() {
             <TriangleAlert className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">推薦委員会</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 推薦委員会がない月がございますので、ご申請される方はご注意ください。
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function Page() {
             <CircleX className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">非承認の場合</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 日ラで承認されなかった場合でも推薦手数料は返却されません。※推薦委員会以前に自己取り下げの場合は支払い不要です。
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function Page() {
             <Calendar className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">有効期限</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 推薦書の有効期限は1年間（発行日より公安委員会に提出するまで）です。
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function Page() {
             <Recycle className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
               <div className="font-medium">未使用推薦書の返却</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground">
                 期限切れ、または使わなかった推薦書は返却の義務があります。当協会事務局までご返却ください。
                 <br />
                 ※空気けん銃につきましては、500人枠がありますので、特に速やかにご返却をお願いいたします。

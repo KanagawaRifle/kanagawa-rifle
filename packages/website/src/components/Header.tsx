@@ -70,16 +70,16 @@ function NavigationTabs() {
 
   return (
     <nav className="hidden flex-grow md:flex" aria-label="メインナビゲーション">
-      <ul className="flex">
+      <ul className="flex w-full">
         {Object.entries(paths.main).map(([key, obj]) => {
           const isActive = obj.getHref() === matchedPath;
           return (
-            <li key={key}>
+            <li key={key} className="flex-1">
               <Link
                 href={obj.getHref()}
                 className={cn(
-                  'block px-4 py-3 text-sm font-bold transition-colors',
-                  isActive ? 'border-b-2 border-primary text-primary' : 'text-foreground hover:text-primary'
+                  'block whitespace-nowrap px-4 py-3 text-center text-sm font-bold uppercase transition-colors',
+                  isActive ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground hover:text-primary'
                 )}
               >
                 {obj.name}
@@ -117,7 +117,7 @@ export function Header() {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
+    <header className="sticky top-0 z-50 bg-background">
       <div className="mx-auto flex h-12 w-full max-w-screen-md items-center px-2">
         {/* モバイルメニューボタン */}
         <div className="flex md:hidden">

@@ -1,20 +1,21 @@
 // packages/website/src/components/ui/alert.tsx
 
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Info, AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full rounded border px-4 py-3 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3',
   {
     variants: {
       variant: {
-        default: 'bg-background text-foreground',
-        destructive: 'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
-        success: 'border-success/50 text-success [&>svg]:text-success',
-        warning: 'border-warning/50 text-warning-foreground bg-warning/10 [&>svg]:text-warning',
-        info: 'border-info/50 text-info [&>svg]:text-info',
+        default: 'border-border bg-transparent text-foreground [&>svg]:text-foreground',
+        destructive: 'border-destructive bg-transparent text-destructive-foreground [&>svg]:text-destructive',
+        success: 'border-success bg-transparent text-success-foreground [&>svg]:text-success',
+        warning: 'border-warning bg-transparent text-warning-foreground [&>svg]:text-warning',
+        info: 'border-info bg-transparent text-info-foreground [&>svg]:text-info',
       },
     },
     defaultVariants: {
@@ -23,22 +24,37 @@ const alertVariants = cva(
   }
 );
 
-const Alert = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>>(
-  ({ className, variant, ...props }, ref) => (
-    <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props} />
-  )
-);
+const variantIcons = {
+  default: Info,
+  destructive: AlertCircle,
+  success: CheckCircle,
+  warning: AlertTriangle,
+  info: Info,
+} as const;
+
+const Alert = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
+>(({ className, variant = 'default', children, ...props }, ref) => {
+  const Icon = variantIcons[variant ?? 'default'];
+  return (
+    <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}>
+      <Icon className="h-5 w-5" />
+      {children}
+    </div>
+  );
+});
 Alert.displayName = 'Alert';
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
-    <h5 ref={ref} className={cn('mb-1 text-lg font-medium leading-none tracking-tight', className)} {...props} />
+    <h5 ref={ref} className={cn('mb-3 text-lg font-medium leading-none tracking-tight', className)} {...props} />
   )
 );
 AlertTitle.displayName = 'AlertTitle';
 
 const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('text-base [&_p]:leading-relaxed', className)} {...props} />
 );
 AlertDescription.displayName = 'AlertDescription';
 

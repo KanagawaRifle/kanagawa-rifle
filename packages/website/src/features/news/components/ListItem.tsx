@@ -65,7 +65,7 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, on
         </Avatar>
         <div className="flex-1 space-y-2">
           <h3 className="text-lg font-semibold">{title}</h3>
-          {excerpt && <p className="line-clamp-1 text-sm text-muted-foreground">{excerpt}</p>}
+          {excerpt && <p className="line-clamp-1 text-base text-muted-foreground">{excerpt}</p>}
           <div className="flex flex-wrap gap-2 pt-1">
             <Badge variant="outline">
               <Calendar className="mr-1 h-3 w-3" />

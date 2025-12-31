@@ -5,12 +5,12 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('rounded-lg border border-border bg-card text-card-foreground', className)} {...props} />
+  <div ref={ref} className={cn('rounded border border-border bg-card text-card-foreground', className)} {...props} />
 ));
 Card.displayName = 'Card';
 
 const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('flex flex-col space-y-1.5 p-4', className)} {...props} />
 );
 CardHeader.displayName = 'CardHeader';
 
@@ -27,12 +27,12 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
 CardDescription.displayName = 'CardDescription';
 
 const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('p-4 pt-0', className)} {...props} />
 );
 CardContent.displayName = 'CardContent';
 
 const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('flex items-center p-4 pt-0', className)} {...props} />
 );
 CardFooter.displayName = 'CardFooter';
 
@@ -44,7 +44,7 @@ const CardActionArea = React.forwardRef<HTMLAnchorElement, CardActionAreaProps>(
   <a
     ref={ref}
     className={cn(
-      'block rounded-lg transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+      'block rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
       className
     )}
     {...props}

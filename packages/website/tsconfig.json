@@ -2,10 +2,22 @@
   "extends": "@kanagawa-rifle/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
-      "@kanagawa-rifle/website/*": ["./src/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@kanagawa-rifle/website/*": [
+        "./src/*"
+      ]
+    },
+    "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

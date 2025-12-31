@@ -37,7 +37,7 @@ const PaginationLink = ({ className, isActive, size: _size = 'icon', ...props }:
   <a
     aria-current={isActive ? 'page' : undefined}
     className={cn(
-      'inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+      'inline-flex h-10 w-10 items-center justify-center rounded text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
       isActive && 'border border-input bg-background',
       className
     )}

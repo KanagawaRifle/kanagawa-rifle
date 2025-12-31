@@ -59,7 +59,7 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
         >
           {item.title}
         </a>
-        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+        <p className="text-muted-foreground mt-1">{item.description}</p>
       </div>
     </li>
   );

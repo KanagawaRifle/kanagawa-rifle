@@ -47,7 +47,7 @@ export function EntryFeeCard() {
         </div>
       </CardContent>
       <CardContent>
-        <div className="space-y-2 text-sm text-muted-foreground">
+        <div className="space-y-2 text-muted-foreground">
           <p>
             ※ （令和7年度より）国スポ保険料の<strong className="underline">別途お振込みは不要です</strong>
             。保険料は参加料に含まれます。
