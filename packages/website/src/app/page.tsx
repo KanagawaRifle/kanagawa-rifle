@@ -32,7 +32,7 @@ export default function Page() {
         <div className="text-xs text-muted-foreground">特定非営利活動法人</div>
         <h1 className="text-2xl font-bold">
           <span className="text-primary">神奈川県</span>
-          <span className="text-secondary">ライフル射撃</span>
+          <span style={{ color: 'var(--color-secondary-bright)' }}>ライフル射撃</span>
           <span className="text-accent">協会</span>
         </h1>
         <p className="mt-2 text-muted-foreground">

@@ -29,7 +29,7 @@ function Logo() {
       aria-label="KRA（神奈川県ライフル射撃協会）トップページへ"
     >
       <span className="text-primary">K</span>
-      <span className="text-secondary">R</span>
+      <span style={{ color: 'var(--color-secondary-bright)' }}>R</span>
       <span className="text-accent">A</span>
     </Link>
   );
