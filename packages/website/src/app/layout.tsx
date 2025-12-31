@@ -1,19 +1,16 @@
 // packages/website/src/app/layout.tsx
 
 import '@/styles/globals.css';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import React from 'react';
+import { Toaster } from 'sonner';
 
 import { Frame } from '@/components';
 import { AxiomWebVitalsWrapper } from '@/components/AxiomWebVitalsWrapper';
 import { env, app } from '@/config';
 import QueryProvider from '@/providers/QueryProvider';
-import theme from '@/theme';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -105,12 +102,8 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
           <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
         )}
         <QueryProvider>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Frame>{children}</Frame>
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <Frame>{children}</Frame>
+          <Toaster position="bottom-center" richColors />
         </QueryProvider>
       </body>
     </html>

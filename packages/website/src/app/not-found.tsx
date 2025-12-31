@@ -1,10 +1,12 @@
-import { Box, Card, CardHeader, CardContent } from '@mui/material';
-import Button from '@mui/material/Button';
+// packages/website/src/app/not-found.tsx
+
+import { Frown, House } from 'lucide-react';
 import type { Metadata } from 'next';
-import React from 'react';
-import { LuFrown, LuHouse } from 'react-icons/lu';
+import Link from 'next/link';
 
 import { PageLayout } from '@/components';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const title = '404 Not Found';
 const description = '指定されたページが見つかりませんでした。';
@@ -18,17 +20,20 @@ export default function Page() {
   return (
     <PageLayout>
       <Card>
-        <CardHeader title={<div className="text-center text-2xl font-bold">{title}</div>} />
+        <CardHeader>
+          <CardTitle className="text-center text-2xl font-bold">{title}</CardTitle>
+        </CardHeader>
         <CardContent className="flex flex-col items-center justify-center gap-4">
-          <div className="flex items-center justify-center gap-4 text-gray-400">
-            <LuFrown className="text-7xl" />
-            <Box className="text-7xl font-black" component="span">
-              404
-            </Box>
+          <div className="flex items-center justify-center gap-4 text-muted-foreground">
+            <Frown className="h-16 w-16" />
+            <span className="text-7xl font-black">404</span>
           </div>
           <div className="text-center">{description}</div>
-          <Button href="/" startIcon={<LuHouse />}>
-            ホームへ
+          <Button asChild>
+            <Link href="/">
+              <House className="mr-2 h-4 w-4" />
+              ホームへ
+            </Link>
           </Button>
         </CardContent>
       </Card>

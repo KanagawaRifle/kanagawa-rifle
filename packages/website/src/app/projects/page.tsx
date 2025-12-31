@@ -1,16 +1,16 @@
 // packages/website/src/app/projects/page.tsx
 
-import { Card, CardHeader, Link, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { FileSpreadsheet, FileText, FileType } from 'lucide-react';
 import type { Metadata } from 'next';
-import { FaFileExcel, FaFileWord, FaFilePdf } from 'react-icons/fa';
 
 import { PageLayout } from '@/components';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { env, paths } from '@/config';
 
 const FILE_TYPES = {
-  EXCEL: { icon: <FaFileExcel />, color: 'success.main' as const },
-  WORD: { icon: <FaFileWord />, color: 'info.main' as const },
-  PDF: { icon: <FaFilePdf />, color: 'error.main' as const },
+  EXCEL: { icon: FileSpreadsheet, colorClass: 'text-green-600' },
+  WORD: { icon: FileText, colorClass: 'text-blue-600' },
+  PDF: { icon: FileType, colorClass: 'text-red-600' },
 } as const;
 
 type FileType = keyof typeof FILE_TYPES;
@@ -89,31 +89,39 @@ const buildDocumentUrl = (filename: string, version?: string): string => {
 
 function DocumentListItem({ item, divider }: { item: DocumentItem; divider: boolean }) {
   const config = FILE_TYPES[item.type];
+  const Icon = config.icon;
   const url = buildDocumentUrl(item.filename, item.version);
 
   return (
-    <ListItem divider={divider}>
-      <ListItemIcon sx={{ color: config.color }}>{config.icon}</ListItemIcon>
-      <ListItemText>
-        <Link href={url}>{item.title}</Link>
-      </ListItemText>
-    </ListItem>
+    <li className={divider ? 'border-b border-border' : ''}>
+      <div className="flex items-center gap-3 p-4">
+        <Icon className={`h-5 w-5 ${config.colorClass}`} />
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+          {item.title}
+        </a>
+      </div>
+    </li>
   );
 }
 
 function YearCard({ yearData }: { yearData: YearData }) {
   return (
     <Card>
-      <CardHeader title={yearData.era} subheader={yearData.western} />
-      <List dense>
-        {yearData.documents.map((val, index) => (
-          <DocumentListItem
-            key={`${val.filename}-${val.title}`}
-            item={val}
-            divider={index < yearData.documents.length - 1}
-          />
-        ))}
-      </List>
+      <CardHeader>
+        <CardTitle>{yearData.era}</CardTitle>
+        <CardDescription>{yearData.western}</CardDescription>
+      </CardHeader>
+      <CardContent className="p-0">
+        <ul>
+          {yearData.documents.map((val, index) => (
+            <DocumentListItem
+              key={`${val.filename}-${val.title}`}
+              item={val}
+              divider={index < yearData.documents.length - 1}
+            />
+          ))}
+        </ul>
+      </CardContent>
     </Card>
   );
 }

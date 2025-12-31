@@ -1,103 +1,97 @@
 // packages/website/src/components/Footer.tsx
-import { ListItem } from '@mui/material';
-import Box from '@mui/material/Box';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Tooltip from '@mui/material/Tooltip';
-import Link from 'next/link';
-import * as React from 'react';
-import { LuExternalLink } from 'react-icons/lu';
 
+import { ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+
+import { buttonVariants } from '@/components/ui/button';
 import { social, paths, app } from '@/config';
+import { cn } from '@/lib/utils';
 
 export function Footer() {
   return (
-    <footer>
-      <Box className="bg-slate-50">
-        <nav>
-          <Box className="mx-auto mt-2 max-w-screen-xl border-b border-slate-200 px-4 py-6">
-            <ButtonGroup>
-              {Object.entries(social).map(([key, obj]) => (
-                <Tooltip title={obj.name} key={key}>
-                  <IconButton aria-label={obj.name} target="_blank" rel="noopener noreferrer" href={obj.url}>
-                    {obj.icon}
-                  </IconButton>
-                </Tooltip>
+    <footer className="bg-muted">
+      {/* ソーシャルリンク */}
+      <nav aria-label="ソーシャルメディア">
+        <div className="mx-auto mt-2 max-w-screen-xl border-b border-border px-4 py-6">
+          <div className="flex gap-1">
+            {Object.entries(social).map(([key, obj]) => (
+              <a
+                key={key}
+                href={obj.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={obj.name}
+                title={obj.name}
+                className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}
+              >
+                {obj.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* ナビゲーションリンク */}
+      <nav aria-label="フッターナビゲーション">
+        <div className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-border px-4 py-6 md:grid-cols-3">
+          <section>
+            <h3 className="mb-2 text-xs font-bold text-muted-foreground">メインナビゲーション</h3>
+            <ul className="space-y-1">
+              {Object.entries(paths.main).map(([key, obj]) => (
+                <li key={key}>
+                  <Link href={obj.getHref()} className="block py-1 text-sm hover:text-primary hover:underline">
+                    {obj.name}
+                  </Link>
+                </li>
               ))}
-            </ButtonGroup>
-          </Box>
-        </nav>
-        <nav aria-label="フッターナビゲーション">
-          <Box className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-slate-200 px-4 py-6 md:grid-cols-3">
-            <Box component="section">
-              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
-                メインナビゲーション
-              </Box>
-              <List dense disablePadding>
-                {Object.entries(paths.main).map(([key, obj]) => (
-                  <ListItem key={key}>
-                    <ListItemButton href={obj.getHref()} component={Link}>
-                      <ListItemText>{obj.name}</ListItemText>
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-            <Box component="section">
-              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
-                各種情報
-              </Box>
-              <List dense disablePadding>
-                {Object.entries(paths.sub).map(([key, obj]) => (
-                  <ListItem key={key}>
-                    <ListItemButton href={obj.getHref()} component={Link}>
-                      <ListItemText>{obj.name}</ListItemText>
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-            <Box component="section">
-              <Box component="h3" className="mb-2 text-xs font-bold text-slate-600">
-                関連リンク
-              </Box>
-              <List dense disablePadding>
-                {Object.entries(paths.external).map(([key, obj]) => (
-                  <ListItem key={key}>
-                    <ListItemButton href={obj.getHref()} component={Link} target="_blank" rel="noopener noreferrer">
-                      <ListItemText>
-                        <Box className="flex items-center gap-1">
-                          {obj.name}
-                          <LuExternalLink aria-hidden="true" />
-                        </Box>
-                      </ListItemText>
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          </Box>
-        </nav>
-        <nav>
-          <Box className="mx-auto mt-2 max-w-screen-xl px-4 py-6 text-slate-500">
-            <Box>
-              <Link href={'/'} className="text-xs font-bold no-underline">
-                {app.longName}
-              </Link>
-            </Box>
-            <Box>
-              <Link href={'/'} className="text-xl font-black no-underline">
-                <Box component="span" sx={{ fontFamily: 'Roboto' }}>
-                  {app.shortName.replace(/[A-Za-z]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0))}
-                </Box>
-              </Link>
-            </Box>
-          </Box>
-        </nav>
-      </Box>
+            </ul>
+          </section>
+          <section>
+            <h3 className="mb-2 text-xs font-bold text-muted-foreground">各種情報</h3>
+            <ul className="space-y-1">
+              {Object.entries(paths.sub).map(([key, obj]) => (
+                <li key={key}>
+                  <Link href={obj.getHref()} className="block py-1 text-sm hover:text-primary hover:underline">
+                    {obj.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h3 className="mb-2 text-xs font-bold text-muted-foreground">関連リンク</h3>
+            <ul className="space-y-1">
+              {Object.entries(paths.external).map(([key, obj]) => (
+                <li key={key}>
+                  <a
+                    href={obj.getHref()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 py-1 text-sm hover:text-primary hover:underline"
+                  >
+                    {obj.name}
+                    <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </nav>
+
+      {/* コピーライト */}
+      <div className="mx-auto mt-2 max-w-screen-xl px-4 py-6 text-muted-foreground">
+        <div>
+          <Link href="/" className="text-xs font-bold no-underline hover:underline">
+            {app.longName}
+          </Link>
+        </div>
+        <div>
+          <Link href="/" className="text-xl font-black no-underline" style={{ fontFamily: 'Roboto' }}>
+            {app.shortName.replace(/[A-Za-z]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0))}
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 }
