@@ -17,9 +17,12 @@
   --color-primary: oklch(47.63% 0.13 148.04);
   --color-primary-foreground: oklch(98% 0.01 148.04);
 
-  /* Secondary: darker orange for WCAG 4.5:1 contrast */
+  /* Secondary: darker orange for WCAG 4.5:1 contrast (small text) */
   --color-secondary: oklch(52% 0.16 60.91);
   --color-secondary-foreground: oklch(98% 0.01 60.91);
+
+  /* Secondary Bright: original orange for large decorative text (3:1 OK) */
+  --color-secondary-bright: oklch(66.62% 0.16 60.91);
 
   /* Accent: #4285f4 (blue) */
   --color-accent: oklch(60.21% 0.17 261.36);
@@ -91,6 +94,9 @@
   /* Secondary: brighter orange for dark mode */
   --color-secondary: oklch(78% 0.16 60.91);
   --color-secondary-foreground: oklch(15% 0.01 60.91);
+
+  /* Secondary Bright: same as secondary in dark mode */
+  --color-secondary-bright: oklch(78% 0.16 60.91);
 
   /* Accent: slightly brighter blue for dark mode */
   --color-accent: oklch(65% 0.17 261.36);
