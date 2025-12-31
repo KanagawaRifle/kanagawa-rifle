@@ -25,9 +25,9 @@
   --color-accent: oklch(60.21% 0.17 261.36);
   --color-accent-foreground: oklch(98% 0.01 261.36);
 
-  /* Muted - rgba(0, 0, 0, 0.04) for bg, rgba(0, 0, 0, 0.6) for text */
+  /* Muted - rgba(0, 0, 0, 0.04) for bg, higher contrast text */
   --color-muted: oklch(96.14% 0.01 253.53);
-  --color-muted-foreground: oklch(44% 0 0);
+  --color-muted-foreground: oklch(40% 0 0);
 
   /* Card */
   --color-card: oklch(100% 0 0);
