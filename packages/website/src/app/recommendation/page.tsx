@@ -184,7 +184,7 @@ export default function Page() {
         </CardHeader>
         <ul>
           <li className="flex items-start gap-3 p-4">
-            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
             <div>
               <span className="font-bold text-green-600">1年間で</span>
               当協会主催・主管の大会に、
@@ -193,12 +193,12 @@ export default function Page() {
             </div>
           </li>
           <li className="flex items-center justify-center py-2">
-            <div className="flex-1 border-t border-border"></div>
+            <div className="flex-1 border-t border-border" aria-hidden="true"></div>
             <span className="bg-background px-4 text-sm font-medium text-muted-foreground">または</span>
-            <div className="flex-1 border-t border-border"></div>
+            <div className="flex-1 border-t border-border" aria-hidden="true"></div>
           </li>
           <li className="flex items-start gap-3 p-4">
-            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" aria-hidden="true" />
             <div>
               <span className="font-bold text-blue-600">3年間で</span>
               当協会主催・主管の大会に、
@@ -212,13 +212,13 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CalendarDays className="h-5 w-5" />
+            <CalendarDays className="h-5 w-5" aria-hidden="true" />
             スケジュール
           </CardTitle>
         </CardHeader>
         <ul>
           <li className="flex items-start gap-3 border-b border-border p-4">
-            <CalendarClock className="mt-0.5 h-5 w-5 shrink-0" />
+            <CalendarClock className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">申請締切日</div>
               <div className="text-muted-foreground">
@@ -229,13 +229,14 @@ export default function Page() {
                   className="text-primary hover:underline"
                 >
                   推薦スケジュール
+                  <span className="sr-only">（PDF、新しいタブで開く）</span>
                 </a>
                 をご覧ください。
               </div>
             </div>
           </li>
           <li className="flex items-start gap-3 border-b border-border p-4">
-            <Clock className="mt-0.5 h-5 w-5 shrink-0" />
+            <Clock className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">所要日数</div>
               <div className="text-muted-foreground">
@@ -247,7 +248,7 @@ export default function Page() {
             </div>
           </li>
           <li className="flex items-start gap-3 border-b border-border p-4">
-            <Clipboard className="mt-0.5 h-5 w-5 shrink-0" />
+            <Clipboard className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">申請が翌月審査となる場合</div>
               <div className="text-muted-foreground">
@@ -256,7 +257,7 @@ export default function Page() {
             </div>
           </li>
           <li className="flex items-start gap-3 p-4">
-            <TriangleAlert className="mt-0.5 h-5 w-5 shrink-0" />
+            <TriangleAlert className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">推薦委員会</div>
               <div className="text-muted-foreground">
@@ -270,13 +271,13 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5" />
+            <CreditCard className="h-5 w-5" aria-hidden="true" />
             手数料について
           </CardTitle>
         </CardHeader>
         <ul>
           <li className="flex items-start gap-3 p-4">
-            <CircleX className="mt-0.5 h-5 w-5 shrink-0" />
+            <CircleX className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">非承認の場合</div>
               <div className="text-muted-foreground">
@@ -290,13 +291,13 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Newspaper className="h-5 w-5" />
+            <Newspaper className="h-5 w-5" aria-hidden="true" />
             推薦書について
           </CardTitle>
         </CardHeader>
         <ul>
           <li className="flex items-start gap-3 border-b border-border p-4">
-            <Calendar className="mt-0.5 h-5 w-5 shrink-0" />
+            <Calendar className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">有効期限</div>
               <div className="text-muted-foreground">
@@ -305,7 +306,7 @@ export default function Page() {
             </div>
           </li>
           <li className="flex items-start gap-3 p-4">
-            <Recycle className="mt-0.5 h-5 w-5 shrink-0" />
+            <Recycle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">未使用推薦書の返却</div>
               <div className="text-muted-foreground">
@@ -325,7 +326,7 @@ export default function Page() {
         </CardHeader>
         <ul>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" />
+            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}
               target="_blank"
@@ -333,10 +334,11 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               推薦ブレッテン no.57
+              <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" />
+            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}
               target="_blank"
@@ -344,10 +346,11 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               推薦ブレッテン no.56
+              <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" />
+            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}
               target="_blank"
@@ -355,10 +358,11 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               推薦ブレッテン no.55
+              <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
           <li className="flex items-center gap-3 border-b border-border p-4">
-            <FileType className="h-5 w-5 text-red-600" />
+            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}
               target="_blank"
@@ -366,10 +370,11 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               推薦ブレッテン no.51
+              <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
           <li className="flex items-center gap-3 p-4">
-            <FileType className="h-5 w-5 text-red-600" />
+            <FileType className="h-5 w-5 text-red-600" aria-hidden="true" />
             <a
               href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}
               target="_blank"
@@ -377,6 +382,7 @@ export default function Page() {
               className="text-primary hover:underline"
             >
               推薦ブレッテン no.49
+              <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
         </ul>

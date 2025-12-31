@@ -54,7 +54,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
   return (
     <li className={divider ? 'border-b border-border' : ''}>
       <div className="flex items-center gap-3 p-4">
-        <Icon className={`h-5 w-5 ${fileType.colorClass}`} />
+        <Icon className={`h-5 w-5 ${fileType.colorClass}`} aria-hidden="true" />
         <a
           href={paths.cdn.getHref(item.filename)}
           target="_blank"
@@ -62,6 +62,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
           className="text-primary hover:underline"
         >
           {item.label}
+          <span className="sr-only">（ダウンロード、新しいタブで開く）</span>
         </a>
       </div>
     </li>
@@ -88,7 +89,7 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Download className="h-5 w-5" />
+            <Download className="h-5 w-5" aria-hidden="true" />
             ダウンロード
           </CardTitle>
         </CardHeader>

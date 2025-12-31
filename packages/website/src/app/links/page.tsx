@@ -58,6 +58,7 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
           className="text-primary hover:underline font-medium"
         >
           {item.title}
+          <span className="sr-only">（新しいタブで開く）</span>
         </a>
         <p className="text-muted-foreground mt-1">{item.description}</p>
       </div>

@@ -77,6 +77,7 @@ function NavigationTabs() {
             <li key={key} className="flex-1">
               <Link
                 href={obj.getHref()}
+                aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   'block whitespace-nowrap px-4 py-3 text-center text-sm font-bold uppercase transition-colors',
                   isActive ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground hover:text-primary'
