@@ -44,8 +44,6 @@ services:
     working_dir: /workspace
     volumes:
       - ..:/workspace
-      - /workspace/node_modules
-      - /workspace/packages/website/.next
     environment:
       - NODE_ENV=development
     command: >
