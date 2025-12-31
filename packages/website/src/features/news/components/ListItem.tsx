@@ -1,18 +1,11 @@
 // packages/website/src/features/news/components/ListItem.tsx
 
-import {
-  Avatar,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  ListItemButton,
-  Stack,
-  Skeleton as MuiSkeleton,
-  Chip,
-  Typography,
-} from '@mui/material';
+import { Calendar, Hash, ImageIcon } from 'lucide-react';
 import Link from 'next/link';
-import { LuCalendar, LuImage, LuHash } from 'react-icons/lu';
+
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton as UISkeleton } from '@/components/ui/skeleton';
 
 type Props = {
   slug: string;
@@ -36,34 +29,21 @@ function formatPublishedDate(published: Date | string): { dateTime: string; disp
 
 export function Skeleton({ isLast }: { isLast: boolean }) {
   return (
-    <ListItem alignItems="flex-start" divider={!isLast}>
-      <ListItemAvatar>
-        <MuiSkeleton variant="circular" width={40} height={40} />
-      </ListItemAvatar>
-      <ListItemText>
-        <Stack spacing={1}>
-          <Typography variant="h6" component="div">
-            <MuiSkeleton />
-          </Typography>
-          <Typography variant="body2" color="text.secondary" noWrap>
-            <MuiSkeleton />
-            <MuiSkeleton width="60%" />
-          </Typography>
-          <Stack direction="row" spacing={1} sx={{ pt: 1 }}>
-            <Chip label={<MuiSkeleton width="4rem" />} icon={<LuCalendar />} variant="outlined" />
-            {[...Array(2).keys()].map((_, index) => (
-              <Chip
-                key={index}
-                label={<MuiSkeleton width="2rem" />}
-                icon={<LuHash />}
-                variant="outlined"
-                color="primary"
-              />
-            ))}
-          </Stack>
-        </Stack>
-      </ListItemText>
-    </ListItem>
+    <li className={isLast ? '' : 'border-b border-border'}>
+      <div className="flex items-start gap-4 p-4">
+        <UISkeleton className="h-10 w-10 rounded-full" />
+        <div className="flex-1 space-y-2">
+          <UISkeleton className="h-6 w-3/4" />
+          <UISkeleton className="h-4 w-full" />
+          <UISkeleton className="h-4 w-3/5" />
+          <div className="flex gap-2 pt-1">
+            <UISkeleton className="h-6 w-24" />
+            <UISkeleton className="h-6 w-16" />
+            <UISkeleton className="h-6 w-16" />
+          </div>
+        </div>
+      </div>
+    </li>
   );
 }
 
@@ -71,45 +51,39 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast, on
   const { dateTime, display } = formatPublishedDate(published);
 
   return (
-    <ListItemButton
-      alignItems="flex-start"
-      component={Link}
-      href={`/news/${slug}`}
-      divider={!isLast}
-      onMouseEnter={onMouseEnter}
-      aria-label={`${title} - ${display}公開`}
-    >
-      <ListItemAvatar>
+    <li className={isLast ? '' : 'border-b border-border'}>
+      <Link
+        href={`/news/${slug}`}
+        className="flex items-start gap-4 p-4 transition-colors hover:bg-muted"
+        onMouseEnter={onMouseEnter}
+        aria-label={`${title} - ${display}公開`}
+      >
         <Avatar aria-hidden="true">
-          <LuImage aria-hidden="true" />
+          <AvatarFallback>
+            <ImageIcon className="h-5 w-5" aria-hidden="true" />
+          </AvatarFallback>
         </Avatar>
-      </ListItemAvatar>
-      <ListItemText>
-        <Stack spacing={1}>
-          <Typography variant="h6" component="div">
-            {title}
-          </Typography>
-          {excerpt && (
-            <Typography variant="body2" color="text.secondary" noWrap>
-              {excerpt}
-            </Typography>
-          )}
-          <Stack direction="row" spacing={1} sx={{ pt: 1 }}>
-            <Chip
-              label={
-                <time dateTime={dateTime} suppressHydrationWarning>
-                  {display}
-                </time>
-              }
-              icon={<LuCalendar />}
-              variant="outlined"
-            />
+        <div className="flex-1 space-y-2">
+          <h3 className="text-lg font-semibold">{title}</h3>
+          {excerpt && <p className="line-clamp-1 text-sm text-muted-foreground">{excerpt}</p>}
+          <div className="flex flex-wrap gap-2 pt-1">
+            <Badge variant="outline">
+              <Calendar className="mr-1 h-3 w-3" />
+              <time dateTime={dateTime} suppressHydrationWarning>
+                {display}
+              </time>
+            </Badge>
             {tags &&
               tags.length > 0 &&
-              tags.map((tag) => <Chip key={tag} label={tag} icon={<LuHash />} variant="outlined" color="primary" />)}
-          </Stack>
-        </Stack>
-      </ListItemText>
-    </ListItemButton>
+              tags.map((tag) => (
+                <Badge key={tag} variant="outline" className="border-primary text-primary">
+                  <Hash className="mr-1 h-3 w-3" />
+                  {tag}
+                </Badge>
+              ))}
+          </div>
+        </div>
+      </Link>
+    </li>
   );
 }

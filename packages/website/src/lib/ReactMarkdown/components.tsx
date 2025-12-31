@@ -1,8 +1,8 @@
 // packages/website/src/lib/ReactMarkdown/components.tsx
 
+import { Link as LinkIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { ReactNode } from 'react';
-import { LuLink } from 'react-icons/lu';
 import { Components } from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -103,7 +103,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}
@@ -122,7 +122,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}
@@ -137,7 +137,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}
@@ -152,7 +152,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}
@@ -167,7 +167,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}
@@ -182,7 +182,7 @@ export const components: Components = {
           className="absolute top-0 -left-7 hidden translate-y-1/2 no-underline opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100 md:block"
           aria-label="Link to this heading"
         >
-          <LuLink className="h-5 w-5" />
+          <LinkIcon className="h-5 w-5" />
         </a>
       )}
       {children}

@@ -1,9 +1,16 @@
-import { Breadcrumbs, Typography } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
-import Link from 'next/link';
-import React from 'react';
-import { LuChevronRight } from 'react-icons/lu';
+// packages/website/src/components/PageLayout.tsx
 
+import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { env } from '@/config';
 
 type Props = {
@@ -35,33 +42,36 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
       {breadcrumbs && (
         <>
           <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
-          <Toolbar variant="dense" className="mx-auto w-full max-w-screen-md">
-            <Breadcrumbs aria-label="breadcrumb">
-              {breadcrumbs.map((breadcrumb, index) => {
-                return index < breadcrumbs.length - 1 ? (
-                  <Link
-                    key={breadcrumb.path}
-                    className="flex items-center gap-2 text-xs hover:underline"
-                    color="inherit"
-                    href={breadcrumb.path}
-                  >
-                    {index === 0 && <LuChevronRight />}
-                    {breadcrumb.name}
-                  </Link>
-                ) : (
-                  <Typography key={breadcrumb.path} color="text.primary">
-                    <span className="text-xs">{breadcrumb.name}</span>
-                  </Typography>
-                );
-              })}
-            </Breadcrumbs>
-          </Toolbar>
+          <div className="mx-auto w-full max-w-screen-md px-4 py-2">
+            <Breadcrumb>
+              <BreadcrumbList>
+                {breadcrumbs.map((breadcrumb, index) => {
+                  const isLast = index === breadcrumbs.length - 1;
+                  return (
+                    <BreadcrumbItem key={breadcrumb.path}>
+                      {index === 0 && <ChevronRight className="h-3 w-3" />}
+                      {isLast ? (
+                        <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
+                      ) : (
+                        <>
+                          <BreadcrumbLink asChild className="text-xs">
+                            <Link href={breadcrumb.path}>{breadcrumb.name}</Link>
+                          </BreadcrumbLink>
+                          <BreadcrumbSeparator />
+                        </>
+                      )}
+                    </BreadcrumbItem>
+                  );
+                })}
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
         </>
       )}
       <div className="container mx-auto flex w-full max-w-screen-md flex-col gap-4 px-1 py-8 md:px-4">
         {title && <h1 className="text-2xl leading-tight font-bold md:text-3xl dark:text-white">{title}</h1>}
         {description && (
-          <div className="mb-8 rounded-lg bg-gray-50 p-6 leading-relaxed text-gray-500 italic">{description}</div>
+          <div className="mb-8 rounded-lg bg-muted p-6 leading-relaxed text-muted-foreground italic">{description}</div>
         )}
         {withStack ? <div className="flex flex-col gap-6">{children}</div> : <div>{children}</div>}
       </div>

@@ -1,11 +1,10 @@
 // packages/website/src/app/about/page.tsx
 
-import { Card, CardContent, CardHeader } from '@mui/material';
+import { House, Landmark } from 'lucide-react';
 import type { Metadata } from 'next';
-import React from 'react';
-import { LuHouse, LuLandmark } from 'react-icons/lu';
 
 import { PageLayout } from '@/components';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { app, env, paths } from '@/config';
 
 const currentPath = paths.main.about;
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
   twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
 };
 
-// LocalBusiness JSON-LD（事務局情報）
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsOrganization',
@@ -55,24 +53,22 @@ export default function Page() {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
       <Card>
-        <CardHeader
-          title={
-            <div className="flex items-center gap-2">
-              <LuHouse />
-              事務局
-            </div>
-          }
-        />
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <House className="h-5 w-5" />
+            事務局
+          </CardTitle>
+        </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">メールアドレス</div>
             <div className="col-span-3 p-2">kraofficial@yahoo.co.jp</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">電話番号</div>
             <div className="col-span-3 p-2">080-1190-3911</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">FAX</div>
             <div className="col-span-3 p-2">046-833-6990 (くりはま花の国射撃場内)</div>
           </div>
@@ -90,21 +86,19 @@ export default function Page() {
       </Card>
 
       <Card>
-        <CardHeader
-          title={
-            <div className="flex items-center gap-2">
-              <LuLandmark />
-              銀行口座{' '}
-            </div>
-          }
-        />
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Landmark className="h-5 w-5" />
+            銀行口座
+          </CardTitle>
+        </CardHeader>
         <CardContent>
-          <div className="rounded-md border border-slate-300 bg-slate-50 p-2">ゆうちょ銀行からのお振込</div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="rounded-md border border-border bg-muted p-2">ゆうちょ銀行からのお振込</div>
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">記号</div>
             <div className="col-span-3 p-2">10280</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">番号</div>
             <div className="col-span-3 p-2">79647111</div>
           </div>
@@ -112,16 +106,16 @@ export default function Page() {
             <div className="p-2">名義</div>
             <div className="col-span-3 p-2">特定非営利活動法人 神奈川県ライフル射撃協会</div>
           </div>
-          <div className="rounded-md border border-slate-300 bg-slate-50 p-2">ゆうちょ銀行以外からのお振込</div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="rounded-md border border-border bg-muted p-2">ゆうちょ銀行以外からのお振込</div>
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">口座</div>
             <div className="col-span-3 p-2">ゆうちょ銀行 普通口座</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">支店</div>
             <div className="col-span-3 p-2">〇二八 店（ゼロニハチ 店）</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-slate-300">
+          <div className="grid grid-cols-4 gap-0 border-b border-border">
             <div className="p-2">番号</div>
             <div className="col-span-3 p-2">7964711</div>
           </div>
@@ -133,12 +127,16 @@ export default function Page() {
       </Card>
 
       <Card>
-        <CardHeader title="ご挨拶" />
+        <CardHeader>
+          <CardTitle>ご挨拶</CardTitle>
+        </CardHeader>
         <CardContent>準備中……</CardContent>
       </Card>
 
       <Card>
-        <CardHeader title="協会沿革" />
+        <CardHeader>
+          <CardTitle>協会沿革</CardTitle>
+        </CardHeader>
         <CardContent>準備中……</CardContent>
       </Card>
     </PageLayout>

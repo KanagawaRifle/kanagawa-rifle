@@ -1,36 +1,25 @@
+// packages/website/src/components/Header.tsx
+
 'use client';
 
-import {
-  useTheme,
-  AppBar,
-  Box,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Tab,
-  Tabs,
-  Toolbar,
-  Tooltip,
-} from '@mui/material';
-import clsx from 'clsx';
+import { EllipsisVertical, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
-import { LuX, LuMenu, LuEllipsisVertical } from 'react-icons/lu';
+import { useState } from 'react';
 
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { paths } from '@/config';
-
-const DRAWER_WIDTH = 250;
+import { cn } from '@/lib/utils';
 
 // ロゴコンポーネント
 function Logo() {
-  const theme = useTheme();
-
   return (
     <Link
       href="/"
@@ -38,15 +27,9 @@ function Logo() {
       style={{ fontFamily: 'Roboto' }}
       aria-label="神奈川県ライフル射撃協会 トップページへ"
     >
-      <Box component="span" sx={{ color: theme.palette.primary.main }}>
-        K
-      </Box>
-      <Box component="span" sx={{ color: theme.palette.secondary.main }}>
-        R
-      </Box>
-      <Box component="span" sx={{ color: '#4285f4' }}>
-        A
-      </Box>
+      <span className="text-primary">K</span>
+      <span className="text-secondary">R</span>
+      <span className="text-accent">A</span>
     </Link>
   );
 }
@@ -54,158 +37,120 @@ function Logo() {
 // ドロワーコンテンツコンポーネント
 function DrawerContent({ onClose }: { onClose: () => void }) {
   return (
-    <Box sx={{ width: DRAWER_WIDTH }} role="presentation" onClick={onClose}>
-      <List component="nav" aria-label="メインナビゲーション">
-        {Object.entries(paths.main).map(([key, obj]) => (
-          <ListItem key={key} disablePadding>
-            <ListItemButton href={obj.getHref()} component={Link}>
-              <ListItemText primary={obj.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <List component="nav" aria-label="サブナビゲーション" sx={{ borderTop: '1px solid #e5e7eb' }}>
-        {Object.entries(paths.sub).map(([key, obj]) => (
-          <ListItem key={key} disablePadding>
-            <ListItemButton href={obj.getHref()} component={Link}>
-              <ListItemText primary={obj.name} sx={{ color: 'text.secondary' }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    <div className="w-full" role="presentation" onClick={onClose}>
+      <nav aria-label="メインナビゲーション">
+        <ul className="py-2">
+          {Object.entries(paths.main).map(([key, obj]) => (
+            <li key={key}>
+              <Link href={obj.getHref()} className="block px-4 py-2 hover:bg-muted">
+                {obj.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <nav aria-label="サブナビゲーション" className="border-t border-border">
+        <ul className="py-2">
+          {Object.entries(paths.sub).map(([key, obj]) => (
+            <li key={key}>
+              <Link href={obj.getHref()} className="block px-4 py-2 text-muted-foreground hover:bg-muted">
+                {obj.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   );
 }
 
 function NavigationTabs() {
   const pathname = usePathname() ?? '/';
-  const matchedPath =
-    Object.values(paths.main)
-      .find((obj) => pathname.startsWith(obj.getHref()))
-      ?.getHref() ?? false;
+  const matchedPath = Object.values(paths.main).find((obj) => pathname.startsWith(obj.getHref()))?.getHref();
 
   return (
-    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-      <Tabs value={matchedPath}>
-        {Object.entries(paths.main).map(([key, obj]) => (
-          <Tab
-            key={key}
-            sx={{ fontWeight: '700' }}
-            component={Link}
-            label={obj.name}
-            href={obj.getHref()}
-            value={obj.getHref()}
-          />
-        ))}
-      </Tabs>
-    </Box>
+    <nav className="hidden flex-grow md:flex" aria-label="メインナビゲーション">
+      <ul className="flex">
+        {Object.entries(paths.main).map(([key, obj]) => {
+          const isActive = obj.getHref() === matchedPath;
+          return (
+            <li key={key}>
+              <Link
+                href={obj.getHref()}
+                className={cn(
+                  'block px-4 py-3 text-sm font-bold transition-colors',
+                  isActive ? 'border-b-2 border-primary text-primary' : 'text-foreground hover:text-primary'
+                )}
+              >
+                {obj.name}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
 
 // その他メニューコンポーネント
 function MoreMenu() {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const isOpen = Boolean(anchorEl);
-
   return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="各種書式・リンク集">
-        <IconButton onClick={handleOpen} edge="end" color="inherit" aria-label="その他のメニューを開く">
-          <LuEllipsisVertical />
-        </IconButton>
-      </Tooltip>
-      <Menu
-        sx={{ mt: '30px' }}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        elevation={1}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isOpen}
-        onClose={handleClose}
-      >
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" aria-label="その他のメニューを開く" title="各種書式・リンク集">
+          <EllipsisVertical className="h-5 w-5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
         {Object.entries(paths.sub).map(([key, obj]) => (
-          <MenuItem key={key} component={Link} href={obj.getHref()} onClick={handleClose}>
-            {obj.name}
-          </MenuItem>
+          <DropdownMenuItem key={key} asChild>
+            <Link href={obj.getHref()}>{obj.name}</Link>
+          </DropdownMenuItem>
         ))}
-      </Menu>
-    </Box>
-  );
-}
-
-// モバイルドロワーコンポーネント
-function MobileDrawer({ open, onClose, className }: { open: boolean; onClose: () => void; className?: string }) {
-  return (
-    <Drawer open={open} onClose={onClose}>
-      <AppBar
-        color="inherit"
-        position="sticky"
-        elevation={0}
-        className={clsx(className)}
-        sx={{
-          backgroundColor: '#fff',
-          borderBottom: '1px solid #dadce0',
-        }}
-      >
-        <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" onClick={onClose}>
-            <LuX />
-          </IconButton>
-          <Logo />
-        </Toolbar>
-      </AppBar>
-      <DrawerContent onClose={onClose} />
-    </Drawer>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
 // メインコンポーネント
 export function Header() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const handleDrawerOpen = () => setDrawerOpen(true);
-  const handleDrawerClose = () => setDrawerOpen(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <AppBar color="inherit" position="sticky" elevation={0} sx={{ backgroundColor: '#fff' }}>
-      <Toolbar variant="dense" className="mx-auto w-full max-w-screen-md">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <div className="mx-auto flex h-12 w-full max-w-screen-md items-center px-2">
         {/* モバイルメニューボタン */}
-        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton onClick={handleDrawerOpen} edge="start" color="inherit" aria-label="メニューを開く">
-            <LuMenu />
-          </IconButton>
-        </Box>
+        <div className="flex md:hidden">
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="メニューを開く">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 p-0">
+              <SheetHeader className="flex flex-row items-center gap-2 border-b border-border px-4 py-3">
+                <Button variant="ghost" size="icon" onClick={() => setSheetOpen(false)} aria-label="メニューを閉じる">
+                  <X className="h-5 w-5" />
+                </Button>
+                <SheetTitle className="sr-only">ナビゲーションメニュー</SheetTitle>
+                <Logo />
+              </SheetHeader>
+              <DrawerContent onClose={() => setSheetOpen(false)} />
+            </SheetContent>
+          </Sheet>
+        </div>
 
         {/* ロゴ */}
-        <Box sx={{ flexGrow: { xs: 1, md: 0 }, mr: 2 }}>
+        <div className="mr-4 flex-grow md:flex-grow-0">
           <Logo />
-        </Box>
+        </div>
 
         {/* デスクトップナビゲーション */}
         <NavigationTabs />
 
         {/* その他メニュー */}
         <MoreMenu />
-      </Toolbar>
-
-      {/* モバイルドロワー */}
-      <MobileDrawer open={drawerOpen} onClose={handleDrawerClose} />
-    </AppBar>
+      </div>
+    </header>
   );
 }

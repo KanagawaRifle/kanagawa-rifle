@@ -1,18 +1,11 @@
-import {
-  Link,
-  Box,
-  Button,
-  ButtonGroup,
-  Card,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from '@mui/material';
+// packages/website/src/app/competitions/_components/EventCard.tsx
+
+import { AlarmClock, Calendar, Dumbbell, MapPin } from 'lucide-react';
+import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { LuAlarmClock, LuCalendar, LuDumbbell, LuMapPin } from 'react-icons/lu';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Event, DateValue } from '../_types';
 
@@ -25,16 +18,14 @@ interface ItemProps {
 
 function Item({ icon, title, text, divider = false }: ItemProps) {
   return (
-    <ListItem divider={divider}>
-      <ListItemText>
-        <Box className="flex items-center gap-2">
-          <Typography color="primary" component="span">
-            {icon}
-          </Typography>
+    <li className={divider ? 'border-b border-border' : ''}>
+      <div className="flex items-center gap-2 p-3">
+        <span className="text-primary">{icon}</span>
+        <span>
           {title}：{text}
-        </Box>
-      </ListItemText>
-    </ListItem>
+        </span>
+      </div>
+    </li>
   );
 }
 
@@ -73,42 +64,59 @@ function convertHrefToString(href: string | URL | undefined): string {
 export function EventCard({ name, grade, actions, date, pet, deadline, venue }: Event) {
   return (
     <Card>
-      <CardHeader subheader={`${grade}大会`} title={name} />
+      <CardHeader>
+        <p className="text-sm text-muted-foreground">{grade}大会</p>
+        <CardTitle>{name}</CardTitle>
+      </CardHeader>
       <CardContent>
-        <ButtonGroup variant="outlined">
+        <div className="flex flex-wrap gap-2">
           {actions.map((action) => (
             <Button
               key={action.name}
-              href={convertHrefToString(action.href)}
+              variant="outline"
+              asChild={!action.disabled}
               disabled={action.disabled ?? false}
               aria-label={action.name}
-              rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
-              target={action.target ?? '_blank'}
             >
-              {action.name}
+              {action.disabled ? (
+                action.name
+              ) : (
+                <a
+                  href={convertHrefToString(action.href)}
+                  rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+                  target={action.target ?? '_blank'}
+                >
+                  {action.name}
+                </a>
+              )}
             </Button>
           ))}
-        </ButtonGroup>
+        </div>
       </CardContent>
       {(date || pet || deadline || venue) && (
-        <List dense>
-          {date && <Item icon={<LuCalendar size="1.3rem" />} title="期日" text={dateToElement(date)} divider />}
-          {pet && <Item icon={<LuDumbbell size="1.3rem" />} title="公式練習" text={dateToElement(pet)} divider />}
+        <ul className="border-t border-border">
+          {date && <Item icon={<Calendar className="h-5 w-5" />} title="期日" text={dateToElement(date)} divider />}
+          {pet && <Item icon={<Dumbbell className="h-5 w-5" />} title="公式練習" text={dateToElement(pet)} divider />}
           {deadline && (
-            <Item icon={<LuAlarmClock size="1.3rem" />} title="申込締切" text={dateToElement(deadline)} divider />
+            <Item icon={<AlarmClock className="h-5 w-5" />} title="申込締切" text={dateToElement(deadline)} divider />
           )}
           {venue && (
             <Item
-              icon={<LuMapPin size="1.3rem" />}
+              icon={<MapPin className="h-5 w-5" />}
               title="会場"
               text={
-                <Link href={convertHrefToString(venue.href)} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={convertHrefToString(venue.href)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
                   {venue.name}
                 </Link>
               }
             />
           )}
-        </List>
+        </ul>
       )}
     </Card>
   );

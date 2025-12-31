@@ -64,10 +64,10 @@ describe('Footer', () => {
       expect(footer).toBeInTheDocument();
     });
 
-    it('renders three navigation sections', () => {
+    it('renders two navigation sections', () => {
       render(<Footer />);
       const navElements = screen.getAllByRole('navigation');
-      expect(navElements).toHaveLength(3);
+      expect(navElements).toHaveLength(2);
     });
   });
 
@@ -227,16 +227,14 @@ describe('Footer', () => {
       render(<Footer />);
 
       const footer = screen.getByRole('contentinfo');
-      const bgBox = footer.querySelector('.bg-slate-50');
-
-      expect(bgBox).toBeInTheDocument();
+      expect(footer).toHaveClass('bg-muted');
     });
 
     it('applies border styling to navigation sections', () => {
       render(<Footer />);
 
       const footer = screen.getByRole('contentinfo');
-      const borderedSections = footer.querySelectorAll('.border-b.border-slate-200');
+      const borderedSections = footer.querySelectorAll('.border-b.border-border');
 
       expect(borderedSections.length).toBeGreaterThan(0);
     });
@@ -301,7 +299,7 @@ describe('Footer', () => {
       render(<Footer />);
 
       const navElements = screen.getAllByRole('navigation');
-      expect(navElements).toHaveLength(3);
+      expect(navElements).toHaveLength(2);
     });
   });
 

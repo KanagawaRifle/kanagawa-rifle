@@ -1,11 +1,10 @@
 // packages/website/src/app/links/page.tsx
 
-import { Card, CardHeader, Link, List, ListItem, ListItemText } from '@mui/material';
+import { Link as LinkIcon } from 'lucide-react';
 import type { Metadata } from 'next';
-import React from 'react';
-import { LuLink } from 'react-icons/lu';
 
 import { PageLayout } from '@/components';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { env, paths } from '@/config';
 
 type LinkItem = {
@@ -50,16 +49,19 @@ const LINK_ITEMS: readonly LinkItem[] = [
 
 function LinkListItem({ item, divider = true }: { readonly item: LinkItem; readonly divider?: boolean }) {
   return (
-    <ListItem divider={divider}>
-      <ListItemText
-        primary={
-          <Link href={item.href} target="_blank" rel="noopener noreferrer">
-            {item.title}
-          </Link>
-        }
-        secondary={item.description}
-      />
-    </ListItem>
+    <li className={divider ? 'border-b border-border' : ''}>
+      <div className="p-4">
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline font-medium"
+        >
+          {item.title}
+        </a>
+        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+      </div>
+    </li>
   );
 }
 
@@ -82,19 +84,19 @@ export default function Page() {
       ]}
     >
       <Card>
-        <CardHeader
-          title={
-            <div className="flex items-center gap-2">
-              <LuLink aria-hidden="true" />
-              リンク
-            </div>
-          }
-        />
-        <List>
-          {LINK_ITEMS.map((link, index) => (
-            <LinkListItem key={link.href} item={link} divider={index < LINK_ITEMS.length - 1} />
-          ))}
-        </List>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <LinkIcon className="h-5 w-5" aria-hidden="true" />
+            リンク
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <ul>
+            {LINK_ITEMS.map((link, index) => (
+              <LinkListItem key={link.href} item={link} divider={index < LINK_ITEMS.length - 1} />
+            ))}
+          </ul>
+        </CardContent>
       </Card>
     </PageLayout>
   );

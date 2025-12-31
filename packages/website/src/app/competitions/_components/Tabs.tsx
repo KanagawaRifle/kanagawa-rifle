@@ -1,24 +1,35 @@
-import { Link, Tab, Tabs as MuiTabs } from '@mui/material';
-import React from 'react';
+// packages/website/src/app/competitions/_components/Tabs.tsx
+
+import Link from 'next/link';
+
+import { cn } from '@/lib/utils';
 
 export type TabsProps = {
   year: number;
 };
 
+const YEARS = [2025, 2024, 2023, 2022] as const;
+
 export function Tabs({ year }: TabsProps) {
   return (
-    <MuiTabs value={year} variant="scrollable" scrollButtons="auto" indicatorColor="secondary" textColor="inherit">
-      {[2025, 2024, 2023, 2022].map((item) => {
+    <div className="flex overflow-x-auto border-b border-border">
+      {YEARS.map((item) => {
+        const isActive = item === year;
         return (
-          <Tab
+          <Link
             key={item}
-            component={Link}
-            label={item}
             href={`/competitions/${item === 2025 ? '' : item}`}
-            value={item}
-          />
+            className={cn(
+              'shrink-0 px-4 py-3 text-sm font-medium transition-colors hover:text-secondary',
+              isActive
+                ? 'border-b-2 border-secondary text-secondary'
+                : 'text-muted-foreground hover:text-foreground'
+            )}
+          >
+            {item}
+          </Link>
         );
       })}
-    </MuiTabs>
+    </div>
   );
 }

@@ -1,14 +1,108 @@
 /* packages/website/src/styles/globals.css */
 
 @import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Background & Foreground */
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(20.32% 0.02 253.53);
+
+  /* Primary: #288140 (deep green) */
+  --color-primary: oklch(47.63% 0.13 148.04);
+  --color-primary-foreground: oklch(98% 0.01 148.04);
+
+  /* Secondary: #e37400 (orange) */
+  --color-secondary: oklch(66.62% 0.16 60.91);
+  --color-secondary-foreground: oklch(98% 0.01 60.91);
+
+  /* Accent: #4285f4 (blue) */
+  --color-accent: oklch(60.21% 0.17 261.36);
+  --color-accent-foreground: oklch(98% 0.01 261.36);
+
+  /* Muted */
+  --color-muted: oklch(96.14% 0.01 253.53);
+  --color-muted-foreground: oklch(55.18% 0.03 253.53);
+
+  /* Card */
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(20.32% 0.02 253.53);
+
+  /* Popover */
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(20.32% 0.02 253.53);
+
+  /* Border & Input */
+  --color-border: oklch(73.72% 0.02 253.53);
+  --color-input: oklch(73.72% 0.02 253.53);
+
+  /* Ring */
+  --color-ring: oklch(47.63% 0.13 148.04);
+
+  /* Destructive */
+  --color-destructive: oklch(57.71% 0.22 29.23);
+  --color-destructive-foreground: oklch(98% 0.01 29.23);
+
+  /* Success */
+  --color-success: oklch(60.52% 0.16 145.76);
+  --color-success-foreground: oklch(98% 0.01 145.76);
+
+  /* Warning */
+  --color-warning: oklch(76.87% 0.15 80.93);
+  --color-warning-foreground: oklch(25% 0.05 80.93);
+
+  /* Info */
+  --color-info: oklch(60.21% 0.17 261.36);
+  --color-info-foreground: oklch(98% 0.01 261.36);
+
+  /* Sidebar (for Sheet/Drawer) */
+  --color-sidebar: oklch(98.5% 0.01 253.53);
+  --color-sidebar-foreground: oklch(20.32% 0.02 253.53);
+  --color-sidebar-primary: oklch(47.63% 0.13 148.04);
+  --color-sidebar-primary-foreground: oklch(98% 0.01 148.04);
+  --color-sidebar-accent: oklch(96.14% 0.01 253.53);
+  --color-sidebar-accent-foreground: oklch(20.32% 0.02 253.53);
+  --color-sidebar-border: oklch(73.72% 0.02 253.53);
+  --color-sidebar-ring: oklch(47.63% 0.13 148.04);
+
+  /* Chart colors */
+  --color-chart-1: oklch(47.63% 0.13 148.04);
+  --color-chart-2: oklch(66.62% 0.16 60.91);
+  --color-chart-3: oklch(60.21% 0.17 261.36);
+  --color-chart-4: oklch(76.87% 0.15 80.93);
+  --color-chart-5: oklch(57.71% 0.22 29.23);
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* Font */
+  --font-sans: -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans',
+    'Noto Sans CJK JP', 'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Sans Emoji';
+}
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    font-family:
-      -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans', 'Noto Sans CJK JP',
-      'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
+    font-family: var(--font-sans);
     font-size: 14px;
     line-height: 1.8;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
   }
 
   @media (min-width: 768px) {
