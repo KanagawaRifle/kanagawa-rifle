@@ -18,6 +18,8 @@ function getLogger(): Logger | null {
   }
 }
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export const logger = {
   debug: (message: string, context?: Record<string, unknown>) => {
     getLogger()?.debug(message, context);
@@ -27,13 +29,15 @@ export const logger = {
   },
   warn: (message: string, context?: Record<string, unknown>) => {
     getLogger()?.warn(message, context);
-    console.warn(message, context);
+    // 開発環境のみコンソール出力（Lighthouse Best Practices 対応）
+    if (isDev) console.warn(message, context);
   },
   error: (message: string, context?: Record<string, unknown>) => {
     // Axiom に送信（利用可能な場合）
     getLogger()?.error(message, context);
-    // Sentry にも送信（captureConsoleIntegration 経由）
-    console.error(message, context);
+    // 開発環境のみコンソール出力（Lighthouse Best Practices 対応）
+    // Sentry は captureException で別途送信
+    if (isDev) console.error(message, context);
   },
   flush: async () => {
     await getLogger()?.flush();
