@@ -32,20 +32,13 @@ function getQueryClient() {
 export default function QueryProvider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => getQueryClient());
 
-  // ローカル環境（開発環境）では ErrorBoundary を使わない
-  if (process.env.NODE_ENV === 'development') {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        {children}
-      </QueryClientProvider>
-    );
-  }
-
-  // 本番環境では ErrorBoundary を使用
+  // ErrorBoundary は常に使用（ツリー構造の一貫性を保つ）
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+        {children}
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useQuery, queryOptions } from '@tanstack/react-query';
 
-import { getApiUrl } from '@/config/env';
+import { getApiUrl, REVALIDATE } from '@/config';
 import { logger } from '@/lib/logger';
 import { QueryConfig } from '@/lib/ReactQuery';
 import { ApiResponse, NewsItem } from '@/types';
@@ -14,8 +14,7 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
   try {
     const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/api/news/${slug}`, {
-      // サーバーサイドでは Next.js Data Cache を使用（10分間キャッシュ）
-      next: { revalidate: 600 },
+      next: { revalidate: REVALIDATE.NEWS_ITEM },
     });
 
     if (!response.ok) {
