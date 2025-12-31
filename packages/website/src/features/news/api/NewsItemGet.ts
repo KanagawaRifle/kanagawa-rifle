@@ -3,6 +3,7 @@
 import { useQuery, queryOptions } from '@tanstack/react-query';
 
 import { getApiUrl } from '@/config/env';
+import { logger } from '@/lib/logger';
 import { QueryConfig } from '@/lib/ReactQuery';
 import { ApiResponse, NewsItem } from '@/types';
 
@@ -19,20 +20,14 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
 
     if (!response.ok) {
       if (response.status === 404) {
-        console.warn(`[features/news/api/NewsItemGet/getNewsItem] 記事が見つかりませんでした (slug: ${slug})`);
+        logger.warn('記事が見つかりませんでした', { slug, source: 'NewsItemGet.getNewsItem' });
         return null;
       }
       if (response.status === 500) {
-        console.error(`[features/news/api/NewsItemGet/getNewsItem] サーバーエラーが発生しました:`, {
-          slug,
-          status: response.status,
-        });
+        logger.error('サーバーエラーが発生しました', { slug, status: response.status, source: 'NewsItemGet.getNewsItem' });
         throw new LocalError('サーバーエラーが発生しました');
       }
-      console.error(`[features/news/api/NewsItemGet/getNewsItem] 記事の取得に失敗しました:`, {
-        slug,
-        status: response.status,
-      });
+      logger.error('記事の取得に失敗しました', { slug, status: response.status, source: 'NewsItemGet.getNewsItem' });
       throw new LocalError(`記事の取得に失敗しました (ステータス: ${response.status})`);
     }
 
@@ -40,9 +35,10 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
 
     // レスポンスデータの検証
     if (!result.data) {
-      console.error(`[features/news/api/NewsItemGet/getNewsItem] 記事データが取得できませんでした:`, {
+      logger.error('記事データが取得できませんでした', {
         slug,
         error: result?.error?.message,
+        source: 'NewsItemGet.getNewsItem',
       });
       throw new LocalError('記事データが取得できませんでした');
     }
@@ -55,11 +51,12 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
         updated: data.updated ? new Date(data.updated) : undefined,
       };
     } catch (error) {
-      console.error(`[features/news/api/NewsItemGet/getNewsItem] 日付の変換に失敗しました:`, {
+      logger.error('日付の変換に失敗しました', {
         slug,
-        error,
-        published: data.published,
-        updated: data.updated,
+        error: error instanceof Error ? error.message : String(error),
+        published: String(data.published),
+        updated: String(data.updated),
+        source: 'NewsItemGet.getNewsItem',
       });
 
       return {
@@ -73,10 +70,11 @@ export async function getNewsItem({ slug }: { slug: string }): Promise<NewsItem 
       throw error;
     }
 
-    console.error(`[features/news/api/NewsItemGet/getNewsItem] ネットワークエラー:`, {
+    logger.error('ネットワークエラー', {
       slug,
       error: error instanceof Error ? error.message : String(error),
-      name: error instanceof Error ? error.name : 'Unknown',
+      errorName: error instanceof Error ? error.name : 'Unknown',
+      source: 'NewsItemGet.getNewsItem',
     });
     throw new Error('ネットワークエラーが発生しました');
   }

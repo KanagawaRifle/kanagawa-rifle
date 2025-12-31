@@ -7,6 +7,7 @@ import React from 'react';
 import { app, env } from '@/config';
 import { getNewsItem, getNewsItemQueryOptions } from '@/features/news/api/NewsItemGet';
 import { listNewsItems, getListNewsItemsQueryOptions } from '@/features/news/api/NewsItemList';
+import { logger } from '@/lib/logger';
 
 import { NewsItem } from './_components/NewsItem';
 
@@ -39,13 +40,16 @@ export async function generateStaticParams() {
     const res = await listNewsItems({ page: 1, size: 64 });
 
     if (!res.data || res.data.length === 0) {
-      console.warn('No news items found for static generation');
+      logger.warn('No news items found for static generation', { source: 'news/[slug]/page.generateStaticParams' });
       return [];
     }
 
     return res.data.map((item) => ({ slug: item.slug }));
   } catch (error) {
-    console.error('Failed to generate static params:', error);
+    logger.error('Failed to generate static params', {
+      error: error instanceof Error ? error.message : String(error),
+      source: 'news/[slug]/page.generateStaticParams',
+    });
     // ビルド時にAPIが利用できない場合は空配列を返す
     return [];
   }
@@ -63,7 +67,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: { images: new URL(`/api/og?title=${encodeURIComponent(item?.title || '')}`, env.APP_URL) },
     };
   } catch (error) {
-    console.error('Failed to generate metadata:', error);
+    logger.error('Failed to generate metadata', {
+      error: error instanceof Error ? error.message : String(error),
+      source: 'news/[slug]/page.generateMetadata',
+    });
 
     return {
       title: 'ニュース記事',
