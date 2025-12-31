@@ -1,10 +1,10 @@
 const config = {
   // Website パッケージ
   'packages/website/**/*.{ts,tsx,js,jsx}': () => [
-    'npm run -w @kanagawa-rifle/website lint:eslint',
+    'npm run -w @acme/website lint:eslint',
   ],
   'packages/website/**/*.{ts,tsx,js,jsx,json,css,md}': () => [
-    'npm run -w @kanagawa-rifle/website lint:prettier',
+    'npm run -w @acme/website lint:prettier',
   ],
 
   // 共有設定パッケージ

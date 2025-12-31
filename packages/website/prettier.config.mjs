@@ -1,6 +1,6 @@
 // packages/website/prettier.config.mjs
 
-import base from '@kanagawa-rifle/prettier-config';
+import base from '@acme/prettier-config';
 
 const config = {
   ...base,

@@ -3,7 +3,7 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
-import base from '@kanagawa-rifle/eslint-config';
+import base from '@acme/eslint-config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

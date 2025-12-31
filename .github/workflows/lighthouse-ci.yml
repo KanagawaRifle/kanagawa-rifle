@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Build website
-        run: npm run -w @kanagawa-rifle/website build
+        run: npm run -w @acme/website build
         env:
           NODE_ENV: production
 

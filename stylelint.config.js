@@ -1,3 +1,3 @@
-import config from '@kanagawa-rifle/stylelint-config';
+import config from '@acme/stylelint-config';
 
 export default config;
