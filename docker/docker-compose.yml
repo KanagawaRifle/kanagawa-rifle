@@ -53,7 +53,7 @@ services:
       echo 'Installing dependencies...';
       npm install;
       echo 'Starting development server...';
-      npm run dev --workspace=@kanagawa-rifle/website -- --port 3001
+      npm run dev --workspace=@acme/website -- --port 3001
       "
     stdin_open: true
     tty: true

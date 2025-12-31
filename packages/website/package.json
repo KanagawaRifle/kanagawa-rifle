@@ -1,5 +1,5 @@
 {
-  "name": "@kanagawa-rifle/website",
+  "name": "@acme/website",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -29,9 +29,9 @@
     "@fullcalendar/google-calendar": "^6.1.20",
     "@fullcalendar/interaction": "^6.1.20",
     "@fullcalendar/react": "^6.1.20",
-    "@kanagawa-rifle/eslint-config": "*",
-    "@kanagawa-rifle/lighthouse-config": "*",
-    "@kanagawa-rifle/prettier-config": "*",
+    "@acme/eslint-config": "*",
+    "@acme/lighthouse-config": "*",
+    "@acme/prettier-config": "*",
     "@next/bundle-analyzer": "^15.5.4",
     "@next/third-parties": "^15.5.2",
     "@radix-ui/react-avatar": "^1.1.11",

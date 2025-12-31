@@ -1,11 +1,11 @@
 {
-  "extends": "@kanagawa-rifle/typescript-config/nextjs.json",
+  "extends": "@acme/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": [
         "./src/*"
       ],
-      "@kanagawa-rifle/website/*": [
+      "@acme/website/*": [
         "./src/*"
       ]
     },

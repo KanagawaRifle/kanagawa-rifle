@@ -16,7 +16,7 @@ cd docker && docker compose up -d
 docker exec kanagawa-rifle_node npm install
 
 # 開発サーバーを起動
-docker exec kanagawa-rifle_node npm run -w @kanagawa-rifle/website dev
+docker exec kanagawa-rifle_node npm run -w @acme/website dev
 ```
 
 ## モノレポ構成
