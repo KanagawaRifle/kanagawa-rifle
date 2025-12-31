@@ -21,12 +21,70 @@ export default defineConfig({
       reporter: ['text', 'json', 'json-summary', 'html'],
       exclude: [
         'node_modules/',
+        '.next/',
         'vitest.setup.ts',
-        '**/*.config.{ts,js}',
+        // 設定ファイル
+        '**/*.config.{ts,js,mjs,cjs}',
         '**/*.d.ts',
         '**/types/',
         '**/*.stories.{ts,tsx}',
         '**/e2e/**',
+        // Lint 設定
+        '.textlintrc.mjs',
+        '.lighthouserc.cjs',
+        'commitlint.config.mjs',
+        // shadcn/ui コンポーネント（サードパーティ）
+        'src/components/ui/**',
+        // 設定ファイル
+        'src/config/**',
+        // プロバイダーラッパー
+        'src/providers/**',
+        // ページ・レイアウトコンポーネント（E2E でカバー）
+        'src/app/**/page.tsx',
+        'src/app/**/layout.tsx',
+        'src/app/**/loading.tsx',
+        'src/app/**/error.tsx',
+        'src/app/**/not-found.tsx',
+        // 機能コンポーネント（UI 重点）
+        'src/features/**/components/**',
+        // ページ固有コンポーネント（E2E でカバー）
+        'src/app/**/_components/**',
+        'src/app/**/_databases/**',
+        'src/app/**/_types/**',
+        // テスト関連
+        'src/testing/**',
+        // ユーティリティのエクスポートファイル
+        '**/index.ts',
+        '**/index.tsx',
+        // クライアント/サーバー専用エクスポート
+        'src/lib/client.ts',
+        'src/lib/server.ts',
+        // ReactMarkdown（外部ライブラリ連携）
+        'src/lib/ReactMarkdown/**',
+        // OpenGraph 画像生成（SSR 専用）
+        'src/lib/OpenGraphImage.tsx',
+        // ラッパーコンポーネント
+        'src/components/AxiomWebVitalsWrapper.tsx',
+        'src/components/ErrorBoundaryFallback.tsx',
+        'src/components/Frame.tsx',
+        'src/components/ThemeToggle.tsx',
+        // Next.js メタデータ・設定ファイル
+        'src/app/manifest.ts',
+        'src/app/robots.ts',
+        'src/app/sitemap.ts',
+        'src/app/global-error.tsx',
+        'src/app/api/og/**',
+        // Instrumentation
+        'src/instrumentation.ts',
+        // React Query hooks（統合テストでカバー）
+        'src/lib/ReactQuery.ts',
+        // Logger（モック困難な外部連携）
+        'src/lib/logger.ts',
+        // News API クライアント（API テストでカバー）
+        'src/features/news/api/**',
+        // Sentry 設定
+        'sentry.*.ts',
+        'src/sentry*.ts',
       ],
       all: true,
       thresholds: {
