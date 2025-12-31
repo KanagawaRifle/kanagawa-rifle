@@ -58,11 +58,14 @@ const createEnv = () => {
       })
       .join('\n');
 
-    console.error('Environment validation failed!');
-    console.error('Provided values:', JSON.stringify(vars, null, 2));
-    console.error('Validation errors:\n', errors);
+    // 環境変数の検証失敗は致命的エラーのため、詳細情報を含めて例外をスロー
+    const errorMessage = [
+      'Environment validation failed!',
+      `Provided values: ${JSON.stringify(vars, null, 2)}`,
+      `Validation errors:\n${errors}`,
+    ].join('\n');
 
-    throw new Error(`Invalid environment variables:\n${errors}`);
+    throw new Error(errorMessage);
   }
 
   return result.data;

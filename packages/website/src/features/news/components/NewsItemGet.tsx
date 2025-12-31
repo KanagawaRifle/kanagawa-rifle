@@ -18,7 +18,6 @@ import {
 } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React from 'react';
 import { LuNotebookText, LuArrowLeft, LuRotateCw, LuHash, LuCalendar } from 'react-icons/lu';
 
 import { env } from '@/config';
@@ -48,11 +47,8 @@ type Props = {
 export function NewsItemGet({ slug }: Props) {
   const { data: news, refetch, error, isLoading, isError, isFetching } = useNewsItem({ slug });
 
-  const tableOfContents = React.useMemo(() => {
-    return news?.content ? generateTableOfContents(news.content) : [];
-  }, [news?.content]);
-
-  const articleUrl = React.useMemo(() => new URL(`/news/${slug}`, env.APP_URL).toString(), [slug]);
+  const tableOfContents = news?.content ? generateTableOfContents(news.content) : [];
+  const articleUrl = new URL(`/news/${slug}`, env.APP_URL).toString();
 
   const formattedDate = news?.published
     ? new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }).format(

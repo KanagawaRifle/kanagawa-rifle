@@ -7,6 +7,15 @@ import { Components } from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+// SyntaxHighlighter のスタイル定数（毎レンダリング時のオブジェクト生成を回避）
+const CODE_BLOCK_STYLE: React.CSSProperties = {
+  margin: 0,
+  padding: '16px',
+  background: '#1e1e1e',
+  fontSize: '14px',
+  lineHeight: '1.5',
+};
+
 const getTextContent = (children: ReactNode): string => {
   if (children == null) return '';
 
@@ -73,13 +82,7 @@ export const components: Components = {
           style={vscDarkPlus}
           className={filename ? 'rounded-r-lg' : 'rounded-lg'}
           PreTag="div"
-          customStyle={{
-            margin: 0,
-            padding: '16px',
-            background: '#1e1e1e',
-            fontSize: '14px',
-            lineHeight: '1.5',
-          }}
+          customStyle={CODE_BLOCK_STYLE}
         >
           {getTextContent(codeElement.props?.children).replace(/\n$/, '')}
         </SyntaxHighlighter>
