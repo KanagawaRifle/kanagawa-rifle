@@ -28,7 +28,7 @@ import { paths } from '@/config';
 const DRAWER_WIDTH = 250;
 
 // ロゴコンポーネント
-const Logo: React.FC = React.memo(() => {
+function Logo() {
   const theme = useTheme();
 
   return (
@@ -49,41 +49,35 @@ const Logo: React.FC = React.memo(() => {
       </Box>
     </Link>
   );
-});
-
-Logo.displayName = 'Logo';
+}
 
 // ドロワーコンテンツコンポーネント
-type DrawerContentProps = {
-  onClose: () => void;
-};
+function DrawerContent({ onClose }: { onClose: () => void }) {
+  return (
+    <Box sx={{ width: DRAWER_WIDTH }} role="presentation" onClick={onClose}>
+      <List component="nav" aria-label="メインナビゲーション">
+        {Object.entries(paths.main).map(([key, obj]) => (
+          <ListItem key={key} disablePadding>
+            <ListItemButton href={obj.getHref()} component={Link}>
+              <ListItemText primary={obj.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <List component="nav" aria-label="サブナビゲーション" sx={{ borderTop: '1px solid #e5e7eb' }}>
+        {Object.entries(paths.sub).map(([key, obj]) => (
+          <ListItem key={key} disablePadding>
+            <ListItemButton href={obj.getHref()} component={Link}>
+              <ListItemText primary={obj.name} sx={{ color: 'text.secondary' }} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+}
 
-const DrawerContent: React.FC<DrawerContentProps> = React.memo(({ onClose }) => (
-  <Box sx={{ width: DRAWER_WIDTH }} role="presentation" onClick={onClose}>
-    <List component="nav" aria-label="メインナビゲーション">
-      {Object.entries(paths.main).map(([key, obj]) => (
-        <ListItem key={key} disablePadding>
-          <ListItemButton href={obj.getHref()} component={Link}>
-            <ListItemText primary={obj.name} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-    <List component="nav" aria-label="サブナビゲーション" sx={{ borderTop: '1px solid #e5e7eb' }}>
-      {Object.entries(paths.sub).map(([key, obj]) => (
-        <ListItem key={key} disablePadding>
-          <ListItemButton href={obj.getHref()} component={Link}>
-            <ListItemText primary={obj.name} sx={{ color: 'text.secondary' }} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-  </Box>
-));
-
-DrawerContent.displayName = 'DrawerContent';
-
-const NavigationTabs: React.FC = React.memo(() => {
+function NavigationTabs() {
   const pathname = usePathname() ?? '/';
   const matchedPath =
     Object.values(paths.main)
@@ -106,12 +100,10 @@ const NavigationTabs: React.FC = React.memo(() => {
       </Tabs>
     </Box>
   );
-});
-
-NavigationTabs.displayName = 'NavigationTabs';
+}
 
 // その他メニューコンポーネント
-const MoreMenu: React.FC = React.memo(() => {
+function MoreMenu() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -155,41 +147,33 @@ const MoreMenu: React.FC = React.memo(() => {
       </Menu>
     </Box>
   );
-});
-
-MoreMenu.displayName = 'MoreMenu';
-
-// モバイルドロワーコンポーネント
-interface MobileDrawerProps {
-  open: boolean;
-  onClose: () => void;
-  className?: string;
 }
 
-const MobileDrawer: React.FC<MobileDrawerProps> = React.memo(({ open, onClose, className }) => (
-  <Drawer open={open} onClose={onClose}>
-    <AppBar
-      color="inherit"
-      position="sticky"
-      elevation={0}
-      className={clsx(className)}
-      sx={{
-        backgroundColor: '#fff',
-        borderBottom: '1px solid #dadce0',
-      }}
-    >
-      <Toolbar variant="dense">
-        <IconButton edge="start" color="inherit" onClick={onClose}>
-          <LuX />
-        </IconButton>
-        <Logo />
-      </Toolbar>
-    </AppBar>
-    <DrawerContent onClose={onClose} />
-  </Drawer>
-));
-
-MobileDrawer.displayName = 'MobileDrawer';
+// モバイルドロワーコンポーネント
+function MobileDrawer({ open, onClose, className }: { open: boolean; onClose: () => void; className?: string }) {
+  return (
+    <Drawer open={open} onClose={onClose}>
+      <AppBar
+        color="inherit"
+        position="sticky"
+        elevation={0}
+        className={clsx(className)}
+        sx={{
+          backgroundColor: '#fff',
+          borderBottom: '1px solid #dadce0',
+        }}
+      >
+        <Toolbar variant="dense">
+          <IconButton edge="start" color="inherit" onClick={onClose}>
+            <LuX />
+          </IconButton>
+          <Logo />
+        </Toolbar>
+      </AppBar>
+      <DrawerContent onClose={onClose} />
+    </Drawer>
+  );
+}
 
 // メインコンポーネント
 export function Header() {

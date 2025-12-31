@@ -1,6 +1,6 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
 
-import { getApiUrl } from '@/config/env';
+import { getApiUrl, REVALIDATE } from '@/config';
 import { QueryConfig } from '@/lib/ReactQuery';
 import { ApiResponse, NewsItem, Paginated } from '@/types';
 
@@ -11,8 +11,7 @@ export const sizes = [6, DEFAULT_SIZE, 64, 128] as const;
 export async function listNewsItems({ page, size }: { page: number; size: number }): Promise<Paginated<NewsItem>> {
   const apiUrl = getApiUrl();
   const response = await fetch(`${apiUrl}/api/news?page=${page}&size=${size}`, {
-    // サーバーサイドでは Next.js Data Cache を使用（5分間キャッシュ）
-    next: { revalidate: 300 },
+    next: { revalidate: REVALIDATE.NEWS_LIST },
   });
 
   if (!response.ok) {
