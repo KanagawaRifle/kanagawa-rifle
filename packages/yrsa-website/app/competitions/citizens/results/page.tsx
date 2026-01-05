@@ -57,6 +57,8 @@ function parseCSV(csvContent: string): YearData[] {
     const [, date, event, rankStr, relay, name, affiliation,
            s1, s2, s3, s4, totalStr, xCountStr, note] = cols;
 
+    if (!date || !event) continue;
+
     if (!grouped.has(date)) {
       grouped.set(date, new Map());
     }
