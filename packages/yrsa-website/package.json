@@ -14,7 +14,8 @@
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
-    "generate:feed": "npx tsx scripts/generate-feed.ts"
+    "generate:feed": "npx tsx scripts/generate-feed.ts",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@acme/typescript-config": "*",
+    "@next/bundle-analyzer": "^16.1.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
