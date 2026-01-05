@@ -62,23 +62,27 @@ export function parseCSV(csvText: string): ResultRecord[] {
 
   // Skip header (remove BOM if present)
   for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
+    const rawLine = lines[i];
+    if (!rawLine) continue;
+    const line = rawLine.trim();
     if (!line) continue;
 
     const values = parseCSVLine(line);
     if (values.length < 6) continue;
 
-    const seriesStr = values[4];
+    const [date, event, rankStr, name, seriesStr, totalStr, remarks] = values;
+    if (!date || !event || !rankStr || !name || !seriesStr || !totalStr) continue;
+
     const series = seriesStr.split("|").map((s) => parseFloat(s.trim()));
 
     records.push({
-      date: values[0],
-      event: values[1],
-      rank: parseInt(values[2]),
-      name: values[3],
+      date,
+      event,
+      rank: parseInt(rankStr),
+      name,
       series,
-      total: parseFloat(values[5]),
-      remarks: values[6] || "",
+      total: parseFloat(totalStr),
+      remarks: remarks || "",
     });
   }
 
@@ -139,13 +143,15 @@ export async function getFiscalYears(): Promise<FiscalYearInfo[]> {
 
   yearData.forEach((data, year) => {
     const sortedDates = Array.from(data.dates).sort();
+    const startDate = sortedDates[0] ?? '';
+    const endDate = sortedDates[sortedDates.length - 1] ?? '';
     result.push({
       year,
       count: data.dates.size,
       eventCount: data.records.length,
       dateRange: {
-        start: sortedDates[0],
-        end: sortedDates[sortedDates.length - 1],
+        start: startDate,
+        end: endDate,
       },
     });
   });

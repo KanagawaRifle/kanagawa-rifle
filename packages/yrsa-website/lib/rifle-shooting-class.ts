@@ -50,13 +50,15 @@ export async function getRifleClassFiscalYears(): Promise<FiscalYearInfo[]> {
 
   yearData.forEach((data, year) => {
     const sortedDates = Array.from(data.dates).sort();
+    const startDate = sortedDates[0] ?? '';
+    const endDate = sortedDates[sortedDates.length - 1] ?? '';
     result.push({
       year,
       count: data.dates.size,
       eventCount: data.records.length,
       dateRange: {
-        start: sortedDates[0],
-        end: sortedDates[sortedDates.length - 1],
+        start: startDate,
+        end: endDate,
       },
     });
   });

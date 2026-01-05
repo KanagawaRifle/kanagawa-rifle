@@ -59,6 +59,8 @@ function parseCSV(csvContent: string): FiscalYearData[] {
 
     const [fiscalYear, roundStr, dateRange, rankStr, name, gun, caliber, itakuStr, hijiStr, ritsuStr, totalStr, scoringType] = cols;
 
+    if (!fiscalYear || !roundStr) continue;
+
     if (!grouped.has(fiscalYear)) {
       grouped.set(fiscalYear, new Map());
     }
@@ -68,20 +70,20 @@ function parseCSV(csvContent: string): FiscalYearData[] {
     if (!fyMap.has(roundNum)) {
       fyMap.set(roundNum, {
         dateRange: dateRange || "",
-        scoringType: scoringType as "ring" | "point",
+        scoringType: (scoringType as "ring" | "point") || "ring",
         results: [],
       });
     }
 
     fyMap.get(roundNum)!.results.push({
-      rank: parseInt(rankStr, 10),
-      name,
+      rank: parseInt(rankStr || '0', 10),
+      name: name || '',
       gun: gun || "",
       caliber: caliber || "",
-      itaku: parseFloat(itakuStr) || 0,
-      hiji: parseFloat(hijiStr) || 0,
-      ritsu: parseFloat(ritsuStr) || 0,
-      total: parseFloat(totalStr) || 0,
+      itaku: parseFloat(itakuStr || '0') || 0,
+      hiji: parseFloat(hijiStr || '0') || 0,
+      ritsu: parseFloat(ritsuStr || '0') || 0,
+      total: parseFloat(totalStr || '0') || 0,
     });
   }
 
@@ -90,7 +92,7 @@ function parseCSV(csvContent: string): FiscalYearData[] {
 
   for (const [fiscalYear, roundsMap] of grouped) {
     const match = fiscalYear.match(/平成(\d+)年度/);
-    const heiseiYear = match ? parseInt(match[1], 10) : 28;
+    const heiseiYear = match?.[1] ? parseInt(match[1], 10) : 28;
     const westernYear = 1988 + heiseiYear;
 
     const rounds: Round[] = [];

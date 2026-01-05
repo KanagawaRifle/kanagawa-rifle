@@ -20,8 +20,8 @@
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
-    "@fullcalendar/list": "^6.1.15",
     "@fullcalendar/google-calendar": "^6.1.15",
+    "@fullcalendar/list": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",

@@ -67,17 +67,21 @@ function parseCSV(csvContent: string): YearData[] {
       dateMap.set(event, []);
     }
 
-    const scores = [parseFloat(s1), parseFloat(s2), parseFloat(s3), parseFloat(s4)]
-      .filter(s => s > 0);
+    const scores = [
+      parseFloat(s1 || '0'),
+      parseFloat(s2 || '0'),
+      parseFloat(s3 || '0'),
+      parseFloat(s4 || '0')
+    ].filter(s => s > 0);
 
     dateMap.get(event)!.push({
-      rank: parseInt(rankStr, 10),
-      relay,
-      name,
-      affiliation,
+      rank: parseInt(rankStr || '0', 10),
+      relay: relay || '',
+      name: name || '',
+      affiliation: affiliation || '',
       scores,
-      total: parseFloat(totalStr) || 0,
-      xCount: parseInt(xCountStr, 10) || 0,
+      total: parseFloat(totalStr || '0') || 0,
+      xCount: parseInt(xCountStr || '0', 10) || 0,
       note: note || "",
     });
   }
@@ -86,7 +90,7 @@ function parseCSV(csvContent: string): YearData[] {
 
   for (const [date, eventsMap] of grouped) {
     const match = date.match(/(\d{4})年/);
-    const year = match ? parseInt(match[1], 10) : 2017;
+    const year = match?.[1] ? parseInt(match[1], 10) : 2017;
 
     const events: EventData[] = [];
     for (const [event, results] of eventsMap) {
