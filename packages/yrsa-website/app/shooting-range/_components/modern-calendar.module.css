@@ -1,0 +1,137 @@
+/* モダンアクセシブルテーマ - エメラルドグリーン */
+.wrapper {
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif;
+}
+
+.wrapper :global(.fc) {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.wrapper :global(.fc-toolbar) {
+  background: #fff;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wrapper :global(.fc-toolbar-title) {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #059669;
+}
+
+.wrapper :global(.fc-button) {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.wrapper :global(.fc-button:hover) {
+  background: #ecfdf5;
+  border-color: #059669;
+  color: #059669;
+}
+
+.wrapper :global(.fc-button:active),
+.wrapper :global(.fc-button-active) {
+  background: #059669;
+  border-color: #059669;
+  color: #fff;
+}
+
+.wrapper :global(.fc-button:disabled) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.wrapper :global(.fc-daygrid-day) {
+  border: 1px solid #f3f4f6;
+}
+
+.wrapper :global(.fc-daygrid-day-number) {
+  color: #1f2937;
+  font-weight: 500;
+  padding: 4px;
+}
+
+.wrapper :global(.fc-day-sun .fc-daygrid-day-number) {
+  color: #dc2626;
+}
+
+.wrapper :global(.fc-day-sat .fc-daygrid-day-number) {
+  color: #2563eb;
+}
+
+.wrapper :global(.fc-daygrid-day.fc-day-today) {
+  background: #d1fae5 !important;
+}
+
+.wrapper :global(.fc-daygrid-day.fc-day-today .fc-daygrid-day-number) {
+  background: #059669;
+  color: #fff;
+  border-radius: 9999px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper :global(.fc-event) {
+  background: #d1fae5;  /* emerald-100 */
+  border: 1px solid #a7f3d0;  /* emerald-200 */
+  border-radius: 4px;
+  font-size: 0.75rem;
+  padding: 2px 4px;
+  transition: all 0.2s;
+  color: #047857;  /* emerald-700 */
+}
+
+.wrapper :global(.fc-event:hover) {
+  background: #a7f3d0;  /* emerald-200 */
+  border-color: #6ee7b7;  /* emerald-300 */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper :global(.fc-event-title) {
+  font-weight: 500;
+  color: #047857;  /* emerald-700 */
+}
+
+.wrapper :global(.fc-col-header-cell) {
+  background: #047857;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px;
+  border: 1px solid #059669;
+  font-size: 0.875rem;
+}
+
+.wrapper :global(.fc-scrollgrid) {
+  border: none;
+}
+
+.wrapper :global(.fc-theme-standard td),
+.wrapper :global(.fc-theme-standard th) {
+  border-color: #f3f4f6;
+}
+
+.wrapper :global(.fc-daygrid-day-frame) {
+  min-height: 80px;
+}
+
+.wrapper :global(.fc-more-link) {
+  color: #059669;
+  font-weight: 500;
+}
+
+.wrapper :global(.fc-more-link:hover) {
+  color: #047857;
+}

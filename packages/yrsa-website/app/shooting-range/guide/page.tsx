@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
-import { getOpengraphImageUrl } from "@/lib/server";
+import type { Metadata } from "next";
+
 import { FAQSchema, Breadcrumb } from "@/components";
+import { getOpengraphImageUrl } from "@/lib/server";
+
+import { ModernCalendar } from "../_components/modern-calendar";
 
 export const metadata: Metadata = {
   title: "利用案内 | 神奈川県横須賀市の射撃場【くりはま花の国】",
@@ -194,16 +197,7 @@ export default function ShootingRangeGuidePage() {
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
           スケジュール
         </h2>
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white ">
-          <div className="relative h-0 w-full overflow-hidden rounded-lg" style={{ paddingTop: "75%" }}>
-            <iframe
-              className="absolute left-0 top-0 h-full w-full rounded-lg"
-              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&src=MGVkNzRmNjkyY2M2ODY4OGIwZGZiYWU4MjNiMzlkNzQ5NDFjZTRjYjBmNzEyMjBhOTQ0YWRlMTNmMzVlZWMzZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23059669"
-              title="射撃場スケジュール"
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
+        <ModernCalendar />
       </section>
 
       {/* 利用料金 */}
