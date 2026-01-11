@@ -176,7 +176,7 @@ export default function ProjectsPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <a
-                  href="/static/projects/project_2025.pdf"
+                  href="/static/projects/project-2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded border border-[#238636] bg-[#238636]/20 px-3 py-1.5 text-xs text-[#3fb950] transition-all hover:bg-[#238636]/40 hover:shadow-[0_0_10px_#238636] sm:text-sm"

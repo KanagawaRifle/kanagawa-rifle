@@ -57,27 +57,74 @@ function formatDateRange(
   return `${startStr} ~ ${formatDate(end, allDay)}`;
 }
 
+function getFiscalYearRange(year: number) {
+  return {
+    start: new Date(year, 3, 1), // 4月1日
+    end: new Date(year + 1, 3, 1), // 翌年4月1日（validRangeはendを含まないため）
+    fiscalYear: year,
+  };
+}
+
+function getCurrentFiscalYear() {
+  const today = new Date();
+  return today.getMonth() < 3 ? today.getFullYear() - 1 : today.getFullYear();
+}
+
 export function TerminalCalendar() {
   const [selectedEvent, setSelectedEvent] = useState<EventDetail | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fiscalYear, setFiscalYear] = useState(getCurrentFiscalYear());
+
+  const fiscalYearRange = getFiscalYearRange(fiscalYear);
 
   return (
     <div className={styles.wrapper}>
       <FullCalendar
+        key={fiscalYear}
         plugins={[listPlugin, googleCalendarPlugin]}
-        initialView="listYear"
+        initialView="list"
+        views={{
+          list: {
+            type: 'list',
+            duration: { months: 12 },
+          },
+        }}
         googleCalendarApiKey={env.GOOGLE_CALENDAR_API_KEY}
         eventSources={[
           {
-            googleCalendarId: env.GOOGLE_CALENDAR_ID,
+            googleCalendarId: env.GOOGLE_CALENDAR_ID_ANNUAL,
           },
         ]}
         locale={jaLocale}
+        customButtons={{
+          prevFiscalYear: {
+            text: "前年度",
+            click: () => setFiscalYear((prev) => prev - 1),
+          },
+          nextFiscalYear: {
+            text: "次年度",
+            click: () => setFiscalYear((prev) => prev + 1),
+          },
+          currentFiscalYear: {
+            text: "今年度",
+            click: () => setFiscalYear(getCurrentFiscalYear()),
+          },
+        }}
         headerToolbar={{
-          left: "prev,next today",
+          left: "prevFiscalYear,nextFiscalYear currentFiscalYear",
           center: "title",
           right: "",
         }}
+        visibleRange={{
+          start: fiscalYearRange.start,
+          end: fiscalYearRange.end,
+        }}
+        validRange={{
+          start: fiscalYearRange.start,
+          end: fiscalYearRange.end,
+        }}
+        initialDate={fiscalYearRange.start}
+        titleFormat={() => `${fiscalYearRange.fiscalYear}年度`}
         height="auto"
         eventClick={(info) => {
           info.jsEvent.preventDefault();
