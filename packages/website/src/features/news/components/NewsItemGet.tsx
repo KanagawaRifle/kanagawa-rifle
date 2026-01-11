@@ -131,7 +131,7 @@ export function NewsItemGet({ slug }: Props) {
 
       {/* 本文 */}
       <Card>
-        <div className="prose prose-lg dark:prose-invert p-4 md:p-10">
+        <div className="prose prose-lg max-w-none dark:prose-invert p-4 md:p-10">
           {news.content && <ReactMarkdown content={news.content} />}
         </div>
       </Card>
