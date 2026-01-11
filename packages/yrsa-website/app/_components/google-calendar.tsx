@@ -77,7 +77,10 @@ export function GoogleCalendar() {
         googleCalendarApiKey={env.GOOGLE_CALENDAR_API_KEY}
         eventSources={[
           {
-            googleCalendarId: env.GOOGLE_CALENDAR_ID,
+            googleCalendarId: env.GOOGLE_CALENDAR_ID_MAIN,
+          },
+          {
+            googleCalendarId: env.GOOGLE_CALENDAR_ID_ANNUAL,
           },
         ]}
         locale={jaLocale}
