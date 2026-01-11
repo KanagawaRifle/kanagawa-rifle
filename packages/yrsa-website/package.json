@@ -5,7 +5,7 @@
   "prettier": "@acme/prettier-config",
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "npx tsx scripts/generate-feed.ts",
+    "prebuild": "npx tsx scripts/generate-feed.ts && npx tsx scripts/generate-calendar-pdf.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -15,6 +15,7 @@
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "generate:feed": "npx tsx scripts/generate-feed.ts",
+    "generate:pdf": "npx tsx scripts/generate-calendar-pdf.ts",
     "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
@@ -25,8 +26,10 @@
     "@fullcalendar/react": "^6.1.15",
     "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
+    "pdfkit": "^0.15.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^2.6.0",
@@ -39,6 +42,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@types/node": "^22",
+    "@types/pdfkit": "^0.13.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
