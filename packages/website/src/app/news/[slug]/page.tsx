@@ -37,7 +37,7 @@ const preloadData = async (slug: string) => {
 
 export async function generateStaticParams() {
   try {
-    const res = await listNewsItems({ page: 1, size: 64 });
+    const res = await listNewsItems({ page: 1, size: 10000 });
 
     if (!res.data || res.data.length === 0) {
       logger.warn('No news items found for static generation', { source: 'news/[slug]/page.generateStaticParams' });
