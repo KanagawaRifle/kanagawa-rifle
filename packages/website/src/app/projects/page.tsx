@@ -30,6 +30,13 @@ type YearData = {
 
 const YEARS_DATA: readonly YearData[] = [
   {
+    era: '令和8年度',
+    western: '2026年度',
+    documents: [
+      { filename: '/projects/2026/schedule.pdf', title: '事業計画案', type: 'PDF' },
+    ],
+  },
+  {
     era: '令和7年度',
     western: '2025年度',
     documents: [
