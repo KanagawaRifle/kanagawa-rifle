@@ -34,6 +34,8 @@ const YEARS_DATA: readonly YearData[] = [
     western: '2026年度',
     documents: [
       { filename: '/projects/2026/schedule.pdf', title: '事業計画案', type: 'PDF' },
+      { filename: '/projects/2026/competitions.pdf', title: '主催大会および推薦申請のご案内', type: 'PDF' },
+      { filename: '/projects/2026/membership.pdf', title: '会員資格更新のご案内', type: 'PDF' },
     ],
   },
   {
