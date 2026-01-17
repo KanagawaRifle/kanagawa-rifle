@@ -294,7 +294,7 @@ async function generatePDF(fiscalYear: number, monthlyEvents: MonthlyEvents[]): 
         const dateGroupStartY = currentY;
 
         dateGroup.events.forEach((eventName, eventIndex) => {
-          const cellHeight = rowHeights[rowIndex];
+          const cellHeight = rowHeights[rowIndex] ?? 20; // デフォルト値を設定
           const textY = currentY;
 
           // 月列のテキスト（最初の行のみ）
