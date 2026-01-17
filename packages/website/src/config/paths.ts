@@ -12,7 +12,7 @@ type SubPathKeys = 'forms' | 'links';
 type ExternalPathKeys = 'jrsf' | 'yrsa' | 'nichiranet';
 
 // competitionsの子要素のキーを定義
-type CompetitionChildrenKeys = 'year2024' | 'year2023' | 'year2022';
+type CompetitionChildrenKeys = 'year2026' | 'year2025' | 'year2024' | 'year2023' | 'year2022';
 
 // 特定のパスの型を詳細に定義
 type CompetitionsPathItem = PathItem & {
@@ -63,6 +63,18 @@ export const paths: Paths = {
       description:
         'ライフル射撃大会の情報。スモールボア・エアライフル・ビームライフル競技の参加料、大会要項、射座割、成績など出場に必要な情報を掲載。',
       children: {
+        year2026: {
+          name: '大会（2026年度）',
+          getHref: () => '/competitions/2026',
+          description:
+            '2026年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
+        },
+        year2025: {
+          name: '大会（2025年度）',
+          getHref: () => '/competitions/2025',
+          description:
+            '2025年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
+        },
         year2024: {
           name: '大会（2024年度）',
           getHref: () => '/competitions/2024',

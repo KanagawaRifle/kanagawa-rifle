@@ -7,7 +7,7 @@ import { PageLayout } from '@/components';
 import { app, env, paths } from '@/config';
 
 import { EntryInfoCard, EntryFeeCard, EventCard, Tabs } from './_components';
-import { year2025 } from './_databases';
+import { year2026 } from './_databases';
 import type { Event, DateValue } from './_types';
 
 const currentPath = paths.main.competitions;
@@ -64,7 +64,7 @@ function generateEventJsonLd(events: Event[]) {
 }
 
 export default function Page() {
-  const eventJsonLd = generateEventJsonLd(year2025);
+  const eventJsonLd = generateEventJsonLd(year2026);
 
   return (
     <PageLayout
@@ -82,12 +82,12 @@ export default function Page() {
         />
       ))}
 
-      <Tabs year={2025} />
+      <Tabs year={2026} />
 
       <EntryInfoCard />
       <EntryFeeCard />
 
-      {year2025.map((event) => (
+      {year2026.map((event) => (
         <EventCard
           key={event.name}
           name={event.name}
