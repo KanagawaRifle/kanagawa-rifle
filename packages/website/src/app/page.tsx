@@ -40,6 +40,20 @@ export default function Page() {
         </p>
       </div>
 
+      <Alert variant="warning">
+        <AlertTitle>【重要】令和8年度のお知らせ</AlertTitle>
+        <AlertDescription>
+          <ButtonGroup className="flex-wrap">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/news/2026-01-11-03">国スポ予選日程</Link>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/news/2026-01-11-04">会費改定・資格更新</Link>
+            </Button>
+          </ButtonGroup>
+        </AlertDescription>
+      </Alert>
+
       <Alert variant="info">
         <AlertTitle>第25回冬季ＡＲ･ＡＰランクリスト競技会</AlertTitle>
         <AlertDescription>
