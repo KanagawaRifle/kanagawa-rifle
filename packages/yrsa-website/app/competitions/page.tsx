@@ -53,6 +53,7 @@ interface CompetitionCardProps {
   description: string;
   guidelinesHref?: string;
   resultsHref?: string;
+  startListsHref?: string;
 }
 
 function CompetitionCard({
@@ -61,6 +62,7 @@ function CompetitionCard({
   description,
   guidelinesHref,
   resultsHref,
+  startListsHref,
 }: CompetitionCardProps) {
   return (
     <div className="flex flex-col border-2 border-b-[#808080] border-l-white border-r-[#808080] border-t-white bg-[#c0c0c0] [box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]">
@@ -79,12 +81,15 @@ function CompetitionCard({
             <p className="text-xs leading-relaxed text-black">{description}</p>
           </div>
         )}
-        {(guidelinesHref || resultsHref) && (
+        {(guidelinesHref || startListsHref || resultsHref) && (
           <div className="mt-2 flex gap-2">
             {guidelinesHref && (
               <Win95Button href={guidelinesHref} variant="primary">
                 要項
               </Win95Button>
+            )}
+            {startListsHref && (
+              <Win95Button href={startListsHref}>射座</Win95Button>
             )}
             {resultsHref && (
               <Win95Button href={resultsHref}>結果</Win95Button>
@@ -178,6 +183,7 @@ export default function CompetitionsPage() {
               title="ヤングスターファイナル（G3）"
               description="毎年2月に開催される小中学生大会です。"
               guidelinesHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-details.pdf"
+              startListsHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-start-lists.pdf"
             />
 
             <CompetitionCard
