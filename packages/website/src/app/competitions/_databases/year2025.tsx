@@ -6,6 +6,19 @@ import { Event } from '../_types/';
 
 export const year2025: Event[] = [
   {
+    name: '神奈川県ジュニアライフル射撃競技選手権大会',
+    grade: 'G4',
+    actions: [
+      {
+        name: '要項',
+        href: paths.cdn.getHref('/competitions/2025/2026-02-21-kanagawa-junior-championship-details.pdf'),
+      },
+    ],
+    date: { from: new Date('2026/2/21'), to: new Date('2026/2/22') },
+    deadline: new Date('2026/2/4'),
+    venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
+  },
+  {
     name: '第6回秋季神奈川オープン 兼 県選手権大会',
     grade: 'G3',
     actions: [
