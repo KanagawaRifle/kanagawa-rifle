@@ -13,6 +13,10 @@ export const year2025: Event[] = [
         name: '要項',
         href: paths.cdn.getHref('/competitions/2025/2026-02-21-kanagawa-junior-championship-details.pdf'),
       },
+      {
+        name: '射座',
+        href: paths.cdn.getHref('/competitions/2025/2026-02-21-kanagawa-junior-championship-start-lists.pdf'),
+      },
     ],
     date: { from: new Date('2026/2/21'), to: new Date('2026/2/22') },
     deadline: new Date('2026/2/4'),
