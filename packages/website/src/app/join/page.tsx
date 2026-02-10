@@ -165,16 +165,16 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
-            <div className="px-4 py-2">27,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">17,000円</div>
-            <div className="px-4 py-2">22,500円</div>
+            <div className="px-4 py-2">30,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">20,000円</div>
+            <div className="px-4 py-2">25,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
-            <div className="px-4 py-2">12,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">7,000円</div>
+            <div className="px-4 py-2">15,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">10,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -208,16 +208,16 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
-            <div className="px-4 py-2">7,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">5,000円</div>
-            <div className="px-4 py-2">6,500円</div>
+            <div className="px-4 py-2">8,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">6,000円</div>
+            <div className="px-4 py-2">7,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
-            <div className="px-4 py-2">3,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">4,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -250,16 +250,16 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
-            <div className="px-4 py-2">4,500円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
-            <div className="px-4 py-2">4,500円</div>
+            <div className="px-4 py-2">5,500円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">4,000円</div>
+            <div className="px-4 py-2">5,500円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
-            <div className="px-4 py-2">3,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">4,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -278,7 +278,7 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>更新
             </div>
-            <div className="p-2 text-center">5,500円</div>
+            <div className="p-2 text-center">6,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
             <div className="px-4 py-2">
@@ -286,7 +286,7 @@ export default function Page() {
               <br />
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ更新
             </div>
-            <div className="p-2 text-center">2,000円</div>
+            <div className="p-2 text-center">3,000円</div>
           </div>
           <div className="grid grid-cols-2 gap-0">
             <div className="px-4 py-2">
@@ -295,7 +295,7 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>更新＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>新規
             </div>
-            <div className="p-2 text-center">6,500円</div>
+            <div className="p-2 text-center">7,500円</div>
           </div>
           <div className="rounded-md border border-border bg-muted p-2 text-sm font-bold">新社会人（4月1日～）</div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
@@ -305,7 +305,7 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>更新
             </div>
-            <div className="p-2 text-center">17,500円</div>
+            <div className="p-2 text-center">20,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0 border-b border-border">
             <div className="px-4 py-2">
@@ -314,7 +314,7 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>更新
             </div>
-            <div className="p-2 text-center">17,500円</div>
+            <div className="p-2 text-center">20,500円</div>
           </div>
           <div className="grid grid-cols-2 gap-0">
             <div className="px-4 py-2">
@@ -323,7 +323,7 @@ export default function Page() {
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>更新＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>新規
             </div>
-            <div className="p-2 text-center">22,500円</div>
+            <div className="p-2 text-center">25,500円</div>
           </div>
         </CardContent>
       </Card>
@@ -393,9 +393,9 @@ export default function Page() {
               <br />
               <span className="font-bold text-green-700 dark:text-green-400">ラ</span>年会費
             </div>
-            <div className="px-4 py-2">7,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">2,000円</div>
-            <div className="px-4 py-2">2,000円</div>
+            <div className="px-4 py-2">10,000円</div>
+            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="px-4 py-2">3,000円</div>
           </div>
           <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
             <div className="px-4 py-2">移籍料</div>
