@@ -215,20 +215,20 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* 三県大口径古敷谷大会 */}
+            {/* 三県大口径大会 */}
             <section className="border-4 border-orange-400 bg-orange-50">
               <h2 className="bg-gradient-to-r from-orange-400 to-orange-600 px-3 py-1 font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
                 🔫 三県大口径射撃大会のご案内 🔫
               </h2>
               <div className="p-3 text-sm">
                 <ul className="space-y-1">
-                  <li><span className="font-bold">日時：</span>令和7年12月7日 (日) 8時集合</li>
-                  <li><span className="font-bold">会場：</span>千葉県射撃場（市原市古敷谷2620・043-698-0314）</li>
-                  <li><span className="font-bold">種目：</span>40発伏射・40発ベンチレスト・クラウンマッチ</li>
-                  <li><span className="font-bold">参加費：</span>6,000円</li>
+                  <li><span className="font-bold">日時：</span>令和8年3月7日 (土) 8時集合</li>
+                  <li><span className="font-bold">会場：</span>埼玉県長瀞総合射撃場（0494-66-1111）</li>
+                  <li><span className="font-bold">種目：</span>60発伏射・40発ベンチレスト・クラウンマッチ</li>
+                  <li><span className="font-bold">参加費：</span>60発伏射7,500円・その他7,000円</li>
                   <li><span className="font-bold">その他：</span>弁当・参加賞付き</li>
                   <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@yahoo.co.jp)</li>
-                  <li><span className="font-bold">申込締切：</span>11月26日 (水)</li>
+                  <li><span className="font-bold">申込締切：</span>2月25日 (水)</li>
                 </ul>
               </div>
             </section>
