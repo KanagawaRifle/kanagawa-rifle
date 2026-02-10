@@ -51,6 +51,7 @@ interface CompetitionCardProps {
   icon: StaticImageData;
   title: string;
   description: string;
+  infoHref?: string;
   guidelinesHref?: string;
   resultsHref?: string;
   startListsHref?: string;
@@ -60,6 +61,7 @@ function CompetitionCard({
   icon,
   title,
   description,
+  infoHref,
   guidelinesHref,
   resultsHref,
   startListsHref,
@@ -81,8 +83,13 @@ function CompetitionCard({
             <p className="text-xs leading-relaxed text-black">{description}</p>
           </div>
         )}
-        {(guidelinesHref || startListsHref || resultsHref) && (
+        {(infoHref || guidelinesHref || startListsHref || resultsHref) && (
           <div className="mt-2 flex gap-2">
+            {infoHref && (
+              <Win95Button href={infoHref} variant="primary">
+                大会情報
+              </Win95Button>
+            )}
             {guidelinesHref && (
               <Win95Button href={guidelinesHref} variant="primary">
                 要項
@@ -182,8 +189,7 @@ export default function CompetitionsPage() {
               icon={iconYoungStarImage}
               title="ヤングスターファイナル（G3）"
               description="毎年2月に開催される小中学生大会です。"
-              guidelinesHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-details.pdf"
-              startListsHref="https://static.kanagawa-rifle.org/website/competitions/2025/2026-02-06-young-star-final-start-lists.pdf"
+              infoHref="/competitions/young-star-final"
             />
 
             <CompetitionCard
