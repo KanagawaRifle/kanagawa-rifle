@@ -25,15 +25,4 @@ export const year2026: Event[] = [
     deadline: new Date('2026/4/8'),
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
   },
-  {
-    name: '第1回冬季神奈川オープン（国スポ一次予選会・東日本選手権予選会）',
-    grade: 'G3',
-    actions: [
-      { name: '申込', href: 'https://forms.gle/fPPscqHUS5ptUVzh8' },
-      { name: '要項', href: 'https://static.kanagawa-rifle.org/website/competitions/2025/2026-03-29-winter-kanagawa-open-championship-details.pdf' },
-    ],
-    date: new Date('2026/3/29'),
-    deadline: new Date('2026/3/11'),
-    venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
-  },
 ];
