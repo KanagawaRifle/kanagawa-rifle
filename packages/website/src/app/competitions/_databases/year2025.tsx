@@ -18,6 +18,10 @@ export const year2025: Event[] = [
         name: '射座',
         href: paths.cdn.getHref('/competitions/2025/2026-03-29-winter-kanagawa-open-championship-start-lists.pdf'),
       },
+      {
+        name: '成績',
+        href: paths.cdn.getHref('/competitions/2025/2026-03-29-winter-kanagawa-open-championship-results.pdf'),
+      },
     ],
     date: new Date('2026/3/29'),
     deadline: new Date('2026/3/11'),
