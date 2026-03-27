@@ -147,7 +147,7 @@ export default function Page() {
         <AlertDescription>
           <div className="flex items-center gap-2 pb-3">
             <span className="text-primary"><Calendar className="h-5 w-5" /></span>
-            <span>6月18日(木)</span>
+            <span>6月18日(木)～6月21日(日)（公式練習 6月18日(木)）</span>
           </div>
           <ButtonGroup className="flex-wrap">
             <Button variant="outline" size="sm" asChild>

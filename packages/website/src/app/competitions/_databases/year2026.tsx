@@ -37,7 +37,8 @@ export const year2026: Event[] = [
         href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-results.pdf'),
       },
     ],
-    date: new Date('2026/6/18'),
+    date: { from: new Date('2026/6/18'), to: new Date('2026/6/21') },
+    pet: new Date('2026/6/18'),
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
   },
   {
