@@ -85,6 +85,15 @@ export default function Page() {
                 射座割
               </a>
             </Button>
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2025/2026-03-29-winter-kanagawa-open-championship-results.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                成績
+              </a>
+            </Button>
           </ButtonGroup>
         </AlertDescription>
       </Alert>
