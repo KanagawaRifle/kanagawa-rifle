@@ -1,3 +1,5 @@
+import { paths } from '@/config';
+
 import { Event } from '../_types/';
 
 export const year2026: Event[] = [
@@ -20,7 +22,21 @@ export const year2026: Event[] = [
   {
     name: '第2回春季神奈川オープン（国スポ最終予選会・全関東選手権予選会）',
     grade: 'G3',
-    actions: [{ name: '申込', href: 'https://forms.gle/wD1AJVLZvuteDWN29' }],
+    actions: [
+      { name: '申込', href: 'https://forms.gle/wD1AJVLZvuteDWN29' },
+      {
+        name: '要項',
+        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf'),
+      },
+      {
+        name: '射座',
+        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf'),
+      },
+      {
+        name: '成績',
+        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf'),
+      },
+    ],
     date: new Date('2026/4/26'),
     deadline: new Date('2026/4/8'),
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },

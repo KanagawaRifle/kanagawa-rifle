@@ -111,15 +111,33 @@ export default function Page() {
                 申込
               </a>
             </Button>
-            {/*<Button variant="outline" size="sm" asChild>*/}
-            {/*  <a*/}
-            {/*    href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf"*/}
-            {/*    target="_blank"*/}
-            {/*    rel="noopener noreferrer"*/}
-            {/*  >*/}
-            {/*    要項*/}
-            {/*  </a>*/}
-            {/*</Button>*/}
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                要項
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                射座割
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                成績
+              </a>
+            </Button>
           </ButtonGroup>
         </AlertDescription>
       </Alert>
