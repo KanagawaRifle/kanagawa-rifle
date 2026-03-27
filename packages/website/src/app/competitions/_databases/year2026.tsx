@@ -20,6 +20,27 @@ export const year2026: Event[] = [
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
   },
   {
+    name: '第56回東日本ライフル射撃競技選手権大会',
+    grade: 'G2',
+    actions: [
+      { name: '申込', href: 'https://forms.gle/6XGY1qhEvr3gkasJ9' },
+      {
+        name: '要項',
+        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-details.pdf'),
+      },
+      {
+        name: '射座',
+        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf'),
+      },
+      {
+        name: '成績',
+        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-results.pdf'),
+      },
+    ],
+    date: new Date('2026/6/18'),
+    venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
+  },
+  {
     name: '第2回春季神奈川オープン（国スポ最終予選会・全関東選手権予選会）',
     grade: 'G3',
     actions: [
