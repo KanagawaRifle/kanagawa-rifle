@@ -31,10 +31,12 @@ export const year2026: Event[] = [
       {
         name: '射座',
         href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf'),
+        disabled: true,
       },
       {
         name: '成績',
         href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-results.pdf'),
+        disabled: true,
       },
     ],
     date: { from: new Date('2026/6/18'), to: new Date('2026/6/21') },
@@ -53,10 +55,12 @@ export const year2026: Event[] = [
       {
         name: '射座',
         href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf'),
+        disabled: true,
       },
       {
         name: '成績',
         href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf'),
+        disabled: true,
       },
     ],
     date: new Date('2026/4/26'),
