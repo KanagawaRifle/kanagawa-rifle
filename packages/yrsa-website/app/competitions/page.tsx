@@ -165,8 +165,7 @@ export default function CompetitionsPage() {
               icon={iconRankListImage}
               title="冬季ランクリスト（G3）"
               description="毎年、１２月・１月・２月、計６回全国の射撃場において、ＡＲピストル・ＡＲライフルのランキング大会を行っています。ランキング大会は「公認競技会の格付規定」に基づいて日本ライフル射撃協会の会員内で競い合います。"
-              guidelinesHref="/competitions/rank-list"
-              resultsHref="https://static.kanagawa-rifle.org/website/competitions/2024/2024-12-07-winter-ar-ap-rank-list-results.pdf"
+              infoHref="/competitions/rank-list"
             />
 
             <CompetitionCard
