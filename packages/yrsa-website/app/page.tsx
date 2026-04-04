@@ -102,7 +102,7 @@ export default function HomePage() {
         <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
           <div className={`whitespace-nowrap ${styles.marquee}`}>
             <span className="mx-4 text-red-600" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-              📢 お知らせ：ランクリスト競技会開催中！！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
+              📢 お知らせ：三県大口径射撃大会 6/7開催！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
             </span>
           </div>
         </div>
@@ -127,42 +127,6 @@ export default function HomePage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* 左カラム */}
           <div className="space-y-4">
-            {/* ランクリスト競技会 */}
-            <section className="border-4 border-blue-400 bg-blue-50">
-              <h2 className="bg-gradient-to-r from-blue-400 to-blue-600 px-3 py-1 font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-                📢 ランクリスト競技会のご案内 📢
-              </h2>
-              <div className="flex flex-wrap gap-2 p-3">
-                <a
-                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-details.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
-                >
-                  要項
-                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
-                </a>
-                <a
-                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-start-lists.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
-                >
-                  射座
-                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
-                </a>
-                <a
-                  href="https://static.kanagawa-rifle.org/website/competitions/2025/2025-12-06-winter-10m-rank-list-results.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded border-2 border-indigo-500 bg-white px-4 py-2 font-bold text-indigo-700 hover:bg-indigo-100"
-                >
-                  成績
-                  <span className="sr-only">（PDF、新しいタブで開きます）</span>
-                </a>
-              </div>
-            </section>
-
             {/* 講習会のお知らせ */}
             <section className="border-4 border-green-400 bg-green-50">
               <h2 className="bg-gradient-to-r from-green-400 to-green-600 px-3 py-1 font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
@@ -222,13 +186,12 @@ export default function HomePage() {
               </h2>
               <div className="p-3 text-sm">
                 <ul className="space-y-1">
-                  <li><span className="font-bold">日時：</span>令和8年3月7日 (土) 8時集合</li>
-                  <li><span className="font-bold">会場：</span>埼玉県長瀞総合射撃場（0494-66-1111）</li>
-                  <li><span className="font-bold">種目：</span>60発伏射・40発ベンチレスト・クラウンマッチ</li>
-                  <li><span className="font-bold">参加費：</span>60発伏射7,500円・その他7,000円</li>
-                  <li><span className="font-bold">その他：</span>弁当・参加賞付き</li>
+                  <li><span className="font-bold">日時：</span>令和８年６月７日 (日) 午前８時集合</li>
+                  <li><span className="font-bold">会場：</span>千葉県射撃場（市原市古敷谷2620　0436-98-0314）</li>
+                  <li><span className="font-bold">種目：</span>Ｐ４０・ベンチレス４０・クラウンマッチ</li>
+                  <li><span className="font-bold">参加費：</span>６，０００円（弁当・参加賞付き）</li>
                   <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@yahoo.co.jp)</li>
-                  <li><span className="font-bold">申込締切：</span>2月25日 (水)</li>
+                  <li><span className="font-bold">申込締切：</span>5月27日 (水)</li>
                 </ul>
               </div>
             </section>
