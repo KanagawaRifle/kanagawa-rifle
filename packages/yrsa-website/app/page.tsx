@@ -188,7 +188,7 @@ export default function HomePage() {
                 <ul className="space-y-1">
                   <li><span className="font-bold">日時：</span>令和８年６月７日 (日) 午前８時集合</li>
                   <li><span className="font-bold">会場：</span>千葉県射撃場（市原市古敷谷2620　0436-98-0314）</li>
-                  <li><span className="font-bold">種目：</span>Ｐ４０・ベンチレス４０・クラウンマッチ</li>
+                  <li><span className="font-bold">種目：</span>40発伏射・40発ベンチレスト・クラウンマッチ</li>
                   <li><span className="font-bold">参加費：</span>６，０００円（弁当・参加賞付き）</li>
                   <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@yahoo.co.jp)</li>
                   <li><span className="font-bold">申込締切：</span>5月27日 (水)</li>
