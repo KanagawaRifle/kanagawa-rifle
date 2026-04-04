@@ -36,7 +36,7 @@ export const components: Components = {
   // インラインコード
   code: ({ children, ...props }) => {
     return (
-      <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-pink-600 dark:text-pink-400" {...props}>
+      <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-secondary dark:text-secondary" {...props}>
         {children}
       </code>
     );

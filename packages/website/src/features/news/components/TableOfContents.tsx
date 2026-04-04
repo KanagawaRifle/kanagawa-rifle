@@ -30,20 +30,20 @@ export default function TableOfContents({ toc }: { toc: Array<{ id: string; titl
   if (toc.length === 0) return null;
 
   return (
-    <div className="mb-8 rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
-      <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">目次</h3>
+    <div className="mb-8 rounded-lg bg-muted p-4">
+      <h3 className="mb-3 text-lg font-semibold text-foreground">目次</h3>
       <nav>
         <ul className="space-y-1">
           {toc.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`block text-sm transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400 ${
+                className={`block text-sm transition-colors duration-200 hover:text-primary ${
                   item.level === 1
-                    ? 'font-semibold text-gray-900 dark:text-white'
+                    ? 'font-semibold text-foreground'
                     : item.level === 2
-                      ? 'ml-3 font-medium text-gray-700 dark:text-gray-300'
-                      : 'ml-6 text-gray-600 dark:text-gray-400'
+                      ? 'ml-3 font-medium text-foreground'
+                      : 'ml-6 text-muted-foreground'
                 }`}
                 style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
               >
