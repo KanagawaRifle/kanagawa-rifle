@@ -10,8 +10,8 @@
 /* ===== Light Mode (default) ===== */
 :root {
   /* Background & Foreground */
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(20.32% 0.02 253.53);
+  --color-background: oklch(98.18% 0.005 95.10);
+  --color-foreground: oklch(19.08% 0.002 106.59);
 
   /* Primary: #288140 (deep green) */
   --color-primary: oklch(47.63% 0.13 148.04);
@@ -24,25 +24,25 @@
   /* Secondary Bright: original orange for large decorative text (3:1 OK) */
   --color-secondary-bright: oklch(66.62% 0.16 60.91);
 
-  /* Accent: #4285f4 (blue) */
-  --color-accent: oklch(60.21% 0.17 261.36);
+  /* Accent: blue — WCAG AA adjusted */
+  --color-accent: oklch(55% 0.17 261.36);
   --color-accent-foreground: oklch(98% 0.01 261.36);
 
-  /* Muted - rgba(0, 0, 0, 0.04) for bg, higher contrast text */
-  --color-muted: oklch(96.14% 0.01 253.53);
-  --color-muted-foreground: oklch(40% 0 0);
+  /* Muted - warm off-white for footer/subdued areas */
+  --color-muted: oklch(95.5% 0.007 95.10);
+  --color-muted-foreground: oklch(40% 0.003 106.59);
 
   /* Card */
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(20.32% 0.02 253.53);
+  --color-card: oklch(99.5% 0.003 95.10);
+  --color-card-foreground: oklch(19.08% 0.002 106.59);
 
   /* Popover */
-  --color-popover: oklch(100% 0 0);
-  --color-popover-foreground: oklch(20.32% 0.02 253.53);
+  --color-popover: oklch(98.18% 0.005 95.10);
+  --color-popover-foreground: oklch(19.08% 0.002 106.59);
 
-  /* Border & Input - rgba(0, 0, 0, 0.12) */
-  --color-border: oklch(88% 0 0);
-  --color-input: oklch(88% 0 0);
+  /* Border & Input - warm neutral */
+  --color-border: oklch(88% 0.005 95.10);
+  --color-input: oklch(88% 0.005 95.10);
 
   /* Ring */
   --color-ring: oklch(47.63% 0.13 148.04);
@@ -63,14 +63,14 @@
   --color-info: oklch(55.26% 0.14 239.54);
   --color-info-foreground: oklch(32.04% 0.07 239.07);
 
-  /* Sidebar (for Sheet/Drawer) */
-  --color-sidebar: oklch(98.5% 0.01 253.53);
-  --color-sidebar-foreground: oklch(20.32% 0.02 253.53);
+  /* Sidebar (for Sheet/Drawer) - warm tones */
+  --color-sidebar: oklch(97.5% 0.006 95.10);
+  --color-sidebar-foreground: oklch(19.08% 0.002 106.59);
   --color-sidebar-primary: oklch(47.63% 0.13 148.04);
   --color-sidebar-primary-foreground: oklch(98% 0.01 148.04);
-  --color-sidebar-accent: oklch(96.14% 0.01 253.53);
-  --color-sidebar-accent-foreground: oklch(20.32% 0.02 253.53);
-  --color-sidebar-border: oklch(73.72% 0.02 253.53);
+  --color-sidebar-accent: oklch(95.5% 0.007 95.10);
+  --color-sidebar-accent-foreground: oklch(19.08% 0.002 106.59);
+  --color-sidebar-border: oklch(73.72% 0.01 95.10);
   --color-sidebar-ring: oklch(47.63% 0.13 148.04);
 
   /* Chart colors */
