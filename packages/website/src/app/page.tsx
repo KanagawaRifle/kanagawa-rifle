@@ -107,7 +107,7 @@ export default function Page() {
           </div>
           <ButtonGroup className="flex-wrap">
             <Button variant="outline" size="sm" asChild>
-              <a href="https://forms.gle/6XGY1qhEvr3gkasJ9" target="_blank" rel="noopener noreferrer">
+              <a href="https://forms.gle/peGYBRiyjR6xqYEi8" target="_blank" rel="noopener noreferrer">
                 申込
               </a>
             </Button>
@@ -158,7 +158,7 @@ export default function Page() {
             </div>
             <div>
               <Button variant="outline" asChild>
-                <a href="https://forms.gle/6XGY1qhEvr3gkasJ9" target="_blank" rel="noopener noreferrer">
+                <a href="https://forms.gle/peGYBRiyjR6xqYEi8" target="_blank" rel="noopener noreferrer">
                   <NotebookPen className="mr-2 h-4 w-4" />
                   日ラ等大会申込
                 </a>

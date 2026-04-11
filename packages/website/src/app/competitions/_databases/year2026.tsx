@@ -23,7 +23,7 @@ export const year2026: Event[] = [
     name: '第56回東日本ライフル射撃競技選手権大会',
     grade: 'G2',
     actions: [
-      { name: '申込', href: 'https://forms.gle/6XGY1qhEvr3gkasJ9' },
+      { name: '申込', href: 'https://forms.gle/peGYBRiyjR6xqYEi8' },
       {
         name: '要項',
         href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-details.pdf'),
