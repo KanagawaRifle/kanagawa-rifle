@@ -65,31 +65,49 @@ const jsonLd = {
       {
         "@type": "Offer",
         name: "大人（1時間・市内）",
-        price: "260",
+        price: "300",
         priceCurrency: "JPY",
       },
       {
         "@type": "Offer",
         name: "大人（1時間・市外）",
-        price: "520",
+        price: "600",
         priceCurrency: "JPY",
       },
       {
         "@type": "Offer",
-        name: "小中高生（1時間・市内）",
-        price: "160",
+        name: "高校生（1時間・市内）",
+        price: "200",
         priceCurrency: "JPY",
       },
       {
         "@type": "Offer",
-        name: "小中高生（1時間・市外）",
-        price: "360",
+        name: "高校生（1時間・市外）",
+        price: "400",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "小中学生（1時間・市内）",
+        price: "0",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "小中学生（1時間・市外）",
+        price: "400",
         priceCurrency: "JPY",
       },
       {
         "@type": "Offer",
         name: "ビームライフルレンタル",
-        price: "760",
+        price: "870",
+        priceCurrency: "JPY",
+      },
+      {
+        "@type": "Offer",
+        name: "ビームライフルレンタル（小中高生）",
+        price: "530",
         priceCurrency: "JPY",
       },
     ],
@@ -108,7 +126,7 @@ const faqItems = [
   },
   {
     question: "利用料金はいくらですか？",
-    answer: "大人は1時間260円（市内）または520円（市外）です。小中高生は1時間160円（市内）または360円（市外）です。ビームライフルレンタルは760円です。",
+    answer: "大人は1時間300円（市内）または600円（市外）です。高校生は1時間200円（市内）または400円（市外）、小中学生は1時間0円（市内）または400円（市外）です。ビームライフルレンタルは870円（小中高生は530円）です。",
   },
   {
     question: "銃を持っていなくても利用できますか？",
@@ -205,13 +223,16 @@ export default function ShootingRangeGuidePage() {
         <h2 className="mb-4 border-l-4 border-emerald-600 pl-3 text-xl font-bold text-gray-800">
           利用料金
         </h2>
+        <p className="mb-3 text-sm text-gray-600">
+          市の条例改正に伴い、2026年4月1日より施設利用料金が変更となりました。
+        </p>
         <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
           <table className="w-full min-w-[320px]">
             <caption className="sr-only">利用料金表</caption>
             <thead>
               <tr className="bg-emerald-700 text-white">
                 <th scope="col" className="px-4 py-3 text-left text-sm font-medium">
-                  区分
+                  2026年4月1日からの新料金
                 </th>
                 <th scope="col" className="px-4 py-3 text-center text-sm font-medium">
                   市内
@@ -224,38 +245,48 @@ export default function ShootingRangeGuidePage() {
             <tbody className="divide-y divide-gray-200">
               <tr>
                 <th scope="row" className="px-4 py-3 text-left text-sm font-medium text-gray-800">
-                  大人（1時間）
+                  大人
                 </th>
                 <td className="px-4 py-3 text-center text-sm text-gray-800">
-                  260円
+                  300円（1時間）
                 </td>
                 <td className="px-4 py-3 text-center text-sm text-gray-800">
-                  520円
+                  600円（1時間）
                 </td>
               </tr>
               <tr className="bg-gray-50">
                 <th scope="row" className="px-4 py-3 text-left text-sm font-medium text-gray-800">
-                  小中高生（1時間）
+                  高校生
                 </th>
                 <td className="px-4 py-3 text-center text-sm text-gray-800">
-                  160円
+                  200円（1時間）
                 </td>
                 <td className="px-4 py-3 text-center text-sm text-gray-800">
-                  360円
+                  400円（1時間）
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="px-4 py-3 text-left text-sm font-medium text-gray-800">
-                  ビームライフルレンタル
+                  小中学生
                 </th>
-                <td
-                  className="px-4 py-3 text-center text-sm text-gray-800"
-                  colSpan={2}
-                >
-                  760円
+                <td className="px-4 py-3 text-center text-sm text-gray-800">
+                  0円（1時間）
+                </td>
+                <td className="px-4 py-3 text-center text-sm text-gray-800">
+                  400円（1時間）
                 </td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr className="bg-gray-50">
+                <td
+                  className="px-4 py-3 text-center text-sm text-gray-800"
+                  colSpan={3}
+                >
+                  ビームライフル利用は別途レンタル料870円（小中高生は530円）がかかります。
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
         <p className="mt-2 text-sm text-gray-600">
@@ -349,7 +380,7 @@ export default function ShootingRangeGuidePage() {
             <ul className="mt-2 space-y-1 text-sm text-emerald-700">
               <li>・ 銃の所持許可不要 - どなたでも体験可能</li>
               <li>・ 小学5年生以上から参加OK</li>
-              <li>・ レンタル料金：760円（時間無制限）</li>
+              <li>・ レンタル料金：870円（小中高生は530円）</li>
               <li>・ 受付時間：9:00〜15:00</li>
             </ul>
           </div>
