@@ -31,7 +31,6 @@ export const year2026: Event[] = [
       {
         name: '射座',
         href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf'),
-        disabled: true,
       },
       {
         name: '成績',
