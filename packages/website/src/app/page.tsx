@@ -1,6 +1,6 @@
 // packages/website/src/app/page.tsx
 
-import {Calendar, ChevronRight, NotebookPen} from 'lucide-react';
+import { Calendar, ChevronRight, NotebookPen } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -35,9 +35,7 @@ export default function Page() {
           <span style={{ color: 'var(--color-secondary-bright)' }}>ライフル射撃</span>
           <span className="text-accent">協会</span>
         </h1>
-        <p className="mt-2 text-muted-foreground">
-          ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体
-        </p>
+        <p className="mt-2 text-muted-foreground">ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体</p>
       </div>
 
       <Alert variant="warning">
@@ -58,7 +56,9 @@ export default function Page() {
         <AlertTitle>春季神奈川オープン（国スポ最終予選・全関東選手権予選）</AlertTitle>
         <AlertDescription>
           <div className="flex items-center gap-2 pb-3">
-            <span className="text-primary"><Calendar className="h-5 w-5" /></span>
+            <span className="text-primary">
+              <Calendar className="h-5 w-5" />
+            </span>
             <span>4月26日(日)（締切4月8日(水)）</span>
           </div>
           <ButtonGroup className="flex-wrap">
@@ -102,7 +102,9 @@ export default function Page() {
         <AlertTitle>東日本ライフル射撃競技選手権大会</AlertTitle>
         <AlertDescription>
           <div className="flex items-center gap-2 pb-3">
-            <span className="text-primary"><Calendar className="h-5 w-5" /></span>
+            <span className="text-primary">
+              <Calendar className="h-5 w-5" />
+            </span>
             <span>6月18日(木)～6月21日(日)（公式練習 6月18日(木)）</span>
           </div>
           <ButtonGroup className="flex-wrap">
@@ -120,15 +122,15 @@ export default function Page() {
                 要項
               </a>
             </Button>
-            {/*<Button variant="outline" size="sm" asChild>*/}
-            {/*  <a*/}
-            {/*    href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf"*/}
-            {/*    target="_blank"*/}
-            {/*    rel="noopener noreferrer"*/}
-            {/*  >*/}
-            {/*    射座割*/}
-            {/*  </a>*/}
-            {/*</Button>*/}
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                射座割
+              </a>
+            </Button>
             {/*<Button variant="outline" size="sm" asChild>*/}
             {/*  <a*/}
             {/*    href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-results.pdf"*/}
