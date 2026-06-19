@@ -53,52 +53,6 @@ export default function Page() {
       </Alert>
 
       <Alert variant="info">
-        <AlertTitle>春季神奈川オープン（国スポ最終予選・全関東選手権予選）</AlertTitle>
-        <AlertDescription>
-          <div className="flex items-center gap-2 pb-3">
-            <span className="text-primary">
-              <Calendar className="h-5 w-5" />
-            </span>
-            <span>4月26日(日)（締切4月8日(水)）</span>
-          </div>
-          <ButtonGroup className="flex-wrap">
-            <Button variant="outline" size="sm" asChild>
-              <a href="https://forms.gle/wD1AJVLZvuteDWN29" target="_blank" rel="noopener noreferrer">
-                申込
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                要項
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                射座割
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                成績
-              </a>
-            </Button>
-          </ButtonGroup>
-        </AlertDescription>
-      </Alert>
-
-      <Alert variant="info">
         <AlertTitle>東日本ライフル射撃競技選手権大会</AlertTitle>
         <AlertDescription>
           <div className="flex items-center gap-2 pb-3">
@@ -131,15 +85,15 @@ export default function Page() {
                 射座割
               </a>
             </Button>
-            {/*<Button variant="outline" size="sm" asChild>*/}
-            {/*  <a*/}
-            {/*    href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-results.pdf"*/}
-            {/*    target="_blank"*/}
-            {/*    rel="noopener noreferrer"*/}
-            {/*  >*/}
-            {/*    成績*/}
-            {/*  </a>*/}
-            {/*</Button>*/}
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-results.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                速報
+              </a>
+            </Button>
           </ButtonGroup>
         </AlertDescription>
       </Alert>
