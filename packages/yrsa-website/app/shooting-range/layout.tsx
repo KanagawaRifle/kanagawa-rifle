@@ -81,10 +81,10 @@ export default function ShootingRangeLayout({
               <div className="text-sm">
                 <p className="font-medium text-gray-800">メール</p>
                 <a
-                  href="mailto:yokosukarifle@yahoo.co.jp"
+                  href="mailto:yokosukarifle@gmail.com"
                   className="text-gray-600 hover:text-emerald-600 hover:underline focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                 >
-                  yokosukarifle@yahoo.co.jp
+                  yokosukarifle@gmail.com
                 </a>
               </div>
             </div>

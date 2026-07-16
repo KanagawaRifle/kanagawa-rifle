@@ -6,7 +6,7 @@ const defaults = {
   name: "横須賀市ライフル射撃協会",
   shortName: "YRSA",
   telephone: "046-823-0617",
-  email: "yokosukarifle@yahoo.co.jp",
+  email: "yokosukarifle@gmail.com",
   postalCode: "238-0042",
   address: "神奈川県横須賀市汐入町2-2 サンロク商事内",
 } as const;

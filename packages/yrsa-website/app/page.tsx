@@ -166,8 +166,8 @@ export default function HomePage() {
                   <dt className="font-bold">お問い合わせ：</dt>
                   <dd className="ml-4">
                     Ｅメール：
-                    <a href="mailto:yokosukarifle@yahoo.co.jp" className="text-blue-600 underline hover:text-red-600">
-                      yokosukarifle@yahoo.co.jp
+                    <a href="mailto:yokosukarifle@gmail.com" className="text-blue-600 underline hover:text-red-600">
+                      yokosukarifle@gmail.com
                     </a>
                   </dd>
                   <dd className="ml-4">電話：046-833-6990</dd>
@@ -191,7 +191,7 @@ export default function HomePage() {
                   <li><span className="font-bold">種目：</span>40発伏射・40発ベンチレスト・クラウンマッチ</li>
                   <li><span className="font-bold">参加費：</span>6,000円</li>
                   <li><span className="font-bold">その他：</span>弁当・参加賞付き</li>
-                  <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@yahoo.co.jp)</li>
+                  <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@gmail.com)</li>
                   <li><span className="font-bold">申込締切：</span>5月27日 (水)</li>
                 </ul>
               </div>
@@ -253,8 +253,8 @@ export default function HomePage() {
           </p>
           <p className="mt-1 text-sm">
             📧{" "}
-            <a href="mailto:yokosukarifle@yahoo.co.jp" className="text-blue-600 underline hover:text-red-600">
-              yokosukarifle@yahoo.co.jp
+            <a href="mailto:yokosukarifle@gmail.com" className="text-blue-600 underline hover:text-red-600">
+              yokosukarifle@gmail.com
             </a>
           </p>
           <p className="mt-2 text-xs text-gray-600">

@@ -105,7 +105,7 @@ export default function MonthlyCompetitionPage() {
                       電話・FAX：046-833-6990
                     </p>
                     <p className="font-bold text-[#008000]">
-                      Eメール：yokosukarifle@yahoo.co.jp
+                      Eメール：yokosukarifle@gmail.com
                     </p>
                   </td>
                 </tr>

@@ -106,10 +106,10 @@ export default function RankListPage() {
               <p className="mt-1 font-bold text-[#008000]">
                 メール：
                 <a
-                  href="mailto:yokosukarifle@yahoo.co.jp"
+                  href="mailto:yokosukarifle@gmail.com"
                   className="text-[#0000ff] underline hover:text-[#ff0000]"
                 >
-                  yokosukarifle@yahoo.co.jp
+                  yokosukarifle@gmail.com
                 </a>
               </p>
             </div>

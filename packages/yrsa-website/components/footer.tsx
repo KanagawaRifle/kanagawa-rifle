@@ -106,10 +106,10 @@ export function Footer() {
                 <dd>
                   📧{" "}
                   <a
-                    href="mailto:yokosukarifle@yahoo.co.jp"
+                    href="mailto:yokosukarifle@gmail.com"
                     className="text-blue-600 underline hover:text-red-600"
                   >
-                    yokosukarifle@yahoo.co.jp
+                    yokosukarifle@gmail.com
                   </a>
                 </dd>
               </div>
