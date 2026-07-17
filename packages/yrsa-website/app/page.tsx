@@ -107,53 +107,37 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* メールアドレス変更のお知らせ */}
-        <section className="mb-6 border-4 border-red-500 bg-yellow-50 shadow-lg">
-          <h2
-            className="bg-gradient-to-r from-red-500 to-pink-500 px-3 py-2 text-center font-bold text-white"
-            style={{ fontFamily: "Comic Sans MS, cursive" }}
-          >
-            📧 メールアドレス変更のお知らせ 📧
-          </h2>
-          <div className="p-4 text-center text-sm">
-            <p className="font-bold">横須賀市ライフル射撃協会のメールアドレスを変更しました。</p>
-            <dl className="mx-auto mt-3 inline-grid grid-cols-[auto_1fr] gap-x-2 gap-y-1 text-left">
-              <dt className="font-bold">旧：</dt>
-              <dd>yokosukarifle@yahoo.co.jp</dd>
-              <dt className="font-bold text-red-700">新：</dt>
-              <dd>
-                <a
-                  href="mailto:yokosukarifle@gmail.com"
-                  className="font-bold text-blue-600 underline hover:text-red-600"
-                >
-                  yokosukarifle@gmail.com
-                </a>
-              </dd>
-            </dl>
-            <p className="mt-3">今後のお問い合わせは、新しいメールアドレスへお願いいたします。</p>
-          </div>
-        </section>
-
-        {/* メニューリンク */}
-        <div className="mb-6 flex flex-wrap justify-center gap-2 border-2 border-dashed border-orange-400 bg-orange-50 p-4">
-          <Link href="/shooting-range" className="rounded bg-gradient-to-b from-orange-300 to-orange-500 px-4 py-2 font-bold text-white shadow hover:from-orange-400 hover:to-orange-600">
-            🏠 射撃場
-          </Link>
-          <Link href="/about" className="rounded bg-gradient-to-b from-green-300 to-green-500 px-4 py-2 font-bold text-white shadow hover:from-green-400 hover:to-green-600">
-            📖 協会について
-          </Link>
-          <Link href="/competitions" className="rounded bg-gradient-to-b from-blue-300 to-blue-500 px-4 py-2 font-bold text-white shadow hover:from-blue-400 hover:to-blue-600">
-            🏆 競技会
-          </Link>
-          <Link href="/links" className="rounded bg-gradient-to-b from-purple-300 to-purple-500 px-4 py-2 font-bold text-white shadow hover:from-purple-400 hover:to-purple-600">
-            🔗 リンク
-          </Link>
-        </div>
-
         {/* 2カラムレイアウト */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* 左カラム */}
           <div className="space-y-4">
+            {/* メールアドレス変更のお知らせ */}
+            <section className="border-4 border-red-500 bg-yellow-50 shadow-lg">
+              <h2
+                className="bg-gradient-to-r from-red-500 to-pink-500 px-3 py-2 text-center font-bold text-white"
+                style={{ fontFamily: "Comic Sans MS, cursive" }}
+              >
+                📧 メールアドレス変更のお知らせ 📧
+              </h2>
+              <div className="p-4 text-center text-sm">
+                <p className="font-bold">横須賀市ライフル射撃協会のメールアドレスを変更しました。</p>
+                <dl className="mx-auto mt-3 inline-grid grid-cols-[auto_1fr] gap-x-2 gap-y-1 text-left">
+                  <dt className="font-bold">旧：</dt>
+                  <dd>yokosukarifle@yahoo.co.jp</dd>
+                  <dt className="font-bold text-red-700">新：</dt>
+                  <dd>
+                    <a
+                      href="mailto:yokosukarifle@gmail.com"
+                      className="font-bold text-blue-600 underline hover:text-red-600"
+                    >
+                      yokosukarifle@gmail.com
+                    </a>
+                  </dd>
+                </dl>
+                <p className="mt-3">今後のお問い合わせは、新しいメールアドレスへお願いいたします。</p>
+              </div>
+            </section>
+
             {/* 講習会のお知らせ */}
             <section className="border-4 border-green-400 bg-green-50">
               <h2 className="bg-gradient-to-r from-green-400 to-green-600 px-3 py-1 font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
