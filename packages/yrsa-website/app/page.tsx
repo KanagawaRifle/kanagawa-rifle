@@ -102,7 +102,7 @@ export default function HomePage() {
         <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
           <div className={`whitespace-nowrap ${styles.marquee}`}>
             <span className="mx-4 text-red-600" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-              📢 お知らせ：三県大口径射撃大会 6/7開催！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
+              📢 お知らせ：三県大口径長瀞大会 9/5開催（申込締切 8/26）！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
             </span>
           </div>
         </div>
@@ -190,20 +190,20 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* 三県大口径大会 */}
+            {/* 三県大口径長瀞大会 */}
             <section className="border-4 border-orange-400 bg-orange-50">
               <h2 className="bg-gradient-to-r from-orange-400 to-orange-600 px-3 py-1 font-bold text-white" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-                🔫 三県大口径射撃大会のご案内 🔫
+                🔫 三県大口径長瀞大会のご案内 🔫
               </h2>
               <div className="p-3 text-sm">
                 <ul className="space-y-1">
-                  <li><span className="font-bold">日時：</span>令和８年６月７日 (日) 午前８時集合</li>
-                  <li><span className="font-bold">会場：</span>千葉県射撃場（市原市古敷谷2620　0436-98-0314）</li>
-                  <li><span className="font-bold">種目：</span>40発伏射・40発ベンチレスト・クラウンマッチ</li>
-                  <li><span className="font-bold">参加費：</span>6,000円</li>
+                  <li><span className="font-bold">日時：</span>令和８年９月５日 (土) 午前８時集合</li>
+                  <li><span className="font-bold">会場：</span>埼玉県長瀞総合射撃場（0494-66-1111）</li>
+                  <li><span className="font-bold">種目：</span>60発伏射・40発ベンチレスト・クラウンマッチ</li>
+                  <li><span className="font-bold">参加費：</span>60発伏射：7,500円・40発ベンチレスト：7,000円・クラウンマッチ：7,000円</li>
                   <li><span className="font-bold">その他：</span>弁当・参加賞付き</li>
                   <li><span className="font-bold">申込先：</span>横須賀市ライフル射撃協会 (yokosukarifle@gmail.com)</li>
-                  <li><span className="font-bold">申込締切：</span>5月27日 (水)</li>
+                  <li><span className="font-bold">申込締切：</span>8月26日 (水)</li>
                 </ul>
               </div>
             </section>
@@ -269,7 +269,7 @@ export default function HomePage() {
             </a>
           </p>
           <p className="mt-2 text-xs text-gray-600">
-            Since 1957 / Last Update: 2025.12.26
+            Since 1957 / Last Update: 2026.08.07
           </p>
           <div className="mt-2 inline-block border border-gray-400 bg-white px-3 py-1 text-xs">
             <span>あなたは</span>
