@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+
 import {
   getFiscalYear,
   parseCSV,
@@ -42,7 +43,7 @@ describe("parseCSV", () => {
       total: 39.5,
       remarks: "",
     });
-    expect(records[1].remarks).toBe("新人");
+    expect(records[1]).toMatchObject({ remarks: "新人" });
   });
 
   it("should handle quoted values with commas", () => {
@@ -50,7 +51,8 @@ describe("parseCSV", () => {
 2024-04-21,AR60S,1,"山田, 太郎",10|9.5,19.5,`;
 
     const records = parseCSV(csv);
-    expect(records[0].name).toBe("山田, 太郎");
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({ name: "山田, 太郎" });
   });
 
   it("should skip empty lines", () => {
