@@ -1,9 +1,17 @@
-# .github/workflows/dependabot-auto-merge.yml
-name: Dependabot auto-merge
-on: pull_request
+name: Dependabot Auto-merge
+
+on:
+  pull_request:
+    branches:
+      - 1.x
+      - 2.x
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 concurrency:
-  group: dependabot-${{ github.ref }}
+  group: dependabot-${{ github.event.pull_request.number }}
   cancel-in-progress: false
 
 permissions:
@@ -17,13 +25,32 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v2
+        uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge for Dependabot PRs
-        if: |
-          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
-          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+      - name: Decide auto-merge policy
+        id: policy
+        shell: bash
+        env:
+          GROUP: ${{ steps.metadata.outputs.dependency-group }}
+          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+        run: |
+          AUTO_MERGE=false
+          # Production dependencies and all major updates require review.
+          if [[ "$UPDATE_TYPE" == 'version-update:semver-minor' || "$UPDATE_TYPE" == 'version-update:semver-patch' ]]; then
+            if [[ "$ECOSYSTEM" == 'npm_and_yarn' && ( "$GROUP" == 'npm-development' || "$GROUP" == 'security-dev-safe' ) ]]; then
+              AUTO_MERGE=true
+            elif [[ "$ECOSYSTEM" == 'github_actions' && "$GROUP" == 'actions-compatible' ]]; then
+              AUTO_MERGE=true
+            fi
+          fi
+          echo "auto-merge=$AUTO_MERGE" >> "$GITHUB_OUTPUT"
+
+      - name: Enable auto-merge
+        if: steps.policy.outputs.auto-merge == 'true'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

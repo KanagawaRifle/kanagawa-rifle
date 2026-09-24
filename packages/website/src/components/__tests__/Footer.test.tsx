@@ -4,20 +4,23 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Footer } from '../Footer';
 
 // config モジュールをモック
-vi.mock('@/config/social', () => ({
-  social: {
-    twitter: {
-      name: 'Twitter',
-      url: 'https://twitter.com/example',
-      icon: <span data-testid="twitter-icon">Twitter Icon</span>,
+vi.mock('@/config/social', async () => {
+  const { createElement } = await import('react');
+  return {
+    social: {
+      twitter: {
+        name: 'Twitter',
+        url: 'https://twitter.com/example',
+        icon: createElement('span', { 'data-testid': 'twitter-icon' }, 'Twitter Icon'),
+      },
+      facebook: {
+        name: 'Facebook',
+        url: 'https://facebook.com/example',
+        icon: createElement('span', { 'data-testid': 'facebook-icon' }, 'Facebook Icon'),
+      },
     },
-    facebook: {
-      name: 'Facebook',
-      url: 'https://facebook.com/example',
-      icon: <span data-testid="facebook-icon">Facebook Icon</span>,
-    },
-  },
-}));
+  };
+});
 
 vi.mock('@/config/paths', () => ({
   paths: {

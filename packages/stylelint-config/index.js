@@ -1,9 +1,8 @@
+// SPDX-License-Identifier: MIT
 /** @type {import('stylelint').Config} */
 const config = {
   extends: ['stylelint-config-standard', 'stylelint-config-standard-scss', 'stylelint-config-recess-order'],
   rules: {
-    'string-quotes': 'single',
-
     'at-rule-no-unknown': [
       true,
       {
@@ -27,7 +26,6 @@ const config = {
 
     'selector-max-specificity': '0,4,0',
     'max-nesting-depth': 3,
-    'color-hex-case': 'lower',
     'color-hex-length': 'short',
     'declaration-no-important': null,
     'no-empty-source': null,

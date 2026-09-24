@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: MIT
+import vitest from '@vitest/eslint-plugin';
+
+export default {
+  name: '@acme/vitest',
+  files: ['**/*.test.{ts,tsx}'],
+  plugins: { vitest },
+  rules: {
+    'vitest/no-focused-tests': 'error',
+    'vitest/no-disabled-tests': 'error',
+    'vitest/no-conditional-expect': ['error', { expectAssertions: true }],
+    'vitest/valid-expect': ['error', { maxArgs: 2 }],
+    'vitest/valid-describe-callback': 'error',
+    'vitest/no-identical-title': 'error',
+  },
+};

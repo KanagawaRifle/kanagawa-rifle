@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/syncpack@14.2.1/schema.json",
+  "source": ["package.json", "packages/*/package.json"],
+  "versionGroups": [
+    {
+      "label": "News keeps the YAML 3 API used by gray-matter",
+      "packages": ["@acme/website"],
+      "dependencies": ["js-yaml"]
+    },
+    {
+      "label": "Local workspace packages",
+      "dependencies": ["@acme/**"],
+      "dependencyTypes": ["dev", "prod"],
+      "pinVersion": "*"
+    }
+  ]
+}

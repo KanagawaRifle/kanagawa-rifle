@@ -23,6 +23,7 @@ describe('Header', () => {
     ['/competitions/2026', '大会'],
     ['/newsletter', undefined],
   ])('matches complete navigation path segments for %s', (pathname, name) => {
+    expect.assertions(1);
     vi.mocked(usePathname).mockReturnValue(pathname);
     render(<Header />);
     const current = screen.queryByRole('link', { current: 'page' });

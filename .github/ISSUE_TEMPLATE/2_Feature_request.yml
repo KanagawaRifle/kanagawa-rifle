@@ -1,15 +1,25 @@
-name: 🚀 要望
-description: 新機能や改善点に関するアイディアを公開します。
-labels: ['Cat: Feature 🚀', 'Status: Needs Triage 💡']
-
+name: 改善提案
+description: 機能の追加や改善を提案する。
+labels:
+  - 'Cat: Feature 🚀'
+  - 'Status: Needs Triage 💡'
 body:
   - type: textarea
+    id: problem
     attributes:
-      label: 説明
-      description: 新機能または要望に関する簡潔な説明を記載してください。
+      label: 困っていること
+      description: 対象のページや機能と、現在の問題を記載してください。
     validations:
       required: true
   - type: textarea
+    id: proposal
     attributes:
-      label: 例
-      description: 変更前後の比較等も含めた新機能または改善点に関する簡単な例を記載してください。
+      label: 提案
+      description: どのように変わると使いやすくなりますか。
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: 補足
+      description: 参考になるサイトや画像、現在の回避方法があれば記載してください。

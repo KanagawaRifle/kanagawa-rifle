@@ -1,32 +1,37 @@
-name: 🐛 バグ報告
-description: バグ報告を作成します。
-labels: ['Cat: Bug 🐛', 'Status: Needs Triage 💡']
-
+name: 不具合報告
+description: サイトや開発環境の不具合を報告する。
+labels:
+  - 'Cat: Bug 🐛'
+  - 'Status: Needs Triage 💡'
 body:
   - type: input
+    id: target
     attributes:
-      label: 対象パッケージ
-      placeholder: 'Package: xxx'
+      label: 対象
+      description: ページの URL、パッケージ名、実行したコマンドなど。
     validations:
       required: true
   - type: textarea
+    id: description
     attributes:
-      label: 説明
-      description: 問題の箇所を明確に説明してください。現在の挙動と本来期待される挙動などを併せて記載してください。
+      label: 不具合の内容
+      description: 起きたことと、期待していた動作を記載してください。
     validations:
       required: true
   - type: textarea
+    id: reproduction
     attributes:
       label: 再現手順
-      description: 第三者が容易に問題を再現できるよう十分な手順を記載してください。
+      description: 問題が起きるまでの操作を記載してください。
     validations:
       required: true
   - type: textarea
+    id: environment
     attributes:
-      label: 解決方法
-      description: '任意: もしバグの解決方法や原因が特定できている場合は記載してください。'
+      label: 環境
+      description: ブラウザと OS のバージョン。開発環境の問題なら Node.js、npm、コミットも記載してください。
   - type: textarea
     id: additional-context
     attributes:
-      label: 追加の資料
-      description: '任意: バグに関するログや画面のコピーなどがあれば記載してください。'
+      label: 補足
+      description: 関連するログや画像があれば添付してください。認証情報や個人情報は削除してください。
