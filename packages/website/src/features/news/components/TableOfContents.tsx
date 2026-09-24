@@ -1,4 +1,4 @@
-import type { TableOfContentsEntry } from '@/lib/ReactMarkdown';
+import type { TableOfContentsEntry } from '@/lib/markdown/parse';
 
 export default function TableOfContents({ toc }: { toc: TableOfContentsEntry[] }) {
   if (toc.length === 0) return null;

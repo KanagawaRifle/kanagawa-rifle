@@ -3,12 +3,11 @@ import 'server-only';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 
-import matter from 'gray-matter';
-import { JSON_SCHEMA, load } from 'js-yaml';
-
-import { FrontMatterSchema, isValidSlug, NewsQuerySchema, type NewsQuery } from '@/features/news/schema';
+import { isValidSlug, NewsQuerySchema, type NewsQuery } from '@/features/news/schema';
 import type { NewsItem, NewsSummary } from '@/features/news/types';
 import type { Paginated } from '@/lib/pagination';
+
+import { parseArticle } from './parse-article';
 
 /** Isolated content roots allow filesystem tests without changing process globals. */
 export function createNewsRepository(directory: string) {
@@ -35,17 +34,7 @@ export function createNewsRepository(directory: string) {
 
   async function readArticle(slug: string): Promise<NewsItem> {
     const source = await fs.readFile(join(directory, slug.slice(0, 4), `${slug}.md`), 'utf-8');
-    const { data, content } = matter(source, {
-      engines: {
-        // Keep date scalars intact so invalid calendar dates cannot be normalized before validation.
-        yaml: (metadata) => load(metadata, { schema: JSON_SCHEMA }) as object,
-      },
-    });
-    return {
-      slug,
-      ...FrontMatterSchema.parse(data),
-      content: content.trim(),
-    };
+    return parseArticle(slug, source);
   }
 
   async function readSummary(slug: string): Promise<NewsSummary> {

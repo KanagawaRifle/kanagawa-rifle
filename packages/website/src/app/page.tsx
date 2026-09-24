@@ -12,6 +12,7 @@ import { app } from '@/config/app';
 import { getStaticFileUrl } from '@/config/assets';
 import { paths } from '@/config/paths';
 import { HomeCompetitionNotices } from '@/features/competitions/components/HomeCompetitionNotices';
+import { getHomeCompetitionNotices } from '@/features/competitions/data';
 import { COMPETITION_ENTRY_FORM_URL } from '@/features/competitions/entry';
 import { NewsList } from '@/features/news/components/NewsList';
 import { getNewsList } from '@/features/news/server/news';
@@ -50,7 +51,7 @@ export default async function Page() {
         </AlertDescription>
       </Alert>
 
-      <HomeCompetitionNotices />
+      <HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />
 
       <Alert variant="info">
         <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>

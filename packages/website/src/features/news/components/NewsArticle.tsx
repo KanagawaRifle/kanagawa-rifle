@@ -1,12 +1,13 @@
 import { ArrowLeft, Calendar, Hash } from 'lucide-react';
 import Link from 'next/link';
 
+import { renderMarkdown } from '@/components/Markdown/renderMarkdown';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { env } from '@/config/env';
+import { getNewsItemHref } from '@/features/news/paths';
 import type { NewsItem } from '@/features/news/types';
-import { renderMarkdown } from '@/lib/ReactMarkdown';
 
 import { formatNewsDate } from '../dates';
 import { RefreshNewsButton } from './NewsListControls';
@@ -15,7 +16,7 @@ import TableOfContents from './TableOfContents';
 
 export function NewsArticle({ news }: { news: NewsItem }) {
   const { body, toc } = renderMarkdown(news.content);
-  const articleUrl = new URL(`/news/${news.slug}`, env.APP_URL).toString();
+  const articleUrl = new URL(getNewsItemHref(news.slug), env.APP_URL).toString();
 
   return (
     <article>

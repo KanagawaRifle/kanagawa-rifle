@@ -6,17 +6,21 @@ Next.js 16 App Router / React 19 / TypeScript / Tailwind CSS 4 で構築して�
 
 ## 構成
 
-| ディレクトリ                | 内容                                |
-| --------------------------- | ----------------------------------- |
-| `src/app`                   | ページ、API、metadata、サイトマップ |
-| `src/features/news`         | ニュースの読込・検証・表示          |
-| `src/features/competitions` | 大会の日程データ・検証・表示        |
-| `src/components`            | 共通 UI                             |
-| `src/lib`                   | Markdown 解析などの共通処理         |
-| `src/config`                | 環境変数、URL、ナビゲーション設定   |
-| `src/contents/news`         | ニュースの Markdown                 |
+| ディレクトリ                  | 内容                                |
+| ----------------------------- | ----------------------------------- |
+| `src/app`                     | ページ、API、metadata、サイトマップ |
+| `src/features/news`           | ニュースの読込・検証・表示          |
+| `src/features/competitions`   | 大会の日程データ・検証・表示        |
+| `src/features/membership`     | 入会手順・公開済みの会費・料金表    |
+| `src/features/recommendation` | 推薦手数料・掲載資料・表示          |
+| `src/components`              | 共通 UI                             |
+| `src/lib`                     | Markdown 解析などの共通処理         |
+| `src/config`                  | 環境変数、URL、ナビゲーション設定   |
+| `src/contents/news`           | ニュースの Markdown                 |
 
 依存方向は `app → features → components / lib / config` です。異なる機能は `app` で組み合わせます。
+`components` は `lib` と `config` を利用でき、`lib` と `config` から UI への依存は禁止します。
+ページ構成と大会年度の選択は `app/competitions/_components`、大会自体の表示は `features/competitions/components` が担当します。
 ファイルの読込や大会データなど、`server-only` を付けたモジュールはサーバーで扱います。
 `npm run lint:architecture` で循環参照と依存方向、クライアント／サーバー境界を検査できます。
 
@@ -39,8 +43,13 @@ front matter の `title` と `published` は必須です。`published` と任意
 編集内容を確認できます。公開にはデプロイが必要です。
 
 記事の読込・一覧・ページングは `src/features/news/server/news.ts` に集約しています。
-ページはこのモジュールから直接データを取得します。詳細ページとホームはビルド時に生成されます。
+記事本文と front matter の解析は `server/parse-article.ts`、ニュース URL の組立ては `features/news/paths.ts` が担当します。
+ページは `server/news.ts` から直接データを取得します。詳細ページとホームはビルド時に生成されます。
 表示日付は日本時間です。
+
+Markdown は `lib/markdown/parse.ts` で一度だけ解析し、同じ構文木から本文と目次を生成します。
+React による表示は `components/Markdown` にまとめています。記事中の HTML はリポジトリで管理する信頼済みの入力を前提とし、
+リンクと埋め込みの URL 検査を維持しています。外部ユーザーが投稿する HTML のサニタイザーとしては使いません。
 
 ### 公開ページと API
 
@@ -63,6 +72,15 @@ front matter の `title` と `published` は必須です。`published` と任意
 
 登録した年度は年度一覧、静的ページ、サイトマップに反映されます。
 年度別の名称と URL は `src/config/paths.ts` の `getCompetitionPath` で生成します。
+
+## 入会・推薦案内の更新
+
+入会の料金は `src/features/membership/fees.ts`、推薦手数料と掲載するブレッテンの番号は
+`src/features/recommendation/data.ts` で管理します。金額は公開済みの案内を明示的に保存しており、
+年齢や日付からの自動切替、料金の自動計算は行いません。変更時は該当する案内を確認し、表示テストも更新してください。
+
+入会手順は `features/membership/components/MembershipApplication.tsx`、推薦の注意事項は
+`app/recommendation/page.tsx` にあります。会費表は行・列の見出しを持ち、狭い画面では表の領域を横にスクロールできます。
 
 ## 環境変数
 

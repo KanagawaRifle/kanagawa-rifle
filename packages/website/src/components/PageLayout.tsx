@@ -44,30 +44,28 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
       {breadcrumbs && (
         <>
           <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
-          <nav aria-label="パンくずリスト" className="mx-auto w-full max-w-screen-md px-4 py-2">
-            <Breadcrumb>
-              <BreadcrumbList>
-                {breadcrumbs.map((breadcrumb, index) => {
-                  const isLast = index === breadcrumbs.length - 1;
-                  return (
-                    <React.Fragment key={breadcrumb.path}>
-                      <BreadcrumbItem>
-                        {index === 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
-                        {isLast ? (
-                          <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
-                        ) : (
-                          <BreadcrumbLink asChild className="text-xs">
-                            <Link href={breadcrumb.path}>{breadcrumb.name}</Link>
-                          </BreadcrumbLink>
-                        )}
-                      </BreadcrumbItem>
-                      {!isLast && <BreadcrumbSeparator />}
-                    </React.Fragment>
-                  );
-                })}
-              </BreadcrumbList>
-            </Breadcrumb>
-          </nav>
+          <Breadcrumb aria-label="パンくずリスト" className="mx-auto w-full max-w-screen-md px-4 py-2">
+            <BreadcrumbList>
+              {breadcrumbs.map((breadcrumb, index) => {
+                const isLast = index === breadcrumbs.length - 1;
+                return (
+                  <React.Fragment key={breadcrumb.path}>
+                    <BreadcrumbItem>
+                      {index === 0 && <ChevronRight className="h-3 w-3" aria-hidden="true" />}
+                      {isLast ? (
+                        <BreadcrumbPage className="text-xs">{breadcrumb.name}</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink asChild className="text-xs">
+                          <Link href={breadcrumb.path}>{breadcrumb.name}</Link>
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                    {!isLast && <BreadcrumbSeparator />}
+                  </React.Fragment>
+                );
+              })}
+            </BreadcrumbList>
+          </Breadcrumb>
         </>
       )}
       <div className="container mx-auto flex w-full max-w-screen-md flex-col gap-4 px-1 py-8 md:px-4">

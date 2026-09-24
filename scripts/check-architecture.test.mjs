@@ -68,3 +68,30 @@ test('fails circular runtime dependencies', async () => {
   assert.equal(violations.length, 1);
   assert.match(violations[0], /^Circular import:/);
 });
+
+test('keeps configuration, shared logic and feature data independent of UI', async () => {
+  const violations = await check({
+    'components/View.tsx': 'export const View = () => null;',
+    'lib/parser.ts': "export { View } from '@/components/View';",
+    'config/settings.ts': "export { View } from '@/lib/parser';",
+    'features/news/components/Article.tsx': 'export const Article = () => null;',
+    'features/news/server/news.ts': "export { Article } from '../components/Article';",
+    'features/membership/fees.ts': "export { View } from '@/components/View';",
+  });
+  assert.equal(violations.length, 4);
+  assert(violations.some((message) => message.startsWith('Non-UI module depends on UI:')));
+  assert(violations.some((message) => message.startsWith('Configuration depends on behavior:')));
+  assert.equal(violations.filter((message) => message.startsWith('Feature data depends on UI:')).length, 2);
+});
+
+test('allows server rendering to compose shared parsing and presentation', async () => {
+  assert.deepEqual(
+    await check({
+      'app/news/page.tsx': "export { Article as default } from '@/features/news/components/Article';",
+      'features/news/components/Article.tsx': "export { Markdown as Article } from '@/components/Markdown';",
+      'components/Markdown.tsx': "import { parse } from '@/lib/markdown'; export const Markdown = () => parse('body');",
+      'lib/markdown.ts': "import 'server-only'; export const parse = (source: string) => source;",
+    }),
+    [],
+  );
+});

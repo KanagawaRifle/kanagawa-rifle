@@ -8,6 +8,7 @@ import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { paths } from '@/config/paths';
 import { NewsArticle } from '@/features/news/components/NewsArticle';
+import { getNewsItemHref } from '@/features/news/paths';
 import { getNewsItem, getNewsSlugs } from '@/features/news/server/news';
 import { createPageMetadata } from '@/lib/metadata';
 
@@ -41,7 +42,7 @@ export default async function Page({ params }: Props) {
     dateModified: (article.updated ?? article.published).toISOString(),
     author: { '@type': 'Organization', name: app.name, url: env.APP_URL },
     publisher: { '@type': 'Organization', name: app.name, url: env.APP_URL },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/news/${slug}`, env.APP_URL).toString() },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(getNewsItemHref(slug), env.APP_URL).toString() },
   };
   return (
     <PageLayout
@@ -49,7 +50,7 @@ export default async function Page({ params }: Props) {
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: paths.main.news.name, path: paths.main.news.getHref() },
-        { name: article.title, path: `/news/${slug}` },
+        { name: article.title, path: getNewsItemHref(slug) },
       ]}
     >
       <JsonLd data={articleJsonLd} />
