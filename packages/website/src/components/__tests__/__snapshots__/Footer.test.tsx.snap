@@ -170,7 +170,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
     >
       <div>
         <a
-          class="text-xs font-bold no-underline hover:underline"
+          class="inline-flex min-h-6 items-center text-xs font-bold no-underline hover:underline"
           href="/"
         >
           神奈川県ライフル射撃協会
@@ -178,7 +178,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
       </div>
       <div>
         <a
-          class="text-xl font-black no-underline"
+          class="inline-flex min-h-6 items-center text-xl font-black no-underline"
           href="/"
           style="font-family: Roboto;"
         >

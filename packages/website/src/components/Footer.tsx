@@ -85,12 +85,16 @@ export function Footer() {
       {/* コピーライト */}
       <div className="text-muted-foreground mx-auto mt-2 max-w-screen-xl px-4 py-6">
         <div>
-          <Link href="/" className="text-xs font-bold no-underline hover:underline">
+          <Link href="/" className="inline-flex min-h-6 items-center text-xs font-bold no-underline hover:underline">
             {app.longName}
           </Link>
         </div>
         <div>
-          <Link href="/" className="text-xl font-black no-underline" style={{ fontFamily: 'Roboto' }}>
+          <Link
+            href="/"
+            className="inline-flex min-h-6 items-center text-xl font-black no-underline"
+            style={{ fontFamily: 'Roboto' }}
+          >
             {app.shortName.replace(/[A-Za-z]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0))}
           </Link>
         </div>
