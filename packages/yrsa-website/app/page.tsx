@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getOpengraphImageUrl } from "@/lib/server";
 import Link from "next/link";
-import styles from "./page.module.css";
-import { GoogleCalendar } from "./_components";
+
+import { getOpengraphImageUrl } from "@/lib/server";
+
 import heroImage from "./_assets/hero.gif";
 import rifleShootingImage from "./_assets/rifle-shooting.jpg";
+import { GoogleCalendar } from "./_components";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "ライフル射撃・射撃場なら横須賀市ライフル射撃協会【神奈川県】",
@@ -63,6 +65,42 @@ export default function HomePage() {
 
       {/* メインコンテナ */}
       <div className="mx-auto max-w-4xl p-4">
+        {/* 休場・定例会中止のお知らせ */}
+        <section
+          aria-labelledby="closure-notice-title"
+          className="mb-6 border-4 border-red-700 bg-yellow-50 shadow-lg"
+        >
+          <h2
+            id="closure-notice-title"
+            className="bg-red-700 px-4 py-3 text-center text-xl font-bold text-white md:text-2xl"
+          >
+            【重要】休場・9月定例会中止のお知らせ
+          </h2>
+          <div className="space-y-4 p-4 text-center text-red-950 md:p-6">
+            <p className="leading-relaxed">
+              台風による土砂崩れ等の影響により、くりはま花の国エアライフル射撃場は下記の期間、休場いたします。
+            </p>
+            <div className="border-2 border-red-700 bg-white p-3">
+              <p className="font-bold">休場期間：2026年</p>
+              <p className="mt-1 text-2xl font-bold text-red-800 md:text-3xl">
+                <time dateTime="2026-09-25" className="inline-block">
+                  9月25日（金）
+                </time>
+                <span className="inline-block">～</span>
+                <time dateTime="2026-09-27" className="inline-block">
+                  9月27日（日）
+                </time>
+              </p>
+            </div>
+            <p className="text-xl font-bold text-red-800 md:text-2xl">
+              9月の定例会（月例会）は中止いたします。
+            </p>
+            <p className="text-sm leading-relaxed">
+              ご利用・ご参加を予定されていた皆さまにはご迷惑をおかけしますが、ご理解のほどよろしくお願いいたします。
+            </p>
+          </div>
+        </section>
+
         {/* ウェルカムヘッダー */}
         <div className="mb-6 border-4 border-double border-purple-600 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 p-4 text-center shadow-lg">
           <h1
@@ -102,7 +140,7 @@ export default function HomePage() {
         <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
           <div className={`whitespace-nowrap ${styles.marquee}`}>
             <span className="mx-4 text-red-600" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-              📢 お知らせ：三県大口径長瀞大会 9/5開催（申込締切 8/26）！ 📢 射撃教室 生徒募集中☆ 📢 月例会参加者募集！ 📢
+              📢 重要：台風による土砂崩れ等の影響により9/25～9/27は休場します。 📢 9月の定例会（月例会）は中止いたします。 📢
             </span>
           </div>
         </div>

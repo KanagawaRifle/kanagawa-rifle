@@ -96,7 +96,7 @@ export function Header() {
         aria-label="お知らせ"
       >
         <p className="font-retro whitespace-nowrap text-center text-sm text-red-600">
-          📢 最新情報をチェックしてね！ 📢 月例会 参加者募集中☆ 📢
+          📢 最新情報をチェックしてね！ 📢 9月の月例会は中止です 📢
         </p>
       </div>
     </header>
