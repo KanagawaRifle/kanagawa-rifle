@@ -36,3 +36,5 @@ jobs:
         with:
           name: lighthouse-reports
           path: packages/website/.lighthouse.reports/
+          include-hidden-files: true
+          if-no-files-found: error
