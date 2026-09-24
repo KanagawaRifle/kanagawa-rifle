@@ -1,0 +1,16 @@
+name: その他の報告・相談
+description: 掲載内容の訂正など、既存のテンプレートに当てはまらない報告
+labels: ['Status: Needs Triage 💡']
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 内容
+      description: 対象のページと、確認・修正してほしい内容を記載してください。
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 補足
+      description: 関連する URL や資料。個人情報や認証情報は記載しないでください。

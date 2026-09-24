@@ -6,6 +6,9 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   plugins: [react()],
   test: {
+    reporters: process.env.CI ? ['default', 'junit'] : ['default'],
+    outputFile: { junit: 'reports/vitest-junit.xml' },
+
     // テスト環境
     environment: 'jsdom',
 
@@ -31,7 +34,6 @@ export default defineConfig({
         '**/e2e/**',
         // Lint 設定
         '.textlintrc.mjs',
-        '.lighthouserc.cjs',
         'commitlint.config.mjs',
         // shadcn/ui コンポーネント（サードパーティ）
         'src/components/ui/**',

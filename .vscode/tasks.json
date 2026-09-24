@@ -24,6 +24,42 @@
       "type": "npm",
       "script": "doctor",
       "problemMatcher": []
+    },
+    {
+      "label": "Build",
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Unit tests",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Coverage",
+      "type": "npm",
+      "script": "test:coverage",
+      "problemMatcher": []
+    },
+    {
+      "label": "Contracts",
+      "type": "npm",
+      "script": "contracts:check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dependency graph",
+      "type": "npm",
+      "script": "graph",
+      "problemMatcher": []
+    },
+    {
+      "label": "Infrastructure lint",
+      "type": "npm",
+      "script": "lint:infra",
+      "problemMatcher": []
     }
   ]
 }

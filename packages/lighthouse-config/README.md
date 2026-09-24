@@ -1,10 +1,19 @@
-# Lighthouse CI 共有設定
+# Lighthouse 共有設定
 
-`@acme/lighthouse-config` は各 URL を 3 回測定し、アクセシビリティ、SEO、ベストプラクティスを検査します。
-性能スコアは 0.9 を目安に警告を出します。
-コンソールエラー、HTTP ステータス、ページタイトル、言語、画像の代替テキスト、リンク名、viewport を明示的に検査します。
-URL、サーバー起動、Chrome の設定は [website の設定](../website/.lighthouserc.cjs) で定義します。
+`@acme/lighthouse-config` はモバイルとデスクトップの測定条件、スコアの下限、必須の監査項目を定義します。
+各ページを 3 回測定し、中央値を使います。性能は 0.9、アクセシビリティと SEO は 1.0、ベストプラクティスは 0.96 が下限です。
+モバイルの性能スコアは警告、デスクトップではエラーとして扱います。監査自体の失敗や結果の欠落もエラーです。
 
-HTTP でのローカル測定にはビルドと起動の両方に `LHCI=1` を渡します。
-`LHCI=1 npm run -w @acme/website lhci` でビルドと測定を実行できます。
-Chrome/Chromium が必要です。標準パスにない場合は `CHROME_PATH` に実行ファイルを指定してください。
+対象ページは [website の設定](../website/lighthouse.config.mjs) にあります。
+Playwright の Chromium と本番ビルドを使い、一時ポートでサーバーを起動します。
+
+```bash
+npm run -w @acme/website test:install
+npm run -w @acme/website lhci
+# ビルド済みの場合。ページや端末を絞って測定
+npm run -w @acme/website lhci:run -- --profile=desktop --page=home --runs=1
+```
+
+`lhci` はビルドと起動の両方に `LHCI=1` を設定します。
+HTML・JSON レポートと `summary.json` は `packages/website/.lighthouse.reports/` に保存します。
+CI では artifact とジョブの summary から確認できます。

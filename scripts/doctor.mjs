@@ -1,4 +1,4 @@
-// Adapted from OSS; see licenses/oss-MIT.txt.
+// SPDX-License-Identifier: MIT
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

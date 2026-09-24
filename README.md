@@ -41,18 +41,21 @@ kanagawa-rifle/
 
 ## 主要コマンド
 
-| コマンド        | 説明                                            |
-| --------------- | ----------------------------------------------- |
-| `npm run dev`   | 開発サーバーを起動                              |
-| `npm run check` | 型・lint・依存関係・ライセンスを検査            |
-| `npm run test`  | 全パッケージのテストを実行                      |
-| `npm run build` | 本番ビルド                                      |
-| `npm run qa`    | check・ビルド・サイズ・カバレッジ・脆弱性を検査 |
+| コマンド        | 説明                                        |
+| --------------- | ------------------------------------------- |
+| `npm run dev`   | 開発サーバーを起動                          |
+| `npm run check` | 型・lint・依存関係・ライセンスを検査        |
+| `npm run test`  | 全パッケージのテストを実行                  |
+| `npm run build` | 本番ビルド                                  |
+| `npm run qa`    | check・ビルド・テスト・サイズ・脆弱性を検査 |
 
 ## ドキュメント
 
 - [開発手順](DEVELOPMENT.md)
 - [ウェブサイトの構成と検証](packages/website/README.md)
 - [コントリビューション](CONTRIBUTING.md)
+- [構成と設計上の判断](ARCHITECTURE.md)
+- [問い合わせ](SUPPORT.md)
+- [参加時のお願い](CODE_OF_CONDUCT.md)
+- [リポジトリの管理](GOVERNANCE.md)
 - [セキュリティ](SECURITY.md)
-- [開発ツールの出典とライセンス](THIRD_PARTY_NOTICES.md)

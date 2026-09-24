@@ -9,9 +9,9 @@ import { Badge } from '@/components/ui/badge';
 import { formatNewsDate } from '../dates';
 import type { NewsSummary } from '../types';
 
-type Props = NewsSummary & { isLast: boolean };
+type Props = NewsSummary & { isLast: boolean; headingAs: 'h2' | 'h3' };
 
-export function NewsListItem({ slug, title, published, tags, excerpt, isLast }: Props) {
+export function NewsListItem({ slug, title, published, tags, excerpt, isLast, headingAs: Heading }: Props) {
   return (
     <li className={isLast ? '' : 'border-border border-b'}>
       <Link href={`/news/${slug}`} className="hover:bg-muted flex items-start gap-4 p-4 transition-colors">
@@ -21,7 +21,7 @@ export function NewsListItem({ slug, title, published, tags, excerpt, isLast }: 
           </AvatarFallback>
         </Avatar>
         <div className="flex-1 space-y-2">
-          <h3 className="text-lg font-semibold">{title}</h3>
+          <Heading className="text-lg font-semibold">{title}</Heading>
           {excerpt && <p className="text-muted-foreground line-clamp-1 text-base">{excerpt}</p>}
           <div className="flex flex-wrap gap-2 pt-1">
             <Badge variant="outline">
