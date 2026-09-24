@@ -7,7 +7,11 @@ import { MembershipFees } from '@/features/membership/components/MembershipFees'
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.join;
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: '入会案内・会費',
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
 export default function Page() {
   return (

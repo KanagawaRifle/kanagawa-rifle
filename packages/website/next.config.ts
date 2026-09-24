@@ -5,6 +5,7 @@ import { withAxiom } from 'next-axiom';
 
 import { env } from './src/config/env';
 import { createSecurityHeaders } from './src/config/security-headers';
+import { isPreviewDeployment } from './src/config/seo';
 
 const assetUrls = [new URL(env.CDN_URL), new URL(env.STATIC_FILE_BASE_URL)];
 
@@ -13,6 +14,10 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Inline an empty public DSN even when the variable is absent, so the browser
+  // build can remove disabled monitoring instead of retaining a runtime lookup.
+  env: { NEXT_PUBLIC_SENTRY_DSN: env.SENTRY_DSN ?? '' },
+
   // Sentry用にソースマップを生成（Sentryアップロード後に削除される）
   productionBrowserSourceMaps: true,
 
@@ -32,6 +37,11 @@ const nextConfig: NextConfig = {
   // セキュリティヘッダー
   async headers() {
     return [
+      {
+        source: '/api/news/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      ...(isPreviewDeployment() ? [{ source: '/(.*)', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] }] : []),
       {
         source: '/(.*)',
         headers: createSecurityHeaders({

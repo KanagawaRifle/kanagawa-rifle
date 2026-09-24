@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { DEFAULT_NEWS_PAGE_SIZE } from './constants';
+
 const ArticleDateSchema = z.union([z.iso.date(), z.iso.datetime({ offset: true })]).pipe(z.coerce.date());
 
 export const FrontMatterSchema = z.object({
@@ -22,7 +24,7 @@ export const NewsQuerySchema = z.object({
     .int({ error: 'Size must be an integer' })
     .min(1, { error: 'Size must be between 1 and 128' })
     .max(128, { error: 'Size must be between 1 and 128' })
-    .default(12),
+    .default(DEFAULT_NEWS_PAGE_SIZE),
 });
 
 export type NewsQuery = z.infer<typeof NewsQuerySchema>;

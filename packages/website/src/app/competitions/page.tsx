@@ -5,8 +5,9 @@ import { createPageMetadata } from '@/lib/metadata';
 import { CompetitionPage } from './_components/CompetitionPage';
 
 export const metadata = createPageMetadata({
-  title: paths.main.competitions.name,
+  title: '大会日程・要項・結果',
   description: paths.main.competitions.description,
+  path: paths.main.competitions.getHref(),
 });
 
 export default function Page() {

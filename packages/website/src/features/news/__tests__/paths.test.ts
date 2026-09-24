@@ -8,6 +8,9 @@ describe('news links', () => {
     expect(getNewsListHref({ page: 2, size: 6 })).toBe('/news?page=2&size=6');
     expect(getNewsListHref({ size: 128 })).toBe('/news?size=128');
     expect(getNewsListHref({ page: 3 })).toBe('/news?page=3');
+    expect(getNewsListHref({ page: 1, size: 12 })).toBe('/news');
+    expect(getNewsListHref({ page: 2, size: 12 })).toBe('/news?page=2');
+    expect(getNewsListHref({ page: 1, size: 6 })).toBe('/news?size=6');
   });
 
   it('treats the article slug as one URL segment', () => {

@@ -49,7 +49,7 @@ test('pagination, size changes, direct URLs and browser back work', async ({ pag
   await expect(news.getByRole('link').first()).toHaveAttribute('href', firstHref!);
   await page.getByRole('combobox', { name: '表示件数' }).click();
   await page.getByRole('option', { name: '12件', exact: true }).click();
-  await expect(page).toHaveURL(/size=12/);
+  await expect(page).toHaveURL('/news');
   await expect(news.getByRole('listitem')).toHaveCount(12);
   await page.reload();
   await expect(news.getByRole('listitem')).toHaveCount(12);

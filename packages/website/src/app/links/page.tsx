@@ -68,7 +68,11 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
 
 const currentPath = paths.sub.links;
 
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: currentPath.name,
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
 export default function Page() {
   return (
