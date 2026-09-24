@@ -12,7 +12,6 @@
     "ja-unnatural-alphabet": true,
     "jis-charset": true,
     "no-doubled-joshi": true,
-    "no-hoso-kinshi-yogo": true,
     "no-mixed-zenkaku-and-hankaku-alphabet": true,
     "no-start-duplicated-conjunction": true,
     "no-surrogate-pair": true,
