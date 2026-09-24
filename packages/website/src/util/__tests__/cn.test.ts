@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { cn } from '../cn';
 
 describe('cn', () => {
@@ -33,8 +35,8 @@ describe('cn', () => {
   });
 
   it('複雑な組み合わせを処理する', () => {
-    expect(
-      cn('base', ['array-class'], { 'object-class': true }, true && 'conditional', 'px-2', 'px-4')
-    ).toBe('base array-class object-class conditional px-4');
+    expect(cn('base', ['array-class'], { 'object-class': true }, true && 'conditional', 'px-2', 'px-4')).toBe(
+      'base array-class object-class conditional px-4',
+    );
   });
 });

@@ -1,14 +1,11 @@
 'use client';
 
 import { AxiomWebVitals } from 'next-axiom';
-import { useEffect, useState } from 'react';
+
+import { useHydrated } from '@/hooks/useHydrated';
 
 export function AxiomWebVitalsWrapper() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isMounted = useHydrated();
 
   if (!isMounted) {
     return null;

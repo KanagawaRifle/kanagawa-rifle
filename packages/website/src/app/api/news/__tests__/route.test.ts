@@ -1,7 +1,7 @@
 // packages/website/src/app/api/news/__tests__/route.test.ts
 
 import { NextRequest } from 'next/server';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { GET } from '../route';
 
@@ -99,13 +99,13 @@ describe('GET /api/news', () => {
 
       expect(response.status).toBe(200);
 
-      if (data.data.data.length > 0) {
-        const item = data.data.data[0];
-        expect(item).toHaveProperty('slug');
-        expect(item).toHaveProperty('title');
-        expect(item).toHaveProperty('published');
-        expect(item).toHaveProperty('tags');
-      }
+      expect(data.data.data).toHaveLength(1);
+      const item = data.data.data[0];
+      expect(item).toHaveProperty('slug');
+      expect(item).toHaveProperty('title');
+      expect(item.published).toMatch(/^\d{4}-\d{2}-\d{2}T00:00:00\.000Z$/);
+      expect(item).toHaveProperty('tags');
+      expect(item.content).toBe('');
     });
   });
 });

@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 神奈川県ライフル射撃協会ウェブサイト
 
-## Getting Started
-
-First, run the development server:
+Next.js 16 App Router / React 19。Node.js 24.21.0 と npm 11.19.0 を使用する。
+リポジトリのルートで依存関係をインストールする。
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+cp packages/website/.env.example packages/website/.env.local
+npm run -w @acme/website dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+開発 URL は `http://localhost:3000`。ニュース取得のための別サーバーや内部 API URL は不要。
+本番では `NEXT_PUBLIC_URL` に公開 URL を指定する。CDN の既定値は `https://static.kanagawa-rifle.org`。
+監視・アクセス解析は対応する環境変数で設定する。空の `NEXT_PUBLIC_SENTRY_DSN` は監視を無効にする。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## データと描画
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/contents/news/<年>/<YYYY-MM-DD-NN>.md`: ニュースの本文と front matter。
+- `src/features/news/server/news.ts`: サーバー専用の記事列挙・読込・ページング。
+- `src/features/news/schema.ts`: front matter とページング入力の検証。
+- `src/app/news`: 一覧、本文、metadata、JSON-LD をサーバーで生成する。
+- `src/app/api/news`: 同じデータアクセスを使う公開 JSON API。
+- `src/app/sitemap.ts`: 全記事と実際の公開日・更新日を列挙する。
+- `src/lib/ReactMarkdown`: 本文と目次を一度の解析結果から生成する。
+- `src/features/competitions`: 年度別データ、日程の型と検証、ホームと大会ページで共有する表示。
 
-## Learn More
+ブラウザーでの処理は件数変更、共有、テーマ切替などの操作に限定する。
+記事は Git で管理し、追加・修正はデプロイで公開する。詳細ページとホームはビルド時に生成される。
+ファイル一覧の独自 TTL や React Query のキャッシュは持たない。
+開発サーバーでは Markdown の編集後にページを再読み込みする。
 
-To learn more about Next.js, take a look at the following resources:
+`/news` の `page` は 1 以上、`size` は 1〜128（既定 12）。不正値・範囲外ページは 404。
+ホームは常に新着 6 件を表示する。不正 slug と不存在記事も公開ページでは 404。
+API は既存の応答形式を維持し、不正 slug は 400、不存在は 404、読込・内容不正は 500。
+API の日付は ISO 文字列。一覧には従来どおり `content: ''` を返す。
+API のレスポンスキャッシュは一覧 5 分・詳細 10 分、SWR 1 時間を維持する。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 検証
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run -w @acme/website lint:eslint
+npm run -w @acme/website typecheck
+npm run -w @acme/website test
+npm run -w @acme/website test:content
+npm run -w @acme/website build
+npx playwright install chromium
+LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
+npm run -w @acme/website build-storybook
+```
 
-## Deploy on Vercel
+Playwright はビルド後に `127.0.0.1:3100` で本番サーバーを起動する。既存サーバーは再利用しない。
+ローカル HTTP 検証では `LHCI=1` をビルドと起動の両方に渡し、CSP の HTTPS 強制を無効にする。
+全記事検証は Markdown を直接読み、欠落・命名・front matter・日付の不正を検出する。
+CI は lint、型検査、記事検証、単体テストとカバレッジ、およびデスクトップ・モバイルの公開ページ導線を実行する。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ステージング認証は `src/proxy.ts` で処理する。`VERCEL_GIT_COMMIT_REF=staging` の場合は
+`BASIC_AUTH_ID` / `BASIC_AUTH_PASSWORD` を実行環境に設定する。
+設定不足は 500、認証失敗は 401。matcher の適用範囲は既存構成を維持する。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Docker
+
+`docker/node/Dockerfile` も Node.js 24.21.0 を使う。
+Docker での公開 URL に合わせ、`packages/website/.env.local` の `NEXT_PUBLIC_URL` を
+`https://kanagawa-rifle.org.test` に設定する。
+コンテナーは `LOCAL_UID` / `LOCAL_GID`（既定 1000）で実行し、ホストの生成物を root 所有にしない。
+必要なら起動前に次を指定する。
+
+```bash
+export LOCAL_UID=$(id -u)
+export LOCAL_GID=$(id -g)
+cd docker
+# docker/.env を設定してから実行
+# HTTPS プロキシ経由: https://kanagawa-rifle.org.test
+docker compose up -d node https-portal
+```
+
+既存の root 所有の `node_modules` / `.next` は、所有権を修正するか退避してから再生成する。
+ホストとコンテナーで同時にインストール・ビルドしない。

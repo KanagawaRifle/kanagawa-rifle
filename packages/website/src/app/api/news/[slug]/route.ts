@@ -1,21 +1,14 @@
 // packages/website/src/app/api/news/[slug]/route.ts
 
-import { join } from 'path';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { createInvalidNewsSlugError, createInternalServerError, createNewsNotFoundError } from '@/errors';
+import { createInternalServerError, createInvalidNewsSlugError, createNewsNotFoundError } from '@/errors';
+import { CACHE_HEADERS } from '@/features/news/http';
+import { isValidSlug } from '@/features/news/schema';
+import { getNewsItem } from '@/features/news/server/news';
 import { logger } from '@/lib/logger';
-import {
-  isValidSlug,
-  getYearFromSlug,
-  NEWS_CONTENTS_DIR,
-  parseMarkdownFile,
-  isNodeError,
-  CACHE_HEADERS,
-} from '@/lib/news';
-import { NewsItem, ApiResponse } from '@/types';
+import { ApiResponse, NewsItem } from '@/types';
 
 export async function GET(
   req: NextRequest,
@@ -30,18 +23,14 @@ export async function GET(
       return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
     }
 
-    const year = getYearFromSlug(slug);
-    const filePath = join(NEWS_CONTENTS_DIR, year, `${slug}.md`);
-    const item = await parseMarkdownFile(filePath, slug, true);
-
-    return NextResponse.json({ data: item }, { headers: CACHE_HEADERS.DETAIL });
-  } catch (ex) {
-    // ファイルが見つからない場合
-    if (isNodeError(ex) && ex.code === 'ENOENT') {
+    const item = await getNewsItem(slug);
+    if (item === null) {
       const error = createNewsNotFoundError(slug);
       return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
     }
 
+    return NextResponse.json({ data: item }, { headers: CACHE_HEADERS.DETAIL });
+  } catch (ex) {
     // Zod バリデーションエラー（フロントマターの形式が不正）
     if (ex instanceof z.ZodError) {
       logger.warn('Front matter validation error', { slug, issues: ex.issues });

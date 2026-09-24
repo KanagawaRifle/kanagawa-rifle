@@ -9,14 +9,16 @@
 git clone https://github.com/kanagawa-rifle/kanagawa-rifle.git
 cd kanagawa-rifle
 
-# Docker で開発環境を起動
-cd docker && docker compose up -d
+# 初回 checkout の設定ファイルを用意し、必要な値を編集する
+cp packages/website/.env.example packages/website/.env.local
+cp docker/.env.example docker/.env
+# packages/website/.env.local の NEXT_PUBLIC_URL を https://kanagawa-rifle.org.test に変更
+export LOCAL_UID=$(id -u)
+export LOCAL_GID=$(id -g)
 
-# 依存関係をインストール
-docker exec kanagawa-rifle_node npm install
-
-# 開発サーバーを起動
-docker exec kanagawa-rifle_node npm run -w @acme/website dev
+# node サービスが依存関係をインストールして開発サーバーを起動する
+cd docker
+docker compose up -d --build node https-portal
 ```
 
 ## モノレポ構成
@@ -36,13 +38,13 @@ kanagawa-rifle/
 
 ## 主要コマンド
 
-| コマンド | 説明 |
-|----------|------|
-| `npm run lint` | 全パッケージの lint を実行 |
-| `npm run test` | 全パッケージのテストを実行 |
-| `npm run build` | 全パッケージをビルド |
+| コマンド        | 説明                       |
+| --------------- | -------------------------- |
+| `npm run lint`  | 全パッケージの lint を実行 |
+| `npm run test`  | 全パッケージのテストを実行 |
+| `npm run build` | 全パッケージをビルド       |
 
 ## ドキュメント
 
 - [開発手順](DEVELOPMENT.md)
-- [Claude Code ガイド](CLAUDE.md)
+- [ウェブサイトの構成と検証](packages/website/README.md)

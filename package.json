@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "神奈川県ライフル射撃協会",
-  "packageManager": "npm@10.9.2",
+  "packageManager": "npm@11.19.0",
+  "engines": {
+    "node": "24.x",
+    "npm": "11.x"
+  },
   "workspaces": [
     "packages/website",
     "packages/eslint-config",
@@ -32,7 +36,8 @@
     "typescript": "^5"
   },
   "volta": {
-    "node": "22.15.0"
+    "node": "24.21.0",
+    "npm": "11.19.0"
   },
   "scripts": {
     "prepare": "node -e \"if (process.env.CI || process.env.VERCEL) process.exit(0)\" || husky",
@@ -42,6 +47,7 @@
     "lint:prettier": "turbo run lint:prettier",
     "fix": "turbo run fix",
     "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
     "build": "turbo run build",
     "security": "snyk test --all-projects --severity-threshold=high",
     "security:fix": "snyk fix --all-projects"

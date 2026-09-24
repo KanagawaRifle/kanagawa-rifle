@@ -4,12 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "dist/**",
-        "build/**"
-      ],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "build/**"],
       "env": [
         "NEXT_PUBLIC_*",
         "NODE_ENV",
@@ -21,11 +16,7 @@
         "SENTRY_ORG",
         "SENTRY_PROJECT"
       ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.local",
-        ".env.production"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env.local", ".env.production"]
     },
     "dev": {
       "cache": false,
@@ -40,44 +31,19 @@
     "lint": {
       "dependsOn": ["^build"],
       "outputs": [],
-      "inputs": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        "**/*.jsx",
-        ".eslintrc*",
-        "tsconfig.json"
-      ]
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".eslintrc*", "tsconfig.json"]
     },
     "lint:eslint": {
       "outputs": [],
-      "inputs": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        "**/*.jsx",
-        ".eslintrc*"
-      ]
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".eslintrc*"]
     },
     "lint:prettier": {
       "outputs": [],
-      "inputs": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        "**/*.jsx",
-        "**/*.json",
-        "**/*.md",
-        ".prettierrc*"
-      ]
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json", "**/*.md", ".prettierrc*"]
     },
     "lint:text": {
       "outputs": [],
-      "inputs": [
-        "**/*.md",
-        "**/*.txt",
-        ".textlintrc*"
-      ]
+      "inputs": ["**/*.md", "**/*.txt", ".textlintrc*"]
     },
     "fix": {
       "cache": false,
@@ -98,30 +64,13 @@
     },
     "test": {
       "outputs": ["coverage/**"],
-      "inputs": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.test.ts",
-        "**/*.test.tsx",
-        "vitest.config.*"
-      ]
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
+    "typecheck": {
+      "cache": false
     }
   },
-  "globalEnv": [
-    "NODE_ENV",
-    "CI"
-  ],
-  "globalDependencies": [
-    ".env",
-    ".env.local",
-    "tsconfig.json",
-    "package.json"
-  ],
-  "globalPassThroughEnv": [
-    "NODE_ENV",
-    "CI",
-    "VERCEL",
-    "VERCEL_ENV",
-    "SENTRY_AUTH_TOKEN"
-  ]
+  "globalEnv": ["NODE_ENV", "CI"],
+  "globalDependencies": [".env", ".env.local", "tsconfig.json", "package.json"],
+  "globalPassThroughEnv": ["NODE_ENV", "CI", "VERCEL", "VERCEL_ENV", "SENTRY_AUTH_TOKEN"]
 }

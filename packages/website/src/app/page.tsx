@@ -1,19 +1,19 @@
 // packages/website/src/app/page.tsx
 
-import { Calendar, ChevronRight, NotebookPen } from 'lucide-react';
+import { ChevronRight, NotebookPen } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { Suspense } from 'react';
 
 import { PageLayout } from '@/components';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button, ButtonGroup } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { env, paths } from '@/config';
-import { DEFAULT_SIZE } from '@/features/news/api/NewsItemList';
-import { Skeleton } from '@/features/news/components/ListItem';
+import { HomeCompetitionNotices } from '@/features/competitions/components/HomeCompetitionNotices';
+import { COMPETITION_ENTRY_FORM_URL } from '@/features/competitions/data';
 import { NewsItemList } from '@/features/news/components/NewsItemList';
+import { getNewsList } from '@/features/news/server/news';
 
 export const metadata: Metadata = {
   description: paths.home.description,
@@ -25,17 +25,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const news = await getNewsList({ page: 1, size: 6 });
   return (
     <PageLayout>
       <div className="text-center">
-        <div className="text-xs text-muted-foreground">特定非営利活動法人</div>
+        <div className="text-muted-foreground text-xs">特定非営利活動法人</div>
         <h1 className="text-2xl font-bold">
           <span className="text-primary">神奈川県</span>
           <span style={{ color: 'var(--color-secondary-bright)' }}>ライフル射撃</span>
           <span className="text-accent">協会</span>
         </h1>
-        <p className="mt-2 text-muted-foreground">ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体</p>
+        <p className="text-muted-foreground mt-2">ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体</p>
       </div>
 
       <Alert variant="warning">
@@ -52,51 +53,7 @@ export default function Page() {
         </AlertDescription>
       </Alert>
 
-      <Alert variant="info">
-        <AlertTitle>東日本ライフル射撃競技選手権大会</AlertTitle>
-        <AlertDescription>
-          <div className="flex items-center gap-2 pb-3">
-            <span className="text-primary">
-              <Calendar className="h-5 w-5" />
-            </span>
-            <span>6月18日(木)～6月21日(日)（公式練習 6月18日(木)）</span>
-          </div>
-          <ButtonGroup className="flex-wrap">
-            <Button variant="outline" size="sm" asChild>
-              <a href="https://forms.gle/peGYBRiyjR6xqYEi8" target="_blank" rel="noopener noreferrer">
-                申込
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-details.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                要項
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                射座割
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://static.kanagawa-rifle.org/website/competitions/2026/2026-06-18-eastern-japan-results.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                速報
-              </a>
-            </Button>
-          </ButtonGroup>
-        </AlertDescription>
-      </Alert>
+      <HomeCompetitionNotices />
 
       <Alert variant="info">
         <AlertTitle>各種大会 (当協会主管以外) 申込</AlertTitle>
@@ -106,7 +63,7 @@ export default function Page() {
               <p>各種大会 (当協会主管以外) および東日本選手権については下記よりお申し込みください。</p>
               <p>
                 ※国体スポ予選および県選手権については
-                <Link href="/competitions" className="text-primary underline hover:bg-primary/10">
+                <Link href="/competitions" className="text-primary hover:bg-primary/10 underline">
                   個別のお申込みフォーム
                 </Link>
                 がございますのでそちらよりお申し込みください。
@@ -114,7 +71,7 @@ export default function Page() {
             </div>
             <div>
               <Button variant="outline" asChild>
-                <a href="https://forms.gle/6XGY1qhEvr3gkasJ9" target="_blank" rel="noopener noreferrer">
+                <a href={COMPETITION_ENTRY_FORM_URL} target="_blank" rel="noopener noreferrer">
                   <NotebookPen className="mr-2 h-4 w-4" />
                   日ラ等大会申込
                 </a>
@@ -157,17 +114,7 @@ export default function Page() {
           </Button>
         </CardHeader>
 
-        <Suspense
-          fallback={
-            <ul>
-              {[...Array(DEFAULT_SIZE).keys()].map((item, index) => (
-                <Skeleton key={index} isLast={DEFAULT_SIZE - 1 === index} />
-              ))}
-            </ul>
-          }
-        >
-          <NewsItemList size={6} page={1} withControls={false} />
-        </Suspense>
+        <NewsItemList news={news} withControls={false} />
       </Card>
     </PageLayout>
   );

@@ -18,6 +18,7 @@ export default defineConfig({
     // カバレッジ設定
     coverage: {
       provider: 'v8',
+      include: ['src/**/*.{ts,tsx}'],
       reporter: ['text', 'json', 'json-summary', 'html'],
       exclude: [
         'node_modules/',

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Homepage', () => {
   test('has title', async ({ page }) => {
@@ -11,7 +11,7 @@ test.describe('Homepage', () => {
   test('navigation works', async ({ page }) => {
     await page.goto('/');
 
-    const aboutLink = page.getByRole('link', { name: '協会について' });
+    const aboutLink = page.getByRole('contentinfo').getByRole('link', { name: '協会について', exact: true });
     await aboutLink.waitFor({ state: 'visible' });
     await aboutLink.click();
     await page.waitForURL('/about');

@@ -2,19 +2,8 @@ import { z } from 'zod';
 
 const createEnv = () => {
   const EnvSchema = z.object({
-    APP_URL: z.string().url().default('http://kanagawa-rifle.org.local'),
+    APP_URL: z.string().url().default('http://localhost:3000'),
     CDN_URL: z.string().url().default('https://static.kanagawa-rifle.org'),
-    // クライアントサイド用API URL
-    API_URL: z
-      .string()
-      .default('')
-      .transform((val) => {
-        if (val) return val;
-        return typeof window !== 'undefined' ? 'http://kanagawa-rifle.org.local' : 'http://localhost:3001';
-      })
-      .pipe(z.string().url()),
-    // サーバーサイド用内部API URL（Docker環境ではサービス名を使用）
-    API_INTERNAL_URL: z.string().url().optional(),
 
     AXIOM_DATASET: z.string().optional(),
     AXIOM_TOKEN: z.string().optional(),
@@ -24,7 +13,7 @@ const createEnv = () => {
     SENTRY_ORG: z.string().optional(),
     SENTRY_PROJECT: z.string().optional(),
     SENTRY_AUTH_TOKEN: z.string().optional(),
-    SENTRY_DSN: z.string().url().optional(),
+    SENTRY_DSN: z.preprocess((value) => (value === '' ? undefined : value), z.string().url().optional()),
 
     CLARITY_ID: z.string().optional(),
   });
@@ -32,8 +21,6 @@ const createEnv = () => {
   const vars = {
     APP_URL: process.env.NEXT_PUBLIC_URL,
     CDN_URL: process.env.NEXT_PUBLIC_CDN_URL,
-    API_URL: process.env.NEXT_PUBLIC_API_URL,
-    API_INTERNAL_URL: process.env.API_INTERNAL_URL,
 
     AXIOM_DATASET: process.env.NEXT_PUBLIC_AXIOM_DATASET,
     AXIOM_TOKEN: process.env.NEXT_PUBLIC_AXIOM_TOKEN,
@@ -58,12 +45,8 @@ const createEnv = () => {
       })
       .join('\n');
 
-    // 環境変数の検証失敗は致命的エラーのため、詳細情報を含めて例外をスロー
-    const errorMessage = [
-      'Environment validation failed!',
-      `Provided values: ${JSON.stringify(vars, null, 2)}`,
-      `Validation errors:\n${errors}`,
-    ].join('\n');
+    // 秘密情報を含む値は出力せず、変数名と検証エラーのみを通知する
+    const errorMessage = ['Environment validation failed!', `Validation errors:\n${errors}`].join('\n');
 
     throw new Error(errorMessage);
   }
@@ -72,16 +55,3 @@ const createEnv = () => {
 };
 
 export const env = createEnv();
-
-/**
- * 実行環境に応じたAPI URLを取得
- * - サーバーサイド: API_INTERNAL_URL（未設定時はAPI_URLにフォールバック）
- * - クライアントサイド: 相対URL（空文字列）を使用してCSP問題を回避
- */
-export const getApiUrl = (): string => {
-  if (typeof window === 'undefined') {
-    return env.API_INTERNAL_URL ?? env.API_URL;
-  }
-  // クライアントサイドでは相対URLを使用（/api/... の形式）
-  return '';
-};

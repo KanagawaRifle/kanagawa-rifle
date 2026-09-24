@@ -1,7 +1,9 @@
 // packages/website/src/testing/vitest.setup.tsx
 import '@testing-library/jest-dom';
 import { cleanup, configure } from '@testing-library/react';
-import { afterEach, vi, beforeAll } from 'vitest';
+import { afterEach, beforeAll, vi } from 'vitest';
+
+vi.mock('server-only', () => ({}));
 
 // ★ Testing Library のエラー出力をカスタマイズ
 configure({
