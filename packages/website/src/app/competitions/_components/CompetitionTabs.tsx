@@ -1,16 +1,14 @@
-// packages/website/src/app/competitions/_components/Tabs.tsx
-
 import Link from 'next/link';
 
 import { getCompetitionPath, paths } from '@/config/paths';
 import { COMPETITION_YEARS, CURRENT_COMPETITION_YEAR, type CompetitionYear } from '@/features/competitions/data';
 import { cn } from '@/lib/utils';
 
-export type TabsProps = {
+export type CompetitionTabsProps = {
   year: CompetitionYear;
 };
 
-export function Tabs({ year }: TabsProps) {
+export function CompetitionTabs({ year }: CompetitionTabsProps) {
   return (
     <nav aria-label="大会年度" className="flex overflow-x-auto">
       {COMPETITION_YEARS.map((item) => {

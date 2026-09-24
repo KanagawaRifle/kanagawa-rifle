@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { getNewsItemHref } from '@/features/news/paths';
 
 import { formatNewsDate } from '../dates';
 import type { NewsSummary } from '../types';
@@ -14,7 +15,7 @@ type Props = NewsSummary & { isLast: boolean; headingAs: 'h2' | 'h3' };
 export function NewsListItem({ slug, title, published, tags, excerpt, isLast, headingAs: Heading }: Props) {
   return (
     <li className={isLast ? '' : 'border-border border-b'}>
-      <Link href={`/news/${slug}`} className="hover:bg-muted flex items-start gap-4 p-4 transition-colors">
+      <Link href={getNewsItemHref(slug)} className="hover:bg-muted flex items-start gap-4 p-4 transition-colors">
         <Avatar aria-hidden="true">
           <AvatarFallback>
             <ImageIcon className="h-5 w-5" aria-hidden="true" />

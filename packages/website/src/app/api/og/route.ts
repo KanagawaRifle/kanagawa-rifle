@@ -2,9 +2,9 @@ import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
+import { createOpengraphImage } from '@/components/OpenGraphImage';
 import { app } from '@/config/app';
 import { logger } from '@/lib/logger';
-import { createOpengraphImage } from '@/lib/OpenGraphImage';
 
 // export const runtime = 'edge'
 // export const revalidate = 60 * 60 * 24

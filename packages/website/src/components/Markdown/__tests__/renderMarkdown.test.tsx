@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import TableOfContents from '@/features/news/components/TableOfContents';
 
-import { ReactMarkdown, renderMarkdown } from '../ReactMarkdown';
+import { renderMarkdown } from '../renderMarkdown';
 
 vi.mock('remark-github-blockquote-alert/alert.css', () => ({}));
 vi.mock('katex/dist/katex.min.css', () => ({}));
@@ -21,6 +21,19 @@ function renderArticle(content: string) {
 }
 
 describe('Markdown rendering and table of contents', () => {
+  it('preserves raw preformatted text, mixed children and empty blocks', () => {
+    const { document } = renderArticle('<pre>raw <strong>formatted</strong> text 123</pre>\n\n<pre></pre>');
+    expect(document.querySelector('article')?.textContent).toContain('raw formatted text 123');
+  });
+
+  it('uses the same heading links at every heading level', () => {
+    const { document, toc } = renderArticle('# One\n\n## Two\n\n### Three\n\n#### Four\n\n##### Five\n\n###### Six');
+    expect(toc.map((entry) => entry.level)).toEqual([1, 2, 3, 4, 5, 6]);
+    for (const entry of toc) {
+      expect(document.getElementById(entry.id)?.querySelector('a')?.getAttribute('href')).toBe(`#${entry.id}`);
+    }
+  });
+
   it('uses rendered headings for formatted titles, duplicates, setext headings and raw HTML', () => {
     const content = [
       '# 大会 **案内** と `結果`',
@@ -157,11 +170,10 @@ const score = 600;
     expect(document.querySelector('iframe')?.getAttribute('src')).toBeNull();
   });
 
-  it('omits navigation when the article has no headings and supports the synchronous component', () => {
+  it('omits navigation when the article has no headings', () => {
     const { document, toc } = renderArticle('見出しのない本文です。');
 
     expect(toc).toEqual([]);
     expect(document.querySelector('nav')).toBeNull();
-    expect(renderToStaticMarkup(<ReactMarkdown content="**同期レンダリング**" />)).toContain('<strong');
   });
 });

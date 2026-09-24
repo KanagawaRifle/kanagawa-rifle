@@ -3,13 +3,13 @@ import { PageLayout } from '@/components/PageLayout';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { getCompetitionPath, paths } from '@/config/paths';
+import { EntryFeeCard } from '@/features/competitions/components/EntryFeeCard';
+import { EntryInfoCard } from '@/features/competitions/components/EntryInfoCard';
+import { EventCard } from '@/features/competitions/components/EventCard';
 import { getCompetitions, type CompetitionYear } from '@/features/competitions/data';
 import { generateCompetitionJsonLd } from '@/features/competitions/json-ld';
 
-import { EntryFeeCard } from './EntryFeeCard';
-import { EntryInfoCard } from './EntryInfoCard';
-import { EventCard } from './EventCard';
-import { Tabs } from './Tabs';
+import { CompetitionTabs } from './CompetitionTabs';
 
 export function CompetitionPage({ year, overview = false }: { year: CompetitionYear; overview?: boolean }) {
   const currentPath = overview ? paths.main.competitions : getCompetitionPath(year);
@@ -28,7 +28,7 @@ export function CompetitionPage({ year, overview = false }: { year: CompetitionY
       {eventJsonLd.map((jsonLd) => (
         <JsonLd key={jsonLd.name} data={jsonLd} />
       ))}
-      <Tabs year={year} />
+      <CompetitionTabs year={year} />
       {overview && (
         <>
           <EntryInfoCard />

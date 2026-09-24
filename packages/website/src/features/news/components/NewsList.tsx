@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { getNewsListHref } from '@/features/news/paths';
 import type { NewsSummary } from '@/features/news/types';
 import type { Paginated, Pagination as PaginationData } from '@/lib/pagination';
 
@@ -32,7 +33,7 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
             )}
             {enabled ? (
               <Button variant="outline" size="icon" asChild>
-                <Link href={`/news?page=${page}&size=${size}`} aria-label={label}>
+                <Link href={getNewsListHref({ page, size })} aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </Link>
               </Button>

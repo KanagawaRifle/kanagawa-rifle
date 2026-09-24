@@ -46,6 +46,18 @@ export async function checkArchitecture(sourceDir, tsConfig) {
       if (/^(components|config|hooks|lib|providers)\//.test(file) && dependencyFeature) {
         violations.push(`Shared module depends on feature: ${file} -> ${dependency}`);
       }
+      if (/^(config|hooks|lib)\//.test(file) && /^(components|providers)\//.test(dependency)) {
+        violations.push(`Non-UI module depends on UI: ${file} -> ${dependency}`);
+      }
+      if (file.startsWith('config/') && /^(hooks|lib)\//.test(dependency)) {
+        violations.push(`Configuration depends on behavior: ${file} -> ${dependency}`);
+      }
+      if (
+        /^features\/[^/]+\/(server\/|data(?:\/|\.ts$)|(?:schema|dates|paths|fees)\.ts$)/.test(file) &&
+        /^(components\/|features\/[^/]+\/components\/)/.test(dependency)
+      ) {
+        violations.push(`Feature data depends on UI: ${file} -> ${dependency}`);
+      }
       if (feature && dependencyFeature && feature !== dependencyFeature) {
         violations.push(`Cross-feature dependency: ${file} -> ${dependency}`);
       }
