@@ -11,8 +11,8 @@ const config = {
         '--no-sandbox',
         '--disable-dev-shm-usage',
         '--disable-software-rasterizer',
-        '--user-data-dir=./.lighthouse.temp'
-      ]
+        '--user-data-dir=./.lighthouse.temp',
+      ],
     },
     upload: {
       target: 'filesystem',

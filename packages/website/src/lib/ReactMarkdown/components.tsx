@@ -36,7 +36,7 @@ export const components: Components = {
   // インラインコード
   code: ({ children, ...props }) => {
     return (
-      <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-secondary dark:text-secondary" {...props}>
+      <code className="bg-muted text-secondary dark:text-secondary rounded px-1.5 py-0.5 font-mono text-sm" {...props}>
         {children}
       </code>
     );
@@ -65,14 +65,14 @@ export const components: Components = {
     return (
       <div className="my-6 overflow-hidden rounded-lg">
         {/* タブ部分 */}
-        <div className="flex items-center space-x-2 rounded-r-lg border-b border-border">
+        <div className="border-border flex items-center space-x-2 rounded-r-lg border-b">
           {filename && (
-            <div className="rounded-t-lg border-x border-t border-border bg-card px-4 py-2 text-sm font-medium text-foreground">
+            <div className="border-border bg-card text-foreground rounded-t-lg border-x border-t px-4 py-2 text-sm font-medium">
               {filename}
             </div>
           )}
           {actualLanguage && (
-            <div className="px-3 py-1 font-mono text-xs tracking-wide text-muted-foreground uppercase">
+            <div className="text-muted-foreground px-3 py-1 font-mono text-xs tracking-wide uppercase">
               {actualLanguage}
             </div>
           )}
@@ -96,7 +96,7 @@ export const components: Components = {
   h1: ({ children, id, ...props }) => (
     <h1
       id={id}
-      className="group relative mt-8 mb-6 border-b-2 border-border pb-3 text-3xl font-bold text-foreground first:mt-0"
+      className="group border-border text-foreground relative mt-8 mb-6 border-b-2 pb-3 text-3xl font-bold first:mt-0"
       {...props}
     >
       {id && (
@@ -115,7 +115,7 @@ export const components: Components = {
   h2: ({ children, id, ...props }) => (
     <h2
       id={id}
-      className="group relative mt-8 mb-4 border-b border-border pb-2 text-2xl font-bold text-foreground"
+      className="group border-border text-foreground relative mt-8 mb-4 border-b pb-2 text-2xl font-bold"
       {...props}
     >
       {id && (
@@ -132,7 +132,7 @@ export const components: Components = {
   ),
 
   h3: ({ children, id, ...props }) => (
-    <h3 id={id} className="group relative mt-6 mb-3 text-xl font-bold text-foreground" {...props}>
+    <h3 id={id} className="group text-foreground relative mt-6 mb-3 text-xl font-bold" {...props}>
       {id && (
         <a
           href={`#${id}`}
@@ -147,7 +147,7 @@ export const components: Components = {
   ),
 
   h4: ({ children, id, ...props }) => (
-    <h4 id={id} className="group relative mt-5 mb-3 text-lg font-semibold text-foreground" {...props}>
+    <h4 id={id} className="group text-foreground relative mt-5 mb-3 text-lg font-semibold" {...props}>
       {id && (
         <a
           href={`#${id}`}
@@ -162,7 +162,7 @@ export const components: Components = {
   ),
 
   h5: ({ children, id, ...props }) => (
-    <h5 id={id} className="group relative mt-4 mb-2 text-base font-semibold text-foreground" {...props}>
+    <h5 id={id} className="group text-foreground relative mt-4 mb-2 text-base font-semibold" {...props}>
       {id && (
         <a
           href={`#${id}`}
@@ -177,7 +177,7 @@ export const components: Components = {
   ),
 
   h6: ({ children, id, ...props }) => (
-    <h6 id={id} className="group relative mt-4 mb-2 text-sm font-semibold text-foreground" {...props}>
+    <h6 id={id} className="group text-foreground relative mt-4 mb-2 text-sm font-semibold" {...props}>
       {id && (
         <a
           href={`#${id}`}
@@ -193,7 +193,7 @@ export const components: Components = {
 
   // 段落
   p: ({ children, ...props }) => (
-    <p className="mb-4 leading-7 text-foreground" {...props}>
+    <p className="text-foreground mb-4 leading-7" {...props}>
       {children}
     </p>
   ),
@@ -212,7 +212,7 @@ export const components: Components = {
   ),
 
   li: ({ children, ...props }) => (
-    <li className="leading-7 text-foreground" {...props}>
+    <li className="text-foreground leading-7" {...props}>
       {children}
     </li>
   ),
@@ -220,7 +220,7 @@ export const components: Components = {
   // 引用
   blockquote: ({ children, ...props }) => {
     return (
-      <blockquote className="mb-4 border-l-4 border-muted-foreground py-2 pr-4 pl-4 italic" {...props}>
+      <blockquote className="border-muted-foreground mb-4 border-l-4 py-2 pr-4 pl-4 italic" {...props}>
         {children}
       </blockquote>
     );
@@ -229,7 +229,7 @@ export const components: Components = {
   // テーブル
   table: ({ children, ...props }) => (
     <div className="mb-4 overflow-x-auto">
-      <table className="min-w-full overflow-hidden rounded-lg border border-border" {...props}>
+      <table className="border-border min-w-full overflow-hidden rounded-lg border" {...props}>
         {children}
       </table>
     </div>
@@ -244,14 +244,14 @@ export const components: Components = {
   tbody: ({ children, ...props }) => <tbody {...props}>{children}</tbody>,
 
   tr: ({ children, ...props }) => (
-    <tr className="border-b border-border last:border-b-0" {...props}>
+    <tr className="border-border border-b last:border-b-0" {...props}>
       {children}
     </tr>
   ),
 
   th: ({ children, ...props }) => (
     <th
-      className="border-r border-border px-4 py-3 text-left text-sm font-semibold text-foreground last:border-r-0"
+      className="border-border text-foreground border-r px-4 py-3 text-left text-sm font-semibold last:border-r-0"
       {...props}
     >
       {children}
@@ -259,7 +259,7 @@ export const components: Components = {
   ),
 
   td: ({ children, ...props }) => (
-    <td className="border-r border-border px-4 py-3 text-sm text-foreground last:border-r-0" {...props}>
+    <td className="border-border text-foreground border-r px-4 py-3 text-sm last:border-r-0" {...props}>
       {children}
     </td>
   ),
@@ -269,7 +269,7 @@ export const components: Components = {
     return (
       <a
         href={href}
-        className="text-primary underline transition-colors hover:text-primary/80"
+        className="text-primary hover:text-primary/80 underline transition-colors"
         {...(href?.startsWith('#') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
         {...props}
       >
@@ -279,7 +279,7 @@ export const components: Components = {
   },
 
   img: ({ src = '', alt = '', width, height }) => {
-    if (typeof src !== 'string') return null;
+    if (typeof src !== 'string' || !src) return null;
 
     const aspectRatio = width && height ? Number(height) / Number(width) : 9 / 16;
     // SEO: alt 属性が空の場合はデフォルト値を設定
@@ -288,17 +288,17 @@ export const components: Components = {
     return (
       <span className="relative mb-4 block w-full" style={{ paddingTop: `${aspectRatio * 100}%` }}>
         <Image src={src} alt={altText} fill className="rounded-md object-contain" />
-        {alt && <span className="mt-1 block text-center text-sm text-muted-foreground italic">{alt}</span>}
+        {alt && <span className="text-muted-foreground mt-1 block text-center text-sm italic">{alt}</span>}
       </span>
     );
   },
 
   // 水平線
-  hr: ({ ...props }) => <hr className="my-8 border-t-2 border-border" {...props} />,
+  hr: ({ ...props }) => <hr className="border-border my-8 border-t-2" {...props} />,
 
   // 強調
   strong: ({ children, ...props }) => (
-    <strong className="font-bold text-foreground" {...props}>
+    <strong className="text-foreground font-bold" {...props}>
       {children}
     </strong>
   ),

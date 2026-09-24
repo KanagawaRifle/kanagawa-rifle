@@ -29,12 +29,11 @@ const buttonVariants = cva(
       variant: 'outline',
       size: 'default',
     },
-  }
+  },
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
   startIcon?: React.ReactNode;
@@ -49,14 +48,24 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // loading/startIcon/endIcon は渡さない
     if (asChild) {
       return (
-        <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} disabled={disabled || loading} {...props}>
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          disabled={disabled || loading}
+          {...props}
+        >
           {children}
         </Comp>
       );
     }
 
     return (
-      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} disabled={disabled || loading} {...props}>
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        disabled={disabled || loading}
+        {...props}
+      >
         {loading && (
           <svg className="size-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -72,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {endIcon}
       </Comp>
     );
-  }
+  },
 );
 Button.displayName = 'Button';
 
@@ -87,7 +96,7 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(({ classN
     role="group"
     className={cn(
       'inline-flex [&>*]:rounded-none [&>*:first-child]:rounded-l [&>*:last-child]:rounded-r [&>*:not(:first-child)]:-ml-px',
-      className
+      className,
     )}
     {...props}
   >

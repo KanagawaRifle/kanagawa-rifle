@@ -1,19 +1,14 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { PageLayout } from '@/components';
-import { env, paths } from '@/config';
-import { NewsItemList } from '@/features/news/components/NewsItemList';
+import { PageLayout } from '@/components/PageLayout';
+import { paths } from '@/config/paths';
+import { NewsList } from '@/features/news/components/NewsList';
 import { NewsQuerySchema } from '@/features/news/schema';
 import { getNewsList } from '@/features/news/server/news';
+import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.news;
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
@@ -33,7 +28,7 @@ export default async function Page({ searchParams }: Props) {
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
-      <NewsItemList news={news} />
+      <NewsList news={news} />
     </PageLayout>
   );
 }

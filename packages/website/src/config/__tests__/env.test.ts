@@ -16,6 +16,7 @@ const validVariables = {
 describe('environment configuration', () => {
   beforeEach(() => {
     vi.resetModules();
+    vi.stubEnv('NEXT_PUBLIC_STATIC_FILE_BASE_URL', undefined);
     for (const [name, value] of Object.entries(validVariables)) {
       vi.stubEnv(name, value);
     }
@@ -56,12 +57,10 @@ describe('environment configuration', () => {
     expect(env).toEqual({
       APP_URL: validVariables.NEXT_PUBLIC_URL,
       CDN_URL: validVariables.NEXT_PUBLIC_CDN_URL,
+      STATIC_FILE_BASE_URL: `${validVariables.NEXT_PUBLIC_CDN_URL}/website`,
       AXIOM_DATASET: validVariables.NEXT_PUBLIC_AXIOM_DATASET,
       AXIOM_TOKEN: validVariables.NEXT_PUBLIC_AXIOM_TOKEN,
       GOOGLE_ANALYTICS_ID: validVariables.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
-      SENTRY_ORG: validVariables.SENTRY_ORG,
-      SENTRY_PROJECT: validVariables.SENTRY_PROJECT,
-      SENTRY_AUTH_TOKEN: validVariables.SENTRY_AUTH_TOKEN,
       SENTRY_DSN: validVariables.NEXT_PUBLIC_SENTRY_DSN,
       CLARITY_ID: validVariables.NEXT_PUBLIC_CLARITY_ID,
     });
@@ -82,7 +81,9 @@ describe('environment configuration', () => {
 
     expect(env.APP_URL).toBe('http://localhost:3000');
     expect(env.CDN_URL).toBe('https://static.kanagawa-rifle.org');
-    expect(env.SENTRY_AUTH_TOKEN).toBeUndefined();
+    expect(env).not.toHaveProperty('SENTRY_AUTH_TOKEN');
+    expect(env).not.toHaveProperty('SENTRY_ORG');
+    expect(env).not.toHaveProperty('SENTRY_PROJECT');
     expect(env.SENTRY_DSN).toBeUndefined();
   });
 });

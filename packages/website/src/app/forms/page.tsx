@@ -1,11 +1,12 @@
 // packages/website/src/app/forms/page.tsx
 
 import { Download, FileSpreadsheet, FileText, FileType } from 'lucide-react';
-import type { Metadata } from 'next';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { env, paths } from '@/config';
+import { getStaticFileUrl } from '@/config/assets';
+import { paths } from '@/config/paths';
+import { createPageMetadata } from '@/lib/metadata';
 
 const FILE_TYPES = {
   EXCEL: { icon: FileSpreadsheet, colorClass: 'text-green-600' },
@@ -52,14 +53,14 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
   const Icon = fileType.icon;
 
   return (
-    <li className={divider ? 'border-b border-border' : ''}>
+    <li className={divider ? 'border-border border-b' : ''}>
       <div className="flex items-center gap-3 p-4">
         <Icon className={`h-5 w-5 ${fileType.colorClass}`} aria-hidden="true" />
         <a
-          href={paths.cdn.getHref(item.filename)}
+          href={getStaticFileUrl(item.filename)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary underline hover:bg-primary/10"
+          className="text-primary hover:bg-primary/10 underline"
         >
           {item.label}
           <span className="sr-only">（ダウンロード、新しいタブで開く）</span>
@@ -70,12 +71,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
 }
 
 const currentPath = paths.sub.forms;
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 export default function Page() {
   return (

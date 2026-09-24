@@ -3,7 +3,7 @@
 'use client';
 
 import { Clipboard, Loader2, Mail, Share2 } from 'lucide-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';

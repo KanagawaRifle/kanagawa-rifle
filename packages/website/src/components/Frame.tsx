@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-import { Footer, Header } from '@/components';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
 
 export type FrameProps = {
   children: React.ReactNode;

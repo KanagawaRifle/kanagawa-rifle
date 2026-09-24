@@ -2,71 +2,71 @@
 version: 2
 updates:
   # npm dependencies (root)
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
-      time: "02:00"
-      timezone: "Asia/Tokyo"
+      interval: 'daily'
+      time: '02:00'
+      timezone: 'Asia/Tokyo'
     open-pull-requests-limit: 10
     labels:
-      - "Cat: Dependencies 🤖"
+      - 'Cat: Dependencies 🤖'
     commit-message:
-      prefix: "[*] chore"
+      prefix: '[*] chore'
     groups:
       # Major updates grouped separately
       major-updates:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "major"
+          - 'major'
       # Minor and patch updates grouped together
       minor-and-patch:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
 
   # npm dependencies (website)
-  - package-ecosystem: "npm"
-    directory: "/packages/website"
+  - package-ecosystem: 'npm'
+    directory: '/packages/website'
     schedule:
-      interval: "daily"
-      time: "03:00"
-      timezone: "Asia/Tokyo"
+      interval: 'daily'
+      time: '03:00'
+      timezone: 'Asia/Tokyo'
     open-pull-requests-limit: 10
     labels:
-      - "Cat: Dependencies 🤖"
-      - "Package: Website 📦"
+      - 'Cat: Dependencies 🤖'
+      - 'Package: Website 📦'
     commit-message:
-      prefix: "[*] chore"
-      prefix-development: "[website] chore"
+      prefix: '[*] chore'
+      prefix-development: '[website] chore'
     groups:
       # Major updates grouped separately
       major-updates:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "major"
+          - 'major'
       # Minor and patch updates grouped together
       minor-and-patch:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
 
   # GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     labels:
-      - "Cat: Dependencies 🤖"
+      - 'Cat: Dependencies 🤖'
     commit-message:
-      prefix: "[*] chore"
+      prefix: '[*] chore'
     groups:
       github-actions-updates:
         patterns:
-          - "*"
+          - '*'

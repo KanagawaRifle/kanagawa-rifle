@@ -1,4 +1,6 @@
-import { paths } from '@/config/paths';
+import 'server-only';
+
+import { getStaticFileUrl } from '@/config/assets';
 
 import { competitionSchema } from '../schema';
 
@@ -9,15 +11,15 @@ export const year2023 = competitionSchema.array().parse([
     actions: [
       {
         name: '要項',
-        href: paths.cdn.getHref('/competitions/2023/2024-02-24-kanagawa-junior-championship-details.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2024-02-24-kanagawa-junior-championship-details.pdf'),
       },
       {
         name: '射座割',
-        href: paths.cdn.getHref('/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2024-02-24-kanagawa-junior-championship-start-lists.pdf'),
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2024-02-24-kanagawa-junior-championship-results.pdf'),
       },
     ],
   },
@@ -27,15 +29,15 @@ export const year2023 = competitionSchema.array().parse([
     actions: [
       {
         name: '要項',
-        href: paths.cdn.getHref('/competitions/2023/2023-11-05-kanagawa-open-championship-details.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-11-05-kanagawa-open-championship-details.pdf'),
       },
       {
         name: '射座割',
-        href: paths.cdn.getHref('/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-11-05-kanagawa-open-championship-start-lists.pdf'),
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2023/2023-11-05-kanagawa-open-championship-results.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-11-05-kanagawa-open-championship-results.pdf'),
       },
     ],
   },
@@ -45,11 +47,11 @@ export const year2023 = competitionSchema.array().parse([
     actions: [
       {
         name: '要項',
-        href: paths.cdn.getHref('/competitions/2023/2023-08-18-zen-kanto-details.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-08-18-zen-kanto-details.pdf'),
       },
       {
         name: '射座割',
-        href: paths.cdn.getHref('/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-08-18-zen-kanto-start-lists.pdf'),
       },
     ],
   },
@@ -59,11 +61,11 @@ export const year2023 = competitionSchema.array().parse([
     actions: [
       {
         name: '射座割',
-        href: paths.cdn.getHref('/competitions/2023/2023-05-21-kokutai-trials-2nd-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-05-21-kokutai-trials-2nd-start-lists.pdf'),
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2023/2023-05-21-kokutai-trials-2nd-results.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-05-21-kokutai-trials-2nd-results.pdf'),
       },
     ],
   },
@@ -73,11 +75,11 @@ export const year2023 = competitionSchema.array().parse([
     actions: [
       {
         name: '射座割',
-        href: paths.cdn.getHref('/competitions/2023/2023-04-23-kokutai-trials-1st-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-04-23-kokutai-trials-1st-start-lists.pdf'),
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2023/2023-04-23-kokutai-trials-1st-results.pdf'),
+        href: getStaticFileUrl('/competitions/2023/2023-04-23-kokutai-trials-1st-results.pdf'),
       },
     ],
   },

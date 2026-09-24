@@ -1,42 +1,11 @@
-// 基本的なPathItemの型定義
 export type PathItem = {
   name: string;
-  getHref: (path?: string) => string;
+  getHref: () => string;
   description?: string;
-  children?: Record<string, PathItem>;
-};
-
-// 各カテゴリのキーを厳密に定義
-type MainPathKeys = 'about' | 'join' | 'competitions' | 'recommendation' | 'projects' | 'news';
-type SubPathKeys = 'forms' | 'links';
-type ExternalPathKeys = 'jrsf' | 'yrsa' | 'nichiranet';
-
-// competitionsの子要素のキーを定義
-type CompetitionChildrenKeys = 'year2026' | 'year2025' | 'year2024' | 'year2023' | 'year2022';
-
-// 特定のパスの型を詳細に定義
-type CompetitionsPathItem = PathItem & {
-  children: Record<CompetitionChildrenKeys, PathItem>;
-};
-
-// CDN用の特別な型（pathパラメータを持つgetHref）
-type CdnPathItem = Omit<PathItem, 'getHref'> & {
-  getHref: (path?: string) => string;
-};
-
-// メイン型定義 - 定義したキー型を活用
-type Paths = {
-  home: PathItem;
-  main: Record<MainPathKeys, PathItem> & {
-    competitions: CompetitionsPathItem;
-  };
-  sub: Record<SubPathKeys, PathItem>;
-  external: Record<ExternalPathKeys, PathItem>;
-  cdn: CdnPathItem;
 };
 
 // 実装部分
-export const paths: Paths = {
+export const paths = {
   home: {
     name: 'ホーム',
     getHref: () => '/',
@@ -62,44 +31,11 @@ export const paths: Paths = {
       getHref: () => '/competitions',
       description:
         'ライフル射撃大会の情報。スモールボア・エアライフル・ビームライフル競技の参加料、大会要項、射座割、成績など出場に必要な情報を掲載。',
-      children: {
-        year2026: {
-          name: '大会（2026年度）',
-          getHref: () => '/competitions/2026',
-          description:
-            '2026年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
-        },
-        year2025: {
-          name: '大会（2025年度）',
-          getHref: () => '/competitions/2025',
-          description:
-            '2025年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
-        },
-        year2024: {
-          name: '大会（2024年度）',
-          getHref: () => '/competitions/2024',
-          description:
-            '2024年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
-        },
-        year2023: {
-          name: '大会（2023年度）',
-          getHref: () => '/competitions/2023',
-          description:
-            '2023年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
-        },
-        year2022: {
-          name: '大会（2022年度）',
-          getHref: () => '/competitions/2022',
-          description:
-            '2022年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。',
-        },
-      },
     },
     recommendation: {
       name: '推薦',
       getHref: () => '/recommendation',
-      description:
-        'ライフル射撃の銃砲所持許可に必要な推薦申請の手続き方法、手数料、注意事項をまとめています。',
+      description: 'ライフル射撃の銃砲所持許可に必要な推薦申請の手続き方法、手数料、注意事項をまとめています。',
     },
     projects: {
       name: '事業',
@@ -109,8 +45,7 @@ export const paths: Paths = {
     },
     news: {
       name: 'お知らせ',
-      description:
-        'ライフル射撃に関するお知らせや最新情報。大会案内、行事予定、射撃場情報などをご確認いただけます。',
+      description: 'ライフル射撃に関するお知らせや最新情報。大会案内、行事予定、射撃場情報などをご確認いただけます。',
       getHref: () => '/news',
     },
   },
@@ -118,15 +53,13 @@ export const paths: Paths = {
   sub: {
     forms: {
       name: '様式',
-      description:
-        'ライフル射撃に関する各種書類や様式。入会申込書、推薦申請書など必要な資料をダウンロードできます。',
+      description: 'ライフル射撃に関する各種書類や様式。入会申込書、推薦申請書など必要な資料をダウンロードできます。',
       getHref: () => '/forms',
     },
     links: {
       name: '関連リンク',
       getHref: () => '/links',
-      description:
-        'ライフル射撃に関連する団体へのリンク。日本ライフル射撃協会、各地域協会、射撃場などの情報を掲載。',
+      description: 'ライフル射撃に関連する団体へのリンク。日本ライフル射撃協会、各地域協会、射撃場などの情報を掲載。',
     },
   },
 
@@ -144,23 +77,13 @@ export const paths: Paths = {
       getHref: () => 'https://members.riflesports.jp/_login.cgi?top1',
     },
   },
-
-  cdn: {
-    name: 'CDN',
-    getHref: (path?: string): string => {
-      const baseUrl: string =
-        process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL ?? 'https://static.kanagawa-rifle.org/website';
-
-      if (!path) return baseUrl;
-
-      if (path.startsWith('http://') || path.startsWith('https://')) {
-        return path;
-      }
-
-      const normalizedPath: string = path.startsWith('/') ? path : `/${path}`;
-      const cleanBaseUrl: string = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-
-      return `${cleanBaseUrl}${normalizedPath}`;
-    },
-  },
 };
+
+/** Metadata for an archive; supported years are owned by the competition registry. */
+export function getCompetitionPath(year: number): PathItem {
+  return {
+    name: `大会（${year}年度）`,
+    getHref: () => `/competitions/${year}`,
+    description: `${year}年度のライフル射撃大会記録。スモールボア・エアライフル・ビームライフル競技の参加案内や成績をまとめています。`,
+  };
+}
