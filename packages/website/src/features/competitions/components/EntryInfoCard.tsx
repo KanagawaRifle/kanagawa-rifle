@@ -1,5 +1,3 @@
-// packages/website/src/app/competitions/_components/EntryInfoCard.tsx
-
 'use client';
 
 import { CircleHelp, NotebookPen } from 'lucide-react';

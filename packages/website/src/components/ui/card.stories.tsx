@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 import { Button } from './button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardActionArea } from './card';
+import { Card, CardActionArea, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card';
 
 const meta = {
   title: 'UI/Card',

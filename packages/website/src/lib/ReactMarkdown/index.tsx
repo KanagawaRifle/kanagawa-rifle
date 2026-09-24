@@ -1,2 +1,2 @@
-export * from './ReactMarkdown';
 export * from './components';
+export * from './ReactMarkdown';

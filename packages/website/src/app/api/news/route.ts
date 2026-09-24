@@ -1,35 +1,38 @@
-// packages/website/src/app/api/news/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 
-import { createInternalServerError, createValidationError } from '@/errors';
-import { CACHE_HEADERS } from '@/features/news/http';
 import { NewsQuerySchema } from '@/features/news/schema';
+import {
+  CACHE_HEADERS,
+  newsErrorResponse,
+  newsFailureResponse,
+  serializeNewsItem,
+  type ApiResponse,
+} from '@/features/news/server/http';
 import { getNewsList } from '@/features/news/server/news';
-import { logger } from '@/lib/logger';
-import { ApiResponse, NewsItem, Paginated } from '@/types';
+import type { NewsItemJson } from '@/features/news/types';
+import type { Paginated } from '@/lib/pagination';
 
-export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItem>>>> {
+export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<Paginated<NewsItemJson>>>> {
   try {
-    const { searchParams } = new URL(request.url);
-
-    // Zod でバリデーション
-    const queryResult = NewsQuerySchema.safeParse({
+    const { searchParams } = request.nextUrl;
+    const query = NewsQuerySchema.safeParse({
       page: searchParams.get('page') ?? undefined,
       size: searchParams.get('size') ?? undefined,
     });
-
-    if (!queryResult.success) {
-      const error = createValidationError(queryResult.error.issues.map((i) => i.message).join(', '));
-      return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
+    if (!query.success) {
+      return newsErrorResponse({
+        status: 400,
+        code: 'VALIDATION_ERROR',
+        message: query.error.issues.map((issue) => issue.message).join(', '),
+      });
     }
 
-    const result = await getNewsList(queryResult.data);
-
-    return NextResponse.json({ data: result }, { headers: CACHE_HEADERS.LIST });
-  } catch (ex) {
-    logger.error('API Error', { error: ex instanceof Error ? ex.message : String(ex) });
-    const error = createInternalServerError(ex as Error);
-    return NextResponse.json({ data: null, error }, { status: error.status, headers: CACHE_HEADERS.NO_CACHE });
+    const result = await getNewsList(query.data);
+    return NextResponse.json(
+      { data: { ...result, data: result.data.map(serializeNewsItem) } },
+      { headers: CACHE_HEADERS.LIST },
+    );
+  } catch (cause) {
+    return newsFailureResponse(cause);
   }
 }

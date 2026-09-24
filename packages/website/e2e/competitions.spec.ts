@@ -28,3 +28,14 @@ test('home and year page share the published results URL', async ({ page }) => {
 test('unknown fiscal year returns 404', async ({ request }) => {
   expect((await request.get('/competitions/1999')).status()).toBe(404);
 });
+
+test('year navigation identifies the selected archive and preserves entry help', async ({ page }) => {
+  await page.goto('/competitions');
+  await page.getByRole('button', { name: '申込フォームの説明' }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.getByRole('button', { name: '閉じる', exact: true }).click();
+  const navigation = page.getByRole('navigation', { name: '大会年度' });
+  await navigation.getByRole('link', { name: '2025', exact: true }).click();
+  await expect(page).toHaveURL('/competitions/2025');
+  await expect(navigation.getByRole('link', { name: '2025', exact: true })).toHaveAttribute('aria-current', 'page');
+});

@@ -3,6 +3,9 @@
 
 # ドキュメントファイル
 README.md
+# next dev が自動生成する英語のエージェント向け補助ファイル
+AGENTS.md
+CLAUDE.md
 
 # ビルド成果物とテスト出力
 .next/

@@ -6,7 +6,7 @@
 
 import * as Sentry from '@sentry/nextjs';
 
-import { env } from '@/config';
+import { env } from '@/config/env';
 
 // 本番環境では 10% サンプリング、開発環境では 100%
 const tracesSampleRate = process.env.NODE_ENV === 'production' ? 0.1 : 1.0;

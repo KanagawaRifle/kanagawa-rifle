@@ -6,33 +6,12 @@ import Link from 'next/link';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 
-type Props = {
-  slug: string;
-  title: string;
-  published: Date | string;
-  tags?: string[];
-  excerpt?: string;
-  isLast: boolean;
-};
+import { formatNewsDate } from '../dates';
+import type { NewsSummary } from '../types';
 
-const dateFormatter = new Intl.DateTimeFormat('ja-JP', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'Asia/Tokyo',
-});
+type Props = NewsSummary & { isLast: boolean };
 
-function formatPublishedDate(published: Date | string): { dateTime: string; display: string } {
-  const date = typeof published === 'string' ? new Date(published) : published;
-  return {
-    dateTime: date.toISOString(),
-    display: dateFormatter.format(date),
-  };
-}
-
-export function ListNewsItem({ slug, title, published, tags, excerpt, isLast }: Props) {
-  const { dateTime, display } = formatPublishedDate(published);
-
+export function NewsListItem({ slug, title, published, tags, excerpt, isLast }: Props) {
   return (
     <li className={isLast ? '' : 'border-border border-b'}>
       <Link href={`/news/${slug}`} className="hover:bg-muted flex items-start gap-4 p-4 transition-colors">
@@ -47,7 +26,7 @@ export function ListNewsItem({ slug, title, published, tags, excerpt, isLast }: 
           <div className="flex flex-wrap gap-2 pt-1">
             <Badge variant="outline">
               <Calendar className="mr-1 h-3 w-3" />
-              <time dateTime={dateTime}>{display}</time>
+              <time dateTime={published.toISOString()}>{formatNewsDate(published)}</time>
             </Badge>
             {tags &&
               tags.length > 0 &&

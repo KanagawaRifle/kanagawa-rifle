@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 export const size = { width: 1200, height: 630 };
 

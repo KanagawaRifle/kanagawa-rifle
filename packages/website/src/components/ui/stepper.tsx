@@ -16,7 +16,7 @@ function Stepper({ orientation = 'vertical', children, className, 'aria-label': 
   return (
     <ol
       aria-label={ariaLabel ?? '手順'}
-      className={cn('flex list-none p-0 m-0', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}
+      className={cn('m-0 flex list-none p-0', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}
     >
       {children}
     </ol>
@@ -57,7 +57,7 @@ function StepLabel({ icon, completed, active, children, className }: StepLabelPr
           'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-medium transition-colors',
           completed && 'border-primary bg-primary text-primary-foreground',
           active && !completed && 'border-primary text-primary',
-          !completed && !active && 'border-muted-foreground text-muted-foreground'
+          !completed && !active && 'border-muted-foreground text-muted-foreground',
         )}
       >
         {completed ? <Check className="h-4 w-4" /> : icon}
@@ -67,7 +67,7 @@ function StepLabel({ icon, completed, active, children, className }: StepLabelPr
           'font-medium',
           completed && 'text-foreground',
           active && !completed && 'text-foreground',
-          !completed && !active && 'text-muted-foreground'
+          !completed && !active && 'text-muted-foreground',
         )}
       >
         {children}
@@ -82,7 +82,7 @@ interface StepContentProps {
 }
 
 function StepContent({ children, className }: StepContentProps) {
-  return <div className={cn('ml-4 border-l-2 border-border pl-8 pb-6 pt-2', className)}>{children}</div>;
+  return <div className={cn('border-border ml-4 border-l-2 pt-2 pb-6 pl-8', className)}>{children}</div>;
 }
 
-export { Stepper, Step, StepLabel, StepContent };
+export { Step, StepContent, StepLabel, Stepper };

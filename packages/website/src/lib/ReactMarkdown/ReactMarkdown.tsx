@@ -1,3 +1,5 @@
+import 'server-only';
+
 // packages/website/src/lib/ReactMarkdown/ReactMarkdown.tsx
 
 import type { Root } from 'hast';

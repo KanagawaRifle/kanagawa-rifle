@@ -4,7 +4,9 @@ import { join } from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-type Repository = typeof import('../news');
+import { createNewsRepository } from '../news';
+
+type Repository = ReturnType<typeof createNewsRepository>;
 
 describe('news repository with filesystem fixtures', () => {
   let workspace: string;
@@ -24,9 +26,7 @@ describe('news repository with filesystem fixtures', () => {
     workspace = await fs.mkdtemp(join(tmpdir(), 'kanagawa-news-'));
     root = join(workspace, 'src', 'contents', 'news');
     await fs.mkdir(root, { recursive: true });
-    vi.spyOn(process, 'cwd').mockReturnValue(workspace);
-    vi.resetModules();
-    news = await import('../news');
+    news = createNewsRepository(root);
   });
 
   afterEach(async () => {
@@ -61,12 +61,26 @@ describe('news repository with filesystem fixtures', () => {
     await writeArticle('2024-01-15-01');
     await writeArticle('2024-01-16-01');
     const page = await news.getNewsList({ page: 2, size: 1 });
-    expect(page.data).toMatchObject([{ slug: '2024-01-15-01', content: '', tags: ['大会'] }]);
+    expect(page.data).toMatchObject([{ slug: '2024-01-15-01', tags: ['大会'] }]);
+    expect(page.data[0]).not.toHaveProperty('content');
     expect(page.data[0]?.published).toEqual(new Date('2024-01-15'));
     expect(page.pagination).toEqual({ current: 2, size: 1, total: 3, totalPages: 3, hasNext: true, hasPrev: true });
     expect((await news.getNewsItem('2024-01-15-01'))?.content).toBe('本文 2024-01-15-01');
     expect((await news.getNewsItem('2024-01-15-01'))?.updated).toEqual(new Date('2026-01-01'));
     expect((await news.getNewsList({ page: 4, size: 1 })).data).toEqual([]);
+  });
+
+  it('keeps metadata-only inventories and content roots independent', async () => {
+    await writeArticle('2024-01-15-01');
+    const summaries = await news.getAllNewsSummaries();
+    expect(summaries).toHaveLength(1);
+    expect(summaries[0]).not.toHaveProperty('content');
+    expect(summaries[0]?.updated).toEqual(new Date('2026-01-01'));
+    const otherRoot = join(workspace, 'other-news');
+    await fs.mkdir(otherRoot);
+    const other = createNewsRepository(otherRoot);
+    expect(await other.getAllNewsSummaries()).toEqual([]);
+    expect(await news.getNewsSlugs()).toEqual(['2024-01-15-01']);
   });
 
   it('reads additions, edits and removals immediately', async () => {

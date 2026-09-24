@@ -4,23 +4,18 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { env } from '@/config';
+import { env } from '@/config/env';
+import type { NewsItem } from '@/features/news/types';
 import { renderMarkdown } from '@/lib/ReactMarkdown';
-import type { NewsItem } from '@/types';
 
+import { formatNewsDate } from '../dates';
 import { RefreshNewsButton } from './NewsListControls';
 import ShareLinks from './ShareLinks';
 import TableOfContents from './TableOfContents';
 
-export function NewsItemGet({ news }: { news: NewsItem }) {
+export function NewsArticle({ news }: { news: NewsItem }) {
   const { body, toc } = renderMarkdown(news.content);
   const articleUrl = new URL(`/news/${news.slug}`, env.APP_URL).toString();
-  const formattedDate = new Intl.DateTimeFormat('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'Asia/Tokyo',
-  }).format(news.published);
 
   return (
     <article>
@@ -32,7 +27,7 @@ export function NewsItemGet({ news }: { news: NewsItem }) {
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline">
             <Calendar className="mr-1 h-3 w-3" />
-            <time dateTime={news.published.toISOString()}>{formattedDate}</time>
+            <time dateTime={news.published.toISOString()}>{formatNewsDate(news.published)}</time>
           </Badge>
           {news.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="border-primary text-primary">

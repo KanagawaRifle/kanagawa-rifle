@@ -5,7 +5,8 @@ import Link from 'next/link';
 
 import { SocialLinks } from '@/components/SocialLinks';
 import { buttonVariants } from '@/components/ui/button';
-import { paths, app } from '@/config';
+import { app } from '@/config/app';
+import { paths } from '@/config/paths';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -13,7 +14,7 @@ export function Footer() {
     <footer className="bg-muted">
       {/* ソーシャルリンク */}
       <nav aria-label="ソーシャルメディア">
-        <div className="mx-auto mt-2 max-w-screen-xl border-b border-border px-4 py-6">
+        <div className="border-border mx-auto mt-2 max-w-screen-xl border-b px-4 py-6">
           <div className="flex gap-1">
             <SocialLinks />
           </div>
@@ -22,9 +23,9 @@ export function Footer() {
 
       {/* ナビゲーションリンク */}
       <nav aria-label="フッターナビゲーション">
-        <div className="mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b border-border px-4 py-6 md:grid-cols-3">
+        <div className="border-border mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b px-4 py-6 md:grid-cols-3">
           <section aria-labelledby="footer-main-nav">
-            <h3 id="footer-main-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+            <h3 id="footer-main-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               メインナビゲーション
             </h3>
             <ul className="-ml-4">
@@ -32,7 +33,7 @@ export function Footer() {
                 <li key={key}>
                   <Link
                     href={obj.getHref()}
-                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
                   </Link>
@@ -41,7 +42,7 @@ export function Footer() {
             </ul>
           </section>
           <section aria-labelledby="footer-sub-nav">
-            <h3 id="footer-sub-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+            <h3 id="footer-sub-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               各種情報
             </h3>
             <ul className="-ml-4">
@@ -49,7 +50,7 @@ export function Footer() {
                 <li key={key}>
                   <Link
                     href={obj.getHref()}
-                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
                   </Link>
@@ -58,7 +59,7 @@ export function Footer() {
             </ul>
           </section>
           <section aria-labelledby="footer-external-nav">
-            <h3 id="footer-external-nav" className="mb-2 text-xs font-bold text-muted-foreground">
+            <h3 id="footer-external-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               関連リンク
             </h3>
             <ul className="-ml-4">
@@ -68,7 +69,7 @@ export function Footer() {
                     href={obj.getHref()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'justify-start text-primary')}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
                     <ExternalLink className="h-3 w-3" aria-hidden="true" />
@@ -82,7 +83,7 @@ export function Footer() {
       </nav>
 
       {/* コピーライト */}
-      <div className="mx-auto mt-2 max-w-screen-xl px-4 py-6 text-muted-foreground">
+      <div className="text-muted-foreground mx-auto mt-2 max-w-screen-xl px-4 py-6">
         <div>
           <Link href="/" className="text-xs font-bold no-underline hover:underline">
             {app.longName}

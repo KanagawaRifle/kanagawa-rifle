@@ -19,7 +19,6 @@
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
-    "@eslint/eslintrc": "^3",
     "@lhci/cli": "^0.15.1",
     "cspell": "^9.4.0",
     "eslint": "^9",
@@ -42,14 +41,17 @@
   "scripts": {
     "prepare": "node -e \"if (process.env.CI || process.env.VERCEL) process.exit(0)\" || husky",
     "lint-staged": "lint-staged",
-    "lint": "turbo run lint",
+    "lint": "npm run lint:tracked && turbo run lint",
     "lint:eslint": "turbo run lint:eslint",
-    "lint:prettier": "turbo run lint:prettier",
+    "lint:prettier": "prettier --ignore-path .gitignore --check .",
     "fix": "turbo run fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "build": "turbo run build",
     "security": "snyk test --all-projects --severity-threshold=high",
-    "security:fix": "snyk fix --all-projects"
+    "security:fix": "snyk fix --all-projects",
+    "lint:architecture": "npm run -w @acme/website lint:architecture",
+    "lint:tracked": "node scripts/check-tracked-files.mjs",
+    "dev": "turbo run dev --env-mode=loose"
   }
 }

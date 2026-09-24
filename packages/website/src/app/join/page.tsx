@@ -1,22 +1,18 @@
 // packages/website/src/app/join/page.tsx
 
 import { Box, Check, CreditCard, PenSquare, Stamp } from 'lucide-react';
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Card, CardActionArea, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Step, StepContent, StepLabel, Stepper } from '@/components/ui/stepper';
-import { env, paths } from '@/config';
+import { getStaticFileUrl } from '@/config/assets';
+import { paths } from '@/config/paths';
+import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.join;
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 export default function Page() {
   return (
@@ -38,7 +34,7 @@ export default function Page() {
               href="https://jrsf.sportscom.jp/#/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               日本ライフル射撃協会 ShootersHub
               <span className="sr-only">（新しいタブで開く）</span>
@@ -123,12 +119,15 @@ export default function Page() {
               <li>お申込および会費等のご入金後、理事会の承認を受けて正式に入会となります。</li>
               <li>
                 お申込みシステムをご利用できない方は
-                <a href={paths.cdn.getHref('/forms/membership.xlsx')} className="text-primary underline hover:bg-primary/10">
+                <a
+                  href={getStaticFileUrl('/forms/membership.xlsx')}
+                  className="text-primary hover:bg-primary/10 underline"
+                >
                   入会申込書
                   <span className="sr-only">（ダウンロード）</span>
                 </a>
                 に必要事項をご記入の上、
-                <Link href="/about" className="text-primary underline hover:bg-primary/10">
+                <Link href="/about" className="text-primary hover:bg-primary/10 underline">
                   当協会事務局
                 </Link>
                 まで封書、ファックスまたは電子メールの添付にてお送り下さい。
@@ -143,13 +142,13 @@ export default function Page() {
           <CardTitle>一般の方</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div></div>
             <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
+            <div className="border-border bg-muted rounded-t-md border-t border-r border-l px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
@@ -160,21 +159,21 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
             <div className="px-4 py-2">30,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">20,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">20,000円</div>
             <div className="px-4 py-2">25,500円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">15,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">10,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">10,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -186,13 +185,13 @@ export default function Page() {
         </CardHeader>
         <CardContent>
           <div className="mb-2">ご入会時に学生証等所属を証明できる書類をお送りください。</div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div></div>
             <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
+            <div className="border-border bg-muted rounded-t-md border-t border-r border-l px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
@@ -203,21 +202,21 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
             <div className="px-4 py-2">8,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">6,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">6,000円</div>
             <div className="px-4 py-2">7,500円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">4,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">3,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -228,13 +227,13 @@ export default function Page() {
           <CardTitle>生徒（高校生以下）の方</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div></div>
             <div className="px-4 py-2">
               <div className="font-bold">新規</div>
               <div className="mt-2 text-xs">これから新しく入会される方。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
+            <div className="border-border bg-muted rounded-t-md border-t border-r border-l px-4 py-2">
               <div className="font-bold">更新</div>
               <div className="mt-2 text-xs">神ラに既にご入会されている方。</div>
             </div>
@@ -245,21 +244,21 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600 dark:text-red-400">日ラ</span>＋
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>
             </div>
             <div className="px-4 py-2">5,500円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">4,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">4,000円</div>
             <div className="px-4 py-2">5,500円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神ラ</span>のみ
             </div>
             <div className="px-4 py-2">4,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">3,000円</div>
             <div className="px-4 py-2">―</div>
           </div>
         </CardContent>
@@ -270,8 +269,8 @@ export default function Page() {
           <CardTitle>ご進学・ご就職される皆様へ</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border border-border bg-muted p-2 text-sm font-bold">新大学生（4月1日～）</div>
-          <div className="grid grid-cols-2 gap-0 border-b border-border">
+          <div className="border-border bg-muted rounded-md border p-2 text-sm font-bold">新大学生（4月1日～）</div>
+          <div className="border-border grid grid-cols-2 gap-0 border-b">
             <div className="px-4 py-2">
               神ラ生徒会員→学生会員
               <br />
@@ -280,7 +279,7 @@ export default function Page() {
             </div>
             <div className="p-2 text-center">6,500円</div>
           </div>
-          <div className="grid grid-cols-2 gap-0 border-b border-border">
+          <div className="border-border grid grid-cols-2 gap-0 border-b">
             <div className="px-4 py-2">
               神ラ→学連へ所属移籍
               <br />
@@ -297,8 +296,8 @@ export default function Page() {
             </div>
             <div className="p-2 text-center">7,500円</div>
           </div>
-          <div className="rounded-md border border-border bg-muted p-2 text-sm font-bold">新社会人（4月1日～）</div>
-          <div className="grid grid-cols-2 gap-0 border-b border-border">
+          <div className="border-border bg-muted rounded-md border p-2 text-sm font-bold">新社会人（4月1日～）</div>
+          <div className="border-border grid grid-cols-2 gap-0 border-b">
             <div className="px-4 py-2">
               神ラ学生・生徒会員→一般会員
               <br />
@@ -307,7 +306,7 @@ export default function Page() {
             </div>
             <div className="p-2 text-center">20,500円</div>
           </div>
-          <div className="grid grid-cols-2 gap-0 border-b border-border">
+          <div className="border-border grid grid-cols-2 gap-0 border-b">
             <div className="px-4 py-2">
               学連→神ラへ所属移籍
               <br />
@@ -333,7 +332,7 @@ export default function Page() {
           <CardTitle>入会金・年会費一覧</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div></div>
             <div className="px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
@@ -342,7 +341,7 @@ export default function Page() {
               </div>
               <div className="mt-2 text-xs">4月1日時点で24歳以上の学生を含む。</div>
             </div>
-            <div className="rounded-t-md border-t border-r border-l border-border bg-muted px-4 py-2">
+            <div className="border-border bg-muted rounded-t-md border-t border-r border-l px-4 py-2">
               <div className="flex items-center justify-center gap-2 font-bold">
                 <Box className="h-4 w-4 text-teal-600 dark:text-teal-400" />
                 学生
@@ -357,50 +356,50 @@ export default function Page() {
               <div className="mt-2 text-xs">高校生以下。</div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="p-2 align-middle">
               <span className="font-bold text-red-600 dark:text-red-400">日</span>　　本
               <br />
               <span className="font-bold text-red-600 dark:text-red-400">ラ</span>入会金
             </div>
             <div className="px-4 py-2">5,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">1,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">1,000円</div>
             <div className="px-4 py-2">500円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神</span>奈川県
               <br />
               <span className="font-bold text-green-700 dark:text-green-400">ラ</span>入会金
             </div>
             <div className="px-4 py-2">5,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">1,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">1,000円</div>
             <div className="px-4 py-2">1,000円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-red-600 dark:text-red-400">日</span>　　本
               <br />
               <span className="font-bold text-red-600 dark:text-red-400">ラ</span>年会費
             </div>
             <div className="px-4 py-2">10,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">3,000円</div>
             <div className="px-4 py-2">1,000円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">
               <span className="font-bold text-green-700 dark:text-green-400">神</span>奈川県
               <br />
               <span className="font-bold text-green-700 dark:text-green-400">ラ</span>年会費
             </div>
             <div className="px-4 py-2">10,000円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">3,000円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">3,000円</div>
             <div className="px-4 py-2">3,000円</div>
           </div>
-          <div className="grid grid-cols-4 gap-0 border-b border-border text-center">
+          <div className="border-border grid grid-cols-4 gap-0 border-b text-center">
             <div className="px-4 py-2">移籍料</div>
             <div className="px-4 py-2">500円</div>
-            <div className="border-r border-l border-border bg-muted px-4 py-2">500円</div>
+            <div className="border-border bg-muted border-r border-l px-4 py-2">500円</div>
             <div className="px-4 py-2">500円</div>
           </div>
         </CardContent>

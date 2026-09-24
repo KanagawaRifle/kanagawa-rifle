@@ -1,18 +1,18 @@
 import { z } from 'zod';
 
+const HttpUrlSchema = z.url({ protocol: /^https?$/ });
+
 const createEnv = () => {
   const EnvSchema = z.object({
-    APP_URL: z.string().url().default('http://localhost:3000'),
-    CDN_URL: z.string().url().default('https://static.kanagawa-rifle.org'),
+    APP_URL: HttpUrlSchema.default('http://localhost:3000'),
+    CDN_URL: HttpUrlSchema.default('https://static.kanagawa-rifle.org'),
+    STATIC_FILE_BASE_URL: HttpUrlSchema.optional(),
 
     AXIOM_DATASET: z.string().optional(),
     AXIOM_TOKEN: z.string().optional(),
 
     GOOGLE_ANALYTICS_ID: z.string().optional(),
 
-    SENTRY_ORG: z.string().optional(),
-    SENTRY_PROJECT: z.string().optional(),
-    SENTRY_AUTH_TOKEN: z.string().optional(),
     SENTRY_DSN: z.preprocess((value) => (value === '' ? undefined : value), z.string().url().optional()),
 
     CLARITY_ID: z.string().optional(),
@@ -21,15 +21,13 @@ const createEnv = () => {
   const vars = {
     APP_URL: process.env.NEXT_PUBLIC_URL,
     CDN_URL: process.env.NEXT_PUBLIC_CDN_URL,
+    STATIC_FILE_BASE_URL: process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL,
 
     AXIOM_DATASET: process.env.NEXT_PUBLIC_AXIOM_DATASET,
     AXIOM_TOKEN: process.env.NEXT_PUBLIC_AXIOM_TOKEN,
 
     GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
 
-    SENTRY_ORG: process.env.SENTRY_ORG,
-    SENTRY_PROJECT: process.env.SENTRY_PROJECT,
-    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
     CLARITY_ID: process.env.NEXT_PUBLIC_CLARITY_ID,
@@ -51,7 +49,10 @@ const createEnv = () => {
     throw new Error(errorMessage);
   }
 
-  return result.data;
+  return {
+    ...result.data,
+    STATIC_FILE_BASE_URL: result.data.STATIC_FILE_BASE_URL ?? `${result.data.CDN_URL.replace(/\/+$/, '')}/website`,
+  };
 };
 
 export const env = createEnv();

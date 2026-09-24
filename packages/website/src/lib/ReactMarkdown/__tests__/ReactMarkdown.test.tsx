@@ -147,7 +147,10 @@ const score = 600;
 <iframe src="javascript:alert(1)"></iframe>
 `);
 
-    expect(Array.from(document.querySelectorAll('article a'), (link) => link.getAttribute('href'))).toEqual(['', '']);
+    expect(Array.from(document.querySelectorAll('article a'), (link) => link.getAttribute('href'))).toEqual([
+      null,
+      null,
+    ]);
     expect(document.querySelector('object')).not.toBeNull();
     expect(document.querySelector('object')?.getAttribute('data')).toBeNull();
     expect(document.querySelector('iframe')).not.toBeNull();

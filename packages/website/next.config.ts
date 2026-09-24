@@ -3,6 +3,11 @@ import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 import { withAxiom } from 'next-axiom';
 
+import { env } from './src/config/env';
+import { createSecurityHeaders } from './src/config/security-headers';
+
+const assetUrls = [new URL(env.CDN_URL), new URL(env.STATIC_FILE_BASE_URL)];
+
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -12,13 +17,12 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
 
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'static.kanagawa-rifle.org',
-        pathname: '/**',
-      },
-    ],
+    remotePatterns: assetUrls.map((url) => ({
+      protocol: url.protocol === 'http:' ? 'http' : 'https',
+      hostname: url.hostname,
+      port: url.port,
+      pathname: '/**',
+    })),
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -27,50 +31,15 @@ const nextConfig: NextConfig = {
 
   // セキュリティヘッダー
   async headers() {
-    const isDev = process.env.NODE_ENV === 'development';
-
-    // Vercel環境かどうか
-    const isVercel = !!process.env.VERCEL;
-
-    // Lighthouse CI テスト環境かどうか（localhost テスト用）
-    const isLhci = !!process.env.LHCI;
-
-    // localhost を許可するかどうか（開発環境または Lighthouse CI テスト環境）
-    const allowLocalhost = isDev || isLhci;
-
-    // CSP ディレクティブ（外部サービス対応）
-    const cspDirectives = [
-      "default-src 'self'",
-      // Vercel環境ではプレビュー機能用に vercel.live を許可
-      // Note: 'unsafe-eval' は MUI SSR では不要（@mui/material-nextjs 使用時）
-      `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.clarity.ms https://*.sentry.io${isVercel ? ' https://vercel.live' : ''}`,
-      // Note: next/font 使用によりフォントはセルフホスティング
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://static.kanagawa-rifle.org https://www.googletagmanager.com https://*.clarity.ms",
-      "font-src 'self'",
-      // kanagawa-rifle.org のサブドメイン（staging含む）を許可、開発環境または LHCI 環境では localhost も許可
-      `connect-src 'self' https://*.kanagawa-rifle.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://*.sentry.io https://static.kanagawa-rifle.org${allowLocalhost ? ' http://localhost:* ws://localhost:* wss://localhost:*' : ''}${isVercel ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
-      `frame-src 'self' https://www.google.com https://docs.google.com${isVercel ? ' https://vercel.live' : ''}`,
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self' https://docs.google.com",
-      "frame-ancestors 'none'",
-      // 開発環境および LHCI 環境では upgrade-insecure-requests を無効化
-      ...(allowLocalhost ? [] : ['upgrade-insecure-requests']),
-    ];
-
     return [
       {
         source: '/(.*)',
-        headers: [
-          { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          { key: 'Content-Security-Policy', value: cspDirectives.join('; ') },
-        ],
+        headers: createSecurityHeaders({
+          isDev: process.env.NODE_ENV === 'development',
+          isVercel: !!process.env.VERCEL,
+          isLhci: !!process.env.LHCI,
+          assetOrigins: assetUrls.map((url) => url.origin),
+        }),
       },
     ];
   },

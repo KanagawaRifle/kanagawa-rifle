@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { app } from '@/config';
+import { app } from '@/config/app';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {

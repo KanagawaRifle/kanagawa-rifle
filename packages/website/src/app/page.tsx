@@ -1,28 +1,25 @@
 // packages/website/src/app/page.tsx
 
 import { ChevronRight, NotebookPen } from 'lucide-react';
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button, ButtonGroup } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { env, paths } from '@/config';
+import { app } from '@/config/app';
+import { getStaticFileUrl } from '@/config/assets';
+import { paths } from '@/config/paths';
 import { HomeCompetitionNotices } from '@/features/competitions/components/HomeCompetitionNotices';
-import { COMPETITION_ENTRY_FORM_URL } from '@/features/competitions/data';
-import { NewsItemList } from '@/features/news/components/NewsItemList';
+import { COMPETITION_ENTRY_FORM_URL } from '@/features/competitions/entry';
+import { NewsList } from '@/features/news/components/NewsList';
 import { getNewsList } from '@/features/news/server/news';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  description: paths.home.description,
-  openGraph: {
-    images: new URL(`/api/og?title=${encodeURIComponent('神奈川県ライフル射撃協会')}`, env.APP_URL),
-  },
-  twitter: {
-    images: new URL(`/api/og?title=${encodeURIComponent('神奈川県ライフル射撃協会')}`, env.APP_URL),
-  },
+export const metadata = {
+  ...createPageMetadata({ title: app.name, description: paths.home.description }),
+  title: { absolute: app.name },
 };
 
 export default async function Page() {
@@ -83,16 +80,16 @@ export default async function Page() {
 
       <Card className="overflow-hidden p-0">
         <a
-          href={paths.cdn.getHref('/news/2024-02-02-01-kokuspo-trial-poster.pdf')}
+          href={getStaticFileUrl('/news/2024-02-02-01-kokuspo-trial-poster.pdf')}
           target="_blank"
           rel="noopener noreferrer"
           className="block transition-opacity hover:opacity-90"
         >
           <Image
-            src={paths.cdn.getHref('/news/2024-02-22-02-card.png')}
+            src={getStaticFileUrl('/news/2024-02-22-02-card.png')}
             alt="国スポ予選ポスター"
-            width={734}
-            height={150}
+            width={1225}
+            height={417}
             priority
             style={{
               width: '100%',
@@ -114,7 +111,7 @@ export default async function Page() {
           </Button>
         </CardHeader>
 
-        <NewsItemList news={news} withControls={false} />
+        <NewsList news={news} withControls={false} />
       </Card>
     </PageLayout>
   );

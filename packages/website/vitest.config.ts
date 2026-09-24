@@ -23,7 +23,6 @@ export default defineConfig({
       exclude: [
         'node_modules/',
         '.next/',
-        'vitest.setup.ts',
         // 設定ファイル
         '**/*.config.{ts,js,mjs,cjs}',
         '**/*.d.ts',
@@ -50,23 +49,17 @@ export default defineConfig({
         'src/features/**/components/**',
         // ページ固有コンポーネント（E2E でカバー）
         'src/app/**/_components/**',
-        'src/app/**/_databases/**',
-        'src/app/**/_types/**',
         // テスト関連
         'src/testing/**',
         // ユーティリティのエクスポートファイル
         '**/index.ts',
         '**/index.tsx',
-        // クライアント/サーバー専用エクスポート
-        'src/lib/client.ts',
-        'src/lib/server.ts',
         // ReactMarkdown（外部ライブラリ連携）
         'src/lib/ReactMarkdown/**',
         // OpenGraph 画像生成（SSR 専用）
         'src/lib/OpenGraphImage.tsx',
         // ラッパーコンポーネント
         'src/components/AxiomWebVitalsWrapper.tsx',
-        'src/components/ErrorBoundaryFallback.tsx',
         'src/components/Frame.tsx',
         'src/components/ThemeToggle.tsx',
         // Next.js メタデータ・設定ファイル
@@ -77,17 +70,12 @@ export default defineConfig({
         'src/app/api/og/**',
         // Instrumentation
         'src/instrumentation.ts',
-        // React Query hooks（統合テストでカバー）
-        'src/lib/ReactQuery.ts',
         // Logger（モック困難な外部連携）
         'src/lib/logger.ts',
-        // News API クライアント（API テストでカバー）
-        'src/features/news/api/**',
         // Sentry 設定
         'sentry.*.ts',
         'src/sentry*.ts',
       ],
-      all: true,
       thresholds: {
         lines: 80,
         functions: 80,
