@@ -12,3 +12,5 @@ scope は `website`、`eslint-config`、`prettier-config`、`root`、`*`、ヘ�
 たとえば `[website] fix: correct article links` とします。
 
 脆弱性は公開 Issue に書かず、[セキュリティポリシー](SECURITY.md) の手順で報告してください。
+
+Issue やレビューでは [参加時のお願い](CODE_OF_CONDUCT.md) に従ってください。問い合わせ先は [SUPPORT.md](SUPPORT.md) にあります。

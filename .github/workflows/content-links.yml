@@ -1,0 +1,67 @@
+# cspell:words lycheeverse
+name: Content Links
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 19 * * 0'
+  pull_request:
+    paths:
+      - 'packages/website/src/contents/**'
+      - 'packages/website/public/**'
+      - 'packages/website/src/app/**'
+      - 'packages/website/src/components/**'
+      - 'packages/website/src/features/news/**'
+      - 'packages/website/src/lib/ReactMarkdown/**'
+      - 'packages/website/src/config/**'
+      - 'packages/website/scripts/*links*'
+      - 'packages/website/scripts/link-check.mjs'
+      - 'packages/website/scripts/link-check.test.mjs'
+      - 'packages/website/lychee.toml'
+      - 'packages/website/package.json'
+      - 'package-lock.json'
+      - '.github/actions/setup-node/action.yml'
+      - '.github/workflows/content-links.yml'
+permissions:
+  contents: read
+jobs:
+  links:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node
+      - name: Build pages for link checking
+        run: npm run -w @acme/website build
+      - name: Prepare rendered content and local route targets
+        run: npm run lint:links:prepare --workspace=@acme/website
+      - name: Check local links and article heading fragments
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          workingDirectory: packages/website
+          args: --config .cache/links/lychee.toml --files-from .cache/links/inputs.txt --offline
+          output: .cache/links/internal.md
+          fail: true
+          failIfEmpty: true
+          jobSummary: true
+      - name: Report external link failures
+        if: github.event_name != 'pull_request'
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          workingDirectory: packages/website
+          args: --config .cache/links/lychee.toml --files-from .cache/links/inputs.txt
+          output: .cache/links/external.md
+          fail: false
+          failIfEmpty: true
+          jobSummary: true
+      - name: Upload link reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: content-link-reports
+          path: packages/website/.cache/links/*.md
+          if-no-files-found: ignore
+          retention-days: 30

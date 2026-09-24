@@ -16,7 +16,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   /* レポーター */
-  reporter: [['html'], ['list']],
+  reporter: [['html'], ['list'], ['junit', { outputFile: 'reports/playwright-junit.xml' }]],
 
   /* 共通設定 */
   use: {

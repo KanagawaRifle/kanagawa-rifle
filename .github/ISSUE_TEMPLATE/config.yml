@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: セキュリティに関する報告
+    url: https://github.com/KanagawaRifle/kanagawa-rifle/security/policy
+    about: 脆弱性は公開 Issue に記載せず、セキュリティポリシーの手順で報告してください。

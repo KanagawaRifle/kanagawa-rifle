@@ -20,12 +20,32 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "env": [
+        "NEXT_PUBLIC_*",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
+        "ANALYZE",
+        "LHCI",
+        "BASIC_AUTH_ID",
+        "BASIC_AUTH_PASSWORD",
+        "VERCEL_GIT_COMMIT_REF"
+      ]
     },
     "start": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "env": [
+        "NEXT_PUBLIC_*",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
+        "ANALYZE",
+        "LHCI",
+        "BASIC_AUTH_ID",
+        "BASIC_AUTH_PASSWORD",
+        "VERCEL_GIT_COMMIT_REF"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"],
@@ -94,7 +114,9 @@
     "prettier.config.mjs",
     ".gitignore",
     "eslint.config.mjs",
-    ".prettierignore"
+    ".prettierignore",
+    ".syncpackrc.json",
+    "knip.config.ts"
   ],
   "globalPassThroughEnv": ["NODE_ENV", "CI", "VERCEL", "VERCEL_ENV", "SENTRY_AUTH_TOKEN"]
 }
