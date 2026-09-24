@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props) {
   const year = resolveCompetitionYear((await params).year);
   if (!year) notFound();
   const path = getCompetitionPath(year);
-  return createPageMetadata({ title: path.name, description: path.description });
+  return createPageMetadata({ title: path.name, description: path.description, path: path.getHref() });
 }
 
 export default async function Page({ params }: Props) {

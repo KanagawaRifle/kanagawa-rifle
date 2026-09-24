@@ -31,6 +31,24 @@ test.describe('Security Headers', () => {
     expect(csp).toBeDefined();
     expect(csp).toContain("default-src 'self'");
     expect(csp).toContain('frame-ancestors');
+    expect(csp).not.toContain("'unsafe-eval'");
+  });
+
+  test('hydrates and navigates without violating the production CSP', async ({ page }) => {
+    await page.addInitScript(() => {
+      const violations: string[] = [];
+      Object.defineProperty(window, '__testCspViolations', { value: violations });
+      window.addEventListener('securitypolicyviolation', (event) => violations.push(event.violatedDirective));
+    });
+
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: /モードに切り替え/ })).toBeEnabled();
+    expect(await page.evaluate(() => Reflect.get(window, '__testCspViolations'))).toEqual([]);
+
+    await page.getByRole('contentinfo').getByRole('link', { name: 'お知らせ', exact: true }).click();
+    await expect(page).toHaveURL('/news');
+    await expect(page.getByRole('heading', { name: 'お知らせ', level: 1 })).toBeVisible();
+    expect(await page.evaluate(() => Reflect.get(window, '__testCspViolations'))).toEqual([]);
   });
 
   test('API routes should include cache headers', async ({ request }) => {

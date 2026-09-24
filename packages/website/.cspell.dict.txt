@@ -44,3 +44,8 @@ Turborepo
 unstub
 ＫＡＮＡＧＡＷＡ
 ＲＩＦＬＥ
+
+# Search metadata and crawler names
+crawlable
+lastmod
+Twitterbot

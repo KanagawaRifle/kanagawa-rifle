@@ -5,35 +5,20 @@
 
 import * as Sentry from '@sentry/nextjs';
 
-import { env } from '@/config/env';
+// next.config.ts validates this public value with config/env.ts before building.
+// A direct reference lets Next.js remove unused monitoring from builds without a DSN,
+// and keeps the server's Zod validators out of the browser's initial bundle.
+if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    integrations: [Sentry.captureConsoleIntegration({ levels: ['error'] }), Sentry.replayIntegration()],
+    tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+    debug: false,
+  });
+}
 
-// 本番環境では 10% サンプリング、開発環境では 100%
-const tracesSampleRate = process.env.NODE_ENV === 'production' ? 0.1 : 1.0;
-
-Sentry.init({
-  dsn: env.SENTRY_DSN,
-
-  // console.errorを自動的にキャプチャ + 既存のReplay統合
-  integrations: [
-    Sentry.captureConsoleIntegration({
-      levels: ['error'],
-    }),
-    Sentry.replayIntegration(),
-  ],
-
-  // 本番環境ではサンプリングレートを下げてコスト最適化
-  tracesSampleRate,
-
-  // Define how likely Replay events are sampled.
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
-
-  // Define how likely Replay events are sampled when an error occurs.
-  replaysOnErrorSampleRate: 1.0,
-
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
-});
-
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+export function onRouterTransitionStart(...args: Parameters<typeof Sentry.captureRouterTransitionStart>) {
+  if (process.env.NEXT_PUBLIC_SENTRY_DSN) Sentry.captureRouterTransitionStart(...args);
+}

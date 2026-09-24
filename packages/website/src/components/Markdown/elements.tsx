@@ -114,7 +114,13 @@ export const components: Components = {
 
     return (
       <span className="relative mb-4 block w-full" style={{ paddingTop: `${aspectRatio * 100}%` }}>
-        <Image src={src} alt={altText} fill className="rounded-md object-contain" />
+        <Image
+          src={src}
+          alt={altText}
+          fill
+          sizes="(min-width: 768px) 656px, calc(100vw - 40px)"
+          className="rounded-md object-contain"
+        />
         {alt && <span className="text-muted-foreground mt-1 block text-center text-sm italic">{alt}</span>}
       </span>
     );

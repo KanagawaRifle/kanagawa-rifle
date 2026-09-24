@@ -139,7 +139,11 @@ function YearCard({ yearData }: { yearData: YearData }) {
 
 const currentPath = paths.main.projects;
 
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: '事業計画・年間予定',
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
 export default function Page() {
   return (

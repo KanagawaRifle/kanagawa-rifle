@@ -2,6 +2,7 @@ import 'server-only';
 
 import type { Root } from 'hast';
 import { toString } from 'hast-util-to-string';
+import { cache } from 'react';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
@@ -40,7 +41,7 @@ const processor = unified()
   .use(rehypeSafeUrls);
 
 /** Parse once so the article and its navigation share the exact same heading IDs. */
-export function parseMarkdown(content: string) {
+export const parseMarkdown = cache(function parseMarkdown(content: string) {
   const tree: Root = processor.runSync(processor.parse(content));
   const toc: TableOfContentsEntry[] = [];
 
@@ -55,4 +56,4 @@ export function parseMarkdown(content: string) {
   });
 
   return { tree, toc };
-}
+});
