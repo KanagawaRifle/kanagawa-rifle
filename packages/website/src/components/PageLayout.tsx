@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
+import { JsonLd } from '@/components/JsonLd';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,7 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { env } from '@/config';
+import { env } from '@/config/env';
 
 type Props = {
   title?: string;
@@ -34,7 +35,7 @@ function BreadcrumbJsonLd({ breadcrumbs }: { breadcrumbs: Array<{ name: string; 
     })),
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+  return <JsonLd data={jsonLd} />;
 }
 
 export function PageLayout({ title, description, breadcrumbs, children, withStack = true }: Props) {

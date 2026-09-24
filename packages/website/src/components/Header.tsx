@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { paths } from '@/config';
+import { paths } from '@/config/paths';
 import { cn } from '@/lib/utils';
 
 // ロゴコンポーネント
@@ -43,18 +43,18 @@ function DrawerContent({ onClose }: { onClose: () => void }) {
         <ul className="py-2">
           {Object.entries(paths.main).map(([key, obj]) => (
             <li key={key}>
-              <Link href={obj.getHref()} className="block px-4 py-2 hover:bg-muted">
+              <Link href={obj.getHref()} className="hover:bg-muted block px-4 py-2">
                 {obj.name}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
-      <nav aria-label="サブナビゲーション" className="border-t border-border">
+      <nav aria-label="サブナビゲーション" className="border-border border-t">
         <ul className="py-2">
           {Object.entries(paths.sub).map(([key, obj]) => (
             <li key={key}>
-              <Link href={obj.getHref()} className="block px-4 py-2 text-muted-foreground hover:bg-muted">
+              <Link href={obj.getHref()} className="text-muted-foreground hover:bg-muted block px-4 py-2">
                 {obj.name}
               </Link>
             </li>
@@ -67,7 +67,9 @@ function DrawerContent({ onClose }: { onClose: () => void }) {
 
 function NavigationTabs() {
   const pathname = usePathname() ?? '/';
-  const matchedPath = Object.values(paths.main).find((obj) => pathname.startsWith(obj.getHref()))?.getHref();
+  const matchedPath = Object.values(paths.main)
+    .find((obj) => pathname === obj.getHref() || pathname.startsWith(`${obj.getHref()}/`))
+    ?.getHref();
 
   return (
     <nav className="hidden flex-grow md:flex" aria-label="メインナビゲーション">
@@ -80,8 +82,10 @@ function NavigationTabs() {
                 href={obj.getHref()}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  'block whitespace-nowrap border-b-2 px-4 py-3 text-center text-sm font-bold uppercase transition-colors',
-                  isActive ? 'border-primary text-primary' : 'border-transparent text-muted-foreground hover:text-primary'
+                  'block border-b-2 px-4 py-3 text-center text-sm font-bold whitespace-nowrap uppercase transition-colors',
+                  isActive
+                    ? 'border-primary text-primary'
+                    : 'text-muted-foreground hover:text-primary border-transparent',
                 )}
               >
                 {obj.name}
@@ -119,7 +123,7 @@ export function Header() {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background">
+    <header className="bg-background sticky top-0 z-50">
       <div className="mx-auto flex h-12 w-full max-w-screen-md items-center px-2">
         {/* モバイルメニューボタン */}
         <div className="flex md:hidden">
@@ -129,8 +133,8 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-64 p-0">
-              <SheetHeader className="flex flex-row items-center gap-2 border-b border-border px-4 py-3">
+            <SheetContent aria-describedby={undefined} side="left" className="w-64 p-0">
+              <SheetHeader className="border-border flex flex-row items-center gap-2 border-b px-4 py-3">
                 <Button variant="ghost" size="icon" onClick={() => setSheetOpen(false)} aria-label="メニューを閉じる">
                   <X className="h-5 w-5" />
                 </Button>

@@ -1,11 +1,12 @@
 // packages/website/src/app/projects/page.tsx
 
 import { FileSpreadsheet, FileText, FileType } from 'lucide-react';
-import type { Metadata } from 'next';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { env, paths } from '@/config';
+import { getStaticFileUrl } from '@/config/assets';
+import { paths } from '@/config/paths';
+import { createPageMetadata } from '@/lib/metadata';
 
 const FILE_TYPES = {
   EXCEL: { icon: FileSpreadsheet, colorClass: 'text-green-600' },
@@ -93,7 +94,7 @@ const buildDocumentUrl = (filename: string, version?: string): string => {
   const versionQuery = version ? `?${version}` : '';
   const fullPath = filename + versionQuery;
 
-  return filename.startsWith('/projects/') ? paths.cdn.getHref(fullPath) : fullPath;
+  return filename.startsWith('/projects/') ? getStaticFileUrl(fullPath) : fullPath;
 };
 
 function DocumentListItem({ item, divider }: { item: DocumentItem; divider: boolean }) {
@@ -102,10 +103,10 @@ function DocumentListItem({ item, divider }: { item: DocumentItem; divider: bool
   const url = buildDocumentUrl(item.filename, item.version);
 
   return (
-    <li className={divider ? 'border-b border-border' : ''}>
+    <li className={divider ? 'border-border border-b' : ''}>
       <div className="flex items-center gap-3 p-4">
         <Icon className={`h-5 w-5 ${config.colorClass}`} />
-        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:bg-primary/10">
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:bg-primary/10 underline">
           {item.title}
           <span className="sr-only">（新しいタブで開く）</span>
         </a>
@@ -138,12 +139,7 @@ function YearCard({ yearData }: { yearData: YearData }) {
 
 const currentPath = paths.main.projects;
 
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 export default function Page() {
   return (

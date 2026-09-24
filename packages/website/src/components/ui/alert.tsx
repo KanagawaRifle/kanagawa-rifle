@@ -1,7 +1,7 @@
 // packages/website/src/components/ui/alert.tsx
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Info, AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react';
+import { AlertCircle, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -21,7 +21,7 @@ const alertVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 );
 
 const variantIcons = {
@@ -48,14 +48,16 @@ Alert.displayName = 'Alert';
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn('mb-3 text-lg font-bold leading-none tracking-tight', className)} {...props} />
-  )
+    <p ref={ref} className={cn('mb-3 text-lg leading-none font-bold tracking-tight', className)} {...props} />
+  ),
 );
 AlertTitle.displayName = 'AlertTitle';
 
 const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn('text-base [&_p]:leading-relaxed', className)} {...props} />
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('text-base [&_p]:leading-relaxed', className)} {...props} />
+  ),
 );
 AlertDescription.displayName = 'AlertDescription';
 
-export { Alert, AlertTitle, AlertDescription };
+export { Alert, AlertDescription, AlertTitle };

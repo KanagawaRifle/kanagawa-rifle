@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next';
 
-import { env, paths, type PathItem } from '@/config';
-import { getAllNews } from '@/features/news/server/news';
+import { env } from '@/config/env';
+import { getCompetitionPath, paths, type PathItem } from '@/config/paths';
+import { COMPETITION_YEARS } from '@/features/competitions/data';
+import { getAllNewsSummaries } from '@/features/news/server/news';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const createSitemapEntry = (page: PathItem, priority: number): MetadataRoute.Sitemap[number] => ({
@@ -9,11 +11,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'monthly',
     priority,
   });
-  const articles = await getAllNews();
+  const articles = await getAllNewsSummaries();
   return [
     createSitemapEntry(paths.home, 1),
     ...Object.values(paths.main).map((page) => createSitemapEntry(page, 0.8)),
     ...Object.values(paths.sub).map((page) => createSitemapEntry(page, 0.6)),
+    ...COMPETITION_YEARS.map((year) => createSitemapEntry(getCompetitionPath(year), 0.6)),
     ...articles.map((article): MetadataRoute.Sitemap[number] => ({
       url: new URL(`/news/${article.slug}`, env.APP_URL).toString(),
       lastModified: article.updated ?? article.published,

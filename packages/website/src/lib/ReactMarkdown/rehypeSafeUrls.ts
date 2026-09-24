@@ -9,7 +9,9 @@ export function rehypeSafeUrls() {
     visit(tree, 'element', (node) => {
       for (const [property, tags] of Object.entries(urlAttributes)) {
         if (Object.hasOwn(node.properties, property) && (tags === null || tags.includes(node.tagName))) {
-          node.properties[property] = defaultUrlTransform(String(node.properties[property] || ''));
+          const value = defaultUrlTransform(String(node.properties[property] || ''));
+          if (value) node.properties[property] = value;
+          else delete node.properties[property];
         }
       }
     });

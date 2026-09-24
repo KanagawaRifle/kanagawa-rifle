@@ -25,7 +25,7 @@ const config: KnipConfig = {
       project: ['**/*.js'],
     },
     'packages/lighthouse-config': {
-      entry: ['index.cjs'],
+      entry: ['index.js'],
       project: ['**/*.{js,cjs}'],
     },
     'packages/typescript-config': {

@@ -10,7 +10,7 @@
 /* ===== Light Mode (default) ===== */
 :root {
   /* Background & Foreground */
-  --color-background: oklch(98.18% 0.005 95.10);
+  --color-background: oklch(98.18% 0.005 95.1);
   --color-foreground: oklch(19.08% 0.002 106.59);
 
   /* Primary: #288140 (deep green) */
@@ -29,20 +29,20 @@
   --color-accent-foreground: oklch(98% 0.01 261.36);
 
   /* Muted - warm off-white for footer/subdued areas */
-  --color-muted: oklch(95.5% 0.007 95.10);
+  --color-muted: oklch(95.5% 0.007 95.1);
   --color-muted-foreground: oklch(40% 0.003 106.59);
 
   /* Card */
-  --color-card: oklch(99.5% 0.003 95.10);
+  --color-card: oklch(99.5% 0.003 95.1);
   --color-card-foreground: oklch(19.08% 0.002 106.59);
 
   /* Popover */
-  --color-popover: oklch(98.18% 0.005 95.10);
+  --color-popover: oklch(98.18% 0.005 95.1);
   --color-popover-foreground: oklch(19.08% 0.002 106.59);
 
   /* Border & Input - warm neutral */
-  --color-border: oklch(88% 0.005 95.10);
-  --color-input: oklch(88% 0.005 95.10);
+  --color-border: oklch(88% 0.005 95.1);
+  --color-input: oklch(88% 0.005 95.1);
 
   /* Ring */
   --color-ring: oklch(47.63% 0.13 148.04);
@@ -64,13 +64,13 @@
   --color-info-foreground: oklch(32.04% 0.07 239.07);
 
   /* Sidebar (for Sheet/Drawer) - warm tones */
-  --color-sidebar: oklch(97.5% 0.006 95.10);
+  --color-sidebar: oklch(97.5% 0.006 95.1);
   --color-sidebar-foreground: oklch(19.08% 0.002 106.59);
   --color-sidebar-primary: oklch(47.63% 0.13 148.04);
   --color-sidebar-primary-foreground: oklch(98% 0.01 148.04);
-  --color-sidebar-accent: oklch(95.5% 0.007 95.10);
+  --color-sidebar-accent: oklch(95.5% 0.007 95.1);
   --color-sidebar-accent-foreground: oklch(19.08% 0.002 106.59);
-  --color-sidebar-border: oklch(73.72% 0.01 95.10);
+  --color-sidebar-border: oklch(73.72% 0.01 95.1);
   --color-sidebar-ring: oklch(47.63% 0.13 148.04);
 
   /* Chart colors */
@@ -217,9 +217,9 @@
   --radius-xl: 0.75rem;
 
   /* Font */
-  --font-sans: -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans',
-    'Noto Sans CJK JP', 'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Sans Emoji';
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans', 'Noto Sans CJK JP',
+    'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
 }
 
 @layer base {

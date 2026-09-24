@@ -1,5 +1,5 @@
 // packages/website/e2e/security.spec.ts
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Security Headers', () => {
   test('should include security headers on pages', async ({ request }) => {

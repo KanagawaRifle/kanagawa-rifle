@@ -4,7 +4,7 @@ import { Frown, House } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -24,7 +24,7 @@ export default function Page() {
           <CardTitle className="text-center text-2xl font-bold">{title}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center gap-4">
-          <div className="flex items-center justify-center gap-4 text-muted-foreground">
+          <div className="text-muted-foreground flex items-center justify-center gap-4">
             <Frown className="h-16 w-16" />
             <span className="text-7xl font-black">404</span>
           </div>

@@ -34,9 +34,7 @@ module.exports = {
       ],
       // CI 環境ではワークスペースコマンド、ローカルでは通常コマンドを使用
       // LHCI=true で CSP を localhost 用に緩和
-      startServerCommand: isCI
-        ? 'LHCI=true npm run -w @acme/website start'
-        : 'LHCI=true npm run start',
+      startServerCommand: isCI ? 'LHCI=true npm run -w @acme/website start' : 'LHCI=true npm run start',
       startServerReadyPattern: 'Ready in',
       startServerReadyTimeout: 60000,
       // CI 環境では Chrome パスを指定しない（treosh/lighthouse-ci-action が管理）

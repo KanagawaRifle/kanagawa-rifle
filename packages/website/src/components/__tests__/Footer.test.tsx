@@ -1,11 +1,10 @@
 import { render, screen, within } from '@testing-library/react';
-import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Footer } from '../Footer';
 
 // config モジュールをモック
-vi.mock('@/config', () => ({
+vi.mock('@/config/social', () => ({
   social: {
     twitter: {
       name: 'Twitter',
@@ -18,6 +17,9 @@ vi.mock('@/config', () => ({
       icon: <span data-testid="facebook-icon">Facebook Icon</span>,
     },
   },
+}));
+
+vi.mock('@/config/paths', () => ({
   paths: {
     main: {
       home: {
@@ -46,6 +48,9 @@ vi.mock('@/config', () => ({
       },
     },
   },
+}));
+
+vi.mock('@/config/app', () => ({
   app: {
     longName: '神奈川県ライフル射撃協会',
     shortName: 'KANAGAWA RIFLE',

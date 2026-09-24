@@ -31,8 +31,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check tracked files
+        run: npm run lint:tracked
+
       - name: Lint
         run: npm run -w @acme/website lint:eslint
+
+      - name: Check formatting
+        run: npm run lint:prettier
+
+      - name: Check architecture
+        run: npm run lint:architecture
 
       - name: Typecheck
         run: npm run -w @acme/website typecheck
@@ -80,6 +89,8 @@ jobs:
         working-directory: packages/website
       - name: Build and test public pages
         run: npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
+      - name: Test development hydration
+        run: npm run -w @acme/website test:e2e:dev -- --project=chromium --project="Mobile Chrome"
       - name: Upload browser test results
         if: always()
         uses: actions/upload-artifact@v4

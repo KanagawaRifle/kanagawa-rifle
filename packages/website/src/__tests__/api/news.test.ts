@@ -3,10 +3,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { GET as getDetail } from '@/app/api/news/[slug]/route';
 import { GET as getList } from '@/app/api/news/route';
-import { CACHE_HEADERS } from '@/features/news/http';
 import { FrontMatterSchema } from '@/features/news/schema';
+import { CACHE_HEADERS } from '@/features/news/server/http';
 import { getNewsItem, getNewsList } from '@/features/news/server/news';
-import type { NewsItem, Paginated } from '@/types';
+import type { NewsItem, NewsSummary } from '@/features/news/types';
+import type { Paginated } from '@/lib/pagination';
 
 vi.mock('@/features/news/server/news', () => ({
   getNewsList: vi.fn(),
@@ -26,8 +27,17 @@ const article: NewsItem = {
   content: 'テスト本文',
   excerpt: 'テスト抜粋',
 };
-const listing: Paginated<NewsItem> = {
-  data: [{ ...article, content: '' }],
+const listing: Paginated<NewsSummary> = {
+  data: [
+    {
+      slug: article.slug,
+      title: article.title,
+      published: article.published,
+      updated: article.updated,
+      tags: article.tags,
+      excerpt: article.excerpt,
+    },
+  ],
   pagination: { current: 1, size: 12, total: 1, totalPages: 1, hasNext: false, hasPrev: false },
 };
 
@@ -74,6 +84,30 @@ describe('GET /api/news', () => {
     expect(response.status).toBe(500);
     expect(await response.json()).toMatchObject({ data: null, error: { code: 'INTERNAL_SERVER', status: 500 } });
     expect(response.headers.get('Cache-Control')).toBe(CACHE_HEADERS.NO_CACHE['Cache-Control']);
+  });
+});
+
+describe('news API failure boundary', () => {
+  it.each([new Error('/private/content/read-failed.md'), 'unexpected failure', null])(
+    'handles unknown thrown values without exposing internal diagnostics',
+    async (cause) => {
+      vi.mocked(getNewsList).mockRejectedValue(cause);
+      const response = await getList(new NextRequest('http://localhost/api/news'));
+      expect(await response.json()).toEqual({
+        data: null,
+        error: { status: 500, code: 'INTERNAL_SERVER', message: 'API Error: Internal server error' },
+      });
+      expect(response.status).toBe(500);
+      expect(response.headers.get('Cache-Control')).toBe(CACHE_HEADERS.NO_CACHE['Cache-Control']);
+    },
+  );
+
+  it('omits optional update dates when serializing an article', async () => {
+    vi.mocked(getNewsItem).mockResolvedValue({ ...article, updated: undefined });
+    const response = await getDetail(new NextRequest('http://localhost/api/news/2024-01-15-01'), {
+      params: Promise.resolve({ slug: article.slug }),
+    });
+    expect((await response.json()).data).not.toHaveProperty('updated');
   });
 });
 

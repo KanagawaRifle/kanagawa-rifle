@@ -1,11 +1,11 @@
 // packages/website/src/app/links/page.tsx
 
 import { Link as LinkIcon } from 'lucide-react';
-import type { Metadata } from 'next';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { env, paths } from '@/config';
+import { paths } from '@/config/paths';
+import { createPageMetadata } from '@/lib/metadata';
 
 type LinkItem = {
   href: string;
@@ -49,13 +49,13 @@ const LINK_ITEMS: readonly LinkItem[] = [
 
 function LinkListItem({ item, divider = true }: { readonly item: LinkItem; readonly divider?: boolean }) {
   return (
-    <li className={divider ? 'border-b border-border' : ''}>
+    <li className={divider ? 'border-border border-b' : ''}>
       <div className="p-4">
         <a
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary underline hover:bg-primary/10 font-medium"
+          className="text-primary hover:bg-primary/10 font-medium underline"
         >
           {item.title}
           <span className="sr-only">（新しいタブで開く）</span>
@@ -68,12 +68,7 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
 
 const currentPath = paths.sub.links;
 
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 export default function Page() {
   return (

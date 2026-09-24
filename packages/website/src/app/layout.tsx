@@ -1,15 +1,16 @@
 // packages/website/src/app/layout.tsx
 
 import '@/styles/globals.css';
-import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import React from 'react';
 import { Toaster } from 'sonner';
 
-import { Frame } from '@/components';
-import { AxiomWebVitalsWrapper } from '@/components/AxiomWebVitalsWrapper';
-import { app, env } from '@/config';
+import { Analytics } from '@/components/Analytics';
+import { Frame } from '@/components/Frame';
+import { JsonLd } from '@/components/JsonLd';
+import { app } from '@/config/app';
+import { env } from '@/config/env';
+import { createPageMetadata } from '@/lib/metadata';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export const viewport: Viewport = {
@@ -21,6 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  ...createPageMetadata({ title: app.name, description: app.description }),
   title: {
     default: app.name,
     template: `%s：${app.name}`,
@@ -46,8 +48,6 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: app.name,
   },
-  openGraph: { images: new URL(`/api/og?title=${app.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${app.name}`, env.APP_URL) },
 };
 
 // JSON-LD 構造化データ
@@ -74,27 +74,13 @@ const websiteJsonLd = {
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja" suppressHydrationWarning>
+    <html lang="ja" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
       </head>
-      {process.env.NODE_ENV === 'production' && env.CLARITY_ID && (
-        <Script strategy="afterInteractive" id="clarity-tag">
-          {`
-            (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${env.CLARITY_ID}");
-          `}
-        </Script>
-      )}
-      {process.env.NODE_ENV === 'production' && <AxiomWebVitalsWrapper />}
       <body className="antialiased">
-        {process.env.NODE_ENV === 'production' && env.GOOGLE_ANALYTICS_ID && (
-          <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
-        )}
+        <Analytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Frame>{children}</Frame>
           <Toaster position="bottom-center" richColors />

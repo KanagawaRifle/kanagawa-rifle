@@ -3,10 +3,11 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import type { NewsItem, Paginated, Pagination as PaginationData } from '@/types';
+import type { NewsSummary } from '@/features/news/types';
+import type { Paginated, Pagination as PaginationData } from '@/lib/pagination';
 
-import { ListNewsItem } from './ListItem';
 import { NewsListControls } from './NewsListControls';
+import { NewsListItem } from './NewsListItem';
 
 function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: PaginationData) {
   const pages = Math.max(1, totalPages);
@@ -47,7 +48,7 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
   );
 }
 
-export function NewsItemList({ news, withControls = true }: { news: Paginated<NewsItem>; withControls?: boolean }) {
+export function NewsList({ news, withControls = true }: { news: Paginated<NewsSummary>; withControls?: boolean }) {
   return (
     <div className="space-y-4">
       {withControls && <NewsListControls size={news.pagination.size} />}
@@ -58,7 +59,7 @@ export function NewsItemList({ news, withControls = true }: { news: Paginated<Ne
         ) : (
           <ul aria-label="お知らせ一覧">
             {news.data.map((item, index) => (
-              <ListNewsItem key={item.slug} {...item} isLast={index === news.data.length - 1} />
+              <NewsListItem key={item.slug} {...item} isLast={index === news.data.length - 1} />
             ))}
           </ul>
         )}

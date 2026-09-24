@@ -1,4 +1,6 @@
-import { paths } from '@/config/paths';
+import 'server-only';
+
+import { getStaticFileUrl } from '@/config/assets';
 
 import { competitionSchema } from '../schema';
 
@@ -27,17 +29,17 @@ export const year2026 = competitionSchema.array().parse([
       { name: '申込', href: 'https://forms.gle/peGYBRiyjR6xqYEi8' },
       {
         name: '要項',
-        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-details.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-06-18-eastern-japan-details.pdf'),
       },
       {
         name: '射座',
         homeLabel: '射座割',
-        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-06-18-eastern-japan-start-lists.pdf'),
       },
       {
         name: '成績',
         homeLabel: '速報',
-        href: paths.cdn.getHref('/competitions/2026/2026-06-18-eastern-japan-results.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-06-18-eastern-japan-results.pdf'),
       },
     ],
     date: { kind: 'range', from: '2026-06-18', to: '2026-06-21' },
@@ -51,15 +53,15 @@ export const year2026 = competitionSchema.array().parse([
       { name: '申込', href: 'https://forms.gle/wD1AJVLZvuteDWN29' },
       {
         name: '要項',
-        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-details.pdf'),
       },
       {
         name: '射座',
-        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-start-lists.pdf'),
       },
       {
         name: '成績',
-        href: paths.cdn.getHref('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf'),
+        href: getStaticFileUrl('/competitions/2026/2026-04-26-spring-kanagawa-open-championship-results.pdf'),
       },
     ],
     date: { kind: 'date', date: '2026-04-26' },

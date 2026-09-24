@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 
+import { getCompetitionPath } from '@/config/paths';
+import { CompetitionPage } from '@/features/competitions/components/CompetitionPage';
 import { COMPETITION_YEARS, resolveCompetitionYear } from '@/features/competitions/data';
-
-import { CompetitionPage, getCompetitionMetadata } from '../_components/CompetitionPage';
+import { createPageMetadata } from '@/lib/metadata';
 
 type Props = { params: Promise<{ year: string }> };
 
@@ -15,7 +16,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const year = resolveCompetitionYear((await params).year);
   if (!year) notFound();
-  return getCompetitionMetadata(year);
+  const path = getCompetitionPath(year);
+  return createPageMetadata({ title: path.name, description: path.description });
 }
 
 export default async function Page({ params }: Props) {

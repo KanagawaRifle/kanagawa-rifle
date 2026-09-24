@@ -14,23 +14,19 @@ import {
   Recycle,
   TriangleAlert,
 } from 'lucide-react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { PageLayout } from '@/components';
+import { PageLayout } from '@/components/PageLayout';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Step, StepContent, StepLabel, Stepper } from '@/components/ui/stepper';
-import { env, paths } from '@/config';
+import { getStaticFileUrl } from '@/config/assets';
+import { paths } from '@/config/paths';
+import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.recommendation;
-export const metadata: Metadata = {
-  title: currentPath.name,
-  description: currentPath.description,
-  openGraph: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-  twitter: { images: new URL(`/api/og?title=${currentPath.name}`, env.APP_URL) },
-};
+export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
 
 export default function Page() {
   return (
@@ -72,65 +68,65 @@ export default function Page() {
         </CardHeader>
         <CardContent>
           手数料は
-          <Link href="/about" className="text-primary underline hover:bg-primary/10">
+          <Link href="/about" className="text-primary hover:bg-primary/10 underline">
             当協会の指定口座
           </Link>
           までお振込みください。
         </CardContent>
         <ul>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="default">ライフル</Badge>
               <span>ライフル銃 (小口径)</span>
             </div>
             <span className="text-xl font-bold">6,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="default">ライフル</Badge>
               <span>ライフル銃 (大口径)</span>
             </div>
             <span className="text-xl font-bold">10,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="secondary">けん銃</Badge>
               <span>けん銃</span>
             </div>
             <span className="text-xl font-bold">10,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="secondary">けん銃</Badge>
               <span>空気けん銃</span>
             </div>
             <span className="text-xl font-bold">6,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="info">低年者</Badge>
               <span>低年者空気銃</span>
             </div>
             <span className="text-xl font-bold text-green-700 dark:text-green-400">無料</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="info">低年者</Badge>
               <div>
                 <span>低年者空気けん銃</span>
-                <div className="text-xs text-muted-foreground">※2025年10月度推薦より</div>
+                <div className="text-muted-foreground text-xs">※2025年10月度推薦より</div>
               </div>
             </div>
             <span className="text-xl font-bold">4,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="info">低年者</Badge>
               <span>低年者ライフル銃 (小口径)</span>
             </div>
             <span className="text-xl font-bold">6,000円</span>
           </li>
-          <li className="flex items-center justify-between border-b border-border p-4">
+          <li className="border-border flex items-center justify-between border-b p-4">
             <div className="flex items-center gap-2">
               <Badge variant="outline">その他</Badge>
               <span>技能講習免除</span>
@@ -193,9 +189,9 @@ export default function Page() {
             </div>
           </li>
           <li className="flex items-center justify-center py-2">
-            <div className="flex-1 border-t border-border" aria-hidden="true"></div>
-            <span className="bg-background px-4 text-sm font-medium text-muted-foreground">または</span>
-            <div className="flex-1 border-t border-border" aria-hidden="true"></div>
+            <div className="border-border flex-1 border-t" aria-hidden="true"></div>
+            <span className="bg-background text-muted-foreground px-4 text-sm font-medium">または</span>
+            <div className="border-border flex-1 border-t" aria-hidden="true"></div>
           </li>
           <li className="flex items-start gap-3 p-4">
             <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" aria-hidden="true" />
@@ -217,16 +213,16 @@ export default function Page() {
           </CardTitle>
         </CardHeader>
         <ul>
-          <li className="flex items-start gap-3 border-b border-border p-4">
+          <li className="border-border flex items-start gap-3 border-b p-4">
             <CalendarClock className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">申請締切日</div>
               <div className="text-muted-foreground">
                 <a
-                  href={paths.cdn.getHref('/projects/2025/competitions.pdf')}
+                  href={getStaticFileUrl('/projects/2025/competitions.pdf')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary underline hover:bg-primary/10"
+                  className="text-primary hover:bg-primary/10 underline"
                 >
                   推薦スケジュール
                   <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -235,7 +231,7 @@ export default function Page() {
               </div>
             </div>
           </li>
-          <li className="flex items-start gap-3 border-b border-border p-4">
+          <li className="border-border flex items-start gap-3 border-b p-4">
             <Clock className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">所要日数</div>
@@ -247,7 +243,7 @@ export default function Page() {
               </div>
             </div>
           </li>
-          <li className="flex items-start gap-3 border-b border-border p-4">
+          <li className="border-border flex items-start gap-3 border-b p-4">
             <Clipboard className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">申請が翌月審査となる場合</div>
@@ -296,7 +292,7 @@ export default function Page() {
           </CardTitle>
         </CardHeader>
         <ul>
-          <li className="flex items-start gap-3 border-b border-border p-4">
+          <li className="border-border flex items-start gap-3 border-b p-4">
             <Calendar className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <div>
               <div className="font-medium">有効期限</div>
@@ -325,49 +321,49 @@ export default function Page() {
           <CardDescription>※ご不明な点は日ラへ直接お問い合わせください。</CardDescription>
         </CardHeader>
         <ul>
-          <li className="flex items-center gap-3 border-b border-border p-4">
+          <li className="border-border flex items-center gap-3 border-b p-4">
             <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
-              href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_57.pdf')}
+              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_57.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               推薦ブレッテン no.57
               <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
-          <li className="flex items-center gap-3 border-b border-border p-4">
+          <li className="border-border flex items-center gap-3 border-b p-4">
             <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
-              href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_56.pdf')}
+              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_56.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               推薦ブレッテン no.56
               <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
-          <li className="flex items-center gap-3 border-b border-border p-4">
+          <li className="border-border flex items-center gap-3 border-b p-4">
             <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
-              href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_55.pdf')}
+              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_55.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               推薦ブレッテン no.55
               <span className="sr-only">（PDF、新しいタブで開く）</span>
             </a>
           </li>
-          <li className="flex items-center gap-3 border-b border-border p-4">
+          <li className="border-border flex items-center gap-3 border-b p-4">
             <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
-              href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_51.pdf')}
+              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_51.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               推薦ブレッテン no.51
               <span className="sr-only">（PDF、新しいタブで開く）</span>
@@ -376,10 +372,10 @@ export default function Page() {
           <li className="flex items-center gap-3 p-4">
             <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
             <a
-              href={paths.cdn.getHref('/recommendation/Recommendation_Bulletin_no_49.pdf')}
+              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_49.pdf')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 underline"
             >
               推薦ブレッテン no.49
               <span className="sr-only">（PDF、新しいタブで開く）</span>

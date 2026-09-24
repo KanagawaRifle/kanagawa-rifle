@@ -1,6 +1,6 @@
 // packages/website/e2e/accessibility.spec.ts
 import AxeBuilder from '@axe-core/playwright';
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility Tests', () => {
   test('homepage should not have any automatically detectable accessibility issues', async ({ page }) => {

@@ -8,15 +8,14 @@
       "env": [
         "NEXT_PUBLIC_*",
         "NODE_ENV",
-        "NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY",
-        "NEXT_PUBLIC_GOOGLE_CALENDAR_ID",
-        "GOOGLE_CALENDAR_API_KEY",
-        "GOOGLE_CALENDAR_ID",
+        "LHCI",
+        "ANALYZE",
+        "VERCEL",
         "SENTRY_AUTH_TOKEN",
         "SENTRY_ORG",
         "SENTRY_PROJECT"
       ],
-      "inputs": ["$TURBO_DEFAULT$", ".env.local", ".env.production"]
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "dev": {
       "cache": false,
@@ -29,21 +28,24 @@
       "dependsOn": ["build"]
     },
     "lint": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^lint"],
       "outputs": [],
-      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".eslintrc*", "tsconfig.json"]
+      "inputs": ["$TURBO_DEFAULT$"]
     },
     "lint:eslint": {
       "outputs": [],
-      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".eslintrc*"]
+      "inputs": ["$TURBO_DEFAULT$"],
+      "dependsOn": ["^lint"]
     },
     "lint:prettier": {
       "outputs": [],
-      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json", "**/*.md", ".prettierrc*"]
+      "inputs": ["$TURBO_DEFAULT$"],
+      "dependsOn": ["^lint"]
     },
     "lint:text": {
       "outputs": [],
-      "inputs": ["**/*.md", "**/*.txt", ".textlintrc*"]
+      "inputs": ["$TURBO_DEFAULT$"],
+      "dependsOn": ["^lint"]
     },
     "fix": {
       "cache": false,
@@ -68,9 +70,21 @@
     },
     "typecheck": {
       "cache": false
+    },
+    "lint:architecture": {
+      "outputs": [],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/scripts/check-architecture*.mjs"]
     }
   },
   "globalEnv": ["NODE_ENV", "CI"],
-  "globalDependencies": [".env", ".env.local", "tsconfig.json", "package.json"],
+  "globalDependencies": [
+    ".env*",
+    "tsconfig.json",
+    "package.json",
+    "packages/*-config/**",
+    "scripts/**",
+    "prettier.config.mjs",
+    ".gitignore"
+  ],
   "globalPassThroughEnv": ["NODE_ENV", "CI", "VERCEL", "VERCEL_ENV", "SENTRY_AUTH_TOKEN"]
 }

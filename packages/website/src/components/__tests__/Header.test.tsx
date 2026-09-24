@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { usePathname } from 'next/navigation';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Header } from '../Header';
 
 // Next.js のナビゲーションをモック
 vi.mock('next/navigation', () => ({
-  usePathname: () => '/',
+  usePathname: vi.fn(() => '/'),
 }));
 
 // ThemeToggle をモック
@@ -15,6 +16,19 @@ vi.mock('@/components/ThemeToggle', () => ({
 }));
 
 describe('Header', () => {
+  beforeEach(() => vi.mocked(usePathname).mockReturnValue('/'));
+
+  it.each([
+    ['/news/2026-01-01-01', 'お知らせ'],
+    ['/competitions/2026', '大会'],
+    ['/newsletter', undefined],
+  ])('matches complete navigation path segments for %s', (pathname, name) => {
+    vi.mocked(usePathname).mockReturnValue(pathname);
+    render(<Header />);
+    const current = screen.queryByRole('link', { current: 'page' });
+    if (name) expect(current).toHaveAccessibleName(name);
+    else expect(current).toBeNull();
+  });
   describe('Structure', () => {
     it('header 要素をレンダリングする', () => {
       render(<Header />);

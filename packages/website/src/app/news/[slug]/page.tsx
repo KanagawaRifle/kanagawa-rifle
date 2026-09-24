@@ -2,10 +2,14 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageLayout } from '@/components';
-import { app, env, paths } from '@/config';
-import { NewsItemGet } from '@/features/news/components/NewsItemGet';
+import { JsonLd } from '@/components/JsonLd';
+import { PageLayout } from '@/components/PageLayout';
+import { app } from '@/config/app';
+import { env } from '@/config/env';
+import { paths } from '@/config/paths';
+import { NewsArticle } from '@/features/news/components/NewsArticle';
 import { getNewsItem, getNewsSlugs } from '@/features/news/server/news';
+import { createPageMetadata } from '@/lib/metadata';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,13 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = await getArticle(slug);
-  const image = new URL(`/api/og?title=${encodeURIComponent(item.title)}`, env.APP_URL);
-  return {
-    title: item.title,
-    description: item.excerpt ?? item.title,
-    openGraph: { images: image },
-    twitter: { images: image },
-  };
+  return createPageMetadata({ title: item.title, description: item.excerpt ?? item.title });
 }
 
 export default async function Page({ params }: Props) {
@@ -54,11 +52,8 @@ export default async function Page({ params }: Props) {
         { name: article.title, path: `/news/${slug}` },
       ]}
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, '\\u003c') }}
-      />
-      <NewsItemGet news={article} />
+      <JsonLd data={articleJsonLd} />
+      <NewsArticle news={article} />
     </PageLayout>
   );
 }

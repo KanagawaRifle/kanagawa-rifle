@@ -1,25 +1,13 @@
 /** @type {import('stylelint').Config} */
 const config = {
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-standard-scss',
-    'stylelint-config-recess-order',
-  ],
+  extends: ['stylelint-config-standard', 'stylelint-config-standard-scss', 'stylelint-config-recess-order'],
   rules: {
     'string-quotes': 'single',
 
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: [
-          'tailwind',
-          'layer',
-          'apply',
-          'config',
-          'variants',
-          'responsive',
-          'screen',
-        ],
+        ignoreAtRules: ['tailwind', 'layer', 'apply', 'config', 'variants', 'responsive', 'screen'],
       },
     ],
 
@@ -33,15 +21,7 @@ const config = {
     'scss/at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: [
-          'tailwind',
-          'layer',
-          'apply',
-          'config',
-          'variants',
-          'responsive',
-          'screen',
-        ],
+        ignoreAtRules: ['tailwind', 'layer', 'apply', 'config', 'variants', 'responsive', 'screen'],
       },
     ],
 
@@ -68,14 +48,7 @@ const config = {
     ],
   },
 
-  ignoreFiles: [
-    '**/node_modules/**',
-    '**/dist/**',
-    '**/build/**',
-    '**/.next/**',
-    '**/coverage/**',
-    '**/out/**',
-  ],
+  ignoreFiles: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.next/**', '**/coverage/**', '**/out/**'],
 };
 
 export default config;

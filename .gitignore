@@ -90,7 +90,7 @@ ansible.cfg
 # ============================================
 # Package manager files
 # ============================================
-package-lock.json
+# npm's package-lock.json is versioned for reproducible workspace installs.
 yarn.lock
 pnpm-lock.yaml
 composer.lock
@@ -104,9 +104,12 @@ composer.lock
 .tmp/
 *.log
 .turbo/
+# Next.js generates these local hints; repository instructions live in /AGENTS.md.
+/packages/website/AGENTS.md
+/packages/website/CLAUDE.md
 .eslintcache
 .stylelintcache
-.lighthouse*
+.lighthouse.reports/
 .lighthouseci/
 lighthouse.reports/
 .snyk

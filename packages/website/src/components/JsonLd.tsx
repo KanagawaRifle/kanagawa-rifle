@@ -1,0 +1,9 @@
+/** Escape HTML delimiters, including closing script tags in editorial content. */
+export function JsonLd({ data }: { data: Record<string, unknown> | readonly Record<string, unknown>[] }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+    />
+  );
+}
