@@ -1,44 +1,61 @@
 import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
-  eslint: false,
   workspaces: {
     '.': {
-      entry: ['*.config.{js,mjs,cjs,ts}'],
-      project: ['*.{js,mjs,cjs,ts}'],
+      entry: ['*.config.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
+      project: ['*.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
+      // The coverage tool resolves Vitest from the selected workspace.
+      ignoreDependencies: ['vitest', 'textlint-rule-*'],
     },
     'packages/website': {
-      entry: ['src/app/**/*.{ts,tsx}', 'src/proxy.ts'],
-      project: ['src/**/*.{ts,tsx}'],
-      ignore: ['src/**/*.test.{ts,tsx}', 'e2e/**/*'],
+      entry: [
+        'src/components/ui/**/*.{ts,tsx}',
+        'playwright.*.config.ts',
+        'vitest.mutation.config.ts',
+        '.lighthouserc.cjs',
+      ],
+      project: ['src/**/*.{ts,tsx}', '*.{ts,mjs,cjs}', 'e2e/**/*.ts'],
+      // These are loaded by Textlint configuration or Tailwind CSS directives.
+      ignoreDependencies: [
+        '@textlint-ja/*',
+        'textlint-rule-*',
+        'sudachi-synonyms-dictionary',
+        'tw-animate-css',
+        '@tailwindcss/typography',
+        'tailwindcss',
+      ],
     },
     'packages/eslint-config': {
-      entry: ['index.js'],
       project: ['**/*.js'],
     },
     'packages/prettier-config': {
-      entry: ['index.js'],
       project: ['**/*.js'],
     },
     'packages/stylelint-config': {
-      entry: ['index.js'],
       project: ['**/*.js'],
     },
     'packages/lighthouse-config': {
-      entry: ['index.js'],
       project: ['**/*.{js,cjs}'],
     },
     'packages/typescript-config': {
       entry: ['*.json'],
       project: ['**/*.json'],
+      ignoreUnresolved: ['^next$'],
     },
   },
   ignore: ['**/node_modules/**', '**/.next/**', '**/dist/**'],
   ignoreDependencies: [
-    // Implicitly used by Next.js or build tools
-    'sharp',
-    'encoding',
+    // Loaded through shared configuration rather than direct application imports.
+    'prettier-plugin-tailwindcss',
+    'stylelint-config-recess-order',
+    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
+    'stylelint-order',
   ],
+  ignoreExportsUsedInFile: true,
+  // Public TypeScript contracts remain available to callers.
+  exclude: ['types'],
 };
 
 export default config;

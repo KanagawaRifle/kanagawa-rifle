@@ -27,6 +27,7 @@
 - Development: `npm run -w @acme/website dev`, available at `http://localhost:3000`.
 - Specify the target workspace when adding dependencies, for example `npm install -w @acme/website <package-name>`.
 - Update the root `package-lock.json` when changing dependencies, and do not mix package managers.
+- `npm run doctor` diagnoses the environment. `make setup` creates missing env files and installs dependencies.
 - Follow the README for Docker startup and `LOCAL_UID` / `LOCAL_GID`. Do not install or build simultaneously on the host and in containers.
 
 ## Implementation Conventions
@@ -55,6 +56,9 @@
 ## Validation
 
 - Select checks appropriate to the change. For code changes, run ESLint, type checks, and relevant tests; also build when rendering or configuration is affected.
+- `npm run check` includes repository tooling, dependency, license, spelling, and documentation checks.
+- Article prose lint is optional; see `DEVELOPMENT.md` for existing findings.
+- Run `npm run lint:infra` for workflow, shell, or Docker changes; it requires Docker.
 
 | Check            | Command from the repository root           |
 | ---------------- | ------------------------------------------ |

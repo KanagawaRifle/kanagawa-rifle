@@ -1,0 +1,22 @@
+name: Gitleaks
+on:
+  push:
+    branches: [1.x, 2.x]
+  pull_request:
+    branches: [1.x, 2.x]
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Scan Git history with the Gitleaks CLI
+        run: >-
+          docker run --rm --network none
+          --volume "$PWD:/repo:ro"
+          ghcr.io/gitleaks/gitleaks:v8.24.2@sha256:b5918eb91b8d2473cec722f066abb4352e4ffdc4ec9f4283ec143aba9ec9ebc4
+          git /repo --config /repo/.gitleaks.toml --redact --no-banner

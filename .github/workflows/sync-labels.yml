@@ -1,0 +1,21 @@
+name: Sync Labels
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/1.x' || github.ref == 'refs/heads/2.x'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node
+      - name: Create or update managed labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-labels.mjs

@@ -30,7 +30,7 @@ describe('published news content', () => {
       expect(article.title.trim(), article.slug).not.toBe('');
       expect(article.content.trim(), article.slug).not.toBe('');
       expect(Number.isFinite(article.published.getTime()), article.slug).toBe(true);
-      if (article.updated) expect(Number.isFinite(article.updated.getTime()), article.slug).toBe(true);
+      expect(article.updated === undefined || Number.isFinite(article.updated.getTime()), article.slug).toBe(true);
     }
   });
 });

@@ -1,0 +1,15 @@
+'Package: Website 📦':
+  - changed-files:
+      - any-glob-to-any-file: ['packages/website/**']
+'Package: shared-config 📦':
+  - changed-files:
+      - any-glob-to-any-file: ['packages/*-config/**']
+'Cat: CI/CD ⚙️':
+  - changed-files:
+      - any-glob-to-any-file: ['.github/**']
+'Cat: Documentation 📝':
+  - changed-files:
+      - any-glob-to-any-file: ['*.md', 'docs/**', 'packages/*/README.md']
+'Cat: Dependencies 🤖':
+  - changed-files:
+      - any-glob-to-any-file: ['**/package.json', 'package-lock.json']

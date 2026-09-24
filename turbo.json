@@ -65,7 +65,7 @@
       "cache": false
     },
     "test": {
-      "outputs": ["coverage/**"],
+      "outputs": [],
       "inputs": ["$TURBO_DEFAULT$"]
     },
     "typecheck": {
@@ -74,6 +74,14 @@
     "lint:architecture": {
       "outputs": [],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/scripts/check-architecture*.mjs"]
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "size-limit": {
+      "dependsOn": ["build"],
+      "outputs": []
     }
   },
   "globalEnv": ["NODE_ENV", "CI"],
@@ -84,7 +92,9 @@
     "packages/*-config/**",
     "scripts/**",
     "prettier.config.mjs",
-    ".gitignore"
+    ".gitignore",
+    "eslint.config.mjs",
+    ".prettierignore"
   ],
   "globalPassThroughEnv": ["NODE_ENV", "CI", "VERCEL", "VERCEL_ENV", "SENTRY_AUTH_TOKEN"]
 }

@@ -1,0 +1,27 @@
+name: SBOM
+on:
+  push:
+    branches: [1.x, 2.x]
+    paths: [package.json, package-lock.json, 'packages/*/package.json', .github/workflows/sbom.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node
+      - name: Generate CycloneDX production dependency inventory
+        run: npm sbom --sbom-format=cyclonedx --omit=dev > bom.json
+      - name: Generate production license notices
+        run: npm run license-report
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sbom-cyclonedx
+          path: |
+            bom.json
+            packages/website/THIRD-PARTY-LICENSES.txt
+          retention-days: 30

@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Development",
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": []
+    },
+    {
+      "label": "Repository checks",
+      "type": "npm",
+      "script": "check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Full local QA",
+      "type": "npm",
+      "script": "qa",
+      "problemMatcher": []
+    },
+    {
+      "label": "Environment diagnosis",
+      "type": "npm",
+      "script": "doctor",
+      "problemMatcher": []
+    }
+  ]
+}

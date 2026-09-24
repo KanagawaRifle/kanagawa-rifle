@@ -3,7 +3,7 @@
 const config = {
   ci: {
     collect: {
-      numberOfRuns: 1,
+      numberOfRuns: 3,
       startServerReadyTimeout: 30000,
       chromeFlags: [
         '--headless',
@@ -19,7 +19,6 @@ const config = {
       outputDir: './.lighthouse.reports',
     },
     assert: {
-      preset: 'lighthouse:recommended',
       assertions: {
         // カテゴリスコア
         'categories:performance': ['warn', { minScore: 0.9 }],
@@ -28,22 +27,14 @@ const config = {
         'categories:best-practices': ['error', { minScore: 0.96 }],
         'categories:seo': ['error', { minScore: 1.0 }],
 
-        // ソースマップはセキュリティ上の理由で公開しないため警告に緩和
-        'valid-source-maps': 'off',
-
-        // 未使用 JavaScript は Next.js の仕様上避けられないため警告に
-        'unused-javascript': 'off',
-
-        // レガシー JavaScript は依存ライブラリに起因するため警告に
-        'legacy-javascript': 'off',
-
-        // localhost テスト環境では CSP が本番設定のため偽陽性が出る
-        'inspector-issues': 'off',
-
-        // 以下は NaN を返すことがあるため無効化（ページによって該当しない場合がある）
-        'lcp-lazy-loaded': 'off',
-        'non-composited-animations': 'off',
-        'prioritize-lcp-image': 'off',
+        // 明示した品質項目を検査し、性能の診断項目は上のカテゴリスコアで評価する。
+        'errors-in-console': ['error', { minScore: 1 }],
+        'http-status-code': ['error', { minScore: 1 }],
+        'document-title': ['error', { minScore: 1 }],
+        'html-has-lang': ['error', { minScore: 1 }],
+        'image-alt': ['error', { minScore: 1 }],
+        'link-name': ['error', { minScore: 1 }],
+        'meta-viewport': ['error', { minScore: 1 }],
       },
     },
   },

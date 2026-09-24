@@ -1,4 +1,5 @@
-export default {
+// SPDX-License-Identifier: MIT
+const baseConfig = {
   semi: true,
   singleQuote: true,
   trailingComma: 'all',
@@ -7,8 +8,6 @@ export default {
   printWidth: 120,
   tabWidth: 2,
   endOfLine: 'lf',
-  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-tailwindcss'],
-  tailwindFunctions: ['clsx', 'cn'],
   overrides: [
     {
       files: '**/*.yml',
@@ -17,4 +16,12 @@ export default {
       },
     },
   ],
+};
+
+export default baseConfig;
+
+export const tailwind = {
+  ...baseConfig,
+  plugins: ['prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['clsx', 'cn'],
 };
