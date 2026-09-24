@@ -1,0 +1,6 @@
+# Published historical notices retain their editorial wording.
+packages/website/src/contents/**
+# Verbatim licenses and dictionaries are not prose.
+licenses/**
+**/THIRD-PARTY-LICENSES.txt
+**/.cspell.dict.txt

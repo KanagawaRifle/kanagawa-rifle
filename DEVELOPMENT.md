@@ -2,11 +2,8 @@
 
 ## ローカル環境
 
-Node.js 24.21.0 / npm 11.19.0 を使います。バージョンの定義はルートの
-`package.json` の `volta` と `packageManager` にあります。Volta を使う場合は
-リポジトリ内で指定バージョンが選択されます。
-
-以下はリポジトリのルートで実行します。
+Node.js 24.21.0 / npm 11.19.0 を使います。Volta を使うと、ルートの `package.json` に指定した
+バージョンが選択されます。以下のコマンドはリポジトリのルートで実行してください。
 
 ```bash
 npm ci
@@ -15,28 +12,32 @@ npm ci
 npm run dev
 ```
 
-開発 URL は `http://localhost:3000` です。Docker で開発する場合は
-[ルート README](README.md) の手順を使い、ホスト側のインストールやビルドと同時に実行しないでください。
-ルートの `npm run dev` は、シェルで指定した環境変数も開発サーバーへ渡します。
+開発 URL は `http://localhost:3000` です。`make setup` でも環境ファイルの作成、依存関係の
+インストール、環境診断を実行できます。環境の確認だけなら `npm run doctor` を使います。
 
-## 実装と検証
+Docker の起動手順は [README](README.md#クイックスタート) を参照してください。
+VS Code の Dev Containers にも対応しています。ホストとコンテナーは `node_modules` や `.next` を
+共有するため、インストール・ビルド・開発サーバーを同時に実行しないでください。
 
-構成、依存方向、記事・大会の更新方法は [website README](packages/website/README.md) を参照してください。
+MinIO はイメージの取得に失敗するため利用できません（2026-09-24 確認）。
+サイトの開発には `node` と `https-portal` を起動してください。
+
+## 検証
+
+`npm run check` で型、lint、依存関係、ライセンス、検査スクリプトを確認します。
+`npm run qa` はこれに本番ビルド、サイズ検査、単体テストのカバレッジ、`npm audit --audit-level=high` を加えます。
 
 ```bash
-npm run lint:architecture
-npm run -w @acme/website lint:eslint
-npm run -w @acme/website typecheck
-npm run -w @acme/website test -- --coverage
+npm run check
+npm run test:coverage
 npm run -w @acme/website test:content
-npm run -w @acme/website build
+npm run build
 ```
 
-`lint:architecture` は循環参照、共通モジュールから機能への依存、機能間の直接依存、
-画面ルートへの逆方向の依存、クライアントからサーバー専用モジュールへの依存を検査します。
-検査自体の回帰テストも実行します。共通部品が必要なら `components`、共通処理なら `lib` へ置きます。
+カバレッジの下限は行・関数・分岐・ステートメントの各 80% です。
+記事の更新手順と構成は [website README](packages/website/README.md) を参照してください。
 
-ブラウザでの確認は以下を使います。Playwright が本番サーバーを起動するため、手動での起動は不要です。
+### ブラウザと Storybook
 
 ```bash
 npx playwright install chromium
@@ -45,11 +46,31 @@ LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile
 npm run -w @acme/website build-storybook
 ```
 
-`LHCI=1` はローカル HTTP 用の設定で、ビルドとサーバー起動の両方に適用します。
-`test:e2e:dev` は `127.0.0.1:3200` で開発サーバーを起動し、CSP、ハイドレーション、対話部品を検証します。
-手動起動中の開発サーバーは先に停止してください。
-共有設定を変更した場合はルートの `npm run lint`、`npm run typecheck`、
-`npm run test`、`npm run build` でも利用側を確認します。
+Playwright がサーバーを起動します。`test:e2e` は本番ビルドを `127.0.0.1:3100` で、
+`test:e2e:dev` は開発サーバーを `127.0.0.1:3200` で検証します。実行前に手動の開発サーバーを停止してください。
+`LHCI=1` はローカル HTTP 用に CSP の HTTPS 強制を無効にする設定で、ビルドと起動の両方に必要です。
+
+### 個別の検査
+
+| コマンド                                     | 用途                                                                |
+| -------------------------------------------- | ------------------------------------------------------------------- |
+| `npm run lint:architecture`                  | 循環参照、依存方向、クライアント／サーバー境界                      |
+| `npm run syncpack`                           | ワークスペース間の依存バージョン                                    |
+| `npm run knip`                               | 未使用ファイル・依存・エクスポート                                  |
+| `npm run cspell`                             | スペル。固有名詞は `packages/website/.cspell.dict.txt` に登録       |
+| `npm run license-check`                      | 依存パッケージのライセンス                                          |
+| `npm run coverage:diff -- --base origin/2.x` | 指定コミットからの変更行のカバレッジ                                |
+| `npm run size-limit`                         | ビルド済みページの初期 JS/CSS サイズ。gzip で 500 kB / 25 kB が上限 |
+| `npm run -w @acme/website test:mutation`     | ニュース入力スキーマのミューテーションテスト。スコア 95% 未満で失敗 |
+| `npm run -w @acme/website analyze`           | Webpack のバンドル分析                                              |
+| `npm run lint:infra`                         | Docker で ShellCheck・actionlint・Hadolint・zizmor を実行           |
+
+`coverage:diff` はコミット間の比較です。checkout と同じコミットで生成したカバレッジの JSON レポートを使います。
+Lighthouse の実行方法は [共有設定の README](packages/lighthouse-config/README.md) を参照してください。
+
+ルートの `lint:text` は開発文書の日本語と英語の間のスペースを検査します。
+記事の文章表現は `npm run -w @acme/website lint:text` で検査できます。
+大会名の連続漢字やリンクだけの段落など、過去記事にも指摘が残るため、この検査は任意です。
 
 ## パッケージ管理
 
@@ -60,28 +81,19 @@ npm install -w @acme/website <package-name>
 npm install -D -w @acme/website <package-name>
 ```
 
-実行時に必要な依存は `dependencies`、ビルド・検証ツールは `devDependencies` に置きます。
-共有パッケージも明示的に宣言し、ルートの `package-lock.json` を更新します。
-パッケージマネージャーは npm に統一します。
+ルートの `package-lock.json` もコミットしてください。共有設定を変更した場合は、
+ルートで `npm run check`、`npm run test`、`npm run build` を実行して利用側を確認します。
 
-新しいワークスペースはルートの `package.json` の `workspaces` に登録します。
+本番依存のライセンス全文は `npm run license-report` で `packages/website/THIRD-PARTY-LICENSES.txt` に、
+SBOM は `npm run --silent sbom > bom.json` で出力できます。生成したレポートは Git の管理対象外です。
 
-## 整形
+## CI と公開
 
-変更したファイルを共有 Prettier 設定で整形し、ESLint の import 順序も確認します。
-過去記事や変更していないファイルまで一括整形しないでください。
+`CI Required` は品質検査、ブラウザテスト、インフラ検査の結果を集約します。
+カバレッジ、SBOM、ライセンス全文は Actions の artifact、Lighthouse はジョブの summary と artifact に出力します。
+Dependency Review、OSV、CodeQL、Gitleaks も実行します。CodeQL と Dependency Review の利用可否はリポジトリの設定に依存します。
 
-```bash
-npm run -w @acme/website lint:prettier
-npm run -w @acme/website lint:eslint
-```
-
-## Git 管理の確認
-
-`npm run lint:tracked` は、ignore 対象のファイルが Git 管理下に入っていないか確認します。
-生成物、ローカル環境変数、テスト出力はコミットしません。
-ルートの `package-lock.json` と `packages/website/.lighthouserc.cjs` は共有に必要な設定として管理します。
-`next dev` が自動生成する `packages/website/AGENTS.md` と `CLAUDE.md` はローカルの補助ファイルとして除外し、
-プロジェクト固有の指示はルートの `AGENTS.md` で管理します。
-
-整形はルートと各ワークスペースで同じ Prettier 設定を使用します。
+Dependabot はワークスペースの依存をまとめて更新します。開発依存と Actions の minor / patch 更新は
+自動マージの対象です。本番依存と major 更新はレビューしてください。
+ラベルは `.github/labels.yml` で定義し、`Sync Labels` の手動実行で作成・更新します。
+公開時は [公開前の確認](.github/PRE_RELEASE_CHECKLIST.md) を使ってください。

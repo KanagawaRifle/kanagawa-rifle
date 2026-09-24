@@ -3,6 +3,8 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import base from '@acme/eslint-config';
+import testingLibrary from '@acme/eslint-config/testing-library';
+import vitest from '@acme/eslint-config/vitest';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTypescript from 'eslint-config-next/typescript';
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
@@ -27,6 +29,8 @@ const eslintConfig = [
   ...nextVitals,
   ...nextTypescript,
   ...base,
+  vitest,
+  testingLibrary,
   ...storybook.configs['flat/recommended'],
 ];
 

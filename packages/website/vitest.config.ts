@@ -90,11 +90,6 @@ export default defineConfig({
 
     // 並列実行
     pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: false,
-      },
-    },
 
     include: ['**/__tests__/**/*.{test,spec}.{ts,tsx}', '**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', 'dist', '.next', 'e2e'],

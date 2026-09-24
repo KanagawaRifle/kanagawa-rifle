@@ -1,0 +1,29 @@
+title: '[RFC] '
+labels: []
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 提案
+      description: 変更したい内容を記載してください。
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 理由
+      description: 現状の問題や、この変更が必要になった背景。
+    validations:
+      required: true
+  - type: textarea
+    id: detailed-design
+    attributes:
+      label: 実装案
+      description: 変更箇所や実現方法。未定の点があれば記載してください。
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影響
+      description: 利用者への影響や移行手順があれば記載してください。

@@ -42,11 +42,11 @@ then
 fi
 
 # Tag Framework
-git tag $VERSION
+git tag "$VERSION"
 git push origin --tags
 
 # Tag Components
-for REMOTE in ${REMOTES[@]}; do
+for REMOTE in "${REMOTES[@]}"; do
     echo ""
     echo ""
     echo "Releasing $REMOTE";
@@ -60,10 +60,10 @@ for REMOTE in ${REMOTES[@]}; do
     (
         cd $TMP_DIR;
 
-        git clone $REMOTE_URL .
+        git clone "$REMOTE_URL" .
         git checkout "$RELEASE_BRANCH";
 
-        git tag $VERSION
+        git tag "$VERSION"
         git push origin --tags
     )
 done

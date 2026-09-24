@@ -57,4 +57,16 @@ describe('news schema', () => {
       expect(NewsQuerySchema.safeParse(query).success).toBe(false);
     }
   });
+
+  it.each([
+    [{ page: 'invalid' }, 'Page must be a number'],
+    [{ page: 1.5 }, 'Page must be an integer'],
+    [{ page: 0 }, 'Page number must be greater than 0'],
+    [{ size: 'invalid' }, 'Size must be a number'],
+    [{ size: 1.5 }, 'Size must be an integer'],
+    [{ size: 0 }, 'Size must be between 1 and 128'],
+    [{ size: 129 }, 'Size must be between 1 and 128'],
+  ])('explains invalid query input %j', (query, message) => {
+    expect(() => NewsQuerySchema.parse(query)).toThrow(message);
+  });
 });

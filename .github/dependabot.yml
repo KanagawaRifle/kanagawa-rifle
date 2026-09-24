@@ -1,72 +1,102 @@
-# .github/dependabot.yml
+# npm workspaces share the root lockfile; update their manifests together.
+# Version updates wait seven days; security updates bypass cooldown.
 version: 2
 updates:
-  # npm dependencies (root)
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: 'daily'
+      interval: weekly
+      day: monday
       time: '02:00'
-      timezone: 'Asia/Tokyo'
+      timezone: Asia/Tokyo
     open-pull-requests-limit: 10
     labels:
       - 'Cat: Dependencies 🤖'
     commit-message:
-      prefix: '[*] chore'
+      prefix: '[root] chore'
     groups:
-      # Major updates grouped separately
+      npm-development:
+        applies-to: version-updates
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      npm-production:
+        applies-to: version-updates
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
       major-updates:
-        patterns:
-          - '*'
+        applies-to: version-updates
         update-types:
-          - 'major'
-      # Minor and patch updates grouped together
-      minor-and-patch:
-        patterns:
-          - '*'
+          - major
+      security-prod-safe:
+        applies-to: security-updates
+        dependency-type: production
         update-types:
-          - 'minor'
-          - 'patch'
-
-  # npm dependencies (website)
-  - package-ecosystem: 'npm'
-    directory: '/packages/website'
+          - patch
+          - minor
+      security-dev-safe:
+        applies-to: security-updates
+        dependency-type: development
+        update-types:
+          - patch
+          - minor
+      security-prod-major:
+        applies-to: security-updates
+        dependency-type: production
+        update-types:
+          - major
+      security-dev-major:
+        applies-to: security-updates
+        dependency-type: development
+        update-types:
+          - major
+    cooldown:
+      default-days: 7
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: 'daily'
-      time: '03:00'
-      timezone: 'Asia/Tokyo'
+      interval: weekly
+      day: monday
+      time: '02:00'
+      timezone: Asia/Tokyo
     open-pull-requests-limit: 10
     labels:
       - 'Cat: Dependencies 🤖'
-      - 'Package: Website 📦'
     commit-message:
-      prefix: '[*] chore'
-      prefix-development: '[website] chore'
+      prefix: '[root] chore'
     groups:
-      # Major updates grouped separately
+      actions-compatible:
+        update-types:
+          - minor
+          - patch
       major-updates:
-        patterns:
-          - '*'
         update-types:
-          - 'major'
-      # Minor and patch updates grouped together
-      minor-and-patch:
-        patterns:
-          - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
-
-  # GitHub Actions
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+          - major
+    cooldown:
+      default-days: 7
+  - package-ecosystem: docker-compose
+    directory: /docker
     schedule:
-      interval: 'weekly'
-    labels:
-      - 'Cat: Dependencies 🤖'
-    commit-message:
-      prefix: '[*] chore'
-    groups:
-      github-actions-updates:
-        patterns:
-          - '*'
+      interval: weekly
+      day: monday
+      time: '02:00'
+      timezone: Asia/Tokyo
+    cooldown:
+      default-days: 7
+  - package-ecosystem: docker
+    directories:
+      - /docker/node
+      - /docker/mailpit
+      - /docker/minio
+      - /docker/redis
+      - /.devcontainer
+    schedule:
+      interval: weekly
+      day: monday
+      time: '02:00'
+      timezone: Asia/Tokyo
+    cooldown:
+      default-days: 7

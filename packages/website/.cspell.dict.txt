@@ -27,3 +27,20 @@ lowlight
 Noto
 Segoe
 Hiragino
+
+# Development tools, headers, and competition abbreviations
+APHR
+autodocs
+HSTS
+hrefs
+jrfu
+jsxs
+LHCI
+lighthouserc
+nosniff
+setext
+textlintrc
+Turborepo
+unstub
+ＫＡＮＡＧＡＷＡ
+ＲＩＦＬＥ
