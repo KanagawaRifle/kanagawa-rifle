@@ -11,6 +11,12 @@ test.describe('Accessibility Tests', () => {
     });
   }
 
+  test('shared navigation has adequately sized touch targets', async ({ page }) => {
+    await page.goto('/');
+    const results = await new AxeBuilder({ page }).withRules(['target-size']).analyze();
+    expect(results.violations).toEqual([]);
+  });
+
   test('homepage should not have any automatically detectable accessibility issues', async ({ page }) => {
     await page.goto('/');
 
