@@ -10,6 +10,7 @@ import { Frame } from '@/components/Frame';
 import { JsonLd } from '@/components/JsonLd';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
+import { seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 
@@ -22,29 +23,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  ...createPageMetadata({ title: app.name, description: app.description }),
+  ...createPageMetadata({ title: app.name, description: app.description, path: '/' }),
   title: {
     default: app.name,
     template: `%s：${app.name}`,
   },
   description: app.description,
-  keywords: [
-    '射撃',
-    'ライフル射撃',
-    'ライフル',
-    '神奈川県',
-    'スポーツ',
-    '競技',
-    '大会',
-    '協会',
-    'エアライフル',
-    'ビームライフル',
-  ],
   formatDetection: { telephone: false },
   metadataBase: new URL(env.APP_URL),
-  alternates: {
-    canonical: './',
-  },
   appleWebApp: {
     title: app.name,
   },
@@ -54,10 +40,13 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsOrganization',
+  '@id': seoIds.organization,
   name: app.name,
+  legalName: app.longName,
   alternateName: [app.longName, app.shortName],
   description: app.description,
   url: env.APP_URL,
+  logo: new URL('/web-app-manifest-512x512.png', env.APP_URL).toString(),
   sport: 'ライフル射撃',
   areaServed: {
     '@type': 'AdministrativeArea',
@@ -68,8 +57,12 @@ const organizationJsonLd = {
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': seoIds.website,
   name: app.name,
+  alternateName: app.shortName,
   url: env.APP_URL,
+  inLanguage: 'ja',
+  publisher: { '@id': seoIds.organization },
 };
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -71,7 +71,11 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
 }
 
 const currentPath = paths.sub.forms;
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: '申請書・各種様式',
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
 export default function Page() {
   return (

@@ -73,6 +73,54 @@ React による表示は `components/Markdown` にまとめています。記事
 登録した年度は年度一覧、静的ページ、サイトマップに反映されます。
 年度別の名称と URL は `src/config/paths.ts` の `getCompetitionPath` で生成します。
 
+## SEO と検索エンジン向けの出力
+
+`src/lib/metadata.ts` でページごとの title、description、canonical、Open Graph、Twitter Card、robots を生成します。
+ページ追加時は実際の本文に対応するタイトル・説明と `path` を指定してください。
+`NEXT_PUBLIC_URL` は本番で `https://kanagawa-rifle.org` に設定します。canonical、構造化データ、
+サイトマップ、共有画像の URL はこの値を基準にするため、プレビュー URL を本番ビルドに使わないでください。
+
+- 通常のページは自己参照 canonical を持ち、計測用パラメーターを含めません。
+- お知らせ一覧は `/news`、`/news?page=2` のようにページごとの canonical を出力します。
+  `page=1` と既定の `size=12` は内部リンクと canonical から省きます。
+- 既定以外の表示件数は `size` を保持し、`noindex, follow` とします。異なる記事集合を持つページを
+  一律に先頭ページへ正規化しません。不正な値・重複パラメーター・範囲外ページは 404 のままです。
+- 記事の説明は `excerpt` を優先し、未指定・空欄なら表示用 Markdown 構文木から最大160文字の説明を生成します。
+  記事の公開日時・更新日時を Open Graph と Article の JSON-LD に出力し、更新日は本文にも表示します。
+- SportsOrganization、WebSite、Article は共通の `@id` で関連付けます。
+  パンくずは画面の階層と同じ BreadcrumbList を出力します。
+- サイトマップには公開ページ、大会年度、全記事、既定表示件数の一覧ページを含めます。
+  記事の `lastmod` は `updated`、未指定なら `published` を使い、ビルド時刻で更新日を捏造しません。
+- `/api/news` とその詳細 API は `X-Robots-Tag: noindex` とし、HTML の記事を検索対象にします。
+  `/api/og`、画像、CSS、JavaScript はクロールを許可します。
+- ホームの主要画像は即時読込と高い取得優先度を指定し、記事画像の `sizes` は本文の表示幅に合わせます。
+  遅延読込や画像サイズを変更する場合は、Lighthouse とモバイル表示で確認してください。
+
+`VERCEL_ENV` が設定されていて `production` 以外、または `VERCEL_GIT_COMMIT_REF=staging` の場合は、
+全レスポンスの `X-Robots-Tag` とページの robots に `noindex` を設定し、サイトマップを空にします。
+robots.txt はサイトマップを広告しませんが、noindex を読み取れるようクロール自体は許可します。
+Basic 認証は引き続き staging ブランチに適用します。Vercel 変数のない自己ホスト環境は検索対象です。
+これらの設定はビルド時に決まり、変更後は再ビルド・再デプロイが必要です。Turbo のキャッシュも環境ごとに分離します。
+
+`e2e/seo.spec.ts` は本番サーバーの初期 HTML を取得し、canonical、SNS メタデータ、構造化データ、
+ページング、404、robots.txt、サイトマップ、API ヘッダー、共有画像の応答を検証します。
+
+```bash
+LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
+```
+
+公開後は管理者が [Google Search Console](https://search.google.com/search-console) で
+`https://kanagawa-rifle.org/sitemap.xml` を送信し、主要ページと2ページ目以降を URL 検査してください。
+検索パフォーマンスでは検索語句、表示回数、クリック数、CTR、掲載順位の推移を確認します。
+Core Web Vitals は実ユーザーのデータで確認し、ローカルの Lighthouse 計測と区別してください。
+構造化データの表示可否は [リッチリザルト テスト](https://search.google.com/test/rich-results) で確認します。
+大会一覧の SportsEvent は日程の意味付けであり、個別イベントのリッチリザルト表示を保証するものではありません。
+
+実装方針は Google の [ページ分割](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading?hl=ja)、
+[robots メタタグ](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=ja)、
+[記事の構造化データ](https://developers.google.com/search/docs/appearance/structured-data/article?hl=ja)、
+[サイトマップ](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=ja) のガイドに合わせています。
+
 ## 入会・推薦案内の更新
 
 入会の料金は `src/features/membership/fees.ts`、推薦手数料と掲載するブレッテンの番号は
@@ -87,6 +135,12 @@ React による表示は `components/Markdown` にまとめています。記事
 [.env.example](.env.example) を `.env.local` にコピーして設定します。
 公開設定は `src/config/env.ts`、Sentry のビルド設定は `next.config.ts` で読み込みます。
 変更後は再ビルドしてください。`npm run contracts:check` は実装の参照名と `.env.example`、Turbo の宣言を照合します。
+
+ブラウザーの Sentry 設定では、ビルド時に検証済みの `NEXT_PUBLIC_SENTRY_DSN` を直接参照します。
+空欄・未設定のビルドでは初期化・画面遷移の計測・例外送信を行わず、不要な SDK を除去できるようにしています。
+DSN がある場合は初期表示からエラー監視・Session Replay・画面遷移の計測を有効にし、従来のサンプリング率を維持します。
+ブラウザーに `config/env.ts` を取り込まないことで、Zod の検証コードと動的コード生成に伴う CSP 違反を避けます。
+設定値の Zod 検証は `next.config.ts` とサーバーで継続し、CSP の `unsafe-eval` は本番で許可しません。
 
 | 変数                               | 用途                                                                                          |
 | ---------------------------------- | --------------------------------------------------------------------------------------------- |

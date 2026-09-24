@@ -8,15 +8,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { paths } from '@/config/paths';
+import { seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.about;
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: currentPath.name,
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
-const localBusinessJsonLd = {
+const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsOrganization',
-  '@id': `${env.APP_URL}/#organization`,
+  '@id': seoIds.organization,
   name: app.name,
   legalName: app.longName,
   alternateName: app.shortName,
@@ -49,7 +54,7 @@ export default function Page() {
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
-      <JsonLd data={localBusinessJsonLd} />
+      <JsonLd data={organizationJsonLd} />
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

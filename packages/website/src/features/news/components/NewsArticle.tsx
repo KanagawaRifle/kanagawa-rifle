@@ -30,6 +30,11 @@ export function NewsArticle({ news }: { news: NewsItem }) {
             <Calendar className="mr-1 h-3 w-3" />
             <time dateTime={news.published.toISOString()}>{formatNewsDate(news.published)}</time>
           </Badge>
+          {news.updated && (
+            <Badge variant="outline">
+              更新：<time dateTime={news.updated.toISOString()}>{formatNewsDate(news.updated)}</time>
+            </Badge>
+          )}
           {news.tags.map((tag) => (
             <Badge key={tag} variant="outline" className="border-primary text-primary">
               <Hash className="mr-1 h-3 w-3" />

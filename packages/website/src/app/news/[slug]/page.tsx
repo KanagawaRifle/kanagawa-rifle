@@ -4,12 +4,11 @@ import { cache } from 'react';
 
 import { JsonLd } from '@/components/JsonLd';
 import { PageLayout } from '@/components/PageLayout';
-import { app } from '@/config/app';
-import { env } from '@/config/env';
 import { paths } from '@/config/paths';
 import { NewsArticle } from '@/features/news/components/NewsArticle';
 import { getNewsItemHref } from '@/features/news/paths';
 import { getNewsItem, getNewsSlugs } from '@/features/news/server/news';
+import { getArticleDescription, getArticleJsonLd } from '@/features/news/server/seo';
 import { createPageMetadata } from '@/lib/metadata';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -27,23 +26,17 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = await getArticle(slug);
-  return createPageMetadata({ title: item.title, description: item.excerpt ?? item.title });
+  return createPageMetadata({
+    title: item.title,
+    description: getArticleDescription(item),
+    path: getNewsItemHref(slug),
+    article: item,
+  });
 }
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
   const article = await getArticle(slug);
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.excerpt ?? article.title,
-    datePublished: article.published.toISOString(),
-    dateModified: (article.updated ?? article.published).toISOString(),
-    author: { '@type': 'Organization', name: app.name, url: env.APP_URL },
-    publisher: { '@type': 'Organization', name: app.name, url: env.APP_URL },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(getNewsItemHref(slug), env.APP_URL).toString() },
-  };
   return (
     <PageLayout
       title={article.title}
@@ -53,7 +46,7 @@ export default async function Page({ params }: Props) {
         { name: article.title, path: getNewsItemHref(slug) },
       ]}
     >
-      <JsonLd data={articleJsonLd} />
+      <JsonLd data={getArticleJsonLd(article)} />
       <NewsArticle news={article} />
     </PageLayout>
   );

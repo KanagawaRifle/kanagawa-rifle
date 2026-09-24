@@ -19,7 +19,7 @@ import { getNewsList } from '@/features/news/server/news';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata = {
-  ...createPageMetadata({ title: app.name, description: paths.home.description }),
+  ...createPageMetadata({ title: app.name, description: paths.home.description, path: paths.home.getHref() }),
   title: { absolute: app.name },
 };
 
@@ -91,7 +91,8 @@ export default async function Page() {
             alt="国スポ予選ポスター"
             width={1225}
             height={417}
-            priority
+            loading="eager"
+            fetchPriority="high"
             style={{
               width: '100%',
               height: 'auto',

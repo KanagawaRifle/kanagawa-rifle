@@ -25,7 +25,11 @@ import { RecommendationFees } from '@/features/recommendation/components/Recomme
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.recommendation;
-export const metadata = createPageMetadata({ title: currentPath.name, description: currentPath.description });
+export const metadata = createPageMetadata({
+  title: '推薦申請の手続き・手数料',
+  description: currentPath.description,
+  path: currentPath.getHref(),
+});
 
 export default function Page() {
   return (
