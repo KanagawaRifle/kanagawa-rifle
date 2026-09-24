@@ -1,11 +1,7 @@
 import 'server-only';
 
-// packages/website/src/lib/ReactMarkdown/ReactMarkdown.tsx
-
 import type { Root } from 'hast';
-import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { toString } from 'hast-util-to-string';
-import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
@@ -18,15 +14,7 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
 
-import { components } from './components';
 import { rehypeSafeUrls } from './rehypeSafeUrls';
-
-import 'katex/dist/katex.min.css';
-import 'remark-github-blockquote-alert/alert.css';
-
-type Props = {
-  content: string;
-};
 
 export type TableOfContentsEntry = {
   id: string;
@@ -52,7 +40,7 @@ const processor = unified()
   .use(rehypeSafeUrls);
 
 /** Parse once so the article and its navigation share the exact same heading IDs. */
-export function renderMarkdown(content: string) {
+export function parseMarkdown(content: string) {
   const tree: Root = processor.runSync(processor.parse(content));
   const toc: TableOfContentsEntry[] = [];
 
@@ -66,19 +54,5 @@ export function renderMarkdown(content: string) {
     }
   });
 
-  return {
-    toc,
-    body: toJsxRuntime(tree, {
-      Fragment,
-      jsx,
-      jsxs,
-      components,
-      ignoreInvalidStyle: true,
-      passKeys: true,
-    }),
-  };
-}
-
-export function ReactMarkdown({ content }: Props) {
-  return renderMarkdown(content).body;
+  return { tree, toc };
 }

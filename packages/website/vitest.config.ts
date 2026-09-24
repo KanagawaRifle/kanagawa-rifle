@@ -56,10 +56,8 @@ export default defineConfig({
         // ユーティリティのエクスポートファイル
         '**/index.ts',
         '**/index.tsx',
-        // ReactMarkdown（外部ライブラリ連携）
-        'src/lib/ReactMarkdown/**',
         // OpenGraph 画像生成（SSR 専用）
-        'src/lib/OpenGraphImage.tsx',
+        'src/components/OpenGraphImage.tsx',
         // ラッパーコンポーネント
         'src/components/AxiomWebVitalsWrapper.tsx',
         'src/components/Frame.tsx',

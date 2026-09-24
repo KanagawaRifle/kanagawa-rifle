@@ -49,6 +49,7 @@ describe('PageLayout', () => {
     it('breadcrumbs が指定された場合にパンくずリストをレンダリングする', () => {
       render(<PageLayout breadcrumbs={breadcrumbs}>Content</PageLayout>);
       expect(screen.getByRole('navigation', { name: 'パンくずリスト' })).toBeInTheDocument();
+      expect(screen.getAllByRole('navigation')).toHaveLength(1);
     });
 
     it('breadcrumbs のリンクをレンダリングする', () => {

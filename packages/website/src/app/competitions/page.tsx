@@ -1,7 +1,8 @@
 import { paths } from '@/config/paths';
-import { CompetitionPage } from '@/features/competitions/components/CompetitionPage';
 import { CURRENT_COMPETITION_YEAR } from '@/features/competitions/data';
 import { createPageMetadata } from '@/lib/metadata';
+
+import { CompetitionPage } from './_components/CompetitionPage';
 
 export const metadata = createPageMetadata({
   title: paths.main.competitions.name,

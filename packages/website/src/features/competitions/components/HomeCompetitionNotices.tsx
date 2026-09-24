@@ -2,12 +2,12 @@ import { Calendar } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-import { getHomeCompetitionNotices } from '../data';
+import type { Competition } from '../schema';
 import { CompetitionActions } from './CompetitionActions';
 import { CompetitionDate } from './CompetitionDate';
 
-export function HomeCompetitionNotices() {
-  return getHomeCompetitionNotices().map((competition) => (
+export function HomeCompetitionNotices({ competitions }: { competitions: Competition[] }) {
+  return competitions.map((competition) => (
     <Alert key={competition.name} variant="info">
       <AlertTitle>{competition.homeNotice?.title}</AlertTitle>
       <AlertDescription>

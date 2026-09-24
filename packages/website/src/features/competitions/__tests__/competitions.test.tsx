@@ -75,7 +75,7 @@ describe('published competition data', () => {
     const results = notice.actions.find((action) => action.name === '成績')!;
     expect(results.disabled).not.toBe(true);
     expect(results.homeLabel).toBe('速報');
-    render(<HomeCompetitionNotices />);
+    render(<HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />);
     expect(screen.getByRole('link', { name: '速報' })).toHaveAttribute('href', results.href);
     expect(screen.getByRole('link', { name: '射座割' })).toHaveAttribute('href', notice.actions[2]?.href);
     expect(screen.getAllByText('6月18日(木)')).toHaveLength(2);

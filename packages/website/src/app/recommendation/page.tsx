@@ -9,20 +9,19 @@ import {
   Clipboard,
   Clock,
   CreditCard,
-  FileType,
   Newspaper,
   Recycle,
   TriangleAlert,
 } from 'lucide-react';
-import Link from 'next/link';
 
 import { PageLayout } from '@/components/PageLayout';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Step, StepContent, StepLabel, Stepper } from '@/components/ui/stepper';
 import { getStaticFileUrl } from '@/config/assets';
 import { paths } from '@/config/paths';
+import { RecommendationBulletins } from '@/features/recommendation/components/RecommendationBulletins';
+import { RecommendationFees } from '@/features/recommendation/components/RecommendationFees';
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.recommendation;
@@ -61,87 +60,7 @@ export default function Page() {
         </AlertDescription>
       </Alert>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>手数料</CardTitle>
-          <CardDescription>推薦に係る手数料</CardDescription>
-        </CardHeader>
-        <CardContent>
-          手数料は
-          <Link href="/about" className="text-primary hover:bg-primary/10 underline">
-            当協会の指定口座
-          </Link>
-          までお振込みください。
-        </CardContent>
-        <ul>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="default">ライフル</Badge>
-              <span>ライフル銃 (小口径)</span>
-            </div>
-            <span className="text-xl font-bold">6,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="default">ライフル</Badge>
-              <span>ライフル銃 (大口径)</span>
-            </div>
-            <span className="text-xl font-bold">10,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary">けん銃</Badge>
-              <span>けん銃</span>
-            </div>
-            <span className="text-xl font-bold">10,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary">けん銃</Badge>
-              <span>空気けん銃</span>
-            </div>
-            <span className="text-xl font-bold">6,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="info">低年者</Badge>
-              <span>低年者空気銃</span>
-            </div>
-            <span className="text-xl font-bold text-green-700 dark:text-green-400">無料</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="info">低年者</Badge>
-              <div>
-                <span>低年者空気けん銃</span>
-                <div className="text-muted-foreground text-xs">※2025年10月度推薦より</div>
-              </div>
-            </div>
-            <span className="text-xl font-bold">4,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="info">低年者</Badge>
-              <span>低年者ライフル銃 (小口径)</span>
-            </div>
-            <span className="text-xl font-bold">6,000円</span>
-          </li>
-          <li className="border-border flex items-center justify-between border-b p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="outline">その他</Badge>
-              <span>技能講習免除</span>
-            </div>
-            <span className="text-xl font-bold">6,000円</span>
-          </li>
-          <li className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="outline">その他</Badge>
-              <span>再発行</span>
-            </div>
-            <span className="text-xl font-bold">2,000円</span>
-          </li>
-        </ul>
-      </Card>
+      <RecommendationFees />
 
       <Card>
         <CardHeader>
@@ -315,74 +234,7 @@ export default function Page() {
         </ul>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>ピストルを所持中の皆様へ</CardTitle>
-          <CardDescription>※ご不明な点は日ラへ直接お問い合わせください。</CardDescription>
-        </CardHeader>
-        <ul>
-          <li className="border-border flex items-center gap-3 border-b p-4">
-            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
-            <a
-              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_57.pdf')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:bg-primary/10 underline"
-            >
-              推薦ブレッテン no.57
-              <span className="sr-only">（PDF、新しいタブで開く）</span>
-            </a>
-          </li>
-          <li className="border-border flex items-center gap-3 border-b p-4">
-            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
-            <a
-              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_56.pdf')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:bg-primary/10 underline"
-            >
-              推薦ブレッテン no.56
-              <span className="sr-only">（PDF、新しいタブで開く）</span>
-            </a>
-          </li>
-          <li className="border-border flex items-center gap-3 border-b p-4">
-            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
-            <a
-              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_55.pdf')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:bg-primary/10 underline"
-            >
-              推薦ブレッテン no.55
-              <span className="sr-only">（PDF、新しいタブで開く）</span>
-            </a>
-          </li>
-          <li className="border-border flex items-center gap-3 border-b p-4">
-            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
-            <a
-              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_51.pdf')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:bg-primary/10 underline"
-            >
-              推薦ブレッテン no.51
-              <span className="sr-only">（PDF、新しいタブで開く）</span>
-            </a>
-          </li>
-          <li className="flex items-center gap-3 p-4">
-            <FileType className="h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
-            <a
-              href={getStaticFileUrl('/recommendation/Recommendation_Bulletin_no_49.pdf')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:bg-primary/10 underline"
-            >
-              推薦ブレッテン no.49
-              <span className="sr-only">（PDF、新しいタブで開く）</span>
-            </a>
-          </li>
-        </ul>
-      </Card>
+      <RecommendationBulletins />
     </PageLayout>
   );
 }

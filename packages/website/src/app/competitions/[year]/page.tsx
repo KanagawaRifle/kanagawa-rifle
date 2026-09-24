@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 
 import { getCompetitionPath } from '@/config/paths';
-import { CompetitionPage } from '@/features/competitions/components/CompetitionPage';
 import { COMPETITION_YEARS, resolveCompetitionYear } from '@/features/competitions/data';
 import { createPageMetadata } from '@/lib/metadata';
+
+import { CompetitionPage } from '../_components/CompetitionPage';
 
 type Props = { params: Promise<{ year: string }> };
 

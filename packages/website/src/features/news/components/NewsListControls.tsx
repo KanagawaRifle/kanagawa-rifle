@@ -6,6 +6,7 @@ import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { getNewsListHref } from '@/features/news/paths';
 
 export function NewsListControls({ size }: { size: number }) {
   const router = useRouter();
@@ -16,7 +17,7 @@ export function NewsListControls({ size }: { size: number }) {
       <Select
         value={String(size)}
         disabled={pending}
-        onValueChange={(value) => startTransition(() => router.push(`/news?size=${value}`))}
+        onValueChange={(value) => startTransition(() => router.push(getNewsListHref({ size: Number(value) })))}
       >
         <SelectTrigger className="w-24" aria-label="表示件数">
           <SelectValue />

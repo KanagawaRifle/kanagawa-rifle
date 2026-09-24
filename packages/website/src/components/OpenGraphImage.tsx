@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { ImageResponse } from 'next/og';
 import { ReactElement } from 'react';
 
