@@ -8,7 +8,7 @@ const config: KnipConfig = {
       project: ['*.{js,mjs,cjs,ts}'],
     },
     'packages/website': {
-      entry: ['src/app/**/*.{ts,tsx}', 'src/middleware.ts'],
+      entry: ['src/app/**/*.{ts,tsx}', 'src/proxy.ts'],
       project: ['src/**/*.{ts,tsx}'],
       ignore: ['src/**/*.test.{ts,tsx}', 'e2e/**/*'],
     },

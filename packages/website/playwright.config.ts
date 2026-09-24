@@ -20,7 +20,7 @@ export default defineConfig({
   /* 共通設定 */
   use: {
     /* ベースURL */
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://127.0.0.1:3100',
 
     /* 失敗時のトレース */
     trace: 'on-first-retry',
@@ -49,11 +49,11 @@ export default defineConfig({
     },
   ],
 
-  /* 開発サーバーの起動 */
+  /* npm run test:e2e でビルドした本番サーバーを検証 */
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    command: 'npm run start -- --hostname 127.0.0.1 --port 3100',
+    url: 'http://127.0.0.1:3100',
+    reuseExistingServer: false,
     timeout: 120 * 1000,
   },
 });

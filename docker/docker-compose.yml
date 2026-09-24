@@ -42,23 +42,23 @@ services:
       context: ./node
       dockerfile: Dockerfile
     working_dir: /workspace
+    user: '${LOCAL_UID:-1000}:${LOCAL_GID:-1000}'
     ports:
-      - "6006:6006"
+      - '6006:6006'
     volumes:
       - ..:/workspace
     environment:
       - NODE_ENV=development
+      - npm_config_cache=/tmp/npm-cache
     command: >
       /bin/sh -c "
-      echo 'Installing dependencies...';
-      npm install;
-      echo 'Starting development server...';
+      npm ci &&
       npm run dev --workspace=@acme/website -- --port 3001
       "
     stdin_open: true
     tty: true
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:3001']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -71,14 +71,14 @@ services:
     image: steveltn/https-portal:1
     <<: [*common-network, *common-restart]
     ports:
-      - "${IP_PREFIX}.10:80:80"
-      - "${IP_PREFIX}.10:443:443"
+      - '${IP_PREFIX}.10:80:80'
+      - '${IP_PREFIX}.10:443:443'
     environment:
       DOMAINS: >-
         kanagawa-rifle.org.test -> http://node:3001,
         storybook.kanagawa-rifle.org.test -> http://node:6006
       STAGE: local
-      WEBSOCKET: "true"
+      WEBSOCKET: 'true'
     volumes:
       - https-portal-data:/var/lib/https-portal
     depends_on:
@@ -95,9 +95,9 @@ services:
       context: ./mailpit
       dockerfile: Dockerfile
     ports:
-      - "${IP_PREFIX}.110:80:8025"
+      - '${IP_PREFIX}.110:80:8025'
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8025"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:8025']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -112,8 +112,8 @@ services:
       context: ./minio
       dockerfile: Dockerfile
     ports:
-      - "${IP_PREFIX}.130:80:9000"
-      - "${IP_PREFIX}.135:80:9090"
+      - '${IP_PREFIX}.130:80:9000'
+      - '${IP_PREFIX}.135:80:9090'
     environment:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
@@ -122,7 +122,7 @@ services:
       - minio-data:/data
     command: server /data --console-address ":9090"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 30s
       timeout: 20s
       retries: 3
@@ -162,12 +162,12 @@ services:
       context: ./redis
       dockerfile: Dockerfile
     ports:
-      - "${IP_PREFIX}.140:6379:6379"
+      - '${IP_PREFIX}.140:6379:6379'
     networks:
       - backend
     volumes:
       - redis-data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       interval: 30s
       timeout: 10s

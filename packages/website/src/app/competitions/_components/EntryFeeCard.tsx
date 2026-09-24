@@ -22,32 +22,32 @@ export function EntryFeeCard() {
             高校生以下
           </div>
         </div>
-        <div className="rounded-md border border-border bg-muted p-2">全種目</div>
-        <div className="grid grid-cols-3 gap-0 border-b border-border text-center">
+        <div className="border-border bg-muted rounded-md border p-2">全種目</div>
+        <div className="border-border grid grid-cols-3 gap-0 border-b text-center">
           <div className="p-2 text-left">G3 大会</div>
           <div className="flex items-center justify-center gap-2 p-2">
-            <CircleCheck className="h-4 w-4 text-primary" />
+            <CircleCheck className="text-primary h-4 w-4" />
             8,000円
           </div>
           <div className="flex items-center justify-center gap-2 p-2">
-            <CircleCheck className="h-4 w-4 text-primary" />
+            <CircleCheck className="text-primary h-4 w-4" />
             4,000円
           </div>
         </div>
         <div className="grid grid-cols-3 gap-0 text-center">
           <div className="p-2 text-left">G4 大会</div>
           <div className="flex items-center justify-center gap-2 p-2">
-            <CircleCheck className="h-4 w-4 text-primary" />
+            <CircleCheck className="text-primary h-4 w-4" />
             7,000円
           </div>
           <div className="flex items-center justify-center gap-2 p-2">
-            <CircleCheck className="h-4 w-4 text-primary" />
+            <CircleCheck className="text-primary h-4 w-4" />
             3,500円
           </div>
         </div>
       </CardContent>
       <CardContent>
-        <div className="space-y-2 text-muted-foreground">
+        <div className="text-muted-foreground space-y-2">
           <p>
             ※ （令和7年度より）国スポ保険料の<strong className="underline">別途お振込みは不要です</strong>
             。保険料は参加料に含まれます。

@@ -9,8 +9,7 @@ import { Toaster } from 'sonner';
 
 import { Frame } from '@/components';
 import { AxiomWebVitalsWrapper } from '@/components/AxiomWebVitalsWrapper';
-import { env, app } from '@/config';
-import QueryProvider from '@/providers/QueryProvider';
+import { app, env } from '@/config';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export const viewport: Viewport = {
@@ -77,14 +76,8 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
   return (
     <html lang="ja" suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       </head>
       {process.env.NODE_ENV === 'production' && env.CLARITY_ID && (
         <Script strategy="afterInteractive" id="clarity-tag">
@@ -103,10 +96,8 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
           <GoogleTagManager gtmId={env.GOOGLE_ANALYTICS_ID} />
         )}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <QueryProvider>
-            <Frame>{children}</Frame>
-            <Toaster position="bottom-center" richColors />
-          </QueryProvider>
+          <Frame>{children}</Frame>
+          <Toaster position="bottom-center" richColors />
         </ThemeProvider>
       </body>
     </html>

@@ -39,7 +39,7 @@ function BreadcrumbJsonLd({ breadcrumbs }: { breadcrumbs: Array<{ name: string; 
 
 export function PageLayout({ title, description, breadcrumbs, children, withStack = true }: Props) {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1} className="outline-none">
       {breadcrumbs && (
         <>
           <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
@@ -72,7 +72,7 @@ export function PageLayout({ title, description, breadcrumbs, children, withStac
       <div className="container mx-auto flex w-full max-w-screen-md flex-col gap-4 px-1 py-8 md:px-4">
         {title && <h1 className="text-2xl leading-tight font-bold md:text-3xl dark:text-white">{title}</h1>}
         {description && (
-          <p className="mb-8 rounded-lg bg-muted p-6 leading-relaxed text-muted-foreground italic">{description}</p>
+          <p className="bg-muted text-muted-foreground mb-8 rounded-lg p-6 leading-relaxed italic">{description}</p>
         )}
         {withStack ? <div className="flex flex-col gap-6">{children}</div> : <div>{children}</div>}
       </div>
