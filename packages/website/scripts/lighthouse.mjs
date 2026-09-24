@@ -237,7 +237,8 @@ export async function runLighthouse(options) {
           join(options.outputDirectory, `${artifact}.html`),
           typeof html === 'string'
             ? html
-            : `<!doctype html><html lang="en"><meta charset="utf-8"><title>Lighthouse failed</title><h1>Lighthouse failed</h1><pre>${escapeHtml(inspected.errors.join('\n'))}</pre></html>`,
+            : // nosemgrep: html-in-template-string -- escapeHtml encodes every interpolated error before HTML output.
+              `<!doctype html><html lang="en"><meta charset="utf-8"><title>Lighthouse failed</title><h1>Lighthouse failed</h1><pre>${escapeHtml(inspected.errors.join('\n'))}</pre></html>`,
         );
         await writeFile(
           join(options.outputDirectory, `${artifact}.json`),

@@ -94,7 +94,21 @@ SBOM は `npm run --silent sbom > bom.json` で出力できます。生成した
 
 `CI Required` は品質検査、ブラウザ・Storybook テスト、インフラ検査の結果を集約します。
 カバレッジ、SBOM、ライセンス全文は Actions の artifact、Lighthouse はジョブの summary と artifact に出力します。
-Dependency Review、OSV、CodeQL、Gitleaks も実行します。CodeQL と Dependency Review の利用可否はリポジトリの設定に依存します。
+OSV、Gitleaks とソースコード・依存関係のセキュリティ検査も実行します。
+GitHub Free の非公開リポジトリでは、Actions のリポジトリ変数 `CODE_SECURITY_ENABLED=false` を設定します。
+未設定時も同じ構成です。固定した Semgrep とコミュニティのセキュリティルールで JavaScript / TypeScript を解析し、
+`npm audit --audit-level=low` とライセンス検査を実行します。脆弱性や解析の指摘は CI の失敗として扱います。
+Semgrep は外部への計測送信を無効にし、解析結果を Actions の artifact に保存します。
+解析対象はアプリと運用ツールです。テストの入力例と Storybook の展示コードは対象外です。
+OSV は全依存を検査し、PR の差分結果も artifact に残します。
+
+GitHub Code Security の契約とリポジトリでの有効化が完了した環境のみ、
+`CODE_SECURITY_ENABLED=true` に変更してください。CodeQL と Dependency Review API を使用し、
+OSV の結果も Code Scanning に登録します。有料機能の利用可否と検査自体の合否を分けて管理します。
+依存関係グラフ、Dependabot alerts、Dependabot security updates はどちらの構成でも有効にします。
+
+記事向けの不適切表現チェックは、辞書を内蔵する `ja-no-inappropriate-words` に統一しています。
+古い XML パーサーと外部 HTTP 辞書に依存する `no-hoso-kinshi-yogo` は利用しません。
 
 Dependabot はワークスペースの依存をまとめて更新します。開発依存と Actions の minor / patch 更新は
 自動マージの対象です。本番依存と major 更新はレビューしてください。

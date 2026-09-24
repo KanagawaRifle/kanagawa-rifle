@@ -60,7 +60,13 @@ test('preview Basic authentication uses the existing environment contract', () =
 });
 
 test('load rejects malformed durations', () => {
-  for (const duration of ['forever', '1.5', '-1s']) {
+  for (const duration of ['forever', '1.5', '-1s', '1s trailing', '9'.repeat(10_000)]) {
     assert.throws(() => loadConfiguration('load', { ...targeted, WEBSITE_LOAD_DURATION: duration }), /duration/);
   }
+});
+
+test('load accepts compound k6 durations', () => {
+  const duration = '1h2m3s4ms';
+  const configuration = loadConfiguration('load', { ...targeted, WEBSITE_LOAD_DURATION: duration });
+  assert.equal(configuration.options.scenarios.load.duration, duration);
 });

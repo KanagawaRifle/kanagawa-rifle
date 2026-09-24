@@ -26,8 +26,11 @@ export function loadConfiguration(mode, env) {
       throw new Error('WEBSITE_LOAD_BASE_URL must be an HTTP(S) URL without credentials, query or fragment.');
     baseUrl = url.href.replace(/\/$/, '');
   }
-  if (!smoke && !/^(?:\d+(?:ms|s|m|h))+$/.test(required('WEBSITE_LOAD_DURATION')))
-    throw new Error('WEBSITE_LOAD_DURATION must be a k6 duration such as 30s or 2m.');
+  if (!smoke) {
+    const duration = required('WEBSITE_LOAD_DURATION');
+    if (duration.length > 100 || duration.replace(/\d+(?:ms|s|m|h)/g, '') !== '')
+      throw new Error('WEBSITE_LOAD_DURATION must be a k6 duration such as 30s or 2m.');
+  }
   let authorization = '';
   if (env.WEBSITE_PREVIEW_AUTH === '1') {
     if (!env.BASIC_AUTH_ID || !env.BASIC_AUTH_PASSWORD)
