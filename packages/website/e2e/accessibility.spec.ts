@@ -3,6 +3,14 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility Tests', () => {
+  for (const path of ['/', '/news', '/news/2026-09-24-01']) {
+    test(`${path} keeps a sequential heading order`, async ({ page }) => {
+      await page.goto(path);
+      const results = await new AxeBuilder({ page }).withRules(['heading-order']).analyze();
+      expect(results.violations).toEqual([]);
+    });
+  }
+
   test('homepage should not have any automatically detectable accessibility issues', async ({ page }) => {
     await page.goto('/');
 

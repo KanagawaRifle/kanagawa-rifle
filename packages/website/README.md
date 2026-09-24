@@ -34,7 +34,8 @@ front matter の `title` と `published` は必須です。`published` と任意
 ほかに `tags`、`excerpt`、`eyecatch` を設定できます。詳細は [スキーマ](src/features/news/schema.ts) を参照してください。
 
 本文を記入し、日付とリンクを確認してから `npm run -w @acme/website test:content` を実行します。
-このテストは全記事の命名、front matter、日付を検査します。開発サーバーではページを再読み込みすると
+このテストは全記事の命名、front matter、日付を検査します。
+`npm run lint:markdown` で未定義のリンク参照も確認してください。開発サーバーではページを再読み込みすると
 編集内容を確認できます。公開にはデプロイが必要です。
 
 記事の読込・一覧・ページングは `src/features/news/server/news.ts` に集約しています。
@@ -51,6 +52,8 @@ front matter の `title` と `published` は必須です。`published` と任意
 エラーの詳細はサーバーログで確認できます。
 レスポンスのキャッシュ時間は一覧 5 分、詳細 10 分、`stale-while-revalidate` は 1 時間です。
 応答形式とキャッシュの定義は `src/features/news/server/http.ts` にあります。
+外部向けの仕様は [OpenAPI 定義](contracts/openapi.json) に記載しています。API を変更した場合は定義も更新し、
+`npm run contracts:check` と該当ルートのテストを実行してください。
 
 ## 大会年度の追加
 
@@ -65,7 +68,7 @@ front matter の `title` と `published` は必須です。`published` と任意
 
 [.env.example](.env.example) を `.env.local` にコピーして設定します。
 公開設定は `src/config/env.ts`、Sentry のビルド設定は `next.config.ts` で読み込みます。
-変更後は再ビルドしてください。
+変更後は再ビルドしてください。`npm run contracts:check` は実装の参照名と `.env.example`、Turbo の宣言を照合します。
 
 | 変数                               | 用途                                                                                          |
 | ---------------------------------- | --------------------------------------------------------------------------------------------- |

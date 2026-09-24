@@ -1,0 +1,50 @@
+name: Test Report
+
+on:
+  # Only parse JUnit data with a pinned reporter; never execute PR code.
+  workflow_run: # zizmor: ignore[dangerous-triggers]
+    workflows: [Test]
+    types: [completed]
+
+permissions:
+  contents: read
+  checks: write
+  actions: read
+
+jobs:
+  report:
+    if: github.event.workflow_run.conclusion != 'cancelled'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # The reporter discovers existing artifacts from the triggering CI run.
+      - name: Vitest test report
+        uses: dorny/test-reporter@df6247429542221bc30d46a036ee47af1102c451 # v2
+        with:
+          artifact: unit-test-results
+          name: Vitest
+          path: '**/vitest-junit.xml'
+          reporter: java-junit
+          fail-on-error: false
+          fail-on-empty: false
+
+      - name: Storybook test report
+        uses: dorny/test-reporter@df6247429542221bc30d46a036ee47af1102c451 # v2
+        with:
+          artifact: storybook-test-results
+          name: Storybook
+          path: '**/*.xml'
+          reporter: java-junit
+          fail-on-error: false
+          fail-on-empty: false
+
+      - name: Playwright test report
+        uses: dorny/test-reporter@df6247429542221bc30d46a036ee47af1102c451 # v2
+        with:
+          artifact: browser-test-results
+          name: Playwright
+          path: '**/playwright-junit.xml'
+          reporter: java-junit
+          fail-on-error: false
+          fail-on-empty: false

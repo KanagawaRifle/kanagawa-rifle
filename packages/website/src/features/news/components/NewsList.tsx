@@ -48,7 +48,15 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
   );
 }
 
-export function NewsList({ news, withControls = true }: { news: Paginated<NewsSummary>; withControls?: boolean }) {
+export function NewsList({
+  news,
+  withControls = true,
+  headingAs = 'h2',
+}: {
+  news: Paginated<NewsSummary>;
+  withControls?: boolean;
+  headingAs?: 'h2' | 'h3';
+}) {
   return (
     <div className="space-y-4">
       {withControls && <NewsListControls size={news.pagination.size} />}
@@ -59,7 +67,7 @@ export function NewsList({ news, withControls = true }: { news: Paginated<NewsSu
         ) : (
           <ul aria-label="お知らせ一覧">
             {news.data.map((item, index) => (
-              <NewsListItem key={item.slug} {...item} isLast={index === news.data.length - 1} />
+              <NewsListItem key={item.slug} {...item} isLast={index === news.data.length - 1} headingAs={headingAs} />
             ))}
           </ul>
         )}

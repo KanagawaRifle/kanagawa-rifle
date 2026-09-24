@@ -2,6 +2,9 @@
 name: Test
 
 on:
+  push:
+    branches: [1.x, 2.x]
+  workflow_dispatch:
   pull_request:
     branches:
       - 1.x
@@ -45,8 +48,15 @@ jobs:
           name: coverage-report
           path: packages/website/coverage/
 
+      - name: Upload unit test results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: unit-test-results
+          path: packages/website/reports/vitest-junit.xml
+
       - name: Require coverage of changed code
-        if: steps.test.outcome == 'success'
+        if: steps.test.outcome == 'success' && github.event_name == 'pull_request'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: npm run coverage:diff -- --base "$BASE_SHA"
@@ -75,6 +85,14 @@ jobs:
         run: npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
       - name: Check initial JS and CSS size
         run: npm run -w @acme/website size-limit
+      - name: Check local deployment endpoints
+        run: node packages/website/scripts/local-smoke.mjs
+      - name: Upload browser JUnit results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: browser-test-results
+          path: packages/website/reports/playwright-junit.xml
       - name: Test development hydration
         run: npm run -w @acme/website test:e2e:dev -- --project=chromium --project="Mobile Chrome"
       - name: Upload browser test results
@@ -83,6 +101,24 @@ jobs:
         with:
           name: playwright-report
           path: packages/website/playwright-report/
+
+  storybook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node
+      - run: npx playwright install --with-deps chromium
+        working-directory: packages/website
+      - run: npm run -w @acme/website test:storybook
+      - name: Upload Storybook results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: storybook-test-results
+          path: packages/website/reports/storybook/
 
   infrastructure:
     runs-on: ubuntu-latest
@@ -97,10 +133,13 @@ jobs:
   required:
     name: CI Required
     runs-on: ubuntu-latest
-    needs: [test, browser, infrastructure]
+    needs: [test, browser, infrastructure, storybook]
     if: always()
     steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
       - name: Require every check to pass
         env:
           RESULTS: ${{ toJSON(needs) }}
-        run: node -e 'if (!Object.values(JSON.parse(process.env.RESULTS)).every(job => job.result === "success")) process.exit(1)'
+        run: node scripts/check-required-ci.mjs

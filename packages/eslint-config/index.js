@@ -17,6 +17,9 @@ const config = [
     plugins: {
       import: importPlugin,
     },
+    settings: {
+      'import/resolver': { typescript: true, node: true },
+    },
     rules: {
       'import/order': [
         'error',

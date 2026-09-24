@@ -111,7 +111,7 @@ export default async function Page() {
           </Button>
         </CardHeader>
 
-        <NewsList news={news} withControls={false} />
+        <NewsList news={news} withControls={false} headingAs="h3" />
       </Card>
     </PageLayout>
   );

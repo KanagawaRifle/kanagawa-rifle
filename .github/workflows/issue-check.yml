@@ -1,0 +1,30 @@
+name: Issue Check
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Label reports that need a template
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        with:
+          script: |
+            const issue = context.payload.issue;
+            if (issue.user.type === 'Bot') return;
+            const label = 'needs-template';
+            const templated = (issue.body?.match(/^### /gm) ?? []).length >= 2;
+            const labelled = issue.labels.some(item => item.name === label);
+            const target = { ...context.repo, issue_number: issue.number };
+            if (!templated && !labelled) {
+              await github.rest.issues.addLabels({ ...target, labels: [label] });
+            } else if (templated && labelled) {
+              await github.rest.issues.removeLabel({ ...target, name: label });
+            }

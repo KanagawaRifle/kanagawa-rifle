@@ -54,12 +54,12 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
         <section
           aria-labelledby="footer-main-nav"
         >
-          <h3
+          <h2
             class="text-muted-foreground mb-2 text-xs font-bold"
             id="footer-main-nav"
           >
             メインナビゲーション
-          </h3>
+          </h2>
           <ul
             class="-ml-4"
           >
@@ -84,12 +84,12 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
         <section
           aria-labelledby="footer-sub-nav"
         >
-          <h3
+          <h2
             class="text-muted-foreground mb-2 text-xs font-bold"
             id="footer-sub-nav"
           >
             各種情報
-          </h3>
+          </h2>
           <ul
             class="-ml-4"
           >
@@ -114,12 +114,12 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
         <section
           aria-labelledby="footer-external-nav"
         >
-          <h3
+          <h2
             class="text-muted-foreground mb-2 text-xs font-bold"
             id="footer-external-nav"
           >
             関連リンク
-          </h3>
+          </h2>
           <ul
             class="-ml-4"
           >

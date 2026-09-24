@@ -25,9 +25,9 @@ export function Footer() {
       <nav aria-label="フッターナビゲーション">
         <div className="border-border mx-auto mt-2 grid max-w-screen-xl grid-cols-1 gap-4 border-b px-4 py-6 md:grid-cols-3">
           <section aria-labelledby="footer-main-nav">
-            <h3 id="footer-main-nav" className="text-muted-foreground mb-2 text-xs font-bold">
+            <h2 id="footer-main-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               メインナビゲーション
-            </h3>
+            </h2>
             <ul className="-ml-4">
               {Object.entries(paths.main).map(([key, obj]) => (
                 <li key={key}>
@@ -42,9 +42,9 @@ export function Footer() {
             </ul>
           </section>
           <section aria-labelledby="footer-sub-nav">
-            <h3 id="footer-sub-nav" className="text-muted-foreground mb-2 text-xs font-bold">
+            <h2 id="footer-sub-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               各種情報
-            </h3>
+            </h2>
             <ul className="-ml-4">
               {Object.entries(paths.sub).map(([key, obj]) => (
                 <li key={key}>
@@ -59,9 +59,9 @@ export function Footer() {
             </ul>
           </section>
           <section aria-labelledby="footer-external-nav">
-            <h3 id="footer-external-nav" className="text-muted-foreground mb-2 text-xs font-bold">
+            <h2 id="footer-external-nav" className="text-muted-foreground mb-2 text-xs font-bold">
               関連リンク
-            </h3>
+            </h2>
             <ul className="-ml-4">
               {Object.entries(paths.external).map(([key, obj]) => (
                 <li key={key}>

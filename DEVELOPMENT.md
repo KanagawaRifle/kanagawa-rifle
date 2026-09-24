@@ -24,8 +24,8 @@ MinIO はイメージの取得に失敗するため利用できません（2026-
 
 ## 検証
 
-`npm run check` で型、lint、依存関係、ライセンス、検査スクリプトを確認します。
-`npm run qa` はこれに本番ビルド、サイズ検査、単体テストのカバレッジ、`npm audit --audit-level=high` を加えます。
+`npm run check` で型、lint、API・環境変数、依存関係、ライセンス、検査スクリプトを確認します。
+`npm run qa` はこれに本番ビルド、サイズ検査、単体テストのカバレッジ、Storybook テスト、`npm audit --audit-level=high` を加えます。
 
 ```bash
 npm run check
@@ -43,30 +43,33 @@ npm run build
 npx playwright install chromium
 npm run -w @acme/website test:e2e:dev -- --project=chromium --project="Mobile Chrome"
 LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
-npm run -w @acme/website build-storybook
+npm run -w @acme/website test:storybook
 ```
 
+Storybook は Vite 版の Next.js 設定を使い、テスト時に静的サーバーを起動して終了後に停止します。
 Playwright がサーバーを起動します。`test:e2e` は本番ビルドを `127.0.0.1:3100` で、
 `test:e2e:dev` は開発サーバーを `127.0.0.1:3200` で検証します。実行前に手動の開発サーバーを停止してください。
 `LHCI=1` はローカル HTTP 用に CSP の HTTPS 強制を無効にする設定で、ビルドと起動の両方に必要です。
 
 ### 個別の検査
 
-| コマンド                                     | 用途                                                                |
-| -------------------------------------------- | ------------------------------------------------------------------- |
-| `npm run lint:architecture`                  | 循環参照、依存方向、クライアント／サーバー境界                      |
-| `npm run syncpack`                           | ワークスペース間の依存バージョン                                    |
-| `npm run knip`                               | 未使用ファイル・依存・エクスポート                                  |
-| `npm run cspell`                             | スペル。固有名詞は `packages/website/.cspell.dict.txt` に登録       |
-| `npm run license-check`                      | 依存パッケージのライセンス                                          |
-| `npm run coverage:diff -- --base origin/2.x` | 指定コミットからの変更行のカバレッジ                                |
-| `npm run size-limit`                         | ビルド済みページの初期 JS/CSS サイズ。gzip で 500 kB / 25 kB が上限 |
-| `npm run -w @acme/website test:mutation`     | ニュース入力スキーマのミューテーションテスト。スコア 95% 未満で失敗 |
-| `npm run -w @acme/website analyze`           | Webpack のバンドル分析                                              |
-| `npm run lint:infra`                         | Docker で ShellCheck・actionlint・Hadolint・zizmor を実行           |
+| コマンド                                     | 用途                                                                                    |
+| -------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `npm run lint:architecture`                  | 循環参照、依存方向、クライアント／サーバー境界                                          |
+| `npm run contracts:check`                    | OpenAPI の構造・ルート一覧、環境変数の宣言                                              |
+| `npm run graph`                              | 依存関係を Mermaid 形式で標準出力へ表示                                                 |
+| `npm run lint:markdown`                      | 記事内の Markdown 参照の欠落・重複                                                      |
+| `npm run syncpack`                           | ワークスペース間の依存バージョン                                                        |
+| `npm run knip`                               | 未使用ファイル・依存・エクスポート                                                      |
+| `npm run cspell`                             | 文書・スクリプト・サイトのスペル。固有名詞は `packages/website/.cspell.dict.txt` に登録 |
+| `npm run license-check`                      | 依存パッケージのライセンス                                                              |
+| `npm run coverage:diff -- --base origin/2.x` | 指定コミットからの変更行のカバレッジ                                                    |
+| `npm run size-limit`                         | ビルド済みページの初期 JS/CSS サイズ。gzip で 500 kB / 25 kB が上限                     |
+| `npm run -w @acme/website test:mutation`     | ニュース入力スキーマのミューテーションテスト。スコア 95% 未満で失敗                     |
+| `npm run -w @acme/website analyze`           | Webpack のバンドル分析                                                                  |
+| `npm run lint:infra`                         | Docker で ShellCheck・actionlint・Hadolint・zizmor を実行                               |
 
 `coverage:diff` はコミット間の比較です。checkout と同じコミットで生成したカバレッジの JSON レポートを使います。
-Lighthouse の実行方法は [共有設定の README](packages/lighthouse-config/README.md) を参照してください。
 
 ルートの `lint:text` は開発文書の日本語と英語の間のスペースを検査します。
 記事の文章表現は `npm run -w @acme/website lint:text` で検査できます。
@@ -89,7 +92,7 @@ SBOM は `npm run --silent sbom > bom.json` で出力できます。生成した
 
 ## CI と公開
 
-`CI Required` は品質検査、ブラウザテスト、インフラ検査の結果を集約します。
+`CI Required` は品質検査、ブラウザ・Storybook テスト、インフラ検査の結果を集約します。
 カバレッジ、SBOM、ライセンス全文は Actions の artifact、Lighthouse はジョブの summary と artifact に出力します。
 Dependency Review、OSV、CodeQL、Gitleaks も実行します。CodeQL と Dependency Review の利用可否はリポジトリの設定に依存します。
 
@@ -97,3 +100,60 @@ Dependabot はワークスペースの依存をまとめて更新します。開
 自動マージの対象です。本番依存と major 更新はレビューしてください。
 ラベルは `.github/labels.yml` で定義し、`Sync Labels` の手動実行で作成・更新します。
 公開時は [公開前の確認](.github/PRE_RELEASE_CHECKLIST.md) を使ってください。
+
+## リンクと公開後の確認
+
+リンク検査は本番ビルドが出力した記事 HTML を使います。記事を変更した場合は先に再ビルドしてください。
+ローカルでは [lychee 0.24.2](https://lychee.cli.rs/installation/) を PATH に置くか、`LYCHEE_BIN` に実行ファイルを指定します。
+
+```bash
+npm run build
+npm run lint:links
+npm run -w @acme/website lint:links:external
+SMOKE_BASE_URL=https://kanagawa-rifle.org npm run -w @acme/website test:deployment
+```
+
+外部リンクには相手サイトの認証・アクセス制限などで検査できないものがあります。
+`Content Links` は PR で内部リンクを検査し、定期・手動実行では外部リンクの結果もレポートに残します。
+デプロイ確認は指定した origin だけにアクセスします。認証が必要なプレビュー環境には対応していません。
+
+## 性能・負荷の確認
+
+Lighthouse の使い方は [共有設定の README](packages/lighthouse-config/README.md) を参照してください。
+起動済みサーバーのブラウザ計測は、次のように URL と測定回数を指定します。
+
+```bash
+npm run -w @acme/website benchmark:browser -- http://127.0.0.1:3000 3
+npm run -w @acme/website test:load:smoke
+```
+
+k6 は Docker の固定イメージ、または `K6_BINARY` で指定した実行ファイルを使います。
+smoke はローカルの本番サーバーを起動し、1 ユーザー・5 回でニュース API を検査します。
+Docker 実行は host ネットワークを使います。Docker Desktop では host networking を有効にするか、ローカルの k6 を使用してください。
+
+負荷試験の対象と条件はすべて指定します。対象環境の管理者と実施条件を確認してから実行してください。
+
+```bash
+WEBSITE_LOAD_BASE_URL=https://preview.example.test \
+WEBSITE_LOAD_RATE=2 WEBSITE_LOAD_DURATION=30s WEBSITE_LOAD_VUS=3 WEBSITE_LOAD_P95_MS=500 \
+npm run -w @acme/website test:load
+```
+
+ステージングの Basic 認証には `WEBSITE_PREVIEW_AUTH=1`、`BASIC_AUTH_ID`、`BASIC_AUTH_PASSWORD` を設定します。
+値をコマンド履歴へ残さず、環境変数として渡してください。
+
+## GitHub の運用補助
+
+JUnit のテスト結果は `Test Report`、リポジトリの検査は `Scorecard` に出力します。
+終了した同一リポジトリの PR のキャッシュは `Cache Cleanup` が削除します。
+`Stale Issues` と `Lock Threads` は手動実行です。Stale はラベルを付けるだけで、自動では閉じません。
+
+ブランチ保護の雛形は `.github/branch-ruleset.json` にあります。次のコマンドは適用予定の JSON を表示するだけです。
+
+```bash
+node scripts/setup-branch-protection.mjs
+```
+
+管理者が内容を確認して適用する場合は `--apply --repo KanagawaRifle/kanagawa-rifle` を付けます。
+GitHub CLI の認証と管理権限が必要です。同名の ruleset があれば更新し、ほかの ruleset は削除しません。
+現在のブランチ設定と競合しないか確認してください。

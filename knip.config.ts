@@ -6,24 +6,26 @@ const config: KnipConfig = {
       entry: ['*.config.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
       project: ['*.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
       // The coverage tool resolves Vitest from the selected workspace.
-      ignoreDependencies: ['vitest', 'textlint-rule-*'],
+      ignoreDependencies: ['vitest'],
     },
     'packages/website': {
       entry: [
         'src/components/ui/**/*.{ts,tsx}',
         'playwright.*.config.ts',
         'vitest.mutation.config.ts',
-        '.lighthouserc.cjs',
+        'lighthouse.config.mjs',
+        'tests/load/website.js',
       ],
-      project: ['src/**/*.{ts,tsx}', '*.{ts,mjs,cjs}', 'e2e/**/*.ts'],
-      // These are loaded by Textlint configuration or Tailwind CSS directives.
+      project: [
+        'src/**/*.{ts,tsx,css,mdx}',
+        '*.{ts,mjs,cjs}',
+        'e2e/**/*.ts',
+        'scripts/**/*.{ts,mjs}',
+        'tests/load/*.js',
+      ],
       ignoreDependencies: [
-        '@textlint-ja/*',
-        'textlint-rule-*',
-        'sudachi-synonyms-dictionary',
-        'tw-animate-css',
-        '@tailwindcss/typography',
-        'tailwindcss',
+        // k6 imports are provided by its executable, not npm.
+        'k6',
       ],
     },
     'packages/eslint-config': {
@@ -40,13 +42,12 @@ const config: KnipConfig = {
     },
     'packages/typescript-config': {
       entry: ['*.json'],
-      project: ['**/*.json'],
       ignoreUnresolved: ['^next$'],
     },
   },
-  ignore: ['**/node_modules/**', '**/.next/**', '**/dist/**'],
   ignoreDependencies: [
     // Loaded through shared configuration rather than direct application imports.
+    'eslint-import-resolver-typescript',
     'prettier-plugin-tailwindcss',
     'stylelint-config-recess-order',
     'stylelint-config-standard',
