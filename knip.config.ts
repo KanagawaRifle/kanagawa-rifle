@@ -26,6 +26,8 @@ const config: KnipConfig = {
       ignoreDependencies: [
         // k6 imports are provided by its executable, not npm.
         'k6',
+        // Required peer of @sentry/webpack-plugin, resolved by the build integration.
+        'webpack',
       ],
     },
     'packages/eslint-config': {

@@ -43,6 +43,22 @@ test.describe('Security Headers', () => {
 
     await page.goto('/');
     await expect(page.getByRole('button', { name: /モードに切り替え/ })).toBeEnabled();
+    // Replay uses the same Blob worker mechanism when its DSN is configured.
+    const workerMessage = await page.evaluate(async () => {
+      const url = URL.createObjectURL(new Blob(['postMessage("ready")'], { type: 'text/javascript' }));
+      let worker: Worker | undefined;
+      try {
+        return await new Promise<string>((resolve, reject) => {
+          worker = new Worker(url);
+          worker.onmessage = (event: MessageEvent<string>) => resolve(event.data);
+          worker.onerror = () => reject(new Error('Blob worker failed under the production CSP'));
+        });
+      } finally {
+        worker?.terminate();
+        URL.revokeObjectURL(url);
+      }
+    });
+    expect(workerMessage).toBe('ready');
     expect(await page.evaluate(() => Reflect.get(window, '__testCspViolations'))).toEqual([]);
 
     await page.getByRole('contentinfo').getByRole('link', { name: 'お知らせ', exact: true }).click();
