@@ -1,174 +1,135 @@
-// packages/website/e2e/news.spec.ts
+import { expect, test } from '@playwright/test';
 
-import { test, expect } from '@playwright/test';
+const articlePath = '/news/2026-09-24-01';
 
-test.describe('News List Page', () => {
-  test('displays news list with correct structure', async ({ page }) => {
-    await page.goto('/news');
-
-    // ページタイトルを確認
-    await expect(page).toHaveTitle(/お知らせ.*神奈川県ライフル射撃協会/);
-
-    // ニュース一覧が表示されることを確認
-    const newsList = page.getByRole('list');
-    await newsList.waitFor({ state: 'visible' });
-
-    // 少なくとも1つのニュース項目があることを確認
-    const newsItems = page.getByRole('listitem');
-    await expect(newsItems.first()).toBeVisible();
-  });
-
-  test('news items have accessible labels', async ({ page }) => {
-    await page.goto('/news');
-
-    // リンクがアクセシブルなラベルを持っていることを確認
-    const newsLinks = page.getByRole('link', { name: /公開$/ });
-    const count = await newsLinks.count();
-
-    // 少なくとも1つのニュースリンクがあることを確認
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('pagination works correctly', async ({ page }) => {
-    await page.goto('/news');
-
-    // ページネーションが存在する場合のテスト
-    const pagination = page.getByRole('navigation', { name: /ページネーション/i });
-    const hasPagination = (await pagination.count()) > 0;
-
-    if (hasPagination) {
-      // 次のページへのリンクをクリック
-      const nextButton = page.getByRole('button', { name: /次/i });
-      if ((await nextButton.count()) > 0 && (await nextButton.isEnabled())) {
-        await nextButton.click();
-        await page.waitForURL(/page=2/);
-        await expect(page).toHaveURL(/page=2/);
-      }
-    }
-  });
-
-  test('clicking news item navigates to detail page', async ({ page }) => {
-    await page.goto('/news');
-
-    // 最初のニュース項目をクリック
-    const firstNewsLink = page.getByRole('link', { name: /公開$/ }).first();
-    await firstNewsLink.waitFor({ state: 'visible' });
-
-    const href = await firstNewsLink.getAttribute('href');
-    await firstNewsLink.click();
-
-    // 詳細ページに遷移したことを確認
-    await page.waitForURL(/\/news\/\d{4}-\d{2}-\d{2}-\d{2}/);
-    expect(href).toMatch(/\/news\/\d{4}-\d{2}-\d{2}-\d{2}/);
-  });
+// HTTP 応答と初期 HTML は JavaScript に依存せず検証する。
+test('article HTML contains content, metadata, and structured data', async ({ request }) => {
+  const articleResponse = await request.get(`/api${articlePath}`);
+  expect(articleResponse.status()).toBe(200);
+  const { data: article } = await articleResponse.json();
+  const response = await request.get(articlePath);
+  expect(response.status()).toBe(200);
+  const html = await response.text();
+  expect(html).toContain(article.title);
+  expect(html).toContain('<article>');
+  expect(html).toContain('application/ld+json');
+  expect(html).toContain('"datePublished":"' + article.published + '"');
+  expect(html).toContain('property="og:title"');
+  expect(html).toContain('yokosuka.kanagawa-rifle.org/#closure-notice-title');
 });
 
-test.describe('News Detail Page', () => {
-  test('displays article content correctly', async ({ page }) => {
-    // まずニュース一覧から最初の記事を取得
-    await page.goto('/news');
-
-    const firstNewsLink = page.getByRole('link', { name: /公開$/ }).first();
-    await firstNewsLink.waitFor({ state: 'visible' });
-
-    const href = await firstNewsLink.getAttribute('href');
-    if (!href) {
-      test.skip();
-      return;
-    }
-
-    await page.goto(href);
-
-    // 記事タイトルが表示されることを確認
-    const heading = page.getByRole('heading', { level: 1 });
-    await expect(heading).toBeVisible();
-
-    // 公開日が表示されることを確認
-    const dateElement = page.locator('time');
-    await expect(dateElement).toBeVisible();
-  });
-
-  test('has breadcrumb navigation', async ({ page }) => {
-    await page.goto('/news');
-
-    const firstNewsLink = page.getByRole('link', { name: /公開$/ }).first();
-    await firstNewsLink.waitFor({ state: 'visible' });
-
-    const href = await firstNewsLink.getAttribute('href');
-    if (!href) {
-      test.skip();
-      return;
-    }
-
-    await page.goto(href);
-
-    // パンくずリストが存在することを確認
-    const breadcrumb = page.getByRole('navigation', { name: /パンくず/i });
-    const hasBreadcrumb = (await breadcrumb.count()) > 0;
-
-    if (hasBreadcrumb) {
-      // ホームへのリンクがあることを確認
-      const homeLink = breadcrumb.getByRole('link', { name: /ホーム|トップ/i });
-      await expect(homeLink).toBeVisible();
-
-      // お知らせ一覧へのリンクがあることを確認
-      const newsListLink = breadcrumb.getByRole('link', { name: /お知らせ/i });
-      await expect(newsListLink).toBeVisible();
-    }
-  });
-
-  test('returns 404 for invalid slug', async ({ page }) => {
-    const response = await page.goto('/news/invalid-slug-format');
-
-    // 404ページが返されることを確認
-    expect(response?.status()).toBe(404);
-  });
-
-  test('handles non-existent article gracefully', async ({ page }) => {
-    const response = await page.goto('/news/9999-12-31-99');
-
-    // 存在しない記事は404を返す
-    expect(response?.status()).toBe(404);
-  });
+test('news is readable without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(`http://127.0.0.1:3100${articlePath}`);
+  await expect(page.getByRole('article')).toBeVisible();
+  await expect(page.getByRole('article').getByRole('link', { name: '一覧に戻る' })).toBeVisible();
+  expect(await page.getByRole('article').innerText()).toContain('休場期間：2026年9月25日');
+  await context.close();
 });
 
-test.describe('News Page Accessibility', () => {
-  test('news list has proper heading structure', async ({ page }) => {
-    await page.goto('/news');
+test('home displays six latest news items', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('list', { name: 'お知らせ一覧' }).getByRole('listitem')).toHaveCount(6);
+});
 
-    // h1が1つだけ存在することを確認
-    const h1Elements = page.getByRole('heading', { level: 1 });
-    await expect(h1Elements).toHaveCount(1);
+test('pagination, size changes, direct URLs and browser back work', async ({ page }) => {
+  await page.goto('/news?size=6');
+  const news = page.getByRole('list', { name: 'お知らせ一覧' });
+  await expect(news.getByRole('listitem')).toHaveCount(6);
+  const firstHref = await news.getByRole('link').first().getAttribute('href');
+  await page
+    .getByRole('navigation', { name: 'ページネーション' })
+    .first()
+    .getByRole('link', { name: '次のページ', exact: true })
+    .click();
+  await expect(page).toHaveURL(/page=2&size=6/);
+  await expect(news.getByRole('link').first()).not.toHaveAttribute('href', firstHref!);
+  await page.goBack();
+  await expect(news.getByRole('link').first()).toHaveAttribute('href', firstHref!);
+  await page.getByRole('combobox', { name: '表示件数' }).click();
+  await page.getByRole('option', { name: '12件', exact: true }).click();
+  await expect(page).toHaveURL(/size=12/);
+  await expect(news.getByRole('listitem')).toHaveCount(12);
+  await page.reload();
+  await expect(news.getByRole('listitem')).toHaveCount(12);
+});
+
+test('article navigation, breadcrumbs, and share menu work', async ({ page }) => {
+  await page.goto('/news');
+  await page.getByRole('list', { name: 'お知らせ一覧' }).getByRole('link').first().click();
+  await expect(page).toHaveURL(/\/news\/\d{4}-\d{2}-\d{2}-\d{2}$/);
+  await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
+  await expect(page.getByRole('article').locator('time').first()).toBeVisible();
+  await expect(
+    page.getByRole('navigation', { name: 'パンくずリスト' }).getByRole('link', { name: 'お知らせ', exact: true }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: '共有メニューを開く' }).click();
+  await expect(page.getByRole('menuitem', { name: 'リンクをコピー' })).toBeVisible();
+});
+
+for (const path of [
+  '/news/invalid-slug-format',
+  '/news/9999-12-31-99',
+  '/news?page=0',
+  '/news?size=129',
+  '/news?page=9999',
+  '/news?page=1&page=2',
+]) {
+  test(`${path} returns HTTP 404`, async ({ request }) => {
+    expect((await request.get(path)).status()).toBe(404);
   });
+}
 
-  test('news list images have alt text or are decorative', async ({ page }) => {
-    await page.goto('/news');
+test('API retains invalid/missing article distinctions and pagination limits', async ({ request }) => {
+  expect((await request.get('/api/news/invalid')).status()).toBe(400);
+  expect((await request.get('/api/news/9999-12-31-99')).status()).toBe(404);
+  expect((await request.get('/api/news?size=129')).status()).toBe(400);
+  const response = await request.get('/api/news?size=128');
+  expect(response.status()).toBe(200);
+  const { data } = await response.json();
+  expect(data.data).toHaveLength(128);
+  expect(data.pagination.total).toBeGreaterThan(128);
+  expect(data.data.every((article: { content: string }) => article.content === '')).toBe(true);
+});
 
-    // aria-hidden="true"が設定されている画像/アイコンを確認
-    const images = page.locator('img:not([aria-hidden="true"])');
-    const count = await images.count();
-
-    for (let i = 0; i < count; i++) {
-      const img = images.nth(i);
-      const alt = await img.getAttribute('alt');
-      const role = await img.getAttribute('role');
-
-      // altが設定されているか、role="presentation"であることを確認
-      expect(alt !== null || role === 'presentation').toBeTruthy();
+test('sitemap contains every article and its real modification date', async ({ request }) => {
+  const response = await request.get('/sitemap.xml');
+  expect(response.status()).toBe(200);
+  const sitemap = await response.text();
+  let page = 1;
+  let hasNext = true;
+  while (hasNext) {
+    const response = await request.get(`/api/news?page=${page}&size=128`);
+    expect(response.status()).toBe(200);
+    const { data } = await response.json();
+    for (const article of data.data) {
+      expect(sitemap).toContain(`/news/${article.slug}</loc>`);
+      expect(sitemap).toContain(`<lastmod>${article.updated ?? article.published}</lastmod>`);
     }
-  });
+    hasNext = data.pagination.hasNext;
+    page++;
+  }
+});
 
-  test('interactive elements are keyboard accessible', async ({ page }) => {
-    await page.goto('/news');
+test('table of contents anchors match rendered headings', async ({ page }) => {
+  await page.goto('/news/2026-01-11-03');
+  const links = page.getByRole('article').getByRole('navigation').getByRole('link');
+  expect(await links.count()).toBeGreaterThan(0);
+  for (const link of await links.all()) {
+    const href = await link.getAttribute('href');
+    expect(href).toMatch(/^#/);
+    await expect(page.locator(`[id="${href!.slice(1)}"]`)).toHaveCount(1);
+  }
+  await links.first().click();
+  await expect(page).toHaveURL(/#/);
+});
 
-    // Tabキーでニュースリンクにフォーカスできることを確認
-    await page.keyboard.press('Tab');
-
-    const focusedElement = page.locator(':focus');
-    await expect(focusedElement).toBeVisible();
-
-    // フォーカスされた要素がクリック可能であることを確認
-    const tagName = await focusedElement.evaluate((el) => el.tagName.toLowerCase());
-    expect(['a', 'button']).toContain(tagName);
-  });
+test('theme control hydrates and switches theme', async ({ page }) => {
+  await page.goto('/news');
+  const toggle = page.getByRole('button', { name: /モードに切り替え/ });
+  await expect(toggle).toBeEnabled();
+  const before = await page.locator('html').getAttribute('class');
+  await toggle.click();
+  await expect(page.locator('html')).not.toHaveAttribute('class', before!);
 });

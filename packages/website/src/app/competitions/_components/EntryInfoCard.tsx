@@ -16,6 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { COMPETITION_ENTRY_FORM_URL } from '@/features/competitions/entry';
 
 export function EntryInfoCard() {
   return (
@@ -48,7 +49,7 @@ export function EntryInfoCard() {
       </CardHeader>
       <CardContent>
         <Button variant="outline" asChild>
-          <a href="https://forms.gle/6XGY1qhEvr3gkasJ9" target="_blank" rel="noopener noreferrer">
+          <a href={COMPETITION_ENTRY_FORM_URL} target="_blank" rel="noopener noreferrer">
             <NotebookPen className="mr-2 h-4 w-4" />
             日ラ等大会申込
           </a>

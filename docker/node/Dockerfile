@@ -1,4 +1,4 @@
-FROM node:22
+FROM node:24.21.0
 
 # Lighthouse CI 用の Chromium をインストール
 RUN apt-get update && apt-get install -y \

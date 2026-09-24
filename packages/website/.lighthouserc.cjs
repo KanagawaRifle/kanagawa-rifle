@@ -24,6 +24,8 @@ module.exports = {
         'http://localhost:3000',
         'http://localhost:3000/about',
         'http://localhost:3000/competitions',
+        'http://localhost:3000/news',
+        'http://localhost:3000/news/2026-09-24-01',
         'http://localhost:3000/forms',
         'http://localhost:3000/join',
         'http://localhost:3000/links',

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { PageLayout } from '../PageLayout';
 
@@ -75,7 +76,7 @@ describe('PageLayout', () => {
         <PageLayout>
           <p>Item 1</p>
           <p>Item 2</p>
-        </PageLayout>
+        </PageLayout>,
       );
       expect(screen.getByText('Item 1')).toBeInTheDocument();
       expect(screen.getByText('Item 2')).toBeInTheDocument();
@@ -86,7 +87,7 @@ describe('PageLayout', () => {
         <PageLayout withStack={false}>
           <p>Item 1</p>
           <p>Item 2</p>
-        </PageLayout>
+        </PageLayout>,
       );
       expect(screen.getByText('Item 1')).toBeInTheDocument();
       expect(screen.getByText('Item 2')).toBeInTheDocument();

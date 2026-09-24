@@ -1,7 +1,7 @@
 // packages/website/src/app/api/news/[slug]/__tests__/route.test.ts
 
 import { NextRequest } from 'next/server';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { GET } from '../route';
 
@@ -97,14 +97,11 @@ describe('GET /api/news/[slug]', () => {
       });
       const data = await response.json();
 
-      // 記事が存在する場合のみ成功を確認
-      if (response.status === 200) {
-        expect(data.data).toBeDefined();
-        expect(data.data.slug).toBe('2025-12-21-01');
-        expect(data.data).toHaveProperty('title');
-        expect(data.data).toHaveProperty('content');
-        expect(data.data).toHaveProperty('published');
-      }
+      expect(response.status).toBe(200);
+      expect(data.data.slug).toBe('2025-12-21-01');
+      expect(data.data.title).toBe('「第6回秋季神奈川オープン大会」成績表について');
+      expect(data.data.content).toContain('成績表（PDF）');
+      expect(data.data.published).toBe('2025-12-21T00:00:00.000Z');
     });
   });
 
@@ -115,13 +112,10 @@ describe('GET /api/news/[slug]', () => {
         params: Promise.resolve({ slug: '2025-12-09-01' }),
       });
 
-      // 記事が存在する場合のみキャッシュヘッダーを確認
-      if (response.status === 200) {
-        const cacheControl = response.headers.get('Cache-Control');
-        expect(cacheControl).toContain('max-age=');
-        expect(cacheControl).toContain('s-maxage=');
-        expect(cacheControl).toContain('stale-while-revalidate');
-      }
+      expect(response.status).toBe(200);
+      expect(response.headers.get('Cache-Control')).toBe(
+        'public, max-age=600, s-maxage=600, stale-while-revalidate=3600',
+      );
     });
 
     it('should include no-cache headers for error response', async () => {

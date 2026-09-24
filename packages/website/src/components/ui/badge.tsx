@@ -16,13 +16,13 @@ const badgeVariants = cva(
         outline: 'border-border bg-transparent text-foreground',
         success: 'border-success bg-transparent text-success',
         warning: 'border-warning bg-transparent text-warning',
-        info: 'border-info bg-transparent text-info',
+        info: 'border-info bg-transparent text-info-foreground',
       },
     },
     defaultVariants: {
       variant: 'outline',
     },
-  }
+  },
 );
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}

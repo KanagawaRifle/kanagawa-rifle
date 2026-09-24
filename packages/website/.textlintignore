@@ -3,3 +3,10 @@
 
 # ドキュメントファイル
 README.md
+
+# ビルド成果物とテスト出力
+.next/
+storybook-static/
+coverage/
+playwright-report/
+test-results/
