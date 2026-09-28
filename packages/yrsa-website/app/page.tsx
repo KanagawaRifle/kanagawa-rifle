@@ -74,11 +74,11 @@ export default function HomePage() {
             id="closure-notice-title"
             className="bg-red-700 px-4 py-3 text-center text-xl font-bold text-white md:text-2xl"
           >
-            【重要】休場・9月定例会中止のお知らせ
+            【重要】休場期間延長・9月定例会中止のお知らせ
           </h2>
           <div className="space-y-4 p-4 text-center text-red-950 md:p-6">
             <p className="leading-relaxed">
-              台風による土砂崩れ等の影響により、くりはま花の国エアライフル射撃場は下記の期間、休場いたします。
+              台風による土砂崩れ等の影響により、くりはま花の国エアライフル射撃場の休場期間を10月5日（月）まで延長いたします。
             </p>
             <div className="border-2 border-red-700 bg-white p-3">
               <p className="font-bold">休場期間：2026年</p>
@@ -87,11 +87,19 @@ export default function HomePage() {
                   9月25日（金）
                 </time>
                 <span className="inline-block">～</span>
-                <time dateTime="2026-09-27" className="inline-block">
-                  9月27日（日）
+                <time dateTime="2026-10-05" className="inline-block">
+                  10月5日（月）
                 </time>
               </p>
             </div>
+            <p className="text-sm leading-relaxed">
+              <a
+                href="https://www.kanagawaparks.com/kurihama/news/2026092814584610421.html"
+                className="text-blue-700 underline hover:text-red-700"
+              >
+                くりはま花の国の公式お知らせ（9月28日発表）
+              </a>
+            </p>
             <p className="text-xl font-bold text-red-800 md:text-2xl">
               9月の定例会（月例会）は中止いたします。
             </p>
@@ -140,7 +148,7 @@ export default function HomePage() {
         <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
           <div className={`whitespace-nowrap ${styles.marquee}`}>
             <span className="mx-4 text-red-600" style={{ fontFamily: "Comic Sans MS, cursive" }}>
-              📢 重要：台風による土砂崩れ等の影響により9/25～9/27は休場します。 📢 9月の定例会（月例会）は中止いたします。 📢
+              📢 重要：台風による土砂崩れ等の影響により休場期間を10/5（月）まで延長します（9/25～10/5）。 📢 9月の定例会（月例会）は中止いたします。 📢
             </span>
           </div>
         </div>
