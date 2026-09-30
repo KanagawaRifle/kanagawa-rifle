@@ -68,6 +68,14 @@ test('article navigation, breadcrumbs, and share menu work', async ({ page }) =>
   await expect(page.getByRole('menuitem', { name: 'リンクをコピー' })).toBeVisible();
 });
 
+test('copying an article link displays its confirmation toast', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto(articlePath);
+  await page.getByRole('button', { name: '共有メニューを開く' }).click();
+  await page.getByRole('menuitem', { name: 'リンクをコピー' }).click();
+  await expect(page.getByText('リンクをクリップボードにコピーしました', { exact: true })).toBeVisible();
+});
+
 for (const path of [
   '/news/invalid-slug-format',
   '/news/9999-12-31-99',

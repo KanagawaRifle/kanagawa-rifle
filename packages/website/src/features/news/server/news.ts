@@ -7,6 +7,7 @@ import { isValidSlug, NewsQuerySchema, type NewsQuery } from '@/features/news/sc
 import type { NewsItem, NewsSummary } from '@/features/news/types';
 import type { Paginated } from '@/lib/pagination';
 
+import { NEWS_FEED_LIMIT } from '../constants';
 import { parseArticle } from './parse-article';
 
 /** Isolated content roots allow filesystem tests without changing process globals. */
@@ -92,9 +93,41 @@ export function createNewsRepository(directory: string) {
     return Promise.all((await getNewsSlugs()).map(readSummary));
   }
 
-  return { getNewsSlugs, getNewsItem, getNewsList, getAllNews, getAllNewsSummaries };
+  async function getNewsFeedItems(): Promise<NewsItem[]> {
+    return Promise.all((await getNewsSlugs()).slice(0, NEWS_FEED_LIMIT).map(readArticle));
+  }
+
+  async function getNewsNavigation(slug: string): Promise<{ newer?: NewsSummary; older?: NewsSummary }> {
+    if (!isValidSlug(slug)) return {};
+    const slugs = await getNewsSlugs();
+    const index = slugs.indexOf(slug);
+    if (index === -1) return {};
+    const newerSlug = slugs[index - 1];
+    const olderSlug = slugs[index + 1];
+    const [newer, older] = await Promise.all([
+      newerSlug ? readSummary(newerSlug) : undefined,
+      olderSlug ? readSummary(olderSlug) : undefined,
+    ]);
+    return { newer, older };
+  }
+
+  return {
+    getNewsSlugs,
+    getNewsItem,
+    getNewsList,
+    getAllNews,
+    getAllNewsSummaries,
+    getNewsFeedItems,
+    getNewsNavigation,
+  };
 }
 
-export const { getNewsSlugs, getNewsItem, getNewsList, getAllNews, getAllNewsSummaries } = createNewsRepository(
-  join(process.cwd(), 'src', 'contents', 'news'),
-);
+export const {
+  getNewsSlugs,
+  getNewsItem,
+  getNewsList,
+  getAllNews,
+  getAllNewsSummaries,
+  getNewsFeedItems,
+  getNewsNavigation,
+} = createNewsRepository(join(process.cwd(), 'src', 'contents', 'news'));

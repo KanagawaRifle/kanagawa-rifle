@@ -38,6 +38,14 @@ describe('page metadata', () => {
     expect(metadata.description).toBeTruthy();
   });
 
+  it('advertises the published feed and suppresses discovery from previews', () => {
+    expect(createPageMetadata({ title: 'お知らせ', path: '/news' }).alternates?.types).toEqual({
+      'application/atom+xml': 'https://example.test/feed.xml',
+    });
+    vi.stubEnv('VERCEL_ENV', 'preview');
+    expect(createPageMetadata({ title: 'お知らせ', path: '/news' }).alternates?.types).toBeUndefined();
+  });
+
   it('does not repeat the site name in the home title', () => {
     const metadata = createPageMetadata({ title: '神奈川県ライフル射撃協会', path: '/' });
     expect(metadata.openGraph?.title).toBe('神奈川県ライフル射撃協会');

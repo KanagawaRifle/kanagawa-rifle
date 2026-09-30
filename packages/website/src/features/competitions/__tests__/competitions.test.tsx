@@ -160,6 +160,20 @@ describe('competition schedule model', () => {
 });
 
 describe('competition structured data', () => {
+  it('keeps rescheduled events and their original dates consistent with the visible announcement', () => {
+    const events = generateCompetitionJsonLd(getCompetitions(2025), {
+      ...organizer,
+      '@id': 'https://example.com/#organization',
+    });
+    expect(events.find((event) => event.previousStartDate)).toMatchObject({
+      startDate: '2025-12-14',
+      previousStartDate: '2025-11-02',
+      eventStatus: 'https://schema.org/EventRescheduled',
+      organizer: { '@id': 'https://example.com/#organization' },
+    });
+    expect(events[0]?.eventStatus).toBe('https://schema.org/EventScheduled');
+  });
+
   it('preserves date-only values and the dates of events in the next calendar year', () => {
     const events = generateCompetitionJsonLd(getCompetitions(2026), organizer);
     expect(events).toHaveLength(4);

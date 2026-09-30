@@ -109,6 +109,14 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
                 お問い合わせ
               </a>
             </li>
+            <li>
+              <a
+                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                href="/feed.xml"
+              >
+                お知らせの更新フィード
+              </a>
+            </li>
           </ul>
         </section>
         <section

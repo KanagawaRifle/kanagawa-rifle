@@ -80,6 +80,8 @@ React による表示は `components/Markdown` にまとめています。記事
 `src/lib/metadata.ts` でページごとの title、description、canonical、Open Graph、Twitter Card、robots を生成します。
 ページ追加時は実際の本文に対応するタイトル・説明と `path` を指定してください。
 `PageLayout` の `page` にも同じ `path` と説明を渡し、構造化データと canonical を一致させます。
+主要ページの案内名は `src/config/paths.ts` の `name`、検索タイトルと画面の h1 は `title` で管理します。
+お知らせの検索タイトルには公開日を付け、同じ件名の過去記事を区別できるようにしています。
 `NEXT_PUBLIC_URL` は本番で `https://kanagawa-rifle.org` に設定します。canonical、構造化データ、
 サイトマップ、共有画像の URL はこの値を基準にするため、プレビュー URL を本番ビルドに使わないでください。
 
@@ -88,6 +90,8 @@ React による表示は `components/Markdown` にまとめています。記事
   `page=1` と既定の `size=12` は内部リンクと canonical から省きます。
 - 既定以外の表示件数は `size` を保持し、`noindex, follow` とします。異なる記事集合を持つページを
   一律に先頭ページへ正規化しません。不正な値・重複パラメーター・範囲外ページは 404 のままです。
+- 一覧の番号付きページ送りは、先頭・末尾と現在の前後のページへ通常のリンクを出力します。
+  現在のページに `aria-current="page"` を付け、表示件数と canonical の規則を保ちます。
 - 記事の説明は `excerpt` を優先し、未指定・空欄なら表示用 Markdown 構文木から最大160文字の説明を生成します。
   記事の公開日時・更新日時を Open Graph と Article の JSON-LD に出力し、更新日は本文にも表示します。
 - SportsOrganization、WebSite、WebPage、Article は共通の `@id` で関連付けます。
@@ -98,6 +102,10 @@ React による表示は `components/Markdown` にまとめています。記事
 - 記事の発信元を本文に表示し、協会紹介へリンクします。本文に画像がある場合は、最初の表示対象画像を
   Article の `image` と Open Graph・Twitter Card に使用します。画像がない記事には Article の画像を捏造せず、
   SNS 共有用に従来のタイトル画像を生成します。非表示要素・コード内の画像や不正な URL は対象外です。
+- 記事末尾に前後のお知らせの件名・公開日・リンクを表示します。Git にある記事の一覧順を使い、
+  年度をまたぐ場合や先頭・末尾の記事、記事の削除にも対応します。
+- 大会の JSON-LD は協会の共通 `@id` を主催者に使い、開催・中止・日程変更の状態を区別します。
+  日程変更には公表済みの旧日程を `previousStartDate` に出力します。
 - ページタイトルを唯一の h1 とし、記事本文に h1 がある場合は本文の見出しを1段下げます（上限 h6）。
   見出しの ID は維持し、目次も表示する階層に合わせます。
 - サイトマップには公開ページ、大会年度、全記事、既定表示件数の一覧ページを含めます。
@@ -107,6 +115,7 @@ React による表示は `components/Markdown` にまとめています。記事
 - ホームは主要な告知と案内リンクを先に表示し、その下のポスター画像を遅延読込します。
   ニュース一覧の装飾アイコンはサーバーで描画し、不要なクライアント処理を避けます。
   記事画像の `sizes` は本文の表示幅に合わせます。
+  共有操作の通知コンポーネントは記事ページだけで読み込み、他ページの初期 JavaScript を減らします。
   遅延読込や画像サイズを変更する場合は、Lighthouse とモバイル表示で確認してください。
 
 `VERCEL_ENV` が設定されていて `production` 以外、または `VERCEL_GIT_COMMIT_REF=staging` の場合は、
@@ -116,12 +125,15 @@ Basic 認証は引き続き staging ブランチに適用します。Vercel 変�
 これらの設定はビルド時に決まり、変更後は再ビルド・再デプロイが必要です。Turbo のキャッシュも環境ごとに分離します。
 
 ホームには入会・大会・申込書への案内リンクを置き、JavaScript が無効でも利用できます。
+入会・申請書・推薦・大会ページにも、次の手続きや関連資料への案内リンクを置いています。
 主要ページの紹介文と検索向けの説明は、実際に公開している内容に合わせて更新してください。
 事業計画の2021年度資料は、旧サイトから移行した `migration/` 配下の公開ファイルへリンクします。
 
 `e2e/seo.spec.ts` は本番サーバーの初期 HTML を取得し、canonical、SNS メタデータ、構造化データの関連、
 表示記事と ItemList の一致、記事本文の見出しと目次、
 ページング、404、robots.txt、サイトマップ、API ヘッダー、共有画像の応答を検証します。
+更新フィードと記事一覧の一致、公開日付きタイトル、JavaScript 無効時の案内リンク・番号付きページ送り、
+モバイル幅での表示も検証します。
 
 ```bash
 LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile Chrome"
@@ -131,13 +143,32 @@ LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile
 `https://kanagawa-rifle.org/sitemap.xml` を送信し、主要ページと2ページ目以降を URL 検査してください。
 検索パフォーマンスでは検索語句、表示回数、クリック数、CTR、掲載順位の推移を確認します。
 Core Web Vitals は実ユーザーのデータで確認し、ローカルの Lighthouse 計測と区別してください。
+HTML メタタグで所有権を確認する場合は、管理画面が発行した `content` の値だけを
+`GOOGLE_SITE_VERIFICATION` または `BING_SITE_VERIFICATION` に設定して再ビルド・再デプロイします。
+未設定・空欄・プレビューでは確認用メタタグを出力しません。DNS による確認も引き続き利用できます。
+確認コードの取得、管理画面での所有権確認、サイトマップ送信は管理者のアカウントで行ってください。
 構造化データの表示可否は [リッチリザルト テスト](https://search.google.com/test/rich-results) で確認します。
 大会一覧の SportsEvent は日程の意味付けであり、個別イベントのリッチリザルト表示を保証するものではありません。
 
+### お知らせの更新フィード
+
+`/feed.xml` は新着20件の Atom 1.0 フィードです。絶対 URL、公開日、実際の更新日、本文から生成した説明、
+タグを UTF-8 の XML で配信します。記事が空の場合を含め、ビルド時刻を更新日として使いません。
+Git の記事をデプロイ時に読み込んで静的生成し、独立した TTL やクライアントキャッシュは追加していません。
+通常ページの `rel="alternate"` とフッターから購読でき、フィード自体は `X-Robots-Tag: noindex` とします。
+プレビューではフィードを404にし、案内メタデータとフッターの購読リンクも出力しません。
+フィードは全記事を含む XML サイトマップを補完するもので、置き換えません。
+Google が対応する形式と提出方法は [サイトマップの公式資料](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=ja) を参照してください。
+
+### 本番ドメインの正規化
+
 `next.config.ts` は www から `https://kanagawa-rifle.org` への恒久リダイレクトを設定し、パスとクエリを保持します。
 本番ドメインの HTTPS 証明書と HTTP の転送は、DNS・ホスティング側でも設定と検証が必要です。
-2026年9月30日の確認では `https://www.kanagawa-rifle.org` に
-証明書のホスト名不一致がありました。www に有効な証明書を設定してから転送を確認してください。
+Vercel の `kanagawa-rifle-website` プロジェクトの Settings → Domains でも、
+`www.kanagawa-rifle.org` から `kanagawa-rifle.org` への 308 リダイレクトを設定しています。
+2026年9月30日に www のドメインを追加し、証明書のホスト名不一致を解消しました。
+HTTPS 接続と、パス・クエリを保持した転送を公開 URL で確認済みです。
+HTTP の www は HTTPS の www を経由して正式ドメインへ転送されます。
 
 実装方針は Google の [ページ分割](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading?hl=ja)、
 [robots メタタグ](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=ja)、

@@ -12,7 +12,7 @@ import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.about;
 export const metadata = createPageMetadata({
-  title: '協会概要・事務局・連絡先',
+  title: currentPath.title,
   description: currentPath.description,
   path: currentPath.getHref(),
 });
@@ -20,7 +20,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <PageLayout
-      title={currentPath.name}
+      title={currentPath.title}
       page={{
         path: currentPath.getHref(),
         description: currentPath.description,
