@@ -28,7 +28,8 @@ describe('Markdown rendering and table of contents', () => {
 
   it('uses the same heading links at every heading level', () => {
     const { document, toc } = renderArticle('# One\n\n## Two\n\n### Three\n\n#### Four\n\n##### Five\n\n###### Six');
-    expect(toc.map((entry) => entry.level)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(toc.map((entry) => entry.level)).toEqual([2, 3, 4, 5, 6, 6]);
+    expect(document.querySelector('article h1')).toBeNull();
     for (const entry of toc) {
       expect(document.getElementById(entry.id)?.querySelector('a')?.getAttribute('href')).toBe(`#${entry.id}`);
     }
@@ -63,14 +64,14 @@ describe('Markdown rendering and table of contents', () => {
     const { document, toc } = renderArticle(content);
 
     expect(toc).toEqual([
-      { id: '大会-案内-と-結果', title: '大会 案内 と 結果', level: 1 },
-      { id: '重複-見出し', title: '重複 見出し', level: 2 },
-      { id: '重複-見出し-1', title: '重複 見出し', level: 2 },
-      { id: 'setext-見出し', title: 'Setext 見出し', level: 1 },
-      { id: '閉じた見出し', title: '閉じた見出し', level: 3 },
-      { id: 'html-見出し', title: 'HTML 見出し', level: 2 },
-      { id: 'existing-anchor', title: '明示 ID', level: 2 },
-      { id: 'html-見出し-1', title: 'HTML 見出し', level: 2 },
+      { id: '大会-案内-と-結果', title: '大会 案内 と 結果', level: 2 },
+      { id: '重複-見出し', title: '重複 見出し', level: 3 },
+      { id: '重複-見出し-1', title: '重複 見出し', level: 3 },
+      { id: 'setext-見出し', title: 'Setext 見出し', level: 2 },
+      { id: '閉じた見出し', title: '閉じた見出し', level: 4 },
+      { id: 'html-見出し', title: 'HTML 見出し', level: 3 },
+      { id: 'existing-anchor', title: '明示 ID', level: 3 },
+      { id: 'html-見出し-1', title: 'HTML 見出し', level: 3 },
     ]);
 
     const headings = Array.from(document.querySelectorAll('article :is(h1,h2,h3,h4,h5,h6)'));

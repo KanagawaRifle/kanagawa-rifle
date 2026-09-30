@@ -10,6 +10,7 @@ import { Frame } from '@/components/Frame';
 import { JsonLd } from '@/components/JsonLd';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
+import { organizationJsonLd } from '@/config/organization';
 import { seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
 import { ThemeProvider } from '@/providers/ThemeProvider';
@@ -24,6 +25,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   ...createPageMetadata({ title: app.name, description: app.description, path: '/' }),
+  // Canonicals belong to real pages; 404 responses must not inherit the home URL.
+  alternates: undefined,
   title: {
     default: app.name,
     template: `%s：${app.name}`,
@@ -36,24 +39,6 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD 構造化データ
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SportsOrganization',
-  '@id': seoIds.organization,
-  name: app.name,
-  legalName: app.longName,
-  alternateName: [app.longName, app.shortName],
-  description: app.description,
-  url: env.APP_URL,
-  logo: new URL('/web-app-manifest-512x512.png', env.APP_URL).toString(),
-  sport: 'ライフル射撃',
-  areaServed: {
-    '@type': 'AdministrativeArea',
-    name: '神奈川県',
-  },
-};
-
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -61,6 +46,7 @@ const websiteJsonLd = {
   name: app.name,
   alternateName: app.shortName,
   url: env.APP_URL,
+  description: app.description,
   inLanguage: 'ja',
   publisher: { '@id': seoIds.organization },
 };

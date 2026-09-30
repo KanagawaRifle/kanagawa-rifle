@@ -78,11 +78,13 @@ export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
+      page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <p>{currentPath.description}</p>
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

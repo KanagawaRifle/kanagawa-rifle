@@ -3,7 +3,6 @@
 import { Calendar, Hash, ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { getNewsItemHref } from '@/features/news/paths';
 
@@ -16,11 +15,9 @@ export function NewsListItem({ slug, title, published, tags, excerpt, isLast, he
   return (
     <li className={isLast ? '' : 'border-border border-b'}>
       <Link href={getNewsItemHref(slug)} className="hover:bg-muted flex items-start gap-4 p-4 transition-colors">
-        <Avatar aria-hidden="true">
-          <AvatarFallback>
-            <ImageIcon className="h-5 w-5" aria-hidden="true" />
-          </AvatarFallback>
-        </Avatar>
+        <span aria-hidden="true" className="bg-muted flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
+          <ImageIcon className="h-5 w-5" />
+        </span>
         <div className="flex-1 space-y-2">
           <Heading className="text-lg font-semibold">{title}</Heading>
           {excerpt && <p className="text-muted-foreground line-clamp-1 text-base">{excerpt}</p>}

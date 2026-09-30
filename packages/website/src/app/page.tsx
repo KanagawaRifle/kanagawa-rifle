@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { PageLayout } from '@/components/PageLayout';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { app } from '@/config/app';
 import { getStaticFileUrl } from '@/config/assets';
 import { paths } from '@/config/paths';
@@ -26,7 +26,7 @@ export const metadata = {
 export default async function Page() {
   const news = await getNewsList({ page: 1, size: 6 });
   return (
-    <PageLayout>
+    <PageLayout page={{ path: paths.home.getHref(), description: paths.home.description }}>
       <div className="text-center">
         <div className="text-muted-foreground text-xs">特定非営利活動法人</div>
         <h1 className="text-2xl font-bold">
@@ -34,7 +34,9 @@ export default async function Page() {
           <span style={{ color: 'var(--color-secondary-bright)' }}>ライフル射撃</span>
           <span className="text-accent">協会</span>
         </h1>
-        <p className="text-muted-foreground mt-2">ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体</p>
+        <p className="text-muted-foreground mt-2">
+          スモールボア・エアライフル・ビームライフル競技の大会日程、入会案内、会費、各種申請書を掲載しています。
+        </p>
       </div>
 
       <HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />
@@ -65,6 +67,29 @@ export default async function Page() {
         </AlertDescription>
       </Alert>
 
+      <Card>
+        <CardHeader>
+          <CardTitle>入会・大会参加のご案内</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <nav aria-label="入会・大会参加のご案内">
+            <ul className="flex flex-col gap-3">
+              {[
+                { path: paths.main.join, label: '入会の手続き・会費を確認する' },
+                { path: paths.main.competitions, label: '大会日程・要項・結果を確認する' },
+                { path: paths.sub.forms, label: '大会・入会の申込書をダウンロードする' },
+              ].map(({ path, label }) => (
+                <li key={path.getHref()}>
+                  <Link href={path.getHref()} className="text-primary underline">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </CardContent>
+      </Card>
+
       <Card className="overflow-hidden p-0">
         <a
           href={getStaticFileUrl('/news/2024-02-02-01-kokuspo-trial-poster.pdf')}
@@ -77,8 +102,7 @@ export default async function Page() {
             alt="国スポ予選ポスター"
             width={1225}
             height={417}
-            loading="eager"
-            fetchPriority="high"
+            loading="lazy"
             style={{
               width: '100%',
               height: 'auto',

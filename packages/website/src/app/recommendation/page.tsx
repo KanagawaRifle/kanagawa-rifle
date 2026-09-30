@@ -35,11 +35,13 @@ export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
+      page={{ path: currentPath.getHref(), description: currentPath.description }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <p>{currentPath.description}</p>
       <Alert variant="warning">
         <TriangleAlert className="h-4 w-4" />
         <AlertTitle>【重要】推薦申請システムの移行について</AlertTitle>

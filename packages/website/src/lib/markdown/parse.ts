@@ -44,9 +44,16 @@ const processor = unified()
 export const parseMarkdown = cache(function parseMarkdown(content: string) {
   const tree: Root = processor.runSync(processor.parse(content));
   const toc: TableOfContentsEntry[] = [];
+  let hasTopLevelHeading = false;
+  visit(tree, 'element', (node) => {
+    if (node.tagName === 'h1') hasTopLevelHeading = true;
+  });
 
   visit(tree, 'element', (node) => {
-    if (/^h[1-6]$/.test(node.tagName) && typeof node.properties.id === 'string') {
+    if (!/^h[1-6]$/.test(node.tagName)) return;
+    // The page title is h1. Preserve article hierarchy and existing anchor IDs.
+    if (hasTopLevelHeading) node.tagName = `h${Math.min(6, Number(node.tagName.slice(1)) + 1)}`;
+    if (typeof node.properties.id === 'string') {
       toc.push({
         id: node.properties.id,
         title: toString(node),
