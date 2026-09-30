@@ -15,15 +15,21 @@ export const year2026 = competitionSchema.array().parse([
   },
   {
     name: '第7回秋季神奈川オープン（県選手権大会）',
+    homeNotice: { published: true, title: '第7回秋季神奈川オープン（県選手権大会）' },
     grade: 'G3',
-    actions: [{ name: '申込', href: 'https://forms.gle/dUpxXztiLDH7uR4X6' }],
+    actions: [
+      { name: '申込', href: 'https://forms.gle/n8tbVCZAfUqZUsxz6' },
+      {
+        name: '要項',
+        href: getStaticFileUrl('/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-details.pdf'),
+      },
+    ],
     date: { kind: 'date', date: '2026-11-29' },
     deadline: '2026-11-11',
     venue: { name: '神奈川県立伊勢原射撃場', href: 'https://www.isehara-shooting.jp' },
   },
   {
     name: '第56回東日本ライフル射撃競技選手権大会',
-    homeNotice: { published: true, title: '東日本ライフル射撃競技選手権大会' },
     grade: 'G2',
     actions: [
       { name: '申込', href: 'https://forms.gle/peGYBRiyjR6xqYEi8' },
