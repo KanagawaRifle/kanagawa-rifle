@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import { PageLayout } from '@/components/PageLayout';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button, ButtonGroup } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { app } from '@/config/app';
 import { getStaticFileUrl } from '@/config/assets';
@@ -36,20 +36,6 @@ export default async function Page() {
         </h1>
         <p className="text-muted-foreground mt-2">ライフル射撃競技の普及と振興を目指す神奈川県の射撃団体</p>
       </div>
-
-      <Alert variant="warning">
-        <AlertTitle>【重要】令和8年度のお知らせ</AlertTitle>
-        <AlertDescription>
-          <ButtonGroup className="flex-wrap">
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/news/2026-01-11-03">国スポ予選日程</Link>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/news/2026-01-11-04">会費改定・資格更新</Link>
-            </Button>
-          </ButtonGroup>
-        </AlertDescription>
-      </Alert>
 
       <HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />
 
