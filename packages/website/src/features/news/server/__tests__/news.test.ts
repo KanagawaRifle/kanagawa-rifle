@@ -103,6 +103,29 @@ describe('news repository with filesystem fixtures', () => {
     expect((await news.getNewsList({ page: 1, size: 12 })).pagination.total).toBe(1);
   });
 
+  it('links adjacent articles across years and handles either end and missing articles', async () => {
+    const newer = '2026-01-01-01';
+    const current = '2025-12-31-02';
+    const older = '2025-12-31-01';
+    await Promise.all([newer, current, older].map((slug) => writeArticle(slug)));
+    expect(await news.getNewsNavigation(current)).toMatchObject({ newer: { slug: newer }, older: { slug: older } });
+    expect(await news.getNewsNavigation(newer)).toMatchObject({ newer: undefined, older: { slug: current } });
+    expect(await news.getNewsNavigation(older)).toMatchObject({ newer: { slug: current }, older: undefined });
+    expect(await news.getNewsNavigation('2025-12-30-01')).toEqual({});
+    expect(await news.getNewsNavigation('../2025-12-31-01')).toEqual({});
+    await fs.unlink(join(root, '2025', `${current}.md`));
+    expect(await news.getNewsNavigation(newer)).toMatchObject({ older: { slug: older } });
+  });
+
+  it('limits the update feed to twenty recent full articles in the listing order', async () => {
+    const slugs = Array.from({ length: 21 }, (_, index) => `2025-01-${String(index + 1).padStart(2, '0')}-01`);
+    await Promise.all(slugs.map((slug) => writeArticle(slug)));
+    const articles = await news.getNewsFeedItems();
+    expect(articles).toHaveLength(20);
+    expect(articles.map((article) => article.slug)).toEqual([...slugs].reverse().slice(0, 20));
+    expect(articles[0]?.content).toContain('本文');
+  });
+
   it('returns empty results for an existing empty root and empty year directories', async () => {
     expect(await news.getNewsSlugs()).toEqual([]);
     await fs.mkdir(join(root, '2024'));

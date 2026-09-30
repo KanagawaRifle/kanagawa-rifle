@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, Hash } from 'lucide-react';
 import Link from 'next/link';
+import { Toaster } from 'sonner';
 
 import { renderMarkdown } from '@/components/Markdown/renderMarkdown';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,7 @@ export function NewsArticle({ news }: { news: NewsItem }) {
 
   return (
     <article>
+      <Toaster position="bottom-center" richColors />
       <header className="mb-8">
         <div className="mb-2 flex justify-end gap-2">
           <ShareLinks title={news.title} url={articleUrl} />

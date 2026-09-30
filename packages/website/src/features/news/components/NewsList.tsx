@@ -1,22 +1,20 @@
-import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { getNewsListHref } from '@/features/news/paths';
 import type { NewsSummary } from '@/features/news/types';
-import type { Paginated, Pagination as PaginationData } from '@/lib/pagination';
+import { getPaginationPages, type Paginated, type Pagination as PaginationData } from '@/lib/pagination';
 
 import { NewsListControls } from './NewsListControls';
 import { NewsListItem } from './NewsListItem';
 
 function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: PaginationData) {
-  const pages = Math.max(1, totalPages);
+  const pages = getPaginationPages(current, totalPages);
   const links = [
-    { label: '最初のページ', page: 1, enabled: hasPrev, Icon: ChevronFirst },
     { label: '前のページ', page: current - 1, enabled: hasPrev, Icon: ChevronLeft },
     { label: '次のページ', page: current + 1, enabled: hasNext, Icon: ChevronRight },
-    { label: '最後のページ', page: pages, enabled: hasNext, Icon: ChevronLast },
   ];
   return (
     <nav aria-label="ページネーション" className="flex flex-col items-center justify-center gap-4">
@@ -26,19 +24,33 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
       <div className="flex items-center gap-1">
         {links.map(({ label, page, enabled, Icon }, index) => (
           <span key={label} className="contents">
-            {index === 2 && (
-              <span className="px-3 text-sm">
-                {current} / {pages}
-              </span>
-            )}
+            {index === 1 &&
+              pages.map((page, pageIndex) => (
+                <span key={page} className="contents">
+                  {pageIndex > 0 && page > pages[pageIndex - 1]! + 1 && (
+                    <span className="px-1" aria-hidden="true">
+                      …
+                    </span>
+                  )}
+                  <Button variant={page === current ? 'default' : 'outline'} size="icon" className="h-8 w-8" asChild>
+                    <Link
+                      href={getNewsListHref({ page, size })}
+                      aria-label={`${page}ページ目`}
+                      aria-current={page === current ? 'page' : undefined}
+                    >
+                      {page}
+                    </Link>
+                  </Button>
+                </span>
+              ))}
             {enabled ? (
-              <Button variant="outline" size="icon" asChild>
+              <Button variant="outline" size="icon" className="h-8 w-8" asChild>
                 <Link href={getNewsListHref({ page, size })} aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </Link>
               </Button>
             ) : (
-              <Button variant="outline" size="icon" disabled aria-label={label}>
+              <Button variant="outline" size="icon" className="h-8 w-8" disabled aria-label={label}>
                 <Icon className="h-4 w-4" />
               </Button>
             )}

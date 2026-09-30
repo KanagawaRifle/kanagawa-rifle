@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { SocialLinks } from '@/components/SocialLinks';
 import { buttonVariants } from '@/components/ui/button';
 import { app } from '@/config/app';
-import { paths } from '@/config/paths';
+import { NEWS_FEED_PATH, paths } from '@/config/paths';
+import { isPreviewDeployment } from '@/config/seo';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -56,6 +57,17 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              {!isPreviewDeployment() && (
+                <li>
+                  <Link
+                    href={NEWS_FEED_PATH}
+                    prefetch={false}
+                    className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
+                  >
+                    お知らせの更新フィード
+                  </Link>
+                </li>
+              )}
             </ul>
           </section>
           <section aria-labelledby="footer-external-nav">

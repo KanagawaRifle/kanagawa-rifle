@@ -41,11 +41,12 @@ export default async function Page({ searchParams }: Props) {
   const title =
     news.pagination.current === 1 ? currentPath.name : `${currentPath.name}（${news.pagination.current}ページ目）`;
   const path = getNewsListHref({ page: news.pagination.current, size: news.pagination.size });
+  const description = `${currentPath.description}${news.pagination.current > 1 ? ` ${news.pagination.current}ページ目を表示しています。` : ''}`;
 
   return (
     <PageLayout
       title={title}
-      page={{ path, description: currentPath.description, type: 'CollectionPage', mainEntity: getNewsListJsonLd(news) }}
+      page={{ path, description, type: 'CollectionPage', mainEntity: getNewsListJsonLd(news) }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         ...(news.pagination.current > 1 ? [{ name: currentPath.name, path: currentPath.getHref() }] : []),

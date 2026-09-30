@@ -16,6 +16,9 @@ const createEnv = () => {
     SENTRY_DSN: z.preprocess((value) => (value === '' ? undefined : value), z.string().url().optional()),
 
     CLARITY_ID: z.string().optional(),
+
+    GOOGLE_SITE_VERIFICATION: z.string().trim().optional(),
+    BING_SITE_VERIFICATION: z.string().trim().optional(),
   });
 
   const vars = {
@@ -31,6 +34,9 @@ const createEnv = () => {
     SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
     CLARITY_ID: process.env.NEXT_PUBLIC_CLARITY_ID,
+
+    GOOGLE_SITE_VERIFICATION: process.env.GOOGLE_SITE_VERIFICATION,
+    BING_SITE_VERIFICATION: process.env.BING_SITE_VERIFICATION,
   };
 
   const result = EnvSchema.safeParse(vars);

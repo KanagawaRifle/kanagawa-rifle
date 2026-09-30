@@ -17,6 +17,8 @@ describe('environment configuration', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.stubEnv('NEXT_PUBLIC_STATIC_FILE_BASE_URL', undefined);
+    vi.stubEnv('GOOGLE_SITE_VERIFICATION', undefined);
+    vi.stubEnv('BING_SITE_VERIFICATION', undefined);
     for (const [name, value] of Object.entries(validVariables)) {
       vi.stubEnv(name, value);
     }
@@ -63,6 +65,8 @@ describe('environment configuration', () => {
       GOOGLE_ANALYTICS_ID: validVariables.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
       SENTRY_DSN: validVariables.NEXT_PUBLIC_SENTRY_DSN,
       CLARITY_ID: validVariables.NEXT_PUBLIC_CLARITY_ID,
+      GOOGLE_SITE_VERIFICATION: undefined,
+      BING_SITE_VERIFICATION: undefined,
     });
   });
 
@@ -71,6 +75,14 @@ describe('environment configuration', () => {
     const { env } = await import('../env');
 
     expect(env.SENTRY_DSN).toBeUndefined();
+  });
+
+  it('accepts optional webmaster verification tokens and trims pasted whitespace', async () => {
+    vi.stubEnv('GOOGLE_SITE_VERIFICATION', '  google-verification-token  ');
+    vi.stubEnv('BING_SITE_VERIFICATION', '  bing-verification-token  ');
+    const { env } = await import('../env');
+    expect(env.GOOGLE_SITE_VERIFICATION).toBe('google-verification-token');
+    expect(env.BING_SITE_VERIFICATION).toBe('bing-verification-token');
   });
 
   it('uses the standard local app URL and preserves optional values', async () => {

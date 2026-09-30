@@ -3,6 +3,7 @@
 import { Download, FileSpreadsheet, FileText, FileType } from 'lucide-react';
 
 import { PageLayout } from '@/components/PageLayout';
+import { PageLinks } from '@/components/PageLinks';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getStaticFileUrl } from '@/config/assets';
 import { paths } from '@/config/paths';
@@ -72,7 +73,7 @@ function DownloadItemComponent({ item, divider }: { item: DownloadItem; divider:
 
 const currentPath = paths.sub.forms;
 export const metadata = createPageMetadata({
-  title: '申請書・各種様式',
+  title: currentPath.title,
   description: currentPath.description,
   path: currentPath.getHref(),
 });
@@ -80,7 +81,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <PageLayout
-      title={currentPath.name}
+      title={currentPath.title}
       page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
@@ -103,6 +104,7 @@ export default function Page() {
           </ul>
         </CardContent>
       </Card>
+      <PageLinks pages={[paths.main.join, paths.main.competitions, paths.main.recommendation]} />
     </PageLayout>
   );
 }

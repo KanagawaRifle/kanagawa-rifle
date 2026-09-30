@@ -1,9 +1,9 @@
 // packages/website/src/app/layout.tsx
+// cspell:ignore msvalidate
 
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import React from 'react';
-import { Toaster } from 'sonner';
 
 import { Analytics } from '@/components/Analytics';
 import { Frame } from '@/components/Frame';
@@ -11,7 +11,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { organizationJsonLd } from '@/config/organization';
-import { seoIds } from '@/config/seo';
+import { isPreviewDeployment, seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 
@@ -37,6 +37,12 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: app.name,
   },
+  verification: isPreviewDeployment()
+    ? undefined
+    : {
+        google: env.GOOGLE_SITE_VERIFICATION || undefined,
+        other: env.BING_SITE_VERIFICATION ? { 'msvalidate.01': env.BING_SITE_VERIFICATION } : undefined,
+      },
 };
 
 const websiteJsonLd = {
@@ -62,7 +68,6 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
         <Analytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Frame>{children}</Frame>
-          <Toaster position="bottom-center" richColors />
         </ThemeProvider>
       </body>
     </html>

@@ -29,6 +29,7 @@ vi.mock('@/components/icons/social', async () => {
 });
 
 vi.mock('@/config/paths', () => ({
+  NEWS_FEED_PATH: '/feed.xml',
   paths: {
     main: {
       home: {
@@ -152,6 +153,16 @@ describe('Footer', () => {
   });
 
   describe('Sub Navigation Links', () => {
+    it('does not link to an unavailable feed from a preview deployment', () => {
+      vi.stubEnv('VERCEL_ENV', 'preview');
+      try {
+        render(<Footer />);
+        expect(screen.queryByRole('link', { name: 'お知らせの更新フィード' })).not.toBeInTheDocument();
+      } finally {
+        vi.unstubAllEnvs();
+      }
+    });
+
     it('renders sub navigation links', () => {
       render(<Footer />);
 

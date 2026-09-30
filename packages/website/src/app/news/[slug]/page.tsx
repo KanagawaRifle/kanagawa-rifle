@@ -7,8 +7,10 @@ import { PageLayout } from '@/components/PageLayout';
 import { env } from '@/config/env';
 import { paths } from '@/config/paths';
 import { NewsArticle } from '@/features/news/components/NewsArticle';
+import { NewsArticleNavigation } from '@/features/news/components/NewsArticleNavigation';
+import { formatNewsDate } from '@/features/news/dates';
 import { getNewsItemHref } from '@/features/news/paths';
-import { getNewsItem, getNewsSlugs } from '@/features/news/server/news';
+import { getNewsItem, getNewsNavigation, getNewsSlugs } from '@/features/news/server/news';
 import { getArticleDescription, getArticleImage, getArticleJsonLd } from '@/features/news/server/seo';
 import { createPageMetadata } from '@/lib/metadata';
 
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = await getArticle(slug);
   const image = getArticleImage(item);
   return createPageMetadata({
-    title: item.title,
+    title: `${item.title}（${formatNewsDate(item.published)}）`,
     description: getArticleDescription(item),
     path: getNewsItemHref(slug),
     article: item,
@@ -39,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const [article, navigation] = await Promise.all([getArticle(slug), getNewsNavigation(slug)]);
   return (
     <PageLayout
       title={article.title}
@@ -56,6 +58,7 @@ export default async function Page({ params }: Props) {
     >
       <JsonLd data={getArticleJsonLd(article)} />
       <NewsArticle news={article} />
+      <NewsArticleNavigation {...navigation} />
     </PageLayout>
   );
 }

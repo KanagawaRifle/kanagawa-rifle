@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 test('membership fee tables remain readable and keyboard accessible at every viewport', async ({ page }) => {
   await page.goto('/join');
-  await expect(page.getByRole('heading', { level: 1, name: '入会案内' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: '入会案内・会費' })).toBeVisible();
   const table = page.getByRole('table', { name: '一般の方の会費' });
   await expect(table.getByRole('cell', { name: '30,000円', exact: true })).toBeVisible();
   await expect(table.getByRole('columnheader', { name: /^移籍/ })).toHaveAttribute('scope', 'col');
