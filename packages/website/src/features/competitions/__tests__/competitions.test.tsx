@@ -64,8 +64,8 @@ describe('published competition data', () => {
       vi.setSystemTime(new Date('2030-01-01T00:00:00Z'));
       expect(CURRENT_COMPETITION_YEAR).toBe(2026);
       expect(getHomeCompetitionNotices().map((item) => item.name)).toEqual([
-        '第26回冬季AR・APランクリスト競技会',
         '第7回秋季神奈川オープン（県選手権大会）',
+        '第26回冬季AR・APランクリスト競技会',
       ]);
     } finally {
       vi.useRealTimers();
