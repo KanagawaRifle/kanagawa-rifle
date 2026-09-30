@@ -15,14 +15,29 @@ for (const [year, count] of [
   });
 }
 
-test('home and year page share the published results URL', async ({ page }) => {
+test('home publishes the autumn open notice and shares its links with competition pages', async ({ page }) => {
   await page.goto('/');
-  const results = page.getByRole('link', { name: '速報', exact: true });
-  await expect(results).toBeVisible();
-  const href = await results.getAttribute('href');
-  expect(href).toContain('2026-06-18-eastern-japan-results.pdf');
-  await page.goto('/competitions/2026');
-  await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
+  await expect(page.getByText('【重要】令和8年度のお知らせ', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('東日本ライフル射撃競技選手権大会', { exact: true })).toHaveCount(0);
+  const notice = page.getByRole('alert').filter({ hasText: '第7回秋季神奈川オープン（県選手権大会）' });
+  await expect(notice).toBeVisible();
+  await expect(notice).toContainText('11月29日(日)');
+  const links = [
+    { name: '申込', href: 'https://forms.gle/n8tbVCZAfUqZUsxz6' },
+    {
+      name: '要項',
+      href: 'https://static.kanagawa-rifle.org/website/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-details.pdf',
+    },
+  ];
+  for (const { name, href } of links) {
+    await expect(notice.getByRole('link', { name, exact: true })).toHaveAttribute('href', href);
+  }
+  for (const path of ['/competitions', '/competitions/2026']) {
+    await page.goto(path);
+    for (const { href } of links) {
+      await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
+    }
+  }
 });
 
 test('unknown fiscal year returns 404', async ({ request }) => {

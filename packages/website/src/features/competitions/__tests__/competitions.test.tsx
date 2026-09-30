@@ -63,7 +63,7 @@ describe('published competition data', () => {
     try {
       vi.setSystemTime(new Date('2030-01-01T00:00:00Z'));
       expect(CURRENT_COMPETITION_YEAR).toBe(2026);
-      expect(getHomeCompetitionNotices().map((item) => item.name)).toEqual(['第56回東日本ライフル射撃競技選手権大会']);
+      expect(getHomeCompetitionNotices().map((item) => item.name)).toEqual(['第7回秋季神奈川オープン（県選手権大会）']);
     } finally {
       vi.useRealTimers();
     }
@@ -71,15 +71,14 @@ describe('published competition data', () => {
 
   it('uses the same published action URLs and statuses for home notices and the year page', () => {
     const notice = getHomeCompetitionNotices()[0]!;
-    expect(notice).toBe(getCompetitions(2026)[2]);
-    const results = notice.actions.find((action) => action.name === '成績')!;
-    expect(results.disabled).not.toBe(true);
-    expect(results.homeLabel).toBe('速報');
+    expect(notice).toBe(getCompetitions(2026)[1]);
     render(<HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />);
-    expect(screen.getByRole('link', { name: '速報' })).toHaveAttribute('href', results.href);
-    expect(screen.getByRole('link', { name: '射座割' })).toHaveAttribute('href', notice.actions[2]?.href);
-    expect(screen.getAllByText('6月18日(木)')).toHaveLength(2);
-    expect(screen.getByText('6月21日(日)')).toBeVisible();
+    for (const action of notice.actions) {
+      expect(action.disabled).not.toBe(true);
+      expect(screen.getByRole('link', { name: action.name })).toHaveAttribute('href', action.href);
+    }
+    expect(screen.getByText('第7回秋季神奈川オープン（県選手権大会）')).toBeVisible();
+    expect(screen.getByText('11月29日(日)')).toBeVisible();
   });
 });
 
