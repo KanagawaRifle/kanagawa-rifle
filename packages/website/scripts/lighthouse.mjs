@@ -233,11 +233,12 @@ export async function runLighthouse(options) {
         const json = Array.isArray(result?.report) ? result.report[1] : undefined;
         if (typeof html !== 'string' || typeof json !== 'string')
           inspected.errors.push('Lighthouse did not produce both reports');
+        // escapeHtml encodes every interpolated error before the fallback HTML is written.
         await writeFile(
           join(options.outputDirectory, `${artifact}.html`),
           typeof html === 'string'
             ? html
-            : // nosemgrep: html-in-template-string -- escapeHtml encodes every interpolated error before HTML output.
+            : // nosemgrep: semgrep-rules.javascript.lang.security.html-in-template-string
               `<!doctype html><html lang="en"><meta charset="utf-8"><title>Lighthouse failed</title><h1>Lighthouse failed</h1><pre>${escapeHtml(inspected.errors.join('\n'))}</pre></html>`,
         );
         await writeFile(

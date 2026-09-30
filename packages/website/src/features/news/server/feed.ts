@@ -26,6 +26,13 @@ export function renderNewsFeed(articles: readonly NewsItem[]): string {
   const updated = new Date(Math.max(0, ...articles.map((article) => (article.updated ?? article.published).getTime())));
   const entries = articles.map((article) => {
     const url = escapeXml(new URL(getNewsItemHref(article.slug), env.APP_URL).toString());
+    const categories = article.tags.map((tag) => {
+      // XML attributes are escaped before serialization; the feed is served as application/atom+xml.
+      // nosemgrep: semgrep-rules.javascript.lang.security.html-in-template-string
+      return `<category term="${escapeXml(tag)}" />`;
+    });
+    // Editorial text and URLs are XML-escaped; dates come from validated Date values.
+    // nosemgrep: semgrep-rules.javascript.lang.security.html-in-template-string
     return `<entry>
   <id>${url}</id>
   <title>${escapeXml(article.title)}</title>
@@ -33,7 +40,7 @@ export function renderNewsFeed(articles: readonly NewsItem[]): string {
   <published>${article.published.toISOString()}</published>
   <updated>${(article.updated ?? article.published).toISOString()}</updated>
   <summary type="text">${escapeXml(getArticleDescription(article))}</summary>
-  ${article.tags.map((tag) => `<category term="${escapeXml(tag)}" />`).join('\n  ')}
+  ${categories.join('\n  ')}
 </entry>`;
   });
   return `<?xml version="1.0" encoding="UTF-8"?>
