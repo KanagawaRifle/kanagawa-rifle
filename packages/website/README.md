@@ -79,6 +79,7 @@ React による表示は `components/Markdown` にまとめています。記事
 
 `src/lib/metadata.ts` でページごとの title、description、canonical、Open Graph、Twitter Card、robots を生成します。
 ページ追加時は実際の本文に対応するタイトル・説明と `path` を指定してください。
+`PageLayout` の `page` にも同じ `path` と説明を渡し、構造化データと canonical を一致させます。
 `NEXT_PUBLIC_URL` は本番で `https://kanagawa-rifle.org` に設定します。canonical、構造化データ、
 サイトマップ、共有画像の URL はこの値を基準にするため、プレビュー URL を本番ビルドに使わないでください。
 
@@ -89,13 +90,23 @@ React による表示は `components/Markdown` にまとめています。記事
   一律に先頭ページへ正規化しません。不正な値・重複パラメーター・範囲外ページは 404 のままです。
 - 記事の説明は `excerpt` を優先し、未指定・空欄なら表示用 Markdown 構文木から最大160文字の説明を生成します。
   記事の公開日時・更新日時を Open Graph と Article の JSON-LD に出力し、更新日は本文にも表示します。
-- SportsOrganization、WebSite、Article は共通の `@id` で関連付けます。
-  パンくずは画面の階層と同じ BreadcrumbList を出力します。
+- SportsOrganization、WebSite、WebPage、Article は共通の `@id` で関連付けます。
+  協会紹介は AboutPage、一覧は CollectionPage とし、お知らせ一覧は表示中の記事と順序を ItemList に出力します。
+  パンくずは画面の階層と同じ BreadcrumbList を出力し、2ページ目以降はそのページ自身の URL を指します。
+- 協会情報は `src/config/organization.ts` に集約し、事務局の画面表示と構造化データで同じ連絡先を使います。
+  `sameAs` は `src/config/social.ts` に掲載する協会の公式 SNS のみを使用します。
+- 記事の発信元を本文に表示し、協会紹介へリンクします。本文に画像がある場合は、最初の表示対象画像を
+  Article の `image` と Open Graph・Twitter Card に使用します。画像がない記事には Article の画像を捏造せず、
+  SNS 共有用に従来のタイトル画像を生成します。非表示要素・コード内の画像や不正な URL は対象外です。
+- ページタイトルを唯一の h1 とし、記事本文に h1 がある場合は本文の見出しを1段下げます（上限 h6）。
+  見出しの ID は維持し、目次も表示する階層に合わせます。
 - サイトマップには公開ページ、大会年度、全記事、既定表示件数の一覧ページを含めます。
   記事の `lastmod` は `updated`、未指定なら `published` を使い、ビルド時刻で更新日を捏造しません。
 - `/api/news` とその詳細 API は `X-Robots-Tag: noindex` とし、HTML の記事を検索対象にします。
   `/api/og`、画像、CSS、JavaScript はクロールを許可します。
-- ホームの主要画像は即時読込と高い取得優先度を指定し、記事画像の `sizes` は本文の表示幅に合わせます。
+- ホームは主要な告知と案内リンクを先に表示し、その下のポスター画像を遅延読込します。
+  ニュース一覧の装飾アイコンはサーバーで描画し、不要なクライアント処理を避けます。
+  記事画像の `sizes` は本文の表示幅に合わせます。
   遅延読込や画像サイズを変更する場合は、Lighthouse とモバイル表示で確認してください。
 
 `VERCEL_ENV` が設定されていて `production` 以外、または `VERCEL_GIT_COMMIT_REF=staging` の場合は、
@@ -104,7 +115,12 @@ robots.txt はサイトマップを広告しませんが、noindex を読み取�
 Basic 認証は引き続き staging ブランチに適用します。Vercel 変数のない自己ホスト環境は検索対象です。
 これらの設定はビルド時に決まり、変更後は再ビルド・再デプロイが必要です。Turbo のキャッシュも環境ごとに分離します。
 
-`e2e/seo.spec.ts` は本番サーバーの初期 HTML を取得し、canonical、SNS メタデータ、構造化データ、
+ホームには入会・大会・申込書への案内リンクを置き、JavaScript が無効でも利用できます。
+主要ページの紹介文と検索向けの説明は、実際に公開している内容に合わせて更新してください。
+事業計画の2021年度資料は、旧サイトから移行した `migration/` 配下の公開ファイルへリンクします。
+
+`e2e/seo.spec.ts` は本番サーバーの初期 HTML を取得し、canonical、SNS メタデータ、構造化データの関連、
+表示記事と ItemList の一致、記事本文の見出しと目次、
 ページング、404、robots.txt、サイトマップ、API ヘッダー、共有画像の応答を検証します。
 
 ```bash
@@ -118,9 +134,15 @@ Core Web Vitals は実ユーザーのデータで確認し、ローカルの Lig
 構造化データの表示可否は [リッチリザルト テスト](https://search.google.com/test/rich-results) で確認します。
 大会一覧の SportsEvent は日程の意味付けであり、個別イベントのリッチリザルト表示を保証するものではありません。
 
+`next.config.ts` は www から `https://kanagawa-rifle.org` への恒久リダイレクトを設定し、パスとクエリを保持します。
+本番ドメインの HTTPS 証明書と HTTP の転送は、DNS・ホスティング側でも設定と検証が必要です。
+2026年9月30日の確認では `https://www.kanagawa-rifle.org` に
+証明書のホスト名不一致がありました。www に有効な証明書を設定してから転送を確認してください。
+
 実装方針は Google の [ページ分割](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading?hl=ja)、
 [robots メタタグ](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=ja)、
 [記事の構造化データ](https://developers.google.com/search/docs/appearance/structured-data/article?hl=ja)、
+[組織の構造化データ](https://developers.google.com/search/docs/appearance/structured-data/organization?hl=ja)、
 [サイトマップ](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=ja) のガイドに合わせています。
 
 ## 入会・推薦案内の更新

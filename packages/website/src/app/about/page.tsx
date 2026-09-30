@@ -2,59 +2,41 @@
 
 import { House, Landmark } from 'lucide-react';
 
-import { JsonLd } from '@/components/JsonLd';
 import { PageLayout } from '@/components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { app } from '@/config/app';
-import { env } from '@/config/env';
+import { office } from '@/config/organization';
 import { paths } from '@/config/paths';
 import { seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.about;
 export const metadata = createPageMetadata({
-  title: currentPath.name,
+  title: '協会概要・事務局・連絡先',
   description: currentPath.description,
   path: currentPath.getHref(),
 });
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SportsOrganization',
-  '@id': seoIds.organization,
-  name: app.name,
-  legalName: app.longName,
-  alternateName: app.shortName,
-  description: app.description,
-  url: env.APP_URL,
-  telephone: '080-1190-3911',
-  faxNumber: '046-833-6990',
-  email: 'kraofficial@yahoo.co.jp',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '神明町1番地 くりはま花の国エアライフル射撃場内',
-    addressLocality: '横須賀市',
-    addressRegion: '神奈川県',
-    postalCode: '239-0832',
-    addressCountry: 'JP',
-  },
-  areaServed: {
-    '@type': 'AdministrativeArea',
-    name: '神奈川県',
-  },
-  sport: 'ライフル射撃',
-};
 
 export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
+      page={{
+        path: currentPath.getHref(),
+        description: currentPath.description,
+        type: 'AboutPage',
+        mainEntity: { '@id': seoIds.organization },
+      }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
-      <JsonLd data={organizationJsonLd} />
+      <p>
+        {app.longName}は、神奈川県でライフル射撃競技の普及と振興に取り組む団体です。
+        スモールボア・エアライフル・ビームライフル競技の大会開催・運営や普及活動を行っています。
+        お問い合わせは下記の事務局へご連絡ください。
+      </p>
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -65,24 +47,34 @@ export default function Page() {
         <CardContent>
           <div className="border-border grid grid-cols-4 gap-0 border-b">
             <div className="px-4 py-2">メールアドレス</div>
-            <div className="col-span-3 px-4 py-2">kraofficial@yahoo.co.jp</div>
+            <div className="col-span-3 px-4 py-2">
+              <a href={`mailto:${office.email}`} className="text-primary break-all underline">
+                {office.email}
+              </a>
+            </div>
           </div>
           <div className="border-border grid grid-cols-4 gap-0 border-b">
             <div className="px-4 py-2">電話番号</div>
-            <div className="col-span-3 px-4 py-2">080-1190-3911</div>
+            <div className="col-span-3 px-4 py-2">
+              <a href={`tel:${office.telephone}`} className="text-primary underline">
+                {office.telephone}
+              </a>
+            </div>
           </div>
           <div className="border-border grid grid-cols-4 gap-0 border-b">
             <div className="px-4 py-2">FAX</div>
-            <div className="col-span-3 px-4 py-2">046-833-6990 (くりはま花の国射撃場内)</div>
+            <div className="col-span-3 px-4 py-2">{office.fax} (くりはま花の国射撃場内)</div>
           </div>
           <div className="grid grid-cols-4 gap-0">
             <div className="px-4 py-2">所在地（窓口）</div>
             <div className="col-span-3 px-4 py-2">
-              〒239-0832
+              〒{office.postalCode}
               <br />
-              神奈川県横須賀市神明町1番地
+              {office.region}
+              {office.locality}
+              {office.street}
               <br />
-              くりはま花の国エアライフル射撃場内
+              {office.building}
             </div>
           </div>
         </CardContent>
@@ -127,20 +119,6 @@ export default function Page() {
             <div className="col-span-3 px-4 py-2">トクヒ）カナガワケンライフルシヤゲキキョウカイ</div>
           </div>
         </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>ご挨拶</CardTitle>
-        </CardHeader>
-        <CardContent>準備中……</CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>協会沿革</CardTitle>
-        </CardHeader>
-        <CardContent>準備中……</CardContent>
       </Card>
     </PageLayout>
   );

@@ -19,12 +19,14 @@ export function CompetitionPage({ year, overview = false }: { year: CompetitionY
   return (
     <PageLayout
       title={currentPath.name}
+      page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         ...(!overview ? [{ name: paths.main.competitions.name, path: paths.main.competitions.getHref() }] : []),
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <p>{currentPath.description}</p>
       {eventJsonLd.map((jsonLd) => (
         <JsonLd key={jsonLd.name} data={jsonLd} />
       ))}

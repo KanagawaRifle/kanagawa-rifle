@@ -34,6 +34,17 @@ const nextConfig: NextConfig = {
   },
   pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
 
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.kanagawa-rifle.org' }],
+        destination: 'https://kanagawa-rifle.org/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // セキュリティヘッダー
   async headers() {
     return [

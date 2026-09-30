@@ -82,10 +82,10 @@ const YEARS_DATA: readonly YearData[] = [
     era: '令和3年度',
     western: '2021年度',
     documents: [
-      { filename: '/R03yotei0420.xls', title: '事業計画', type: 'EXCEL' },
-      { filename: '/R03yoteiura.doc', title: '特記事項', type: 'WORD' },
-      { filename: '/R03oshirase.doc', title: '会員の皆様へのお知らせ', type: 'WORD' },
-      { filename: '/R03kaihi.doc', title: '年会費一覧', type: 'WORD' },
+      { filename: '/migration/R03yotei0420.xls', title: '事業計画', type: 'EXCEL' },
+      { filename: '/migration/R03yoteiura.doc', title: '特記事項', type: 'WORD' },
+      { filename: '/migration/R03oshirase.doc', title: '会員の皆様へのお知らせ', type: 'WORD' },
+      { filename: '/migration/R03kaihi.doc', title: '年会費一覧', type: 'WORD' },
     ],
   },
 ] as const;
@@ -94,7 +94,7 @@ const buildDocumentUrl = (filename: string, version?: string): string => {
   const versionQuery = version ? `?${version}` : '';
   const fullPath = filename + versionQuery;
 
-  return filename.startsWith('/projects/') ? getStaticFileUrl(fullPath) : fullPath;
+  return getStaticFileUrl(fullPath);
 };
 
 function DocumentListItem({ item, divider }: { item: DocumentItem; divider: boolean }) {
@@ -149,11 +149,13 @@ export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
+      page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <p>{currentPath.description}</p>
       {YEARS_DATA.map((yearData) => (
         <YearCard key={yearData.era} yearData={yearData} />
       ))}

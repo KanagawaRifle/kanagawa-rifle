@@ -15,6 +15,7 @@ type PageMetadataOptions = {
   description?: string;
   path: string;
   noindex?: boolean;
+  image?: { url: string; alt: string };
   article?: { published: Date; updated?: Date; tags: string[] };
 };
 
@@ -24,10 +25,11 @@ export function createPageMetadata({
   path,
   noindex = false,
   article,
+  image: articleImage,
 }: PageMetadataOptions): Metadata {
   const url = new URL(path, env.APP_URL);
   const fullTitle = title === app.name ? title : `${title}：${app.name}`;
-  const image = { url: getSocialImageUrl(title), width: 1200, height: 630, alt: fullTitle };
+  const image = articleImage ?? { url: getSocialImageUrl(title), width: 1200, height: 630, alt: fullTitle };
 
   return {
     title,
