@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CompetitionDate } from '../components/CompetitionDate';
@@ -17,9 +17,9 @@ import { competitionScheduleSchema, competitionSchema, type Competition } from '
 const organizer = { name: '協会', url: 'https://example.com' };
 
 describe('published competition data', () => {
-  it('preserves all 29 competitions across the five published fiscal years', () => {
+  it('preserves all 30 competitions across the five published fiscal years', () => {
     expect(COMPETITION_YEARS.map((year) => [year, getCompetitions(year).length])).toEqual([
-      [2026, 4],
+      [2026, 5],
       [2025, 9],
       [2024, 8],
       [2023, 5],
@@ -63,21 +63,30 @@ describe('published competition data', () => {
     try {
       vi.setSystemTime(new Date('2030-01-01T00:00:00Z'));
       expect(CURRENT_COMPETITION_YEAR).toBe(2026);
-      expect(getHomeCompetitionNotices().map((item) => item.name)).toEqual(['第7回秋季神奈川オープン（県選手権大会）']);
+      expect(getHomeCompetitionNotices().map((item) => item.name)).toEqual([
+        '第26回冬季AR・APランクリスト競技会',
+        '第7回秋季神奈川オープン（県選手権大会）',
+      ]);
     } finally {
       vi.useRealTimers();
     }
   });
 
   it('uses the same published action URLs and statuses for home notices and the year page', () => {
-    const notice = getHomeCompetitionNotices()[0]!;
-    expect(notice).toBe(getCompetitions(2026)[1]);
-    render(<HomeCompetitionNotices competitions={getHomeCompetitionNotices()} />);
-    for (const action of notice.actions) {
-      expect(action.disabled).not.toBe(true);
-      expect(screen.getByRole('link', { name: action.name })).toHaveAttribute('href', action.href);
+    const notices = getHomeCompetitionNotices();
+    render(<HomeCompetitionNotices competitions={notices} />);
+    for (const [index, notice] of notices.entries()) {
+      expect(getCompetitions(2026)).toContain(notice);
+      const alert = within(screen.getAllByRole('alert')[index]!);
+      expect(alert.getByText(notice.name)).toBeVisible();
+      for (const action of notice.actions) {
+        expect(action.disabled).not.toBe(true);
+        expect(alert.getByRole('link', { name: action.name })).toHaveAttribute('href', action.href);
+      }
     }
-    expect(screen.getByText('第7回秋季神奈川オープン（県選手権大会）')).toBeVisible();
+    expect(screen.getByText('12月大会 2026年12月5日（土）～6日（日）')).toBeVisible();
+    expect(screen.getByText('1月大会 2027年1月9日（土）～10日（日）')).toBeVisible();
+    expect(screen.getByText('2月大会 2027年2月13日（土）～14日（日）')).toBeVisible();
     expect(screen.getByText('11月29日(日)')).toBeVisible();
   });
 });
