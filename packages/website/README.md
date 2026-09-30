@@ -73,6 +73,8 @@ React による表示は `components/Markdown` にまとめています。記事
 登録した年度は年度一覧、静的ページ、サイトマップに反映されます。
 年度別の名称と URL は `src/config/paths.ts` の `getCompetitionPath` で生成します。
 
+ホームの大会カードは `homeNotice.published` が `true` の大会を、大会一覧と逆の順序で表示します。
+
 ## SEO と検索エンジン向けの出力
 
 `src/lib/metadata.ts` でページごとの title、description、canonical、Open Graph、Twitter Card、robots を生成します。

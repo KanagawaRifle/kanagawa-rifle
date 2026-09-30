@@ -31,5 +31,7 @@ export function getCompetitions(year: CompetitionYear) {
 }
 
 export function getHomeCompetitionNotices() {
-  return getCompetitions(CURRENT_COMPETITION_YEAR).filter((competition) => competition.homeNotice?.published);
+  return getCompetitions(CURRENT_COMPETITION_YEAR)
+    .filter((competition) => competition.homeNotice?.published)
+    .toReversed();
 }
