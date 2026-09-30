@@ -47,9 +47,10 @@ test('home publishes autumn and winter notices and shares their links with compe
       ],
     },
   ];
-  for (const { title, dates, links } of notices) {
-    const notice = page.getByRole('alert').filter({ hasText: title });
+  for (const [index, { title, dates, links }] of notices.entries()) {
+    const notice = page.getByRole('alert').nth(index);
     await expect(notice).toBeVisible();
+    await expect(notice).toContainText(title);
     for (const date of dates) {
       await expect(notice).toContainText(date);
     }
