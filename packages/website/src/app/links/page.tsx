@@ -69,7 +69,7 @@ function LinkListItem({ item, divider = true }: { readonly item: LinkItem; reado
 const currentPath = paths.sub.links;
 
 export const metadata = createPageMetadata({
-  title: currentPath.name,
+  title: currentPath.title,
   description: currentPath.description,
   path: currentPath.getHref(),
 });
@@ -77,7 +77,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <PageLayout
-      title={currentPath.name}
+      title={currentPath.title}
       page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },

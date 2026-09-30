@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 
 import { PageLayout } from '@/components/PageLayout';
+import { PageLinks } from '@/components/PageLinks';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Step, StepContent, StepLabel, Stepper } from '@/components/ui/stepper';
@@ -26,7 +27,7 @@ import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.recommendation;
 export const metadata = createPageMetadata({
-  title: '推薦申請の手続き・手数料',
+  title: currentPath.title,
   description: currentPath.description,
   path: currentPath.getHref(),
 });
@@ -34,7 +35,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <PageLayout
-      title={currentPath.name}
+      title={currentPath.title}
       page={{ path: currentPath.getHref(), description: currentPath.description }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
@@ -241,6 +242,7 @@ export default function Page() {
       </Card>
 
       <RecommendationBulletins />
+      <PageLinks pages={[paths.main.projects, paths.sub.forms, paths.main.about]} />
     </PageLayout>
   );
 }

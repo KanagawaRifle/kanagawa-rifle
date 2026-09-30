@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { app } from '@/config/app';
 import { env } from '@/config/env';
+import { NEWS_FEED_PATH } from '@/config/paths';
 import { isPreviewDeployment } from '@/config/seo';
 
 export function getSocialImageUrl(title: string): URL {
@@ -34,7 +35,12 @@ export function createPageMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(!isPreviewDeployment()
+        ? { types: { 'application/atom+xml': new URL(NEWS_FEED_PATH, env.APP_URL).toString() } }
+        : {}),
+    },
     openGraph: {
       title: fullTitle,
       description,

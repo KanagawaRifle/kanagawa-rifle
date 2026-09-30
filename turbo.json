@@ -104,7 +104,14 @@
       "outputs": []
     }
   },
-  "globalEnv": ["NODE_ENV", "CI", "VERCEL_ENV", "VERCEL_GIT_COMMIT_REF"],
+  "globalEnv": [
+    "NODE_ENV",
+    "CI",
+    "VERCEL_ENV",
+    "VERCEL_GIT_COMMIT_REF",
+    "GOOGLE_SITE_VERIFICATION",
+    "BING_SITE_VERIFICATION"
+  ],
   "globalDependencies": [
     ".env*",
     "tsconfig.json",

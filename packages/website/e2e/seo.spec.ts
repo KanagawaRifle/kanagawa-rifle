@@ -56,6 +56,11 @@ test('public pages serve distinct metadata and canonical URLs in the initial HTM
     expect(webPage.url).toBe(new URL(canonical!).toString());
     expect(webPage.isPartOf['@id']).toBe(website['@id']);
     expect(webPage.publisher['@id']).toBe(organization['@id']);
+    expect(webPage.name).toBe(document.querySelector('main h1')?.textContent);
+    expect(webPage.description).toBe(description);
+    expect(document.head.querySelector('link[type="application/atom+xml"]')?.getAttribute('href')).toBe(
+      new URL('/feed.xml', canonical).toString(),
+    );
     expect(organization.sameAs).toContain('https://www.facebook.com/KanagawaRifle');
     if (path === '/about') {
       expect(webPage['@type']).toBe('AboutPage');
@@ -98,12 +103,91 @@ test('pagination preserves distinct canonical pages and excludes alternate page 
     expect(breadcrumb.itemListElement.at(-1).item).toBe(url.toString());
     const collection = structured.find((data) => data['@type'] === 'CollectionPage');
     expect(collection['@id']).toBe(url.toString());
+    expect(collection.description).toBe(
+      document.head.querySelector('meta[name="description"]')?.getAttribute('content'),
+    );
     const articles = [...document.querySelectorAll('ul[aria-label="お知らせ一覧"] > li a')];
     expect(collection.mainEntity.numberOfItems).toBe(articles.length);
     expect(collection.mainEntity.itemListElement.map(({ item }: { item: { url: string } }) => item.url)).toEqual(
       articles.map((link) => new URL(link.getAttribute('href')!, url).toString()),
     );
   }
+});
+
+test('the update feed describes the same recent articles, canonical URLs and dates as the site', async ({
+  request,
+}) => {
+  const response = await request.get('/feed.xml');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('application/atom+xml');
+  expect(response.headers()['x-robots-tag']).toBe('noindex');
+  const document = new JSDOM(await response.text(), { contentType: 'application/xml' }).window.document;
+  expect(document.documentElement.namespaceURI).toBe('http://www.w3.org/2005/Atom');
+  const { data: news } = await (await request.get('/api/news?size=20')).json();
+  const entries = [...document.querySelectorAll('entry')];
+  expect(entries).toHaveLength(news.data.length);
+  for (const [index, entry] of entries.entries()) {
+    const article = news.data[index];
+    expect(new URL(entry.querySelector('id')!.textContent!).pathname).toBe(`/news/${article.slug}`);
+    expect(entry.querySelector('link')?.getAttribute('href')).toBe(entry.querySelector('id')?.textContent);
+    expect(entry.querySelector('title')?.textContent).toBe(article.title);
+    expect(entry.querySelector('published')?.textContent).toBe(article.published);
+    expect(entry.querySelector('updated')?.textContent).toBe(article.updated ?? article.published);
+    expect(entry.querySelector('summary')?.textContent).toBeTruthy();
+  }
+});
+
+test('historical articles with the same headline have distinguishable search titles', async ({ request }) => {
+  const titles = new Set<string>();
+  const headlines = new Set<string>();
+  for (const slug of ['2020-08-06-01', '2020-08-15-01']) {
+    const { data: article } = await (await request.get(`/api/news/${slug}`)).json();
+    const response = await request.get(`/news/${slug}`, { headers: botHeaders });
+    expect(response.status()).toBe(200);
+    const document = new JSDOM(await response.text()).window.document;
+    expect(document.querySelector('main h1')?.textContent).toBe(article.title);
+    const published = new Intl.DateTimeFormat('ja-JP', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'Asia/Tokyo',
+    }).format(new Date(article.published));
+    expect(document.title).toContain(`${article.title}（${published}）`);
+    expect(document.head.querySelector('meta[property="og:title"]')?.getAttribute('content')).toBe(document.title);
+    headlines.add(article.title);
+    titles.add(document.title);
+    const navigation = document.querySelector('nav[aria-label="前後のお知らせ"]');
+    expect(navigation?.querySelectorAll('a')).toHaveLength(2);
+    for (const link of navigation!.querySelectorAll('a')) {
+      expect((await request.get(link.getAttribute('href')!)).status()).toBe(200);
+    }
+  }
+  expect(headlines.size).toBe(1);
+  expect(titles.size).toBe(2);
+});
+
+test('contextual links and numbered archive navigation work without JavaScript and fit the viewport', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 360, height: 800 } });
+  const page = await context.newPage();
+  await page.goto('http://127.0.0.1:3100/join');
+  const guide = page.getByRole('navigation', { name: '関連するご案内' });
+  await guide.getByRole('link', { name: '申請書・各種様式' }).click();
+  await expect(page).toHaveURL(/\/forms$/);
+  await expect(page.getByRole('heading', { name: '申請書・各種様式', level: 1 })).toBeVisible();
+  await page.goto('http://127.0.0.1:3100/news?page=2');
+  await page
+    .getByRole('navigation', { name: 'ページネーション' })
+    .first()
+    .getByRole('link', { name: '3ページ目', exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/news\?page=3$/);
+  await expect(page.locator('nav[aria-label="ページネーション"]').first().locator('[aria-current="page"]')).toHaveText(
+    '3',
+  );
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await context.close();
 });
 
 test('articles expose matching dates, publisher identity, and crawlable social images', async ({ request }) => {

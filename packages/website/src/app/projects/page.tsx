@@ -140,7 +140,7 @@ function YearCard({ yearData }: { yearData: YearData }) {
 const currentPath = paths.main.projects;
 
 export const metadata = createPageMetadata({
-  title: '事業計画・年間予定',
+  title: currentPath.title,
   description: currentPath.description,
   path: currentPath.getHref(),
 });
@@ -148,7 +148,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <PageLayout
-      title={currentPath.name}
+      title={currentPath.title}
       page={{ path: currentPath.getHref(), description: currentPath.description, type: 'CollectionPage' }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },

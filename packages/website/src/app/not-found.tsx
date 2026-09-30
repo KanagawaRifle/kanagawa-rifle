@@ -14,6 +14,7 @@ const description = '指定されたページが見つかりませんでした�
 export const metadata: Metadata = {
   title,
   description,
+  robots: { index: false, follow: true },
 };
 
 export default function Page() {
