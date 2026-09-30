@@ -13,7 +13,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { app } from '@/config/app';
 import { env } from '@/config/env';
+import { createWebPageJsonLd, type WebPageOptions } from '@/lib/structured-data';
 
 type Props = {
   title?: string;
@@ -21,12 +23,20 @@ type Props = {
   breadcrumbs?: Array<{ name: string; path: string }>;
   children: React.ReactNode;
   withStack?: boolean;
+  page?: WebPageOptions;
 };
 
-function BreadcrumbJsonLd({ breadcrumbs }: { breadcrumbs: Array<{ name: string; path: string }> }) {
+function BreadcrumbJsonLd({
+  breadcrumbs,
+  path,
+}: {
+  breadcrumbs: Array<{ name: string; path: string }>;
+  path?: string;
+}) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    ...(path ? { '@id': `${new URL(path, env.APP_URL)}#breadcrumb` } : {}),
     itemListElement: breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -38,12 +48,15 @@ function BreadcrumbJsonLd({ breadcrumbs }: { breadcrumbs: Array<{ name: string; 
   return <JsonLd data={jsonLd} />;
 }
 
-export function PageLayout({ title, description, breadcrumbs, children, withStack = true }: Props) {
+export function PageLayout({ title, description, breadcrumbs, children, withStack = true, page }: Props) {
   return (
     <main id="main-content" tabIndex={-1} className="outline-none">
+      {page && (
+        <JsonLd data={createWebPageJsonLd({ ...page, title: title ?? app.name, withBreadcrumbs: !!breadcrumbs })} />
+      )}
       {breadcrumbs && (
         <>
-          <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
+          <BreadcrumbJsonLd breadcrumbs={breadcrumbs} path={page?.path} />
           <Breadcrumb aria-label="パンくずリスト" className="mx-auto w-full max-w-screen-md px-4 py-2">
             <BreadcrumbList>
               {breadcrumbs.map((breadcrumb, index) => {

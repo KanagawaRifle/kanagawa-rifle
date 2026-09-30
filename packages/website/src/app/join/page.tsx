@@ -17,11 +17,13 @@ export default function Page() {
   return (
     <PageLayout
       title={currentPath.name}
+      page={{ path: currentPath.getHref(), description: currentPath.description }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
         { name: currentPath.name, path: currentPath.getHref() },
       ]}
     >
+      <p>{currentPath.description}</p>
       <MembershipApplication />
       <MembershipFees />
     </PageLayout>

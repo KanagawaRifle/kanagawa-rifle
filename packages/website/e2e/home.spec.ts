@@ -1,6 +1,18 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Homepage', () => {
+  test('entry guidance exposes the main tasks without JavaScript', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto('http://127.0.0.1:3100/');
+    const navigation = page.getByRole('navigation', { name: '入会・大会参加のご案内' });
+    for (const path of ['/join', '/competitions', '/forms']) {
+      await expect(navigation.locator(`a[href="${path}"]`)).toBeVisible();
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await context.close();
+  });
+
   test('has title', async ({ page }) => {
     await page.goto('/');
 

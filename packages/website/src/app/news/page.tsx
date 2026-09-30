@@ -8,6 +8,7 @@ import { DEFAULT_NEWS_PAGE_SIZE } from '@/features/news/constants';
 import { getNewsListHref } from '@/features/news/paths';
 import { NewsQuerySchema } from '@/features/news/schema';
 import { getNewsList } from '@/features/news/server/news';
+import { getNewsListJsonLd } from '@/features/news/server/seo';
 import { createPageMetadata } from '@/lib/metadata';
 
 const currentPath = paths.main.news;
@@ -37,13 +38,18 @@ export async function generateMetadata({ searchParams }: Props) {
 
 export default async function Page({ searchParams }: Props) {
   const news = await getPage(searchParams);
+  const title =
+    news.pagination.current === 1 ? currentPath.name : `${currentPath.name}（${news.pagination.current}ページ目）`;
+  const path = getNewsListHref({ page: news.pagination.current, size: news.pagination.size });
 
   return (
     <PageLayout
-      title={currentPath.name}
+      title={title}
+      page={{ path, description: currentPath.description, type: 'CollectionPage', mainEntity: getNewsListJsonLd(news) }}
       breadcrumbs={[
         { name: paths.home.name, path: paths.home.getHref() },
-        { name: currentPath.name, path: currentPath.getHref() },
+        ...(news.pagination.current > 1 ? [{ name: currentPath.name, path: currentPath.getHref() }] : []),
+        { name: title, path },
       ]}
     >
       <p className="text-muted-foreground">{currentPath.description}</p>

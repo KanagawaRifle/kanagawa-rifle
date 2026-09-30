@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import type { NewsItem } from '../../types';
-import { getArticleDescription, getArticleJsonLd } from '../seo';
+import { getArticleDescription, getArticleImage, getArticleJsonLd, getNewsListJsonLd } from '../seo';
 
 vi.mock('@/config/env', () => ({ env: { APP_URL: 'https://example.test/' } }));
 
@@ -39,6 +39,7 @@ describe('article search metadata', () => {
       '@id': 'https://example.test/news/2026-01-01-01#article',
       url: 'https://example.test/news/2026-01-01-01',
       inLanguage: 'ja',
+      keywords: '大会',
       datePublished: '2026-01-01T00:00:00.000Z',
       dateModified: '2026-01-02T00:00:00.000Z',
       author: { '@id': 'https://example.test/#organization', url: 'https://example.test/about' },
@@ -47,5 +48,46 @@ describe('article search metadata', () => {
       mainEntityOfPage: { '@id': 'https://example.test/news/2026-01-01-01' },
     });
     expect(getArticleJsonLd(article).dateModified).toBe(article.published.toISOString());
+  });
+
+  it('uses visible Markdown and HTML images and resolves relative paths against the article URL', () => {
+    const withImage = { ...article, content: '![大会写真](/images/result.jpg)\n\n![別の写真](/images/second.jpg)' };
+    expect(getArticleImage(withImage)).toBe('https://example.test/images/result.jpg');
+    expect(getArticleJsonLd(withImage).image).toEqual(['https://example.test/images/result.jpg']);
+    expect(getArticleImage({ ...article, content: '<img src="photos/result.jpg" alt="結果">' })).toBe(
+      'https://example.test/news/photos/result.jpg',
+    );
+    expect(getArticleImage({ ...article, content: '![写真](https://cdn.example.test/result.png)' })).toBe(
+      'https://cdn.example.test/result.png',
+    );
+  });
+
+  it('does not invent article images or use empty, unsafe, invalid, hidden or code images', () => {
+    for (const content of [
+      '',
+      '<img src="" alt="空">',
+      '![写真](javascript:alert%281%29)',
+      '<img src="https://[invalid" alt="不正">',
+      '<div hidden><img src="/hidden.jpg" alt="非表示"></div>',
+      '```html\n<img src="/code.jpg">\n```',
+    ]) {
+      const item = { ...article, content, tags: [] };
+      expect(getArticleImage(item)).toBeUndefined();
+      expect(getArticleJsonLd(item)).not.toHaveProperty('image');
+      expect(getArticleJsonLd(item)).not.toHaveProperty('keywords');
+    }
+  });
+
+  it('describes exactly the articles and order displayed on each listing page', () => {
+    const jsonLd = getNewsListJsonLd({
+      data: [article, { ...article, slug: '2025-12-31-01', title: '前の記事' }],
+      pagination: { current: 2, size: 12, total: 14, totalPages: 2, hasNext: false, hasPrev: true },
+    });
+    expect(jsonLd['@id']).toBe('https://example.test/news?page=2#news-list');
+    expect(jsonLd.numberOfItems).toBe(2);
+    expect(jsonLd.itemListElement.map(({ position, item }) => [position, item.headline, item.url])).toEqual([
+      [1, article.title, 'https://example.test/news/2026-01-01-01'],
+      [2, '前の記事', 'https://example.test/news/2025-12-31-01'],
+    ]);
   });
 });

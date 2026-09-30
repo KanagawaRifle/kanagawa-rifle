@@ -59,6 +59,13 @@ describe('page metadata', () => {
     ).toMatchObject({ modifiedTime: article.published.toISOString() });
   });
 
+  it('uses an actual article image consistently without inventing its dimensions', () => {
+    const image = { url: 'https://cdn.example.test/result.jpg', alt: '大会写真' };
+    const metadata = createPageMetadata({ title: '大会結果', path: '/news/2026-01-01-01', image });
+    expect(metadata.openGraph?.images).toEqual([image]);
+    expect(metadata.twitter?.images).toEqual([image]);
+  });
+
   it.each([
     [undefined, undefined, false, true],
     ['production', 'main', false, true],

@@ -5,6 +5,7 @@ import { renderMarkdown } from '@/components/Markdown/renderMarkdown';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { getNewsItemHref } from '@/features/news/paths';
 import type { NewsItem } from '@/features/news/types';
@@ -42,6 +43,12 @@ export function NewsArticle({ news }: { news: NewsItem }) {
             </Badge>
           ))}
         </div>
+        <p className="text-muted-foreground mt-3 text-sm">
+          発信：
+          <Link href="/about" className="text-primary underline">
+            {app.name}
+          </Link>
+        </p>
       </header>
       {news.excerpt && (
         <div className="bg-muted text-muted-foreground mb-8 rounded-lg p-6 leading-relaxed italic">{news.excerpt}</div>
