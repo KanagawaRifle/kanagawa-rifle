@@ -20,7 +20,7 @@
     "lint:eslint": "repo-tooling run eslint . --max-warnings 0",
     "lint:prettier": "repo-tooling run prettier --check .",
     "lint:styles": "repo-tooling run stylelint \"app/**/*.css\"",
-    "typecheck": "repo-tooling run tsc --noEmit",
+    "typecheck": "next typegen && repo-tooling run tsc --noEmit",
     "fix": "repo-tooling run eslint . --fix && repo-tooling run prettier --write ."
   },
   "dependencies": {
