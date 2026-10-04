@@ -1,1 +1,1 @@
-export { CernBackground } from "./cern-background";
+export { CernBackground } from './cern-background';

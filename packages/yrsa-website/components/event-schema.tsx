@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/config";
+import { siteConfig } from '@/lib/config';
 
 export interface EventSchemaProps {
   /** イベント名 */
@@ -12,7 +12,7 @@ export interface EventSchemaProps {
   /** 定期開催の場合のスケジュール説明 */
   eventSchedule?: {
     /** 繰り返しの頻度 (Weekly, Monthly, Yearly) */
-    repeatFrequency: "Weekly" | "Monthly" | "Yearly";
+    repeatFrequency: 'Weekly' | 'Monthly' | 'Yearly';
     /** 曜日 (Sunday, Monday, ..., Saturday) */
     byDay?: string;
     /** 開始時刻 (HH:mm) */
@@ -38,14 +38,9 @@ export interface EventSchemaProps {
     name?: string;
   }[];
   /** イベントの状態 */
-  eventStatus?:
-    | "EventScheduled"
-    | "EventCancelled"
-    | "EventMovedOnline"
-    | "EventPostponed"
-    | "EventRescheduled";
+  eventStatus?: 'EventScheduled' | 'EventCancelled' | 'EventMovedOnline' | 'EventPostponed' | 'EventRescheduled';
   /** 参加方法 */
-  eventAttendanceMode?: "OfflineEventAttendanceMode" | "OnlineEventAttendanceMode" | "MixedEventAttendanceMode";
+  eventAttendanceMode?: 'OfflineEventAttendanceMode' | 'OnlineEventAttendanceMode' | 'MixedEventAttendanceMode';
 }
 
 /**
@@ -80,32 +75,32 @@ export function EventSchema({
   url,
   image,
   offers,
-  eventStatus = "EventScheduled",
-  eventAttendanceMode = "OfflineEventAttendanceMode",
+  eventStatus = 'EventScheduled',
+  eventAttendanceMode = 'OfflineEventAttendanceMode',
 }: EventSchemaProps) {
   // 定期開催の場合はEventSeriesスキーマを使用
   const isRecurring = !!eventSchedule;
 
   const baseSchema = {
-    "@context": "https://schema.org",
-    "@type": isRecurring ? "EventSeries" : "SportsEvent",
+    '@context': 'https://schema.org',
+    '@type': isRecurring ? 'EventSeries' : 'SportsEvent',
     name,
     ...(description && { description }),
     ...(url && { url }),
     ...(image && { image }),
     location: {
-      "@type": "Place",
+      '@type': 'Place',
       name: location.name,
       ...(location.address && {
         address: {
-          "@type": "PostalAddress",
+          '@type': 'PostalAddress',
           streetAddress: location.address,
-          addressCountry: "JP",
+          addressCountry: 'JP',
         },
       }),
     },
     organizer: {
-      "@type": "SportsOrganization",
+      '@type': 'SportsOrganization',
       name: organizer,
       url: siteConfig.baseUrl,
     },
@@ -125,8 +120,8 @@ export function EventSchema({
   if (isRecurring && eventSchedule) {
     Object.assign(baseSchema, {
       eventSchedule: {
-        "@type": "Schedule",
-        repeatFrequency: `P1${eventSchedule.repeatFrequency === "Weekly" ? "W" : eventSchedule.repeatFrequency === "Monthly" ? "M" : "Y"}`,
+        '@type': 'Schedule',
+        repeatFrequency: `P1${eventSchedule.repeatFrequency === 'Weekly' ? 'W' : eventSchedule.repeatFrequency === 'Monthly' ? 'M' : 'Y'}`,
         ...(eventSchedule.byDay && {
           byDay: `https://schema.org/${eventSchedule.byDay}`,
         }),
@@ -140,19 +135,14 @@ export function EventSchema({
   if (offers && offers.length > 0) {
     Object.assign(baseSchema, {
       offers: offers.map((offer) => ({
-        "@type": "Offer",
+        '@type': 'Offer',
         price: offer.price,
-        priceCurrency: offer.priceCurrency || "JPY",
+        priceCurrency: offer.priceCurrency || 'JPY',
         ...(offer.name && { name: offer.name }),
-        availability: "https://schema.org/InStock",
+        availability: 'https://schema.org/InStock',
       })),
     });
   }
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(baseSchema) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(baseSchema) }} />;
 }

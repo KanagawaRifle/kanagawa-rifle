@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import Image from "next/image";
+import Image from 'next/image';
+import type { ReactNode } from 'react';
 
 interface LiquidGlassCardProps {
   href: string;
@@ -9,13 +9,7 @@ interface LiquidGlassCardProps {
   children?: ReactNode;
 }
 
-export function LiquidGlassCard({
-  href,
-  image,
-  title,
-  description,
-  children,
-}: LiquidGlassCardProps) {
+export function LiquidGlassCard({ href, image, title, description, children }: LiquidGlassCardProps) {
   return (
     <a
       href={href}
@@ -32,10 +26,10 @@ export function LiquidGlassCard({
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/70 via-white/30 to-transparent" />
 
         {/* Diagonal highlight - simulates 3D glass curvature */}
-        <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rotate-45 bg-gradient-to-br from-white/50 to-transparent blur-sm" />
+        <div className="pointer-events-none absolute -top-16 -right-16 h-32 w-32 rotate-45 bg-gradient-to-br from-white/50 to-transparent blur-sm" />
 
         {/* Edge inner glow */}
-        <div className="pointer-events-none absolute inset-0 rounded-[22px] ring-1 ring-inset ring-white/40" />
+        <div className="pointer-events-none absolute inset-0 rounded-[22px] ring-1 ring-white/40 ring-inset" />
 
         {/* Image container */}
         <div className="relative overflow-hidden">
@@ -66,12 +60,7 @@ export function LiquidGlassCard({
 
           {children || (
             <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-slate-200/60 bg-slate-50/80 px-2.5 py-1 text-[11px] font-medium text-slate-400 backdrop-blur-sm transition-all duration-300 group-hover:border-blue-200/60 group-hover:bg-blue-50/80 group-hover:text-blue-500">
-              <svg
-                className="h-2.5 w-2.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

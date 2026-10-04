@@ -8,9 +8,10 @@
  * 例: npx tsx scripts/generate-calendar-pdf.ts 2025
  */
 
-import { config } from 'dotenv';
 import { promises as fs } from 'fs';
 import path from 'path';
+
+import { config } from 'dotenv';
 import PDFDocument from 'pdfkit';
 
 // Load environment variables from .env.local
@@ -213,7 +214,6 @@ async function generatePDF(fiscalYear: number, monthlyEvents: MonthlyEvents[]): 
     doc.font('NotoSerif');
 
     const reiwaYear = toReiwaYear(fiscalYear);
-    const today = new Date();
     const todayStr = `令和${reiwaYear}年3月31日`;
 
     // ヘッダー
@@ -231,7 +231,6 @@ async function generatePDF(fiscalYear: number, monthlyEvents: MonthlyEvents[]): 
     const colEventX = colDateX + colDateWidth;
     const colEventWidth = 345;
     const rowHeight = 20;
-    const cellPadding = 3; // 左右上下の余白
     let currentY = tableTop;
 
     // 表ヘッダー
@@ -290,9 +289,7 @@ async function generatePDF(fiscalYear: number, monthlyEvents: MonthlyEvents[]): 
       let rowIndex = 0;
       let isFirstRowInMonth = true;
 
-      dateGroups.forEach((dateGroup, dateGroupIndex) => {
-        const dateGroupStartY = currentY;
-
+      dateGroups.forEach((dateGroup) => {
         dateGroup.events.forEach((eventName, eventIndex) => {
           const cellHeight = rowHeights[rowIndex] ?? 20; // デフォルト値を設定
           const textY = currentY;

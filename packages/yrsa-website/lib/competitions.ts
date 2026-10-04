@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { promises as fs } from 'fs';
+import path from 'path';
 
 // Record type for competition results
 export interface ResultRecord {
@@ -24,7 +24,7 @@ export interface FiscalYearInfo {
 }
 
 // Event display order
-export const EVENT_ORDER = ["AR60S", "AP60", "HR40", "BR60S", "BR40FR", "BP60"];
+export const EVENT_ORDER = ['AR60S', 'AP60', 'HR40', 'BR60S', 'BR40FR', 'BP60'];
 
 // Get fiscal year from date (April = start of fiscal year)
 export function getFiscalYear(dateStr: string): number {
@@ -37,16 +37,16 @@ export function getFiscalYear(dateStr: string): number {
 // Parse CSV line handling quoted values
 function parseCSVLine(line: string): string[] {
   const values: string[] = [];
-  let current = "";
+  let current = '';
   let inQuotes = false;
 
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"') {
       inQuotes = !inQuotes;
-    } else if (char === "," && !inQuotes) {
+    } else if (char === ',' && !inQuotes) {
       values.push(current.trim());
-      current = "";
+      current = '';
     } else {
       current += char;
     }
@@ -73,7 +73,7 @@ export function parseCSV(csvText: string): ResultRecord[] {
     const [date, event, rankStr, name, seriesStr, totalStr, remarks] = values;
     if (!date || !event || !rankStr || !name || !seriesStr || !totalStr) continue;
 
-    const series = seriesStr.split("|").map((s) => parseFloat(s.trim()));
+    const series = seriesStr.split('|').map((s) => parseFloat(s.trim()));
 
     records.push({
       date,
@@ -82,7 +82,7 @@ export function parseCSV(csvText: string): ResultRecord[] {
       name,
       series,
       total: parseFloat(totalStr),
-      remarks: remarks || "",
+      remarks: remarks || '',
     });
   }
 
@@ -105,18 +105,18 @@ export function sortEvents(events: string[]): string[] {
 // Format date to Japanese display format
 export function formatDateJapanese(dateStr: string): string {
   const date = new Date(dateStr);
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+  const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 (${weekdays[date.getDay()]})`;
 }
 
 // Get CSV file path
 function getCSVPath(): string {
-  return path.join(process.cwd(), "data/competitions/monthly/results.csv");
+  return path.join(process.cwd(), 'data/competitions/monthly/results.csv');
 }
 
 // Load all results from CSV
 export async function loadAllResults(): Promise<ResultRecord[]> {
-  const csvText = await fs.readFile(getCSVPath(), "utf-8");
+  const csvText = await fs.readFile(getCSVPath(), 'utf-8');
   return parseCSV(csvText);
 }
 
@@ -124,10 +124,7 @@ export async function loadAllResults(): Promise<ResultRecord[]> {
 export async function getFiscalYears(): Promise<FiscalYearInfo[]> {
   const records = await loadAllResults();
 
-  const yearData = new Map<
-    number,
-    { dates: Set<string>; records: ResultRecord[] }
-  >();
+  const yearData = new Map<number, { dates: Set<string>; records: ResultRecord[] }>();
 
   records.forEach((record) => {
     const fiscalYear = getFiscalYear(record.date);
@@ -168,30 +165,22 @@ export interface ResultsFilter {
 }
 
 // Get results with optional filtering
-export async function getResults(
-  filter?: ResultsFilter
-): Promise<ResultRecord[]> {
+export async function getResults(filter?: ResultsFilter): Promise<ResultRecord[]> {
   let records = await loadAllResults();
 
   if (filter) {
     if (filter.year !== undefined) {
-      records = records.filter(
-        (r) => getFiscalYear(r.date) === filter.year
-      );
+      records = records.filter((r) => getFiscalYear(r.date) === filter.year);
     }
     if (filter.date) {
       records = records.filter((r) => r.date === filter.date);
     }
     if (filter.event) {
-      records = records.filter(
-        (r) => r.event.toLowerCase() === filter.event!.toLowerCase()
-      );
+      records = records.filter((r) => r.event.toLowerCase() === filter.event!.toLowerCase());
     }
     if (filter.name) {
       const searchName = filter.name.toLowerCase();
-      records = records.filter((r) =>
-        r.name.toLowerCase().includes(searchName)
-      );
+      records = records.filter((r) => r.name.toLowerCase().includes(searchName));
     }
   }
 
@@ -214,9 +203,7 @@ export async function getResults(
 }
 
 // Group results by date and event
-export function groupResultsByDateAndEvent(
-  records: ResultRecord[]
-): Map<string, Map<string, ResultRecord[]>> {
+export function groupResultsByDateAndEvent(records: ResultRecord[]): Map<string, Map<string, ResultRecord[]>> {
   const dateGroups = new Map<string, Map<string, ResultRecord[]>>();
 
   // Group by date
@@ -232,9 +219,7 @@ export function groupResultsByDateAndEvent(
   });
 
   // Sort dates descending
-  const sortedDates = Array.from(dateGroups.keys()).sort((a, b) =>
-    b.localeCompare(a)
-  );
+  const sortedDates = Array.from(dateGroups.keys()).sort((a, b) => b.localeCompare(a));
 
   const result = new Map<string, Map<string, ResultRecord[]>>();
 

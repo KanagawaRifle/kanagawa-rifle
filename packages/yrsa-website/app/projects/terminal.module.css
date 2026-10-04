@@ -6,41 +6,31 @@
 }
 
 .terminal::before {
-  content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
   z-index: 10;
+  pointer-events: none;
+  content: '';
+  background: repeating-linear-gradient(0deg, rgb(0 0 0 / 15%), rgb(0 0 0 / 15%) 1px, transparent 1px, transparent 2px);
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
 /* ターミナル背景のグラデーション（ビネット効果） */
 .terminal::after {
-  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  pointer-events: none;
   z-index: 9;
+  pointer-events: none;
+  content: '';
+  background: radial-gradient(ellipse at center, transparent 0%, rgb(0 0 0 / 30%) 100%);
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
 /* プロンプトのスタイル */
 .prompt {
   display: inline-flex;
-  align-items: center;
   gap: 0.25rem;
+  align-items: center;
 }
 
 .promptUser {
@@ -77,33 +67,39 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* コマンド出力のボックス */
 .outputBox {
   position: relative;
+  overflow: hidden;
+  background: rgb(13 17 23 / 80%);
   border: 1px solid #30363d;
   border-radius: 6px;
-  background: rgba(13, 17, 23, 0.8);
-  overflow: hidden;
 }
 
 .outputBox::before {
-  content: "";
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   height: 1px;
+  content: '';
   background: linear-gradient(90deg, transparent, #30363d, transparent);
 }
 
 /* ASCII アートのスタイル */
 .asciiArt {
-  color: #3fb950;
   line-height: 1.1;
+  color: #3fb950;
 }
 
 /* neofetch風の情報ボックス */
@@ -151,8 +147,8 @@
 /* セクション区切り */
 .sectionDivider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #30363d 20%, #30363d 80%, transparent);
   margin: 1rem 0;
+  background: linear-gradient(90deg, transparent, #30363d 20%, #30363d 80%, transparent);
 }
 
 /* タイピングアニメーション */
@@ -163,6 +159,11 @@
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }

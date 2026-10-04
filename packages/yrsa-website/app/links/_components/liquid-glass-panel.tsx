@@ -1,14 +1,11 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 interface LiquidGlassPanelProps {
   children: ReactNode;
   className?: string;
 }
 
-export function LiquidGlassPanel({
-  children,
-  className = "",
-}: LiquidGlassPanelProps) {
+export function LiquidGlassPanel({ children, className = '' }: LiquidGlassPanelProps) {
   return (
     <div className={`relative inline-block ${className}`}>
       {/* Layer 1: Shadow/depth layer */}

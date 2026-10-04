@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import "./cern.css";
+import type { ReactNode } from 'react';
+import './cern.css';
 
 interface CernBackgroundProps {
   children: ReactNode;

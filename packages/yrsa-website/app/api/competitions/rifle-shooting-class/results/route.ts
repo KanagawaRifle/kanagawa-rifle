@@ -1,13 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import {
-  getRifleClassResults,
-  getFiscalYear,
-  RIFLE_CLASS_EVENT_ORDER,
-} from "@/lib/rifle-shooting-class";
-import {
-  rifleClassResultsQuerySchema,
-  parseSearchParams,
-} from "@/lib/api/schemas";
+import { NextRequest, NextResponse } from 'next/server';
+
+import { rifleClassResultsQuerySchema, parseSearchParams } from '@/lib/api/schemas';
+import { getRifleClassResults, getFiscalYear, RIFLE_CLASS_EVENT_ORDER } from '@/lib/rifle-shooting-class';
 
 /**
  * GET /api/competitions/rifle-shooting-class/results
@@ -29,18 +23,15 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
 
     // Validate query parameters with Zod
-    const parseResult = parseSearchParams(
-      searchParams,
-      rifleClassResultsQuerySchema
-    );
+    const parseResult = parseSearchParams(searchParams, rifleClassResultsQuerySchema);
 
     if (!parseResult.success) {
       return NextResponse.json(
         {
-          error: "Validation error",
+          error: 'Validation error',
           message: parseResult.error,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -68,16 +59,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Get results
-    const results = await getRifleClassResults(
-      Object.keys(filter).length > 0 ? filter : undefined
-    );
+    const results = await getRifleClassResults(Object.keys(filter).length > 0 ? filter : undefined);
 
     // Get unique dates and events for metadata
     const dates = [...new Set(results.map((r) => r.date))];
     const events = [...new Set(results.map((r) => r.event))];
-    const fiscalYears = [
-      ...new Set(results.map((r) => getFiscalYear(r.date))),
-    ];
+    const fiscalYears = [...new Set(results.map((r) => getFiscalYear(r.date)))];
 
     const response = NextResponse.json({
       data: results,
@@ -104,20 +91,17 @@ export async function GET(request: NextRequest) {
 
     // Add cache headers for better performance
     // Cache for 1 hour, stale-while-revalidate for 1 day
-    response.headers.set(
-      "Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400"
-    );
+    response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
 
     return response;
   } catch (error) {
-    console.error("Error fetching rifle shooting class results:", error);
+    console.error('Error fetching rifle shooting class results:', error);
     return NextResponse.json(
       {
-        error: "Internal server error",
-        message: "結果の取得中にエラーが発生しました",
+        error: 'Internal server error',
+        message: '結果の取得中にエラーが発生しました',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

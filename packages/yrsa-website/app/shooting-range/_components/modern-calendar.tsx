@@ -1,21 +1,16 @@
-"use client";
+'use client';
 
-import jaLocale from "@fullcalendar/core/locales/ja";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
-import FullCalendar from "@fullcalendar/react";
-import { useState } from "react";
+import jaLocale from '@fullcalendar/core/locales/ja';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import FullCalendar from '@fullcalendar/react';
+import { useState } from 'react';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { env } from "@/lib/env";
-import { sanitizeHtml } from "@/lib/sanitize";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
+import { env } from '@/lib/env';
+import { sanitizeHtml } from '@/lib/sanitize';
 
-import styles from "./modern-calendar.module.css";
+import styles from './modern-calendar.module.css';
 
 interface EventDetail {
   title: string;
@@ -28,26 +23,22 @@ interface EventDetail {
 }
 
 function formatDate(date: Date | null, allDay: boolean): string {
-  if (!date) return "";
+  if (!date) return '';
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "short",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short',
   };
   if (!allDay) {
-    options.hour = "2-digit";
-    options.minute = "2-digit";
+    options.hour = '2-digit';
+    options.minute = '2-digit';
   }
-  return date.toLocaleDateString("ja-JP", options);
+  return date.toLocaleDateString('ja-JP', options);
 }
 
-function formatDateRange(
-  start: Date | null,
-  end: Date | null,
-  allDay: boolean
-): string {
-  if (!start) return "";
+function formatDateRange(start: Date | null, end: Date | null, allDay: boolean): string {
+  if (!start) return '';
   const startStr = formatDate(start, allDay);
   if (!end || start.getTime() === end.getTime()) {
     return startStr;
@@ -61,7 +52,7 @@ function formatDateRange(
     return `${startStr} 〜 ${formatDate(adjustedEnd, allDay)}`;
   }
   if (start.toDateString() === end.toDateString()) {
-    return `${startStr} 〜 ${end.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" })}`;
+    return `${startStr} 〜 ${end.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
   }
   return `${startStr} 〜 ${formatDate(end, allDay)}`;
 }
@@ -86,9 +77,9 @@ export function ModernCalendar() {
         ]}
         locale={jaLocale}
         headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth",
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth',
         }}
         height="auto"
         contentHeight="auto"
@@ -96,8 +87,8 @@ export function ModernCalendar() {
         dayMaxEvents={3}
         eventDisplay="block"
         eventTimeFormat={{
-          hour: "2-digit",
-          minute: "2-digit",
+          hour: '2-digit',
+          minute: '2-digit',
           meridiem: false,
           hour12: false,
         }}
@@ -109,9 +100,9 @@ export function ModernCalendar() {
             start: event.start,
             end: event.end,
             allDay: event.allDay,
-            location: event.extendedProps.location || "",
-            description: event.extendedProps.description || "",
-            url: event.url || "",
+            location: event.extendedProps.location || '',
+            description: event.extendedProps.description || '',
+            url: event.url || '',
           });
           setIsModalOpen(true);
         }}
@@ -131,14 +122,12 @@ export function ModernCalendar() {
             <div className="space-y-3 p-4 text-sm text-gray-700">
               {selectedEvent?.start && (
                 <div className="flex items-start gap-2">
-                  <span className="shrink-0" aria-hidden="true">🗓️</span>
+                  <span className="shrink-0" aria-hidden="true">
+                    🗓️
+                  </span>
                   <div>
                     <p className="font-semibold text-gray-800">
-                      {formatDateRange(
-                        selectedEvent.start,
-                        selectedEvent.end,
-                        selectedEvent.allDay
-                      )}
+                      {formatDateRange(selectedEvent.start, selectedEvent.end, selectedEvent.allDay)}
                     </p>
                   </div>
                 </div>
@@ -146,14 +135,16 @@ export function ModernCalendar() {
 
               {selectedEvent?.location && (
                 <div className="flex items-start gap-2">
-                  <span className="shrink-0" aria-hidden="true">📍</span>
+                  <span className="shrink-0" aria-hidden="true">
+                    📍
+                  </span>
                   <p className="text-gray-700">{selectedEvent.location}</p>
                 </div>
               )}
 
               {selectedEvent?.description && (
                 <div
-                  className="mt-3 rounded border border-gray-200 bg-gray-50 p-3 text-sm leading-relaxed [&_a]:text-emerald-600 [&_a]:underline [&_a:hover]:text-emerald-800 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
+                  className="mt-3 rounded border border-gray-200 bg-gray-50 p-3 text-sm leading-relaxed [&_a]:text-emerald-600 [&_a]:underline [&_a:hover]:text-emerald-800 [&_li]:my-1 [&_ul]:list-disc [&_ul]:pl-4"
                   // Sanitize HTML to prevent XSS attacks from calendar event descriptions
                   dangerouslySetInnerHTML={{
                     __html: sanitizeHtml(selectedEvent.description),

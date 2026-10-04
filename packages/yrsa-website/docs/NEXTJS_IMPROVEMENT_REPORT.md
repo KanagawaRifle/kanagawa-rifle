@@ -17,14 +17,14 @@ yrsa.website プロジェクトの Next.js アーキテクチャレビューを�
 
 実装したセキュリティヘッダー:
 
-| ヘッダー | 値 | 目的 |
-|---------|---|------|
-| Content-Security-Policy | `default-src 'self'; script-src 'self' 'unsafe-inline' ...` | XSS攻撃防止 |
-| Strict-Transport-Security | `max-age=31536000; includeSubDomains` | HTTPS強制 |
-| X-Frame-Options | `DENY` | クリックジャッキング防止 |
-| X-Content-Type-Options | `nosniff` | MIMEスニッフィング防止 |
-| Referrer-Policy | `strict-origin-when-cross-origin` | リファラー制御 |
-| Permissions-Policy | `camera=(), microphone=(), geolocation=()` | 機能制限 |
+| ヘッダー                  | 値                                                          | 目的                     |
+| ------------------------- | ----------------------------------------------------------- | ------------------------ |
+| Content-Security-Policy   | `default-src 'self'; script-src 'self' 'unsafe-inline' ...` | XSS 攻撃防止             |
+| Strict-Transport-Security | `max-age=31536000; includeSubDomains`                       | HTTPS 強制               |
+| X-Frame-Options           | `DENY`                                                      | クリックジャッキング防止 |
+| X-Content-Type-Options    | `nosniff`                                                   | MIME スニッフィング防止  |
+| Referrer-Policy           | `strict-origin-when-cross-origin`                           | リファラー制御           |
+| Permissions-Policy        | `camera=(), microphone=(), geolocation=()`                  | 機能制限                 |
 
 ### 1.2 XSS 脆弱性の修正
 
@@ -50,14 +50,15 @@ Zod スキーマによる型安全な入力検証:
 
 ```typescript
 export const monthlyResultsQuerySchema = z.object({
-  year: yearSchema,      // 2000-2100 範囲チェック
-  date: dateSchema,      // YYYY-MM-DD 形式
-  event: eventSchema,    // 1-20文字
-  name: nameSchema,      // 1-50文字
+  year: yearSchema, // 2000-2100 範囲チェック
+  date: dateSchema, // YYYY-MM-DD 形式
+  event: eventSchema, // 1-20文字
+  name: nameSchema, // 1-50文字
 });
 ```
 
 **適用済み API Routes**:
+
 - `/api/competitions/monthly/results`
 - `/api/competitions/rifle-shooting-class/results`
 - `/api/ogp`
@@ -68,10 +69,10 @@ export const monthlyResultsQuerySchema = z.object({
 
 ### 2.1 API キャッシュ戦略
 
-| API エンドポイント | キャッシュ設定 | 理由 |
-|-------------------|---------------|------|
-| `/api/ogp` | `max-age=604800` (1週間) | OGP画像は変更頻度が低い |
-| `/api/competitions/*` | `s-maxage=3600, stale-while-revalidate=86400` | 結果データは1日1回更新 |
+| API エンドポイント    | キャッシュ設定                                | 理由                     |
+| --------------------- | --------------------------------------------- | ------------------------ |
+| `/api/ogp`            | `max-age=604800` (1週間)                      | OGP 画像は変更頻度が低い |
+| `/api/competitions/*` | `s-maxage=3600, stale-while-revalidate=86400` | 結果データは1日1回更新   |
 
 ### 2.2 SSG 最適化 (確認済み)
 
@@ -94,15 +95,9 @@ export const monthlyResultsQuerySchema = z.object({
 **新規作成**: `app/error.tsx`
 
 ```typescript
-"use client";
+'use client';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   // エラー表示 + リトライボタン
   // 開発モードではエラー詳細表示
 }
@@ -130,13 +125,14 @@ export default function Error({
 
 **新規作成テストファイル**:
 
-| ファイル | テスト内容 |
-|---------|-----------|
-| `lib/sanitize.test.ts` | HTML サニタイズ関数 |
+| ファイル                   | テスト内容                   |
+| -------------------------- | ---------------------------- |
+| `lib/sanitize.test.ts`     | HTML サニタイズ関数          |
 | `lib/competitions.test.ts` | 年度計算、CSV パース、ソート |
-| `lib/api/schemas.test.ts` | API スキーマバリデーション |
+| `lib/api/schemas.test.ts`  | API スキーマバリデーション   |
 
 **テストカバレッジ対象**:
+
 - `sanitizeHtml()` - XSS 対策
 - `stripHtml()` - HTML タグ除去
 - `escapeHtml()` - HTML エスケープ
@@ -253,11 +249,11 @@ app/api/ogp/route.ts                 # キャッシュヘッダー追加
 
 本レビューにより、以下の改善を実施しました:
 
-| カテゴリ | 改善数 | 主な内容 |
-|---------|-------|---------|
-| セキュリティ | 4件 | CSP、HSTS、XSS対策、入力バリデーション |
-| パフォーマンス | 2件 | APIキャッシュ、静的生成確認 |
-| エラーハンドリング | 3件 | error.tsx、not-found.tsx、loading.tsx |
-| テスト | 3ファイル | sanitize、competitions、schemas |
+| カテゴリ           | 改善数    | 主な内容                                |
+| ------------------ | --------- | --------------------------------------- |
+| セキュリティ       | 4件       | CSP、HSTS、XSS 対策、入力バリデーション |
+| パフォーマンス     | 2件       | API キャッシュ、静的生成確認            |
+| エラーハンドリング | 3件       | error.tsx、not-found.tsx、loading.tsx   |
+| テスト             | 3ファイル | sanitize、competitions、schemas         |
 
 全体として、プロダクション品質のセキュリティとパフォーマンスを確保しつつ、保守性の高いコードベースを実現しました。

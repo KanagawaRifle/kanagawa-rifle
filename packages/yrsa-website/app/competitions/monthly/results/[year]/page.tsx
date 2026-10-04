@@ -1,24 +1,24 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { Win95Window, Win95Button } from "../../../_components";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
 import {
   getResults,
   getFiscalYears,
   groupResultsByDateAndEvent,
   formatDateJapanese,
   type ResultRecord,
-} from "@/lib/competitions";
-import iconMonthlyImage from "../../../_assets/icon-monthly.gif";
+} from '@/lib/competitions';
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import iconMonthlyImage from '../../../_assets/icon-monthly.gif';
+import { Win95Window, Win95Button } from '../../../_components';
 
 interface PageProps {
   params: Promise<{ year: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { year } = await params;
   return {
     title: `${year}年度 月例会（G4）結果 | 横須賀市ライフル射撃協会`,
@@ -28,8 +28,8 @@ export async function generateMetadata({
         {
           url: getOpengraphImageUrl({
             title: `${year}年度 月例会結果`,
-            subtitle: "大会結果一覧",
-            theme: "win95",
+            subtitle: '大会結果一覧',
+            theme: 'win95',
           }),
           width: 1200,
           height: 630,
@@ -56,43 +56,25 @@ function ResultsTable({ results }: { results: ResultRecord[] }) {
       <table className="w-full min-w-[600px] text-xs">
         <thead>
           <tr className="bg-[#000080] text-white">
-            <th
-              rowSpan={2}
-              className="w-12 border border-[#808080] p-1 text-center"
-            >
+            <th rowSpan={2} className="w-12 border border-[#808080] p-1 text-center">
               順位
             </th>
-            <th
-              rowSpan={2}
-              className="w-28 border border-[#808080] p-1 text-left"
-            >
+            <th rowSpan={2} className="w-28 border border-[#808080] p-1 text-left">
               氏名
             </th>
-            <th
-              colSpan={maxSeries}
-              className="border border-[#808080] p-1 text-center"
-            >
+            <th colSpan={maxSeries} className="border border-[#808080] p-1 text-center">
               シリーズ
             </th>
-            <th
-              rowSpan={2}
-              className="w-16 border border-[#808080] p-1 text-center"
-            >
+            <th rowSpan={2} className="w-16 border border-[#808080] p-1 text-center">
               合計
             </th>
-            <th
-              rowSpan={2}
-              className="w-16 border border-[#808080] p-1 text-left"
-            >
+            <th rowSpan={2} className="w-16 border border-[#808080] p-1 text-left">
               備考
             </th>
           </tr>
           <tr className="bg-[#000080] text-white">
             {Array.from({ length: maxSeries }, (_, i) => (
-              <th
-                key={i}
-                className="w-12 border border-[#808080] p-1 text-center"
-              >
+              <th key={i} className="w-12 border border-[#808080] p-1 text-center">
                 {i + 1}
               </th>
             ))}
@@ -100,34 +82,18 @@ function ResultsTable({ results }: { results: ResultRecord[] }) {
         </thead>
         <tbody>
           {results.map((result, idx) => (
-            <tr
-              key={`${result.name}-${result.rank}-${idx}`}
-              className={idx % 2 === 0 ? "bg-white" : "bg-[#f0f0f0]"}
-            >
-              <td className="border border-[#808080] p-1 text-center">
-                {result.rank}
-              </td>
+            <tr key={`${result.name}-${result.rank}-${idx}`} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#f0f0f0]'}>
+              <td className="border border-[#808080] p-1 text-center">{result.rank}</td>
               <td className="border border-[#808080] p-1">{result.name}</td>
               {result.series.map((score, i) => (
-                <td
-                  key={i}
-                  className="border border-[#808080] p-1 text-center"
-                >
+                <td key={i} className="border border-[#808080] p-1 text-center">
                   {score}
                 </td>
               ))}
-              {Array.from(
-                { length: maxSeries - result.series.length },
-                (_, i) => (
-                  <td
-                    key={`empty-${i}`}
-                    className="border border-[#808080] p-1"
-                  />
-                )
-              )}
-              <td className="border border-[#808080] p-1 text-center font-bold">
-                {result.total}
-              </td>
+              {Array.from({ length: maxSeries - result.series.length }, (_, i) => (
+                <td key={`empty-${i}`} className="border border-[#808080] p-1" />
+              ))}
+              <td className="border border-[#808080] p-1 text-center font-bold">{result.total}</td>
               <td className="border border-[#808080] p-1">{result.remarks}</td>
             </tr>
           ))}
@@ -161,24 +127,17 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
         icon="📊"
         className="mx-auto max-w-4xl"
       >
-        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+        <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] p-2">
           {/* Back button */}
           <div className="mb-2">
-            <Win95Button href="/competitions/monthly/results">
-              ← 年度一覧に戻る
-            </Win95Button>
+            <Win95Button href="/competitions/monthly/results">← 年度一覧に戻る</Win95Button>
           </div>
 
           {/* Header */}
-          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-            <Image
-              src={iconMonthlyImage}
-              alt="月例会"
-            />
-            <div className="mt-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#000080] px-4 py-1">
-              <span className="text-sm font-bold text-white">
-                📊 {fiscalYear}年度 大会結果
-              </span>
+          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-4">
+            <Image src={iconMonthlyImage} alt="月例会" />
+            <div className="mt-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#000080] px-4 py-1">
+              <span className="text-sm font-bold text-white">📊 {fiscalYear}年度 大会結果</span>
             </div>
           </div>
 
@@ -186,47 +145,40 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
           {dateEntries.map(([dateStr, eventGroups]) => (
             <div
               key={dateStr}
-              className="mb-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white"
+              className="mb-4 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white"
             >
               {/* Date header */}
               <div className="flex items-center gap-2 bg-gradient-to-r from-[#000080] to-[#1084d0] px-3 py-2">
-                <span className="text-sm font-bold text-white">
-                  📅 {formatDateJapanese(dateStr)}
-                </span>
+                <span className="text-sm font-bold text-white">📅 {formatDateJapanese(dateStr)}</span>
               </div>
 
               {/* Events for this date */}
               <div className="p-3">
-                {Array.from(eventGroups.entries()).map(
-                  ([eventName, eventResults], eventIdx) => (
-                    <div key={eventName} className={eventIdx > 0 ? "mt-4" : ""}>
-                      {/* Event name header */}
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] px-2 py-0.5">
-                          <span className="text-xs font-bold">
-                            🎯 {eventName}
-                          </span>
-                        </div>
+                {Array.from(eventGroups.entries()).map(([eventName, eventResults], eventIdx) => (
+                  <div key={eventName} className={eventIdx > 0 ? 'mt-4' : ''}>
+                    {/* Event name header */}
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] px-2 py-0.5">
+                        <span className="text-xs font-bold">🎯 {eventName}</span>
                       </div>
-                      {/* Results table */}
-                      <ResultsTable results={eventResults} />
                     </div>
-                  )
-                )}
+                    {/* Results table */}
+                    <ResultsTable results={eventResults} />
+                  </div>
+                ))}
               </div>
             </div>
           ))}
 
           {/* Info box */}
-          <div className="mt-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-3">
+          <div className="mt-4 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#ffffcc] p-3">
             <p className="text-xs">
-              <span className="font-bold">💡 ヒント:</span>{" "}
-              テーブルは横スクロールできます。
+              <span className="font-bold">💡 ヒント:</span> テーブルは横スクロールできます。
             </p>
           </div>
 
           {/* Status bar */}
-          <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
+          <div className="mt-4 flex border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0]">
             <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
               {fiscalYear}年度: {dateEntries.length}回開催
             </div>

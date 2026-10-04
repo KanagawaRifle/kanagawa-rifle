@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { siteConfig } from "@/lib/config";
+import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+
+import { siteConfig } from '@/lib/config';
 
 export interface BreadcrumbItem {
   name: string;
@@ -25,21 +26,21 @@ interface BreadcrumbProps {
  * />
  */
 export function Breadcrumb({ items, current }: BreadcrumbProps) {
-  const allItems = [{ name: "ホーム", href: "/" }, ...items];
+  const allItems = [{ name: 'ホーム', href: '/' }, ...items];
 
   // JSON-LD BreadcrumbList スキーマ
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
     itemListElement: [
       ...allItems.map((item, index) => ({
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: index + 1,
         name: item.name,
         item: `${siteConfig.baseUrl}${item.href}`,
       })),
       {
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: allItems.length + 1,
         name: current,
       },
@@ -49,26 +50,17 @@ export function Breadcrumb({ items, current }: BreadcrumbProps) {
   return (
     <>
       {/* JSON-LD 構造化データ */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* 視覚的なパンくずリスト */}
       <nav aria-label="パンくずリスト" className="text-sm">
         <ol className="flex flex-wrap items-center gap-1">
-          {allItems.map((item, index) => (
+          {allItems.map((item) => (
             <li key={item.href} className="flex items-center">
-              <Link
-                href={item.href}
-                className="text-blue-600 hover:text-blue-800 hover:underline"
-              >
+              <Link href={item.href} className="text-blue-600 hover:text-blue-800 hover:underline">
                 {item.name}
               </Link>
-              <ChevronRight
-                className="mx-1 h-4 w-4 text-gray-400"
-                aria-hidden="true"
-              />
+              <ChevronRight className="mx-1 h-4 w-4 text-gray-400" aria-hidden="true" />
             </li>
           ))}
           <li>

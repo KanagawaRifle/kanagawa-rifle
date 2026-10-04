@@ -13,30 +13,30 @@
 
 ### グローバルスタイル (globals.css)
 
-| 変更内容 | 目的 |
-|---------|------|
-| CSS 変数 `--font-retro` 追加 | フォントスタックの一元管理 |
-| CSS 変数 `--win95-*` 追加 | Win95 テーマカラーの一元管理 |
-| `.font-retro` クラス追加 | インラインスタイル削減 |
-| `.text-shadow-sm/md` 追加 | コントラスト改善 |
-| `.animate-marquee` 追加 | マーキーアニメーション |
-| `motion-reduce` メディアクエリ強化 | アクセシビリティ改善 |
+| 変更内容                           | 目的                         |
+| ---------------------------------- | ---------------------------- |
+| CSS 変数 `--font-retro` 追加       | フォントスタックの一元管理   |
+| CSS 変数 `--win95-*` 追加          | Win95 テーマカラーの一元管理 |
+| `.font-retro` クラス追加           | インラインスタイル削減       |
+| `.text-shadow-sm/md` 追加          | コントラスト改善             |
+| `.animate-marquee` 追加            | マーキーアニメーション       |
+| `motion-reduce` メディアクエリ強化 | アクセシビリティ改善         |
 
 ### コンポーネント改善
 
-| コンポーネント | 変更内容 |
-|--------------|---------|
-| Header | `motion-safe:` プレフィックス追加、`font-retro` クラス適用 |
-| Footer | `motion-safe:` プレフィックス追加、`font-retro` クラス適用 |
-| Win95Window | `asSection` prop 追加、CSS 変数使用、セマンティック HTML |
-| Win95Button | `focus-visible` 対応、`disabled` 状態追加、JSDoc 追加 |
+| コンポーネント | 変更内容                                                   |
+| -------------- | ---------------------------------------------------------- |
+| Header         | `motion-safe:` プレフィックス追加、`font-retro` クラス適用 |
+| Footer         | `motion-safe:` プレフィックス追加、`font-retro` クラス適用 |
+| Win95Window    | `asSection` prop 追加、CSS 変数使用、セマンティック HTML   |
+| Win95Button    | `focus-visible` 対応、`disabled` 状態追加、JSDoc 追加      |
 
 ### 新規コンポーネント
 
-| コンポーネント | 説明 |
-|--------------|------|
-| RetroCard | 2000年代風カードコンポーネント（8色バリアント対応） |
-| RetroButton | 2000年代風グラデーションボタン（7色バリアント対応） |
+| コンポーネント | 説明                                                |
+| -------------- | --------------------------------------------------- |
+| RetroCard      | 2000年代風カードコンポーネント（8色バリアント対応） |
+| RetroButton    | 2000年代風グラデーションボタン（7色バリアント対応） |
 
 ---
 
@@ -45,12 +45,14 @@
 ### アニメーション
 
 **Before:**
+
 ```tsx
 <span className="animate-spin text-2xl">🎯</span>
 <span className="animate-bounce">⭐</span>
 ```
 
 **After:**
+
 ```tsx
 <span className="text-2xl motion-safe:animate-spin" aria-hidden="true">🎯</span>
 <span className="motion-safe:animate-bounce">⭐</span>
@@ -59,11 +61,13 @@
 ### フォントスタイル
 
 **Before:**
+
 ```tsx
-<span style={{ fontFamily: "Comic Sans MS, cursive" }}>テキスト</span>
+<span style={{ fontFamily: 'Comic Sans MS, cursive' }}>テキスト</span>
 ```
 
 **After:**
+
 ```tsx
 <span className="font-retro">テキスト</span>
 ```
@@ -71,13 +75,15 @@
 ### ボタンコントラスト
 
 **Before:**
+
 ```tsx
-<Link className="... text-white ...">ボタン</Link>
+<Link className="text-white ... ...">ボタン</Link>
 ```
 
 **After:**
+
 ```tsx
-<Link className="... text-white text-shadow-sm ...">ボタン</Link>
+<Link className="text-white text-shadow-sm ... ...">ボタン</Link>
 ```
 
 ---
@@ -109,11 +115,11 @@
 
 ### パフォーマンス
 
-| 項目 | 変更 |
-|-----|------|
-| CSS バンドルサイズ | 微増（約 500B） |
+| 項目                     | 変更                           |
+| ------------------------ | ------------------------------ |
+| CSS バンドルサイズ       | 微増（約 500B）                |
 | ランタイムパフォーマンス | 向上（インラインスタイル削減） |
-| アニメーション | 最適化（motion-reduce 対応） |
+| アニメーション           | 最適化（motion-reduce 対応）   |
 
 ### コンポーネント構造
 
@@ -134,25 +140,25 @@ app/competitions/_components/
 
 ## アクセシビリティ改善ログ
 
-| 項目 | Before | After |
-|-----|--------|-------|
-| アニメーション制御 | 常に実行 | `motion-safe:` で条件付き |
-| フォーカス表示 | `focus:ring` | `focus-visible:ring` |
-| 装飾要素 | 一部 `aria-hidden` 欠落 | すべて `aria-hidden="true"` |
-| マーキー | アクセシビリティ属性なし | `role="region"` `aria-label` 追加 |
-| ボタン disabled | 未対応 | `disabled` `aria-disabled` 対応 |
-| セマンティック HTML | `div` 多用 | `section` 対応 |
+| 項目                | Before                   | After                             |
+| ------------------- | ------------------------ | --------------------------------- |
+| アニメーション制御  | 常に実行                 | `motion-safe:` で条件付き         |
+| フォーカス表示      | `focus:ring`             | `focus-visible:ring`              |
+| 装飾要素            | 一部 `aria-hidden` 欠落  | すべて `aria-hidden="true"`       |
+| マーキー            | アクセシビリティ属性なし | `role="region"` `aria-label` 追加 |
+| ボタン disabled     | 未対応                   | `disabled` `aria-disabled` 対応   |
+| セマンティック HTML | `div` 多用               | `section` 対応                    |
 
 ---
 
 ## レスポンシブ改善ログ
 
-| 項目 | 対応状況 |
-|-----|---------|
-| ナビゲーション | flex-wrap で自動折り返し |
+| 項目             | 対応状況                   |
+| ---------------- | -------------------------- |
+| ナビゲーション   | flex-wrap で自動折り返し   |
 | カードレイアウト | grid + md:grid-cols-2 対応 |
-| フォントサイズ | text-sm md:text-base 対応 |
-| パディング | px-3 md:px-4 対応 |
+| フォントサイズ   | text-sm md:text-base 対応  |
+| パディング       | px-3 md:px-4 対応          |
 
 ---
 
@@ -200,18 +206,18 @@ CSS 変数を上書きすることでテーマカスタマイズが可能:
 
 ```css
 :root {
-  --win95-bg: #d4d0c8;      /* Windows 2000 風 */
-  --win95-navy: #0a246a;    /* より濃い青 */
+  --win95-bg: #d4d0c8; /* Windows 2000 風 */
+  --win95-navy: #0a246a; /* より濃い青 */
 }
 ```
 
 ### 4. コンポーネントの使い分け
 
-| 用途 | 推奨コンポーネント |
-|-----|-------------------|
-| 2000年代レトロページ | RetroCard, RetroButton |
-| Win95 風ページ | Win95Window, Win95Button |
-| モダンページ | Tailwind ユーティリティ直接使用 |
+| 用途                 | 推奨コンポーネント              |
+| -------------------- | ------------------------------- |
+| 2000年代レトロページ | RetroCard, RetroButton          |
+| Win95 風ページ       | Win95Window, Win95Button        |
+| モダンページ         | Tailwind ユーティリティ直接使用 |
 
 ---
 
@@ -241,11 +247,11 @@ packages/yrsa.website/
 
 本レビューでは、アクセシビリティとコード品質の両面から UI を改善しました。
 
-| カテゴリ | 改善数 |
-|---------|-------|
-| アクセシビリティ | 6項目 |
-| コード品質 | 4項目 |
-| 新規コンポーネント | 2個 |
-| 改善コンポーネント | 4個 |
+| カテゴリ           | 改善数 |
+| ------------------ | ------ |
+| アクセシビリティ   | 6項目  |
+| コード品質         | 4項目  |
+| 新規コンポーネント | 2個    |
+| 改善コンポーネント | 4個    |
 
 レトロデザインのテーマ性を維持しながら、現代的なアクセシビリティ基準とコード品質を達成しました。

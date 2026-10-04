@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 /**
  * API validation schemas
@@ -12,7 +12,7 @@ import { z } from "zod";
  */
 export const dateSchema = z
   .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "日付は YYYY-MM-DD 形式で指定してください")
+  .regex(/^\d{4}-\d{2}-\d{2}$/, '日付は YYYY-MM-DD 形式で指定してください')
   .optional();
 
 /**
@@ -20,9 +20,9 @@ export const dateSchema = z
  */
 export const yearSchema = z
   .string()
-  .regex(/^\d{4}$/, "年度は4桁の数字で指定してください")
+  .regex(/^\d{4}$/, '年度は4桁の数字で指定してください')
   .transform((val) => parseInt(val, 10))
-  .refine((val) => val >= 2000 && val <= 2100, "年度は2000〜2100の範囲で指定してください")
+  .refine((val) => val >= 2000 && val <= 2100, '年度は2000〜2100の範囲で指定してください')
   .optional();
 
 /**
@@ -30,8 +30,8 @@ export const yearSchema = z
  */
 export const eventSchema = z
   .string()
-  .min(1, "イベント名を指定してください")
-  .max(20, "イベント名は20文字以内で指定してください")
+  .min(1, 'イベント名を指定してください')
+  .max(20, 'イベント名は20文字以内で指定してください')
   .optional();
 
 /**
@@ -39,8 +39,8 @@ export const eventSchema = z
  */
 export const nameSchema = z
   .string()
-  .min(1, "名前を指定してください")
-  .max(50, "名前は50文字以内で指定してください")
+  .min(1, '名前を指定してください')
+  .max(50, '名前は50文字以内で指定してください')
   .optional();
 
 /**
@@ -69,16 +69,11 @@ export const rifleClassResultsQuerySchema = z.object({
 export const ogpQuerySchema = z.object({
   title: z
     .string()
-    .min(1, "タイトルは必須です")
-    .max(100, "タイトルは100文字以内で指定してください")
-    .default("横須賀市ライフル射撃協会"),
-  subtitle: z
-    .string()
-    .max(100, "サブタイトルは100文字以内で指定してください")
-    .optional(),
-  theme: z
-    .enum(["default", "cern", "win95", "modern", "terminal", "glass"])
-    .default("default"),
+    .min(1, 'タイトルは必須です')
+    .max(100, 'タイトルは100文字以内で指定してください')
+    .default('横須賀市ライフル射撃協会'),
+  subtitle: z.string().max(100, 'サブタイトルは100文字以内で指定してください').optional(),
+  theme: z.enum(['default', 'cern', 'win95', 'modern', 'terminal', 'glass']).default('default'),
 });
 
 /**
@@ -97,7 +92,7 @@ export type OgpQuery = z.infer<typeof ogpQuerySchema>;
  */
 export function parseSearchParams<T extends z.ZodType>(
   searchParams: URLSearchParams,
-  schema: T
+  schema: T,
 ): { success: true; data: z.infer<T> } | { success: false; error: string } {
   const rawParams: Record<string, string | undefined> = {};
 
@@ -108,9 +103,7 @@ export function parseSearchParams<T extends z.ZodType>(
   const result = schema.safeParse(rawParams);
 
   if (!result.success) {
-    const errors = result.error.issues
-      .map((issue) => `${issue.path.join(".")}: ${issue.message}`)
-      .join(", ");
+    const errors = result.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join(', ');
     return { success: false, error: errors };
   }
 

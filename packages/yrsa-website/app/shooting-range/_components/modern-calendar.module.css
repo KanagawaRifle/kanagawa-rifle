@@ -1,6 +1,11 @@
 /* モダンアクセシブルテーマ - エメラルドグリーン */
 .wrapper {
-  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }
 
 .wrapper :global(.fc) {
@@ -10,8 +15,8 @@
 }
 
 .wrapper :global(.fc-toolbar) {
-  background: #fff;
   padding: 16px;
+  background: #fff;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -22,32 +27,32 @@
 }
 
 .wrapper :global(.fc-button) {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
   background: #fff;
   border: 1px solid #d1d5db;
-  color: #374151;
-  font-size: 0.875rem;
-  padding: 6px 12px;
   border-radius: 6px;
   transition: all 0.2s;
-  font-weight: 500;
 }
 
 .wrapper :global(.fc-button:hover) {
+  color: #059669;
   background: #ecfdf5;
   border-color: #059669;
-  color: #059669;
 }
 
 .wrapper :global(.fc-button:active),
 .wrapper :global(.fc-button-active) {
+  color: #fff;
   background: #059669;
   border-color: #059669;
-  color: #fff;
 }
 
 .wrapper :global(.fc-button:disabled) {
-  opacity: 0.4;
   cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .wrapper :global(.fc-daygrid-day) {
@@ -55,9 +60,9 @@
 }
 
 .wrapper :global(.fc-daygrid-day-number) {
-  color: #1f2937;
-  font-weight: 500;
   padding: 4px;
+  font-weight: 500;
+  color: #1f2937;
 }
 
 .wrapper :global(.fc-day-sun .fc-daygrid-day-number) {
@@ -73,48 +78,48 @@
 }
 
 .wrapper :global(.fc-daygrid-day.fc-day-today .fc-daygrid-day-number) {
-  background: #059669;
-  color: #fff;
-  border-radius: 9999px;
-  min-width: 36px;
-  height: 28px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 36px;
+  height: 28px;
   padding: 0 8px;
-  box-sizing: border-box;
+  color: #fff;
   white-space: nowrap;
+  background: #059669;
+  border-radius: 9999px;
 }
 
 .wrapper :global(.fc-event) {
-  background: #d1fae5;  /* emerald-100 */
-  border: 1px solid #a7f3d0;  /* emerald-200 */
-  border-radius: 4px;
-  font-size: 0.75rem;
   padding: 2px 4px;
+  font-size: 0.75rem;
+  color: #047857; /* emerald-700 */
+  background: #d1fae5; /* emerald-100 */
+  border: 1px solid #a7f3d0; /* emerald-200 */
+  border-radius: 4px;
   transition: all 0.2s;
-  color: #047857;  /* emerald-700 */
 }
 
 .wrapper :global(.fc-event:hover) {
-  background: #a7f3d0;  /* emerald-200 */
-  border-color: #6ee7b7;  /* emerald-300 */
+  background: #a7f3d0; /* emerald-200 */
+  border-color: #6ee7b7; /* emerald-300 */
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper :global(.fc-event-title) {
   font-weight: 500;
-  color: #047857;  /* emerald-700 */
+  color: #047857; /* emerald-700 */
 }
 
 .wrapper :global(.fc-col-header-cell) {
-  background: #047857;
-  color: #fff;
-  font-weight: 600;
   padding: 8px;
-  border: 1px solid #059669;
   font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: #047857;
+  border: 1px solid #059669;
 }
 
 .wrapper :global(.fc-scrollgrid) {
@@ -131,8 +136,8 @@
 }
 
 .wrapper :global(.fc-more-link) {
-  color: #059669;
   font-weight: 500;
+  color: #059669;
 }
 
 .wrapper :global(.fc-more-link:hover) {

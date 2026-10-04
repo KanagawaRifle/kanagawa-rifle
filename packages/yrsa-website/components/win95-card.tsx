@@ -1,6 +1,7 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { cn } from '@/lib/utils';
 
 interface Win95CardProps {
   href?: string;
@@ -11,27 +12,19 @@ interface Win95CardProps {
   className?: string;
 }
 
-export function Win95Card({
-  href,
-  title,
-  description,
-  imageSrc,
-  imageAlt = "",
-  className,
-}: Win95CardProps) {
+export function Win95Card({ href, title, description, imageSrc, imageAlt = '', className }: Win95CardProps) {
   const content = (
     <div
       className={cn(
-        "flex w-full flex-col bg-[#c0c0c0] md:flex-row",
-        "border-2 border-t-white border-l-white border-r-[#808080] border-b-[#808080]",
-        href &&
-          "hover:border-t-[#808080] hover:border-l-[#808080] hover:border-r-white hover:border-b-white",
-        "[box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]",
-        className
+        'flex w-full flex-col bg-[#c0c0c0] md:flex-row',
+        'border-2 border-t-white border-r-[#808080] border-b-[#808080] border-l-white',
+        href && 'hover:border-t-[#808080] hover:border-r-white hover:border-b-white hover:border-l-[#808080]',
+        '[box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]',
+        className,
       )}
     >
       {imageSrc && (
-        <div className="m-2 border-2 border-t-[#808080] border-l-[#808080] border-r-white border-b-white md:flex-shrink-0">
+        <div className="m-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] md:flex-shrink-0">
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -46,7 +39,7 @@ export function Win95Card({
           <div className="h-3 w-3 border border-white bg-[#c0c0c0]"></div>
           <h5 className="font-bold text-white">{title}</h5>
         </div>
-        <div className="border-2 border-t-[#808080] border-l-[#808080] border-r-white border-b-white bg-white p-2">
+        <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-2">
           <p className="leading-relaxed text-black">{description}</p>
         </div>
       </div>

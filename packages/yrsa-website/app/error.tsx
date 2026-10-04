@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -14,7 +14,7 @@ interface ErrorProps {
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error("Application error:", error);
+    console.error('Application error:', error);
   }, [error]);
 
   return (
@@ -25,45 +25,36 @@ export default function Error({ error, reset }: ErrorProps) {
 
         <h2
           className="mb-4 text-center text-2xl font-bold text-red-600"
-          style={{ fontFamily: "Comic Sans MS, cursive" }}
+          style={{ fontFamily: 'Comic Sans MS, cursive' }}
         >
           エラーが発生しました
         </h2>
 
-        <p className="mb-6 text-center text-gray-600">
-          申し訳ございません。ページの読み込み中にエラーが発生しました。
-        </p>
+        <p className="mb-6 text-center text-gray-600">申し訳ございません。ページの読み込み中にエラーが発生しました。</p>
 
         {/* Error details (only in development) */}
-        {process.env.NODE_ENV === "development" && (
+        {process.env.NODE_ENV === 'development' && (
           <details className="mb-4 rounded border border-gray-300 bg-gray-50 p-2">
-            <summary className="cursor-pointer text-sm text-gray-500">
-              エラー詳細（開発環境のみ表示）
-            </summary>
-            <pre className="mt-2 overflow-auto text-xs text-red-600">
-              {error.message}
-            </pre>
-            {error.digest && (
-              <p className="mt-1 text-xs text-gray-400">
-                Digest: {error.digest}
-              </p>
-            )}
+            <summary className="cursor-pointer text-sm text-gray-500">エラー詳細（開発環境のみ表示）</summary>
+            <pre className="mt-2 overflow-auto text-xs text-red-600">{error.message}</pre>
+            {error.digest && <p className="mt-1 text-xs text-gray-400">Digest: {error.digest}</p>}
           </details>
         )}
 
         <div className="flex flex-col gap-3">
           <button
             onClick={reset}
-            className="w-full rounded bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 font-bold text-white shadow transition-all hover:scale-105 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-            style={{ fontFamily: "Comic Sans MS, cursive" }}
+            className="w-full rounded bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 font-bold text-white shadow transition-all hover:scale-105 hover:from-purple-600 hover:to-pink-600 focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:outline-none"
+            style={{ fontFamily: 'Comic Sans MS, cursive' }}
           >
             🔄 もう一度試す
           </button>
 
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Reload the document to recover even when the root segment error boundary is active. */}
           <a
             href="/"
-            className="w-full rounded border-2 border-purple-400 bg-white px-6 py-3 text-center font-bold text-purple-600 shadow transition-all hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-            style={{ fontFamily: "Comic Sans MS, cursive" }}
+            className="w-full rounded border-2 border-purple-400 bg-white px-6 py-3 text-center font-bold text-purple-600 shadow transition-all hover:bg-purple-50 focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:outline-none"
+            style={{ fontFamily: 'Comic Sans MS, cursive' }}
           >
             🏠 トップページへ戻る
           </a>

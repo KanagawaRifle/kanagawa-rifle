@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { Win95Window, Win95Button } from "../../../_components";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
 import {
   getRifleClassResults,
   getRifleClassFiscalYears,
   groupRifleClassResultsByDateAndEvent,
   formatDateJapanese,
   type ResultRecord,
-} from "@/lib/rifle-shooting-class";
-import iconShootingClassImage from "../../../_assets/icon-shooting-class.gif";
+} from '@/lib/rifle-shooting-class';
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import iconShootingClassImage from '../../../_assets/icon-shooting-class.gif';
+import { Win95Window, Win95Button } from '../../../_components';
 
 interface PageProps {
   params: Promise<{ year: string }>;
@@ -22,16 +24,14 @@ function toJapaneseEra(year: number): string {
   // 平成: 〜2018年 (2018 = 平成30年)
   if (year >= 2019) {
     const eraYear = year - 2018;
-    return `令和${eraYear === 1 ? "元" : eraYear}`;
+    return `令和${eraYear === 1 ? '元' : eraYear}`;
   } else {
     const eraYear = year - 1988;
     return `平成${eraYear}`;
   }
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { year } = await params;
   const japaneseEra = toJapaneseEra(parseInt(year));
   return {
@@ -42,8 +42,8 @@ export async function generateMetadata({
         {
           url: getOpengraphImageUrl({
             title: `${japaneseEra}年度 射撃教室結果`,
-            subtitle: "大会結果一覧",
-            theme: "win95",
+            subtitle: '大会結果一覧',
+            theme: 'win95',
           }),
           width: 1200,
           height: 630,
@@ -69,56 +69,33 @@ function ResultsTable({ results }: { results: ResultRecord[] }) {
       <table className="w-full min-w-[500px] text-xs">
         <thead>
           <tr className="bg-[#000080] text-white">
-            <th className="w-12 border border-[#808080] p-1 text-center">
-              順位
-            </th>
+            <th className="w-12 border border-[#808080] p-1 text-center">順位</th>
             <th className="w-28 border border-[#808080] p-1 text-left">氏名</th>
             {Array.from({ length: maxSeries }, (_, i) => (
-              <th
-                key={i}
-                className="w-12 border border-[#808080] p-1 text-center"
-              >
+              <th key={i} className="w-12 border border-[#808080] p-1 text-center">
                 {i + 1}
               </th>
             ))}
-            <th className="w-14 border border-[#808080] p-1 text-center">
-              合計
-            </th>
+            <th className="w-14 border border-[#808080] p-1 text-center">合計</th>
             <th className="w-16 border border-[#808080] p-1 text-left">備考</th>
           </tr>
         </thead>
         <tbody>
           {results.map((result, idx) => (
-            <tr
-              key={`${result.name}-${result.rank}-${idx}`}
-              className={idx % 2 === 0 ? "bg-white" : "bg-[#f0f0f0]"}
-            >
-              <td className="border border-[#808080] p-1 text-center">
-                {result.rank}
-              </td>
+            <tr key={`${result.name}-${result.rank}-${idx}`} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#f0f0f0]'}>
+              <td className="border border-[#808080] p-1 text-center">{result.rank}</td>
               <td className="border border-[#808080] p-1">{result.name}</td>
               {result.series.map((score, i) => (
-                <td
-                  key={i}
-                  className="border border-[#808080] p-1 text-center"
-                >
+                <td key={i} className="border border-[#808080] p-1 text-center">
                   {score}
                 </td>
               ))}
-              {Array.from(
-                { length: maxSeries - result.series.length },
-                (_, i) => (
-                  <td
-                    key={`empty-${i}`}
-                    className="border border-[#808080] p-1 text-center"
-                  >
-                    -
-                  </td>
-                )
-              )}
-              <td className="border border-[#808080] p-1 text-center font-bold">
-                {result.total}
-              </td>
+              {Array.from({ length: maxSeries - result.series.length }, (_, i) => (
+                <td key={`empty-${i}`} className="border border-[#808080] p-1 text-center">
+                  -
+                </td>
+              ))}
+              <td className="border border-[#808080] p-1 text-center font-bold">{result.total}</td>
               <td className="border border-[#808080] p-1">{result.remarks}</td>
             </tr>
           ))}
@@ -155,24 +132,17 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
         icon="📊"
         className="mx-auto max-w-4xl"
       >
-        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+        <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] p-2">
           {/* Back button */}
           <div className="mb-2">
-            <Win95Button href="/competitions/rifle-shooting-class/results">
-              ← 年度一覧に戻る
-            </Win95Button>
+            <Win95Button href="/competitions/rifle-shooting-class/results">← 年度一覧に戻る</Win95Button>
           </div>
 
           {/* Header */}
-          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-            <Image
-              src={iconShootingClassImage}
-              alt="ライフル射撃教室"
-            />
-            <div className="mt-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#000080] px-4 py-1">
-              <span className="text-sm font-bold text-white">
-                📊 {japaneseEra}年度 大会結果
-              </span>
+          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-4">
+            <Image src={iconShootingClassImage} alt="ライフル射撃教室" />
+            <div className="mt-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#000080] px-4 py-1">
+              <span className="text-sm font-bold text-white">📊 {japaneseEra}年度 大会結果</span>
             </div>
           </div>
 
@@ -180,47 +150,40 @@ export default async function FiscalYearResultsPage({ params }: PageProps) {
           {dateEntries.map(([dateStr, eventGroups]) => (
             <div
               key={dateStr}
-              className="mb-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white"
+              className="mb-4 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white"
             >
               {/* Date header */}
               <div className="flex items-center gap-2 bg-gradient-to-r from-[#000080] to-[#1084d0] px-3 py-2">
-                <span className="text-sm font-bold text-white">
-                  📅 {formatDateJapanese(dateStr)}
-                </span>
+                <span className="text-sm font-bold text-white">📅 {formatDateJapanese(dateStr)}</span>
               </div>
 
               {/* Events for this date */}
               <div className="p-3">
-                {Array.from(eventGroups.entries()).map(
-                  ([eventName, eventResults], eventIdx) => (
-                    <div key={eventName} className={eventIdx > 0 ? "mt-4" : ""}>
-                      {/* Event name header */}
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] px-2 py-0.5">
-                          <span className="text-xs font-bold">
-                            🎯 10m {eventName}
-                          </span>
-                        </div>
+                {Array.from(eventGroups.entries()).map(([eventName, eventResults], eventIdx) => (
+                  <div key={eventName} className={eventIdx > 0 ? 'mt-4' : ''}>
+                    {/* Event name header */}
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] px-2 py-0.5">
+                        <span className="text-xs font-bold">🎯 10m {eventName}</span>
                       </div>
-                      {/* Results table */}
-                      <ResultsTable results={eventResults} />
                     </div>
-                  )
-                )}
+                    {/* Results table */}
+                    <ResultsTable results={eventResults} />
+                  </div>
+                ))}
               </div>
             </div>
           ))}
 
           {/* Info box */}
-          <div className="mt-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-3">
+          <div className="mt-4 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#ffffcc] p-3">
             <p className="text-xs">
-              <span className="font-bold">💡 ヒント:</span>{" "}
-              テーブルは横スクロールできます。
+              <span className="font-bold">💡 ヒント:</span> テーブルは横スクロールできます。
             </p>
           </div>
 
           {/* Status bar */}
-          <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
+          <div className="mt-4 flex border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0]">
             <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
               {japaneseEra}年度: {dateEntries.length}回開催
             </div>

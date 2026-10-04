@@ -1,29 +1,24 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { CernBackground } from "./_components";
-import rifleShootingImage from "@/app/_assets/rifle-shooting.jpg";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import rifleShootingImage from '@/app/_assets/rifle-shooting.jpg';
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import { CernBackground } from './_components';
 
 export const metadata: Metadata = {
-  title: "協会案内 | 横須賀市ライフル射撃協会【神奈川県】",
+  title: '協会案内 | 横須賀市ライフル射撃協会【神奈川県】',
   description:
-    "神奈川県横須賀市のライフル射撃団体。1957年創立。くりはま花の国エアライフル射撃場を拠点に活動。競技射撃の普及と技術向上を目指す。",
-  keywords: [
-    "ライフル射撃",
-    "射撃協会",
-    "横須賀市",
-    "神奈川県",
-    "射撃団体",
-    "くりはま花の国",
-  ],
+    '神奈川県横須賀市のライフル射撃団体。1957年創立。くりはま花の国エアライフル射撃場を拠点に活動。競技射撃の普及と技術向上を目指す。',
+  keywords: ['ライフル射撃', '射撃協会', '横須賀市', '神奈川県', '射撃団体', 'くりはま花の国'],
   openGraph: {
     images: [
       {
         url: getOpengraphImageUrl({
-          title: "協会案内",
-          subtitle: "横須賀市ライフル射撃協会の歴史と組織",
-          theme: "cern",
+          title: '協会案内',
+          subtitle: '横須賀市ライフル射撃協会の歴史と組織',
+          theme: 'cern',
         }),
         width: 1200,
         height: 630,
@@ -33,24 +28,24 @@ export const metadata: Metadata = {
 };
 
 const boardMembers = [
-  { role: "会長", name: "杉田　惺" },
-  { role: "副会長", name: "山本勝巳" },
-  { role: "副会長", name: "小牧　豊" },
-  { role: "副会長", name: "坂本俊介" },
-  { role: "理事長", name: "廣田眞作" },
-  { role: "副理事長", name: "鈴木秀一" },
-  { role: "監事", name: "山本雅章" },
-  { role: "監事", name: "仁禮正美" },
-  { role: "理事", name: "小室美栄子" },
-  { role: "理事", name: "杉江養一" },
-  { role: "理事", name: "鈴木康平" },
-  { role: "理事", name: "栗山公秀" },
-  { role: "理事", name: "マティウスミカ" },
-  { role: "理事", name: "菅原嗣高" },
-  { role: "理事", name: "桂　玲子" },
-  { role: "会計", name: "中村敬夫" },
-  { role: "会計", name: "辻　薫" },
-  { role: "相談役", name: "竹内英明" },
+  { role: '会長', name: '杉田　惺' },
+  { role: '副会長', name: '山本勝巳' },
+  { role: '副会長', name: '小牧　豊' },
+  { role: '副会長', name: '坂本俊介' },
+  { role: '理事長', name: '廣田眞作' },
+  { role: '副理事長', name: '鈴木秀一' },
+  { role: '監事', name: '山本雅章' },
+  { role: '監事', name: '仁禮正美' },
+  { role: '理事', name: '小室美栄子' },
+  { role: '理事', name: '杉江養一' },
+  { role: '理事', name: '鈴木康平' },
+  { role: '理事', name: '栗山公秀' },
+  { role: '理事', name: 'マティウスミカ' },
+  { role: '理事', name: '菅原嗣高' },
+  { role: '理事', name: '桂　玲子' },
+  { role: '会計', name: '中村敬夫' },
+  { role: '会計', name: '辻　薫' },
+  { role: '相談役', name: '竹内英明' },
 ];
 
 export default function AboutPage() {
@@ -62,19 +57,19 @@ export default function AboutPage() {
             <li>
               <Link href="/">Home</Link>
             </li>
-            {" | "}
+            {' | '}
             <li>
               <Link href="/shooting-range">射撃場</Link>
             </li>
-            {" | "}
+            {' | '}
             <li>
               <Link href="/competitions">競技会</Link>
             </li>
-            {" | "}
+            {' | '}
             <li>
               <Link href="/projects">年間予定</Link>
             </li>
-            {" | "}
+            {' | '}
             <li>
               <Link href="/links">リンク</Link>
             </li>
@@ -89,12 +84,8 @@ export default function AboutPage() {
         競技射撃の普及と発展、および会員の技術向上を目指して活動しています。
       </p>
 
-      <div style={{ margin: "2em 0" }}>
-        <Image
-          src={rifleShootingImage}
-          alt="横須賀市ライフル射撃協会 - 神奈川県のライフル射撃団体"
-          sizes="320px"
-        />
+      <div style={{ margin: '2em 0' }}>
+        <Image src={rifleShootingImage} alt="横須賀市ライフル射撃協会 - 神奈川県のライフル射撃団体" sizes="320px" />
       </div>
 
       <hr />
@@ -110,11 +101,7 @@ export default function AboutPage() {
 
       <p>
         当時、中央競技団体としてはすでに「
-        <a
-          href="http://www.riflesports.jp/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="http://www.riflesports.jp/" target="_blank" rel="noopener noreferrer">
           日本ライフル射撃協会
           <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
         </a>
@@ -131,11 +118,7 @@ export default function AboutPage() {
 
       <p>
         昭和40年、すでに独立していた上部組織である日本ライフル射撃協会および
-        <a
-          href="https://kraofficial.web.fc2.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://kraofficial.web.fc2.com/" target="_blank" rel="noopener noreferrer">
           神奈川県ライフル射撃協会
           <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
         </a>
@@ -172,16 +155,12 @@ export default function AboutPage() {
 
       <ul>
         <li>
-          競技射撃においては、多くの国体選手や海外で活躍する選手を輩出するため、
-          競技力の向上を目的とした<Link href="/competitions">競技会</Link>・強化練習・講習会等の充実を図る
+          競技射撃においては、多くの国体選手や海外で活躍する選手を輩出するため、 競技力の向上を目的とした
+          <Link href="/competitions">競技会</Link>・強化練習・講習会等の充実を図る
         </li>
-        <li>
-          狩猟シーズンオフにおける狩猟銃の技術向上を目的として、競技会や練習会を充実させる
-        </li>
+        <li>狩猟シーズンオフにおける狩猟銃の技術向上を目的として、競技会や練習会を充実させる</li>
         <li>身体に障害のある方々も楽しめるスポーツとしての普及を推進する</li>
-        <li>
-          年齢や性別を問わず、誰もが同じ土俵で競える生涯スポーツとしての位置づけを確立する
-        </li>
+        <li>年齢や性別を問わず、誰もが同じ土俵で競える生涯スポーツとしての位置づけを確立する</li>
       </ul>
 
       <hr />
@@ -218,7 +197,7 @@ export default function AboutPage() {
             sizes="150px"
             loading="lazy"
             alt="神奈川県射撃協会会長のプロフィール写真"
-            style={{ marginTop: "1em" }}
+            style={{ marginTop: '1em' }}
           />
         </dt>
         <dd>
@@ -236,7 +215,7 @@ export default function AboutPage() {
             sizes="150px"
             loading="lazy"
             alt="女性指導員のプロフィール写真"
-            style={{ marginTop: "1em" }}
+            style={{ marginTop: '1em' }}
           />
         </dt>
         <dd>
@@ -253,7 +232,7 @@ export default function AboutPage() {
             sizes="150px"
             loading="lazy"
             alt="スタッフのプロフィール写真"
-            style={{ marginTop: "1em" }}
+            style={{ marginTop: '1em' }}
           />
         </dt>
         <dd>
@@ -270,12 +249,11 @@ export default function AboutPage() {
             sizes="150px"
             loading="lazy"
             alt="ベテランスタッフのプロフィール写真"
-            style={{ marginTop: "1em" }}
+            style={{ marginTop: '1em' }}
           />
         </dt>
         <dd>
-          高齢ですが、とても70歳代とは思えぬ筋肉マンです。
-          射撃場には手作りの懸垂があります。
+          高齢ですが、とても70歳代とは思えぬ筋肉マンです。 射撃場には手作りの懸垂があります。
           親切丁寧に教えてくださいます。女性には特に優しいですよ。
           撃った鳥をミンチにして作ったつくねはとても美味しいですよ。
         </dd>
@@ -287,31 +265,19 @@ export default function AboutPage() {
 
       <ul>
         <li>
-          <a
-            href="http://www.riflesports.jp/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="http://www.riflesports.jp/" target="_blank" rel="noopener noreferrer">
             日本ライフル射撃協会
             <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>
         </li>
         <li>
-          <a
-            href="https://kraofficial.web.fc2.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://kraofficial.web.fc2.com/" target="_blank" rel="noopener noreferrer">
             神奈川県ライフル射撃協会
             <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>
         </li>
         <li>
-          <a
-            href="http://yokosuka-sports.jp/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="http://yokosuka-sports.jp/" target="_blank" rel="noopener noreferrer">
             横須賀市スポーツ協会
             <span className="sr-only">（外部サイト、新しいタブで開きます）</span>
           </a>

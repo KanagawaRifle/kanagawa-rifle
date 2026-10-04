@@ -1,14 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
+  --background: #fff;
   --foreground: #171717;
+
   /* レトロテーマ用フォントスタック */
-  --font-retro: "Comic Sans MS", "Comic Neue", "Chalkboard SE", "Comic Sans", cursive, system-ui;
+  --font-retro: 'Comic Sans MS', 'Comic Neue', 'Chalkboard SE', 'Comic Sans', cursive, system-ui;
+
   /* Win95 テーマカラー */
   --win95-bg: #c0c0c0;
   --win95-dark: #808080;
-  --win95-light: #ffffff;
+  --win95-light: #fff;
   --win95-navy: #000080;
 }
 
@@ -24,9 +26,9 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  background: var(--background);
 }
 
 /* アニメーション軽減設定を尊重 */
@@ -34,10 +36,10 @@ body {
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
@@ -48,11 +50,11 @@ body {
 
 /* テキストシャドウ（コントラスト改善用） */
 .text-shadow-sm {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
 }
 
 .text-shadow-md {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 4px rgb(0 0 0 / 40%);
 }
 
 /* マーキーアニメーション */
@@ -60,6 +62,7 @@ body {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -72,8 +75,8 @@ body {
 /* motion-reduce 時はアニメーションを停止 */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
-    animation: none;
     transform: none;
+    animation: none;
   }
 }
 
@@ -89,8 +92,8 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #c0c0c0;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
+  border-top: 2px solid #fff;
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
+  border-left: 2px solid #fff;
 }

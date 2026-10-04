@@ -1,19 +1,22 @@
-import type { Metadata } from "next";
-import fs from "fs";
-import path from "path";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { Win95Window, Win95Button } from "../../_components";
+import fs from 'fs';
+import path from 'path';
+
+import type { Metadata } from 'next';
+
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import { Win95Window, Win95Button } from '../../_components';
 
 export const metadata: Metadata = {
-  title: "狩猟銃射撃大会結果 | 横須賀市ライフル射撃協会",
-  description: "狩猟銃射撃大会の結果一覧。平成25年度〜平成28年度の全結果を掲載。",
+  title: '狩猟銃射撃大会結果 | 横須賀市ライフル射撃協会',
+  description: '狩猟銃射撃大会の結果一覧。平成25年度〜平成28年度の全結果を掲載。',
   openGraph: {
     images: [
       {
         url: getOpengraphImageUrl({
-          title: "狩猟銃射撃大会結果",
-          subtitle: "大会結果一覧",
-          theme: "win95",
+          title: '狩猟銃射撃大会結果',
+          subtitle: '大会結果一覧',
+          theme: 'win95',
         }),
         width: 1200,
         height: 630,
@@ -36,7 +39,7 @@ interface Result {
 interface Round {
   round: number;
   dateRange: string;
-  scoringType: "ring" | "point";
+  scoringType: 'ring' | 'point';
   results: Result[];
 }
 
@@ -47,17 +50,33 @@ interface FiscalYearData {
 }
 
 function parseCSV(csvContent: string): FiscalYearData[] {
-  const lines = csvContent.trim().split("\n");
+  const lines = csvContent.trim().split('\n');
   const dataLines = lines.slice(1); // Skip header
 
   // Group by fiscal year and round
-  const grouped: Map<string, Map<number, { dateRange: string; scoringType: "ring" | "point"; results: Result[] }>> = new Map();
+  const grouped: Map<
+    string,
+    Map<number, { dateRange: string; scoringType: 'ring' | 'point'; results: Result[] }>
+  > = new Map();
 
   for (const line of dataLines) {
-    const cols = line.split(",");
+    const cols = line.split(',');
     if (cols.length < 12) continue;
 
-    const [fiscalYear, roundStr, dateRange, rankStr, name, gun, caliber, itakuStr, hijiStr, ritsuStr, totalStr, scoringType] = cols;
+    const [
+      fiscalYear,
+      roundStr,
+      dateRange,
+      rankStr,
+      name,
+      gun,
+      caliber,
+      itakuStr,
+      hijiStr,
+      ritsuStr,
+      totalStr,
+      scoringType,
+    ] = cols;
 
     if (!fiscalYear || !roundStr) continue;
 
@@ -69,8 +88,8 @@ function parseCSV(csvContent: string): FiscalYearData[] {
 
     if (!fyMap.has(roundNum)) {
       fyMap.set(roundNum, {
-        dateRange: dateRange || "",
-        scoringType: (scoringType as "ring" | "point") || "ring",
+        dateRange: dateRange || '',
+        scoringType: (scoringType as 'ring' | 'point') || 'ring',
         results: [],
       });
     }
@@ -78,8 +97,8 @@ function parseCSV(csvContent: string): FiscalYearData[] {
     fyMap.get(roundNum)!.results.push({
       rank: parseInt(rankStr || '0', 10),
       name: name || '',
-      gun: gun || "",
-      caliber: caliber || "",
+      gun: gun || '',
+      caliber: caliber || '',
       itaku: parseFloat(itakuStr || '0') || 0,
       hiji: parseFloat(hijiStr || '0') || 0,
       ritsu: parseFloat(ritsuStr || '0') || 0,
@@ -120,13 +139,13 @@ function parseCSV(csvContent: string): FiscalYearData[] {
 }
 
 function loadData(): FiscalYearData[] {
-  const csvPath = path.join(process.cwd(), "app/competitions/hunting/results/_data/results.csv");
-  const csvContent = fs.readFileSync(csvPath, "utf-8");
+  const csvPath = path.join(process.cwd(), 'app/competitions/hunting/results/_data/results.csv');
+  const csvContent = fs.readFileSync(csvPath, 'utf-8');
   return parseCSV(csvContent);
 }
 
-function ResultTable({ results, scoringType }: { results: Result[]; scoringType: "ring" | "point" }) {
-  const isRing = scoringType === "ring";
+function ResultTable({ results, scoringType }: { results: Result[]; scoringType: 'ring' | 'point' }) {
+  const isRing = scoringType === 'ring';
 
   return (
     <div className="overflow-x-auto p-3">
@@ -145,14 +164,11 @@ function ResultTable({ results, scoringType }: { results: Result[]; scoringType:
         </thead>
         <tbody>
           {results.map((result, idx) => (
-            <tr
-              key={`${result.rank}-${idx}`}
-              className={idx % 2 === 0 ? "bg-white" : "bg-[#f0f0f0]"}
-            >
+            <tr key={`${result.rank}-${idx}`} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#f0f0f0]'}>
               <td className="border border-[#808080] p-1 text-center">{result.rank}</td>
               <td className="border border-[#808080] p-1 text-center">{result.name}</td>
-              <td className="border border-[#808080] p-1 text-center">{result.gun || "-"}</td>
-              <td className="border border-[#808080] p-1 text-center">{result.caliber || "-"}</td>
+              <td className="border border-[#808080] p-1 text-center">{result.gun || '-'}</td>
+              <td className="border border-[#808080] p-1 text-center">{result.caliber || '-'}</td>
               <td className="border border-[#808080] p-1 text-center">
                 {isRing ? result.itaku.toFixed(1) : result.itaku}
               </td>
@@ -178,32 +194,24 @@ export default function HuntingResultsPage() {
 
   return (
     <div className="min-h-screen bg-[#008080] p-4">
-      <Win95Window
-        title="狩猟銃射撃大会結果 - 横須賀市ライフル射撃協会"
-        icon="🏆"
-        className="mx-auto max-w-4xl"
-      >
-        <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+      <Win95Window title="狩猟銃射撃大会結果 - 横須賀市ライフル射撃協会" icon="🏆" className="mx-auto max-w-4xl">
+        <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] p-2">
           {/* Navigation */}
           <div className="mb-2">
             <Win95Button href="/competitions/hunting">← 戻る</Win95Button>
           </div>
 
           {/* Header */}
-          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-            <h1 className="text-xl font-bold text-[#000080]">
-              狩猟銃射撃大会結果
-            </h1>
-            <p className="text-sm text-gray-600">
-              平成25年度〜平成28年度 全21回分の成績
-            </p>
+          <div className="mb-4 flex flex-col items-center gap-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-4">
+            <h1 className="text-xl font-bold text-[#000080]">狩猟銃射撃大会結果</h1>
+            <p className="text-sm text-gray-600">平成25年度〜平成28年度 全21回分の成績</p>
           </div>
 
           {/* Results by Fiscal Year */}
           {data.map((fy) => (
             <div key={fy.fiscalYear} className="mb-6">
               {/* Fiscal Year Header */}
-              <div className="mb-3 flex items-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#000080] px-4 py-2">
+              <div className="mb-3 flex items-center gap-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#000080] px-4 py-2">
                 <span className="text-lg font-bold text-white">
                   {fy.fiscalYear}（{fy.westernYear}年度）
                 </span>
@@ -213,18 +221,18 @@ export default function HuntingResultsPage() {
               {fy.rounds.map((round) => (
                 <div
                   key={`${fy.fiscalYear}-${round.round}`}
-                  className="mb-4 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white"
+                  className="mb-4 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white"
                 >
                   <div className="flex items-center justify-between bg-gradient-to-r from-[#000080] to-[#1084d0] px-3 py-2">
                     <span className="text-sm font-bold text-white">
                       第{round.round}回 {round.dateRange && `（${round.dateRange}）`}
                     </span>
-                    <span className={`rounded px-2 py-0.5 text-xs font-bold ${
-                      round.scoringType === "ring"
-                        ? "bg-green-200 text-green-800"
-                        : "bg-yellow-200 text-yellow-800"
-                    }`}>
-                      {round.scoringType === "ring" ? "環点制" : "点数制"}
+                    <span
+                      className={`rounded px-2 py-0.5 text-xs font-bold ${
+                        round.scoringType === 'ring' ? 'bg-green-200 text-green-800' : 'bg-yellow-200 text-yellow-800'
+                      }`}
+                    >
+                      {round.scoringType === 'ring' ? '環点制' : '点数制'}
                     </span>
                   </div>
                   <ResultTable results={round.results} scoringType={round.scoringType} />
@@ -234,10 +242,8 @@ export default function HuntingResultsPage() {
           ))}
 
           {/* Status bar */}
-          <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
-            <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
-              10m 狩猟銃射撃競技
-            </div>
+          <div className="mt-4 flex border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0]">
+            <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">10m 狩猟銃射撃競技</div>
             <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
           </div>
         </div>

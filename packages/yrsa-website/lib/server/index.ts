@@ -10,4 +10,4 @@ export {
   getOpengraphImageUrl,
   type CreateOpengraphImageOptions,
   type OgpTheme,
-} from "./opengraph";  // .tsx extension auto-resolved
+} from './opengraph'; // .tsx extension auto-resolved

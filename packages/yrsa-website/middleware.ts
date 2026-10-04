@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 /**
  * Security headers middleware
@@ -12,7 +12,7 @@ import type { NextRequest } from "next/server";
  * - Referrer-Policy: Control referrer information
  * - Permissions-Policy: Restrict browser features
  */
-export function middleware(request: NextRequest) {
+export function middleware(_request: NextRequest) {
   const response = NextResponse.next();
 
   // Content Security Policy
@@ -30,37 +30,28 @@ export function middleware(request: NextRequest) {
     "base-uri 'self'",
     "form-action 'self'",
     "frame-ancestors 'none'",
-    "upgrade-insecure-requests",
+    'upgrade-insecure-requests',
   ];
 
-  response.headers.set(
-    "Content-Security-Policy",
-    cspDirectives.join("; ")
-  );
+  response.headers.set('Content-Security-Policy', cspDirectives.join('; '));
 
   // HTTP Strict Transport Security
-  response.headers.set(
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains"
-  );
+  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 
   // Prevent clickjacking
-  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set('X-Frame-Options', 'DENY');
 
   // Prevent MIME type sniffing
-  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set('X-Content-Type-Options', 'nosniff');
 
   // Control referrer information
-  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
 
   // Restrict browser features
-  response.headers.set(
-    "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-  );
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
 
   // Remove X-Powered-By header (Next.js does this by default)
-  response.headers.delete("X-Powered-By");
+  response.headers.delete('X-Powered-By');
 
   return response;
 }
@@ -76,6 +67,6 @@ export const config = {
      * - images/ (public images)
      * - *.svg, *.png, *.jpg, etc. (static assets)
      */
-    "/((?!_next/static|_next/image|favicon.ico|images/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    '/((?!_next/static|_next/image|favicon.ico|images/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 };

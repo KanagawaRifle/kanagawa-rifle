@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
-import { getRifleClassFiscalYears } from "@/lib/rifle-shooting-class";
+import { NextResponse } from 'next/server';
+
+import { getRifleClassFiscalYears } from '@/lib/rifle-shooting-class';
 
 export async function GET() {
   try {
@@ -12,10 +13,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error("Error fetching rifle shooting class fiscal years:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    console.error('Error fetching rifle shooting class fiscal years:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

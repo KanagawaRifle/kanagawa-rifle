@@ -1,16 +1,11 @@
-import { ImageResponse } from "next/og";
-import { siteConfig } from "@/lib/config";
+import { ImageResponse } from 'next/og';
+
+import { siteConfig } from '@/lib/config';
 
 /**
  * OGP 画像のテーマ
  */
-export type OgpTheme =
-  | "default"
-  | "cern"
-  | "win95"
-  | "modern"
-  | "terminal"
-  | "glass";
+export type OgpTheme = 'default' | 'cern' | 'win95' | 'modern' | 'terminal' | 'glass';
 
 /**
  * OGP 画像生成のオプション
@@ -31,16 +26,8 @@ export interface CreateOpengraphImageOptions {
 /**
  * OGP 画像を生成する
  */
-export function createOpengraphImage(
-  options: CreateOpengraphImageOptions
-): ImageResponse {
-  const {
-    title,
-    subtitle,
-    theme = "default",
-    width = 1200,
-    height = 630,
-  } = options;
+export function createOpengraphImage(options: CreateOpengraphImageOptions): ImageResponse {
+  const { title, subtitle, theme = 'default', width = 1200, height = 630 } = options;
 
   const titleFontSize = title.length > 20 ? 52 : title.length > 12 ? 64 : 72;
 
@@ -57,18 +44,18 @@ function renderTheme(
   theme: OgpTheme,
   title: string,
   subtitle: string | undefined,
-  titleFontSize: number
+  titleFontSize: number,
 ): React.ReactElement {
   switch (theme) {
-    case "cern":
+    case 'cern':
       return renderCernTheme(title, subtitle, titleFontSize);
-    case "win95":
+    case 'win95':
       return renderWin95Theme(title, subtitle, titleFontSize);
-    case "modern":
+    case 'modern':
       return renderModernTheme(title, subtitle, titleFontSize);
-    case "terminal":
+    case 'terminal':
       return renderTerminalTheme(title, subtitle, titleFontSize);
-    case "glass":
+    case 'glass':
       return renderGlassTheme(title, subtitle, titleFontSize);
     default:
       return renderDefaultTheme(title, subtitle, titleFontSize);
@@ -81,119 +68,112 @@ function renderTheme(
  * - グラデーション背景
  * - きらきら装飾
  */
-function renderDefaultTheme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderDefaultTheme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background:
-          "linear-gradient(135deg, #0f0028 0%, #1a0040 25%, #2d1b69 50%, #1a0040 75%, #0f0028 100%)",
-        fontFamily: "sans-serif",
-        position: "relative",
-        overflow: "hidden",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #0f0028 0%, #1a0040 25%, #2d1b69 50%, #1a0040 75%, #0f0028 100%)',
+        fontFamily: 'sans-serif',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {/* 背景のグリッド効果 */}
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-          display: "flex",
+            'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+          display: 'flex',
         }}
       />
 
       {/* グロー効果の円 */}
       <div
         style={{
-          position: "absolute",
-          top: "-100px",
-          right: "-100px",
-          width: "400px",
-          height: "400px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(255,0,255,0.15) 0%, transparent 70%)",
-          display: "flex",
+          position: 'absolute',
+          top: '-100px',
+          right: '-100px',
+          width: '400px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255,0,255,0.15) 0%, transparent 70%)',
+          display: 'flex',
         }}
       />
       <div
         style={{
-          position: "absolute",
-          bottom: "-150px",
-          left: "-100px",
-          width: "500px",
-          height: "500px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(0,255,255,0.12) 0%, transparent 70%)",
-          display: "flex",
+          position: 'absolute',
+          bottom: '-150px',
+          left: '-100px',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,255,255,0.12) 0%, transparent 70%)',
+          display: 'flex',
         }}
       />
 
       {/* きらきら装飾 */}
       <div
         style={{
-          position: "absolute",
-          top: "60px",
-          left: "80px",
-          fontSize: "28px",
-          color: "#ffd700",
-          display: "flex",
-          textShadow: "0 0 10px #ffd700, 0 0 20px #ffd700",
+          position: 'absolute',
+          top: '60px',
+          left: '80px',
+          fontSize: '28px',
+          color: '#ffd700',
+          display: 'flex',
+          textShadow: '0 0 10px #ffd700, 0 0 20px #ffd700',
         }}
       >
         ✦
       </div>
       <div
         style={{
-          position: "absolute",
-          top: "120px",
-          right: "120px",
-          fontSize: "20px",
-          color: "#ff69b4",
-          display: "flex",
-          textShadow: "0 0 8px #ff69b4",
+          position: 'absolute',
+          top: '120px',
+          right: '120px',
+          fontSize: '20px',
+          color: '#ff69b4',
+          display: 'flex',
+          textShadow: '0 0 8px #ff69b4',
         }}
       >
         ✧
       </div>
       <div
         style={{
-          position: "absolute",
-          bottom: "140px",
-          left: "150px",
-          fontSize: "24px",
-          color: "#00ffff",
-          display: "flex",
-          textShadow: "0 0 10px #00ffff",
+          position: 'absolute',
+          bottom: '140px',
+          left: '150px',
+          fontSize: '24px',
+          color: '#00ffff',
+          display: 'flex',
+          textShadow: '0 0 10px #00ffff',
         }}
       >
         ✦
       </div>
       <div
         style={{
-          position: "absolute",
-          bottom: "100px",
-          right: "200px",
-          fontSize: "16px",
-          color: "#ff00ff",
-          display: "flex",
-          textShadow: "0 0 6px #ff00ff",
+          position: 'absolute',
+          bottom: '100px',
+          right: '200px',
+          fontSize: '16px',
+          color: '#ff00ff',
+          display: 'flex',
+          textShadow: '0 0 6px #ff00ff',
         }}
       >
         ✧
@@ -202,23 +182,23 @@ function renderDefaultTheme(
       {/* メインコンテンツ */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "40px 80px",
-          maxWidth: "90%",
-          position: "relative",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '40px 80px',
+          maxWidth: '90%',
+          position: 'relative',
         }}
       >
         {/* サイト名 */}
         <div
           style={{
-            fontSize: "22px",
-            color: "#e0b0ff",
-            marginBottom: "20px",
-            letterSpacing: "0.2em",
-            display: "flex",
+            fontSize: '22px',
+            color: '#e0b0ff',
+            marginBottom: '20px',
+            letterSpacing: '0.2em',
+            display: 'flex',
           }}
         >
           {siteConfig.name}
@@ -228,14 +208,14 @@ function renderDefaultTheme(
         <div
           style={{
             fontSize: `${titleFontSize}px`,
-            fontWeight: "bold",
-            background: "linear-gradient(180deg, #ffff00 0%, #ffd700 50%, #ffaa00 100%)",
-            backgroundClip: "text",
-            color: "transparent",
-            textAlign: "center",
+            fontWeight: 'bold',
+            background: 'linear-gradient(180deg, #ffff00 0%, #ffd700 50%, #ffaa00 100%)',
+            backgroundClip: 'text',
+            color: 'transparent',
+            textAlign: 'center',
             lineHeight: 1.2,
-            display: "flex",
-            textShadow: "0 0 30px rgba(255, 215, 0, 0.5)",
+            display: 'flex',
+            textShadow: '0 0 30px rgba(255, 215, 0, 0.5)',
           }}
         >
           {title}
@@ -245,12 +225,12 @@ function renderDefaultTheme(
         {subtitle && (
           <div
             style={{
-              fontSize: "26px",
-              color: "#00ffff",
-              marginTop: "24px",
-              textAlign: "center",
-              display: "flex",
-              textShadow: "0 0 15px rgba(0, 255, 255, 0.5)",
+              fontSize: '26px',
+              color: '#00ffff',
+              marginTop: '24px',
+              textAlign: 'center',
+              display: 'flex',
+              textShadow: '0 0 15px rgba(0, 255, 255, 0.5)',
             }}
           >
             {subtitle}
@@ -261,22 +241,22 @@ function renderDefaultTheme(
       {/* フッター */}
       <div
         style={{
-          position: "absolute",
-          bottom: "28px",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
+          position: 'absolute',
+          bottom: '28px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
         }}
       >
         <div
           style={{
-            fontSize: "16px",
-            color: "rgba(224, 176, 255, 0.7)",
-            letterSpacing: "0.1em",
-            display: "flex",
+            fontSize: '16px',
+            color: 'rgba(224, 176, 255, 0.7)',
+            letterSpacing: '0.1em',
+            display: 'flex',
           }}
         >
-          {siteConfig.baseUrl.replace("https://", "")}
+          {siteConfig.baseUrl.replace('https://', '')}
         </div>
       </div>
     </div>
@@ -289,59 +269,55 @@ function renderDefaultTheme(
  * - セリフフォント
  * - シンプルなボーダー
  */
-function renderCernTheme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderCernTheme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#d4d4d4",
-        fontFamily: "serif",
-        position: "relative",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#d4d4d4',
+        fontFamily: 'serif',
+        position: 'relative',
       }}
     >
       {/* ヘッダーライン */}
       <div
         style={{
-          position: "absolute",
-          top: "40px",
-          left: "60px",
-          right: "60px",
-          height: "3px",
-          background: "#000080",
-          display: "flex",
+          position: 'absolute',
+          top: '40px',
+          left: '60px',
+          right: '60px',
+          height: '3px',
+          background: '#000080',
+          display: 'flex',
         }}
       />
 
       {/* メインコンテンツエリア */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "60px 80px",
-          maxWidth: "85%",
-          background: "#e8e8e8",
-          border: "2px solid #808080",
-          boxShadow: "4px 4px 0px #606060",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '60px 80px',
+          maxWidth: '85%',
+          background: '#e8e8e8',
+          border: '2px solid #808080',
+          boxShadow: '4px 4px 0px #606060',
         }}
       >
         {/* サイト名 */}
         <div
           style={{
-            fontSize: "20px",
-            color: "#404040",
-            marginBottom: "16px",
-            display: "flex",
+            fontSize: '20px',
+            color: '#404040',
+            marginBottom: '16px',
+            display: 'flex',
           }}
         >
           {siteConfig.name}
@@ -351,13 +327,13 @@ function renderCernTheme(
         <div
           style={{
             fontSize: `${titleFontSize}px`,
-            fontWeight: "bold",
-            color: "#000080",
-            textAlign: "center",
+            fontWeight: 'bold',
+            color: '#000080',
+            textAlign: 'center',
             lineHeight: 1.3,
-            display: "flex",
-            borderBottom: "2px solid #000080",
-            paddingBottom: "16px",
+            display: 'flex',
+            borderBottom: '2px solid #000080',
+            paddingBottom: '16px',
           }}
         >
           {title}
@@ -367,12 +343,12 @@ function renderCernTheme(
         {subtitle && (
           <div
             style={{
-              fontSize: "24px",
-              color: "#404040",
-              marginTop: "20px",
-              textAlign: "center",
-              display: "flex",
-              fontStyle: "italic",
+              fontSize: '24px',
+              color: '#404040',
+              marginTop: '20px',
+              textAlign: 'center',
+              display: 'flex',
+              fontStyle: 'italic',
             }}
           >
             {subtitle}
@@ -383,34 +359,34 @@ function renderCernTheme(
       {/* フッター */}
       <div
         style={{
-          position: "absolute",
-          bottom: "40px",
-          display: "flex",
-          alignItems: "center",
+          position: 'absolute',
+          bottom: '40px',
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <div
           style={{
-            fontSize: "16px",
-            color: "#0000cc",
-            textDecoration: "underline",
-            display: "flex",
+            fontSize: '16px',
+            color: '#0000cc',
+            textDecoration: 'underline',
+            display: 'flex',
           }}
         >
-          {siteConfig.baseUrl.replace("https://", "")}
+          {siteConfig.baseUrl.replace('https://', '')}
         </div>
       </div>
 
       {/* フッターライン */}
       <div
         style={{
-          position: "absolute",
-          bottom: "70px",
-          left: "60px",
-          right: "60px",
-          height: "1px",
-          background: "#808080",
-          display: "flex",
+          position: 'absolute',
+          bottom: '70px',
+          left: '60px',
+          right: '60px',
+          height: '1px',
+          background: '#808080',
+          display: 'flex',
         }}
       />
     </div>
@@ -423,70 +399,66 @@ function renderCernTheme(
  * - クラシックなタイトルバー
  * - システムフォント風
  */
-function renderWin95Theme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderWin95Theme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#008080",
-        fontFamily: "sans-serif",
-        padding: "40px",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#008080',
+        fontFamily: 'sans-serif',
+        padding: '40px',
       }}
     >
       {/* ウィンドウ */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "90%",
-          maxWidth: "1000px",
-          background: "#c0c0c0",
-          border: "2px solid #ffffff",
-          borderRightColor: "#404040",
-          borderBottomColor: "#404040",
-          boxShadow: "4px 4px 0px rgba(0,0,0,0.3)",
+          display: 'flex',
+          flexDirection: 'column',
+          width: '90%',
+          maxWidth: '1000px',
+          background: '#c0c0c0',
+          border: '2px solid #ffffff',
+          borderRightColor: '#404040',
+          borderBottomColor: '#404040',
+          boxShadow: '4px 4px 0px rgba(0,0,0,0.3)',
         }}
       >
         {/* タイトルバー */}
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: "36px",
-            background: "linear-gradient(90deg, #000080 0%, #1084d0 100%)",
-            padding: "0 8px",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '36px',
+            background: 'linear-gradient(90deg, #000080 0%, #1084d0 100%)',
+            padding: '0 8px',
           }}
         >
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
           >
             <div
               style={{
-                fontSize: "16px",
-                display: "flex",
+                fontSize: '16px',
+                display: 'flex',
               }}
             >
               🎯
             </div>
             <div
               style={{
-                fontSize: "14px",
-                color: "#ffffff",
-                fontWeight: "bold",
-                display: "flex",
+                fontSize: '14px',
+                color: '#ffffff',
+                fontWeight: 'bold',
+                display: 'flex',
               }}
             >
               {siteConfig.shortName} - 競技会情報
@@ -495,57 +467,57 @@ function renderWin95Theme(
           {/* ウィンドウボタン */}
           <div
             style={{
-              display: "flex",
-              gap: "2px",
+              display: 'flex',
+              gap: '2px',
             }}
           >
             <div
               style={{
-                width: "20px",
-                height: "20px",
-                background: "#c0c0c0",
-                border: "1px solid #ffffff",
-                borderRightColor: "#404040",
-                borderBottomColor: "#404040",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "12px",
-                fontWeight: "bold",
+                width: '20px',
+                height: '20px',
+                background: '#c0c0c0',
+                border: '1px solid #ffffff',
+                borderRightColor: '#404040',
+                borderBottomColor: '#404040',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: 'bold',
               }}
             >
               _
             </div>
             <div
               style={{
-                width: "20px",
-                height: "20px",
-                background: "#c0c0c0",
-                border: "1px solid #ffffff",
-                borderRightColor: "#404040",
-                borderBottomColor: "#404040",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "12px",
-                fontWeight: "bold",
+                width: '20px',
+                height: '20px',
+                background: '#c0c0c0',
+                border: '1px solid #ffffff',
+                borderRightColor: '#404040',
+                borderBottomColor: '#404040',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: 'bold',
               }}
             >
               □
             </div>
             <div
               style={{
-                width: "20px",
-                height: "20px",
-                background: "#c0c0c0",
-                border: "1px solid #ffffff",
-                borderRightColor: "#404040",
-                borderBottomColor: "#404040",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "12px",
-                fontWeight: "bold",
+                width: '20px',
+                height: '20px',
+                background: '#c0c0c0',
+                border: '1px solid #ffffff',
+                borderRightColor: '#404040',
+                borderBottomColor: '#404040',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: 'bold',
               }}
             >
               ×
@@ -556,25 +528,25 @@ function renderWin95Theme(
         {/* コンテンツエリア */}
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "50px 40px",
-            background: "#ffffff",
-            margin: "4px",
-            border: "2px solid #808080",
-            borderRightColor: "#ffffff",
-            borderBottomColor: "#ffffff",
-            minHeight: "400px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '50px 40px',
+            background: '#ffffff',
+            margin: '4px',
+            border: '2px solid #808080',
+            borderRightColor: '#ffffff',
+            borderBottomColor: '#ffffff',
+            minHeight: '400px',
           }}
         >
           {/* アイコン */}
           <div
             style={{
-              fontSize: "48px",
-              marginBottom: "20px",
-              display: "flex",
+              fontSize: '48px',
+              marginBottom: '20px',
+              display: 'flex',
             }}
           >
             📊
@@ -584,11 +556,11 @@ function renderWin95Theme(
           <div
             style={{
               fontSize: `${Math.min(titleFontSize, 56)}px`,
-              fontWeight: "bold",
-              color: "#000080",
-              textAlign: "center",
+              fontWeight: 'bold',
+              color: '#000080',
+              textAlign: 'center',
               lineHeight: 1.2,
-              display: "flex",
+              display: 'flex',
             }}
           >
             {title}
@@ -598,11 +570,11 @@ function renderWin95Theme(
           {subtitle && (
             <div
               style={{
-                fontSize: "24px",
-                color: "#404040",
-                marginTop: "16px",
-                textAlign: "center",
-                display: "flex",
+                fontSize: '24px',
+                color: '#404040',
+                marginTop: '16px',
+                textAlign: 'center',
+                display: 'flex',
               }}
             >
               {subtitle}
@@ -612,15 +584,15 @@ function renderWin95Theme(
           {/* 装飾ボタン */}
           <div
             style={{
-              display: "flex",
-              marginTop: "30px",
-              padding: "8px 24px",
-              background: "#c0c0c0",
-              border: "2px solid #ffffff",
-              borderRightColor: "#404040",
-              borderBottomColor: "#404040",
-              fontSize: "14px",
-              fontWeight: "bold",
+              display: 'flex',
+              marginTop: '30px',
+              padding: '8px 24px',
+              background: '#c0c0c0',
+              border: '2px solid #ffffff',
+              borderRightColor: '#404040',
+              borderBottomColor: '#404040',
+              fontSize: '14px',
+              fontWeight: 'bold',
             }}
           >
             詳細を見る
@@ -630,19 +602,19 @@ function renderWin95Theme(
         {/* ステータスバー */}
         <div
           style={{
-            display: "flex",
-            height: "24px",
-            background: "#c0c0c0",
-            borderTop: "2px solid #808080",
-            padding: "0 8px",
-            alignItems: "center",
+            display: 'flex',
+            height: '24px',
+            background: '#c0c0c0',
+            borderTop: '2px solid #808080',
+            padding: '0 8px',
+            alignItems: 'center',
           }}
         >
           <div
             style={{
-              fontSize: "12px",
-              color: "#000000",
-              display: "flex",
+              fontSize: '12px',
+              color: '#000000',
+              display: 'flex',
             }}
           >
             {siteConfig.name}
@@ -659,83 +631,79 @@ function renderWin95Theme(
  * - エメラルドグリーン
  * - 微細なシャドウ
  */
-function renderModernTheme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderModernTheme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "linear-gradient(135deg, #064e3b 0%, #047857 50%, #059669 100%)",
-        fontFamily: "sans-serif",
-        position: "relative",
-        overflow: "hidden",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #064e3b 0%, #047857 50%, #059669 100%)',
+        fontFamily: 'sans-serif',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {/* 装飾パターン */}
       <div
         style={{
-          position: "absolute",
-          top: "-50%",
-          right: "-20%",
-          width: "800px",
-          height: "800px",
-          borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.03)",
-          display: "flex",
+          position: 'absolute',
+          top: '-50%',
+          right: '-20%',
+          width: '800px',
+          height: '800px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.03)',
+          display: 'flex',
         }}
       />
       <div
         style={{
-          position: "absolute",
-          bottom: "-30%",
-          left: "-10%",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.02)",
-          display: "flex",
+          position: 'absolute',
+          bottom: '-30%',
+          left: '-10%',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.02)',
+          display: 'flex',
         }}
       />
 
       {/* カード */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "60px 80px",
-          maxWidth: "85%",
-          background: "rgba(255, 255, 255, 0.95)",
-          borderRadius: "24px",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '60px 80px',
+          maxWidth: '85%',
+          background: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '24px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
         }}
       >
         {/* バッジ */}
         <div
           style={{
-            display: "flex",
-            padding: "8px 20px",
-            background: "linear-gradient(135deg, #059669, #047857)",
-            borderRadius: "100px",
-            marginBottom: "24px",
+            display: 'flex',
+            padding: '8px 20px',
+            background: 'linear-gradient(135deg, #059669, #047857)',
+            borderRadius: '100px',
+            marginBottom: '24px',
           }}
         >
           <div
             style={{
-              fontSize: "14px",
-              color: "#ffffff",
-              fontWeight: "600",
-              letterSpacing: "0.05em",
-              display: "flex",
+              fontSize: '14px',
+              color: '#ffffff',
+              fontWeight: '600',
+              letterSpacing: '0.05em',
+              display: 'flex',
             }}
           >
             {siteConfig.name}
@@ -746,11 +714,11 @@ function renderModernTheme(
         <div
           style={{
             fontSize: `${titleFontSize}px`,
-            fontWeight: "bold",
-            color: "#064e3b",
-            textAlign: "center",
+            fontWeight: 'bold',
+            color: '#064e3b',
+            textAlign: 'center',
             lineHeight: 1.2,
-            display: "flex",
+            display: 'flex',
           }}
         >
           {title}
@@ -760,11 +728,11 @@ function renderModernTheme(
         {subtitle && (
           <div
             style={{
-              fontSize: "24px",
-              color: "#047857",
-              marginTop: "20px",
-              textAlign: "center",
-              display: "flex",
+              fontSize: '24px',
+              color: '#047857',
+              marginTop: '20px',
+              textAlign: 'center',
+              display: 'flex',
             }}
           >
             {subtitle}
@@ -774,12 +742,12 @@ function renderModernTheme(
         {/* 装飾ライン */}
         <div
           style={{
-            display: "flex",
-            marginTop: "32px",
-            width: "80px",
-            height: "4px",
-            background: "linear-gradient(90deg, #059669, #34d399)",
-            borderRadius: "2px",
+            display: 'flex',
+            marginTop: '32px',
+            width: '80px',
+            height: '4px',
+            background: 'linear-gradient(90deg, #059669, #34d399)',
+            borderRadius: '2px',
           }}
         />
       </div>
@@ -787,30 +755,30 @@ function renderModernTheme(
       {/* フッター */}
       <div
         style={{
-          position: "absolute",
-          bottom: "32px",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
+          position: 'absolute',
+          bottom: '32px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
         }}
       >
         <div
           style={{
-            width: "8px",
-            height: "8px",
-            borderRadius: "50%",
-            background: "#34d399",
-            display: "flex",
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: '#34d399',
+            display: 'flex',
           }}
         />
         <div
           style={{
-            fontSize: "16px",
-            color: "rgba(255, 255, 255, 0.8)",
-            display: "flex",
+            fontSize: '16px',
+            color: 'rgba(255, 255, 255, 0.8)',
+            display: 'flex',
           }}
         >
-          {siteConfig.baseUrl.replace("https://", "")}
+          {siteConfig.baseUrl.replace('https://', '')}
         </div>
       </div>
     </div>
@@ -823,103 +791,98 @@ function renderModernTheme(
  * - スキャンライン効果
  * - ターミナルプロンプト
  */
-function renderTerminalTheme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderTerminalTheme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: "#0a0a0a",
-        fontFamily: "monospace",
-        position: "relative",
-        overflow: "hidden",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#0a0a0a',
+        fontFamily: 'monospace',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {/* CRT グロー効果 */}
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background:
-            "radial-gradient(ellipse at center, rgba(0,40,0,0.15) 0%, transparent 70%)",
-          display: "flex",
+          background: 'radial-gradient(ellipse at center, rgba(0,40,0,0.15) 0%, transparent 70%)',
+          display: 'flex',
         }}
       />
 
       {/* スキャンライン効果 */}
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
           backgroundImage:
-            "repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px)",
-          display: "flex",
+            'repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px)',
+          display: 'flex',
         }}
       />
 
       {/* ターミナルヘッダー */}
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          height: "40px",
-          background: "#1a1a1a",
-          borderBottom: "1px solid #333",
-          padding: "0 16px",
+          display: 'flex',
+          alignItems: 'center',
+          height: '40px',
+          background: '#1a1a1a',
+          borderBottom: '1px solid #333',
+          padding: '0 16px',
         }}
       >
         <div
           style={{
-            display: "flex",
-            gap: "8px",
+            display: 'flex',
+            gap: '8px',
           }}
         >
           <div
             style={{
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#ff5f56",
-              display: "flex",
+              width: '12px',
+              height: '12px',
+              borderRadius: '50%',
+              background: '#ff5f56',
+              display: 'flex',
             }}
           />
           <div
             style={{
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#ffbd2e",
-              display: "flex",
+              width: '12px',
+              height: '12px',
+              borderRadius: '50%',
+              background: '#ffbd2e',
+              display: 'flex',
             }}
           />
           <div
             style={{
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#27ca3f",
-              display: "flex",
+              width: '12px',
+              height: '12px',
+              borderRadius: '50%',
+              background: '#27ca3f',
+              display: 'flex',
             }}
           />
         </div>
         <div
           style={{
-            marginLeft: "20px",
-            fontSize: "14px",
-            color: "#888",
-            display: "flex",
+            marginLeft: '20px',
+            fontSize: '14px',
+            color: '#888',
+            display: 'flex',
           }}
         >
           user@yrsa: ~/projects
@@ -929,44 +892,44 @@ function renderTerminalTheme(
       {/* ターミナルコンテンツ */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "40px",
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '40px',
           flex: 1,
         }}
       >
         {/* コマンドライン */}
         <div
           style={{
-            display: "flex",
-            fontSize: "16px",
-            color: "#00ff00",
-            marginBottom: "24px",
+            display: 'flex',
+            fontSize: '16px',
+            color: '#00ff00',
+            marginBottom: '24px',
           }}
         >
-          <span style={{ color: "#00ff00" }}>$</span>
-          <span style={{ marginLeft: "8px", color: "#888" }}>cat README.md</span>
+          <span style={{ color: '#00ff00' }}>$</span>
+          <span style={{ marginLeft: '8px', color: '#888' }}>cat README.md</span>
         </div>
 
         {/* 出力 */}
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            padding: "30px",
-            background: "rgba(0, 255, 0, 0.03)",
-            border: "1px solid rgba(0, 255, 0, 0.2)",
-            borderRadius: "4px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            padding: '30px',
+            background: 'rgba(0, 255, 0, 0.03)',
+            border: '1px solid rgba(0, 255, 0, 0.2)',
+            borderRadius: '4px',
           }}
         >
           {/* サイト名 */}
           <div
             style={{
-              fontSize: "18px",
-              color: "#00aa00",
-              marginBottom: "16px",
-              display: "flex",
+              fontSize: '18px',
+              color: '#00aa00',
+              marginBottom: '16px',
+              display: 'flex',
             }}
           >
             # {siteConfig.name}
@@ -976,11 +939,11 @@ function renderTerminalTheme(
           <div
             style={{
               fontSize: `${Math.min(titleFontSize, 56)}px`,
-              fontWeight: "bold",
-              color: "#00ff00",
+              fontWeight: 'bold',
+              color: '#00ff00',
               lineHeight: 1.3,
-              display: "flex",
-              textShadow: "0 0 10px rgba(0, 255, 0, 0.5)",
+              display: 'flex',
+              textShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
             }}
           >
             {title}
@@ -990,10 +953,10 @@ function renderTerminalTheme(
           {subtitle && (
             <div
               style={{
-                fontSize: "22px",
-                color: "#00cc00",
-                marginTop: "16px",
-                display: "flex",
+                fontSize: '22px',
+                color: '#00cc00',
+                marginTop: '16px',
+                display: 'flex',
               }}
             >
               &gt; {subtitle}
@@ -1004,20 +967,20 @@ function renderTerminalTheme(
         {/* カーソル行 */}
         <div
           style={{
-            display: "flex",
-            fontSize: "16px",
-            color: "#00ff00",
-            marginTop: "24px",
+            display: 'flex',
+            fontSize: '16px',
+            color: '#00ff00',
+            marginTop: '24px',
           }}
         >
           <span>$</span>
           <span
             style={{
-              marginLeft: "8px",
-              width: "10px",
-              height: "20px",
-              background: "#00ff00",
-              display: "flex",
+              marginLeft: '8px',
+              width: '10px',
+              height: '20px',
+              background: '#00ff00',
+              display: 'flex',
             }}
           />
         </div>
@@ -1026,19 +989,17 @@ function renderTerminalTheme(
       {/* フッター */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "12px 24px",
-          background: "#1a1a1a",
-          borderTop: "1px solid #333",
-          fontSize: "12px",
-          color: "#666",
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '12px 24px',
+          background: '#1a1a1a',
+          borderTop: '1px solid #333',
+          fontSize: '12px',
+          color: '#666',
         }}
       >
-        <div style={{ display: "flex" }}>
-          {siteConfig.baseUrl.replace("https://", "")}
-        </div>
-        <div style={{ display: "flex" }}>zsh 5.9</div>
+        <div style={{ display: 'flex' }}>{siteConfig.baseUrl.replace('https://', '')}</div>
+        <div style={{ display: 'flex' }}>zsh 5.9</div>
       </div>
     </div>
   );
@@ -1050,90 +1011,85 @@ function renderTerminalTheme(
  * - 砂丘風グラデーション
  * - 柔らかい影
  */
-function renderGlassTheme(
-  title: string,
-  subtitle: string | undefined,
-  titleFontSize: number
-): React.ReactElement {
+function renderGlassTheme(title: string, subtitle: string | undefined, titleFontSize: number): React.ReactElement {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         background:
-          "linear-gradient(135deg, #a5f3fc 0%, #67e8f9 20%, #22d3ee 40%, #06b6d4 60%, #0891b2 80%, #fcd34d 100%)",
-        fontFamily: "sans-serif",
-        position: "relative",
-        overflow: "hidden",
+          'linear-gradient(135deg, #a5f3fc 0%, #67e8f9 20%, #22d3ee 40%, #06b6d4 60%, #0891b2 80%, #fcd34d 100%)',
+        fontFamily: 'sans-serif',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {/* 装飾の円（砂丘風） */}
       <div
         style={{
-          position: "absolute",
-          top: "-200px",
-          right: "-100px",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.15)",
-          display: "flex",
+          position: 'absolute',
+          top: '-200px',
+          right: '-100px',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.15)',
+          display: 'flex',
         }}
       />
       <div
         style={{
-          position: "absolute",
-          bottom: "-150px",
-          left: "-50px",
-          width: "400px",
-          height: "400px",
-          borderRadius: "50%",
-          background: "rgba(255, 255, 255, 0.1)",
-          display: "flex",
+          position: 'absolute',
+          bottom: '-150px',
+          left: '-50px',
+          width: '400px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.1)',
+          display: 'flex',
         }}
       />
       <div
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "60%",
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background: "rgba(252, 211, 77, 0.2)",
-          display: "flex",
+          position: 'absolute',
+          top: '50%',
+          left: '60%',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'rgba(252, 211, 77, 0.2)',
+          display: 'flex',
         }}
       />
 
       {/* ガラスパネル */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "50px 70px",
-          maxWidth: "80%",
-          background: "rgba(255, 255, 255, 0.25)",
-          borderRadius: "32px",
-          border: "1px solid rgba(255, 255, 255, 0.4)",
-          boxShadow:
-            "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '50px 70px',
+          maxWidth: '80%',
+          background: 'rgba(255, 255, 255, 0.25)',
+          borderRadius: '32px',
+          border: '1px solid rgba(255, 255, 255, 0.4)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
         }}
       >
         {/* サイト名 */}
         <div
           style={{
-            fontSize: "18px",
-            color: "rgba(30, 64, 80, 0.8)",
-            marginBottom: "16px",
-            fontWeight: "500",
-            letterSpacing: "0.05em",
-            display: "flex",
+            fontSize: '18px',
+            color: 'rgba(30, 64, 80, 0.8)',
+            marginBottom: '16px',
+            fontWeight: '500',
+            letterSpacing: '0.05em',
+            display: 'flex',
           }}
         >
           {siteConfig.name}
@@ -1143,11 +1099,11 @@ function renderGlassTheme(
         <div
           style={{
             fontSize: `${titleFontSize}px`,
-            fontWeight: "600",
-            color: "#164e63",
-            textAlign: "center",
+            fontWeight: '600',
+            color: '#164e63',
+            textAlign: 'center',
             lineHeight: 1.2,
-            display: "flex",
+            display: 'flex',
           }}
         >
           {title}
@@ -1157,11 +1113,11 @@ function renderGlassTheme(
         {subtitle && (
           <div
             style={{
-              fontSize: "22px",
-              color: "#0e7490",
-              marginTop: "20px",
-              textAlign: "center",
-              display: "flex",
+              fontSize: '22px',
+              color: '#0e7490',
+              marginTop: '20px',
+              textAlign: 'center',
+              display: 'flex',
             }}
           >
             {subtitle}
@@ -1171,20 +1127,20 @@ function renderGlassTheme(
         {/* ピル型装飾 */}
         <div
           style={{
-            display: "flex",
-            marginTop: "28px",
-            padding: "10px 28px",
-            background: "rgba(255, 255, 255, 0.5)",
-            borderRadius: "100px",
-            border: "1px solid rgba(255, 255, 255, 0.6)",
+            display: 'flex',
+            marginTop: '28px',
+            padding: '10px 28px',
+            background: 'rgba(255, 255, 255, 0.5)',
+            borderRadius: '100px',
+            border: '1px solid rgba(255, 255, 255, 0.6)',
           }}
         >
           <div
             style={{
-              fontSize: "14px",
-              color: "#0891b2",
-              fontWeight: "500",
-              display: "flex",
+              fontSize: '14px',
+              color: '#0891b2',
+              fontWeight: '500',
+              display: 'flex',
             }}
           >
             リンク集
@@ -1195,24 +1151,24 @@ function renderGlassTheme(
       {/* フッター */}
       <div
         style={{
-          position: "absolute",
-          bottom: "28px",
-          display: "flex",
-          alignItems: "center",
-          padding: "8px 20px",
-          background: "rgba(255, 255, 255, 0.3)",
-          borderRadius: "100px",
+          position: 'absolute',
+          bottom: '28px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '8px 20px',
+          background: 'rgba(255, 255, 255, 0.3)',
+          borderRadius: '100px',
         }}
       >
         <div
           style={{
-            fontSize: "14px",
-            color: "#0e7490",
-            fontWeight: "500",
-            display: "flex",
+            fontSize: '14px',
+            color: '#0e7490',
+            fontWeight: '500',
+            display: 'flex',
           }}
         >
-          {siteConfig.baseUrl.replace("https://", "")}
+          {siteConfig.baseUrl.replace('https://', '')}
         </div>
       </div>
     </div>
@@ -1222,16 +1178,14 @@ function renderGlassTheme(
 /**
  * OGP 画像の URL を生成するヘルパー関数
  */
-export function getOpengraphImageUrl(
-  options: Omit<CreateOpengraphImageOptions, "width" | "height">
-): string {
+export function getOpengraphImageUrl(options: Omit<CreateOpengraphImageOptions, 'width' | 'height'>): string {
   const params = new URLSearchParams();
-  params.set("title", options.title);
+  params.set('title', options.title);
   if (options.subtitle) {
-    params.set("subtitle", options.subtitle);
+    params.set('subtitle', options.subtitle);
   }
   if (options.theme) {
-    params.set("theme", options.theme);
+    params.set('theme', options.theme);
   }
   return `/api/ogp?${params.toString()}`;
 }

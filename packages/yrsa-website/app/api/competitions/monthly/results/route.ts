@@ -1,9 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getResults, getFiscalYear } from "@/lib/competitions";
-import {
-  monthlyResultsQuerySchema,
-  parseSearchParams,
-} from "@/lib/api/schemas";
+import { NextRequest, NextResponse } from 'next/server';
+
+import { monthlyResultsQuerySchema, parseSearchParams } from '@/lib/api/schemas';
+import { getResults, getFiscalYear } from '@/lib/competitions';
 
 /**
  * GET /api/competitions/monthly/results
@@ -30,10 +28,10 @@ export async function GET(request: NextRequest) {
     if (!parseResult.success) {
       return NextResponse.json(
         {
-          error: "Validation error",
+          error: 'Validation error',
           message: parseResult.error,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -60,9 +58,7 @@ export async function GET(request: NextRequest) {
       filter.name = name;
     }
 
-    const results = await getResults(
-      Object.keys(filter).length > 0 ? filter : undefined
-    );
+    const results = await getResults(Object.keys(filter).length > 0 ? filter : undefined);
 
     // Build response with metadata
     const uniqueDates = [...new Set(results.map((r) => r.date))];
@@ -87,20 +83,17 @@ export async function GET(request: NextRequest) {
 
     // Add cache headers for better performance
     // Cache for 1 hour, stale-while-revalidate for 1 day
-    response.headers.set(
-      "Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400"
-    );
+    response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
 
     return response;
   } catch (error) {
-    console.error("Error fetching monthly results:", error);
+    console.error('Error fetching monthly results:', error);
     return NextResponse.json(
       {
-        error: "Internal server error",
-        message: "結果の取得中にエラーが発生しました",
+        error: 'Internal server error',
+        message: '結果の取得中にエラーが発生しました',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

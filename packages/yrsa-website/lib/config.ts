@@ -2,13 +2,13 @@
  * サイト設定のデフォルト値
  */
 const defaults = {
-  baseUrl: "https://yokosuka.kanagawa-rifle.org",
-  name: "横須賀市ライフル射撃協会",
-  shortName: "YRSA",
-  telephone: "046-823-0617",
-  email: "yokosukarifle@gmail.com",
-  postalCode: "238-0042",
-  address: "神奈川県横須賀市汐入町2-2 サンロク商事内",
+  baseUrl: 'https://yokosuka.kanagawa-rifle.org',
+  name: '横須賀市ライフル射撃協会',
+  shortName: 'YRSA',
+  telephone: '046-823-0617',
+  email: 'yokosukarifle@gmail.com',
+  postalCode: '238-0042',
+  address: '神奈川県横須賀市汐入町2-2 サンロク商事内',
 } as const;
 
 /**

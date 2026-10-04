@@ -1,20 +1,16 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-export default function ShootingRangeLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ShootingRangeLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
       {/* スキップリンク */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-emerald-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-emerald-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none"
       >
         メインコンテンツへスキップ
       </a>
@@ -26,9 +22,7 @@ export default function ShootingRangeLayout({
           <h1 className="mt-1 text-lg font-bold text-white sm:text-2xl md:text-3xl">
             くりはま花の国エアライフル射撃場
           </h1>
-          <p className="mt-2 text-sm text-emerald-100">
-            日本ライフル射撃協会公認｜ライフル射撃・ビームライフル体験
-          </p>
+          <p className="mt-2 text-sm text-emerald-100">日本ライフル射撃協会公認｜ライフル射撃・ビームライフル体験</p>
         </div>
       </header>
 
@@ -57,7 +51,7 @@ export default function ShootingRangeLayout({
               <MapPin aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
               <div className="text-sm">
                 <p className="font-medium text-gray-800">所在地</p>
-                <address className="not-italic text-gray-600">
+                <address className="text-gray-600 not-italic">
                   〒239-0832
                   <br />
                   神奈川県横須賀市神明町1番地
@@ -70,7 +64,7 @@ export default function ShootingRangeLayout({
                 <p className="font-medium text-gray-800">電話・FAX</p>
                 <a
                   href="tel:046-833-6990"
-                  className="text-gray-600 hover:text-emerald-600 hover:underline focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="text-gray-600 hover:text-emerald-600 hover:underline focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none"
                 >
                   046-833-6990
                 </a>
@@ -82,7 +76,7 @@ export default function ShootingRangeLayout({
                 <p className="font-medium text-gray-800">メール</p>
                 <a
                   href="mailto:yokosukarifle@gmail.com"
-                  className="text-gray-600 hover:text-emerald-600 hover:underline focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="text-gray-600 hover:text-emerald-600 hover:underline focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none"
                 >
                   yokosukarifle@gmail.com
                 </a>
@@ -95,13 +89,7 @@ export default function ShootingRangeLayout({
   );
 }
 
-function NavLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -109,11 +97,11 @@ function NavLink({
     <li>
       <Link
         href={href}
-        aria-current={isActive ? "page" : undefined}
-        className={`inline-block border-b-2 px-4 py-3 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500 ${
+        aria-current={isActive ? 'page' : undefined}
+        className={`inline-block border-b-2 px-4 py-3 text-sm font-medium transition-colors focus:ring-2 focus:ring-emerald-500 focus:outline-none focus:ring-inset ${
           isActive
-            ? "border-emerald-600 text-emerald-600"
-            : "border-transparent text-gray-600 hover:border-emerald-500 hover:text-emerald-600"
+            ? 'border-emerald-600 text-emerald-600'
+            : 'border-transparent text-gray-600 hover:border-emerald-500 hover:text-emerald-600'
         }`}
       >
         {children}

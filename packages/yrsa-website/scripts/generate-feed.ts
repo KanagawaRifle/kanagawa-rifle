@@ -7,14 +7,13 @@
  * Usage: npx tsx scripts/generate-feed.ts
  */
 
-import { promises as fs } from "fs";
-import path from "path";
+import { promises as fs } from 'fs';
+import path from 'path';
 
 const siteConfig = {
-  baseUrl: "https://yokosuka.kanagawa-rifle.org",
-  name: "横須賀市ライフル射撃協会",
-  description:
-    "横須賀市ライフル射撃協会の公式ウェブサイト。月例会結果、競技会情報などを掲載。",
+  baseUrl: 'https://yokosuka.kanagawa-rifle.org',
+  name: '横須賀市ライフル射撃協会',
+  description: '横須賀市ライフル射撃協会の公式ウェブサイト。月例会結果、競技会情報などを掲載。',
 };
 
 interface ResultRecord {
@@ -30,16 +29,16 @@ interface ResultRecord {
 // Parse CSV line handling quoted values
 function parseCSVLine(line: string): string[] {
   const values: string[] = [];
-  let current = "";
+  let current = '';
   let inQuotes = false;
 
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"') {
       inQuotes = !inQuotes;
-    } else if (char === "," && !inQuotes) {
+    } else if (char === ',' && !inQuotes) {
       values.push(current.trim());
-      current = "";
+      current = '';
     } else {
       current += char;
     }
@@ -66,7 +65,7 @@ function parseCSV(csvText: string): ResultRecord[] {
     const [date, event, rankStr, name, seriesStr, totalStr, remarks] = values;
     if (!date || !event || !rankStr || !name || !seriesStr || !totalStr) continue;
 
-    const series = seriesStr.split("|").map((s) => parseFloat(s.trim()));
+    const series = seriesStr.split('|').map((s) => parseFloat(s.trim()));
 
     records.push({
       date,
@@ -75,7 +74,7 @@ function parseCSV(csvText: string): ResultRecord[] {
       name,
       series,
       total: parseFloat(totalStr),
-      remarks: remarks || "",
+      remarks: remarks || '',
     });
   }
 
@@ -85,11 +84,11 @@ function parseCSV(csvText: string): ResultRecord[] {
 // Escape XML special characters
 function escapeXml(text: string): string {
   return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 // Format date to RFC 822 format
@@ -101,7 +100,7 @@ function toRFC822(dateStr: string): string {
 // Format date to Japanese display
 function formatDateJapanese(dateStr: string): string {
   const date = new Date(dateStr);
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+  const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 (${weekdays[date.getDay()]})`;
 }
 
@@ -126,9 +125,7 @@ function groupByDate(records: ResultRecord[]): CompetitionDateGroup[] {
   });
 
   // Sort by date descending
-  const sortedDates = Array.from(dateMap.keys()).sort((a, b) =>
-    b.localeCompare(a)
-  );
+  const sortedDates = Array.from(dateMap.keys()).sort((a, b) => b.localeCompare(a));
 
   return sortedDates.map((date) => ({
     date,
@@ -138,11 +135,8 @@ function groupByDate(records: ResultRecord[]): CompetitionDateGroup[] {
 
 // Generate RSS item for a competition date
 function generateItem(group: CompetitionDateGroup): string {
-  const eventNames = Array.from(group.events.keys()).join(", ");
-  const totalParticipants = Array.from(group.events.values()).reduce(
-    (sum, records) => sum + records.length,
-    0
-  );
+  const eventNames = Array.from(group.events.keys()).join(', ');
+  const totalParticipants = Array.from(group.events.values()).reduce((sum, records) => sum + records.length, 0);
 
   // Get top 3 results for description
   let description = `開催日: ${formatDateJapanese(group.date)}\n種目: ${eventNames}\n参加者数: ${totalParticipants}名\n\n`;
@@ -153,7 +147,7 @@ function generateItem(group: CompetitionDateGroup): string {
     top3.forEach((r) => {
       description += `${r.rank}位: ${r.name} (${r.total}点)\n`;
     });
-    description += "\n";
+    description += '\n';
   });
 
   return `    <item>
@@ -167,29 +161,29 @@ function generateItem(group: CompetitionDateGroup): string {
 }
 
 async function generateFeed() {
-  const csvPath = path.join(process.cwd(), "data/competitions/monthly/results.csv");
-  const publicDir = path.join(process.cwd(), "public");
+  const csvPath = path.join(process.cwd(), 'data/competitions/monthly/results.csv');
+  const publicDir = path.join(process.cwd(), 'public');
 
   // Check if CSV exists
   try {
     await fs.access(csvPath);
   } catch {
-    console.log("No results CSV found, skipping RSS generation");
+    console.log('No results CSV found, skipping RSS generation');
     return;
   }
 
-  const csvText = await fs.readFile(csvPath, "utf-8");
+  const csvText = await fs.readFile(csvPath, 'utf-8');
   const records = parseCSV(csvText);
 
   if (records.length === 0) {
-    console.log("No results found, skipping RSS generation");
+    console.log('No results found, skipping RSS generation');
     return;
   }
 
   const groups = groupByDate(records);
   const recentGroups = groups.slice(0, 20); // Last 20 competition dates
 
-  const items = recentGroups.map(generateItem).join("\n");
+  const items = recentGroups.map(generateItem).join('\n');
   const lastBuildDate = toRFC822(new Date().toISOString());
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
@@ -210,8 +204,8 @@ ${items}
   </channel>
 </rss>`;
 
-  await fs.writeFile(path.join(publicDir, "feed.xml"), rss, "utf-8");
-  console.log("Generated: public/feed.xml");
+  await fs.writeFile(path.join(publicDir, 'feed.xml'), rss, 'utf-8');
+  console.log('Generated: public/feed.xml');
   console.log(`  - ${recentGroups.length} competition dates included`);
 }
 

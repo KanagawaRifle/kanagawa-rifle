@@ -1,19 +1,21 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { TerminalCalendar } from "./_components";
-import styles from "./terminal.module.css";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import { TerminalCalendar } from './_components';
+import styles from './terminal.module.css';
 
 export const metadata: Metadata = {
-  title: "事業計画 | 横須賀市ライフル射撃協会",
-  description: "横須賀市ライフル射撃協会の年間事業計画と予定表。",
+  title: '事業計画 | 横須賀市ライフル射撃協会',
+  description: '横須賀市ライフル射撃協会の年間事業計画と予定表。',
   openGraph: {
     images: [
       {
         url: getOpengraphImageUrl({
-          title: "事業計画",
-          subtitle: "年間事業計画と予定表",
-          theme: "terminal",
+          title: '事業計画',
+          subtitle: '年間事業計画と予定表',
+          theme: 'terminal',
         }),
         width: 1200,
         height: 630,
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-function Prompt({ path = "~" }: { path?: string }) {
+function Prompt({ path = '~' }: { path?: string }) {
   return (
     <span className={styles.prompt}>
       <span className={styles.promptUser}>yrsa</span>
@@ -43,7 +45,7 @@ export default function ProjectsPage() {
     <div
       className="min-h-screen p-2 sm:p-4"
       style={{
-        backgroundColor: "#0d1117",
+        backgroundColor: '#0d1117',
         fontFamily: "'JetBrains Mono', 'Fira Code', 'Courier New', monospace",
       }}
     >
@@ -57,9 +59,7 @@ export default function ProjectsPage() {
             <span className="h-3 w-3 rounded-full bg-[#27c93f] shadow-[0_0_8px_#27c93f]"></span>
           </div>
           <div className="flex-1 text-center">
-            <span className="text-xs text-gray-400 sm:text-sm">
-              yrsa@rifle: ~/projects
-            </span>
+            <span className="text-xs text-gray-400 sm:text-sm">yrsa@rifle: ~/projects</span>
           </div>
           <div className="w-14"></div>
         </div>
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
         {/* ターミナル本体 */}
         <div
           className={`${styles.terminal} relative rounded-b-lg border border-[#30363d] p-3 sm:p-5`}
-          style={{ backgroundColor: "#0d1117" }}
+          style={{ backgroundColor: '#0d1117' }}
         >
           {/* neofetch風システム情報 */}
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:gap-8">
@@ -75,7 +75,7 @@ export default function ProjectsPage() {
             <div className="flex-shrink-0">
               {/* モバイル用 */}
               <pre className={`${styles.asciiArt} block text-[10px] leading-none sm:hidden`}>
-{`╭─────────────╮
+                {`╭─────────────╮
 │  Y R S A    │
 │  ▀▀▀▀▀▀▀▀   │
 │  TERMINAL   │
@@ -83,7 +83,7 @@ export default function ProjectsPage() {
               </pre>
               {/* デスクトップ用 */}
               <pre className={`${styles.asciiArt} hidden text-xs leading-none sm:block`}>
-{`    ██╗   ██╗██████╗ ███████╗ █████╗
+                {`    ██╗   ██╗██████╗ ███████╗ █████╗
     ╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
      ╚████╔╝ ██████╔╝███████╗███████║
       ╚██╔╝  ██╔══██╗╚════██║██╔══██║
@@ -118,9 +118,7 @@ export default function ProjectsPage() {
               <span className="text-white">ls -la ../</span>
             </div>
             <div className={`${styles.outputBox} mt-3 overflow-x-auto p-3 sm:p-4`}>
-              <div className="text-xs text-gray-500 sm:text-sm">
-                total 4
-              </div>
+              <div className="text-xs text-gray-500 sm:text-sm">total 4</div>
               <div className="mt-2 space-y-1 text-xs sm:text-sm">
                 <div className="flex gap-2">
                   <span className="w-20 text-gray-500 sm:w-24">drwxr-xr-x</span>
@@ -198,12 +196,8 @@ export default function ProjectsPage() {
             <div className={`${styles.outputBox} mt-3 p-3 sm:p-4`}>
               <div className="mb-3 flex items-center gap-2">
                 <span className={`${styles.execIcon} text-lg`}>📅</span>
-                <span className="font-bold text-cyan-400">
-                  年間スケジュール
-                </span>
-                <span className="text-xs text-gray-500">
-                  (Google Calendar)
-                </span>
+                <span className="font-bold text-cyan-400">年間スケジュール</span>
+                <span className="text-xs text-gray-500">(Google Calendar)</span>
               </div>
               <TerminalCalendar />
             </div>

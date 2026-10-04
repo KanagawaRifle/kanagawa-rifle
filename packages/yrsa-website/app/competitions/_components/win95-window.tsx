@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface Win95WindowProps {
   title: string;
@@ -17,22 +17,16 @@ interface Win95WindowProps {
  *   <p>コンテンツ</p>
  * </Win95Window>
  */
-export function Win95Window({
-  title,
-  icon = "📅",
-  children,
-  className,
-  asSection = false,
-}: Win95WindowProps) {
-  const Component = asSection ? "section" : "div";
-  const headingId = asSection ? `win95-${title.replace(/\s+/g, "-")}` : undefined;
+export function Win95Window({ title, icon = '📅', children, className, asSection = false }: Win95WindowProps) {
+  const Component = asSection ? 'section' : 'div';
+  const headingId = asSection ? `win95-${title.replace(/\s+/g, '-')}` : undefined;
 
   return (
     <Component
       className={cn(
-        "bg-[var(--win95-bg,#c0c0c0)] border-2 border-t-[var(--win95-light,#ffffff)] border-l-[var(--win95-light,#ffffff)] border-r-[var(--win95-dark,#808080)] border-b-[var(--win95-dark,#808080)]",
-        "[box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]",
-        className
+        'border-2 border-t-[var(--win95-light,#ffffff)] border-r-[var(--win95-dark,#808080)] border-b-[var(--win95-dark,#808080)] border-l-[var(--win95-light,#ffffff)] bg-[var(--win95-bg,#c0c0c0)]',
+        '[box-shadow:inset_-1px_-1px_0_0_#000000,inset_1px_1px_0_0_#dfdfdf]',
+        className,
       )}
       aria-labelledby={headingId}
     >
@@ -49,8 +43,7 @@ export function Win95Window({
               id={headingId}
               className="text-sm font-bold text-white"
               style={{
-                fontFamily:
-                  "'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif",
+                fontFamily: "'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif",
               }}
             >
               {title}
@@ -59,8 +52,7 @@ export function Win95Window({
             <span
               className="text-sm font-bold text-white"
               style={{
-                fontFamily:
-                  "'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif",
+                fontFamily: "'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif",
               }}
             >
               {title}

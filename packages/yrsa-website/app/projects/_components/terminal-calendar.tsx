@@ -1,12 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import listPlugin from "@fullcalendar/list";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
-import jaLocale from "@fullcalendar/core/locales/ja";
-import { env } from "@/lib/env";
-import styles from "./terminal-calendar.module.css";
+import jaLocale from '@fullcalendar/core/locales/ja';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import listPlugin from '@fullcalendar/list';
+import FullCalendar from '@fullcalendar/react';
+import { useState } from 'react';
+
+import { env } from '@/lib/env';
+
+import styles from './terminal-calendar.module.css';
 
 interface EventDetail {
   title: string;
@@ -19,26 +21,22 @@ interface EventDetail {
 }
 
 function formatDate(date: Date | null, allDay: boolean): string {
-  if (!date) return "";
+  if (!date) return '';
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "short",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short',
   };
   if (!allDay) {
-    options.hour = "2-digit";
-    options.minute = "2-digit";
+    options.hour = '2-digit';
+    options.minute = '2-digit';
   }
-  return date.toLocaleDateString("ja-JP", options);
+  return date.toLocaleDateString('ja-JP', options);
 }
 
-function formatDateRange(
-  start: Date | null,
-  end: Date | null,
-  allDay: boolean
-): string {
-  if (!start) return "";
+function formatDateRange(start: Date | null, end: Date | null, allDay: boolean): string {
+  if (!start) return '';
   const startStr = formatDate(start, allDay);
   if (!end || start.getTime() === end.getTime()) {
     return startStr;
@@ -52,7 +50,7 @@ function formatDateRange(
     return `${startStr} ~ ${formatDate(adjustedEnd, allDay)}`;
   }
   if (start.toDateString() === end.toDateString()) {
-    return `${startStr} ~ ${end.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" })}`;
+    return `${startStr} ~ ${end.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
   }
   return `${startStr} ~ ${formatDate(end, allDay)}`;
 }
@@ -98,22 +96,22 @@ export function TerminalCalendar() {
         locale={jaLocale}
         customButtons={{
           prevFiscalYear: {
-            text: "前年度",
+            text: '前年度',
             click: () => setFiscalYear((prev) => prev - 1),
           },
           nextFiscalYear: {
-            text: "次年度",
+            text: '次年度',
             click: () => setFiscalYear((prev) => prev + 1),
           },
           currentFiscalYear: {
-            text: "今年度",
+            text: '今年度',
             click: () => setFiscalYear(getCurrentFiscalYear()),
           },
         }}
         headerToolbar={{
-          left: "prevFiscalYear,nextFiscalYear currentFiscalYear",
-          center: "title",
-          right: "",
+          left: 'prevFiscalYear,nextFiscalYear currentFiscalYear',
+          center: 'title',
+          right: '',
         }}
         visibleRange={{
           start: fiscalYearRange.start,
@@ -134,9 +132,9 @@ export function TerminalCalendar() {
             start: event.start,
             end: event.end,
             allDay: event.allDay,
-            location: event.extendedProps.location || "",
-            description: event.extendedProps.description || "",
-            url: event.url || "",
+            location: event.extendedProps.location || '',
+            description: event.extendedProps.description || '',
+            url: event.url || '',
           });
           setIsModalOpen(true);
         }}
@@ -151,7 +149,7 @@ export function TerminalCalendar() {
         >
           <div
             className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg border border-[#30363d] shadow-[0_0_30px_rgba(56,139,253,0.15)]"
-            style={{ backgroundColor: "#0d1117" }}
+            style={{ backgroundColor: '#0d1117' }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* ターミナルタイトルバー */}
@@ -172,7 +170,10 @@ export function TerminalCalendar() {
             </div>
 
             {/* ターミナル本体 */}
-            <div className="p-3 text-xs sm:p-4 sm:text-sm" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace" }}>
+            <div
+              className="p-3 text-xs sm:p-4 sm:text-sm"
+              style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace" }}
+            >
               {/* プロンプト */}
               <div className="flex items-center gap-1 text-xs sm:text-sm">
                 <span className="text-[#58a6ff]">yrsa</span>
@@ -187,9 +188,7 @@ export function TerminalCalendar() {
               {/* 出力ボックス */}
               <div className="mt-3 rounded border border-[#30363d] bg-[#161b22]/50 p-3 sm:mt-4 sm:p-4">
                 {/* タイトル */}
-                <h3 className="break-words font-bold text-[#f0883e]">
-                  {selectedEvent.title}
-                </h3>
+                <h3 className="font-bold break-words text-[#f0883e]">{selectedEvent.title}</h3>
 
                 <div className="mt-3 space-y-2">
                   {/* 日時 */}
@@ -213,7 +212,7 @@ export function TerminalCalendar() {
                     <div className="mt-3">
                       <span className="text-[#3fb950]">description:</span>
                       <div
-                        className="mt-2 overflow-x-auto rounded border border-[#30363d] bg-[#0d1117] p-2 text-[#c9d1d9] sm:p-3 [&_a]:text-[#58a6ff] [&_a]:underline [&_a]:break-all [&_a:hover]:text-[#79c0ff] [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
+                        className="mt-2 overflow-x-auto rounded border border-[#30363d] bg-[#0d1117] p-2 text-[#c9d1d9] sm:p-3 [&_a]:break-all [&_a]:text-[#58a6ff] [&_a]:underline [&_a:hover]:text-[#79c0ff] [&_li]:my-1 [&_ul]:list-disc [&_ul]:pl-4"
                         dangerouslySetInnerHTML={{ __html: selectedEvent.description }}
                       />
                     </div>

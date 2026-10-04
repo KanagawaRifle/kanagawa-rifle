@@ -1,5 +1,6 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { promises as fs } from 'fs';
+import path from 'path';
+
 import {
   type ResultRecord,
   type FiscalYearInfo,
@@ -7,23 +8,19 @@ import {
   parseCSV,
   getFiscalYear,
   formatDateJapanese,
-  groupResultsByDateAndEvent,
-} from "./competitions";
+} from './competitions';
 
 // Event display order for rifle shooting class
-export const RIFLE_CLASS_EVENT_ORDER = ["BR40BR", "BRF40"];
+export const RIFLE_CLASS_EVENT_ORDER = ['BR40BR', 'BRF40'];
 
 // Get CSV file path
 function getCSVPath(): string {
-  return path.join(
-    process.cwd(),
-    "data/competitions/rifle-shooting-class/results.csv"
-  );
+  return path.join(process.cwd(), 'data/competitions/rifle-shooting-class/results.csv');
 }
 
 // Load all results from CSV
 export async function loadAllResults(): Promise<ResultRecord[]> {
-  const csvText = await fs.readFile(getCSVPath(), "utf-8");
+  const csvText = await fs.readFile(getCSVPath(), 'utf-8');
   return parseCSV(csvText);
 }
 
@@ -31,10 +28,7 @@ export async function loadAllResults(): Promise<ResultRecord[]> {
 export async function getRifleClassFiscalYears(): Promise<FiscalYearInfo[]> {
   const records = await loadAllResults();
 
-  const yearData = new Map<
-    number,
-    { dates: Set<string>; records: ResultRecord[] }
-  >();
+  const yearData = new Map<number, { dates: Set<string>; records: ResultRecord[] }>();
 
   records.forEach((record) => {
     const fiscalYear = getFiscalYear(record.date);
@@ -80,30 +74,22 @@ function sortEvents(events: string[]): string[] {
 }
 
 // Get results with optional filtering
-export async function getRifleClassResults(
-  filter?: ResultsFilter
-): Promise<ResultRecord[]> {
+export async function getRifleClassResults(filter?: ResultsFilter): Promise<ResultRecord[]> {
   let records = await loadAllResults();
 
   if (filter) {
     if (filter.year !== undefined) {
-      records = records.filter(
-        (r) => getFiscalYear(r.date) === filter.year
-      );
+      records = records.filter((r) => getFiscalYear(r.date) === filter.year);
     }
     if (filter.date) {
       records = records.filter((r) => r.date === filter.date);
     }
     if (filter.event) {
-      records = records.filter(
-        (r) => r.event.toLowerCase() === filter.event!.toLowerCase()
-      );
+      records = records.filter((r) => r.event.toLowerCase() === filter.event!.toLowerCase());
     }
     if (filter.name) {
       const searchName = filter.name.toLowerCase();
-      records = records.filter((r) =>
-        r.name.toLowerCase().includes(searchName)
-      );
+      records = records.filter((r) => r.name.toLowerCase().includes(searchName));
     }
   }
 
@@ -127,7 +113,7 @@ export async function getRifleClassResults(
 
 // Group results by date and event
 export function groupRifleClassResultsByDateAndEvent(
-  records: ResultRecord[]
+  records: ResultRecord[],
 ): Map<string, Map<string, ResultRecord[]>> {
   const dateGroups = new Map<string, Map<string, ResultRecord[]>>();
 
@@ -144,9 +130,7 @@ export function groupRifleClassResultsByDateAndEvent(
   });
 
   // Sort dates descending
-  const sortedDates = Array.from(dateGroups.keys()).sort((a, b) =>
-    b.localeCompare(a)
-  );
+  const sortedDates = Array.from(dateGroups.keys()).sort((a, b) => b.localeCompare(a));
 
   const result = new Map<string, Map<string, ResultRecord[]>>();
 

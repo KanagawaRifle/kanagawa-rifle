@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp } from 'lucide-react';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -12,10 +12,7 @@ export function Footer() {
       }}
     >
       {/* キラキラ装飾 - motion-safe で条件付きアニメーション */}
-      <div
-        className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2"
-        aria-hidden="true"
-      >
+      <div className="flex justify-center gap-2 border-t-4 border-double border-purple-400 py-2" aria-hidden="true">
         <span className="motion-safe:animate-pulse">💫</span>
         <span className="motion-safe:animate-bounce">⭐</span>
         <span className="motion-safe:animate-pulse">💫</span>
@@ -27,15 +24,9 @@ export function Footer() {
       <div className="mx-auto max-w-4xl px-4 py-4">
         <div className="grid gap-4 md:grid-cols-2">
           {/* 事務局 */}
-          <section
-            className="border-4 border-pink-400 bg-pink-50"
-            aria-labelledby="office-info"
-          >
+          <section className="border-4 border-pink-400 bg-pink-50" aria-labelledby="office-info">
             <div className="bg-gradient-to-r from-pink-400 to-pink-600 px-3 py-1">
-              <h2
-                id="office-info"
-                className="font-retro font-bold text-white"
-              >
+              <h2 id="office-info" className="font-retro font-bold text-white">
                 ✉ 事務局 ✉
               </h2>
             </div>
@@ -51,11 +42,8 @@ export function Footer() {
               <div className="mb-1">
                 <dt className="sr-only">電話番号</dt>
                 <dd>
-                  TEL:{" "}
-                  <a
-                    href="tel:046-823-0617"
-                    className="text-blue-600 underline hover:text-red-600"
-                  >
+                  TEL:{' '}
+                  <a href="tel:046-823-0617" className="text-blue-600 underline hover:text-red-600">
                     046-823-0617
                   </a>
                 </dd>
@@ -68,15 +56,9 @@ export function Footer() {
           </section>
 
           {/* 射撃場 */}
-          <section
-            className="border-4 border-cyan-400 bg-cyan-50"
-            aria-labelledby="range-info"
-          >
+          <section className="border-4 border-cyan-400 bg-cyan-50" aria-labelledby="range-info">
             <div className="bg-gradient-to-r from-cyan-400 to-cyan-600 px-3 py-1">
-              <h2
-                id="range-info"
-                className="font-retro font-bold text-white"
-              >
+              <h2 id="range-info" className="font-retro font-bold text-white">
                 🎯 射撃場 🎯
               </h2>
             </div>
@@ -92,11 +74,8 @@ export function Footer() {
               <div className="mb-1">
                 <dt className="sr-only">電話番号</dt>
                 <dd>
-                  TEL/FAX:{" "}
-                  <a
-                    href="tel:046-833-6990"
-                    className="text-blue-600 underline hover:text-red-600"
-                  >
+                  TEL/FAX:{' '}
+                  <a href="tel:046-833-6990" className="text-blue-600 underline hover:text-red-600">
                     046-833-6990
                   </a>
                 </dd>
@@ -104,11 +83,8 @@ export function Footer() {
               <div>
                 <dt className="sr-only">メールアドレス</dt>
                 <dd>
-                  📧{" "}
-                  <a
-                    href="mailto:yokosukarifle@gmail.com"
-                    className="text-blue-600 underline hover:text-red-600"
-                  >
+                  📧{' '}
+                  <a href="mailto:yokosukarifle@gmail.com" className="text-blue-600 underline hover:text-red-600">
                     yokosukarifle@gmail.com
                   </a>
                 </dd>
@@ -186,15 +162,9 @@ export function Footer() {
 
       {/* コピーライト */}
       <div className="border-y-4 border-double border-purple-400 bg-gradient-to-r from-pink-200 via-yellow-100 to-cyan-200 py-3 text-center">
-        <p className="font-retro text-purple-700">
-          ～ご意見・ご感想お待ちしています～
-        </p>
-        <p className="mt-2 text-xs text-gray-600">
-          神奈川県横須賀市のライフル射撃・射撃場なら横須賀市ライフル射撃協会
-        </p>
-        <p className="mt-1 text-sm text-gray-600">
-          Since 1957 / ©2025 横須賀市ライフル射撃協会
-        </p>
+        <p className="font-retro text-purple-700">～ご意見・ご感想お待ちしています～</p>
+        <p className="mt-2 text-xs text-gray-600">神奈川県横須賀市のライフル射撃・射撃場なら横須賀市ライフル射撃協会</p>
+        <p className="mt-1 text-sm text-gray-600">Since 1957 / ©2025 横須賀市ライフル射撃協会</p>
         <div className="mt-2 flex justify-center gap-1" aria-hidden="true">
           <span className="text-lg">🌸</span>
           <span className="text-lg">🌺</span>
@@ -207,7 +177,7 @@ export function Footer() {
       {/* トップへ戻るボタン */}
       <a
         href="#AppHeader"
-        className="font-retro block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white text-shadow-sm transition-all hover:from-orange-400 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        className="font-retro block bg-gradient-to-b from-orange-300 to-orange-500 py-2 text-center font-bold text-white transition-all text-shadow-sm hover:from-orange-400 hover:to-orange-600 focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
         aria-label="ページの先頭へ戻る"
       >
         <ChevronUp className="inline-block motion-safe:animate-bounce" aria-hidden="true" />

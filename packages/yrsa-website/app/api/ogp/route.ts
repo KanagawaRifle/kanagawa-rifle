@@ -1,16 +1,15 @@
-import { NextRequest } from "next/server";
-import { z } from "zod";
-import { createOpengraphImage, type OgpTheme } from "@/lib/server/opengraph";
+import { NextRequest } from 'next/server';
+import { z } from 'zod';
+
+import { createOpengraphImage, type OgpTheme } from '@/lib/server/opengraph';
 
 /**
  * クエリパラメータのスキーマ
  */
 const querySchema = z.object({
-  title: z.string().min(1).max(100).default("横須賀市ライフル射撃協会"),
+  title: z.string().min(1).max(100).default('横須賀市ライフル射撃協会'),
   subtitle: z.string().max(100).optional(),
-  theme: z
-    .enum(["default", "cern", "win95", "modern", "terminal", "glass"])
-    .default("default"),
+  theme: z.enum(['default', 'cern', 'win95', 'modern', 'terminal', 'glass']).default('default'),
 });
 
 /**
@@ -25,9 +24,9 @@ export async function GET(request: NextRequest) {
 
   // パラメータを取得
   const rawParams = {
-    title: searchParams.get("title") ?? undefined,
-    subtitle: searchParams.get("subtitle") ?? undefined,
-    theme: searchParams.get("theme") ?? undefined,
+    title: searchParams.get('title') ?? undefined,
+    subtitle: searchParams.get('subtitle') ?? undefined,
+    theme: searchParams.get('theme') ?? undefined,
   };
 
   // バリデーション
@@ -36,8 +35,8 @@ export async function GET(request: NextRequest) {
   if (!result.success) {
     // バリデーションエラー時はデフォルト値で画像を生成
     return createOpengraphImage({
-      title: "横須賀市ライフル射撃協会",
-      theme: "default",
+      title: '横須賀市ライフル射撃協会',
+      theme: 'default',
     });
   }
 
@@ -50,10 +49,7 @@ export async function GET(request: NextRequest) {
   });
 
   // Cache OGP images for 1 week (they rarely change)
-  response.headers.set(
-    "Cache-Control",
-    "public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400"
-  );
+  response.headers.set('Cache-Control', 'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400');
 
   return response;
 }

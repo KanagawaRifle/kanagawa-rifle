@@ -4,6 +4,7 @@
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -16,7 +17,7 @@
 /* motion-reduce 対応 */
 @media (prefers-reduced-motion: reduce) {
   .marquee {
-    animation: none;
     transform: none;
+    animation: none;
   }
 }

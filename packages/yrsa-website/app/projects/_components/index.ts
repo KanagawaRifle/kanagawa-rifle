@@ -1,1 +1,1 @@
-export { TerminalCalendar } from "./terminal-calendar";
+export { TerminalCalendar } from './terminal-calendar';

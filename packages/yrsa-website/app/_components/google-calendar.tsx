@@ -1,20 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
-import jaLocale from "@fullcalendar/core/locales/ja";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import styles from "./google-calendar.module.css";
-import { env } from "@/lib/env";
-import { sanitizeHtml } from "@/lib/sanitize";
+import jaLocale from '@fullcalendar/core/locales/ja';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import FullCalendar from '@fullcalendar/react';
+import { useState } from 'react';
+
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { env } from '@/lib/env';
+import { sanitizeHtml } from '@/lib/sanitize';
+
+import styles from './google-calendar.module.css';
 
 interface EventDetail {
   title: string;
@@ -27,26 +23,22 @@ interface EventDetail {
 }
 
 function formatDate(date: Date | null, allDay: boolean): string {
-  if (!date) return "";
+  if (!date) return '';
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "short",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short',
   };
   if (!allDay) {
-    options.hour = "2-digit";
-    options.minute = "2-digit";
+    options.hour = '2-digit';
+    options.minute = '2-digit';
   }
-  return date.toLocaleDateString("ja-JP", options);
+  return date.toLocaleDateString('ja-JP', options);
 }
 
-function formatDateRange(
-  start: Date | null,
-  end: Date | null,
-  allDay: boolean
-): string {
-  if (!start) return "";
+function formatDateRange(start: Date | null, end: Date | null, allDay: boolean): string {
+  if (!start) return '';
   const startStr = formatDate(start, allDay);
   if (!end || start.getTime() === end.getTime()) {
     return startStr;
@@ -60,7 +52,7 @@ function formatDateRange(
     return `${startStr} 〜 ${formatDate(adjustedEnd, allDay)}`;
   }
   if (start.toDateString() === end.toDateString()) {
-    return `${startStr} 〜 ${end.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" })}`;
+    return `${startStr} 〜 ${end.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
   }
   return `${startStr} 〜 ${formatDate(end, allDay)}`;
 }
@@ -85,9 +77,9 @@ export function GoogleCalendar() {
         ]}
         locale={jaLocale}
         headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth",
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth',
         }}
         height="auto"
         contentHeight="auto"
@@ -95,8 +87,8 @@ export function GoogleCalendar() {
         dayMaxEvents={3}
         eventDisplay="block"
         eventTimeFormat={{
-          hour: "2-digit",
-          minute: "2-digit",
+          hour: '2-digit',
+          minute: '2-digit',
           meridiem: false,
           hour12: false,
         }}
@@ -108,9 +100,9 @@ export function GoogleCalendar() {
             start: event.start,
             end: event.end,
             allDay: event.allDay,
-            location: event.extendedProps.location || "",
-            description: event.extendedProps.description || "",
-            url: event.url || "",
+            location: event.extendedProps.location || '',
+            description: event.extendedProps.description || '',
+            url: event.url || '',
           });
           setIsModalOpen(true);
         }}
@@ -119,7 +111,7 @@ export function GoogleCalendar() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent
           className="max-w-md border-4 border-[#808080] bg-[#c0c0c0] p-0 shadow-[inset_-1px_-1px_#0a0a0a,inset_1px_1px_#ffffff,inset_-2px_-2px_#808080,inset_2px_2px_#dfdfdf] sm:rounded-none"
-          style={{ fontFamily: "Comic Sans MS, cursive, sans-serif" }}
+          style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif' }}
         >
           {/* タイトルバー */}
           <div className="flex items-center justify-between bg-gradient-to-r from-[#000080] to-[#1084d0] px-2 py-1">
@@ -135,11 +127,7 @@ export function GoogleCalendar() {
                 <div className="flex items-start gap-2">
                   <span className="shrink-0">🗓️</span>
                   <span className="font-bold">
-                    {formatDateRange(
-                      selectedEvent.start,
-                      selectedEvent.end,
-                      selectedEvent.allDay
-                    )}
+                    {formatDateRange(selectedEvent.start, selectedEvent.end, selectedEvent.allDay)}
                   </span>
                 </div>
               )}
@@ -153,7 +141,7 @@ export function GoogleCalendar() {
 
               {selectedEvent?.description && (
                 <div
-                  className="mt-3 border-2 border-[#808080] bg-white p-3 shadow-[inset_1px_1px_#0a0a0a,inset_-1px_-1px_#ffffff] [&_a]:text-[#0000ff] [&_a]:underline [&_a:hover]:text-[#ff0000] [&_ul]:list-disc [&_ul]:pl-4 [&_li]:my-1"
+                  className="mt-3 border-2 border-[#808080] bg-white p-3 shadow-[inset_1px_1px_#0a0a0a,inset_-1px_-1px_#ffffff] [&_a]:text-[#0000ff] [&_a]:underline [&_a:hover]:text-[#ff0000] [&_li]:my-1 [&_ul]:list-disc [&_ul]:pl-4"
                   // Sanitize HTML to prevent XSS attacks from calendar event descriptions
                   dangerouslySetInnerHTML={{
                     __html: sanitizeHtml(selectedEvent.description),

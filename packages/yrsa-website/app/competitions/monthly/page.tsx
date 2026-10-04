@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import { getOpengraphImageUrl } from "@/lib/server";
-import { Breadcrumb, EventSchema } from "@/components";
-import { Win95Window, Win95Button } from "../_components";
-import iconMonthlyImage from "../_assets/icon-monthly.gif";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+
+import { Breadcrumb, EventSchema } from '@/components';
+import { getOpengraphImageUrl } from '@/lib/server';
+
+import iconMonthlyImage from '../_assets/icon-monthly.gif';
+import { Win95Window, Win95Button } from '../_components';
 
 export const metadata: Metadata = {
-  title: "月例会（G4） | 横須賀市ライフル射撃協会",
-  description: "月例会（G4）の大会要項。くりはま花の国エアライフル射撃場にて毎月開催。",
+  title: '月例会（G4） | 横須賀市ライフル射撃協会',
+  description: '月例会（G4）の大会要項。くりはま花の国エアライフル射撃場にて毎月開催。',
   openGraph: {
     images: [
       {
         url: getOpengraphImageUrl({
-          title: "月例会（G4）",
-          subtitle: "大会要項",
-          theme: "win95",
+          title: '月例会（G4）',
+          subtitle: '大会要項',
+          theme: 'win95',
         }),
         width: 1200,
         height: 630,
@@ -31,32 +33,29 @@ export default function MonthlyCompetitionPage() {
         name="月例会（G4）/ 山梨県・千葉県・神奈川県・横須賀市対抗戦"
         description="くりはま花の国エアライフル射撃場にて毎月開催される射撃大会。AR、AP、BR、BP、HR種目で競います。"
         eventSchedule={{
-          repeatFrequency: "Monthly",
-          byDay: "Saturday",
-          startTime: "09:00",
-          endTime: "19:00",
+          repeatFrequency: 'Monthly',
+          byDay: 'Saturday',
+          startTime: '09:00',
+          endTime: '19:00',
         }}
         location={{
-          name: "くりはま花の国エアライフル射撃場",
-          address: "神奈川県横須賀市",
+          name: 'くりはま花の国エアライフル射撃場',
+          address: '神奈川県横須賀市',
         }}
         url="https://yokosuka.kanagawa-rifle.org/competitions/monthly"
         offers={[
-          { price: 3500, name: "一般（AR/AP/HR種目）" },
-          { price: 3000, name: "協会会員（AR/AP/HR種目）" },
-          { price: 2000, name: "高校生以下（BR/BP種目）" },
+          { price: 3500, name: '一般（AR/AP/HR種目）' },
+          { price: 3000, name: '協会会員（AR/AP/HR種目）' },
+          { price: 2000, name: '高校生以下（BR/BP種目）' },
         ]}
       />
 
       <div className="min-h-screen bg-[#008080] p-4">
         <Win95Window title="月例会（G4） - 横須賀市ライフル射撃協会" icon="🎯" className="mx-auto max-w-4xl">
-          <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0] p-2">
+          <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0] p-2">
             {/* パンくずリスト */}
-            <div className="mb-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-2">
-              <Breadcrumb
-                items={[{ name: "競技会", href: "/competitions" }]}
-                current="月例会（G4）"
-              />
+            <div className="mb-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-2">
+              <Breadcrumb items={[{ name: '競技会', href: '/competitions' }]} current="月例会（G4）" />
             </div>
 
             {/* Back button */}
@@ -65,20 +64,13 @@ export default function MonthlyCompetitionPage() {
             </div>
 
             {/* Header */}
-            <div className="mb-4 flex justify-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-              <Image
-                src={iconMonthlyImage}
-                alt="月例会"
-              />
+            <div className="mb-4 flex justify-center border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-4">
+              <Image src={iconMonthlyImage} alt="月例会" />
             </div>
 
             {/* Application buttons */}
-            <div className="mb-4 flex flex-wrap justify-center gap-2 border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#ffffcc] p-3">
-              <Win95Button
-                href="https://forms.gle/PMy9ES3DSEY1Yuso6"
-                variant="primary"
-                external
-              >
+            <div className="mb-4 flex flex-wrap justify-center gap-2 border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#ffffcc] p-3">
+              <Win95Button href="https://forms.gle/PMy9ES3DSEY1Yuso6" variant="primary" external>
                 📝 申込フォーム
               </Win95Button>
               <Win95Button
@@ -90,209 +82,164 @@ export default function MonthlyCompetitionPage() {
             </div>
 
             {/* Main table */}
-            <div className="border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white">
+            <div className="border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white">
               <table className="w-full text-sm">
                 <tbody>
-                <tr>
-                  <th className="w-1/4 border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    お申込
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    <p>
-                      電話、FAX、Eメール、またはお申込フォームにて開催日の3日前までに横須賀市ライフル射撃協会までお申込ください。
-                    </p>
-                    <p className="mt-2 font-bold text-[#008000]">
-                      電話・FAX：046-833-6990
-                    </p>
-                    <p className="font-bold text-[#008000]">
-                      Eメール：yokosukarifle@gmail.com
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    大会名
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    《G4》月例会／山梨県・千葉県・神奈川県・横須賀市対抗戦
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    会場
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    くりはま花の国エアライフル射撃場 (神奈川県横須賀市)
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    期日
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    毎月第4土曜日
-                    <br />
-                    <span className="text-xs text-[#808080]">
-                      ※第4ではない場合もありますので詳細は予定表をご確認ください。
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    使用標的
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    BR・BP公認標的装置（興東電子社製）
-                    <br />
-                    公認電子標的（Meyton社製）
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    参加資格
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    特になし
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold"
-                    rowSpan={5}
-                  >
-                    種目
-                    <br />
-                    10m競技
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    AR 60S M/W/MJ/WJ
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    AP 60 M/W/MJ/WJ
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    BR 60S M/W/MJ/WJ
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    BP 60 M/W/MJ/WJ
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    HR 40
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold"
-                    rowSpan={5}
-                  >
-                    射群
-                  </th>
-                  <td className="border border-[#808080] p-2">第1射群</td>
-                  <td className="border border-[#808080] p-2">
-                    9:00～ (8:35射座入り)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">第2射群</td>
-                  <td className="border border-[#808080] p-2">
-                    11:00～ (10:35射座入り)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">第3射群</td>
-                  <td className="border border-[#808080] p-2">
-                    13:00～ (12:35射座入り)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">第4射群</td>
-                  <td className="border border-[#808080] p-2">
-                    15:00～ (14:35射座入り)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">第5射群</td>
-                  <td className="border border-[#808080] p-2">
-                    17:00～ (16:35射座入り)
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold"
-                    rowSpan={4}
-                  >
-                    参加料
-                  </th>
-                  <td className="border border-[#808080] p-2" rowSpan={2}>
-                    AR/AP/HR 種目
-                  </td>
-                  <td className="border border-[#808080] p-2">一般　3,500円</td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">
-                    <span className="text-xs">
-                      山梨県・千葉県・横須賀市
+                  <tr>
+                    <th className="w-1/4 border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">お申込</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      <p>
+                        電話、FAX、Eメール、またはお申込フォームにて開催日の3日前までに横須賀市ライフル射撃協会までお申込ください。
+                      </p>
+                      <p className="mt-2 font-bold text-[#008000]">電話・FAX：046-833-6990</p>
+                      <p className="font-bold text-[#008000]">Eメール：yokosukarifle@gmail.com</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">大会名</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      《G4》月例会／山梨県・千葉県・神奈川県・横須賀市対抗戦
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">会場</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      くりはま花の国エアライフル射撃場 (神奈川県横須賀市)
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">期日</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      毎月第4土曜日
                       <br />
-                      ライフル射撃協会会員
-                    </span>
-                    　3,000円
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2" rowSpan={2}>
-                    BR/BP 種目
-                  </td>
-                  <td className="border border-[#808080] p-2">
-                    一般　AR/AP種目と同様
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#808080] p-2">
-                    高校生以下　2,000円 (会員: 1,500円)
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">
-                    その他
-                  </th>
-                  <td className="border border-[#808080] p-2" colSpan={2}>
-                    <ul className="list-inside list-disc text-xs">
-                      <li>出場者多数の場合は随時射群を増やします。</li>
-                      <li>
-                        段級受験者は受験料・登録料が必要です。競技が始まるまでに受付にてお申込ください。
-                      </li>
-                      <li>参加料・受験料・登録料は当日お支払いください。</li>
-                      <li>銃の所持許可証・会員証・射手手帳を携帯してください。</li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Results link */}
-          <div className="mt-4 flex flex-col items-center border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-white p-4">
-            <div className="mb-2 text-4xl">🏆</div>
-            <Win95Button href="/competitions/monthly/results" variant="primary">
-              📊 大会結果を見る
-            </Win95Button>
-          </div>
-
-          {/* Status bar */}
-          <div className="mt-4 flex border-2 border-b-white border-l-[#808080] border-r-white border-t-[#808080] bg-[#c0c0c0]">
-            <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">
-              月例会（G4）要項
+                      <span className="text-xs text-[#808080]">
+                        ※第4ではない場合もありますので詳細は予定表をご確認ください。
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">使用標的</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      BR・BP公認標的装置（興東電子社製）
+                      <br />
+                      公認電子標的（Meyton社製）
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">参加資格</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      特になし
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold" rowSpan={5}>
+                      種目
+                      <br />
+                      10m競技
+                    </th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      AR 60S M/W/MJ/WJ
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      AP 60 M/W/MJ/WJ
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      BR 60S M/W/MJ/WJ
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      BP 60 M/W/MJ/WJ
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      HR 40
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold" rowSpan={5}>
+                      射群
+                    </th>
+                    <td className="border border-[#808080] p-2">第1射群</td>
+                    <td className="border border-[#808080] p-2">9:00～ (8:35射座入り)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">第2射群</td>
+                    <td className="border border-[#808080] p-2">11:00～ (10:35射座入り)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">第3射群</td>
+                    <td className="border border-[#808080] p-2">13:00～ (12:35射座入り)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">第4射群</td>
+                    <td className="border border-[#808080] p-2">15:00～ (14:35射座入り)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">第5射群</td>
+                    <td className="border border-[#808080] p-2">17:00～ (16:35射座入り)</td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold" rowSpan={4}>
+                      参加料
+                    </th>
+                    <td className="border border-[#808080] p-2" rowSpan={2}>
+                      AR/AP/HR 種目
+                    </td>
+                    <td className="border border-[#808080] p-2">一般　3,500円</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">
+                      <span className="text-xs">
+                        山梨県・千葉県・横須賀市
+                        <br />
+                        ライフル射撃協会会員
+                      </span>
+                      　3,000円
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2" rowSpan={2}>
+                      BR/BP 種目
+                    </td>
+                    <td className="border border-[#808080] p-2">一般　AR/AP種目と同様</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-[#808080] p-2">高校生以下　2,000円 (会員: 1,500円)</td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#808080] bg-[#c0c0c0] p-2 text-left font-bold">その他</th>
+                    <td className="border border-[#808080] p-2" colSpan={2}>
+                      <ul className="list-inside list-disc text-xs">
+                        <li>出場者多数の場合は随時射群を増やします。</li>
+                        <li>段級受験者は受験料・登録料が必要です。競技が始まるまでに受付にてお申込ください。</li>
+                        <li>参加料・受験料・登録料は当日お支払いください。</li>
+                        <li>銃の所持許可証・会員証・射手手帳を携帯してください。</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
-          </div>
+
+            {/* Results link */}
+            <div className="mt-4 flex flex-col items-center border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-white p-4">
+              <div className="mb-2 text-4xl">🏆</div>
+              <Win95Button href="/competitions/monthly/results" variant="primary">
+                📊 大会結果を見る
+              </Win95Button>
+            </div>
+
+            {/* Status bar */}
+            <div className="mt-4 flex border-2 border-t-[#808080] border-r-white border-b-white border-l-[#808080] bg-[#c0c0c0]">
+              <div className="flex-1 border-r border-[#808080] px-2 py-1 text-xs">月例会（G4）要項</div>
+              <div className="px-2 py-1 text-xs">横須賀市ライフル射撃協会</div>
+            </div>
           </div>
         </Win95Window>
       </div>

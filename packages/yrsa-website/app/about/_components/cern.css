@@ -4,17 +4,18 @@
  */
 
 .cern-page {
-  background: #c0c0c0;
-  color: #000000;
-  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
-    "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", P052, serif;
+  min-height: 100vh;
+  font-family:
+    'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN',
+    'P052', serif;
   font-size: 16px;
   line-height: 1.4;
-  min-height: 100vh;
+  color: #000;
+  background: #c0c0c0;
 }
 
 .cern-page a {
-  color: #0000bb; /* Improved contrast ratio (4.7:1 on #c0c0c0) */
+  color: #00b; /* Improved contrast ratio (4.7:1 on #c0c0c0) */
   text-decoration: underline;
 }
 
@@ -24,31 +25,31 @@
 
 .cern-page a:hover,
 .cern-page a:active {
-  color: #ee0000;
+  color: #e00;
 }
 
 .cern-page h1 {
+  margin: 0.67em 0;
   font-size: 2em;
   font-weight: bold;
-  margin: 0.67em 0;
 }
 
 .cern-page h2 {
+  margin: 0.83em 0;
   font-size: 1.5em;
   font-weight: bold;
-  margin: 0.83em 0;
 }
 
 .cern-page h3 {
+  margin: 1em 0;
   font-size: 1.17em;
   font-weight: bold;
-  margin: 1em 0;
 }
 
 .cern-page h4 {
+  margin: 1.33em 0;
   font-size: 1em;
   font-weight: bold;
-  margin: 1.33em 0;
 }
 
 .cern-page p {
@@ -56,15 +57,15 @@
 }
 
 .cern-page hr {
-  border: none;
-  border-top: 1px solid #000000;
   margin: 1em 0;
+  border: none;
+  border-top: 1px solid #000;
 }
 
 .cern-page ul,
 .cern-page ol {
-  margin: 1em 0;
   padding-left: 40px;
+  margin: 1em 0;
 }
 
 .cern-page ul {
@@ -84,40 +85,40 @@
 }
 
 .cern-page dt {
-  font-weight: bold;
   margin-top: 1em;
+  font-weight: bold;
 }
 
 .cern-page dd {
-  margin-left: 2em;
   margin-top: 0.5em;
+  margin-left: 2em;
 }
 
 .cern-page table {
-  border-collapse: collapse;
   margin: 1em 0;
+  border-collapse: collapse;
 }
 
 .cern-page th,
 .cern-page td {
-  border: 1px solid #000000;
   padding: 4px 8px;
+  border: 1px solid #000;
 }
 
 .cern-page th {
+  color: #fff;
   background: #808080;
-  color: #ffffff;
 }
 
 .cern-page address {
-  font-style: italic;
   margin: 1em 0;
+  font-style: italic;
 }
 
 .cern-page nav ul {
-  list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .cern-page nav li {
