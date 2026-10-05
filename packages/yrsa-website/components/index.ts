@@ -1,7 +1,5 @@
 export { Header } from './header';
 export { Footer } from './footer';
-export { RetroCard } from './retro-card';
-export { RetroButton } from './retro-button';
 export { Breadcrumb } from './breadcrumb';
 export type { BreadcrumbItem } from './breadcrumb';
 export { EventSchema } from './event-schema';

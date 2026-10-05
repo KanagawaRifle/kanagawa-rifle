@@ -11,7 +11,8 @@
         "NEXT_PUBLIC_GOOGLE_CALENDAR_ID",
         "SENTRY_AUTH_TOKEN",
         "SENTRY_ORG",
-        "SENTRY_PROJECT"
+        "SENTRY_PROJECT",
+        "YRSA_VALIDATION_BUILD"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env.local", ".env.production"],
       "passThroughEnv": ["VERCEL", "VERCEL_ENV", "DATABASE_URL", "SLACK_WEBHOOK_URL"]

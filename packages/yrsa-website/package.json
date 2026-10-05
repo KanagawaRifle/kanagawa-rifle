@@ -5,8 +5,7 @@
   "prettier": "@sasakiuri/prettier-config/tailwind",
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "repo-tooling run tsx scripts/generate-feed.ts && repo-tooling run tsx scripts/generate-calendar-pdf.ts",
-    "build": "next build",
+    "build": "node scripts/build.mjs",
     "start": "next start",
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:styles",
     "format": "repo-tooling run prettier --write .",
@@ -31,7 +30,6 @@
     "@fullcalendar/react": "^6.1.15",
     "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",
-    "crypto-js": "^4.2.0",
     "lucide-react": "^0.562.0",
     "next": "^16.3.3",
     "pdfkit": "^0.15.0",
@@ -42,15 +40,17 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.1.1",
-    "@types/pdfkit": "^0.13.5",
-    "tailwindcss": "4.3.3",
-    "@sasakiuri/repo-tooling": "file:../../../oss/packages/repo-tooling",
     "@sasakiuri/eslint-config": "file:../../../oss/packages/eslint-config",
     "@sasakiuri/prettier-config": "file:../../../oss/packages/prettier-config",
+    "@sasakiuri/repo-tooling": "file:../../../oss/packages/repo-tooling",
     "@sasakiuri/stylelint-config": "file:../../../oss/packages/stylelint-config",
     "@sasakiuri/typescript-config": "file:../../../oss/packages/typescript-config",
     "@testing-library/react": "16.3.3",
-    "@types/node": "22.20.4"
+    "@types/node": "22.20.4",
+    "@types/pdfkit": "^0.13.5",
+    "@types/react": "19.3.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
   },
   "repoTooling": {
     "upstreamPackage": "shared-tooling",

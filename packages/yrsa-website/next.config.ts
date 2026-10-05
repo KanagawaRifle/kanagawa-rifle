@@ -55,7 +55,7 @@ const nextConfig: NextConfig = {
 
 const config = async () => {
   if (process.env.ANALYZE === 'true') {
-    const bundleAnalyzer = (await import('@next/bundle-analyzer' as string)).default as (options: {
+    const bundleAnalyzer = (await import('@next/bundle-analyzer')).default as (options: {
       enabled: boolean;
     }) => (config: NextConfig) => NextConfig;
     return bundleAnalyzer({ enabled: true })(nextConfig);

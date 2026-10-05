@@ -3,7 +3,7 @@ THIRD-PARTY SOFTWARE NOTICES
 This file is generated from the installed production dependency closure of
 @acme/yrsa.website. Do not edit it manually.
 
-Package/version entries: 149
+Package/version entries: 148
 
 The following npm packages may be included in this product:
 
@@ -376,9 +376,8 @@ third-party archives.
 
 The following npm packages may be included in this product:
 
- - @next/env@16.3.3
- - @next/swc-linux-x64-gnu@16.3.3
- - @next/swc-linux-x64-musl@16.3.3
+ - @next/env@16.3.8
+ - @next/swc-linux-x64-gnu@16.3.8
  - @radix-ui/react-compose-refs@1.1.2
  - @radix-ui/react-context@1.1.2
  - @radix-ui/react-id@1.1.1
@@ -2745,7 +2744,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - next@16.3.3
+ - next@16.3.8
 
 This package contains the following license:
 
@@ -2954,7 +2953,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following npm package may be included in this product:
 
- - picomatch@4.0.3
+ - picomatch@4.0.7
 
 This package contains the following license:
 
