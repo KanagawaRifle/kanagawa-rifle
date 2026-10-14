@@ -94,7 +94,7 @@ export function Header() {
       {/* マーキー風お知らせバー */}
       <div className="overflow-hidden border-b-2 border-red-300 bg-yellow-100 py-1" role="region" aria-label="お知らせ">
         <p className="font-retro text-center text-sm whitespace-nowrap text-red-600">
-          📢 最新情報をチェックしてね！ 📢 9月の月例会は中止です 📢
+          📢 くりはま花の国エアライフル射撃場は2026年10月17日（土）から営業再開です 📢
         </p>
       </div>
     </header>

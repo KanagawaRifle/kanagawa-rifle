@@ -64,25 +64,26 @@ export default function HomePage() {
 
       {/* メインコンテナ */}
       <div className="mx-auto max-w-4xl p-4">
-        {/* 休場のお知らせ */}
+        {/* 営業再開のお知らせ */}
         <section aria-labelledby="closure-notice-title" className="mb-6 border-4 border-red-700 bg-yellow-50 shadow-lg">
           <h2
             id="closure-notice-title"
             className="bg-red-700 px-4 py-3 text-center text-xl font-bold text-white md:text-2xl"
           >
-            【重要】射撃場休場のお知らせ
+            【重要】射撃場営業再開のお知らせ
           </h2>
           <div className="space-y-4 p-4 text-center text-red-950 md:p-6">
             <p className="leading-relaxed">
-              くりはま花の国エアライフル射撃場は、崩れた土砂の撤去工事が完了するまで休場いたします。
+              休場していたくりはま花の国エアライフル射撃場は、2026年10月17日（土）から営業を再開いたします。
             </p>
             <div className="border-2 border-red-700 bg-white p-3">
-              <p className="font-bold">休場期間</p>
-              <p className="mt-1 text-2xl font-bold text-red-800 md:text-3xl">土砂の撤去工事完了まで</p>
+              <p className="font-bold">営業再開日</p>
+              <p className="mt-1 text-2xl font-bold text-red-800 md:text-3xl">
+                <time dateTime="2026-10-17">2026年10月17日（土）</time>
+              </p>
             </div>
-            <p className="text-xl font-bold text-red-800 md:text-2xl">営業再開時には、改めてお知らせいたします。</p>
             <p className="text-sm leading-relaxed">
-              ご利用を予定されていた皆さまにはご迷惑をおかけしますが、ご理解のほどよろしくお願いいたします。
+              休場期間中はご不便をおかけしました。皆さまのご利用をお待ちしております。
             </p>
           </div>
         </section>
@@ -121,8 +122,7 @@ export default function HomePage() {
         <div className="mb-6 overflow-hidden border-2 border-red-400 bg-yellow-100 py-2">
           <div className={`whitespace-nowrap ${styles.marquee}`}>
             <span className="mx-4 text-red-600" style={{ fontFamily: 'Comic Sans MS, cursive' }}>
-              📢 重要：くりはま花の国エアライフル射撃場は、崩れた土砂の撤去工事が完了するまで休場いたします。 📢
-              営業再開時には、改めてお知らせいたします。 📢
+              📢 重要：くりはま花の国エアライフル射撃場は、2026年10月17日（土）から営業を再開いたします。 📢
             </span>
           </div>
         </div>
@@ -318,7 +318,7 @@ export default function HomePage() {
               yokosukarifle@gmail.com
             </a>
           </p>
-          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.08.07</p>
+          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.10.15</p>
           <div className="mt-2 inline-block border border-gray-400 bg-white px-3 py-1 text-xs">
             <span>あなたは</span>
             <span className="mx-1 font-mono font-bold text-red-600">000,000</span>
