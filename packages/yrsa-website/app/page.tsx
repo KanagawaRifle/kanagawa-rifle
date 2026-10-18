@@ -82,6 +82,9 @@ export default function HomePage() {
                 <time dateTime="2026-10-17">2026年10月17日（土）</time>
               </p>
             </div>
+            <p className="leading-relaxed font-bold">
+              <time dateTime="2026-10-24">10月24日（土）</time>の月例会は、通常通り開催予定です。
+            </p>
             <p className="text-sm leading-relaxed">
               休場期間中はご不便をおかけしました。皆さまのご利用をお待ちしております。
             </p>
