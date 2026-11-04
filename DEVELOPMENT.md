@@ -141,7 +141,7 @@ private リポジトリで同じ機能を使う場合のみ、GitHub Code Securi
 古い XML パーサーと外部 HTTP 辞書に依存する `no-hoso-kinshi-yogo` は利用しません。
 
 Dependabot はワークスペースの依存をまとめて更新します。更新内容を確認して承認した後、
-本人のアカウントで PR の `Enable auto-merge` を選ぶと、GitHub が必須検査の成功後に squash merge します。
+本人のアカウントで PR の `Enable auto-merge` を選ぶと、GitHub が必須検査の成功後に rebase merge します。
 開発依存と Actions の minor / patch 更新でも承認は省略しません。本番依存と major 更新は特に内容を確認してください。
 自動マージの予約は PR ごとに行います。Dependabot の PR であることだけを理由に予約するワークフローはありません。
 GitHub Actions のトークンはマージ許可対象に含めず、本人と Dependabot の制限を維持します。
@@ -195,7 +195,15 @@ npm run -w @acme/website test:load
 scope は省略でき、`fix(website): correct article links`、`docs: update development guide`、
 `feat(website)!: change the news API` の形式を使えます。ヘッダーは 100 文字以内にしてください。
 Dependabot も npm は `chore(deps)`、Actions は `ci(deps)`、Docker は `build(deps)` の形式を使います。
-開発依存では scope が `deps-dev` になります。squash commit のタイトルには PR タイトルを使います。
+開発依存では scope が `deps-dev` になります。
+
+PR は rebase merge のみ許可し、個々のコミットを残して直線的な履歴を維持します。
+必須チェック `PR Messages` は、PR タイトルと PR に含まれる全コミットのメッセージを検査します。
+Git の完全な履歴から PR の base / head 間を読み、イベントのコミット数と一致することも確認します。
+空メッセージ、バージョン番号だけのメッセージ、通常の Merge / Revert メッセージも検査を省略しません。
+違反した場合はタイトルを編集するか、`git commit --amend` / `git rebase -i` で該当コミットを修正します。
+タイトルの変更や正常なコミットの追加だけでは、過去の違反コミットは修正されません。
+作業途中の修正はマージ前に意味のある単位へ整理し、最新の既定ブランチへの追従も rebase で行ってください。
 
 JUnit のテスト結果は `Test Report`、リポジトリの検査は `Scorecard` に出力します。
 終了した同一リポジトリの PR のキャッシュは `Cache Cleanup` が削除します。
@@ -214,7 +222,8 @@ node scripts/setup-branch-protection.mjs
 GitHub CLI の認証と管理権限が必要です。同名の ruleset があれば更新し、ほかの ruleset は削除しません。
 現在のブランチ設定と競合しないか確認してください。
 
-基本の ruleset は全員に PR、`CI Required` と `PR Title`、会話の解決、squash merge を要求し、削除と force push を禁止します。
+基本の ruleset は全員に PR、`CI Required` と `PR Messages`、会話の解決、rebase merge を要求し、削除と force push を禁止します。
+GitHub のリポジトリ設定も rebase merge だけを有効にし、squash merge と merge commit を無効にします。
 マージできるのは `sasakiuri`（ユーザー ID `34340317`）と Dependabot（App ID `29110`）だけです。
 別のレビュー ruleset で `CODEOWNERS` の承認を必須にしており、Dependabot がマージする場合も承認が必要です。
 全ファイルと `CODEOWNERS` 自体の所有者は `sasakiuri` です。承認後に変更が追加された場合は承認を取り消します。

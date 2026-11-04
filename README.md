@@ -52,6 +52,9 @@ kanagawa-rifle/
 
 ## ドキュメント
 
+PR は Rebase merge で取り込み、個々のコミットを残した直線的な履歴を維持します。
+必須チェック `PR Messages` が PR タイトルと全コミットの Conventional Commits 形式を検査します。
+
 - [開発手順](DEVELOPMENT.md)
 - [ウェブサイトの構成と検証](packages/website/README.md)
 - [コントリビューション](CONTRIBUTING.md)
