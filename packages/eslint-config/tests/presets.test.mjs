@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { Linter } from 'eslint';
+import importPlugin from 'eslint-plugin-import';
 import parser from '@typescript-eslint/parser';
 
 import testingLibrary from '../testing-library.js';
@@ -167,4 +168,19 @@ test('callers can scope the Vitest preset when another framework uses .test.ts',
     lint("import { it } from 'vitest'; it.only('unit', () => {});", [preset], 'tests/unit/check.test.ts')[0].ruleId,
     'vitest/no-focused-tests',
   );
+});
+
+test('import restrictions retain glob enforcement through the legacy matching adapter', () => {
+  const presets = [
+    {
+      plugins: { import: importPlugin },
+      rules: { 'import/no-internal-modules': ['error', { forbid: ['@acme/*/internal/**'] }] },
+    },
+  ];
+  const messages = lint("import value from '@acme/website/internal/secret';", presets, 'src/example.ts');
+  assert.deepEqual(
+    messages.map(({ ruleId }) => ruleId),
+    ['import/no-internal-modules'],
+  );
+  assert.deepEqual(lint("import value from '@acme/website';", presets, 'src/example.ts'), []);
 });

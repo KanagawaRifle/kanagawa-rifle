@@ -14,7 +14,8 @@
     "packages/lighthouse-config",
     "packages/prettier-config",
     "packages/stylelint-config",
-    "packages/typescript-config"
+    "packages/typescript-config",
+    "packages/minimatch-compat"
   ],
   "devDependencies": {
     "@acme/stylelint-config": "*",
@@ -40,22 +41,29 @@
     "textlint": "^15.8.0",
     "textlint-rule-ja-space-between-half-and-full-width": "^2.4.2",
     "turbo": "^2.10.11",
-    "typescript": "^5"
+    "typescript": "^5",
+    "minimatch": "file:packages/minimatch-compat"
   },
   "volta": {
     "node": "24.21.0",
     "npm": "11.19.0"
   },
   "overrides": {
-    "istanbul-lib-processinfo": {
-      "uuid": "^11.1.1"
+    "minimatch@<9": "$minimatch",
+    "@tailwindcss/typography": {
+      "postcss-selector-parser": "6.1.5"
     },
-    "jest-junit": {
-      "uuid": "^11.1.1"
+    "rehype-katex": {
+      "katex": "^0.18.2"
     },
-    "@storybook/test-runner": {
-      "uuid": "^11.1.1"
-    }
+    "micromark-extension-math": {
+      "katex": "^0.18.2"
+    },
+    "generate-license-file": {
+      "zod": "^4.6.7"
+    },
+    "glob@>=9 <14.0.2": "14.0.3",
+    "minimatch@>=9 <11.0.1": "11.0.4"
   },
   "scripts": {
     "prepare": "node .husky/install.mjs",
@@ -75,9 +83,9 @@
     "doctor": "node scripts/doctor.mjs",
     "check": "npm run typecheck && npm run contracts:check && npm run lint && npm run syncpack && npm run knip && npm run cspell && npm run license-check && npm run test:tooling",
     "qa": "npm run check && npm run build && npm run size-limit && npm run test:coverage && npm run -w @acme/website test:storybook && npm audit --audit-level=high",
-    "lint:eslint:tooling": "eslint scripts .husky/install.mjs *.config.mjs stylelint.config.js packages/eslint-config packages/prettier-config packages/stylelint-config packages/lighthouse-config --max-warnings 0",
+    "lint:eslint:tooling": "eslint scripts .husky/install.mjs *.config.mjs stylelint.config.js packages/eslint-config packages/prettier-config packages/stylelint-config packages/lighthouse-config packages/minimatch-compat --max-warnings 0",
     "lint:infra": "node scripts/lint-infra.mjs",
-    "test:tooling": "node --test scripts/*.test.mjs packages/eslint-config/tests/*.test.mjs && npm run -w @acme/website test:tooling",
+    "test:tooling": "node --test scripts/*.test.mjs packages/eslint-config/tests/*.test.mjs packages/minimatch-compat/test/*.test.cjs && npm run -w @acme/website test:tooling",
     "test:coverage": "turbo run test:coverage",
     "coverage:diff": "node scripts/coverage-diff-check.mjs",
     "syncpack": "syncpack lint",

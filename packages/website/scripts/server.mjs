@@ -5,11 +5,8 @@ import { setTimeout } from 'node:timers/promises';
 
 const require = createRequire(import.meta.url);
 
-export async function startServer(port = 0, kind = 'next', directory = 'out') {
-  const command =
-    kind === 'next'
-      ? [require.resolve('next/dist/bin/next'), 'start', '--hostname', '127.0.0.1', '--port', String(port)]
-      : [require.resolve('serve/build/main.js'), directory, '--listen', `tcp://127.0.0.1:${port}`];
+export async function startServer(port = 0) {
+  const command = [require.resolve('next/dist/bin/next'), 'start', '--hostname', '127.0.0.1', '--port', String(port)];
   const child = spawn(process.execPath, command, { stdio: ['ignore', 'pipe', 'pipe'] });
   let output = '';
   let url;

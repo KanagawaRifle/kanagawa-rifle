@@ -95,6 +95,8 @@ jobs:
           path: packages/website/reports/playwright-junit.xml
       - name: Test development hydration
         run: npm run -w @acme/website test:e2e:dev -- --project=chromium --project="Mobile Chrome"
+      - name: Build staging and verify authentication
+        run: npm run -w @acme/website test:e2e:staging
       - name: Upload browser test results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

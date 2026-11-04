@@ -18,7 +18,7 @@ permissions:
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
-    if: vars.CODE_SECURITY_ENABLED == 'true'
+    if: github.event.repository.private == false || vars.CODE_SECURITY_ENABLED == 'true'
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -51,7 +51,7 @@ jobs:
 
   semgrep:
     name: Analyze JavaScript and TypeScript (OSS)
-    if: vars.CODE_SECURITY_ENABLED != 'true'
+    if: github.event.repository.private != false && vars.CODE_SECURITY_ENABLED != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     container:

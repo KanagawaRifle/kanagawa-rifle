@@ -30,6 +30,7 @@ Docker を使わない場合は [開発手順](DEVELOPMENT.md#ローカル環境
 kanagawa-rifle/
 ├── packages/
 │   ├── website/           # Next.js メインアプリ
+│   ├── minimatch-compat/  # 修正版 minimatch の旧 API アダプター
 │   ├── eslint-config/     # ESLint 共有設定
 │   ├── prettier-config/   # Prettier 共有設定
 │   ├── stylelint-config/  # Stylelint 共有設定

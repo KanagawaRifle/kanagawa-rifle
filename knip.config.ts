@@ -6,7 +6,8 @@ const config: KnipConfig = {
       entry: ['*.config.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
       project: ['*.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
       // The coverage tool resolves Vitest from the selected workspace.
-      ignoreDependencies: ['vitest'],
+      // minimatch is the local legacy API adapter referenced by npm overrides.
+      ignoreDependencies: ['vitest', 'minimatch'],
     },
     'packages/website': {
       entry: [
@@ -32,6 +33,10 @@ const config: KnipConfig = {
     },
     'packages/eslint-config': {
       project: ['**/*.js'],
+    },
+    'packages/minimatch-compat': {
+      entry: ['test/*.test.cjs'],
+      project: ['**/*.cjs'],
     },
     'packages/prettier-config': {
       project: ['**/*.js'],
