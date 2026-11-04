@@ -140,8 +140,11 @@ private リポジトリで同じ機能を使う場合のみ、GitHub Code Securi
 記事向けの不適切表現チェックは、辞書を内蔵する `ja-no-inappropriate-words` に統一しています。
 古い XML パーサーと外部 HTTP 辞書に依存する `no-hoso-kinshi-yogo` は利用しません。
 
-Dependabot はワークスペースの依存をまとめて更新します。開発依存と Actions の minor / patch 更新は
-自動マージの対象です。本番依存と major 更新はレビューしてください。
+Dependabot はワークスペースの依存をまとめて更新します。更新内容を確認して承認した後、
+本人のアカウントで PR の `Enable auto-merge` を選ぶと、GitHub が必須検査の成功後に squash merge します。
+開発依存と Actions の minor / patch 更新でも承認は省略しません。本番依存と major 更新は特に内容を確認してください。
+自動マージの予約は PR ごとに行います。Dependabot の PR であることだけを理由に予約するワークフローはありません。
+GitHub Actions のトークンはマージ許可対象に含めず、本人と Dependabot の制限を維持します。
 ラベルは `.github/labels.yml` で定義し、`Sync Labels` の手動実行で作成・更新します。
 公開時は [公開前の確認](.github/PRE_RELEASE_CHECKLIST.md) を使ってください。
 
@@ -188,11 +191,20 @@ npm run -w @acme/website test:load
 
 ## GitHub の運用補助
 
+コミットと PR タイトルは Conventional Commits の `type(scope): summary` に統一します。
+scope は省略でき、`fix(website): correct article links`、`docs: update development guide`、
+`feat(website)!: change the news API` の形式を使えます。ヘッダーは 100 文字以内にしてください。
+Dependabot も npm は `chore(deps)`、Actions は `ci(deps)`、Docker は `build(deps)` の形式を使います。
+開発依存では scope が `deps-dev` になります。squash commit のタイトルには PR タイトルを使います。
+
 JUnit のテスト結果は `Test Report`、リポジトリの検査は `Scorecard` に出力します。
 終了した同一リポジトリの PR のキャッシュは `Cache Cleanup` が削除します。
 `Stale Issues` と `Lock Threads` は手動実行です。Stale はラベルを付けるだけで、自動では閉じません。
 
-ブランチ保護の雛形は `.github/branch-ruleset.json` にあります。次のコマンドは適用予定の JSON を表示するだけです。
+<!-- cspell:words sasakiuri -->
+
+既定ブランチの保護は `.github/branch-ruleset.json`、`branch-mergers-ruleset.json`、
+`branch-owner-review-ruleset.json` の 3 つで管理します。次のコマンドは適用予定の JSON を表示するだけです。
 
 ```bash
 node scripts/setup-branch-protection.mjs
@@ -201,6 +213,14 @@ node scripts/setup-branch-protection.mjs
 管理者が内容を確認して適用する場合は `--apply --repo KanagawaRifle/kanagawa-rifle` を付けます。
 GitHub CLI の認証と管理権限が必要です。同名の ruleset があれば更新し、ほかの ruleset は削除しません。
 現在のブランチ設定と競合しないか確認してください。
+
+基本の ruleset は全員に PR、`CI Required` と `PR Title`、会話の解決、squash merge を要求し、削除と force push を禁止します。
+マージできるのは `sasakiuri`（ユーザー ID `34340317`）と Dependabot（App ID `29110`）だけです。
+別のレビュー ruleset で `CODEOWNERS` の承認を必須にしており、Dependabot がマージする場合も承認が必要です。
+全ファイルと `CODEOWNERS` 自体の所有者は `sasakiuri` です。承認後に変更が追加された場合は承認を取り消します。
+本人だけは PR のマージ時にレビュー条件を省略できるため、自分で作成した PR に他人の承認を要求しません。
+この例外は CI や直接 push の禁止には適用されません。レビューの取り消しも本人だけに制限しています。
+参加者を増やす場合も、所有者・マージ許可・レビュー例外を不用意に増やさないでください。
 
 GitHub Free の private リポジトリではブランチ保護の適用が 403 になる場合があります。
 public に変更する場合は、事前に表示した設定を確認し、変更直後に適用して GitHub 側の結果を確認してください。
