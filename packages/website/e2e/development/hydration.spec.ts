@@ -17,7 +17,8 @@ for (const path of ['/', '/news', '/competitions']) {
     const facebook = social.getByRole('link', { name: 'Facebook', exact: true });
     await facebook.scrollIntoViewIfNeeded();
     await facebook.focus();
-    await expect(page.getByRole('tooltip', { name: 'Facebook', exact: true })).toBeVisible();
+    await expect(facebook).toBeFocused();
+    await expect(facebook).toHaveAttribute('title', 'Facebook');
 
     if (path === '/') {
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /^http:\/\/127\.0\.0\.1:3200\/?$/);
