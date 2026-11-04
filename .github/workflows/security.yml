@@ -23,7 +23,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@b8ac13f90f0ad78cebdcdbe5d39fcc8ff11301ba # v2
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@8ac9e5ce44cc7178e0e04229a91bdcc003166e57 # v2
     with:
       upload-sarif: ${{ github.event.repository.private == false || vars.CODE_SECURITY_ENABLED == 'true' }}
       scan-args: |-
