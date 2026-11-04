@@ -15,7 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
+      # Scorecard queries commit checks, issues, and reviews in private repositories.
+      checks: read
       contents: read
+      issues: read
+      pull-requests: read
       security-events: write
 
     steps:
