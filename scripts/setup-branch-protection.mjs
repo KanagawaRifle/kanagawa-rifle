@@ -9,10 +9,12 @@ if (
 ) {
   throw new Error('Usage: node scripts/setup-branch-protection.mjs [--apply --repo owner/repo]');
 }
-const payload = readFileSync(new URL('../.github/branch-ruleset.json', import.meta.url), 'utf8');
-const ruleset = JSON.parse(payload);
+// Apply the owner review gate before lowering the universal approval count.
+const rulesets = ['branch-owner-review-ruleset.json', 'branch-mergers-ruleset.json', 'branch-ruleset.json'].map(
+  (name) => JSON.parse(readFileSync(new URL(`../.github/${name}`, import.meta.url), 'utf8')),
+);
 if (!args.length) {
-  console.log(payload);
+  console.log(JSON.stringify(rulesets, null, 2));
 } else {
   const repository = args[2];
   const endpoint = `/repos/${repository}/rulesets`;
@@ -27,12 +29,24 @@ if (!args.length) {
     .split('\n')
     .filter(Boolean)
     .map((line) => JSON.parse(line));
-  const matches = entries.filter((entry) => entry.name === ruleset.name);
-  if (matches.length > 1) throw new Error('Multiple matching rulesets; review the repository settings first.');
-  const existing = matches[0];
-  execFileSync(
-    'gh',
-    ['api', '--method', existing ? 'PUT' : 'POST', existing ? `${endpoint}/${existing.id}` : endpoint, '--input', '-'],
-    { input: payload, stdio: ['pipe', 'inherit', 'inherit'] },
-  );
+  // Validate every name before changing any ruleset.
+  const updates = rulesets.map((ruleset) => {
+    const matches = entries.filter((entry) => entry.name === ruleset.name);
+    if (matches.length > 1) throw new Error('Multiple matching rulesets; review the repository settings first.');
+    return { ruleset, existing: matches[0] };
+  });
+  for (const { ruleset, existing } of updates) {
+    execFileSync(
+      'gh',
+      [
+        'api',
+        '--method',
+        existing ? 'PUT' : 'POST',
+        existing ? `${endpoint}/${existing.id}` : endpoint,
+        '--input',
+        '-',
+      ],
+      { input: JSON.stringify(ruleset), stdio: ['pipe', 'inherit', 'inherit'] },
+    );
+  }
 }

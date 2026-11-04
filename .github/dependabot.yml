@@ -13,7 +13,8 @@ updates:
     labels:
       - 'Cat: Dependencies 🤖'
     commit-message:
-      prefix: '[root] chore'
+      prefix: chore
+      include: scope
     groups:
       npm-development:
         applies-to: version-updates
@@ -66,7 +67,8 @@ updates:
     labels:
       - 'Cat: Dependencies 🤖'
     commit-message:
-      prefix: '[root] chore'
+      prefix: ci
+      include: scope
     groups:
       actions-compatible:
         update-types:
@@ -79,6 +81,9 @@ updates:
       default-days: 7
   - package-ecosystem: docker-compose
     directory: /docker
+    commit-message:
+      prefix: build
+      include: scope
     schedule:
       interval: weekly
       day: monday
@@ -87,6 +92,9 @@ updates:
     cooldown:
       default-days: 7
   - package-ecosystem: docker
+    commit-message:
+      prefix: build
+      include: scope
     directories:
       - /docker/node
       - /docker/mailpit
