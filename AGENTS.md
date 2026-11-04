@@ -86,5 +86,6 @@
 - Update the relevant README when changing behavior or development procedures, and review the diff before finishing.
 - Follow Conventional Commits and `commitlint.config.mjs`: `type(scope): summary`, for example `fix(website): correct article links`.
 - Scopes are optional and use kebab-case; `fix: correct article links` is also valid. Keep the header within 100 characters.
+- PRs use rebase merge. Organize commits into meaningful changes; CI validates the title and every PR commit.
 - Commit, push, or create a PR only when that specific action is explicitly requested or authorized. Follow the existing PR template.
 - Final reports should briefly describe changes, checks performed and their results, and anything left unverified.

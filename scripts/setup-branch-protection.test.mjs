@@ -109,8 +109,14 @@ test('owner exceptions cannot bypass CI or grant other users merge access', () =
   assert.equal(base.rules.find((rule) => rule.type === 'pull_request').parameters.required_approving_review_count, 0);
   assert.deepEqual(
     base.rules.find((rule) => rule.type === 'required_status_checks').parameters.required_status_checks,
-    [{ context: 'CI Required' }, { context: 'PR Title' }],
+    [{ context: 'CI Required' }, { context: 'PR Messages' }],
   );
+  assert.ok(base.rules.some((rule) => rule.type === 'required_linear_history'));
+  for (const ruleset of [base, review]) {
+    assert.deepEqual(ruleset.rules.find((rule) => rule.type === 'pull_request').parameters.allowed_merge_methods, [
+      'rebase',
+    ]);
+  }
   assert.deepEqual(review.bypass_actors, [{ actor_id: 34340317, actor_type: 'User', bypass_mode: 'pull_request' }]);
   assert.equal(review.rules[0].parameters.required_approving_review_count, 1);
   assert.equal(review.rules[0].parameters.require_code_owner_review, true);

@@ -1,19 +1,22 @@
-name: PR Title
+name: PR Messages
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 permissions:
   contents: read
+concurrency:
+  group: pr-messages-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 jobs:
   validate:
-    name: PR Title
+    name: PR Messages
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: ./.github/actions/setup-node
-      - name: Validate title with the commit convention
-        env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
-        run: printf '%s\n' "$PR_TITLE" | npx --no -- commitlint
+      - name: Validate the title and every PR commit
+        run: node scripts/validate-pr-messages.mjs
