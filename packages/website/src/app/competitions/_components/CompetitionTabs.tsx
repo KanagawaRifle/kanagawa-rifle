@@ -16,6 +16,7 @@ export function CompetitionTabs({ year }: CompetitionTabsProps) {
         return (
           <Link
             key={item}
+            prefetch={false}
             href={
               item === CURRENT_COMPETITION_YEAR ? paths.main.competitions.getHref() : getCompetitionPath(item).getHref()
             }

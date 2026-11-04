@@ -1,7 +1,7 @@
 import { Check, CreditCard, PenSquare, Stamp } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { StaticImage } from '@/components/StaticImage';
 import { Card, CardActionArea, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Step, StepContent, StepLabel, Stepper } from '@/components/ui/stepper';
 import { getStaticFileUrl } from '@/config/assets';
@@ -34,12 +34,12 @@ export function MembershipApplication() {
             aria-label="ShootersHub 入会申し込みサイトへ移動（新しいタブで開く）"
           >
             <div className="relative h-[82px] w-full">
-              <Image
+              <StaticImage
                 src={getStaticFileUrl('/join/shooters-hub-logo.png')}
                 alt="ShootersHub - 日本ライフル射撃協会の会員管理システム"
                 fill
                 style={{ objectFit: 'contain' }}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(min-width: 768px) 700px, calc(100vw - 44px)"
               />
             </div>
           </CardActionArea>

@@ -1,7 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import type { NewsItem } from '../../types';
-import { getArticleDescription, getArticleImage, getArticleJsonLd, getNewsListJsonLd } from '../seo';
+import {
+  getArticleDescription,
+  getArticleImage,
+  getArticleImageMetadata,
+  getArticleJsonLd,
+  getNewsListJsonLd,
+} from '../seo';
 
 vi.mock('@/config/env', () => ({ env: { APP_URL: 'https://example.test/' } }));
 
@@ -75,6 +81,29 @@ describe('article search metadata', () => {
       expect(getArticleImage(item)).toBeUndefined();
       expect(getArticleJsonLd(item)).not.toHaveProperty('image');
       expect(getArticleJsonLd(item)).not.toHaveProperty('keywords');
+    }
+  });
+
+  it('preserves image descriptions and only publishes complete positive dimensions', () => {
+    expect(
+      getArticleImageMetadata({ ...article, content: '<img src="/photo.jpg" alt="表彰式" width="1200" height="800">' }),
+    ).toEqual({
+      url: 'https://example.test/photo.jpg',
+      alt: '表彰式',
+      width: 1200,
+      height: 800,
+    });
+    for (const dimensions of [
+      '',
+      'width="0" height="800"',
+      'width="-1" height="800"',
+      'width="100%" height="800"',
+      'width="1200"',
+    ]) {
+      expect(getArticleImageMetadata({ ...article, content: `<img src="/photo.jpg" ${dimensions}>` })).toEqual({
+        url: 'https://example.test/photo.jpg',
+        alt: article.title,
+      });
     }
   });
 

@@ -4,6 +4,7 @@ import { cache } from 'react';
 import { PageLayout } from '@/components/PageLayout';
 import { paths } from '@/config/paths';
 import { NewsList } from '@/features/news/components/NewsList';
+import { NewsListControls } from '@/features/news/components/NewsListControls';
 import { DEFAULT_NEWS_PAGE_SIZE } from '@/features/news/constants';
 import { getNewsListHref } from '@/features/news/paths';
 import { NewsQuerySchema } from '@/features/news/schema';
@@ -33,6 +34,12 @@ export async function generateMetadata({ searchParams }: Props) {
     description: `${currentPath.description}${pagination.current > 1 ? ` ${pagination.current}ページ目を表示しています。` : ''}`,
     path: getNewsListHref({ page: pagination.current, size: pagination.size }),
     noindex: pagination.size !== DEFAULT_NEWS_PAGE_SIZE,
+    pagination: {
+      previous: pagination.hasPrev
+        ? getNewsListHref({ page: pagination.current - 1, size: pagination.size })
+        : undefined,
+      next: pagination.hasNext ? getNewsListHref({ page: pagination.current + 1, size: pagination.size }) : undefined,
+    },
   });
 }
 
@@ -54,7 +61,10 @@ export default async function Page({ searchParams }: Props) {
       ]}
     >
       <p className="text-muted-foreground">{currentPath.description}</p>
-      <NewsList news={news} />
+      <div className="space-y-4">
+        <NewsListControls size={news.pagination.size} />
+        <NewsList news={news} />
+      </div>
     </PageLayout>
   );
 }

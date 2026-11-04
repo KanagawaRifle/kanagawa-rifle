@@ -14,12 +14,22 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  experimental: {
+    inlineCss: true,
+    // Merge shared bootstrap chunks to reduce requests on the first visit.
+    // Recheck lazy menus and cross-page reuse when updating Next.js.
+    turbopackChunking: {
+      maxChunkCountPerGroup: 1,
+      maxMergeChunkSize: 2_000_000,
+    },
+  },
+
   // Inline an empty public DSN even when the variable is absent, so the browser
   // build can remove disabled monitoring instead of retaining a runtime lookup.
   env: { NEXT_PUBLIC_SENTRY_DSN: env.SENTRY_DSN ?? '' },
 
   // Sentry用にソースマップを生成（Sentryアップロード後に削除される）
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: Boolean(env.SENTRY_DSN),
 
   images: {
     // The optimizer does not forward Basic credentials when fetching local images.
@@ -64,42 +74,53 @@ const nextConfig: NextConfig = {
           assetOrigins: assetUrls.map((url) => url.origin),
         }),
       },
+      {
+        source: '/_next/static/:path*',
+        // Framework assets do not need the document's service allowlist.
+        // Keep a restrictive policy and the shared nosniff/HSTS headers.
+        headers: [{ key: 'Content-Security-Policy', value: "default-src 'none'; frame-ancestors 'none'; sandbox" }],
+      },
     ];
   },
 };
 
-export default withSentryConfig(withAxiom(bundleAnalyzer(nextConfig)), {
-  // For all available options, see:
-  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
+const baseConfig = withAxiom(bundleAnalyzer(nextConfig));
 
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
-  authToken: process.env.SENTRY_AUTH_TOKEN,
+// Avoid injecting monitoring code and source maps into builds without a destination.
+export default env.SENTRY_DSN
+  ? withSentryConfig(baseConfig, {
+      // For all available options, see:
+      // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
 
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
+      // Only print logs for uploading source maps in CI
+      silent: !process.env.CI,
 
-  // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  tunnelRoute: '/monitoring',
+      // Upload a larger set of source maps for prettier stack traces (increases build time)
+      widenClientFileUpload: true,
 
-  webpack: {
-    treeshake: { removeDebugLogging: true },
-    automaticVercelMonitors: true,
-  },
+      // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
+      tunnelRoute: '/monitoring',
 
-  bundleSizeOptimizations: {
-    excludeDebugStatements: true,
-    excludeReplayIframe: true,
-    excludeReplayShadowDom: true,
-    excludeReplayWorker: true,
-  },
+      webpack: {
+        treeshake: { removeDebugLogging: true },
+        automaticVercelMonitors: true,
+      },
 
-  // ソースマップ設定
-  sourcemaps: {
-    // ソースマップを削除してクライアントに公開しない
-    deleteSourcemapsAfterUpload: true,
-  },
-});
+      bundleSizeOptimizations: {
+        excludeDebugStatements: true,
+        excludeReplayIframe: true,
+        excludeReplayShadowDom: true,
+        excludeReplayWorker: true,
+      },
+
+      // ソースマップ設定
+      sourcemaps: {
+        // ソースマップを削除してクライアントに公開しない
+        deleteSourcemapsAfterUpload: true,
+      },
+    })
+  : baseConfig;

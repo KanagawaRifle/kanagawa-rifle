@@ -1,13 +1,15 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { relative, resolve, sep } from 'node:path';
+import { gzipSync } from 'node:zlib';
 
 import { JSDOM } from 'jsdom';
 
 const localOrigin = 'https://size-budget.invalid';
 
-/** Extract only assets fetched by the initial HTML, excluding optional dynamic imports and prefetches. */
+/** Extract initial scripts and styles, excluding optional dynamic imports and prefetches. */
 export function collectInitialAssets(html, rootDir, route = '/') {
-  const { window } = new JSDOM(html);
+  // A fragment keeps styles inert; collecting URLs does not need a browser window or CSS parsing.
+  const document = JSDOM.fragment(html);
   const assets = { javascript: new Set(), stylesheet: new Set() };
 
   function add(kind, href) {
@@ -26,21 +28,24 @@ export function collectInitialAssets(html, rootDir, route = '/') {
     assets[kind].add(relative(rootDir, file).split(sep).join('/'));
   }
 
-  try {
-    for (const script of window.document.querySelectorAll('script[src]')) {
-      add('javascript', script.getAttribute('src'));
+  for (const script of document.querySelectorAll('script[src]')) {
+    add('javascript', script.getAttribute('src'));
+  }
+  for (const link of document.querySelectorAll('link[href]')) {
+    const rel = link.rel.toLowerCase().split(/\s+/);
+    const as = link.getAttribute('as')?.toLowerCase();
+    if (rel.includes('stylesheet') || (rel.includes('preload') && as === 'style')) {
+      add('stylesheet', link.getAttribute('href'));
+    } else if (rel.includes('modulepreload') || (rel.includes('preload') && as === 'script')) {
+      add('javascript', link.getAttribute('href'));
     }
-    for (const link of window.document.querySelectorAll('link[href]')) {
-      const rel = link.rel.toLowerCase().split(/\s+/);
-      const as = link.getAttribute('as')?.toLowerCase();
-      if (rel.includes('stylesheet') || (rel.includes('preload') && as === 'style')) {
-        add('stylesheet', link.getAttribute('href'));
-      } else if (rel.includes('modulepreload') || (rel.includes('preload') && as === 'script')) {
-        add('javascript', link.getAttribute('href'));
-      }
+  }
+  // Next.js retains these CSS files for navigation when it embeds their
+  // contents in the first response. Count the same stylesheet budget in both modes.
+  for (const style of document.querySelectorAll('style[data-href]')) {
+    for (const href of style.getAttribute('data-href').trim().split(/\s+/).filter(Boolean)) {
+      add('stylesheet', href);
     }
-  } finally {
-    window.close();
   }
 
   return {
@@ -72,12 +77,17 @@ export async function prepareSizeBudget({ rootDir, limits }) {
     .sort();
   const groups = new Map();
   const validatedAssets = new Set();
+  let largestDocument;
 
   for (const htmlFile of htmlFiles) {
     const relativeFile = `${appDirectory}/${htmlFile}`;
     await requireFile(rootDir, relativeFile);
     const route = htmlFile === 'index.html' ? '/' : `/${htmlFile.slice(0, -'.html'.length).split(sep).join('/')}/`;
     const html = await readFile(resolve(rootDir, relativeFile), 'utf8');
+    if (limits.html) {
+      const size = gzipSync(html, { level: 9 }).length;
+      if (!largestDocument || size > largestDocument.size) largestDocument = { file: relativeFile, route, size };
+    }
     const assets = collectInitialAssets(html, rootDir, route);
     if (assets.javascript.length === 0 || (route === '/' && assets.stylesheet.length === 0)) {
       throw new Error(`No initial ${assets.javascript.length === 0 ? 'JavaScript' : 'CSS'} found in ${relativeFile}.`);
@@ -108,6 +118,17 @@ export async function prepareSizeBudget({ rootDir, limits }) {
     limit: limits[kind],
     gzip: true,
   }));
+
+  // Match @size-limit/file's gzip level and check the largest response, including
+  // inline CSS and RSC data. This covers every static page without hundreds of duplicate reports.
+  if (largestDocument) {
+    checks.push({
+      name: `Initial HTML: ${largestDocument.route} (largest of ${htmlFiles.length} pages)`,
+      path: [largestDocument.file],
+      limit: limits.html,
+      gzip: true,
+    });
+  }
 
   return checks;
 }

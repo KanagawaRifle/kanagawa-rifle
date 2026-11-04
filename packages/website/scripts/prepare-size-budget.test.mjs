@@ -60,6 +60,30 @@ test('resolves relative asset URLs against their route', () => {
   );
 });
 
+test('counts inlined Next.js styles once even when their files are also preloaded', () => {
+  assert.deepEqual(
+    collectInitialAssets(
+      `<style data-href="/_next/static/app.css /_next/static/article.css">body { color: black; }</style>
+       <link rel="preload" as="style" href="/_next/static/app.css">
+       <style data-href="https://external.example/style.css">p { color: black; }</style>`,
+      '/workspace',
+    ),
+    { javascript: [], stylesheet: ['.next/static/app.css', '.next/static/article.css'] },
+  );
+});
+
+test('requires the retained CSS asset when the initial response embeds it', async (t) => {
+  const rootDir = await fixture(t);
+  await writeFile(
+    join(rootDir, '.next/server/app/index.html'),
+    '<style data-href="/_next/static/app.css">body { color: black; }</style><script src="/_next/static/app.js"></script>',
+  );
+  const checks = await prepareSizeBudget({ rootDir, limits });
+  assert.deepEqual(checks.find((check) => check.name.startsWith('Initial CSS:')).path, ['.next/static/app.css']);
+  await rm(join(rootDir, '.next/static/app.css'));
+  await assert.rejects(prepareSizeBudget({ rootDir, limits }), /missing: .next\/static\/app.css/);
+});
+
 test('uses one gzip check for each distinct initial asset set, while checking every static page', async (t) => {
   const rootDir = await fixture(t);
   await writeFile(join(rootDir, '.next/server/app/news.html'), `${html}<script src="/_next/static/news.js"></script>`);
@@ -76,6 +100,21 @@ test('uses one gzip check for each distinct initial asset set, while checking ev
   assert.ok(checks.every((check) => check.gzip && check.path.length > 0 && check.limit));
   assert.ok(checks.some((check) => check.name.includes('(+1 pages)')));
   assert.ok(checks.every((check) => !check.path.some((file) => file.includes('mermaid-lazy'))));
+});
+
+test('budgets the largest compressed HTML response rather than the largest raw file', async (t) => {
+  const rootDir = await fixture(t);
+  const varied = Array.from({ length: 2000 }, (_, index) => `${index.toString(36)}:${(index ** 2).toString(36)}`).join(
+    ';',
+  );
+  await writeFile(join(rootDir, '.next/server/app/compact.html'), `${html}<p>${'x'.repeat(100_000)}</p>`);
+  await writeFile(join(rootDir, '.next/server/app/varied.html'), `${html}<p>${varied}</p>`);
+  const checks = await prepareSizeBudget({ rootDir, limits: { ...limits, html: '50 kB' } });
+  const document = checks.find((check) => check.name.startsWith('Initial HTML:'));
+  assert.deepEqual(document.path, ['.next/server/app/varied.html']);
+  assert.equal(document.limit, '50 kB');
+  assert.equal(document.gzip, true);
+  assert.match(document.name, /largest of 4 pages/);
 });
 
 for (const file of ['.next/BUILD_ID', '.next/server/app/index.html', '.next/static/app.js', '.next/static/app.css']) {

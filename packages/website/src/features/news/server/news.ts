@@ -3,6 +3,8 @@ import 'server-only';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 
+import { cache } from 'react';
+
 import { isValidSlug, NewsQuerySchema, type NewsQuery } from '@/features/news/schema';
 import type { NewsItem, NewsSummary } from '@/features/news/types';
 import type { Paginated } from '@/lib/pagination';
@@ -12,7 +14,8 @@ import { parseArticle } from './parse-article';
 
 /** Isolated content roots allow filesystem tests without changing process globals. */
 export function createNewsRepository(directory: string) {
-  async function getYears(): Promise<string[]> {
+  // React deduplicates reads within a server render only; later requests see fresh files.
+  const getYears = cache(async function getYears(): Promise<string[]> {
     const entries = await fs.readdir(directory, { withFileTypes: true });
     return entries.map((entry) => {
       if (!entry.isDirectory() || !/^\d{4}$/.test(entry.name)) {
@@ -20,9 +23,9 @@ export function createNewsRepository(directory: string) {
       }
       return entry.name;
     });
-  }
+  });
 
-  async function getSlugsForYear(year: string): Promise<string[]> {
+  const getSlugsForYear = cache(async function getSlugsForYear(year: string): Promise<string[]> {
     const entries = await fs.readdir(join(directory, year), { withFileTypes: true });
     return entries.map((entry) => {
       const slug = entry.name.slice(0, -3);
@@ -31,12 +34,12 @@ export function createNewsRepository(directory: string) {
       }
       return slug;
     });
-  }
+  });
 
-  async function readArticle(slug: string): Promise<NewsItem> {
+  const readArticle = cache(async function readArticle(slug: string): Promise<NewsItem> {
     const source = await fs.readFile(join(directory, slug.slice(0, 4), `${slug}.md`), 'utf-8');
     return parseArticle(slug, source);
-  }
+  });
 
   async function readSummary(slug: string): Promise<NewsSummary> {
     const { content: _content, ...summary } = await readArticle(slug);
@@ -44,11 +47,11 @@ export function createNewsRepository(directory: string) {
   }
 
   /** The Git content tree is the source of truth; no independent filesystem cache. */
-  async function getNewsSlugs(): Promise<string[]> {
+  const getNewsSlugs = cache(async function getNewsSlugs(): Promise<string[]> {
     const years = await getYears();
-    const slugs = await Promise.all(years.map(getSlugsForYear));
+    const slugs = await Promise.all(years.map((year) => getSlugsForYear(year)));
     return slugs.flat().sort((a, b) => b.localeCompare(a));
-  }
+  });
 
   async function getNewsItem(slug: string): Promise<NewsItem | null> {
     if (!isValidSlug(slug)) return null;
@@ -86,7 +89,7 @@ export function createNewsRepository(directory: string) {
 
   async function getAllNews(): Promise<NewsItem[]> {
     const slugs = await getNewsSlugs();
-    return Promise.all(slugs.map(readArticle));
+    return Promise.all(slugs.map((slug) => readArticle(slug)));
   }
 
   async function getAllNewsSummaries(): Promise<NewsSummary[]> {
@@ -94,7 +97,7 @@ export function createNewsRepository(directory: string) {
   }
 
   async function getNewsFeedItems(): Promise<NewsItem[]> {
-    return Promise.all((await getNewsSlugs()).slice(0, NEWS_FEED_LIMIT).map(readArticle));
+    return Promise.all((await getNewsSlugs()).slice(0, NEWS_FEED_LIMIT).map((slug) => readArticle(slug)));
   }
 
   async function getNewsNavigation(slug: string): Promise<{ newer?: NewsSummary; older?: NewsSummary }> {

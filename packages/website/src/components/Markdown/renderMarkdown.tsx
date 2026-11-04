@@ -7,14 +7,12 @@ import { parseMarkdown } from '@/lib/markdown/parse';
 
 import { components } from './elements';
 
-import 'katex/dist/katex.min.css';
-import 'remark-github-blockquote-alert/alert.css';
-
 /** Render the same tree used to collect the table of contents. */
 export function renderMarkdown(content: string) {
-  const { tree, toc } = parseMarkdown(content);
+  const { tree, toc, hasMath } = parseMarkdown(content);
   return {
     toc,
+    hasMath,
     body: toJsxRuntime(tree, {
       Fragment,
       jsx,

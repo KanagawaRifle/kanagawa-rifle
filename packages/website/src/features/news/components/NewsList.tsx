@@ -1,13 +1,13 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-styles';
 import { Card } from '@/components/ui/card';
 import { getNewsListHref } from '@/features/news/paths';
 import type { NewsSummary } from '@/features/news/types';
 import { getPaginationPages, type Paginated, type Pagination as PaginationData } from '@/lib/pagination';
+import { cn } from '@/lib/utils';
 
-import { NewsListControls } from './NewsListControls';
 import { NewsListItem } from './NewsListItem';
 
 function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: PaginationData) {
@@ -32,27 +32,38 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
                       …
                     </span>
                   )}
-                  <Button variant={page === current ? 'default' : 'outline'} size="icon" className="h-8 w-8" asChild>
-                    <Link
-                      href={getNewsListHref({ page, size })}
-                      aria-label={`${page}ページ目`}
-                      aria-current={page === current ? 'page' : undefined}
-                    >
-                      {page}
-                    </Link>
-                  </Button>
+                  <Link
+                    className={cn(
+                      buttonVariants({ variant: page === current ? 'default' : 'outline', size: 'icon' }),
+                      'h-8 w-8',
+                    )}
+                    href={getNewsListHref({ page, size })}
+                    prefetch={false}
+                    aria-label={`${page}ページ目`}
+                    aria-current={page === current ? 'page' : undefined}
+                  >
+                    {page}
+                  </Link>
                 </span>
               ))}
             {enabled ? (
-              <Button variant="outline" size="icon" className="h-8 w-8" asChild>
-                <Link href={getNewsListHref({ page, size })} aria-label={label}>
-                  <Icon className="h-4 w-4" />
-                </Link>
-              </Button>
-            ) : (
-              <Button variant="outline" size="icon" className="h-8 w-8" disabled aria-label={label}>
+              <Link
+                className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'h-8 w-8')}
+                href={getNewsListHref({ page, size })}
+                prefetch={false}
+                aria-label={label}
+              >
                 <Icon className="h-4 w-4" />
-              </Button>
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'h-8 w-8')}
+                disabled
+                aria-label={label}
+              >
+                <Icon className="h-4 w-4" />
+              </button>
             )}
           </span>
         ))}
@@ -63,17 +74,16 @@ function Pagination({ current, totalPages, total, size, hasNext, hasPrev }: Pagi
 
 export function NewsList({
   news,
-  withControls = true,
+  withPagination = true,
   headingAs = 'h2',
 }: {
   news: Paginated<NewsSummary>;
-  withControls?: boolean;
+  withPagination?: boolean;
   headingAs?: 'h2' | 'h3';
 }) {
   return (
     <div className="space-y-4">
-      {withControls && <NewsListControls size={news.pagination.size} />}
-      {withControls && <Pagination {...news.pagination} />}
+      {withPagination && <Pagination {...news.pagination} />}
       <Card>
         {news.data.length === 0 ? (
           <p className="text-muted-foreground p-4">お知らせはありません。</p>
@@ -85,7 +95,7 @@ export function NewsList({
           </ul>
         )}
       </Card>
-      {withControls && <Pagination {...news.pagination} />}
+      {withPagination && <Pagination {...news.pagination} />}
     </div>
   );
 }

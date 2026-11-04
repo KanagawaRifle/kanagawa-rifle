@@ -15,9 +15,21 @@ const membershipActions = [
   },
 ];
 
+const membershipHeaders = membershipActions.map((action) => (
+  <>
+    <span className="font-bold">{action.name}</span>
+    <p className="mt-2 text-xs">{action.description}</p>
+  </>
+));
+
 function FeeTable({ label, headers, children }: { label: string; headers: ReactNode[]; children: ReactNode }) {
   return (
-    <div className="overflow-x-auto" role="region" aria-label={label} tabIndex={0}>
+    <div
+      className="defer-render overflow-x-auto [contain-intrinsic-block-size:auto_400px]"
+      role="region"
+      aria-label={label}
+      tabIndex={0}
+    >
       <table className="w-full min-w-[32rem] table-fixed text-center">
         <caption className="sr-only">{label}</caption>
         <thead>
@@ -69,15 +81,7 @@ export function MembershipFees() {
           </CardHeader>
           <CardContent>
             {'note' in fees && <p className="mb-2">{fees.note}</p>}
-            <FeeTable
-              label={`${fees.title}の会費`}
-              headers={membershipActions.map((action) => (
-                <>
-                  <span className="font-bold">{action.name}</span>
-                  <p className="mt-2 text-xs">{action.description}</p>
-                </>
-              ))}
-            >
+            <FeeTable label={`${fees.title}の会費`} headers={membershipHeaders}>
               <FeeRow
                 label={
                   <>

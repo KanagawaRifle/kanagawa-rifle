@@ -6,6 +6,8 @@ import type { Competition } from '../schema';
 import { CompetitionActions } from './CompetitionActions';
 import { CompetitionDate } from './CompetitionDate';
 
+const calendarIcon = <Calendar className="h-5 w-5" />;
+
 export function HomeCompetitionNotices({ competitions }: { competitions: Competition[] }) {
   return competitions.map((competition) => (
     <Alert key={competition.name} variant="info">
@@ -13,9 +15,7 @@ export function HomeCompetitionNotices({ competitions }: { competitions: Competi
       <AlertDescription>
         {competition.date && (
           <div className="flex items-center gap-2 pb-3">
-            <span className="text-primary">
-              <Calendar className="h-5 w-5" />
-            </span>
+            <span className="text-primary">{calendarIcon}</span>
             <span>
               <CompetitionDate schedule={competition.date} rangeSeparator="～" />
               {competition.pet && (

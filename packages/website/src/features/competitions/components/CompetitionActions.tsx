@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from '@/components/ui/button';
+import { Button, ButtonGroup, buttonVariants } from '@/components/ui/button';
 
 import type { Competition } from '../schema';
 
@@ -8,23 +8,22 @@ export function CompetitionActions({ actions, home = false }: { actions: Competi
       {actions.map((action) => {
         const label = home ? (action.homeLabel ?? action.name) : action.name;
         const target = action.target ?? '_blank';
-        return (
-          <Button
-            key={action.name}
-            variant="outline"
-            size={home ? 'sm' : 'default'}
-            asChild={!action.disabled}
-            disabled={action.disabled ?? false}
-            aria-label={label}
-          >
-            {action.disabled ? (
-              label
-            ) : (
-              <a href={action.href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
-                {label}
-              </a>
-            )}
+        const style = { variant: 'outline', size: home ? 'sm' : 'default' } as const;
+        return action.disabled ? (
+          <Button key={action.name} {...style} disabled aria-label={label}>
+            {label}
           </Button>
+        ) : (
+          <a
+            key={action.name}
+            className={buttonVariants(style)}
+            aria-label={label}
+            href={action.href}
+            target={target}
+            rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+          >
+            {label}
+          </a>
         );
       })}
     </ButtonGroup>

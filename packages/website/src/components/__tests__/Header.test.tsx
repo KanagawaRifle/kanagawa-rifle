@@ -88,7 +88,7 @@ describe('Header', () => {
       const menuButton = screen.getByRole('button', { name: 'メニューを開く' });
       await user.click(menuButton);
 
-      expect(screen.getByRole('dialog')).toBeInTheDocument();
+      expect(await screen.findByRole('dialog')).toBeInTheDocument();
     });
   });
 

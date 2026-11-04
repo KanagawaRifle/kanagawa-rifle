@@ -16,7 +16,7 @@ const categoryVariants = {
 
 export function RecommendationFees() {
   return (
-    <Card>
+    <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
       <CardHeader>
         <CardTitle>手数料</CardTitle>
         <CardDescription>推薦に係る手数料</CardDescription>

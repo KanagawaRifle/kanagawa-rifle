@@ -117,12 +117,11 @@ describe('Footer', () => {
       expect(facebookButton).toHaveAttribute('target', '_blank');
     });
 
-    it('displays tooltips on social media buttons', () => {
+    it('provides native titles without client-side tooltips', () => {
       render(<Footer />);
 
-      // MUI Tooltip は aria-label として title を設定する
-      expect(screen.getByLabelText('Twitter')).toBeInTheDocument();
-      expect(screen.getByLabelText('Facebook')).toBeInTheDocument();
+      expect(screen.getByLabelText('Twitter')).toHaveAttribute('title', 'Twitter');
+      expect(screen.getByLabelText('Facebook')).toHaveAttribute('title', 'Facebook');
     });
   });
 
@@ -239,11 +238,11 @@ describe('Footer', () => {
       });
     });
 
-    it('applies correct font family to short name', () => {
+    it('uses the shared Japanese font for the full-width short name', () => {
       render(<Footer />);
 
       const shortNameElement = screen.getByText(/ＫＡＮＡＧＡＷＡ ＲＩＦＬＥ/);
-      expect(shortNameElement).toHaveStyle({ fontFamily: 'Roboto' });
+      expect(shortNameElement).toHaveClass('font-sans');
     });
   });
 

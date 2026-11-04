@@ -1,11 +1,13 @@
 /* packages/website/src/styles/globals.css */
 
 @import 'tailwindcss';
-@import 'tw-animate-css';
+@import './theme.css';
 
-@plugin '@tailwindcss/typography';
-
-@custom-variant dark (&:is(.dark *));
+@source not '../components/ui/dialog.tsx';
+@source not '../components/ui/dropdown-menu.tsx';
+@source not '../components/ui/select.tsx';
+@source not '../components/ui/sheet.tsx';
+@source not '../components/ui/tooltip.tsx';
 
 /* ===== Light Mode (default) ===== */
 :root {
@@ -155,82 +157,11 @@
   --color-chart-5: oklch(62% 0.22 29.23);
 }
 
-@theme inline {
-  /* Reference CSS variables for theme-aware colors */
-  --color-background: var(--color-background);
-  --color-foreground: var(--color-foreground);
-
-  --color-primary: var(--color-primary);
-  --color-primary-foreground: var(--color-primary-foreground);
-
-  --color-secondary: var(--color-secondary);
-  --color-secondary-foreground: var(--color-secondary-foreground);
-
-  --color-accent: var(--color-accent);
-  --color-accent-foreground: var(--color-accent-foreground);
-
-  --color-muted: var(--color-muted);
-  --color-muted-foreground: var(--color-muted-foreground);
-
-  --color-card: var(--color-card);
-  --color-card-foreground: var(--color-card-foreground);
-
-  --color-popover: var(--color-popover);
-  --color-popover-foreground: var(--color-popover-foreground);
-
-  --color-border: var(--color-border);
-  --color-input: var(--color-input);
-
-  --color-ring: var(--color-ring);
-
-  --color-destructive: var(--color-destructive);
-  --color-destructive-foreground: var(--color-destructive-foreground);
-
-  --color-success: var(--color-success);
-  --color-success-foreground: var(--color-success-foreground);
-
-  --color-warning: var(--color-warning);
-  --color-warning-foreground: var(--color-warning-foreground);
-
-  --color-info: var(--color-info);
-  --color-info-foreground: var(--color-info-foreground);
-
-  --color-sidebar: var(--color-sidebar);
-  --color-sidebar-foreground: var(--color-sidebar-foreground);
-  --color-sidebar-primary: var(--color-sidebar-primary);
-  --color-sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
-  --color-sidebar-accent: var(--color-sidebar-accent);
-  --color-sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
-  --color-sidebar-border: var(--color-sidebar-border);
-  --color-sidebar-ring: var(--color-sidebar-ring);
-
-  --color-chart-1: var(--color-chart-1);
-  --color-chart-2: var(--color-chart-2);
-  --color-chart-3: var(--color-chart-3);
-  --color-chart-4: var(--color-chart-4);
-  --color-chart-5: var(--color-chart-5);
-
-  /* Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-
-  /* Font */
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, Roboto, 'Noto Sans JP', 'Segoe UI', 'Hiragino Sans', 'Noto Sans CJK JP',
-    'Yu Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
-}
-
 @layer base {
   *,
   *::before,
   *::after {
     border-color: var(--color-border);
-  }
-
-  html {
-    scroll-behavior: smooth;
   }
 
   body {
@@ -248,22 +179,37 @@
   }
 }
 
-/* Prose dark mode styles */
-.dark .prose {
-  --tw-prose-body: var(--color-foreground);
-  --tw-prose-headings: var(--color-foreground);
-  --tw-prose-lead: var(--color-muted-foreground);
-  --tw-prose-links: var(--color-primary);
-  --tw-prose-bold: var(--color-foreground);
-  --tw-prose-counters: var(--color-muted-foreground);
-  --tw-prose-bullets: var(--color-muted-foreground);
-  --tw-prose-hr: var(--color-border);
-  --tw-prose-quotes: var(--color-foreground);
-  --tw-prose-quote-borders: var(--color-border);
-  --tw-prose-captions: var(--color-muted-foreground);
-  --tw-prose-code: var(--color-foreground);
-  --tw-prose-pre-code: var(--color-foreground);
-  --tw-prose-pre-bg: var(--color-muted);
-  --tw-prose-th-borders: var(--color-border);
-  --tw-prose-td-borders: var(--color-border);
+@layer utilities {
+  .defer-render {
+    content-visibility: auto;
+  }
+
+  /* Safari can scroll to stale bounds when focusing skipped content.
+     Keep its layout available; the information E2E test covers this fallback. */
+
+  @supports (-webkit-hyphens: none) {
+    .defer-render {
+      content-visibility: visible;
+    }
+  }
+
+  @media print {
+    .defer-render {
+      content-visibility: visible;
+    }
+  }
+
+  /* One shared class keeps repeated buttons compact in HTML and the RSC payload.
+     Zero specificity lets each component's utility classes override the defaults. */
+  :where(.button-base) {
+    @apply focus-visible:ring-ring inline-flex items-center justify-center gap-2 rounded text-sm font-medium whitespace-nowrap uppercase transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .button-base svg {
+    @apply pointer-events-none shrink-0;
+  }
+
+  .button-base svg:not([class*='size-']) {
+    @apply size-4;
+  }
 }

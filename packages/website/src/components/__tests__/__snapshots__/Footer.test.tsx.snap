@@ -3,7 +3,7 @@
 exports[`Footer > Snapshot > matches snapshot 1`] = `
 <div>
   <footer
-    class="bg-muted"
+    class="defer-render bg-muted [contain-intrinsic-block-size:auto_650px]"
   >
     <nav
       aria-label="ソーシャルメディア"
@@ -16,11 +16,11 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
         >
           <a
             aria-label="Twitter"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 h-10 w-10 hover:bg-background hover:text-primary"
-            data-state="closed"
+            class="button-base h-10 w-10 hover:bg-background hover:text-primary"
             href="https://twitter.com/example"
             rel="noopener noreferrer"
             target="_blank"
+            title="Twitter"
           >
             <span
               data-testid="twitter-icon"
@@ -30,11 +30,11 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
           </a>
           <a
             aria-label="Facebook"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 h-10 w-10 hover:bg-background hover:text-primary"
-            data-state="closed"
+            class="button-base h-10 w-10 hover:bg-background hover:text-primary"
             href="https://facebook.com/example"
             rel="noopener noreferrer"
             target="_blank"
+            title="Facebook"
           >
             <span
               data-testid="facebook-icon"
@@ -65,7 +65,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
           >
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="/"
               >
                 ホーム
@@ -73,7 +73,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
             </li>
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="/about"
               >
                 協会について
@@ -95,7 +95,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
           >
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="/news"
               >
                 お知らせ
@@ -103,7 +103,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
             </li>
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="/contact"
               >
                 お問い合わせ
@@ -111,7 +111,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
             </li>
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="/feed.xml"
               >
                 お知らせの更新フィード
@@ -133,7 +133,7 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
           >
             <li>
               <a
-                class="inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
+                class="button-base hover:bg-muted hover:text-foreground h-9 rounded px-3 text-primary justify-start"
                 href="https://riflesports.jp"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -186,9 +186,8 @@ exports[`Footer > Snapshot > matches snapshot 1`] = `
       </div>
       <div>
         <a
-          class="inline-flex min-h-6 items-center text-xl font-black no-underline"
+          class="inline-flex min-h-6 items-center font-sans text-xl font-black no-underline"
           href="/"
-          style="font-family: Roboto;"
         >
           ＫＡＮＡＧＡＷＡ ＲＩＦＬＥ
         </a>

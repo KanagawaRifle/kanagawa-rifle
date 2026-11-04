@@ -1,15 +1,9 @@
 'use client';
 
-import { AxiomWebVitals } from 'next-axiom';
+import dynamic from 'next/dynamic';
 
-import { useHydrated } from '@/hooks/useHydrated';
+const AxiomWebVitals = dynamic(() => import('next-axiom').then((module) => module.AxiomWebVitals), { ssr: false });
 
 export function AxiomWebVitalsWrapper() {
-  const isMounted = useHydrated();
-
-  if (!isMounted) {
-    return null;
-  }
-
   return <AxiomWebVitals />;
 }

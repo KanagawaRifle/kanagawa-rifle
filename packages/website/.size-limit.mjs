@@ -4,6 +4,6 @@ import { prepareSizeBudget } from './scripts/prepare-size-budget.mjs';
 
 export default await prepareSizeBudget({
   rootDir: fileURLToPath(new URL('.', import.meta.url)),
-  // Current production baseline: up to 483 kB JS and 21 kB CSS, gzipped.
-  limits: { javascript: '500 kB', stylesheet: '25 kB' },
+  // Gzip baselines: 183 kB JS (including nomodule), 11 kB CSS, and 47 kB HTML.
+  limits: { javascript: '225 kB', stylesheet: '20 kB', html: '50 kB' },
 });

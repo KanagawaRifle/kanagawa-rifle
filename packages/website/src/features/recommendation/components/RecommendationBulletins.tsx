@@ -7,7 +7,7 @@ import { recommendationBulletins } from '../data';
 
 export function RecommendationBulletins() {
   return (
-    <Card>
+    <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
       <CardHeader>
         <CardTitle>ピストルを所持中の皆様へ</CardTitle>
         <CardDescription>※ご不明な点は日ラへ直接お問い合わせください。</CardDescription>
