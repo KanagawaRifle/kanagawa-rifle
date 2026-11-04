@@ -1,5 +1,7 @@
 // packages/website/src/__tests__/proxy.test.ts
 
+import { AsyncLocalStorage } from 'node:async_hooks';
+
 import { NextRequest } from 'next/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -13,6 +15,7 @@ describe('proxy', () => {
 
   afterEach(() => {
     process.env = originalEnv;
+    vi.unstubAllGlobals();
   });
 
   describe('non-staging environment', () => {
@@ -38,6 +41,42 @@ describe('proxy', () => {
   });
 
   describe('staging environment', () => {
+    const protectedRequests: Array<{ url: string; headers: Record<string, string> }> = [
+      { url: '/about', headers: {} },
+      { url: '/about', headers: { purpose: 'prefetch' } },
+      { url: '/news?_rsc=test', headers: { 'next-router-prefetch': '1', rsc: '1' } },
+      { url: '/api/news', headers: {} },
+      { url: '/api/news/2026-10-15-01', headers: {} },
+      { url: '/api/og', headers: {} },
+      { url: '/sitemap.xml', headers: {} },
+      { url: '/robots.txt', headers: {} },
+      { url: '/feed.xml', headers: {} },
+      { url: '/favicon.ico', headers: {} },
+      { url: '/_next/static/chunks/app.js', headers: {} },
+      { url: '/_next/image?url=/opengraph-image.png&w=640&q=75', headers: {} },
+    ];
+
+    it.each(protectedRequests)('requires authentication for $url with $headers', async ({ url, headers }) => {
+      process.env.VERCEL_GIT_COMMIT_REF = 'staging';
+      process.env.BASIC_AUTH_ID = 'user';
+      process.env.BASIC_AUTH_PASSWORD = 'pass';
+      vi.stubGlobal('AsyncLocalStorage', AsyncLocalStorage);
+
+      const { unstable_doesMiddlewareMatch } = await import('next/experimental/testing/server');
+      const { config, proxy } = await import('../proxy');
+      expect(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url, headers })).toBe(true);
+
+      const requestUrl = new URL(url, 'http://localhost');
+      expect(proxy(new NextRequest(requestUrl, { headers })).status).toBe(401);
+      expect(
+        proxy(
+          new NextRequest(requestUrl, {
+            headers: { ...headers, Authorization: `Basic ${Buffer.from('user:pass').toString('base64')}` },
+          }),
+        ).status,
+      ).toBe(200);
+    });
+
     it('should return 500 when auth credentials are not configured', async () => {
       process.env.VERCEL_GIT_COMMIT_REF = 'staging';
       delete process.env.BASIC_AUTH_ID;

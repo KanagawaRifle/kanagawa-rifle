@@ -212,3 +212,8 @@ CSP の `unsafe-eval` は開発時のみ有効です。
 
 `VERCEL_GIT_COMMIT_REF=staging` の環境では、`BASIC_AUTH_ID` と `BASIC_AUTH_PASSWORD` も設定してください。
 `src/proxy.ts` が認証を処理し、設定不足なら 500、認証失敗なら 401 を返します。
+認証は API、サイトマップ、フィード、静的ファイル、画像最適化、prefetch を含む全リクエストに適用します。
+画像最適化は取得元へ認証ヘッダーを転送しないため、`staging` のビルドでは無効にし、元の画像 URL を使います。
+`LHCI=1 npm run -w @acme/website test:e2e:staging` でステージング用にビルドし、ローカル専用の認証情報で
+ページ・API・画像・prefetch の認証とブラウザー操作を検証できます。通常の本番用ビルドに戻す場合は再ビルドしてください。
+`staging` 以外のブランチはこの Basic 認証の対象外です。ほかのプレビューのアクセス制限はホスティング側で設定してください。

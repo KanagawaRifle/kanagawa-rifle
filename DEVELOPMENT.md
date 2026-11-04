@@ -46,7 +46,9 @@ LHCI=1 npm run -w @acme/website test:e2e -- --project=chromium --project="Mobile
 npm run -w @acme/website test:storybook
 ```
 
-Storybook は Vite 版の Next.js 設定を使い、テスト時に静的サーバーを起動して終了後に停止します。
+Storybook は Vite 版の Next.js 設定を使い、公式の Vitest plugin と Playwright の Chromium でストーリーを検証します。
+`test:storybook` は静的ビルドも検証し、`test-storybook` はストーリーのテストだけを実行します。
+アクセシビリティ違反は失敗として扱い、JUnit を `packages/website/reports/storybook/storybook.xml` に保存します。
 Playwright がサーバーを起動します。`test:e2e` は本番ビルドを `127.0.0.1:3100` で、
 `test:e2e:dev` は開発サーバーを `127.0.0.1:3200` で検証します。実行前に手動の開発サーバーを停止してください。
 `LHCI=1` はローカル HTTP 用に CSP の HTTPS 強制を無効にする設定で、ビルドと起動の両方に必要です。
@@ -90,6 +92,33 @@ npm install -D -w @acme/website <package-name>
 本番依存のライセンス全文は `npm run license-report` で `packages/website/THIRD-PARTY-LICENSES.txt` に、
 SBOM は `npm run --silent sbom > bom.json` で出力できます。生成したレポートは Git の管理対象外です。
 
+ルートの `overrides` は、親パッケージが古いバージョンを固定している推移依存の修正に使っています。
+KaTeX、postcss-selector-parser、ライセンス生成ツールの Zod は対象の親に限定しています。
+`generate-license-file` は 4.2 系でワークスペースの依存収集に欠落があるため 4.1.1 を維持し、
+Zod のみ更新しています。更新時は `npm run license-report` で本番依存の収録も確認してください。
+`@vitest/eslint-plugin` は TypeScript 5 と互換性のある 1.6.27 に固定しています。
+1.6.28 は TypeScript 6 を要求するため、型チェック環境の更新時に見直してください。
+
+既存の `.npmrc` は `legacy-peer-deps=true` を指定しており、`npm ls --all` には Vite や CSS 検査ツールなどの
+peer dependency 不整合が残ります。インストールの成功だけで互換性を判断せず、lint・型・ビルド・テストを確認してください。
+
+2026-11-04 の更新で、`npm audit` の全 severity と `--omit=dev` の検出を 0 件にしました。
+glob 9〜13 系は 14.0.3、minimatch 9〜10 系は 11.0.4 に更新しています。
+修正対象は [glob の中断処理](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4) と
+[minimatch のパターン増幅](https://github.com/advisories/GHSA-g3hv-75wg-m249) です。
+
+旧 API を使う ESLint 系依存には `packages/minimatch-compat` を適用します。
+ルートの `minimatch` はこのローカルパッケージを指し、`minimatch@<9` の override は `$minimatch` を参照します。
+このエントリーは新 API 向け override より先に置きます。npm がローカルの直接依存と同じ置換先を選ぶために必要です。
+実際の解析・照合は npm alias `minimatch-v11` が参照する公式の修正版に委譲し、旧版の実装は含みません。
+旧 CommonJS の関数形式と `Minimatch` を提供し、`makeRe()` は `eslint-plugin-import` が使う `.test()` のみ対応します。
+正規表現の生成、`.source`、`.exec()` との互換性はありません。利用する親パッケージの更新時には API の使用箇所を確認してください。
+アダプターの挙動とパターン増幅の上限は `npm run -w @acme/minimatch-compat test` で検証します。
+
+[修正版のない deepmerge](https://github.com/advisories/GHSA-gcqx-w48m-w2h4) は、Storybook の旧 Jest ベースの
+test-runner を [公式の Vitest 連携](https://storybook.js.org/docs/writing-tests/integrations/vitest-addon/migration-guide) に移行して依存ごと除去しました。
+更新時は監査に加え、lint、単体テスト、ビルド、Storybook、ミューテーションテスト、ライセンス生成を確認してください。
+
 ## CI と公開
 
 `CI Required` は品質検査、ブラウザ・Storybook テスト、インフラ検査の結果を集約します。
@@ -102,9 +131,10 @@ Semgrep は外部への計測送信を無効にし、解析結果を Actions の
 解析対象はアプリと運用ツールです。テストの入力例と Storybook の展示コードは対象外です。
 OSV は全依存を検査し、PR の差分結果も artifact に残します。
 
-GitHub Code Security の契約とリポジトリでの有効化が完了した環境のみ、
-`CODE_SECURITY_ENABLED=true` に変更してください。CodeQL と Dependency Review API を使用し、
-OSV の結果も Code Scanning に登録します。有料機能の利用可否と検査自体の合否を分けて管理します。
+public リポジトリでは、変数の値にかかわらず CodeQL と Dependency Review API を使用し、
+OSV と Scorecard の結果も Code Scanning に登録します。可視性の変更後、次のワークフロー実行から切り替わります。
+private リポジトリで同じ機能を使う場合のみ、GitHub Code Security の契約と有効化を確認して
+`CODE_SECURITY_ENABLED=true` に変更してください。利用できない private 環境では代替検査と artifact の保存を継続します。
 依存関係グラフ、Dependabot alerts、Dependabot security updates はどちらの構成でも有効にします。
 
 記事向けの不適切表現チェックは、辞書を内蔵する `ja-no-inappropriate-words` に統一しています。
@@ -171,3 +201,8 @@ node scripts/setup-branch-protection.mjs
 管理者が内容を確認して適用する場合は `--apply --repo KanagawaRifle/kanagawa-rifle` を付けます。
 GitHub CLI の認証と管理権限が必要です。同名の ruleset があれば更新し、ほかの ruleset は削除しません。
 現在のブランチ設定と競合しないか確認してください。
+
+GitHub Free の private リポジトリではブランチ保護の適用が 403 になる場合があります。
+public に変更する場合は、事前に表示した設定を確認し、変更直後に適用して GitHub 側の結果を確認してください。
+このスクリプトはリポジトリの可視性を変更しません。公開前後の手順は
+[公開前の確認](.github/PRE_RELEASE_CHECKLIST.md) を参照してください。

@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
 
   images: {
+    // The optimizer does not forward Basic credentials when fetching local images.
+    unoptimized: process.env.VERCEL_GIT_COMMIT_REF === 'staging',
     remotePatterns: assetUrls.map((url) => ({
       protocol: url.protocol === 'http:' ? 'http' : 'https',
       hostname: url.hostname,

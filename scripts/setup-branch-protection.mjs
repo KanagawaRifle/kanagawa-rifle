@@ -17,10 +17,17 @@ if (!args.length) {
   const repository = args[2];
   const endpoint = `/repos/${repository}/rulesets`;
   // Complete listing must succeed before selecting create or update.
-  const pages = JSON.parse(
-    execFileSync('gh', ['api', '--paginate', '--slurp', `${endpoint}?includes_parents=false`], { encoding: 'utf8' }),
-  );
-  const matches = pages.flat().filter((entry) => entry.name === ruleset.name);
+  const entries = execFileSync(
+    'gh',
+    ['api', '--paginate', `${endpoint}?includes_parents=false`, '--jq', '.[] | @json'],
+    {
+      encoding: 'utf8',
+    },
+  )
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
+  const matches = entries.filter((entry) => entry.name === ruleset.name);
   if (matches.length > 1) throw new Error('Multiple matching rulesets; review the repository settings first.');
   const existing = matches[0];
   execFileSync(

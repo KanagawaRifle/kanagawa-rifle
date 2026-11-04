@@ -1,0 +1,14 @@
+{
+  "name": "@acme/minimatch-compat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Legacy CommonJS API adapter backed by patched minimatch",
+  "main": "index.cjs",
+  "scripts": {
+    "lint": "prettier --check .",
+    "test": "node --test test/*.test.cjs"
+  },
+  "dependencies": {
+    "minimatch-v11": "npm:minimatch@11.0.4"
+  }
+}

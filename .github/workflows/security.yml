@@ -25,7 +25,7 @@ jobs:
       security-events: write
     uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@b8ac13f90f0ad78cebdcdbe5d39fcc8ff11301ba # v2
     with:
-      upload-sarif: ${{ vars.CODE_SECURITY_ENABLED == 'true' }}
+      upload-sarif: ${{ github.event.repository.private == false || vars.CODE_SECURITY_ENABLED == 'true' }}
       scan-args: |-
         --lockfile=package-lock.json
 
@@ -37,6 +37,6 @@ jobs:
       security-events: write
     uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@a345acffa64b0eaede81a3d9aae6141214d9c8fc # v2
     with:
-      upload-sarif: ${{ vars.CODE_SECURITY_ENABLED == 'true' }}
+      upload-sarif: ${{ github.event.repository.private == false || vars.CODE_SECURITY_ENABLED == 'true' }}
       scan-args: |-
         --lockfile=package-lock.json

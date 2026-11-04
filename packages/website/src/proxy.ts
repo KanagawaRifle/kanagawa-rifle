@@ -107,15 +107,7 @@ export function proxy(req: NextRequest) {
   return NextResponse.next();
 }
 
-// 認証を適用するパスを指定
+// ステージングでは API・メタデータ・prefetch を含むすべてのリクエストを認証する。
 export const config = {
-  matcher: [
-    {
-      source: '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
-    },
-  ],
+  matcher: '/:path*',
 };
