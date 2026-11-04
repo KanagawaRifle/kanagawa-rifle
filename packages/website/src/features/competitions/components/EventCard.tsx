@@ -1,7 +1,6 @@
 // packages/website/src/app/competitions/_components/EventCard.tsx
 
 import { AlarmClock, Calendar, Dumbbell, MapPin } from 'lucide-react';
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,6 +14,11 @@ interface ItemProps {
   text: ReactNode;
   divider?: boolean;
 }
+
+const dateIcon = <Calendar className="h-5 w-5" />;
+const practiceIcon = <Dumbbell className="h-5 w-5" />;
+const deadlineIcon = <AlarmClock className="h-5 w-5" />;
+const venueIcon = <MapPin className="h-5 w-5" />;
 
 function Item({ icon, title, text, divider = false }: ItemProps) {
   return (
@@ -31,7 +35,7 @@ function Item({ icon, title, text, divider = false }: ItemProps) {
 
 export function EventCard({ name, grade, actions, date, pet, deadline, venue }: Competition) {
   return (
-    <Card>
+    <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
       <CardHeader>
         <p className="text-muted-foreground">{grade}大会</p>
         <CardTitle>{name}</CardTitle>
@@ -41,25 +45,11 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
       </CardContent>
       {(date || pet || deadline || venue) && (
         <ul className="border-border border-t">
-          {date && (
-            <Item
-              icon={<Calendar className="h-5 w-5" />}
-              title="期日"
-              text={<CompetitionDate schedule={date} />}
-              divider
-            />
-          )}
-          {pet && (
-            <Item
-              icon={<Dumbbell className="h-5 w-5" />}
-              title="公式練習"
-              text={<CompetitionDate schedule={pet} />}
-              divider
-            />
-          )}
+          {date && <Item icon={dateIcon} title="期日" text={<CompetitionDate schedule={date} />} divider />}
+          {pet && <Item icon={practiceIcon} title="公式練習" text={<CompetitionDate schedule={pet} />} divider />}
           {deadline && (
             <Item
-              icon={<AlarmClock className="h-5 w-5" />}
+              icon={deadlineIcon}
               title="申込締切"
               text={<CompetitionDate schedule={{ kind: 'date', date: deadline }} />}
               divider
@@ -67,17 +57,17 @@ export function EventCard({ name, grade, actions, date, pet, deadline, venue }: 
           )}
           {venue && (
             <Item
-              icon={<MapPin className="h-5 w-5" />}
+              icon={venueIcon}
               title="会場"
               text={
-                <Link
+                <a
                   href={venue.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:bg-primary/10 underline"
                 >
                   {venue.name}
-                </Link>
+                </a>
               }
             />
           )}

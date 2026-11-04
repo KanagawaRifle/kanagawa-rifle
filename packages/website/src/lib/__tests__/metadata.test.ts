@@ -38,6 +38,21 @@ describe('page metadata', () => {
     expect(metadata.description).toBeTruthy();
   });
 
+  it('resolves adjacent page links and leaves missing neighbors absent', () => {
+    expect(
+      createPageMetadata({
+        title: 'お知らせ',
+        path: '/news?page=2',
+        pagination: { previous: '/news', next: '/news?page=3' },
+      }).pagination,
+    ).toEqual({ previous: 'https://example.test/news', next: 'https://example.test/news?page=3' });
+    expect(
+      createPageMetadata({ title: 'お知らせ', path: '/news', pagination: { next: '/news?page=2' } }).pagination
+        ?.previous,
+    ).toBeUndefined();
+    expect(createPageMetadata({ title: '記事', path: '/news/test' }).pagination).toBeUndefined();
+  });
+
   it('advertises the published feed and suppresses discovery from previews', () => {
     expect(createPageMetadata({ title: 'お知らせ', path: '/news' }).alternates?.types).toEqual({
       'application/atom+xml': 'https://example.test/feed.xml',

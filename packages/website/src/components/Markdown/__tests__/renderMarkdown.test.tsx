@@ -21,6 +21,16 @@ function renderArticle(content: string) {
 }
 
 describe('Markdown rendering and table of contents', () => {
+  it.each([
+    ['Inline $x^2$ formula', true],
+    ['$$\nx^2 + y^2\n$$', true],
+    ['Ordinary Japanese text: 大会のご案内', false],
+    ['```math\nx^2\n```', true],
+    ['`$x^2$`\n\n```text\nx^2\n```', false],
+  ])('requests math styles only for rendered formulas: %s', (content, expected) => {
+    expect(renderMarkdown(content).hasMath).toBe(expected);
+  });
+
   it('preserves raw preformatted text, mixed children and empty blocks', () => {
     const { document } = renderArticle('<pre>raw <strong>formatted</strong> text 123</pre>\n\n<pre></pre>');
     expect(document.querySelector('article')?.textContent).toContain('raw formatted text 123');
@@ -110,7 +120,11 @@ describe('Markdown rendering and table of contents', () => {
     expect(document.querySelector('object')?.getAttribute('type')).toBe('application/pdf');
     expect(document.querySelector('object a')?.getAttribute('href')).toBe('/documents/result.pdf');
     expect(document.querySelector('iframe')?.getAttribute('src')).toBe('https://video.example.test/embed/1');
-    expect(document.querySelector('img')?.getAttribute('src')).toBe('/images/competition.jpg');
+    const imageUrl = new URL(document.querySelector('img')!.getAttribute('src')!, 'https://example.com');
+    expect(imageUrl.pathname).toBe('/_next/image');
+    expect(imageUrl.searchParams.get('url')).toBe('/images/competition.jpg');
+    expect(document.querySelector('img')?.getAttribute('srcset')).toContain('640w');
+    expect(document.querySelector('img')?.getAttribute('loading')).toBe('lazy');
     expect(document.querySelector('img')?.getAttribute('alt')).toBe('大会写真');
   });
 
@@ -148,6 +162,18 @@ const score = 600;
     expect(document.querySelector('del')?.textContent).toBe('取り消し');
     expect(document.querySelector('[data-footnotes] h2')?.textContent).toBe('脚注');
     expect(toc).toContainEqual({ id: 'footnote-label', title: '脚注', level: 2 });
+  });
+
+  it('reserves the image ratio independently of its caption and rejects invalid dimensions', () => {
+    const { document } = renderArticle('<img src="/photo.jpg" alt="大会写真" width="1200" height="800">');
+    const image = document.querySelector('img')!;
+    expect(image.parentElement?.style.aspectRatio).toBe('1.5');
+    expect(image.parentElement?.textContent).toBe('');
+    expect(image.parentElement?.nextElementSibling?.textContent).toBe('大会写真');
+    for (const dimensions of ['', 'width="0" height="800"', 'width="-2" height="800"', 'width="100%" height="800"']) {
+      const rendered = renderArticle(`<img src="/photo.jpg" ${dimensions}>`).document;
+      expect(rendered.querySelector('img')?.parentElement?.style.aspectRatio).toBe(String(16 / 9));
+    }
   });
 
   it('retains URL filtering for Markdown and raw HTML resources', () => {

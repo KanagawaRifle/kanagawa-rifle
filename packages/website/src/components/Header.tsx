@@ -1,164 +1,24 @@
-// packages/website/src/components/Header.tsx
-
-'use client';
-
-import { EllipsisVertical, Menu, X } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-
+import { HeaderLogo } from '@/components/HeaderLogo';
+import { MobileMenuButton, MoreMenuButton } from '@/components/HeaderMenus';
+import { NavigationTabs } from '@/components/NavigationTabs';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { paths } from '@/config/paths';
-import { cn } from '@/lib/utils';
 
-// ロゴコンポーネント
-function Logo() {
-  return (
-    <Link
-      href="/"
-      className="inline-flex min-h-10 items-center justify-center text-center text-xl font-black tracking-wider no-underline"
-      style={{ fontFamily: 'Roboto' }}
-      aria-label="KRA（神奈川県ライフル射撃協会）トップページへ"
-    >
-      <span className="text-primary">K</span>
-      <span style={{ color: 'var(--color-secondary-bright)' }}>R</span>
-      <span className="text-accent">A</span>
-    </Link>
-  );
-}
+const navigationItems = Object.values(paths.main).map(({ name, getHref }) => ({ name, href: getHref() }));
 
-// ドロワーコンテンツコンポーネント
-function DrawerContent({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="w-full" role="presentation" onClick={onClose}>
-      <nav aria-label="メインナビゲーション">
-        <ul className="py-2">
-          {Object.entries(paths.main).map(([key, obj]) => (
-            <li key={key}>
-              <Link href={obj.getHref()} className="hover:bg-muted block px-4 py-2">
-                {obj.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <nav aria-label="サブナビゲーション" className="border-border border-t">
-        <ul className="py-2">
-          {Object.entries(paths.sub).map(([key, obj]) => (
-            <li key={key}>
-              <Link href={obj.getHref()} className="text-muted-foreground hover:bg-muted block px-4 py-2">
-                {obj.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  );
-}
-
-function NavigationTabs() {
-  const pathname = usePathname() ?? '/';
-  const matchedPath = Object.values(paths.main)
-    .find((obj) => pathname === obj.getHref() || pathname.startsWith(`${obj.getHref()}/`))
-    ?.getHref();
-
-  return (
-    <nav className="hidden flex-grow md:flex" aria-label="メインナビゲーション">
-      <ul className="flex w-full">
-        {Object.entries(paths.main).map(([key, obj]) => {
-          const isActive = obj.getHref() === matchedPath;
-          return (
-            <li key={key} className="flex-1">
-              <Link
-                href={obj.getHref()}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn(
-                  'block border-b-2 px-4 py-3 text-center text-sm font-bold whitespace-nowrap uppercase transition-colors',
-                  isActive
-                    ? 'border-primary text-primary'
-                    : 'text-muted-foreground hover:text-primary border-transparent',
-                )}
-              >
-                {obj.name}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
-}
-
-// その他メニューコンポーネント
-function MoreMenu() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="その他のメニューを開く" title="各種書式・リンク集">
-          <EllipsisVertical className="h-5 w-5" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {Object.entries(paths.sub).map(([key, obj]) => (
-          <DropdownMenuItem key={key} asChild>
-            <Link href={obj.getHref()}>{obj.name}</Link>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-// メインコンポーネント
 export function Header() {
-  const [sheetOpen, setSheetOpen] = useState(false);
-
   return (
     <header className="bg-background sticky top-0 z-50">
       <div className="mx-auto flex h-12 w-full max-w-screen-md items-center px-2">
-        {/* モバイルメニューボタン */}
         <div className="flex md:hidden">
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="メニューを開く">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent aria-describedby={undefined} side="left" className="w-64 p-0">
-              <SheetHeader className="border-border flex flex-row items-center gap-2 border-b px-4 py-3">
-                <Button variant="ghost" size="icon" onClick={() => setSheetOpen(false)} aria-label="メニューを閉じる">
-                  <X className="h-5 w-5" />
-                </Button>
-                <SheetTitle className="sr-only">ナビゲーションメニュー</SheetTitle>
-                <Logo />
-              </SheetHeader>
-              <DrawerContent onClose={() => setSheetOpen(false)} />
-            </SheetContent>
-          </Sheet>
+          <MobileMenuButton />
         </div>
-
-        {/* ロゴ */}
         <div className="mr-4 flex-grow md:flex-grow-0">
-          <Logo />
+          <HeaderLogo />
         </div>
-
-        {/* デスクトップナビゲーション */}
-        <NavigationTabs />
-
-        {/* テーマ切り替え */}
+        <NavigationTabs items={navigationItems} />
         <ThemeToggle />
-
-        {/* その他メニュー */}
-        <MoreMenu />
+        <MoreMenuButton />
       </div>
     </header>
   );

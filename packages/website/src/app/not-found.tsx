@@ -4,8 +4,8 @@ import { Frown, House } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { PageLayout } from '@/components/PageLayout';
-import { Button } from '@/components/ui/button';
+import { PageLayout } from '@/components/PageLayoutBase';
+import { buttonVariants } from '@/components/ui/button-styles';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const title = '404 Not Found';
@@ -30,12 +30,10 @@ export default function Page() {
             <span className="text-7xl font-black">404</span>
           </div>
           <div className="text-center">{description}</div>
-          <Button asChild>
-            <Link href="/">
-              <House className="mr-2 h-4 w-4" />
-              ホームへ
-            </Link>
-          </Button>
+          <Link href="/" className={buttonVariants()}>
+            <House className="mr-2 h-4 w-4" />
+            ホームへ
+          </Link>
         </CardContent>
       </Card>
     </PageLayout>

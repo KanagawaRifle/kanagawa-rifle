@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import type { Components } from 'react-markdown';
+
+import { StaticImage } from '@/components/StaticImage';
 
 import { CodeBlock } from './CodeBlock';
 import { MarkdownHeading } from './MarkdownHeading';
@@ -108,19 +109,26 @@ export const components: Components = {
   img: ({ src = '', alt = '', width, height }) => {
     if (typeof src !== 'string' || !src) return null;
 
-    const aspectRatio = width && height ? Number(height) / Number(width) : 9 / 16;
+    const imageWidth = Number(width);
+    const imageHeight = Number(height);
+    const aspectRatio =
+      Number.isFinite(imageWidth) && imageWidth > 0 && Number.isFinite(imageHeight) && imageHeight > 0
+        ? imageWidth / imageHeight
+        : 16 / 9;
     // SEO: alt 属性が空の場合はデフォルト値を設定
     const altText = alt || 'ライフル射撃協会のニュース記事に掲載された画像';
 
     return (
-      <span className="relative mb-4 block w-full" style={{ paddingTop: `${aspectRatio * 100}%` }}>
-        <Image
-          src={src}
-          alt={altText}
-          fill
-          sizes="(min-width: 768px) 656px, calc(100vw - 40px)"
-          className="rounded-md object-contain"
-        />
+      <span className="mb-4 block w-full">
+        <span className="relative block w-full" style={{ aspectRatio }}>
+          <StaticImage
+            src={src}
+            alt={altText}
+            fill
+            sizes="(min-width: 768px) 656px, calc(100vw - 40px)"
+            className="m-0 rounded-md object-contain"
+          />
+        </span>
         {alt && <span className="text-muted-foreground mt-1 block text-center text-sm italic">{alt}</span>}
       </span>
     );

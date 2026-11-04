@@ -1,0 +1,11 @@
+@import 'tailwindcss/utilities' layer(utilities) source(none);
+@import 'tw-animate-css';
+
+@reference 'tailwindcss';
+@reference './theme.css';
+
+@source '../components/ui/dialog.tsx';
+@source '../components/ui/dropdown-menu.tsx';
+@source '../components/ui/select.tsx';
+@source '../components/ui/sheet.tsx';
+@source '../components/ui/tooltip.tsx';

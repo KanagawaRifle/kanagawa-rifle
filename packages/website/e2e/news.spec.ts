@@ -23,6 +23,8 @@ test('news is readable without JavaScript', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto(`http://127.0.0.1:3100${articlePath}`);
   await expect(page.getByRole('article')).toBeVisible();
+  await expect(page.locator('article .prose')).toHaveCSS('font-size', '18px');
+  await expect(page.locator('article .prose')).toHaveCSS('max-width', 'none');
   await expect(page.getByRole('article').getByRole('link', { name: '一覧に戻る' })).toBeVisible();
   expect(await page.getByRole('article').innerText()).toContain('休場期間：2026年9月25日');
   await context.close();
@@ -61,6 +63,8 @@ test('article navigation, breadcrumbs, and share menu work', async ({ page }) =>
   await expect(page).toHaveURL(/\/news\/\d{4}-\d{2}-\d{2}-\d{2}$/);
   await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
   await expect(page.getByRole('article').locator('time').first()).toBeVisible();
+  await expect(page.locator('article .prose')).toHaveCSS('font-size', '18px');
+  await expect(page.locator('article .prose')).toHaveCSS('max-width', 'none');
   await expect(
     page.getByRole('navigation', { name: 'パンくずリスト' }).getByRole('link', { name: 'お知らせ', exact: true }),
   ).toBeVisible();
@@ -68,8 +72,8 @@ test('article navigation, breadcrumbs, and share menu work', async ({ page }) =>
   await expect(page.getByRole('menuitem', { name: 'リンクをコピー' })).toBeVisible();
 });
 
-test('copying an article link displays its confirmation toast', async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+test('copying an article link displays its confirmation toast', async ({ page, context, browserName }) => {
+  if (browserName === 'chromium') await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto(articlePath);
   await page.getByRole('button', { name: '共有メニューを開く' }).click();
   await page.getByRole('menuitem', { name: 'リンクをコピー' }).click();

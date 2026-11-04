@@ -45,8 +45,10 @@ export const parseMarkdown = cache(function parseMarkdown(content: string) {
   const tree: Root = processor.runSync(processor.parse(content));
   const toc: TableOfContentsEntry[] = [];
   let hasTopLevelHeading = false;
+  let hasMath = false;
   visit(tree, 'element', (node) => {
     if (node.tagName === 'h1') hasTopLevelHeading = true;
+    if (Array.isArray(node.properties.className) && node.properties.className.includes('katex')) hasMath = true;
   });
 
   visit(tree, 'element', (node) => {
@@ -62,5 +64,5 @@ export const parseMarkdown = cache(function parseMarkdown(content: string) {
     }
   });
 
-  return { tree, toc };
+  return { tree, toc, hasMath };
 });

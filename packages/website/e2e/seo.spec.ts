@@ -18,6 +18,21 @@ const publicPaths = [
   '/links',
 ];
 
+test.describe('styled error fallbacks without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('404 retains its styles and its link back to the home page', async ({ page }) => {
+    const response = await page.goto('/missing-page-for-style-check');
+    expect(response?.status()).toBe(404);
+    await expect(page.getByRole('banner')).toHaveCSS('height', '48px');
+    const home = page.getByRole('link', { name: 'ホームへ', exact: true });
+    await expect(home).toHaveCSS('height', '40px');
+    await home.click();
+    await expect(page).toHaveURL('/');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('神奈川県');
+  });
+});
+
 test('public pages serve distinct metadata and canonical URLs in the initial HTML', async ({ request }) => {
   const titles = new Set<string>();
   const descriptions = new Set<string>();
@@ -111,6 +126,37 @@ test('pagination preserves distinct canonical pages and excludes alternate page 
     expect(collection.mainEntity.itemListElement.map(({ item }: { item: { url: string } }) => item.url)).toEqual(
       articles.map((link) => new URL(link.getAttribute('href')!, url).toString()),
     );
+  }
+});
+
+test('pagination metadata matches crawlable adjacent links, including the first and last page', async ({ request }) => {
+  const response = await request.get('/api/news');
+  const { data } = await response.json();
+  const lastPage = data.pagination.totalPages;
+  for (const [path, previous, next] of [
+    ['/news', undefined, '/news?page=2'],
+    ['/news?page=2', '/news', '/news?page=3'],
+    ['/news?page=2&size=6', '/news?size=6', '/news?page=3&size=6'],
+    [`/news?page=${lastPage}`, `/news?page=${lastPage - 1}`, undefined],
+  ] as const) {
+    const result = await request.get(path, { headers: botHeaders });
+    expect(result.status()).toBe(200);
+    const document = new JSDOM(await result.text()).window.document;
+    for (const [relation, expected] of [
+      ['prev', previous],
+      ['next', next],
+    ] as const) {
+      const href = document.head.querySelector(`link[rel="${relation}"]`)?.getAttribute('href');
+      if (expected) {
+        const url = new URL(href!);
+        expect(`${url.pathname}${url.search}`).toBe(expected);
+        expect(
+          [...document.querySelectorAll('nav[aria-label="ページネーション"] a')].some(
+            (link) => link.getAttribute('href') === expected,
+          ),
+        ).toBe(true);
+      } else expect(href).toBeUndefined();
+    }
   }
 });
 

@@ -34,6 +34,28 @@ test.describe('Security Headers', () => {
     expect(csp).not.toContain("'unsafe-eval'");
   });
 
+  test('framework assets retain caching and restrictive headers without the document allowlist', async ({
+    page,
+    request,
+  }) => {
+    await page.goto('/');
+    const script = await page.locator('script[src^="/_next/static/"]').first().getAttribute('src');
+    const style = page
+      .locator('style[data-href^="/_next/static/"], link[rel="stylesheet"][href^="/_next/static/"]')
+      .first();
+    const stylesheet = (await style.getAttribute('data-href')) ?? (await style.getAttribute('href'));
+    for (const url of [script, stylesheet]) {
+      expect(url).not.toBeNull();
+      const response = await request.get(url!);
+      expect(response.status()).toBe(200);
+      const headers = response.headers();
+      expect(headers['cache-control']).toContain('immutable');
+      expect(headers['x-content-type-options']).toBe('nosniff');
+      expect(headers['strict-transport-security']).toContain('max-age=');
+      expect(headers['content-security-policy']).toBe("default-src 'none'; frame-ancestors 'none'; sandbox");
+    }
+  });
+
   test('hydrates and navigates without violating the production CSP', async ({ page }) => {
     await page.addInitScript(() => {
       const violations: string[] = [];

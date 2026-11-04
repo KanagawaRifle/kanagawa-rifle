@@ -2,18 +2,19 @@
 // cspell:ignore msvalidate
 
 import '@/styles/globals.css';
+
 import type { Metadata, Viewport } from 'next';
 import React from 'react';
 
 import { Analytics } from '@/components/Analytics';
 import { Frame } from '@/components/Frame';
 import { JsonLd } from '@/components/JsonLd';
+import { ThemeScript } from '@/components/ThemeScript';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
 import { organizationJsonLd } from '@/config/organization';
 import { isPreviewDeployment, seoIds } from '@/config/seo';
 import { createPageMetadata } from '@/lib/metadata';
-import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -59,16 +60,15 @@ const websiteJsonLd = {
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <head>
+        <ThemeScript />
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
       </head>
       <body className="antialiased">
         <Analytics />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Frame>{children}</Frame>
-        </ThemeProvider>
+        <Frame>{children}</Frame>
       </body>
     </html>
   );

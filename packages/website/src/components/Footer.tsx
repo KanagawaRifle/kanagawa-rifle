@@ -1,18 +1,24 @@
 // packages/website/src/components/Footer.tsx
 
 import { ExternalLink } from 'lucide-react';
-import Link from 'next/link';
 
 import { SocialLinks } from '@/components/SocialLinks';
-import { buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-styles';
 import { app } from '@/config/app';
 import { NEWS_FEED_PATH, paths } from '@/config/paths';
 import { isPreviewDeployment } from '@/config/seo';
 import { cn } from '@/lib/utils';
 
+const externalLinkHint = (
+  <>
+    <ExternalLink className="h-3 w-3" aria-hidden="true" />
+    <span className="sr-only">（新しいタブで開く）</span>
+  </>
+);
+
 export function Footer() {
   return (
-    <footer className="bg-muted">
+    <footer className="defer-render bg-muted [contain-intrinsic-block-size:auto_650px]">
       {/* ソーシャルリンク */}
       <nav aria-label="ソーシャルメディア">
         <div className="border-border mx-auto mt-2 max-w-screen-xl border-b px-4 py-6">
@@ -32,12 +38,12 @@ export function Footer() {
             <ul className="-ml-4">
               {Object.entries(paths.main).map(([key, obj]) => (
                 <li key={key}>
-                  <Link
+                  <a
                     href={obj.getHref()}
                     className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -49,23 +55,22 @@ export function Footer() {
             <ul className="-ml-4">
               {Object.entries(paths.sub).map(([key, obj]) => (
                 <li key={key}>
-                  <Link
+                  <a
                     href={obj.getHref()}
                     className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
               {!isPreviewDeployment() && (
                 <li>
-                  <Link
+                  <a
                     href={NEWS_FEED_PATH}
-                    prefetch={false}
                     className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     お知らせの更新フィード
-                  </Link>
+                  </a>
                 </li>
               )}
             </ul>
@@ -84,8 +89,7 @@ export function Footer() {
                     className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-primary justify-start')}
                   >
                     {obj.name}
-                    <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                    <span className="sr-only">（新しいタブで開く）</span>
+                    {externalLinkHint}
                   </a>
                 </li>
               ))}
@@ -97,18 +101,16 @@ export function Footer() {
       {/* コピーライト */}
       <div className="text-muted-foreground mx-auto mt-2 max-w-screen-xl px-4 py-6">
         <div>
-          <Link href="/" className="inline-flex min-h-6 items-center text-xs font-bold no-underline hover:underline">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- The static footer uses native navigation to avoid client hydration. */}
+          <a href="/" className="inline-flex min-h-6 items-center text-xs font-bold no-underline hover:underline">
             {app.longName}
-          </Link>
+          </a>
         </div>
         <div>
-          <Link
-            href="/"
-            className="inline-flex min-h-6 items-center text-xl font-black no-underline"
-            style={{ fontFamily: 'Roboto' }}
-          >
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Keep all footer links on the same native navigation path. */}
+          <a href="/" className="inline-flex min-h-6 items-center font-sans text-xl font-black no-underline">
             {app.shortName.replace(/[A-Za-z]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0))}
-          </Link>
+          </a>
         </div>
       </div>
     </footer>

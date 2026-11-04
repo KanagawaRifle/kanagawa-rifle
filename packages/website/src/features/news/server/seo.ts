@@ -18,14 +18,30 @@ export function getArticleDescription(article: NewsItem): string {
 
 /** Only describe an image actually present in the rendered article. */
 export function getArticleImage(article: NewsItem): string | undefined {
+  return getArticleImageMetadata(article)?.url;
+}
+
+/** Carry authored alt text and dimensions into social cards without guessing them. */
+export function getArticleImageMetadata(article: NewsItem) {
   const { tree } = parseMarkdown(article.content);
-  let image: string | undefined;
+  let image: { url: string; alt: string; width?: number; height?: number } | undefined;
   visit(tree, 'element', (node) => {
     if (['script', 'style', 'pre'].includes(node.tagName) || node.properties.hidden) return SKIP;
     if (!image && node.tagName === 'img' && typeof node.properties.src === 'string' && node.properties.src.trim()) {
       try {
         const url = new URL(node.properties.src, new URL(getNewsItemHref(article.slug), env.APP_URL));
-        if (['http:', 'https:'].includes(url.protocol)) image = url.toString();
+        if (['http:', 'https:'].includes(url.protocol)) {
+          const width = Number(node.properties.width);
+          const height = Number(node.properties.height);
+          image = {
+            url: url.toString(),
+            alt:
+              typeof node.properties.alt === 'string' && node.properties.alt.trim()
+                ? node.properties.alt
+                : article.title,
+            ...(Number.isFinite(width) && width > 0 && Number.isFinite(height) && height > 0 ? { width, height } : {}),
+          };
+        }
       } catch {
         // Invalid image URLs cannot describe an article's search appearance.
       }

@@ -16,7 +16,8 @@ type PageMetadataOptions = {
   description?: string;
   path: string;
   noindex?: boolean;
-  image?: { url: string; alt: string };
+  image?: { url: string; alt: string; width?: number; height?: number };
+  pagination?: { previous?: string; next?: string };
   article?: { published: Date; updated?: Date; tags: string[] };
 };
 
@@ -27,6 +28,7 @@ export function createPageMetadata({
   noindex = false,
   article,
   image: articleImage,
+  pagination,
 }: PageMetadataOptions): Metadata {
   const url = new URL(path, env.APP_URL);
   const fullTitle = title === app.name ? title : `${title}：${app.name}`;
@@ -35,6 +37,14 @@ export function createPageMetadata({
   return {
     title,
     description,
+    ...(pagination
+      ? {
+          pagination: {
+            previous: pagination.previous ? new URL(pagination.previous, env.APP_URL).toString() : undefined,
+            next: pagination.next ? new URL(pagination.next, env.APP_URL).toString() : undefined,
+          },
+        }
+      : {}),
     alternates: {
       canonical: url,
       ...(!isPreviewDeployment()

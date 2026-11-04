@@ -17,6 +17,17 @@ test('membership fee tables remain readable and keyboard accessible at every vie
   await expect(page.getByRole('table')).toHaveCount(6);
   const fitsViewport = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   expect(fitsViewport).toBe(true);
+
+  // Focus must reveal every offscreen table, including the last table first.
+  const regions = await page.getByRole('main').getByRole('region').all();
+  for (const feeRegion of regions.reverse()) {
+    await feeRegion.focus();
+    await expect(feeRegion).toBeFocused();
+    await expect(feeRegion).toBeInViewport();
+    await expect(feeRegion.getByRole('table')).toBeVisible();
+  }
+  await page.emulateMedia({ media: 'print' });
+  for (const feeRegion of regions) await expect(feeRegion).toHaveCSS('content-visibility', 'visible');
 });
 
 for (const path of ['/join', '/recommendation']) {
@@ -28,5 +39,20 @@ for (const path of ['/join', '/recommendation']) {
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
     expect(result.violations).toEqual([]);
     expect(errors).toEqual([]);
+  });
+}
+
+for (const path of ['/competitions', '/recommendation']) {
+  test(`${path} keeps offscreen links reachable and prints every deferred card`, async ({ page }) => {
+    await page.goto(path);
+    const link = page.getByRole('main').locator('a[target="_blank"]').last();
+    await link.focus();
+    await expect(link).toBeFocused();
+    await expect(link).toBeInViewport();
+    await expect(link).toBeVisible();
+    const cards = page.locator('main .defer-render');
+    expect(await cards.count()).toBeGreaterThan(0);
+    await page.emulateMedia({ media: 'print' });
+    for (const card of await cards.all()) await expect(card).toHaveCSS('content-visibility', 'visible');
   });
 }

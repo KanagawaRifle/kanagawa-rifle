@@ -2,6 +2,8 @@
 
 'use client';
 
+import '@/styles/overlays.css';
+
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as React from 'react';
 

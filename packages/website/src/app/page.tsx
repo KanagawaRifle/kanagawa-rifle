@@ -1,12 +1,12 @@
 // packages/website/src/app/page.tsx
 
 import { ChevronRight, NotebookPen } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { PageLayout } from '@/components/PageLayout';
+import { StaticImage } from '@/components/StaticImage';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-styles';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { app } from '@/config/app';
 import { getStaticFileUrl } from '@/config/assets';
@@ -56,12 +56,15 @@ export default async function Page() {
               </p>
             </div>
             <div>
-              <Button variant="outline" asChild>
-                <a href={COMPETITION_ENTRY_FORM_URL} target="_blank" rel="noopener noreferrer">
-                  <NotebookPen className="mr-2 h-4 w-4" />
-                  日ラ等大会申込
-                </a>
-              </Button>
+              <a
+                className={buttonVariants({ variant: 'outline' })}
+                href={COMPETITION_ENTRY_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <NotebookPen className="mr-2 h-4 w-4" />
+                日ラ等大会申込
+              </a>
             </div>
           </div>
         </AlertDescription>
@@ -97,7 +100,7 @@ export default async function Page() {
           rel="noopener noreferrer"
           className="block transition-opacity hover:opacity-90"
         >
-          <Image
+          <StaticImage
             src={getStaticFileUrl('/news/2024-02-22-02-card.png')}
             alt="国スポ予選ポスター"
             width={1225}
@@ -115,15 +118,13 @@ export default async function Page() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>お知らせ</CardTitle>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href={paths.main.news.getHref()}>
-              一覧へ
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Link>
-          </Button>
+          <Link className={buttonVariants({ variant: 'ghost', size: 'sm' })} href={paths.main.news.getHref()}>
+            一覧へ
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </Link>
         </CardHeader>
 
-        <NewsList news={news} withControls={false} headingAs="h3" />
+        <NewsList news={news} withPagination={false} headingAs="h3" />
       </Card>
     </PageLayout>
   );

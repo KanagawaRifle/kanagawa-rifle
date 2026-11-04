@@ -1,6 +1,6 @@
-> 0.5%
-last 2 versions
-not dead
-not IE 11
-not op_mini all
-supports es6-module
+# Match the runtime requirements of Next.js 16 and Tailwind CSS 4.
+Chrome >= 111
+Edge >= 111
+Firefox >= 128
+Safari >= 16.4
+iOS >= 16.4

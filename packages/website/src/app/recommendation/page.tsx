@@ -69,7 +69,7 @@ export default function Page() {
 
       <RecommendationFees />
 
-      <Card>
+      <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
         <CardHeader>
           <CardTitle>申請の流れ</CardTitle>
         </CardHeader>
@@ -99,7 +99,7 @@ export default function Page() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
         <CardHeader>
           <CardTitle>技能講習免除について</CardTitle>
           <CardDescription>免除の申請資格</CardDescription>
@@ -131,7 +131,7 @@ export default function Page() {
         </ul>
       </Card>
 
-      <Card>
+      <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CalendarDays className="h-5 w-5" aria-hidden="true" />
@@ -190,7 +190,7 @@ export default function Page() {
         </ul>
       </Card>
 
-      <Card>
+      <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CreditCard className="h-5 w-5" aria-hidden="true" />
@@ -210,7 +210,7 @@ export default function Page() {
         </ul>
       </Card>
 
-      <Card>
+      <Card className="defer-render [contain-intrinsic-block-size:auto_500px]">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Newspaper className="h-5 w-5" aria-hidden="true" />

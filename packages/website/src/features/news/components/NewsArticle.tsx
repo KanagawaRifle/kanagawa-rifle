@@ -1,10 +1,10 @@
 import { ArrowLeft, Calendar, Hash } from 'lucide-react';
 import Link from 'next/link';
-import { Toaster } from 'sonner';
 
+import MathStyles from '@/components/Markdown/MathStyles';
 import { renderMarkdown } from '@/components/Markdown/renderMarkdown';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-styles';
 import { Card } from '@/components/ui/card';
 import { app } from '@/config/app';
 import { env } from '@/config/env';
@@ -12,17 +12,17 @@ import { getNewsItemHref } from '@/features/news/paths';
 import type { NewsItem } from '@/features/news/types';
 
 import { formatNewsDate } from '../dates';
-import { RefreshNewsButton } from './NewsListControls';
+import { RefreshNewsButton } from './RefreshNewsButton';
 import ShareLinks from './ShareLinks';
 import TableOfContents from './TableOfContents';
 
 export function NewsArticle({ news }: { news: NewsItem }) {
-  const { body, toc } = renderMarkdown(news.content);
+  const { body, toc, hasMath } = renderMarkdown(news.content);
   const articleUrl = new URL(getNewsItemHref(news.slug), env.APP_URL).toString();
 
   return (
     <article>
-      <Toaster position="bottom-center" richColors />
+      {hasMath && <MathStyles />}
       <header className="mb-8">
         <div className="mb-2 flex justify-end gap-2">
           <ShareLinks title={news.title} url={articleUrl} />
@@ -47,7 +47,7 @@ export function NewsArticle({ news }: { news: NewsItem }) {
         </div>
         <p className="text-muted-foreground mt-3 text-sm">
           発信：
-          <Link href="/about" className="text-primary underline">
+          <Link href="/about" prefetch={false} className="text-primary underline">
             {app.name}
           </Link>
         </p>
@@ -60,12 +60,10 @@ export function NewsArticle({ news }: { news: NewsItem }) {
         <div className="prose prose-lg dark:prose-invert max-w-none p-4 md:p-10">{body}</div>
       </Card>
       <footer className="mt-6">
-        <Button variant="ghost" asChild>
-          <Link href="/news">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            一覧に戻る
-          </Link>
-        </Button>
+        <Link className={buttonVariants({ variant: 'ghost' })} href="/news">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          一覧に戻る
+        </Link>
       </footer>
     </article>
   );

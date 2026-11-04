@@ -1,7 +1,8 @@
 // packages/website/src/lib/logger.ts
 // サーバーサイド用ロガー（Axiom + Sentry 統合）
 
-import { Logger } from 'next-axiom';
+// The CommonJS barrel also registers client-side Web Vitals components.
+import { Logger } from 'next-axiom/dist/logger';
 
 // シングルトンロガーインスタンス
 let loggerInstance: Logger | null = null;

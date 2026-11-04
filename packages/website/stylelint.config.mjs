@@ -1,8 +1,14 @@
 const config = {
   extends: ['@acme/stylelint-config'],
   rules: {
-    'at-rule-no-unknown': [true, { ignoreAtRules: ['theme', 'plugin', 'custom-variant', 'apply'] }],
-    'scss/at-rule-no-unknown': [true, { ignoreAtRules: ['theme', 'plugin', 'custom-variant', 'apply'] }],
+    'at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['theme', 'plugin', 'custom-variant', 'apply', 'reference', 'source'] },
+    ],
+    'scss/at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['theme', 'plugin', 'custom-variant', 'apply', 'reference', 'source'] },
+    ],
     'import-notation': 'string',
     // Keep the site's existing CSS notation and grouped theme variables.
     'hue-degree-notation': 'number',
