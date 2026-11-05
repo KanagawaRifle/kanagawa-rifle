@@ -7,7 +7,8 @@ const config: KnipConfig = {
       project: ['*.{js,mjs,cjs,ts}', 'scripts/*.mjs'],
       // The coverage tool resolves Vitest from the selected workspace.
       // minimatch is the local legacy API adapter referenced by npm overrides.
-      ignoreDependencies: ['vitest', 'minimatch'],
+      // The hoisted alert plugin's declarations resolve unified from this root.
+      ignoreDependencies: ['vitest', 'minimatch', 'unified'],
     },
     'packages/website': {
       entry: [
@@ -27,7 +28,7 @@ const config: KnipConfig = {
       ignoreDependencies: [
         // k6 imports are provided by its executable, not npm.
         'k6',
-        // Required peer of @sentry/webpack-plugin, resolved by the build integration.
+        // Required peer of @sentry/bundler-plugins, resolved by the build integration.
         'webpack',
       ],
     },
@@ -49,7 +50,6 @@ const config: KnipConfig = {
     },
     'packages/typescript-config': {
       entry: ['*.json'],
-      ignoreUnresolved: ['^next$'],
     },
   },
   ignoreDependencies: [

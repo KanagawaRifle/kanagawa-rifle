@@ -95,7 +95,7 @@ const loadProductionDependencyIds = async (appPackage) => {
   try {
     tree = JSON.parse(result.stdout);
   } catch (error) {
-    throw new Error(`Could not parse npm ls output: ${error.message}`);
+    throw new Error(`Could not parse npm ls output: ${error.message}`, { cause: error });
   }
 
   // npm reports unrelated, stale root modules as "extraneous" even when a

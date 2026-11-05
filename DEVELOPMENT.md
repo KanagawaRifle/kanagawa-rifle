@@ -2,7 +2,7 @@
 
 ## ローカル環境
 
-Node.js 24.21.0 / npm 11.19.0 を使います。Volta を使うと、ルートの `package.json` に指定した
+Node.js 26.13.0 / npm 12.2.1 を使います。Volta を使うと、ルートの `package.json` に指定した
 バージョンが選択されます。以下のコマンドはリポジトリのルートで実行してください。
 
 ```bash
@@ -66,7 +66,7 @@ Playwright がサーバーを起動します。`test:e2e` は本番ビルドを 
 | `npm run cspell`                             | 文書・スクリプト・サイトのスペル。固有名詞は `packages/website/.cspell.dict.txt` に登録 |
 | `npm run license-check`                      | 依存パッケージのライセンス                                                              |
 | `npm run coverage:diff -- --base origin/2.x` | 指定コミットからの変更行のカバレッジ                                                    |
-| `npm run size-limit`                         | ビルド済みページの初期 JS/CSS サイズ。gzip で 500 kB / 25 kB が上限                     |
+| `npm run size-limit`                         | ビルド済みページの初期 JS/CSS/HTML サイズ。gzip で 225 kB / 20 kB / 50 kB が上限        |
 | `npm run -w @acme/website test:mutation`     | ニュース入力スキーマのミューテーションテスト。スコア 95% 未満で失敗                     |
 | `npm run -w @acme/website analyze`           | Webpack のバンドル分析                                                                  |
 | `npm run lint:infra`                         | Docker で ShellCheck・actionlint・Hadolint・zizmor を実行                               |
@@ -93,14 +93,41 @@ npm install -D -w @acme/website <package-name>
 SBOM は `npm run --silent sbom > bom.json` で出力できます。生成したレポートは Git の管理対象外です。
 
 ルートの `overrides` は、親パッケージが古いバージョンを固定している推移依存の修正に使っています。
-KaTeX、postcss-selector-parser、ライセンス生成ツールの Zod は対象の親に限定しています。
+KaTeX、postcss-selector-parser、ライセンス生成ツールの Zod、typed-rest-client の qs は対象の親に限定しています。
 `generate-license-file` は 4.2 系でワークスペースの依存収集に欠落があるため 4.1.1 を維持し、
-Zod のみ更新しています。更新時は `npm run license-report` で本番依存の収録も確認してください。
-`@vitest/eslint-plugin` は TypeScript 5 と互換性のある 1.6.27 に固定しています。
-1.6.28 は TypeScript 6 を要求するため、型チェック環境の更新時に見直してください。
+Zod のみ更新しています。4.2.5 でも本番依存 19 件の欠落を確認しました（2026-11-05）。
+更新時は `npm run license-report` で本番依存の収録も確認してください。
 
-既存の `.npmrc` は `legacy-peer-deps=true` を指定しており、`npm ls --all` には Vite や CSS 検査ツールなどの
-peer dependency 不整合が残ります。インストールの成功だけで互換性を判断せず、lint・型・ビルド・テストを確認してください。
+`npm run typecheck` は npm alias `typescript-native` の TypeScript 7.0.2 を明示的に実行します。
+JavaScript API を使う ESLint・検査スクリプト・Next.js のビルド内の型検査には、
+公式の互換パッケージ `@typescript/typescript6` を `typescript` として導入しています。
+`@vitest/eslint-plugin` も TypeScript 6 対応の 1.6.28 に更新しています。
+hoist された `remark-github-blockquote-alert` の型宣言が unified 11 を解決できるよう、
+ルートにも同じバージョンの `unified` を指定しています。
+
+Stylelint は 17.16.0、`stylelint-config-standard` は 40.0.0 を使用します。
+最新の `stylelint-config-standard-scss` 17.0.0 が Stylelint 18 に未対応で、
+削除されたルールによるエラーになるためです。設定側の対応後にまとめて更新してください。
+
+既存の `.npmrc` は `legacy-peer-deps=true` を指定しています。
+`eslint-plugin-import` など一部の peer dependency 宣言は ESLint 10 に未対応です。
+インストールの成功だけで互換性を判断せず、lint・型・ビルド・テストを確認してください。
+
+npm 12 は依存パッケージのインストールスクリプトを既定で実行しません。
+ルートの `package.json` の `allowScripts` で、esbuild、Snyk のインストール処理を
+バージョン指定で許可しています。これらの依存を更新した場合は `npm install-scripts ls` で確認し、
+必要な処理を確認してから `npm install-scripts approve <package-name>` で許可対象を更新してください。
+その後 `npm ci` を実行し、インストールスクリプトの未許可警告が残らないことを確認します。
+
+jsdom を使う単体テストでは、Vitest の `execArgv` に `--no-experimental-webstorage` を指定しています。
+Node.js 26 のネイティブ Web Storage と衝突せず、jsdom のウィンドウごとのストレージで検証するためです。
+
+Sentry 11 への更新では、`src/config/sentry.ts` の共有設定で従来のデータ収集範囲と
+静的なトレースのライフサイクルを維持しています。ブラウザ・サーバー・Edge の初期化で共通に読み込みます。
+ビルド依存の CLI は `@sentry/cli` から `sentry` に変わりました。未改変のビルドツールとして使い、
+[FSL-1.1-Apache-2.0](https://github.com/getsentry/cli/blob/main/LICENSE.md) のライセンス全文を保持します。
+`.licensee.json` の例外は確認済みの `sentry@0.45.0` に限定しています。
+argparse の [PSF-2.0](https://spdx.org/licenses/PSF-2.0.html) もライセンス全文を確認し、許可一覧に追加しています。
 
 2026-11-04 の更新で、`npm audit` の全 severity と `--omit=dev` の検出を 0 件にしました。
 glob 9〜13 系は 14.0.3、minimatch 9〜10 系は 11.0.4 に更新しています。

@@ -56,7 +56,7 @@ export const WithoutFooter: Story = {
 export const WithActionArea: Story = {
   render: () => (
     <Card className="w-[350px]">
-      <CardActionArea href="#" aria-label="詳細を見る">
+      <CardActionArea href="#">
         <CardHeader>
           <CardTitle>クリック可能なカード</CardTitle>
           <CardDescription>カード全体がリンクになっています。</CardDescription>

@@ -167,12 +167,13 @@ const score = 600;
   it('reserves the image ratio independently of its caption and rejects invalid dimensions', () => {
     const { document } = renderArticle('<img src="/photo.jpg" alt="大会写真" width="1200" height="800">');
     const image = document.querySelector('img')!;
-    expect(image.parentElement?.style.aspectRatio).toBe('1.5');
+    // jsdom 30 serializes a numeric CSS ratio with an explicit denominator.
+    expect(image.parentElement?.style.aspectRatio).toBe('1.5 / 1');
     expect(image.parentElement?.textContent).toBe('');
     expect(image.parentElement?.nextElementSibling?.textContent).toBe('大会写真');
     for (const dimensions of ['', 'width="0" height="800"', 'width="-2" height="800"', 'width="100%" height="800"']) {
       const rendered = renderArticle(`<img src="/photo.jpg" ${dimensions}>`).document;
-      expect(rendered.querySelector('img')?.parentElement?.style.aspectRatio).toBe(String(16 / 9));
+      expect(rendered.querySelector('img')?.parentElement?.style.aspectRatio).toBe(`${16 / 9} / 1`);
     }
   });
 

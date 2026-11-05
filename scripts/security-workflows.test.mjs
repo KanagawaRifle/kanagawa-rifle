@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
 
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 const workflow = (name) =>
   yaml.load(readFileSync(new URL(`../.github/workflows/${name}.yml`, import.meta.url), 'utf8'));

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 import { requiredChecksPass } from './check-required-ci.mjs';
 

@@ -21,7 +21,7 @@
 
 ## Development Environment
 
-- Match Node.js and npm to `volta` in the root `package.json` (currently 24.21.0 / 11.19.0).
+- Match Node.js and npm to `volta` in the root `package.json` (currently 26.13.0 / 12.2.1).
 - Run the commands below from the repository root. Install dependencies with `npm ci`.
 - On initial setup, copy `packages/website/.env.example` to `packages/website/.env.local`; do not overwrite existing settings.
 - Development: `npm run -w @acme/website dev`, available at `http://localhost:3000`.
