@@ -1,6 +1,16 @@
 # 神奈川県ライフル射撃協会ウェブサイト
 
 Next.js 16 App Router / React 19 / TypeScript / Tailwind CSS 4 で構築しています。
+
+Node.js 26 LTS / npm 12 を使用します。ローカル・CI・Docker の固定バージョンは
+ルートの `package.json` の `volta` と `.nvmrc` に合わせます。
+Vercel は [Node.js 26 に正式対応](https://vercel.com/changelog/node-js-26-lts-is-now-generally-available-on-vercel)しており、
+ルートとこのワークスペースの `engines.node: 26.x` でビルド・Functions のメジャーバージョンを指定します。
+Vercel 上の minor / patch 更新は自動で適用されます。
+`vercel.json` の `installCommand` は npm 12.2.1 を導入してから `npm ci` を実行します。
+npm の固定バージョンを変更する場合は、このコマンドも更新してください。
+2026-11-05 に確認した Next.js の最新安定版は 16.4.5、React は 19.3.1 です。
+
 環境構築と検証コマンドは [開発手順](../../DEVELOPMENT.md) を参照してください。
 以下の `src/` はこのパッケージからの相対パスです。コマンドはリポジトリのルートで実行します。
 
@@ -263,6 +273,8 @@ HTTP の www は HTTPS の www を経由して正式ドメインへ転送され�
 空欄・未設定のビルドでは初期化・画面遷移の計測・例外送信を行わず、不要な SDK を除去できるようにしています。
 同じ条件で Sentry のビルドプラグインとブラウザー用ソースマップの生成も無効にし、計測用コードの注入を避けます。
 DSN がある場合は初期表示からエラー監視・Session Replay・画面遷移の計測を有効にし、従来のサンプリング率を維持します。
+Sentry 11 のデータ収集範囲とトレースのライフサイクルは `src/config/sentry.ts` で明示し、
+ブラウザー・サーバー・Edge で更新前の設定を維持します。
 ブラウザーに `config/env.ts` を取り込まないことで、Zod の検証コードと動的コード生成に伴う CSP 違反を避けます。
 設定値の Zod 検証は `next.config.ts` とサーバーで継続し、CSP の `unsafe-eval` は本番で許可しません。
 Session Replay の圧縮用 Worker は `worker-src 'self' blob:` で許可します。

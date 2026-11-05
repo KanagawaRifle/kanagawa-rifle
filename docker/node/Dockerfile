@@ -1,4 +1,4 @@
-FROM node:24.21.0
+FROM node:26.13.0
 
 # Lighthouse CI 用の Chromium をインストール
 # Install the current security-patched Chromium from the base distribution.
@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y \
 # Chromium のパスを環境変数に設定
 ENV CHROME_PATH=/usr/bin/chromium
 
-RUN npm install --global npm@11.19.0
+RUN npm install --global npm@12.2.1

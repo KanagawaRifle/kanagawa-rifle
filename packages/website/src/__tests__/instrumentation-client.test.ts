@@ -33,6 +33,15 @@ describe('browser monitoring', () => {
     const { onRouterTransitionStart } = await import('../instrumentation-client');
     expect(Sentry.init).toHaveBeenCalledWith({
       dsn: 'https://public@sentry.example.test/1',
+      traceLifecycle: 'static',
+      dataCollection: expect.objectContaining({
+        userInfo: false,
+        cookies: false,
+        httpBodies: [],
+        genAI: { inputs: false, outputs: false },
+        databaseQueryData: false,
+        graphQL: { document: false, variables: false },
+      }),
       integrations: [{ name: 'CaptureConsole' }, { name: 'Replay' }],
       tracesSampleRate: rate,
       replaysSessionSampleRate: 0.1,

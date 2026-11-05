@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 const configuration = yaml.load(readFileSync(new URL('../.github/dependabot.yml', import.meta.url), 'utf8'));
 

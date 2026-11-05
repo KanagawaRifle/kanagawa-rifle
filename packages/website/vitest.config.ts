@@ -11,6 +11,8 @@ export default defineConfig({
 
     // テスト環境
     environment: 'jsdom',
+    // Use jsdom's per-window storage instead of Node.js 26's native Web Storage.
+    execArgv: ['--no-experimental-webstorage'],
 
     // セットアップファイル
     setupFiles: ['./src/testing/vitest.setup.tsx'],

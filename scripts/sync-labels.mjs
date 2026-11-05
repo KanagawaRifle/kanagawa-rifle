@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 const labels = yaml.load(readFileSync(new URL('../.github/labels.yml', import.meta.url), 'utf8'));
 if (
