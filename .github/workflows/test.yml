@@ -79,6 +79,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup-node
+        with:
+          install-directory: packages/website
       - run: npx playwright install --with-deps chromium
         working-directory: packages/website
       - name: Build and test public pages

@@ -101,6 +101,8 @@ Zod のみ更新しています。4.2.5 でも本番依存 19 件の欠落を確
 `npm run typecheck` は npm alias `typescript-native` の TypeScript 7.0.2 を明示的に実行します。
 JavaScript API を使う ESLint・検査スクリプト・Next.js のビルド内の型検査には、
 公式の互換パッケージ `@typescript/typescript6` を `typescript` として導入しています。
+Vercel は `packages/website` から `npm ci` を実行するため、ルートだけにある開発依存は入りません。
+ビルド用の互換パッケージと型検査用の CLI を website に宣言し、CI のブラウザ検査も同じインストール範囲で実行します。
 `@vitest/eslint-plugin` も TypeScript 6 対応の 1.6.28 に更新しています。
 hoist された `remark-github-blockquote-alert` の型宣言が unified 11 を解決できるよう、
 ルートにも同じバージョンの `unified` を指定しています。

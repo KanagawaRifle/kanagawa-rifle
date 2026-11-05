@@ -9,6 +9,8 @@ Vercel は [Node.js 26 に正式対応](https://vercel.com/changelog/node-js-26-
 Vercel 上の minor / patch 更新は自動で適用されます。
 `vercel.json` の `installCommand` は npm 12.2.1 を導入してから `npm ci` を実行します。
 npm の固定バージョンを変更する場合は、このコマンドも更新してください。
+ビルドに必要な依存はこのワークスペースに宣言します。Vercel の `npm ci` はここから実行され、
+ルートだけに宣言された開発依存には依存できません。
 2026-11-05 に確認した Next.js の最新安定版は 16.4.5、React は 19.3.1 です。
 
 環境構築と検証コマンドは [開発手順](../../DEVELOPMENT.md) を参照してください。
