@@ -95,6 +95,8 @@ jobs:
         with:
           name: browser-test-results
           path: packages/website/reports/playwright-junit.xml
+      - name: Install repository development tools
+        run: npm ci
       - name: Test development hydration
         run: npm run -w @acme/website test:e2e:dev -- --project=chromium --project="Mobile Chrome"
       - name: Build staging and verify authentication
