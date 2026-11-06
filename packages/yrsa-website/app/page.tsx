@@ -130,6 +130,99 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* 故 岡田榮三元会長をしのぶ会のご案内 */}
+        <section
+          aria-labelledby="memorial-gathering-notice-title"
+          className="mb-6 border-4 border-gray-600 bg-white shadow-lg"
+        >
+          <h2
+            id="memorial-gathering-notice-title"
+            className="bg-gray-700 px-4 py-2 text-center text-lg font-bold text-white md:text-xl"
+          >
+            故 岡田榮三元会長をしのぶ会のご案内
+          </h2>
+          <div className="space-y-3 p-4 text-sm leading-relaxed text-gray-900 md:p-6">
+            <p className="text-right">令和8年10月31日</p>
+            <p>関係者各位</p>
+            <p className="text-right">
+              発起人代表
+              <br />
+              群馬県ライフル射撃協会 有志一同
+              <br />
+              神奈川県ライフル射撃協会 廣田眞作
+            </p>
+            <p>謹啓 秋冷の候、皆様におかれましてはご健勝のことと拝察申し上げます。</p>
+            <p className="indent-4">
+              さて、群馬県ライフル射撃協会会長として長年にわたりご尽力され、関東ブロックをはじめライフル射撃競技の発展に多大なご貢献をされた岡田榮三様が、令和8年5月31日、73歳でご逝去されました。
+            </p>
+            <p className="indent-4">
+              ご葬儀はご家族のご意向により、会員の皆様にはご参列いただく機会がございませんでした。つきましては、故
+              岡田榮三元会長をしのび、そのご功績に感謝するとともに、皆様と故人の思い出を語り合う会を下記のとおり開催いたします。
+            </p>
+            <p className="indent-4">ご多用のところ恐縮ではございますが、ご出席賜りますようお願い申し上げます。</p>
+            <p className="indent-4">
+              なお、お食事および献花の準備の都合上、ご出席の際は必ず事前にお申し込みくださいますようお願いいたします。
+            </p>
+            <p className="text-right">謹白</p>
+            <p className="text-center font-bold">記</p>
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
+              <dt className="font-bold">日時</dt>
+              <dd>
+                <time dateTime="2026-12-06">令和8年12月6日（日）</time> 午前11時から
+              </dd>
+              <dt className="font-bold">会場</dt>
+              <dd>群馬県ライフル射撃場</dd>
+              <dt className="font-bold">所在地</dt>
+              <dd>〒370-3505 群馬県北群馬郡榛東村大字上野原字吾妻山2番17</dd>
+              <dt className="font-bold">会費</dt>
+              <dd>5,000円</dd>
+              <dt className="font-bold">申込締切</dt>
+              <dd>
+                <time dateTime="2026-11-20">令和8年11月20日（金）</time>
+              </dd>
+              <dt className="font-bold">申込先</dt>
+              <dd>
+                神奈川県ライフル射撃協会・横須賀市ライフル射撃協会
+                <br />
+                E-mail：
+                <a href="mailto:yokosukarifle@gmail.com" className="text-blue-600 underline hover:text-red-600">
+                  yokosukarifle@gmail.com
+                </a>
+                <br />
+                TEL／FAX：046-833-6990
+              </dd>
+            </dl>
+            <h3 className="border-b-2 border-gray-600 pt-2 font-bold">会費振込先</h3>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <h4 className="font-bold">ゆうちょ銀行からお振り込みの場合</h4>
+                <dl className="mt-1 grid grid-cols-[auto_1fr] gap-x-1">
+                  <dt>記号：</dt>
+                  <dd>10280</dd>
+                  <dt>番号：</dt>
+                  <dd>79647111</dd>
+                  <dt>口座名義：</dt>
+                  <dd>特定非営利活動法人 神奈川県ライフル射撃協会</dd>
+                </dl>
+              </div>
+              <div>
+                <h4 className="font-bold">他の金融機関からお振り込みの場合</h4>
+                <dl className="mt-1 grid grid-cols-[auto_1fr] gap-x-1">
+                  <dt>銀行名：</dt>
+                  <dd>ゆうちょ銀行</dd>
+                  <dt>店名：</dt>
+                  <dd>〇二八店（ゼロニハチ店）</dd>
+                  <dt>口座番号：</dt>
+                  <dd>7964711</dd>
+                  <dt>口座名義：</dt>
+                  <dd>トクヒ）カナガワケンライフルシヤゲキキョウカイ</dd>
+                </dl>
+              </div>
+            </div>
+            <p className="text-right">以上</p>
+          </div>
+        </section>
+
         {/* 2カラムレイアウト */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* 左カラム */}
@@ -321,7 +414,7 @@ export default function HomePage() {
               yokosukarifle@gmail.com
             </a>
           </p>
-          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.10.15</p>
+          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.11.06</p>
           <div className="mt-2 inline-block border border-gray-400 bg-white px-3 py-1 text-xs">
             <span>あなたは</span>
             <span className="mx-1 font-mono font-bold text-red-600">000,000</span>
