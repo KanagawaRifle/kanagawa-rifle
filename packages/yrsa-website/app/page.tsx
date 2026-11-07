@@ -130,6 +130,61 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* 三県大口径古敷谷大会のご案内 */}
+        <section
+          aria-labelledby="competition-notice-title"
+          className="mb-6 border-4 border-orange-600 bg-orange-50 shadow-lg"
+        >
+          <h2
+            id="competition-notice-title"
+            className="bg-orange-700 px-4 py-2 text-center text-lg font-bold text-white md:text-xl"
+          >
+            三県大口径古敷谷大会のご案内
+          </h2>
+          <div className="space-y-3 p-4 text-sm leading-relaxed text-gray-900 md:p-6">
+            <p>各位</p>
+            <p>お世話になっております。</p>
+            <p>
+              <time dateTime="2026-12-12">令和8年12月12日（土）</time>
+              に、千葉県射撃場にて「三県大口径古敷谷大会」が開催されます。
+            </p>
+            <p>
+              参加を希望される方は、
+              <strong className="text-red-800">
+                <time dateTime="2026-12-02">12月2日（水）</time>まで
+              </strong>
+              にメールにてお知らせください。
+            </p>
+            <p>皆様のご参加をお待ちしております。</p>
+            <h3 className="border-b-2 border-orange-600 pt-2 font-bold">大会概要</h3>
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
+              <dt className="font-bold">日時</dt>
+              <dd>
+                <time dateTime="2026-12-12T08:00:00+09:00">令和8年12月12日（土）午前8時集合</time>
+              </dd>
+              <dt className="font-bold">会場</dt>
+              <dd>千葉県射撃場（千葉県市原市古敷谷2620）</dd>
+              <dt className="font-bold">種目</dt>
+              <dd>P40、ベンチレスト40、クラウンマッチ</dd>
+              <dt className="font-bold">参加費</dt>
+              <dd>6,000円（弁当・参加賞付き）</dd>
+              <dt className="font-bold">申込締切</dt>
+              <dd className="font-bold text-red-800">
+                <time dateTime="2026-12-02">令和8年12月2日（水）</time>
+              </dd>
+              <dt className="font-bold">申込先</dt>
+              <dd className="min-w-0 break-words">
+                横須賀市ライフル射撃協会
+                <br />
+                <a href="mailto:yokosukarifle@gmail.com" className="text-blue-600 underline hover:text-red-600">
+                  yokosukarifle@gmail.com
+                </a>
+              </dd>
+            </dl>
+            <p>よろしくお願いいたします。</p>
+          </div>
+        </section>
+
         {/* 故 岡田榮三元会長をしのぶ会のご案内 */}
         <section
           aria-labelledby="memorial-gathering-notice-title"
@@ -414,7 +469,7 @@ export default function HomePage() {
               yokosukarifle@gmail.com
             </a>
           </p>
-          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.11.06</p>
+          <p className="mt-2 text-xs text-gray-600">Since 1957 / Last Update: 2026.11.07</p>
           <div className="mt-2 inline-block border border-gray-400 bg-white px-3 py-1 text-xs">
             <span>あなたは</span>
             <span className="mx-1 font-mono font-bold text-red-600">000,000</span>
