@@ -51,15 +51,14 @@
     "@types/react": "19.3.0",
     "tailwindcss": "4.3.3",
     "typescript": "7.0.2",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "@types/react-dom": "19.3.0"
   },
   "repoTooling": {
     "upstreamPackage": "shared-tooling",
     "linkedDependencies": [
       "@tailwindcss/postcss",
       "@testing-library/jest-dom",
-      "@types/react",
-      "@types/react-dom",
       "@vitejs/plugin-react",
       "@vitest/coverage-v8",
       "eslint-config-next",
@@ -72,7 +71,9 @@
     "installedDependencies": [
       "@testing-library/react",
       "tailwindcss",
-      "@types/node"
+      "@types/node",
+      "@types/react",
+      "@types/react-dom"
     ]
   }
 }
