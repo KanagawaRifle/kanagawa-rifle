@@ -29,6 +29,10 @@ test('home publishes autumn and winter notices and shares their links with compe
           name: '要項',
           href: 'https://static.kanagawa-rifle.org/website/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-details.pdf',
         },
+        {
+          name: '射座割',
+          href: 'https://static.kanagawa-rifle.org/website/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-start-lists.pdf',
+        },
       ],
     },
     {
