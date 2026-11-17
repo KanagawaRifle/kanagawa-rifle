@@ -166,6 +166,24 @@ async function startServer() {
   }
 }
 
+// Chromium writes DevToolsActivePort shortly after launch, so the file can be missing or empty at first.
+async function readDebuggingPort(userDataDirectory, timeout = 30_000) {
+  const file = join(userDataDirectory, 'DevToolsActivePort');
+  const deadline = Date.now() + timeout;
+  for (;;) {
+    let content = '';
+    try {
+      content = await readFile(file, 'utf8');
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+    const port = Number(content.split('\n')[0]);
+    if (content.includes('\n') && Number.isInteger(port) && port >= 1 && port <= 65535) return port;
+    if (Date.now() >= deadline) throw new Error('Chromium did not expose a valid debugging port');
+    await setTimeout(100);
+  }
+}
+
 const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`);
 
 export async function runLighthouse(options) {
@@ -208,9 +226,7 @@ export async function runLighthouse(options) {
     userDataDirectory = await mkdtemp(join(tmpdir(), 'website-lighthouse-'));
     browser = await chromium.launchPersistentContext(userDataDirectory, { args: ['--remote-debugging-port=0'] });
     summary.environment.browser = browser.browser().version();
-    const port = Number((await readFile(join(userDataDirectory, 'DevToolsActivePort'), 'utf8')).split('\n')[0]);
-    if (!Number.isInteger(port) || port < 1 || port > 65535)
-      throw new Error('Chromium did not expose a valid debugging port');
+    const port = await readDebuggingPort(userDataDirectory);
 
     for (const [name, page] of Object.entries(summary.pages)) {
       for (let run = 1; run <= options.runs; run++) {
