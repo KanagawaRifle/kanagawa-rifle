@@ -44,6 +44,11 @@ export const year2026 = competitionSchema.array().parse([
         name: '要項',
         href: getStaticFileUrl('/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-details.pdf'),
       },
+      {
+        name: '射座',
+        homeLabel: '射座割',
+        href: getStaticFileUrl('/competitions/2026/2026-11-29-autumn-kanagawa-open-championship-start-lists.pdf'),
+      },
     ],
     date: { kind: 'date', date: '2026-11-29' },
     deadline: '2026-11-11',

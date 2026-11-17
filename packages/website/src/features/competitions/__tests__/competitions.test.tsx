@@ -81,7 +81,7 @@ describe('published competition data', () => {
       expect(alert.getByText(notice.name)).toBeVisible();
       for (const action of notice.actions) {
         expect(action.disabled).not.toBe(true);
-        expect(alert.getByRole('link', { name: action.name })).toHaveAttribute('href', action.href);
+        expect(alert.getByRole('link', { name: action.homeLabel ?? action.name })).toHaveAttribute('href', action.href);
       }
     }
     expect(screen.getByText('12月大会 2026年12月5日（土）～6日（日）')).toBeVisible();
