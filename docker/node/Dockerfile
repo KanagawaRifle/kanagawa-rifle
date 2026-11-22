@@ -1,4 +1,4 @@
-FROM node:26.13.0
+FROM node:26.13.1
 
 # Lighthouse CI 用の Chromium をインストール
 # Install the current security-patched Chromium from the base distribution.
