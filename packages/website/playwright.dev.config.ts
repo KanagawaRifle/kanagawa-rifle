@@ -13,7 +13,7 @@ export default defineConfig(productionConfig, {
   reporter: [['html', { outputFolder: 'playwright-report/development' }], ['list']],
   use: { baseURL: 'http://127.0.0.1:3200' },
   webServer: {
-    command: 'npm run dev -- -- --hostname 127.0.0.1 --port 3200',
+    command: 'npm run dev -- --filter=@acme/website -- --hostname 127.0.0.1 --port 3200',
     cwd: resolve(__dirname, '../..'),
     env: { NEXT_PUBLIC_URL: 'http://127.0.0.1:3200' },
     url: 'http://127.0.0.1:3200',
