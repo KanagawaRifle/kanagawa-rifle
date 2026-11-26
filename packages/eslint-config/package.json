@@ -27,6 +27,6 @@
     "eslint": "^10.14.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.72.1"
+    "@typescript-eslint/parser": "^8.73.0"
   }
 }
