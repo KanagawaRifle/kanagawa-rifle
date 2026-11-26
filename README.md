@@ -30,6 +30,7 @@ Docker を使わない場合は [開発手順](DEVELOPMENT.md#ローカル環境
 kanagawa-rifle/
 ├── packages/
 │   ├── website/           # Next.js メインアプリ
+│   ├── yrsa-website/      # 横須賀市ライフル射撃協会の Next.js サイト
 │   ├── minimatch-compat/  # 修正版 minimatch の旧 API アダプター
 │   ├── eslint-config/     # ESLint 共有設定
 │   ├── prettier-config/   # Prettier 共有設定
@@ -57,6 +58,7 @@ PR は Rebase merge で取り込み、個々のコミットを残した直線的
 
 - [開発手順](DEVELOPMENT.md)
 - [ウェブサイトの構成と検証](packages/website/README.md)
+- [横須賀市ライフル射撃協会サイトの開発と配布](packages/yrsa-website/README.md)
 - [コントリビューション](CONTRIBUTING.md)
 - [構成と設計上の判断](ARCHITECTURE.md)
 - [問い合わせ](SUPPORT.md)

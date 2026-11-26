@@ -32,6 +32,16 @@ const config: KnipConfig = {
         'webpack',
       ],
     },
+    'packages/yrsa-website': {
+      entry: ['scripts/*.{ts,mjs}'],
+      project: [
+        'app/**/*.{ts,tsx,css}',
+        'components/**/*.{ts,tsx}',
+        'lib/**/*.{ts,tsx}',
+        'scripts/**/*.{ts,mjs}',
+        '*.{ts,mjs}',
+      ],
+    },
     'packages/eslint-config': {
       project: ['**/*.js'],
     },

@@ -347,6 +347,8 @@ assets/vendor/
 # ============================================
 static/
 static/css/
+# YRSA publishes its annual plan PDFs from this directory.
+!packages/yrsa-website/public/static/
 
 # ============================================
 # Temporary files

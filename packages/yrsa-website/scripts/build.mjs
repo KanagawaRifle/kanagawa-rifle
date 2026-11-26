@@ -1,11 +1,15 @@
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 
-import { runTool } from '@sasakiuri/repo-tooling/runtime';
-
+const require = createRequire(import.meta.url);
 const validation = process.env.YRSA_VALIDATION_BUILD === '1';
+const node = (arguments_, env = process.env) => {
+  const result = spawnSync(process.execPath, arguments_, { env, stdio: 'inherit' });
+  if (result.error) throw result.error;
+  return result.status ?? 1;
+};
 const run = (script) => {
-  const status = runTool('tsx', [script]);
+  const status = node([require.resolve('tsx/cli'), script]);
   if (status !== 0) process.exit(status);
 };
 
@@ -24,10 +28,4 @@ if (validation) {
   env.NEXT_PUBLIC_GA_MEASUREMENT_ID = '';
 }
 
-const require = createRequire(import.meta.url);
-const result = spawnSync(process.execPath, [require.resolve('next/dist/bin/next'), 'build'], {
-  env,
-  stdio: 'inherit',
-});
-if (result.error) throw result.error;
-process.exitCode = result.status ?? 1;
+process.exitCode = node([require.resolve('next/dist/bin/next'), 'build'], env);

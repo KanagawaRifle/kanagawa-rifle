@@ -1,5 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "node scripts/vercel.mjs install",
-  "buildCommand": "node scripts/vercel.mjs build"
+  "installCommand": "npm install --global npm@12.2.1 && npm ci",
+  "git": {
+    "deploymentEnabled": {
+      "2.x": true,
+      "staging": true,
+      "*": false
+    }
+  }
 }

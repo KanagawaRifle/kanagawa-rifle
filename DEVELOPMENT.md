@@ -103,6 +103,8 @@ JavaScript API を使う ESLint・検査スクリプト・Next.js のビルド�
 公式の互換パッケージ `@typescript/typescript6` を `typescript` として導入しています。
 Vercel は `packages/website` から `npm ci` を実行するため、ルートだけにある開発依存は入りません。
 ビルド用の互換パッケージと型検査用の CLI を website に宣言し、CI の本番ブラウザ検査も同じインストール範囲で実行します。
+`packages/yrsa-website` も同じく自身のワークスペースから `npm ci` を実行し、CI の `yrsa` ジョブが同じインストール範囲で検証用ビルドを行います。
+YRSA の本番ビルドは Google Calendar から年間予定 PDF を作るため、`npm run qa` と CI は `YRSA_VALIDATION_BUILD=1` を付けて固定の設定でビルドします。
 開発モードの検査ではルートの Turbo も使うため、本番検査後にルートから `npm ci` を実行します。
 `@vitest/eslint-plugin` も TypeScript 6 対応の 1.6.28 に更新しています。
 hoist された `remark-github-blockquote-alert` の型宣言が unified 11 を解決できるよう、

@@ -28,7 +28,8 @@
     "zlibjs": "0.2.0",
     "parse-cache-control": "1.0.1",
     "domain-browser": "4.23.0",
-    "sentry": "0.45.0"
+    "sentry": "0.45.0",
+    "png-js": "1.1.0"
   },
   "corrections": true,
   "ignore": [

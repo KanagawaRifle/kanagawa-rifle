@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-import base from '@sasakiuri/stylelint-config';
+import base from '@acme/stylelint-config';
 
 const config = {
-  extends: '@sasakiuri/stylelint-config',
+  extends: '@acme/stylelint-config',
   overrides: [
     {
       files: ['app/globals.css'],

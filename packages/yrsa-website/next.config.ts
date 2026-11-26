@@ -1,6 +1,3 @@
-import { fileURLToPath } from 'node:url';
-
-import { toolingWorkspaceRoot } from '@sasakiuri/repo-tooling/runtime';
 import type { NextConfig } from 'next';
 
 /**
@@ -35,9 +32,6 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: toolingWorkspaceRoot(fileURLToPath(new URL('.', import.meta.url))),
-  },
   // API ルートを動的に動作させるため output: "export" は使用しない
   // ページは generateStaticParams で静的生成される
   images: {

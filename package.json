@@ -10,6 +10,7 @@
   },
   "workspaces": [
     "packages/website",
+    "packages/yrsa-website",
     "packages/eslint-config",
     "packages/lighthouse-config",
     "packages/prettier-config",
@@ -88,7 +89,7 @@
     "dev": "turbo run dev --env-mode=loose",
     "doctor": "node scripts/doctor.mjs",
     "check": "npm run typecheck && npm run contracts:check && npm run lint && npm run syncpack && npm run knip && npm run cspell && npm run license-check && npm run test:tooling",
-    "qa": "npm run check && npm run build && npm run size-limit && npm run test:coverage && npm run -w @acme/website test:storybook && npm audit --audit-level=high",
+    "qa": "npm run check && YRSA_VALIDATION_BUILD=1 npm run build && npm run size-limit && npm run test:coverage && npm run -w @acme/website test:storybook && npm audit --audit-level=high",
     "lint:eslint:tooling": "eslint scripts .husky/install.mjs *.config.mjs stylelint.config.js packages/eslint-config packages/prettier-config packages/stylelint-config packages/lighthouse-config packages/minimatch-compat --max-warnings 0",
     "lint:infra": "node scripts/lint-infra.mjs",
     "test:tooling": "node --test scripts/*.test.mjs packages/eslint-config/tests/*.test.mjs packages/minimatch-compat/test/*.test.cjs && npm run -w @acme/website test:tooling",
