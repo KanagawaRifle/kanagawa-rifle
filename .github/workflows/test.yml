@@ -41,6 +41,9 @@ jobs:
         working-directory: packages/website
         run: npm run test:coverage -- --coverage.reportOnFailure
 
+      - name: Run YRSA tests with coverage
+        run: npm run -w @acme/yrsa-website test:coverage
+
       - name: Upload coverage artifacts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -126,6 +129,23 @@ jobs:
           name: storybook-test-results
           path: packages/website/reports/storybook/
 
+  yrsa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+      YRSA_VALIDATION_BUILD: 1
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+      # Vercel runs npm ci from this workspace, so build with the same installation scope.
+      - uses: ./.github/actions/setup-node
+        with:
+          install-directory: packages/yrsa-website
+      - name: Build the YRSA website with validation calendar settings
+        run: npm run -w @acme/yrsa-website build
+
   infrastructure:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -139,7 +159,7 @@ jobs:
   required:
     name: CI Required
     runs-on: ubuntu-latest
-    needs: [test, browser, infrastructure, storybook]
+    needs: [test, browser, infrastructure, storybook, yrsa]
     if: always()
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4

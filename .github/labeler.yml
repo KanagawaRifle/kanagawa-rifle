@@ -1,6 +1,9 @@
 'Package: Website 📦':
   - changed-files:
       - any-glob-to-any-file: ['packages/website/**']
+'Package: YRSA website 📦':
+  - changed-files:
+      - any-glob-to-any-file: ['packages/yrsa-website/**']
 'Package: shared-config 📦':
   - changed-files:
       - any-glob-to-any-file: ['packages/*-config/**']

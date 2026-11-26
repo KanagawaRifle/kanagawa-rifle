@@ -28,6 +28,10 @@
   color: 'c5def5'
   description: 'Website package'
 
+- name: 'Package: YRSA website 📦'
+  color: 'c5def5'
+  description: 'YRSA website package'
+
 - name: 'Package: shared-config 📦'
   color: 'c5def5'
   description: 'Shared config packages'

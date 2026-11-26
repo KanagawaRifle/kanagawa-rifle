@@ -3,6 +3,7 @@
 
 # パッケージ別オーナー
 /packages/website/ @sasakiuri
+/packages/yrsa-website/ @sasakiuri
 /packages/eslint-config/ @sasakiuri
 /packages/prettier-config/ @sasakiuri
 /packages/stylelint-config/ @sasakiuri

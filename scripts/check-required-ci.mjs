@@ -2,7 +2,7 @@
 import { pathToFileURL } from 'node:url';
 
 export function requiredChecksPass(needs) {
-  return ['test', 'browser', 'infrastructure', 'storybook'].every((job) => needs?.[job]?.result === 'success');
+  return ['test', 'browser', 'infrastructure', 'storybook', 'yrsa'].every((job) => needs?.[job]?.result === 'success');
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
